@@ -6,6 +6,7 @@ from marketdata.providers.databento import DatabentoProvider
 from marketdata.providers.mock import MockMarketDataProvider
 from marketdata.providers.oanda import OandaProvider
 from marketdata.providers.tradingview import TradingViewGuestProvider
+from marketdata.providers.tradingview_candles import TradingViewCandleProvider
 from marketdata.registry import Registry
 
 
@@ -23,7 +24,14 @@ async def build_providers(
         ),
         ("binance", lambda: BinanceProvider(settings, metrics)),
         ("oanda", lambda: OandaProvider(settings, metrics)),
-        ("tradingview_guest", lambda: TradingViewGuestProvider(settings, metrics)),
+        (
+            "tradingview_guest",
+            lambda: (
+                TradingViewCandleProvider(settings, metrics)
+                if settings.tradingview_storage_mode == "candles"
+                else TradingViewGuestProvider(settings, metrics)
+            ),
+        ),
     ):
         subscriptions = registry.subscriptions(name)
         if subscriptions:

@@ -8,6 +8,7 @@ from uuid import UUID
 
 import asyncpg
 
+from marketdata.candles import MarketCandle
 from marketdata.config import Settings
 from marketdata.domain import Tick
 from marketdata.registry import Registry
@@ -65,6 +66,8 @@ def tick_record(tick: Tick) -> tuple[Any, ...]:
 class Store:
     def __init__(self, settings: Settings):
         self.settings = settings
+        # Serving config chooses active capabilities; offline queries prefer stored candles.
+        self.candle_providers: list[str] | None = None
         self.pool: asyncpg.Pool | None = None
         self.has_aggregates = False
 
@@ -79,7 +82,7 @@ class Store:
         )
         async with self.connection() as connection:
             version = await connection.fetchval("SELECT version_num FROM alembic_version")
-            if version != "0002":
+            if version != "0003":
                 raise RuntimeError("database migrations are not at head; run alembic upgrade head")
             self.has_aggregates = bool(
                 await connection.fetchval("SELECT to_regclass('candles_1m_last')")
@@ -222,10 +225,19 @@ class Store:
 
     async def latest(
         self, symbol: str | None, provider: str | None, limit: int, after: str = ""
-    ) -> list[Tick]:
+    ) -> list[Tick | MarketCandle]:
         async with self.connection() as c:
             rows = await c.fetch(
-                """SELECT l.payload FROM latest_prices l
+                """WITH current AS (
+                SELECT instrument_id,provider,payload,'tick' AS kind FROM latest_prices t
+                WHERE ($5::text[] IS NULL AND NOT EXISTS (
+                    SELECT 1 FROM latest_candles c
+                    WHERE c.instrument_id=t.instrument_id AND c.provider=t.provider))
+                    OR ($5::text[] IS NOT NULL AND NOT provider=ANY($5))
+                UNION ALL
+                SELECT instrument_id,provider,payload,'candle' AS kind FROM latest_candles
+                WHERE $5::text[] IS NULL OR provider=ANY($5)
+                ) SELECT l.payload,l.kind FROM current l
                 JOIN instruments i ON i.id=l.instrument_id
                 WHERE ($1::text IS NULL OR i.canonical_symbol=$1)
                 AND ($2::text IS NULL OR l.provider=$2)
@@ -235,8 +247,188 @@ class Store:
                 provider,
                 limit,
                 after,
+                self.candle_providers,
             )
-        return [Tick.model_validate_json(r["payload"]) for r in rows]
+        return [
+            (MarketCandle if r["kind"] == "candle" else Tick).model_validate_json(r["payload"])
+            for r in rows
+        ]
+
+    async def candle_progress(self, instrument_id: UUID, provider: str) -> dict[str, Any]:
+        async with self.connection() as c:
+            row = await c.fetchrow(
+                """
+                SELECT coverage_start,coverage_end,missing,
+                    (SELECT min(lower(r)) FROM unnest(missing) r) AS earliest_gap,
+                    (SELECT coalesce(sum(extract(epoch FROM upper(r)-lower(r))/60),0)
+                     FROM unnest(missing) r)::bigint AS missing_count,
+                    l.bucket_start AS last_persisted_minute
+                FROM candle_coverage c LEFT JOIN latest_candles l
+                    USING(instrument_id,provider,price_basis)
+                WHERE instrument_id=$1 AND provider=$2 AND price_basis='native'
+            """,
+                instrument_id,
+                provider,
+            )
+        if row is None:
+            return {}
+        state = dict(row)
+        state["missing_ranges"] = [(r.lower, r.upper) for r in state.pop("missing")]
+        return state
+
+    async def write_candles(
+        self,
+        candles: list[MarketCandle],
+        coverage: list[tuple[UUID, str, datetime, datetime]],
+    ) -> int:
+        """Atomic candles/latest/coverage. Newer receipts may correct the same minute.
+
+        Coverage is a compact UTC multirange, so even long outages have bounded gap rows.
+        An uncertain-commit retry changes neither identity nor coverage.
+        """
+        changed = 0
+        async with self.connection() as c, c.transaction():
+            for instrument_id, provider, start, end in coverage:
+                await c.execute(
+                    """
+                    INSERT INTO candle_coverage
+                        (instrument_id,provider,price_basis,coverage_start,coverage_end,missing)
+                    VALUES ($1,$2,'native',$3,$4,tstzmultirange(tstzrange($3,$4,'[)')))
+                    ON CONFLICT (instrument_id,provider,price_basis) DO UPDATE SET
+                        missing=candle_coverage.missing +
+                            tstzmultirange(tstzrange(candle_coverage.coverage_end,
+                                greatest(candle_coverage.coverage_end,EXCLUDED.coverage_end),'[)')),
+                        coverage_end=greatest(candle_coverage.coverage_end,EXCLUDED.coverage_end)
+                """,
+                    instrument_id,
+                    provider,
+                    start,
+                    end,
+                )
+            if candles:
+                columns = (
+                    "instrument_id",
+                    "provider",
+                    "provider_symbol",
+                    "interval",
+                    "bucket_start",
+                    "bucket_end",
+                    "open",
+                    "high",
+                    "low",
+                    "close",
+                    "volume",
+                    "price_basis",
+                    "realtime_status",
+                    "source_status",
+                    "received_timestamp",
+                    "metadata",
+                    "payload",
+                )
+                records = []
+                for candle in candles:
+                    fields = candle.model_dump()
+                    fields.update(
+                        metadata=json.dumps(candle.metadata), payload=candle.model_dump_json()
+                    )
+                    records.append(tuple(fields[name] for name in columns))
+                await c.execute("""CREATE TEMP TABLE IF NOT EXISTS candle_stage
+                    (LIKE market_candles INCLUDING DEFAULTS) ON COMMIT DELETE ROWS""")
+                await c.copy_records_to_table("candle_stage", records=records, columns=columns)
+                names = ",".join(columns)
+                changed = int(
+                    await c.fetchval(f"""
+                    WITH written AS (
+                    INSERT INTO market_candles ({names})
+                    SELECT DISTINCT ON (instrument_id,provider,interval,bucket_start,price_basis)
+                        {names} FROM candle_stage
+                    ORDER BY instrument_id,provider,interval,bucket_start,price_basis,
+                        received_timestamp DESC
+                    ON CONFLICT (instrument_id,provider,interval,bucket_start,price_basis)
+                    DO UPDATE SET open=EXCLUDED.open,high=EXCLUDED.high,low=EXCLUDED.low,
+                        close=EXCLUDED.close,volume=EXCLUDED.volume,
+                        realtime_status=EXCLUDED.realtime_status,source_status=EXCLUDED.source_status,
+                        received_timestamp=EXCLUDED.received_timestamp,
+                        metadata=EXCLUDED.metadata,payload=EXCLUDED.payload,updated_at=now()
+                    WHERE EXCLUDED.received_timestamp > market_candles.received_timestamp
+                    RETURNING 1) SELECT count(*) FROM written
+                """)
+                )
+                await c.execute("""
+                    INSERT INTO latest_candles
+                        (instrument_id,provider,price_basis,bucket_start,received_timestamp,payload)
+                    SELECT DISTINCT ON (instrument_id,provider,price_basis)
+                        instrument_id,provider,price_basis,bucket_start,received_timestamp,payload
+                    FROM candle_stage ORDER BY instrument_id,provider,price_basis,
+                        bucket_start DESC,received_timestamp DESC
+                    ON CONFLICT (instrument_id,provider,price_basis) DO UPDATE SET
+                        bucket_start=EXCLUDED.bucket_start,
+                        received_timestamp=EXCLUDED.received_timestamp,payload=EXCLUDED.payload
+                    WHERE (EXCLUDED.bucket_start,EXCLUDED.received_timestamp) >
+                        (latest_candles.bucket_start,latest_candles.received_timestamp)
+                """)
+                await c.execute("""
+                    WITH filled AS (
+                        SELECT instrument_id,provider,price_basis,
+                            range_agg(tstzrange(bucket_start,bucket_end,'[)')) AS ranges
+                        FROM candle_stage GROUP BY instrument_id,provider,price_basis
+                    ) UPDATE candle_coverage c SET missing=c.missing-f.ranges
+                    FROM filled f WHERE (c.instrument_id,c.provider,c.price_basis)=
+                        (f.instrument_id,f.provider,f.price_basis)
+                """)
+        return changed
+
+    async def native_candles(
+        self,
+        instrument_id: UUID,
+        provider: str,
+        start: datetime,
+        end: datetime,
+        interval: str,
+        limit: int,
+        after_status: str | None = None,
+    ) -> list[dict[str, Any]]:
+        if interval not in INTERVALS or interval == "1s":
+            raise ValueError("native candles support 1m or larger intervals")
+        async with self.connection() as c:
+            rows = await c.fetch(
+                """
+                WITH rolled AS (
+                SELECT date_bin($6::text::interval,bucket_start,'1970-01-01T00:00:00Z') AS bucket,
+                    provider,realtime_status,
+                    (array_agg(open ORDER BY bucket_start))[1] AS open,
+                    max(high) AS high,min(low) AS low,
+                    (array_agg(close ORDER BY bucket_start DESC))[1] AS close,
+                    CASE WHEN bool_and(coalesce((metadata->>'volume_additive')::boolean,false))
+                        AND count(volume)=count(*) AND count(DISTINCT metadata->>'volume_type')=1
+                        THEN sum(volume) ELSE NULL END AS volume,
+                    count(*) AS observations,
+                    CASE WHEN count(DISTINCT provider_symbol)=1 THEN min(provider_symbol)
+                        ELSE NULL END AS provider_symbol,
+                    max(received_timestamp) AS received_timestamp,
+                    (array_agg(metadata ORDER BY bucket_start))[1] AS metadata,
+                    'native'::text AS price_basis,
+                    CASE WHEN count(DISTINCT source_status)=1 THEN min(source_status)
+                        ELSE 'mixed' END AS source_status
+                FROM market_candles WHERE instrument_id=$1 AND provider=$2
+                    AND interval='1m' AND price_basis='native'
+                    AND bucket_start >= $3 AND bucket_start < $4
+                GROUP BY bucket,provider,realtime_status
+                ) SELECT * FROM rolled
+                WHERE ($7::text IS NULL OR bucket > $3 OR realtime_status > $7)
+                ORDER BY bucket,realtime_status LIMIT $5
+            """,
+                instrument_id,
+                provider,
+                start,
+                end,
+                limit,
+                INTERVALS[interval],
+                after_status,
+            )
+        return [
+            dict(r, instrument_id=instrument_id, metadata=json.loads(r["metadata"])) for r in rows
+        ]
 
     async def ticks(
         self,

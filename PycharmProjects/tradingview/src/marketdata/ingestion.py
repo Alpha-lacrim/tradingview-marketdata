@@ -6,13 +6,16 @@ import random
 import time
 from collections import Counter
 from contextlib import suppress
-from typing import Protocol
+from datetime import datetime
+from typing import Protocol, cast
 
+from marketdata.candle_ingestion import CandleIngestion, CandleStore
 from marketdata.config import Settings
 from marketdata.domain import Tick, utc_now
 from marketdata.fanout import Fanout
 from marketdata.observability import Metrics
 from marketdata.providers.base import MarketDataProvider, PermanentProviderError
+from marketdata.providers.candles import CandleProvider
 
 logger = logging.getLogger(__name__)
 
@@ -39,12 +42,25 @@ class IngestionService:
         self.stopping = False
         self.pending: list[Tick] = []
         self.database_healthy = True
+        self.candle_services = {
+            p: CandleIngestion(settings, cast(CandleStore, store), p, fanout)
+            for p in providers
+            if isinstance(p, CandleProvider)
+        }
         self.drop_log_times: dict[tuple[str, str], float] = {}
         self.unlogged_drops: Counter[tuple[str, str]] = Counter()
+        for provider in providers:
+            provider.configure_freshness(settings.stale_seconds)
 
     async def start(self) -> None:
         self.provider_tasks = [
-            asyncio.create_task(self.run_provider(p), name=p.name) for p in self.providers
+            asyncio.create_task(
+                self.candle_services[p].run()
+                if p in self.candle_services
+                else self.run_provider(p),
+                name=p.name,
+            )
+            for p in self.providers
         ]
         self.writer_task = asyncio.create_task(self.write_batches(), name="batch_writer")
         self.monitor_task = asyncio.create_task(self.monitor(), name="feed_monitor")
@@ -86,11 +102,12 @@ class IngestionService:
         while not self.stopping:
             successful = 0
             try:
-                provider.health.state = "reconnecting"
+                provider.connection_started(reconnecting=bool(provider.health.reconnect_count))
                 async with asyncio.timeout(self.settings.stale_seconds):
                     await provider.connect()
-                provider.health.connected_at = utc_now()
-                provider.health.state = "healthy"
+                if provider.health.transport != "connected":
+                    provider.transport_connected()
+                    provider.subscriptions_requested()
                 iterator = provider.stream_ticks().__aiter__()
                 while not self.stopping:
                     # Monitor separately sees heartbeats even when a quiet market has no ticks.
@@ -100,7 +117,7 @@ class IngestionService:
                     successful += 1
                 break
             except PermanentProviderError as error:
-                provider.health.state = "degraded"
+                provider.transition("degraded")
                 provider.health.last_error = str(error)  # Only our static, sanitized categories.
                 provider.health.error_count += 1
                 logger.error(
@@ -113,13 +130,17 @@ class IngestionService:
                     },
                 )
                 break
-            except asyncio.CancelledError:
-                raise
-            except Exception as error:
-                provider.health.state = "reconnecting"
+            except (Exception, asyncio.CancelledError) as error:
+                if isinstance(error, asyncio.CancelledError) and (
+                    self.stopping or not provider.transport_timed_out
+                ):
+                    raise
+                provider.transition("reconnecting")
                 provider.health.error_count += 1
-                provider.health.last_error = type(error).__name__
+                if not provider.transport_timed_out:
+                    provider.health.last_error = type(error).__name__
                 provider.health.reconnect_count += 1
+                provider.health.consecutive_reconnect_failures += 1
                 self.metrics.reconnects.labels(provider.name).inc()
                 logger.warning(
                     "provider reconnect",
@@ -142,9 +163,11 @@ class IngestionService:
                             "context": {"provider": provider.name, "category": type(error).__name__}
                         },
                     )
-                provider.health.updated_at = utc_now()
+                provider.transport_disconnected()
                 if self.stopping:
-                    provider.health.state = "disconnected"
+                    provider.transition("disconnected")
+                elif provider.health.state == "reconnecting":
+                    provider.health.transport = "reconnecting"
             if successful >= 10:
                 attempt = 0
             delay = min(
@@ -156,42 +179,45 @@ class IngestionService:
                 random.uniform(delay, min(self.settings.reconnect_max_seconds, delay * 1.2))
             )
         if self.stopping:
-            provider.health.state = "disconnected"
+            provider.transition("disconnected")
 
     async def monitor(self) -> None:
         while True:
             await asyncio.sleep(1)
-            now = utc_now()
-            for provider, task in zip(self.providers, self.provider_tasks, strict=True):
-                if task.done():
-                    continue
-                h = provider.health
-                if h.connected_at is None or h.state == "reconnecting":
-                    continue
-                h.stale_symbols = [
-                    symbol
-                    for symbol, last in h.instrument_last_success.items()
-                    if (now - (last or h.connected_at)).total_seconds()
-                    > self.settings.stale_seconds
-                ]
-                if h.stale_symbols:
-                    h.state = (
-                        "stale"
-                        if len(h.stale_symbols) == len(h.instrument_last_success)
-                        else "degraded"
+            await self.monitor_once()
+
+    async def monitor_once(self, now: datetime | None = None) -> None:
+        now = now or utc_now()
+        for provider in self.providers:
+            provider.refresh_health(now)
+            if not isinstance(provider, CandleProvider) and provider.transport_expired(now):
+                connection_id = provider.health.connection_id
+                reconnect_count = provider.health.reconnect_count
+                # Only the owned runner reconnects. The watchdog closes once per session.
+                logger.warning(
+                    "provider transport timed out",
+                    extra={
+                        "context": {
+                            "provider": provider.name,
+                            "category": "transport_frame_timeout",
+                        }
+                    },
+                )
+                try:
+                    async with asyncio.timeout(6):
+                        await provider.disconnect()
+                except Exception:
+                    logger.warning(
+                        "stale feed close failed", extra={"context": {"provider": provider.name}}
                     )
-                last_message = max(h.last_message_at or h.connected_at, h.connected_at)
-                if (now - last_message).total_seconds() > self.settings.stale_seconds:
-                    h.state = "stale"
-                    # Closing the transport lets the owned runner restore subscriptions.
-                    try:
-                        async with asyncio.timeout(6):
-                            await provider.disconnect()
-                    except Exception:
-                        logger.warning(
-                            "stale feed close failed",
-                            extra={"context": {"provider": provider.name}},
-                        )
+                    # A failed close must not strand the runner in an endless receive.
+                    index = self.providers.index(provider)
+                    if (
+                        index < len(self.provider_tasks)
+                        and provider.health.connection_id == connection_id
+                        and provider.health.reconnect_count == reconnect_count
+                    ):
+                        self.provider_tasks[index].cancel()
 
     async def write_batches(self) -> None:
         while not self.stopping or not self.queue.empty():

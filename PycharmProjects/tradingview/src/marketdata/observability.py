@@ -28,6 +28,36 @@ def configure_logging(level: str) -> None:
 class Metrics:
     def __init__(self) -> None:
         self.registry = CollectorRegistry()
+        self.candles = Counter(
+            "marketdata_candles_total",
+            "Candle operations",
+            ["provider", "operation"],
+            registry=self.registry,
+        )
+        self.candle_latency = Histogram(
+            "marketdata_candle_seconds",
+            "Candle request/write duration",
+            ["operation"],
+            registry=self.registry,
+        )
+        self.candle_lateness = Gauge(
+            "marketdata_candle_scheduler_lateness_seconds",
+            "Collection start lateness",
+            ["provider"],
+            registry=self.registry,
+        )
+        self.candle_age = Gauge(
+            "marketdata_candle_age_seconds",
+            "Latest completed bucket end age; -1 if absent",
+            ["provider", "symbol"],
+            registry=self.registry,
+        )
+        self.candle_gaps = Gauge(
+            "marketdata_candle_missing_minutes",
+            "Unresolved missing minutes since coverage start",
+            ["provider", "symbol"],
+            registry=self.registry,
+        )
         self.messages = Counter(
             "marketdata_messages_total",
             "Upstream messages including control records",
@@ -73,4 +103,61 @@ class Metrics:
         )
         self.ws_dropped = Counter(
             "marketdata_ws_dropped_total", "Slow client queue losses", registry=self.registry
+        )
+        self.connection_up = Gauge(
+            "marketdata_connection_up", "Transport connected", ["provider"], registry=self.registry
+        )
+        self.connection_age = Gauge(
+            "marketdata_connection_age_seconds",
+            "Current connection age; zero offline",
+            ["provider"],
+            registry=self.registry,
+        )
+        self.feed_healthy = Gauge(
+            "marketdata_feed_healthy",
+            "All configured symbols current according to storage mode",
+            ["provider"],
+            registry=self.registry,
+        )
+        self.symbol_observations = Counter(
+            "marketdata_symbol_observations_total",
+            "Valid normalized observations",
+            ["provider", "symbol"],
+            registry=self.registry,
+        )
+        self.symbol_age = Gauge(
+            "marketdata_symbol_observation_age_seconds",
+            "Receipt age; -1 when never observed",
+            ["provider", "symbol"],
+            registry=self.registry,
+        )
+        self.symbol_fresh = Gauge(
+            "marketdata_symbol_fresh",
+            "Fresh observation in current connection",
+            ["provider", "symbol"],
+            registry=self.registry,
+        )
+        self.symbol_count = Gauge(
+            "marketdata_symbols",
+            "Configured/fresh/stale symbol counts",
+            ["provider", "state"],
+            registry=self.registry,
+        )
+        self.rejections = Counter(
+            "marketdata_rejected_observations_total",
+            "Suppressed price observations",
+            ["provider", "reason"],
+            registry=self.registry,
+        )
+        self.unknown_messages = Counter(
+            "marketdata_unknown_messages_total",
+            "Unrecognized message types",
+            ["provider"],
+            registry=self.registry,
+        )
+        self.transport_timeouts = Counter(
+            "marketdata_transport_timeouts_total",
+            "No application frames within timeout",
+            ["provider"],
+            registry=self.registry,
         )

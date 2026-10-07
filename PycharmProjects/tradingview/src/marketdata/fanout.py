@@ -1,13 +1,14 @@
 import asyncio
 from dataclasses import dataclass, field
 
+from marketdata.candles import MarketCandle
 from marketdata.domain import Tick
 from marketdata.observability import Metrics
 
 
 @dataclass(eq=False)
 class Subscriber:
-    queue: asyncio.Queue[Tick]
+    queue: asyncio.Queue[Tick | MarketCandle]
     symbols: set[str] = field(default_factory=set)
     overflow: asyncio.Event = field(default_factory=asyncio.Event)
 
@@ -29,7 +30,7 @@ class Fanout:
     def unregister(self, subscriber: Subscriber) -> None:
         self.clients.discard(subscriber)
 
-    def publish(self, tick: Tick) -> None:
+    def publish(self, tick: Tick | MarketCandle) -> None:
         for client in self.clients:
             if tick.canonical_symbol in client.symbols and not client.overflow.is_set():
                 try:

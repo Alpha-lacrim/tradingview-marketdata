@@ -10,6 +10,7 @@ import json
 import logging
 import re
 import secrets
+import time
 from collections.abc import AsyncIterator
 from datetime import datetime
 from decimal import Decimal
@@ -143,8 +144,23 @@ class TradingViewGuestProvider(MarketDataProvider):
         self.source_metadata: dict[str, dict[str, Any]] = {}
         self.rejected: dict[str, str] = {}
         self.awaiting_metadata: set[str] = set()
+        self._last_unknown_log = -float("inf")
+        self.configure_freshness(settings.stale_seconds)
+
+    def configure_freshness(self, stale_seconds: float) -> None:
+        super().configure_freshness(stale_seconds)
+        self.frame_timeout_seconds = self.settings.tradingview_frame_timeout_seconds
+        self.observation_timeout_seconds = self.settings.tradingview_observation_timeout_seconds
+        self.symbol_stale_seconds = self.settings.tradingview_symbol_stale_seconds
+
+    async def subscribe(self, subscriptions: list[Subscription]) -> None:
+        configured = {m.provider_symbol for _, m in subscriptions}
+        if self.symbol_stale_seconds.keys() - configured:
+            raise ValueError("TradingView stale threshold contains an unconfigured source symbol")
+        await super().subscribe(subscriptions)
 
     async def connect(self) -> None:
+        self.connection_started(reconnecting=bool(self.health.reconnect_count))
         # Local operating bound, not a claim about TradingView's subscription limit.
         if not 1 <= len(self.subscriptions) <= 100:
             raise PermanentProviderError("tradingview_local_subscription_limit")
@@ -182,6 +198,8 @@ class TradingViewGuestProvider(MarketDataProvider):
             if error.response.status_code in (400, 401, 403, 451):
                 raise PermanentProviderError("tradingview_access_rejected") from None
             raise
+        self.transport_connected()
+        self.transition("subscribing")
         for method, params in (
             # This is the public site's literal guest token, not an account credential.
             ("set_auth_token", ["unauthorized_user_token"]),
@@ -193,6 +211,7 @@ class TradingViewGuestProvider(MarketDataProvider):
             ),
         ):
             await self.socket.send(encode_message(method, params))
+        self.subscriptions_requested()
         logger.warning(
             "experimental unsupported TradingView guest protocol enabled",
             extra={"context": {"provider": self.name, "subscriptions": len(self.subscriptions)}},
@@ -201,7 +220,15 @@ class TradingViewGuestProvider(MarketDataProvider):
     async def disconnect(self) -> None:
         socket, self.socket = self.socket, None
         if socket is not None:
-            await socket.close()
+            try:
+                await socket.close()
+            finally:
+                self.health.last_close_code = getattr(socket, "close_code", None)
+                # Remote close text may contain sensitive internals. Keep only a category.
+                self.health.last_close_reason = (
+                    "remote_close_reason_present" if getattr(socket, "close_reason", None) else None
+                )
+                self.transport_disconnected()
 
     def reject(self, symbol: str, reason: str) -> None:
         if symbol in self.rejected:
@@ -209,7 +236,11 @@ class TradingViewGuestProvider(MarketDataProvider):
         self.rejected[symbol] = reason
         self.health.error_count += 1
         self.health.last_error = reason
-        self.health.state = "degraded"
+        item = next(i for i in self.health.symbols.values() if i.provider_symbol == symbol)
+        item.last_rejection_reason = reason
+        item.rejected = True
+        self.transition("degraded")
+        self.refresh_health()
         logger.error(
             "TradingView symbol rejected; other subscriptions continue",
             extra={"context": {"provider": self.name, "provider_symbol": symbol, "reason": reason}},
@@ -229,6 +260,13 @@ class TradingViewGuestProvider(MarketDataProvider):
         metadata = self.source_metadata.setdefault(symbol, {})
         metadata.update({key: values[key] for key in METADATA_FIELDS if key in values})
         mode = metadata.get("update_mode")
+        item = self.health.symbols[pair[0].canonical_symbol]
+        if mode is not None:
+            item.source_update_mode = (
+                str(mode)
+                if mode in ("streaming", "realtime", "delayed", "endofday", "snapshot", "forbidden")
+                else "unrecognized"
+            )
         if mode is not None and mode not in ("streaming", "realtime"):
             self.reject(symbol, "tradingview_not_realtime")
         delay = observed_decimal(metadata.get("update_mode_seconds"))
@@ -244,6 +282,7 @@ class TradingViewGuestProvider(MarketDataProvider):
         if symbol in self.rejected:
             if has_price:
                 self.metrics.dropped.labels(self.name, "source_rejected").inc()
+                self.metrics.rejections.labels(self.name, self.rejected[symbol]).inc()
             return None
         if not has_price:
             return None
@@ -251,6 +290,8 @@ class TradingViewGuestProvider(MarketDataProvider):
             key in metadata for key in IDENTITY_FIELDS
         ):
             self.metrics.dropped.labels(self.name, "source_metadata_unverified").inc()
+            item.last_rejection_reason = "source_metadata_unverified"
+            self.metrics.rejections.labels(self.name, "source_metadata_unverified").inc()
             if symbol not in self.awaiting_metadata:
                 self.awaiting_metadata.add(symbol)
                 logger.warning(
@@ -285,7 +326,16 @@ class TradingViewGuestProvider(MarketDataProvider):
                     if method in ("critical_error", "protocol_error"):
                         raise PermanentProviderError("tradingview_protocol_rejected")
                     if method != "qsd":
-                        continue  # Initial handshake and non-price control records.
+                        if "session_id" not in data:
+                            self.metrics.unknown_messages.labels(self.name).inc()
+                            now = time.monotonic()
+                            if now - self._last_unknown_log >= 30:
+                                self._last_unknown_log = now
+                                logger.warning(
+                                    "unknown TradingView message observed",
+                                    extra={"context": {"provider": self.name}},
+                                )
+                        continue
                     parameters = data["p"]
                     if parameters[0] != self.session:
                         raise ValueError("tradingview wrong session")

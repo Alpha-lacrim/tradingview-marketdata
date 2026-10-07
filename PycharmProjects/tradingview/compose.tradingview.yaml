@@ -9,3 +9,4 @@ services:
       MARKET_DATA_PROVIDER_METALS: tradingview_guest
       MARKET_DATA_PROVIDER_ENERGY: tradingview_guest
       MARKET_DATA_PROVIDER_FUTURES: disabled
+      TRADINGVIEW_STORAGE_MODE: ${TRADINGVIEW_STORAGE_MODE:-candles}

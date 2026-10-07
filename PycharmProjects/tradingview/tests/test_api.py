@@ -11,7 +11,7 @@ from marketdata.config import Settings
 pytestmark = pytest.mark.integration
 
 
-def test_complete_mock_rest_and_websocket_pipeline(database_url):
+def test_complete_mock_rest_and_websocket_pipeline(database_url, store):
     app = create_app(
         Settings(
             _env_file=None,
@@ -35,10 +35,11 @@ def test_complete_mock_rest_and_websocket_pipeline(database_url):
         deadline = time.monotonic() + 5
         while time.monotonic() < deadline:
             latest = client.get("/prices/latest/CRYPTO:BTCUSDT").json()
-            if latest:
+            if latest and client.get("/health").status_code == 200:
                 break
             time.sleep(0.01)
         assert latest and latest[0]["provider"] == "mock"
+        assert latest[0]["stale"] is False and latest[0]["age_ms"] >= 0
         assert client.get("/health").status_code == 200
         assert client.get("/providers").json()[0]["state"] == "healthy"
         assert len(client.get("/instruments").json()) == 30

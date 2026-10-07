@@ -19,6 +19,7 @@ from fastapi.responses import JSONResponse, Response
 from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
 from pydantic import BaseModel, Field, ValidationError
 
+from marketdata.candles import MarketCandle
 from marketdata.config import Settings
 from marketdata.domain import DataStatus, Instrument, ProviderInstrument, Tick, utc, utc_now
 from marketdata.fanout import Fanout
@@ -26,6 +27,7 @@ from marketdata.ingestion import IngestionService
 from marketdata.observability import Metrics, configure_logging
 from marketdata.persistence import INTERVALS, Store
 from marketdata.providers.base import ProviderHealth
+from marketdata.providers.candles import CandleProvider
 from marketdata.providers.factory import build_providers
 from marketdata.registry import Registry
 
@@ -44,9 +46,34 @@ class TickPage(BaseModel):
     next_cursor: str | None = None
 
 
+class LatestPrice(Tick):
+    age_ms: int
+    stale: bool
+    stale_after_seconds: float
+    provider_state: str | None = None
+
+
 class LatestPage(BaseModel):
-    items: list[Tick]
+    items: list[LatestPrice | LatestCandlePrice]
     next_after: str | None = None
+
+
+class LatestCandlePrice(BaseModel):
+    instrument_id: UUID
+    canonical_symbol: str
+    provider: str
+    provider_symbol: str
+    last: Decimal
+    realtime_status: DataStatus
+    received_timestamp: datetime
+    price_basis: Literal["candle_close"] = "candle_close"
+    interval: Literal["1m"] = "1m"
+    bucket_start: datetime
+    bucket_end: datetime
+    age_ms: int
+    stale: bool
+    stale_after_seconds: float
+    provider_state: str | None = None
 
 
 class Candle(BaseModel):
@@ -60,12 +87,21 @@ class Candle(BaseModel):
     volume: Decimal | None
     observations: int
     complete: bool = False
+    price_basis: str | None = None
+    source_status: str | None = None
+    metadata: dict[str, Any] = Field(default_factory=dict)
+    bucket_start: datetime | None = None
+    bucket_end: datetime | None = None
+    instrument_id: UUID | None = None
+    canonical_symbol: str | None = None
+    provider_symbol: str | None = None
+    received_timestamp: datetime | None = None
 
 
 class CandlePage(BaseModel):
     items: list[Candle]
     interval: str
-    basis: Literal["last", "mid"]
+    basis: Literal["last", "mid", "native"]
     next_start: datetime | None = None
     next_after_status: DataStatus | None = None
 
@@ -73,9 +109,11 @@ class CandlePage(BaseModel):
 class Health(BaseModel):
     status: Literal["ok", "degraded"]
     database: bool
+    database_state: Literal["healthy", "degraded"]
     ingestion_running: bool
     queue_depth: int
     provider_states: dict[str, str]
+    provider_transports: dict[str, str]
 
 
 class Command(BaseModel):
@@ -131,6 +169,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         configure_logging(settings.log_level)
         registry = settings.selected_registry(Registry.load(settings.registry_file))
         providers = await build_providers(settings, registry, metrics)
+        store.candle_providers = sorted(
+            {
+                mapping.provider
+                for p in providers
+                if isinstance(p, CandleProvider)
+                for _, mapping in p.subscriptions
+            }
+        )
         service = IngestionService(settings, store, providers, fanout, metrics)
         app.state.service, app.state.registry, app.state.store = service, registry, store
         try:
@@ -167,20 +213,27 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         service: IngestionService = app.state.service
         try:
             async with asyncio.timeout(settings.db_timeout_seconds):
-                database = await store.ping() and service.database_healthy
+                database = (
+                    await store.ping()
+                    and service.database_healthy
+                    and all(c.database_healthy for c in service.candle_services.values())
+                )
         except Exception:
             database = False
         running = service.writer_task is not None and not service.writer_task.done()
-        states: dict[str, str] = {p.name: p.health.state for p in service.providers}
+        healths = [await p.health_check() for p in service.providers]
+        states: dict[str, str] = {h.provider: h.state for h in healths}
         ok = database and running and all(s == "healthy" for s in states.values())
         if not ok:
             response.status_code = 503
         return Health(
             status="ok" if ok else "degraded",
             database=database,
+            database_state="healthy" if database else "degraded",
             ingestion_running=running,
             queue_depth=service.queue.qsize(),
             provider_states=states,
+            provider_transports={h.provider: h.transport for h in healths},
         )
 
     @app.get("/providers", response_model=list[ProviderHealth])
@@ -189,6 +242,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.get("/metrics", include_in_schema=False)
     async def prometheus() -> Response:
+        for p in app.state.service.providers:
+            p.refresh_health()
         return Response(
             generate_latest(metrics.registry), headers={"Content-Type": CONTENT_TYPE_LATEST}
         )
@@ -216,6 +271,66 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             instrument=Instrument.model_validate(row),
         )
 
+    def latest_prices(rows: list[Tick | MarketCandle]) -> list[LatestPrice | LatestCandlePrice]:
+        service: IngestionService = app.state.service
+        now = utc_now()
+        for p in service.providers:
+            p.refresh_health(now)
+        items: list[LatestPrice | LatestCandlePrice] = []
+        for tick in rows:
+            provider = next((p for p in service.providers if p.name == tick.provider), None)
+            # Dataset-scoped adapters use a health name different from Tick.provider.
+            if provider is None:
+                provider = next(
+                    (
+                        p
+                        for p in service.providers
+                        if any(
+                            m.provider == tick.provider
+                            and i.canonical_symbol == tick.canonical_symbol
+                            for i, m in p.subscriptions
+                        )
+                    ),
+                    None,
+                )
+            symbol_health = provider.health.symbols.get(tick.canonical_symbol) if provider else None
+            if isinstance(tick, MarketCandle):
+                age_ms = max(0, int((now - tick.bucket_end).total_seconds() * 1000))
+                items.append(
+                    LatestCandlePrice(
+                        instrument_id=tick.instrument_id,
+                        canonical_symbol=tick.canonical_symbol,
+                        provider=tick.provider,
+                        provider_symbol=tick.provider_symbol,
+                        last=tick.close,
+                        realtime_status=tick.realtime_status,
+                        received_timestamp=tick.received_timestamp,
+                        bucket_start=tick.bucket_start,
+                        bucket_end=tick.bucket_end,
+                        age_ms=age_ms,
+                        stale_after_seconds=60 + settings.candle_fetch_grace_seconds,
+                        stale=age_ms > (60 + settings.candle_fetch_grace_seconds) * 1000
+                        or symbol_health is None
+                        or symbol_health.stale,
+                        provider_state=provider.health.state if provider else None,
+                    )
+                )
+                continue
+            threshold = (
+                symbol_health.stale_after_seconds if symbol_health else settings.stale_seconds
+            )
+            age_ms = max(0, int((now - tick.received_timestamp).total_seconds() * 1000))
+            items.append(
+                LatestPrice(
+                    **tick.model_dump(),
+                    age_ms=age_ms,
+                    stale_after_seconds=threshold,
+                    stale=age_ms > threshold * 1000 or symbol_health is None or symbol_health.stale,
+                    provider_state=provider.health.state if provider else None,
+                )
+            )
+        return items
+
     @app.get("/prices/latest", response_model=LatestPage)
     async def latest(
         provider: str | None = None, limit: Limit = 100, after: str = ""
@@ -225,12 +340,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         next_after = (
             items[-1].canonical_symbol + "/" + items[-1].provider if len(rows) > limit else None
         )
-        return LatestPage(items=items, next_after=next_after)
+        return LatestPage(items=latest_prices(items), next_after=next_after)
 
-    @app.get("/prices/latest/{symbol}", response_model=list[Tick])
-    async def latest_symbol(symbol: str, provider: str | None = None) -> list[Tick]:
+    @app.get("/prices/latest/{symbol}", response_model=list[LatestPrice | LatestCandlePrice])
+    async def latest_symbol(
+        symbol: str, provider: str | None = None
+    ) -> list[LatestPrice | LatestCandlePrice]:
         await require_instrument(symbol)
-        return await store.latest(symbol, provider, 1000)
+        return latest_prices(await store.latest(symbol, provider, 1000))
 
     @app.get("/ticks/{symbol}", response_model=TickPage)
     async def ticks(
@@ -256,13 +373,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         symbol: str,
         provider: str,
         interval: str = "1m",
-        basis: Literal["last", "mid"] = "last",
+        basis: Literal["last", "mid", "native"] | None = None,
         start: datetime | None = None,
         end: datetime | None = None,
         limit: Limit = 100,
         after_status: DataStatus | None = None,
     ) -> CandlePage:
-        if interval not in INTERVALS:
+        basis = basis or ("native" if provider in (store.candle_providers or []) else "last")
+        if interval not in INTERVALS or (basis == "native" and interval == "1s"):
             raise HTTPException(422, "unsupported interval")
         # Full, UTC epoch-aligned buckets only; avoids mode-dependent partial candles.
         seconds = {"1s": 1, "1m": 60, "5m": 300, "15m": 900, "1h": 3600, "1d": 86400}[interval]
@@ -270,16 +388,30 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             end = datetime.fromtimestamp((int(utc_now().timestamp()) // seconds + 1) * seconds, UTC)
         if start is None:
             start = end - timedelta(seconds=max(seconds, 3600))
-        start, end = history_window(start, end, 31 if store.has_aggregates else 1)
+        start, end = history_window(
+            start, end, 31 if basis == "native" or store.has_aggregates else 1
+        )
         if any(t.microsecond or int(t.timestamp()) % seconds for t in (start, end)):
             raise HTTPException(422, "candle start/end must align to UTC interval boundaries")
         row = await require_instrument(symbol)
-        rows = await store.candles(
-            UUID(row["id"]), provider, start, end, interval, basis, limit + 1, after_status
-        )
+        if basis == "native":
+            rows = await store.native_candles(
+                UUID(row["id"]), provider, start, end, interval, limit + 1, after_status
+            )
+        else:
+            rows = await store.candles(
+                UUID(row["id"]), provider, start, end, interval, basis, limit + 1, after_status
+            )
         items = [
             Candle.model_validate(
-                dict(r, complete=r["bucket"] + timedelta(seconds=seconds) <= utc_now())
+                dict(
+                    r,
+                    complete=r["bucket"] + timedelta(seconds=seconds) <= utc_now()
+                    and (basis != "native" or r["observations"] == seconds // 60),
+                    bucket_start=r["bucket"],
+                    bucket_end=r["bucket"] + timedelta(seconds=seconds),
+                    canonical_symbol=symbol,
+                )
             )
             for r in rows[:limit]
         ]
@@ -364,9 +496,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     await send(
                         dict(
                             tick.model_dump(mode="json"),
-                            type="tick",
+                            type="candle" if isinstance(tick, MarketCandle) else "tick",
                             symbol=tick.canonical_symbol,
-                            persisted=False,
+                            persisted=isinstance(tick, MarketCandle),
                         )
                     )
 

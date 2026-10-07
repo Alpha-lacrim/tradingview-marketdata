@@ -36,7 +36,7 @@ uv run uvicorn marketdata.api:create_app --factory --workers 1 --ws-max-size 163
 
 Run either the native app or the container app on port 8000. Databento's official SDK is
 optional; omit its extra for mock/Binance/OANDA. Application startup requires schema revision
-`0002` and never creates tables. `.env.example` contains safe local development defaults.
+`0003` and never creates tables. `.env.example` contains safe local development defaults.
 
 ## Architecture and reliability
 
@@ -56,6 +56,11 @@ are restored after reconnect. Authentication, entitlement and invalid subscripti
 stop that provider for operator intervention while other feeds continue. Connection timeouts,
 ping/pong and provider heartbeats support stale detection. Health includes per-instrument
 freshness; a quiet/closed market can be stale without a broken transport.
+Transport connection alone never marks a feed healthy: all configured symbols must have
+fresh accepted observations in the current connection. `/providers` separates transport,
+subscription restoration and feed health, and reports per-symbol age/count/rejection state.
+Guest frame/observation timeouts and source-specific freshness overrides are documented in
+[TradingView operational health](docs/tradingview.md#operational-health-and-freshness).
 
 The writer retains one batch and retries during database outages. Receive loops continue
 until the bounded queue fills, then **new ticks are dropped** with exact metrics and explicit
@@ -81,7 +86,7 @@ No Redis, Kafka, RabbitMQ or large observability stack is required.
 | Binance Spot | Configurable spot pairs, initially BTC/ETH/SOL/XRP against USDT | realtime individual trades; public API; exchangeInfo validation |
 | OANDA v20 | Account-available FX, metals and explicit CFDs | practice simulated; live conservatively indicative; token/account required |
 | Databento Live SDK | Concrete outright exchange futures, one session per dataset | unknown unless operator verifies realtime/delayed entitlement; paid account required |
-| TradingView guest (experimental) | 17 verified crypto/FX/OTC metal/TVC oil quote series | unsupported observed guest protocol; runtime realtime/identity gate; usage-rights restrictions; no exchange futures |
+| TradingView guest (experimental) | 17 verified native 1m chart series; diagnostic quote mode | unsupported observed guest protocol; runtime realtime/identity gate; usage-rights restrictions; no exchange futures |
 
 Official protocols were checked on 2026-10-07. Implemented adapters do not imply activated
 feeds: Binance connectivity failed with `ConnectError` in this environment; authenticated
@@ -230,6 +235,35 @@ storage requirements. Pool/query/write timeouts are bounded.
 
 ## APIs
 
+The experimental guest source defaults to **completed native 1-minute candle storage**.
+`0003` adds `market_candles`, `latest_candles` and durable `candle_coverage`; it preserves all
+raw history and tick continuous aggregates. Timescale upgrades create a seven-day-chunk candle
+hypertable; ordinary PostgreSQL remains supported. One bounded collection runs at each UTC
+minute boundary plus `CANDLE_FETCH_GRACE_SECONDS=2`, with immediate closed-minute recovery at
+startup. `TRADINGVIEW_STORAGE_MODE=ticks` explicitly restores the old diagnostic quote path.
+Other providers retain their existing ingestion behaviour.
+
+`/candles/{symbol}?provider=tradingview_guest` reads persisted native candles directly; use
+`basis=last` or `mid` explicitly for old tick-derived history. Native `1m`, `5m`, `15m`, `1h`
+and `1d` use stored 1m bars; larger intervals are SQL rollups with incomplete coverage marked
+`complete:false`. No 1-second native candles are offered. Latest guest prices expose
+`price_basis:candle_close`, interval, bucket bounds, close as `last`, age and staleness.
+Guest WebSocket updates have `type:candle`, native OHLC and `persisted:true` after commit.
+A one-minute sampled price is never presented as OHLC.
+
+See [candle operations and recovery](docs/tradingview.md#native-one-minute-candle-storage)
+and the [17-instrument verification matrix and measured reduction](docs/native-candle-verification.md).
+Run the opt-in live multi-minute check with:
+
+```powershell
+uv run python scripts/smoke_tradingview_candles.py --minutes 3 --output artifacts/native-candle-smoke.json
+```
+
+Missing minutes remain explicit, including quiet/closed sessions: no market calendar or
+fabricated bars. Bounded native historical recovery defaults to 300 minutes. Existing tick
+inspection, verified derived exports and optional guarded deletion are documented separately;
+normal startup/migrations never delete raw data.
+
 | Endpoint | Behaviour |
 |---|---|
 | `/health` | App/DB/writer/feed health; 503 when degraded |
@@ -251,6 +285,14 @@ Keep the original end fixed when paging. Event-time pagination is not a snapshot
 events behind a consumed cursor may require a later overlap query.
 If a candle page splits statuses within one bucket, also pass `next_after_status` as
 `after_status` with `next_start`; this preserves distinct simulated/live/delayed histories.
+
+Both latest-price endpoints add `age_ms`, `stale`, `stale_after_seconds` and `provider_state`.
+For tick providers, age uses each persisted observation's local receipt time; pending/disconnected/rejected or
+inactive sources are stale. Feed recovery cannot make an old database row fresh. This is
+receipt freshness, separate from upstream event age, data classification or market-open status.
+Native candle-close age instead measures time since `bucket_end`; candle coverage determines
+staleness. An intentionally idle polling transport can be disconnected while coverage is healthy.
+`/health` includes `database_state` and `provider_transports`; degraded components return 503.
 
 ```json
 {"action":"subscribe","symbols":["CRYPTO:BTCUSDT","FX:SIM:EURUSD","SPOT:SIM:XAUUSD"]}

@@ -1,0 +1,2984 @@
+[
+  {
+    "symbol": "BINANCE:BTCUSDT",
+    "observed_at": "2026-10-07T09:27:02.615347+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "MT",
+              "description": "Binance",
+              "exchange-type": "exchange",
+              "id": "BINANCE",
+              "name": "Binance",
+              "url": "https://www.binance.com/en"
+            },
+            "currency_code": "USDT",
+            "source_id": "BINANCE",
+            "subsession_id": "regular",
+            "provider_id": "binance",
+            "base_currency_id": "XTVCBTC",
+            "base_currency": "BTC",
+            "currency_id": "XTVCUSDT",
+            "format": "price",
+            "formatter": "price",
+            "pro_perm": "",
+            "volume_type": "base",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "Bitcoin / TetherUS",
+            "variable_tick_size": "",
+            "name": "BTCUSDT",
+            "full_name": "BINANCE:BTCUSDT",
+            "pro_name": "BINANCE:BTCUSDT",
+            "base_name": [
+              "BINANCE:BTCUSDT"
+            ],
+            "description": "Bitcoin / TetherUS",
+            "exchange": "Binance",
+            "pricescale": 100,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "24x7",
+            "session_display": "24x7",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "private": false,
+                "session": "24x7",
+                "session-display": "24x7"
+              }
+            ],
+            "type": "spot",
+            "typespecs": [
+              "crypto"
+            ],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "BINANCE",
+            "legs": [
+              "BINANCE:BTCUSDT"
+            ],
+            "is_tradable": true,
+            "minmove2": 0,
+            "timezone": "Etc/UTC",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "Binance"
+          }
+        ],
+        "t": 1791365221,
+        "t_ms": 1791365221366
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    83789.45,
+                    83812.73,
+                    83784.15,
+                    83788.32,
+                    33.28741
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    83788.32,
+                    83856.0,
+                    83788.32,
+                    83856.0,
+                    36.11403
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    83855.99,
+                    83856.0,
+                    83830.68,
+                    83840.11,
+                    38.12249
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    83840.11,
+                    83852.01,
+                    83840.1,
+                    83852.01,
+                    19.65785
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    83852.0,
+                    83852.0,
+                    83852.0,
+                    83852.0,
+                    0.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365222,
+        "t_ms": 1791365222606
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365222,
+        "t_ms": 1791365222606
+      }
+    ]
+  },
+  {
+    "symbol": "BINANCE:ETHUSDT",
+    "observed_at": "2026-10-07T09:27:04.368806+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "MT",
+              "description": "Binance",
+              "exchange-type": "exchange",
+              "id": "BINANCE",
+              "name": "Binance",
+              "url": "https://www.binance.com/en"
+            },
+            "currency_code": "USDT",
+            "source_id": "BINANCE",
+            "subsession_id": "regular",
+            "provider_id": "binance",
+            "base_currency_id": "XTVCETH",
+            "base_currency": "ETH",
+            "currency_id": "XTVCUSDT",
+            "format": "price",
+            "formatter": "price",
+            "pro_perm": "",
+            "volume_type": "base",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "Ethereum / TetherUS",
+            "variable_tick_size": "",
+            "name": "ETHUSDT",
+            "full_name": "BINANCE:ETHUSDT",
+            "pro_name": "BINANCE:ETHUSDT",
+            "base_name": [
+              "BINANCE:ETHUSDT"
+            ],
+            "description": "Ethereum / TetherUS",
+            "exchange": "Binance",
+            "pricescale": 100,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "24x7",
+            "session_display": "24x7",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "private": false,
+                "session": "24x7",
+                "session-display": "24x7"
+              }
+            ],
+            "type": "spot",
+            "typespecs": [
+              "crypto"
+            ],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "BINANCE",
+            "legs": [
+              "BINANCE:ETHUSDT"
+            ],
+            "is_tradable": true,
+            "minmove2": 0,
+            "timezone": "Etc/UTC",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "Binance"
+          }
+        ],
+        "t": 1791365222,
+        "t_ms": 1791365222824
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    2605.05,
+                    2605.72,
+                    2604.8,
+                    2605.27,
+                    136.8309
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    2605.28,
+                    2607.16,
+                    2605.27,
+                    2607.16,
+                    137.0995
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    2607.16,
+                    2607.33,
+                    2606.19,
+                    2606.2,
+                    97.8352
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    2606.2,
+                    2606.82,
+                    2605.99,
+                    2606.82,
+                    47.8813
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    2606.81,
+                    2606.81,
+                    2606.81,
+                    2606.81,
+                    0.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365224,
+        "t_ms": 1791365224359
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365224,
+        "t_ms": 1791365224359
+      }
+    ]
+  },
+  {
+    "symbol": "BINANCE:SOLUSDT",
+    "observed_at": "2026-10-07T09:27:04.585638+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "MT",
+              "description": "Binance",
+              "exchange-type": "exchange",
+              "id": "BINANCE",
+              "name": "Binance",
+              "url": "https://www.binance.com/en"
+            },
+            "currency_code": "USDT",
+            "source_id": "BINANCE",
+            "subsession_id": "regular",
+            "provider_id": "binance",
+            "base_currency_id": "XTVCSOL",
+            "base_currency": "SOL",
+            "currency_id": "XTVCUSDT",
+            "format": "price",
+            "formatter": "price",
+            "pro_perm": "",
+            "volume_type": "base",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "SOL / TetherUS",
+            "variable_tick_size": "",
+            "name": "SOLUSDT",
+            "full_name": "BINANCE:SOLUSDT",
+            "pro_name": "BINANCE:SOLUSDT",
+            "base_name": [
+              "BINANCE:SOLUSDT"
+            ],
+            "description": "SOL / TetherUS",
+            "exchange": "Binance",
+            "pricescale": 100,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "24x7",
+            "session_display": "24x7",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "private": false,
+                "session": "24x7",
+                "session-display": "24x7"
+              }
+            ],
+            "type": "spot",
+            "typespecs": [
+              "crypto"
+            ],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "BINANCE",
+            "legs": [
+              "BINANCE:SOLUSDT"
+            ],
+            "is_tradable": true,
+            "minmove2": 0,
+            "timezone": "Etc/UTC",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "Binance"
+          }
+        ],
+        "t": 1791365224,
+        "t_ms": 1791365224576
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    118.07,
+                    118.12,
+                    118.07,
+                    118.1,
+                    534.321
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    118.1,
+                    118.23,
+                    118.1,
+                    118.23,
+                    764.802
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    118.22,
+                    118.22,
+                    118.14,
+                    118.16,
+                    108.964
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    118.15,
+                    118.16,
+                    118.14,
+                    118.15,
+                    175.757
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    118.14,
+                    118.14,
+                    118.14,
+                    118.14,
+                    0.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365224,
+        "t_ms": 1791365224576
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365224,
+        "t_ms": 1791365224576
+      }
+    ]
+  },
+  {
+    "symbol": "BINANCE:XRPUSDT",
+    "observed_at": "2026-10-07T09:27:05.200028+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "MT",
+              "description": "Binance",
+              "exchange-type": "exchange",
+              "id": "BINANCE",
+              "name": "Binance",
+              "url": "https://www.binance.com/en"
+            },
+            "currency_code": "USDT",
+            "source_id": "BINANCE",
+            "subsession_id": "regular",
+            "provider_id": "binance",
+            "base_currency_id": "XTVCXRP",
+            "base_currency": "XRP",
+            "currency_id": "XTVCUSDT",
+            "format": "price",
+            "formatter": "price",
+            "pro_perm": "",
+            "volume_type": "base",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "XRP / TetherUS",
+            "variable_tick_size": "",
+            "name": "XRPUSDT",
+            "full_name": "BINANCE:XRPUSDT",
+            "pro_name": "BINANCE:XRPUSDT",
+            "base_name": [
+              "BINANCE:XRPUSDT"
+            ],
+            "description": "XRP / TetherUS",
+            "exchange": "Binance",
+            "pricescale": 10000,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "24x7",
+            "session_display": "24x7",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "private": false,
+                "session": "24x7",
+                "session-display": "24x7"
+              }
+            ],
+            "type": "spot",
+            "typespecs": [
+              "crypto"
+            ],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "BINANCE",
+            "legs": [
+              "BINANCE:XRPUSDT"
+            ],
+            "is_tradable": true,
+            "minmove2": 0,
+            "timezone": "Etc/UTC",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "Binance"
+          }
+        ],
+        "t": 1791365224,
+        "t_ms": 1791365224794
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    1.4591,
+                    1.4601,
+                    1.4591,
+                    1.4592,
+                    167170.2
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    1.4593,
+                    1.4603,
+                    1.4592,
+                    1.4602,
+                    59372.6
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    1.4602,
+                    1.4603,
+                    1.4592,
+                    1.4595,
+                    201543.8
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    1.4596,
+                    1.4599,
+                    1.4595,
+                    1.4599,
+                    30983.4
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    1.4599,
+                    1.4599,
+                    1.4599,
+                    1.4599,
+                    0.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365225,
+        "t_ms": 1791365225190
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365225,
+        "t_ms": 1791365225190
+      }
+    ]
+  },
+  {
+    "symbol": "OANDA:EURUSD",
+    "observed_at": "2026-10-07T09:27:05.416083+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "US",
+              "description": "OANDA",
+              "exchange-type": "exchange",
+              "id": "OANDA",
+              "name": "OANDA",
+              "url": "https://www.oanda.com/"
+            },
+            "currency_code": "USD",
+            "source_id": "OANDA",
+            "subsession_id": "regular",
+            "provider_id": "oanda",
+            "base_currency_id": "EUR",
+            "base_currency": "EUR",
+            "currency_id": "USD",
+            "pro_perm": "",
+            "volume_type": "tick",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "EUR/USD",
+            "variable_tick_size": "",
+            "name": "EURUSD",
+            "full_name": "OANDA:EURUSD",
+            "pro_name": "OANDA:EURUSD",
+            "base_name": [
+              "OANDA:EURUSD"
+            ],
+            "description": "EUR/USD",
+            "exchange": "OANDA",
+            "pricescale": 100000,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "1700-1700",
+            "session_display": "1700-1700",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "session": "1700-1700",
+                "session-display": "1700-1700"
+              }
+            ],
+            "type": "forex",
+            "typespecs": [],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "OANDA",
+            "legs": [
+              "OANDA:EURUSD"
+            ],
+            "is_tradable": true,
+            "minmove2": 10,
+            "timezone": "America/New_York",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "OANDA"
+          }
+        ],
+        "t": 1791365225,
+        "t_ms": 1791365225407
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    1.11931,
+                    1.11936,
+                    1.11916,
+                    1.11929,
+                    117.0
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    1.1193,
+                    1.11936,
+                    1.11918,
+                    1.11924,
+                    144.0
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    1.11924,
+                    1.11924,
+                    1.11911,
+                    1.11916,
+                    99.0
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    1.11917,
+                    1.1192,
+                    1.1191,
+                    1.11912,
+                    170.0
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    1.11912,
+                    1.11912,
+                    1.11912,
+                    1.11912,
+                    1.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365225,
+        "t_ms": 1791365225407
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365225,
+        "t_ms": 1791365225407
+      }
+    ]
+  },
+  {
+    "symbol": "OANDA:GBPUSD",
+    "observed_at": "2026-10-07T09:27:05.637053+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "US",
+              "description": "OANDA",
+              "exchange-type": "exchange",
+              "id": "OANDA",
+              "name": "OANDA",
+              "url": "https://www.oanda.com/"
+            },
+            "currency_code": "USD",
+            "source_id": "OANDA",
+            "subsession_id": "regular",
+            "provider_id": "oanda",
+            "base_currency_id": "GBP",
+            "base_currency": "GBP",
+            "currency_id": "USD",
+            "pro_perm": "",
+            "volume_type": "tick",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "GBP/USD",
+            "variable_tick_size": "",
+            "name": "GBPUSD",
+            "full_name": "OANDA:GBPUSD",
+            "pro_name": "OANDA:GBPUSD",
+            "base_name": [
+              "OANDA:GBPUSD"
+            ],
+            "description": "GBP/USD",
+            "exchange": "OANDA",
+            "pricescale": 100000,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "1700-1700",
+            "session_display": "1700-1700",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "session": "1700-1700",
+                "session-display": "1700-1700"
+              }
+            ],
+            "type": "forex",
+            "typespecs": [],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "OANDA",
+            "legs": [
+              "OANDA:GBPUSD"
+            ],
+            "is_tradable": true,
+            "minmove2": 10,
+            "timezone": "America/New_York",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "OANDA"
+          }
+        ],
+        "t": 1791365225,
+        "t_ms": 1791365225628
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    1.32352,
+                    1.32362,
+                    1.32344,
+                    1.32358,
+                    212.0
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    1.32358,
+                    1.32361,
+                    1.32332,
+                    1.32336,
+                    136.0
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    1.32337,
+                    1.3234,
+                    1.3232,
+                    1.32326,
+                    177.0
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    1.32326,
+                    1.3233,
+                    1.32319,
+                    1.32325,
+                    141.0
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    1.32326,
+                    1.32326,
+                    1.32326,
+                    1.32326,
+                    1.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365225,
+        "t_ms": 1791365225628
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365225,
+        "t_ms": 1791365225628
+      }
+    ]
+  },
+  {
+    "symbol": "OANDA:USDJPY",
+    "observed_at": "2026-10-07T09:27:05.874862+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "US",
+              "description": "OANDA",
+              "exchange-type": "exchange",
+              "id": "OANDA",
+              "name": "OANDA",
+              "url": "https://www.oanda.com/"
+            },
+            "currency_code": "JPY",
+            "source_id": "OANDA",
+            "subsession_id": "regular",
+            "provider_id": "oanda",
+            "base_currency_id": "USD",
+            "base_currency": "USD",
+            "currency_id": "JPY",
+            "pro_perm": "",
+            "volume_type": "tick",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "USD/JPY",
+            "variable_tick_size": "",
+            "name": "USDJPY",
+            "full_name": "OANDA:USDJPY",
+            "pro_name": "OANDA:USDJPY",
+            "base_name": [
+              "OANDA:USDJPY"
+            ],
+            "description": "USD/JPY",
+            "exchange": "OANDA",
+            "pricescale": 1000,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "1700-1700",
+            "session_display": "1700-1700",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "session": "1700-1700",
+                "session-display": "1700-1700"
+              }
+            ],
+            "type": "forex",
+            "typespecs": [],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "OANDA",
+            "legs": [
+              "OANDA:USDJPY"
+            ],
+            "is_tradable": true,
+            "minmove2": 10,
+            "timezone": "America/New_York",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "OANDA"
+          }
+        ],
+        "t": 1791365225,
+        "t_ms": 1791365225866
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    158.232,
+                    158.236,
+                    158.226,
+                    158.23,
+                    205.0
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    158.23,
+                    158.238,
+                    158.226,
+                    158.226,
+                    237.0
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    158.226,
+                    158.244,
+                    158.226,
+                    158.235,
+                    294.0
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    158.234,
+                    158.242,
+                    158.228,
+                    158.236,
+                    217.0
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    158.236,
+                    158.236,
+                    158.236,
+                    158.236,
+                    1.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365225,
+        "t_ms": 1791365225866
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365225,
+        "t_ms": 1791365225866
+      }
+    ]
+  },
+  {
+    "symbol": "OANDA:USDCHF",
+    "observed_at": "2026-10-07T09:27:06.193629+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "US",
+              "description": "OANDA",
+              "exchange-type": "exchange",
+              "id": "OANDA",
+              "name": "OANDA",
+              "url": "https://www.oanda.com/"
+            },
+            "currency_code": "CHF",
+            "source_id": "OANDA",
+            "subsession_id": "regular",
+            "provider_id": "oanda",
+            "base_currency_id": "USD",
+            "base_currency": "USD",
+            "currency_id": "CHF",
+            "pro_perm": "",
+            "volume_type": "tick",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "USD/CHF",
+            "variable_tick_size": "",
+            "name": "USDCHF",
+            "full_name": "OANDA:USDCHF",
+            "pro_name": "OANDA:USDCHF",
+            "base_name": [
+              "OANDA:USDCHF"
+            ],
+            "description": "USD/CHF",
+            "exchange": "OANDA",
+            "pricescale": 100000,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "1700-1700",
+            "session_display": "1700-1700",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "session": "1700-1700",
+                "session-display": "1700-1700"
+              }
+            ],
+            "type": "forex",
+            "typespecs": [],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "OANDA",
+            "legs": [
+              "OANDA:USDCHF"
+            ],
+            "is_tradable": true,
+            "minmove2": 10,
+            "timezone": "America/New_York",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "OANDA"
+          }
+        ],
+        "t": 1791365226,
+        "t_ms": 1791365226084
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    0.8334,
+                    0.83344,
+                    0.83328,
+                    0.83328,
+                    85.0
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    0.83327,
+                    0.83341,
+                    0.83327,
+                    0.83332,
+                    75.0
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    0.83332,
+                    0.83336,
+                    0.83332,
+                    0.83333,
+                    27.0
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    0.83334,
+                    0.83334,
+                    0.83325,
+                    0.83332,
+                    44.0
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    0.83332,
+                    0.83332,
+                    0.83332,
+                    0.83332,
+                    1.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365226,
+        "t_ms": 1791365226185
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365226,
+        "t_ms": 1791365226185
+      }
+    ]
+  },
+  {
+    "symbol": "OANDA:AUDUSD",
+    "observed_at": "2026-10-07T09:27:06.412514+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "US",
+              "description": "OANDA",
+              "exchange-type": "exchange",
+              "id": "OANDA",
+              "name": "OANDA",
+              "url": "https://www.oanda.com/"
+            },
+            "currency_code": "USD",
+            "source_id": "OANDA",
+            "subsession_id": "regular",
+            "provider_id": "oanda",
+            "base_currency_id": "AUD",
+            "base_currency": "AUD",
+            "currency_id": "USD",
+            "pro_perm": "",
+            "volume_type": "tick",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "AUD/USD",
+            "variable_tick_size": "",
+            "name": "AUDUSD",
+            "full_name": "OANDA:AUDUSD",
+            "pro_name": "OANDA:AUDUSD",
+            "base_name": [
+              "OANDA:AUDUSD"
+            ],
+            "description": "AUD/USD",
+            "exchange": "OANDA",
+            "pricescale": 100000,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "1700-1700",
+            "session_display": "1700-1700",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "session": "1700-1700",
+                "session-display": "1700-1700"
+              }
+            ],
+            "type": "forex",
+            "typespecs": [],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "OANDA",
+            "legs": [
+              "OANDA:AUDUSD"
+            ],
+            "is_tradable": true,
+            "minmove2": 10,
+            "timezone": "America/New_York",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "OANDA"
+          }
+        ],
+        "t": 1791365226,
+        "t_ms": 1791365226403
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    0.697,
+                    0.69701,
+                    0.69697,
+                    0.69701,
+                    52.0
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    0.69702,
+                    0.69708,
+                    0.69696,
+                    0.69708,
+                    42.0
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    0.69708,
+                    0.6971,
+                    0.69699,
+                    0.69699,
+                    36.0
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    0.697,
+                    0.69703,
+                    0.69698,
+                    0.69701,
+                    41.0
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    0.69702,
+                    0.69702,
+                    0.69702,
+                    0.69702,
+                    1.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365226,
+        "t_ms": 1791365226403
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365226,
+        "t_ms": 1791365226403
+      }
+    ]
+  },
+  {
+    "symbol": "OANDA:USDCAD",
+    "observed_at": "2026-10-07T09:27:06.631552+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "US",
+              "description": "OANDA",
+              "exchange-type": "exchange",
+              "id": "OANDA",
+              "name": "OANDA",
+              "url": "https://www.oanda.com/"
+            },
+            "currency_code": "CAD",
+            "source_id": "OANDA",
+            "subsession_id": "regular",
+            "provider_id": "oanda",
+            "base_currency_id": "USD",
+            "base_currency": "USD",
+            "currency_id": "CAD",
+            "pro_perm": "",
+            "volume_type": "tick",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "USD/CAD",
+            "variable_tick_size": "",
+            "name": "USDCAD",
+            "full_name": "OANDA:USDCAD",
+            "pro_name": "OANDA:USDCAD",
+            "base_name": [
+              "OANDA:USDCAD"
+            ],
+            "description": "USD/CAD",
+            "exchange": "OANDA",
+            "pricescale": 100000,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "1700-1700",
+            "session_display": "1700-1700",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "session": "1700-1700",
+                "session-display": "1700-1700"
+              }
+            ],
+            "type": "forex",
+            "typespecs": [],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "OANDA",
+            "legs": [
+              "OANDA:USDCAD"
+            ],
+            "is_tradable": true,
+            "minmove2": 10,
+            "timezone": "America/New_York",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "OANDA"
+          }
+        ],
+        "t": 1791365226,
+        "t_ms": 1791365226622
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    1.4224,
+                    1.42248,
+                    1.42238,
+                    1.42246,
+                    81.0
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    1.42245,
+                    1.42256,
+                    1.42245,
+                    1.42252,
+                    48.0
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    1.42253,
+                    1.42256,
+                    1.42247,
+                    1.42256,
+                    87.0
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    1.42257,
+                    1.42258,
+                    1.4225,
+                    1.42254,
+                    59.0
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    1.4225,
+                    1.42252,
+                    1.4225,
+                    1.4225,
+                    9.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365226,
+        "t_ms": 1791365226622
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365226,
+        "t_ms": 1791365226622
+      }
+    ]
+  },
+  {
+    "symbol": "OANDA:NZDUSD",
+    "observed_at": "2026-10-07T09:27:06.849390+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "US",
+              "description": "OANDA",
+              "exchange-type": "exchange",
+              "id": "OANDA",
+              "name": "OANDA",
+              "url": "https://www.oanda.com/"
+            },
+            "currency_code": "USD",
+            "source_id": "OANDA",
+            "subsession_id": "regular",
+            "provider_id": "oanda",
+            "base_currency_id": "NZD",
+            "base_currency": "NZD",
+            "currency_id": "USD",
+            "pro_perm": "",
+            "volume_type": "tick",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "NZD/USD",
+            "variable_tick_size": "",
+            "name": "NZDUSD",
+            "full_name": "OANDA:NZDUSD",
+            "pro_name": "OANDA:NZDUSD",
+            "base_name": [
+              "OANDA:NZDUSD"
+            ],
+            "description": "NZD/USD",
+            "exchange": "OANDA",
+            "pricescale": 100000,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "1700-1700",
+            "session_display": "1700-1700",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "session": "1700-1700",
+                "session-display": "1700-1700"
+              }
+            ],
+            "type": "forex",
+            "typespecs": [],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "OANDA",
+            "legs": [
+              "OANDA:NZDUSD"
+            ],
+            "is_tradable": true,
+            "minmove2": 10,
+            "timezone": "America/New_York",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "OANDA"
+          }
+        ],
+        "t": 1791365226,
+        "t_ms": 1791365226840
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    0.56058,
+                    0.56062,
+                    0.56054,
+                    0.5606,
+                    43.0
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    0.56058,
+                    0.56059,
+                    0.56054,
+                    0.56059,
+                    18.0
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    0.56058,
+                    0.5606,
+                    0.56053,
+                    0.56056,
+                    33.0
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    0.56056,
+                    0.56066,
+                    0.56056,
+                    0.56064,
+                    27.0
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    0.56064,
+                    0.56065,
+                    0.56064,
+                    0.56065,
+                    4.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365226,
+        "t_ms": 1791365226840
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365226,
+        "t_ms": 1791365226840
+      }
+    ]
+  },
+  {
+    "symbol": "OANDA:EURGBP",
+    "observed_at": "2026-10-07T09:27:07.083196+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "US",
+              "description": "OANDA",
+              "exchange-type": "exchange",
+              "id": "OANDA",
+              "name": "OANDA",
+              "url": "https://www.oanda.com/"
+            },
+            "currency_code": "GBP",
+            "source_id": "OANDA",
+            "subsession_id": "regular",
+            "provider_id": "oanda",
+            "base_currency_id": "EUR",
+            "base_currency": "EUR",
+            "currency_id": "GBP",
+            "pro_perm": "",
+            "volume_type": "tick",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "EUR/GBP",
+            "variable_tick_size": "",
+            "name": "EURGBP",
+            "full_name": "OANDA:EURGBP",
+            "pro_name": "OANDA:EURGBP",
+            "base_name": [
+              "OANDA:EURGBP"
+            ],
+            "description": "EUR/GBP",
+            "exchange": "OANDA",
+            "pricescale": 100000,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "1700-1700",
+            "session_display": "1700-1700",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "session": "1700-1700",
+                "session-display": "1700-1700"
+              }
+            ],
+            "type": "forex",
+            "typespecs": [],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "OANDA",
+            "legs": [
+              "OANDA:EURGBP"
+            ],
+            "is_tradable": true,
+            "minmove2": 10,
+            "timezone": "America/New_York",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "OANDA"
+          }
+        ],
+        "t": 1791365227,
+        "t_ms": 1791365227074
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    0.84572,
+                    0.84572,
+                    0.84564,
+                    0.84566,
+                    52.0
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    0.84568,
+                    0.84578,
+                    0.84568,
+                    0.84575,
+                    51.0
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    0.84574,
+                    0.8458,
+                    0.84572,
+                    0.84578,
+                    48.0
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    0.84576,
+                    0.84581,
+                    0.84573,
+                    0.84575,
+                    36.0
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    0.84574,
+                    0.84574,
+                    0.84574,
+                    0.84574,
+                    1.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365227,
+        "t_ms": 1791365227074
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365227,
+        "t_ms": 1791365227074
+      }
+    ]
+  },
+  {
+    "symbol": "OANDA:XAUUSD",
+    "observed_at": "2026-10-07T09:27:07.301842+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "US",
+              "description": "OANDA",
+              "exchange-type": "exchange",
+              "id": "OANDA",
+              "name": "OANDA",
+              "url": "https://www.oanda.com/"
+            },
+            "currency_code": "USD",
+            "source_id": "OANDA",
+            "subsession_id": "regular",
+            "provider_id": "oanda",
+            "currency_id": "USD",
+            "pro_perm": "",
+            "volume_type": "tick",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "Gold",
+            "variable_tick_size": "",
+            "name": "XAUUSD",
+            "full_name": "OANDA:XAUUSD",
+            "pro_name": "OANDA:XAUUSD",
+            "base_name": [
+              "OANDA:XAUUSD"
+            ],
+            "description": "Gold",
+            "exchange": "OANDA",
+            "pricescale": 1000,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "1700-1700",
+            "session_display": "1700-1700",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "private": false,
+                "session": "1700-1700",
+                "session-correction": "1700-1430:20241128;1800-1445:20241129",
+                "session-display": "1700-1700"
+              }
+            ],
+            "type": "commodity",
+            "typespecs": [
+              "cfd"
+            ],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "OANDA",
+            "legs": [
+              "OANDA:XAUUSD"
+            ],
+            "is_tradable": true,
+            "minmove2": 10,
+            "timezone": "America/New_York",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "OANDA"
+          }
+        ],
+        "t": 1791365227,
+        "t_ms": 1791365227293
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    4121.96,
+                    4122.32,
+                    4121.425,
+                    4121.785,
+                    265.0
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    4121.885,
+                    4122.365,
+                    4121.115,
+                    4121.715,
+                    204.0
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    4121.77,
+                    4122.465,
+                    4121.325,
+                    4122.29,
+                    221.0
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    4122.335,
+                    4123.25,
+                    4122.335,
+                    4122.485,
+                    286.0
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    4122.6,
+                    4122.7,
+                    4122.395,
+                    4122.395,
+                    22.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365227,
+        "t_ms": 1791365227293
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365227,
+        "t_ms": 1791365227293
+      }
+    ]
+  },
+  {
+    "symbol": "OANDA:XAGUSD",
+    "observed_at": "2026-10-07T09:27:07.520407+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "US",
+              "description": "OANDA",
+              "exchange-type": "exchange",
+              "id": "OANDA",
+              "name": "OANDA",
+              "url": "https://www.oanda.com/"
+            },
+            "currency_code": "USD",
+            "source_id": "OANDA",
+            "subsession_id": "regular",
+            "provider_id": "oanda",
+            "currency_id": "USD",
+            "pro_perm": "",
+            "volume_type": "tick",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "Silver",
+            "variable_tick_size": "",
+            "name": "XAGUSD",
+            "full_name": "OANDA:XAGUSD",
+            "pro_name": "OANDA:XAGUSD",
+            "base_name": [
+              "OANDA:XAGUSD"
+            ],
+            "description": "Silver",
+            "exchange": "OANDA",
+            "pricescale": 100000,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "1700-1700",
+            "session_display": "1700-1700",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "private": false,
+                "session": "1700-1700",
+                "session-correction": "1700-1430:20241128;1800-1445:20241129",
+                "session-display": "1700-1700"
+              }
+            ],
+            "type": "commodity",
+            "typespecs": [
+              "cfd"
+            ],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "OANDA",
+            "legs": [
+              "OANDA:XAGUSD"
+            ],
+            "is_tradable": true,
+            "minmove2": 10,
+            "timezone": "America/New_York",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "OANDA"
+          }
+        ],
+        "t": 1791365227,
+        "t_ms": 1791365227511
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    60.256,
+                    60.264,
+                    60.239,
+                    60.2445,
+                    228.0
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    60.245,
+                    60.2535,
+                    60.2215,
+                    60.2215,
+                    192.0
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    60.222,
+                    60.222,
+                    60.1845,
+                    60.195,
+                    226.0
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    60.1925,
+                    60.211,
+                    60.1925,
+                    60.2095,
+                    108.0
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    60.21,
+                    60.215,
+                    60.2065,
+                    60.2095,
+                    21.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365227,
+        "t_ms": 1791365227511
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365227,
+        "t_ms": 1791365227511
+      }
+    ]
+  },
+  {
+    "symbol": "OKX:XAUTUSDT",
+    "observed_at": "2026-10-07T09:27:07.737541+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "CN",
+              "description": "OKX",
+              "exchange-type": "exchange",
+              "id": "OKX",
+              "name": "OKX",
+              "url": "https://www.okx.com/"
+            },
+            "currency_code": "USDT",
+            "source_id": "OKX",
+            "subsession_id": "regular",
+            "provider_id": "okx",
+            "base_currency_id": "XTVCXAUT",
+            "base_currency": "XAUT",
+            "currency_id": "XTVCUSDT",
+            "pro_perm": "",
+            "volume_type": "base",
+            "measure": "price",
+            "allowed_adjustment": "none",
+            "short_description": "Tether Gold/USDT",
+            "variable_tick_size": "",
+            "name": "XAUTUSDT",
+            "full_name": "OKX:XAUTUSDT",
+            "pro_name": "OKX:XAUTUSDT",
+            "base_name": [
+              "OKX:XAUTUSDT"
+            ],
+            "description": "Tether Gold/USDT",
+            "exchange": "OKX",
+            "pricescale": 10,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "0000-0000:1234567",
+            "session_display": "0000-0000:1234567",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "session": "0000-0000:1234567",
+                "session-display": "0000-0000:1234567"
+              }
+            ],
+            "type": "spot",
+            "typespecs": [
+              "crypto"
+            ],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "OKX",
+            "legs": [
+              "OKX:XAUTUSDT"
+            ],
+            "is_tradable": true,
+            "minmove2": 0,
+            "timezone": "Etc/UTC",
+            "aliases": [
+              "OKEX:XAUTUSDT"
+            ],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "OKX"
+          }
+        ],
+        "t": 1791365227,
+        "t_ms": 1791365227728
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364920.0,
+                    4124.5,
+                    4124.5,
+                    4124.0,
+                    4124.0,
+                    36.5337
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791364980.0,
+                    4125.1,
+                    4125.1,
+                    4125.1,
+                    4125.1,
+                    0.268
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365040.0,
+                    4124.9,
+                    4124.9,
+                    4124.4,
+                    4124.4,
+                    0.044807
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365100.0,
+                    4124.6,
+                    4124.9,
+                    4124.2,
+                    4124.9,
+                    5.389829
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365160.0,
+                    4125.2,
+                    4125.7,
+                    4125.2,
+                    4125.7,
+                    2.325057
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365220
+              }
+            }
+          }
+        ],
+        "t": 1791365227,
+        "t_ms": 1791365227728
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365227,
+        "t_ms": 1791365227728
+      }
+    ]
+  },
+  {
+    "symbol": "TVC:USOIL",
+    "observed_at": "2026-10-07T09:27:08.181696+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "US",
+              "description": "TVC",
+              "exchange-type": "exchange",
+              "id": "TVC",
+              "name": "TVC",
+              "url": "https://tradingview.com"
+            },
+            "currency_code": "USD",
+            "source_id": "TVC",
+            "session_holidays": "20000117,20000221,20000421,20000529,20000704,20000904,20001123,20001225,20010101,20010115,20010219,20010413,20010528,20010704,20010903,20011122,20011225,20020101,20020121,20020218,20020329,20020527,20020704,20020902,20021128,20021225,20030101,20030120,20030217,20030418,20030526,20030704,20030901,20031127,20031225,20040101,20040119,20040216,20040409,20040531,20040611,20040705,20040906,20041125,20041224,20050117,20050221,20050325,20050530,20050704,20050905,20051124,20051226,20060102,20060116,20060220,20060414,20060529,20060704,20060904,20061123,20061225,20070101,20070102,20070115,20070219,20070406,20070528,20070704,20070903,20071122,20071225,20080101,20080121,20080218,20080321,20080526,20080704,20080901,20081127,20081225,20090101,20090119,20090216,20090410,20090525,20090703,20090907,20091126,20091225,20100101,20100118,20100215,20100402,20100531,20100705,20100906,20101125,20101224,20110117,20110221,20110422,20110530,20110704,20110905,20111124,20111226,20120102,20120116,20120220,20120406,20120528,20120704,20120903,20121122,20121225,20130101,20130121,20130218,20130329,20130527,20130704,20130902,20131128,20131225,20140101,20140120,20140217,20140418,20140526,20140704,20140901,20141127,20141225,20150101,20150119,20150216,20150403,20150525,20150703,20150907,20151126,20151225,20160101,20160118,20160215,20160325,20160530,20160704,20160905,20161124,20161226,20170102,20170116,20170220,20170414,20170529,20170704,20170904,20171123,20171225,20180101,20180115,20180219,20180330,20180528,20180704,20180903,20181122,20181225,20190101,20190121,20190218,20190419,20190527,20190704,20190902,20191128,20191225,20200101,20200120,20200217,20200410,20200525,20200703,20200907,20201126,20201225,20210101,20210118,20210215,20210402,20210531,20210705,20210906,20211125,20211224,20220117,20220221,20220415,20220530,20220620,20220704,20220905,20221124,20221226,20230102,20230116,20230220,20230407,20230529,20230619,20230704,20230904,20231123,20231225,20240101,20240115,20240219,20240329,20240527,20240619,20240704,20240902,20241128,20241225,20250101,20250120,20250217,20250418,20250526,20250619,20250704,20250901,20251127,20251225,20260101,20260119,20260216,20260403,20260525,20260619,20260703,20260907,20261126,20261225,20270101,20270118,20270215,20270326,20270531,20270618,20270705,20270906,20271125,20271224",
+            "subsession_id": "regular",
+            "provider_id": "tvc",
+            "currency_id": "USD",
+            "country": "US",
+            "pro_perm": "",
+            "measure": "price",
+            "unit_conversion_types": [
+              "energy",
+              "mass",
+              "volume"
+            ],
+            "unit_id": "BLL",
+            "allowed_adjustment": "none",
+            "short_description": "WTI CRUDE OIL",
+            "variable_tick_size": "0.01",
+            "language": "en",
+            "local_description": "WTI CRUDE OIL",
+            "name": "USOIL",
+            "full_name": "TVC:USOIL",
+            "pro_name": "TVC:USOIL",
+            "base_name": [
+              "TVC:USOIL"
+            ],
+            "description": "WTI CRUDE OIL",
+            "exchange": "TVC",
+            "pricescale": 100,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "1800-1700",
+            "session_display": "1800-1700",
+            "subsessions": [
+              {
+                "description": "Electronic Trading Hours",
+                "id": "regular",
+                "private": false,
+                "session": "1800-1700",
+                "session-correction": "1800-1345:20191224,20201224,20241224,20251224,20261224;1800-1700:20000421,20000704,20000904,20001123,20001225,20010101,20010115,20010413,20010704,20010903,20011122,20011225,20020101,20020704,20020902,20021128,20021225,20030101,20030526,20030704,20030901,20031127,20031225,20040101,20040216,20040409,20040611,20040705,20040906,20050704,20050905,20060102,20060116,20060704,20060904,20070101,20070102,20070115,20070406,20070704,20070903,20080101,20080704,20080901,20091012,20091111,20100402,20101011,20101111,20101231,20111010,20111111,20111227,20120103,20120406,20121008,20121112,20121226,20130102,20131014,20131111,20131226,20140102,20141013,20141111,20141226,20150102,20151012,20151111,20161010,20161111,20161227,20170103,20171009,20171110,20171226,20180102,20181008,20181112,20181224,20181226,20190102,20191226,20200102,20221227;1800F2-1300F1,1800-1345:20211126;1800F2-1300F1,1800-1700:20210119,20210216,20210601,20210706,20210907;1800F2-1430F1,1800-1345:20221125,20231124;1800F2-1430F1,1800-1445:20241129,20251128,20261127;1800F2-1430F1,1800-1700:20220118,20220222,20220531,20220621,20220705,20220906,20230117,20230221,20230530,20230620,20230705,20230905,20240116,20240220,20240528,20240620,20240705,20240903,20250121,20250218,20250527,20250620,20250902,20260120,20260217,20260526,20260908;1800F2-1700:20090120,20090217,20090526,20090908,20091127,20100119,20100216,20100601,20100706,20100907,20101126,20110118,20110222,20110531,20110705,20110906,20111125,20120117,20120221,20120529,20120705,20120904,20121123,20130122,20130219,20130528,20130705,20130903,20131129,20140121,20140218,20140527,20140902,20141128,20150120,20150217,20150526,20150908,20151127,20160119,20160216,20160531,20160705,20160906,20161125,20170117,20170221,20170530,20170705,20170905,20171124,20180116,20180220,20180529,20180705,20180904,20181123,20190122,20190219,20190528,20190705,20190903,20191129,20200121,20200218,20200526,20200908,20201127;1800F4-1300F3,1800-1700:20250707,20260622,20260706;1800F4-1700:20090706,20140707,20150706,20200706",
+                "session-display": "1800-1700"
+              },
+              {
+                "description": "Regular Trading Hours",
+                "id": "us_regular",
+                "private": false,
+                "session": "0930-1615",
+                "session-correction": "0930-1345:20201224,20211126,20221124,20221125,20231124,20241224,20251224,20261224;0930-1445:20241129,20251128,20261127;0930-1615:20000421,20000704,20000904,20001123,20001225,20010101,20010115,20010413,20010704,20010903,20011122,20011225,20020101,20020704,20020902,20021128,20021225,20030101,20030526,20030704,20030901,20031127,20031225,20040101,20040216,20040409,20040611,20040705,20040906,20050704,20050905,20060102,20060116,20060704,20060904,20070101,20070102,20070115,20070406,20070704,20070903,20080101,20080704,20080901,20090101,20090119,20090216,20090410,20090525,20090703,20090907,20091126,20091225,20100101,20100118,20100215,20100402,20100531,20100705,20100906,20101125,20101224,20110117,20110221,20110422,20110530,20110704,20110905,20111124,20111226,20120102,20120116,20120220,20120406,20120528,20120704,20120903,20121122,20121225,20130101,20130121,20130218,20130329,20130527,20130704,20130902,20131128,20131225,20140101,20140120,20140217,20140418,20140526,20140704,20140901,20141127,20141225,20150101,20150119,20150216,20150403,20150525,20150703,20150907,20151126,20151225,20160101,20160118,20160215,20160325,20160530,20160704,20160905,20161124,20161226,20170102,20170116,20170220,20170414,20170529,20170704,20170904,20171123,20171225,20180101,20180115,20180219,20180330,20180528,20180704,20180903,20181122,20181225,20190101,20190121,20190218,20190419,20190527,20190704,20190902,20191128,20191225,20200101,20200120,20200217,20200410,20200525,20200703,20200907,20201126,20201228,20210104,20210118,20210215,20210405,20210601,20210706,20210907,20211227",
+                "session-display": "0930-1615"
+              }
+            ],
+            "type": "commodity",
+            "typespecs": [
+              "cfd"
+            ],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "TVC",
+            "legs": [
+              "TVC:USOIL"
+            ],
+            "is_tradable": true,
+            "minmove2": 0,
+            "timezone": "America/New_York",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "TVC"
+          }
+        ],
+        "t": 1791365228,
+        "t_ms": 1791365228171
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    89.78,
+                    89.81,
+                    89.68,
+                    89.7,
+                    152.0
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    89.66,
+                    89.67,
+                    89.53,
+                    89.57,
+                    134.0
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    89.56,
+                    89.68,
+                    89.49,
+                    89.61,
+                    186.0
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    89.58,
+                    89.67,
+                    89.57,
+                    89.61,
+                    58.0
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    89.62,
+                    89.64,
+                    89.59,
+                    89.64,
+                    30.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365228,
+        "t_ms": 1791365228171
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365228,
+        "t_ms": 1791365228171
+      }
+    ]
+  },
+  {
+    "symbol": "TVC:UKOIL",
+    "observed_at": "2026-10-07T09:27:08.423200+00:00",
+    "messages": [
+      {
+        "m": "symbol_resolved",
+        "p": [
+          "cs_fixture",
+          "symbol_1",
+          {
+            "source2": {
+              "country": "US",
+              "description": "TVC",
+              "exchange-type": "exchange",
+              "id": "TVC",
+              "name": "TVC",
+              "url": "https://tradingview.com"
+            },
+            "currency_code": "USD",
+            "source_id": "TVC",
+            "session_holidays": "20000421,20001225,20010101,20010413,20011225,20020101,20020329,20021225,20030101,20030418,20031225,20040101,20040409,20050325,20051226,20060102,20060414,20061225,20070101,20070406,20071225,20080101,20080321,20081225,20090101,20090410,20091225,20100101,20100402,20110422,20111226,20120102,20120406,20121225,20130101,20130329,20131225,20140101,20140418,20141225,20150101,20150403,20151225,20160101,20160325,20161226,20170102,20170414,20171225,20180101,20180330,20181225,20190101,20190419,20191225,20200101,20200410,20201225,20210101,20210402,20211225,20220415,20221225,20230407,20231225,20240101,20240329,20241225,20250101,20250418,20251225,20260101,20260403,20261225,20270101",
+            "subsession_id": "regular",
+            "provider_id": "tvc",
+            "currency_id": "USD",
+            "country": "EU",
+            "pro_perm": "",
+            "measure": "price",
+            "unit_conversion_types": [
+              "energy",
+              "mass",
+              "volume"
+            ],
+            "unit_id": "BLL",
+            "allowed_adjustment": "none",
+            "short_description": "BRENT CRUDE OIL",
+            "variable_tick_size": "0.01",
+            "language": "en",
+            "local_description": "BRENT CRUDE OIL",
+            "name": "UKOIL",
+            "full_name": "TVC:UKOIL",
+            "pro_name": "TVC:UKOIL",
+            "base_name": [
+              "TVC:UKOIL"
+            ],
+            "description": "BRENT CRUDE OIL",
+            "exchange": "TVC",
+            "pricescale": 100,
+            "pointvalue": 1.0,
+            "minmov": 1,
+            "session": "0100-2300|2300F-2300:2#20070312/0000-2200|2200F-2200:2#20070326/0100-2300|2300F-2300:2#20071029/0000-2200|2200F-2200:2#20071105/0100-2300|2300F-2300:2#20080310/0000-2200|2200F-2200:2#20080331/0100-2300|2300F-2300:2#20081027/0000-2200|2200F-2200:2#20081103/0100-2300|2300F-2300:2#20090309/0000-2200|2200F-2200:2#20090330/0100-2300|2300F-2300:2#20091026/0000-2200|2200F-2200:2#20091102/0100-2300|2300F-2300:2#20100315/0000-2200|2200F-2200:2#20100329/0100-2300|2300F-2300:2#20101101/0000-2200|2200F-2200:2#20101108/0100-2300|2300F-2300:2#20110314/0000-2200|2200F-2200:2#20110328/0100-2300|2300F-2300:2#20111031/0000-2200|2200F-2200:2#20111107/0100-2300|2300F-2300:2#20120312/0000-2200|2200F-2200:2#20120326/0100-2300|2300F-2300:2#20121029/0000-2200|2200F-2200:2#20121105/0100-2300|2300F-2300:2#20130311/0000-2200|2200F-2200:2#20130401/0100-2300|2300F-2300:2#20131028/0000-2200|2200F-2200:2#20131104/0100-2300|2300F-2300:2#20140310/0000-2200|2200F-2200:2#20140331/0100-2300|2300F-2300:2#20141027/0000-2200|2200F-2200:2#20141103/0100-2300|2300F-2300:2#20150309/0000-2200|2200F-2200:2#20150330/0100-2300|2300F-2300:2#20151026/0000-2200|2200F-2200:2#20151102/0100-2300|2300F-2300:2#20160314/0000-2200|2200F-2200:2#20160328/0100-2300|2300F-2300:2#20161031/0000-2200|2200F-2200:2#20161107/0100-2300|2300F-2300:2#20170313/0000-2200|2200F-2200:2#20170327/0100-2300|2300F-2300:2#20171030/0000-2200|2200F-2200:2#20171106/0100-2300|2300F-2300:2#20180312/0000-2200|2200F-2200:2#20180326/0100-2300|2300F-2300:2#20181029/0000-2200|2200F-2200:2#20181105/0100-2300|2300F-2300:2#20190311/0000-2200|2200F-2200:2#20190401/0100-2300|2300F-2300:2#20191028/0000-2200|2200F-2200:2#20191104/0100-2300|2300F-2300:2#20200309/0000-2200|2200F-2200:2#20200330/0100-2300|2300F-2300:2#20201026/0000-2200|2200F-2200:2#20201102/0100-2300|2300F-2300:2#20210315/0000-2200|2200F-2200:2#20210329/0100-2300|2300F-2300:2#20211025/0000-2200|2200F-2200:2#20211101/0100-2300|2300F-2300:2#20220314/0000-2200|2200F-2200:2#20220328/0100-2300|2300F-2300:2#20221031/0000-2200|2200F-2200:2#20221107/0100-2300|2300F-2300:2#20230313/0000-2200|2200F-2200:2#20230327/0100-2300|2300F-2300:2#20231030/0000-2200|2200F-2200:2#20231106/0100-2300|2300F-2300:2#20240311/0000-2200|2200F-2200:2#20240401/0100-2300|2300F-2300:2#20241028/0000-2200|2200F-2200:2#20241104/0100-2300|2300F-2300:2#20250310/0000-2200|2200F-2200:2#20250331/0100-2300|2300F-2300:2#20251027/0000-2200|2200F-2200:2#20251103/0100-2300|2300F-2300:2#20260309/0000-2200|2200F-2200:2#20260330/0100-2300|2300F-2300:2#20261026/0000-2200|2200F-2200:2#20261102/0100-2300|2300F-2300:2#20270315/0000-2200|2200F-2200:2#20270329/0100-2300|2300F-2300:2#20271101/0000-2200|2200F-2200:2#20271108/0100-2300|2300F-2300:2#20280313/0000-2200|2200F-2200:2#20280327/0100-2300|2300F-2300:2#20281030/0000-2200|2200F-2200:2#20281106/0100-2300|2300F-2300:2#20290312/0000-2200|2200F-2200:2#20290326/0100-2300|2300F-2300:2#20291029/0000-2200|2200F-2200:2#20291105/0100-2300|2300F-2300:2#20300311/0000-2200|2200F-2200:2#20300401/0100-2300|2300F-2300:2#20301028/0000-2200|2200F-2200:2#20301104/0100-2300|2300F-2300:2#20310310/0000-2200|2200F-2200:2#20310331/0100-2300|2300F-2300:2#20311027/0000-2200|2200F-2200:2#20311103/0100-2300|2300F-2300:2#20320315/0000-2200|2200F-2200:2#20320329/0100-2300|2300F-2300:2#20321101/0000-2200|2200F-2200:2#20321108/0100-2300|2300F-2300:2#20330314/0000-2200|2200F-2200:2#20330328/0100-2300|2300F-2300:2#20331031/0000-2200|2200F-2200:2#20331107/0100-2300|2300F-2300:2#20340313/0000-2200|2200F-2200:2#20340327/0100-2300|2300F-2300:2#20341030/0000-2200|2200F-2200:2#20341106/0100-2300|2300F-2300:2#20350312/0000-2200|2200F-2200:2#20350326/0100-2300|2300F-2300:2#20351029/0000-2200|2200F-2200:2#20351105/0100-2300|2300F-2300:2",
+            "session_display": "0100-2300|2300F-2300:2#20070312/0000-2200|2200F-2200:2#20070326/0100-2300|2300F-2300:2#20071029/0000-2200|2200F-2200:2#20071105/0100-2300|2300F-2300:2#20080310/0000-2200|2200F-2200:2#20080331/0100-2300|2300F-2300:2#20081027/0000-2200|2200F-2200:2#20081103/0100-2300|2300F-2300:2#20090309/0000-2200|2200F-2200:2#20090330/0100-2300|2300F-2300:2#20091026/0000-2200|2200F-2200:2#20091102/0100-2300|2300F-2300:2#20100315/0000-2200|2200F-2200:2#20100329/0100-2300|2300F-2300:2#20101101/0000-2200|2200F-2200:2#20101108/0100-2300|2300F-2300:2#20110314/0000-2200|2200F-2200:2#20110328/0100-2300|2300F-2300:2#20111031/0000-2200|2200F-2200:2#20111107/0100-2300|2300F-2300:2#20120312/0000-2200|2200F-2200:2#20120326/0100-2300|2300F-2300:2#20121029/0000-2200|2200F-2200:2#20121105/0100-2300|2300F-2300:2#20130311/0000-2200|2200F-2200:2#20130401/0100-2300|2300F-2300:2#20131028/0000-2200|2200F-2200:2#20131104/0100-2300|2300F-2300:2#20140310/0000-2200|2200F-2200:2#20140331/0100-2300|2300F-2300:2#20141027/0000-2200|2200F-2200:2#20141103/0100-2300|2300F-2300:2#20150309/0000-2200|2200F-2200:2#20150330/0100-2300|2300F-2300:2#20151026/0000-2200|2200F-2200:2#20151102/0100-2300|2300F-2300:2#20160314/0000-2200|2200F-2200:2#20160328/0100-2300|2300F-2300:2#20161031/0000-2200|2200F-2200:2#20161107/0100-2300|2300F-2300:2#20170313/0000-2200|2200F-2200:2#20170327/0100-2300|2300F-2300:2#20171030/0000-2200|2200F-2200:2#20171106/0100-2300|2300F-2300:2#20180312/0000-2200|2200F-2200:2#20180326/0100-2300|2300F-2300:2#20181029/0000-2200|2200F-2200:2#20181105/0100-2300|2300F-2300:2#20190311/0000-2200|2200F-2200:2#20190401/0100-2300|2300F-2300:2#20191028/0000-2200|2200F-2200:2#20191104/0100-2300|2300F-2300:2#20200309/0000-2200|2200F-2200:2#20200330/0100-2300|2300F-2300:2#20201026/0000-2200|2200F-2200:2#20201102/0100-2300|2300F-2300:2#20210315/0000-2200|2200F-2200:2#20210329/0100-2300|2300F-2300:2#20211025/0000-2200|2200F-2200:2#20211101/0100-2300|2300F-2300:2#20220314/0000-2200|2200F-2200:2#20220328/0100-2300|2300F-2300:2#20221031/0000-2200|2200F-2200:2#20221107/0100-2300|2300F-2300:2#20230313/0000-2200|2200F-2200:2#20230327/0100-2300|2300F-2300:2#20231030/0000-2200|2200F-2200:2#20231106/0100-2300|2300F-2300:2#20240311/0000-2200|2200F-2200:2#20240401/0100-2300|2300F-2300:2#20241028/0000-2200|2200F-2200:2#20241104/0100-2300|2300F-2300:2#20250310/0000-2200|2200F-2200:2#20250331/0100-2300|2300F-2300:2#20251027/0000-2200|2200F-2200:2#20251103/0100-2300|2300F-2300:2#20260309/0000-2200|2200F-2200:2#20260330/0100-2300|2300F-2300:2#20261026/0000-2200|2200F-2200:2#20261102/0100-2300|2300F-2300:2#20270315/0000-2200|2200F-2200:2#20270329/0100-2300|2300F-2300:2#20271101/0000-2200|2200F-2200:2#20271108/0100-2300|2300F-2300:2#20280313/0000-2200|2200F-2200:2#20280327/0100-2300|2300F-2300:2#20281030/0000-2200|2200F-2200:2#20281106/0100-2300|2300F-2300:2#20290312/0000-2200|2200F-2200:2#20290326/0100-2300|2300F-2300:2#20291029/0000-2200|2200F-2200:2#20291105/0100-2300|2300F-2300:2#20300311/0000-2200|2200F-2200:2#20300401/0100-2300|2300F-2300:2#20301028/0000-2200|2200F-2200:2#20301104/0100-2300|2300F-2300:2#20310310/0000-2200|2200F-2200:2#20310331/0100-2300|2300F-2300:2#20311027/0000-2200|2200F-2200:2#20311103/0100-2300|2300F-2300:2#20320315/0000-2200|2200F-2200:2#20320329/0100-2300|2300F-2300:2#20321101/0000-2200|2200F-2200:2#20321108/0100-2300|2300F-2300:2#20330314/0000-2200|2200F-2200:2#20330328/0100-2300|2300F-2300:2#20331031/0000-2200|2200F-2200:2#20331107/0100-2300|2300F-2300:2#20340313/0000-2200|2200F-2200:2#20340327/0100-2300|2300F-2300:2#20341030/0000-2200|2200F-2200:2#20341106/0100-2300|2300F-2300:2#20350312/0000-2200|2200F-2200:2#20350326/0100-2300|2300F-2300:2#20351029/0000-2200|2200F-2200:2#20351105/0100-2300|2300F-2300:2",
+            "subsessions": [
+              {
+                "description": "Regular Trading Hours",
+                "id": "regular",
+                "private": false,
+                "session": "0100-2300|2300F-2300:2#20070312/0000-2200|2200F-2200:2#20070326/0100-2300|2300F-2300:2#20071029/0000-2200|2200F-2200:2#20071105/0100-2300|2300F-2300:2#20080310/0000-2200|2200F-2200:2#20080331/0100-2300|2300F-2300:2#20081027/0000-2200|2200F-2200:2#20081103/0100-2300|2300F-2300:2#20090309/0000-2200|2200F-2200:2#20090330/0100-2300|2300F-2300:2#20091026/0000-2200|2200F-2200:2#20091102/0100-2300|2300F-2300:2#20100315/0000-2200|2200F-2200:2#20100329/0100-2300|2300F-2300:2#20101101/0000-2200|2200F-2200:2#20101108/0100-2300|2300F-2300:2#20110314/0000-2200|2200F-2200:2#20110328/0100-2300|2300F-2300:2#20111031/0000-2200|2200F-2200:2#20111107/0100-2300|2300F-2300:2#20120312/0000-2200|2200F-2200:2#20120326/0100-2300|2300F-2300:2#20121029/0000-2200|2200F-2200:2#20121105/0100-2300|2300F-2300:2#20130311/0000-2200|2200F-2200:2#20130401/0100-2300|2300F-2300:2#20131028/0000-2200|2200F-2200:2#20131104/0100-2300|2300F-2300:2#20140310/0000-2200|2200F-2200:2#20140331/0100-2300|2300F-2300:2#20141027/0000-2200|2200F-2200:2#20141103/0100-2300|2300F-2300:2#20150309/0000-2200|2200F-2200:2#20150330/0100-2300|2300F-2300:2#20151026/0000-2200|2200F-2200:2#20151102/0100-2300|2300F-2300:2#20160314/0000-2200|2200F-2200:2#20160328/0100-2300|2300F-2300:2#20161031/0000-2200|2200F-2200:2#20161107/0100-2300|2300F-2300:2#20170313/0000-2200|2200F-2200:2#20170327/0100-2300|2300F-2300:2#20171030/0000-2200|2200F-2200:2#20171106/0100-2300|2300F-2300:2#20180312/0000-2200|2200F-2200:2#20180326/0100-2300|2300F-2300:2#20181029/0000-2200|2200F-2200:2#20181105/0100-2300|2300F-2300:2#20190311/0000-2200|2200F-2200:2#20190401/0100-2300|2300F-2300:2#20191028/0000-2200|2200F-2200:2#20191104/0100-2300|2300F-2300:2#20200309/0000-2200|2200F-2200:2#20200330/0100-2300|2300F-2300:2#20201026/0000-2200|2200F-2200:2#20201102/0100-2300|2300F-2300:2#20210315/0000-2200|2200F-2200:2#20210329/0100-2300|2300F-2300:2#20211025/0000-2200|2200F-2200:2#20211101/0100-2300|2300F-2300:2#20220314/0000-2200|2200F-2200:2#20220328/0100-2300|2300F-2300:2#20221031/0000-2200|2200F-2200:2#20221107/0100-2300|2300F-2300:2#20230313/0000-2200|2200F-2200:2#20230327/0100-2300|2300F-2300:2#20231030/0000-2200|2200F-2200:2#20231106/0100-2300|2300F-2300:2#20240311/0000-2200|2200F-2200:2#20240401/0100-2300|2300F-2300:2#20241028/0000-2200|2200F-2200:2#20241104/0100-2300|2300F-2300:2#20250310/0000-2200|2200F-2200:2#20250331/0100-2300|2300F-2300:2#20251027/0000-2200|2200F-2200:2#20251103/0100-2300|2300F-2300:2#20260309/0000-2200|2200F-2200:2#20260330/0100-2300|2300F-2300:2#20261026/0000-2200|2200F-2200:2#20261102/0100-2300|2300F-2300:2#20270315/0000-2200|2200F-2200:2#20270329/0100-2300|2300F-2300:2#20271101/0000-2200|2200F-2200:2#20271108/0100-2300|2300F-2300:2#20280313/0000-2200|2200F-2200:2#20280327/0100-2300|2300F-2300:2#20281030/0000-2200|2200F-2200:2#20281106/0100-2300|2300F-2300:2#20290312/0000-2200|2200F-2200:2#20290326/0100-2300|2300F-2300:2#20291029/0000-2200|2200F-2200:2#20291105/0100-2300|2300F-2300:2#20300311/0000-2200|2200F-2200:2#20300401/0100-2300|2300F-2300:2#20301028/0000-2200|2200F-2200:2#20301104/0100-2300|2300F-2300:2#20310310/0000-2200|2200F-2200:2#20310331/0100-2300|2300F-2300:2#20311027/0000-2200|2200F-2200:2#20311103/0100-2300|2300F-2300:2#20320315/0000-2200|2200F-2200:2#20320329/0100-2300|2300F-2300:2#20321101/0000-2200|2200F-2200:2#20321108/0100-2300|2300F-2300:2#20330314/0000-2200|2200F-2200:2#20330328/0100-2300|2300F-2300:2#20331031/0000-2200|2200F-2200:2#20331107/0100-2300|2300F-2300:2#20340313/0000-2200|2200F-2200:2#20340327/0100-2300|2300F-2300:2#20341030/0000-2200|2200F-2200:2#20341106/0100-2300|2300F-2300:2#20350312/0000-2200|2200F-2200:2#20350326/0100-2300|2300F-2300:2#20351029/0000-2200|2200F-2200:2#20351105/0100-2300|2300F-2300:2",
+                "session-correction": "0000-1830:20251127,20261126;0000-1900:20251224,20261224;0000-2000:20251128,20251231,20261127,20261231;0100-1830:20230704,20231123,20240619,20240704,20241128,20250619,20250704,20260619,20260703;0100-1900:20231124,20241129,20241224;0100-2000:20231222,20231229,20241231;2300F-1830:20230529,20230619,20230904,20240527,20240902,20250526,20250901,20260525,20260907",
+                "session-display": "0100-2300|2300F-2300:2#20070312/0000-2200|2200F-2200:2#20070326/0100-2300|2300F-2300:2#20071029/0000-2200|2200F-2200:2#20071105/0100-2300|2300F-2300:2#20080310/0000-2200|2200F-2200:2#20080331/0100-2300|2300F-2300:2#20081027/0000-2200|2200F-2200:2#20081103/0100-2300|2300F-2300:2#20090309/0000-2200|2200F-2200:2#20090330/0100-2300|2300F-2300:2#20091026/0000-2200|2200F-2200:2#20091102/0100-2300|2300F-2300:2#20100315/0000-2200|2200F-2200:2#20100329/0100-2300|2300F-2300:2#20101101/0000-2200|2200F-2200:2#20101108/0100-2300|2300F-2300:2#20110314/0000-2200|2200F-2200:2#20110328/0100-2300|2300F-2300:2#20111031/0000-2200|2200F-2200:2#20111107/0100-2300|2300F-2300:2#20120312/0000-2200|2200F-2200:2#20120326/0100-2300|2300F-2300:2#20121029/0000-2200|2200F-2200:2#20121105/0100-2300|2300F-2300:2#20130311/0000-2200|2200F-2200:2#20130401/0100-2300|2300F-2300:2#20131028/0000-2200|2200F-2200:2#20131104/0100-2300|2300F-2300:2#20140310/0000-2200|2200F-2200:2#20140331/0100-2300|2300F-2300:2#20141027/0000-2200|2200F-2200:2#20141103/0100-2300|2300F-2300:2#20150309/0000-2200|2200F-2200:2#20150330/0100-2300|2300F-2300:2#20151026/0000-2200|2200F-2200:2#20151102/0100-2300|2300F-2300:2#20160314/0000-2200|2200F-2200:2#20160328/0100-2300|2300F-2300:2#20161031/0000-2200|2200F-2200:2#20161107/0100-2300|2300F-2300:2#20170313/0000-2200|2200F-2200:2#20170327/0100-2300|2300F-2300:2#20171030/0000-2200|2200F-2200:2#20171106/0100-2300|2300F-2300:2#20180312/0000-2200|2200F-2200:2#20180326/0100-2300|2300F-2300:2#20181029/0000-2200|2200F-2200:2#20181105/0100-2300|2300F-2300:2#20190311/0000-2200|2200F-2200:2#20190401/0100-2300|2300F-2300:2#20191028/0000-2200|2200F-2200:2#20191104/0100-2300|2300F-2300:2#20200309/0000-2200|2200F-2200:2#20200330/0100-2300|2300F-2300:2#20201026/0000-2200|2200F-2200:2#20201102/0100-2300|2300F-2300:2#20210315/0000-2200|2200F-2200:2#20210329/0100-2300|2300F-2300:2#20211025/0000-2200|2200F-2200:2#20211101/0100-2300|2300F-2300:2#20220314/0000-2200|2200F-2200:2#20220328/0100-2300|2300F-2300:2#20221031/0000-2200|2200F-2200:2#20221107/0100-2300|2300F-2300:2#20230313/0000-2200|2200F-2200:2#20230327/0100-2300|2300F-2300:2#20231030/0000-2200|2200F-2200:2#20231106/0100-2300|2300F-2300:2#20240311/0000-2200|2200F-2200:2#20240401/0100-2300|2300F-2300:2#20241028/0000-2200|2200F-2200:2#20241104/0100-2300|2300F-2300:2#20250310/0000-2200|2200F-2200:2#20250331/0100-2300|2300F-2300:2#20251027/0000-2200|2200F-2200:2#20251103/0100-2300|2300F-2300:2#20260309/0000-2200|2200F-2200:2#20260330/0100-2300|2300F-2300:2#20261026/0000-2200|2200F-2200:2#20261102/0100-2300|2300F-2300:2#20270315/0000-2200|2200F-2200:2#20270329/0100-2300|2300F-2300:2#20271101/0000-2200|2200F-2200:2#20271108/0100-2300|2300F-2300:2#20280313/0000-2200|2200F-2200:2#20280327/0100-2300|2300F-2300:2#20281030/0000-2200|2200F-2200:2#20281106/0100-2300|2300F-2300:2#20290312/0000-2200|2200F-2200:2#20290326/0100-2300|2300F-2300:2#20291029/0000-2200|2200F-2200:2#20291105/0100-2300|2300F-2300:2#20300311/0000-2200|2200F-2200:2#20300401/0100-2300|2300F-2300:2#20301028/0000-2200|2200F-2200:2#20301104/0100-2300|2300F-2300:2#20310310/0000-2200|2200F-2200:2#20310331/0100-2300|2300F-2300:2#20311027/0000-2200|2200F-2200:2#20311103/0100-2300|2300F-2300:2#20320315/0000-2200|2200F-2200:2#20320329/0100-2300|2300F-2300:2#20321101/0000-2200|2200F-2200:2#20321108/0100-2300|2300F-2300:2#20330314/0000-2200|2200F-2200:2#20330328/0100-2300|2300F-2300:2#20331031/0000-2200|2200F-2200:2#20331107/0100-2300|2300F-2300:2#20340313/0000-2200|2200F-2200:2#20340327/0100-2300|2300F-2300:2#20341030/0000-2200|2200F-2200:2#20341106/0100-2300|2300F-2300:2#20350312/0000-2200|2200F-2200:2#20350326/0100-2300|2300F-2300:2#20351029/0000-2200|2200F-2200:2#20351105/0100-2300|2300F-2300:2"
+              }
+            ],
+            "type": "commodity",
+            "typespecs": [
+              "cfd"
+            ],
+            "has_intraday": true,
+            "fractional": false,
+            "listed_exchange": "TVC",
+            "legs": [
+              "TVC:UKOIL"
+            ],
+            "is_tradable": true,
+            "minmove2": 0,
+            "timezone": "Europe/London",
+            "aliases": [],
+            "alternatives": [],
+            "is_replayable": true,
+            "has_adjustment": false,
+            "has_extended_hours": false,
+            "bar_source": "trade",
+            "bar_transform": "none",
+            "bar_fillgaps": false,
+            "visible_plots_set": "ohlcv",
+            "is-tickbars-available": true,
+            "exchange_listed_name": "TVC"
+          }
+        ],
+        "t": 1791365228,
+        "t_ms": 1791365228412
+      },
+      {
+        "m": "timescale_update",
+        "p": [
+          "cs_fixture",
+          {
+            "s1": {
+              "s": [
+                {
+                  "i": 0,
+                  "v": [
+                    1791364980.0,
+                    101.65,
+                    101.69,
+                    101.54,
+                    101.57,
+                    86.0
+                  ]
+                },
+                {
+                  "i": 1,
+                  "v": [
+                    1791365040.0,
+                    101.56,
+                    101.57,
+                    101.45,
+                    101.48,
+                    56.0
+                  ]
+                },
+                {
+                  "i": 2,
+                  "v": [
+                    1791365100.0,
+                    101.49,
+                    101.56,
+                    101.44,
+                    101.51,
+                    39.0
+                  ]
+                },
+                {
+                  "i": 3,
+                  "v": [
+                    1791365160.0,
+                    101.48,
+                    101.6,
+                    101.45,
+                    101.56,
+                    34.0
+                  ]
+                },
+                {
+                  "i": 4,
+                  "v": [
+                    1791365220.0,
+                    101.54,
+                    101.56,
+                    101.48,
+                    101.53,
+                    21.0
+                  ]
+                }
+              ],
+              "ns": {
+                "d": "",
+                "indexes": []
+              },
+              "t": "s1",
+              "lbs": {
+                "bar_close_time": 1791365280
+              }
+            }
+          }
+        ],
+        "t": 1791365228,
+        "t_ms": 1791365228412
+      },
+      {
+        "m": "series_completed",
+        "p": [
+          "cs_fixture",
+          "s1",
+          "streaming",
+          "s1",
+          {
+            "rt_update_period": 5
+          }
+        ],
+        "t": 1791365228,
+        "t_ms": 1791365228412
+      }
+    ]
+  }
+]

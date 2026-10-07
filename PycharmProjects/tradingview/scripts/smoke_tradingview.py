@@ -22,6 +22,10 @@ async def smoke(base_url: str) -> None:
     registry = Registry.load(Path("config/instruments.tradingview.json"))
     expected = set(registry.by_symbol)
     async with httpx.AsyncClient(base_url=base_url, headers=headers, timeout=10) as client:
+        modes = await client.get("/providers")
+        modes.raise_for_status()
+        if any(p.get("storage_mode") == "candles" for p in modes.json()):
+            raise ValueError("Use scripts/smoke_tradingview_candles.py for candle mode")
 
         async def get(path: str, **params: str) -> object:
             response = await client.get(path, params=params)
@@ -32,7 +36,9 @@ async def smoke(base_url: str) -> None:
             while True:
                 latest = await get("/prices/latest", provider="tradingview_guest")
                 items = latest["items"]
-                if expected <= {tick["canonical_symbol"] for tick in items}:
+                if expected <= {tick["canonical_symbol"] for tick in items} and all(
+                    not tick["stale"] for tick in items
+                ):
                     break
                 await asyncio.sleep(1)
         assert all(tick["realtime_status"] == "realtime" for tick in items)
@@ -58,10 +64,17 @@ async def smoke(base_url: str) -> None:
         providers = await get("/providers")
         assert len(providers) == 1 and providers[0]["provider"] == "tradingview_guest"
         assert providers[0]["last_success_at"] is not None
-        assert providers[0]["last_error"] is None
+        assert providers[0]["transport"] == "connected"
+        assert providers[0]["state"] == "healthy"
+        assert providers[0]["configured_symbol_count"] == 17
+        assert providers[0]["fresh_symbol_count"] == 17
+        assert providers[0]["subscription_restored"] is True
         metrics = await client.get("/metrics")
         metrics.raise_for_status()
         assert "marketdata_persisted_total" in metrics.text
+        assert 'marketdata_connection_up{provider="tradingview_guest"} 1.0' in metrics.text
+        assert 'marketdata_feed_healthy{provider="tradingview_guest"} 1.0' in metrics.text
+        assert 'marketdata_symbols{provider="tradingview_guest",state="fresh"} 17.0' in metrics.text
         print(
             json.dumps(
                 {
