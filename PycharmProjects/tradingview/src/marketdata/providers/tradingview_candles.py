@@ -3,14 +3,8 @@
 See docs/tradingview.md. No quote sampling, login, cookies or browser automation.
 """
 
-import asyncio
-import json
 import re
-import secrets
-import time
-from contextlib import suppress
 from datetime import datetime, timedelta
-from decimal import Decimal
 from typing import Any
 
 from websockets.asyncio.client import ClientConnection, connect
@@ -19,7 +13,7 @@ from websockets.typing import Origin
 
 from marketdata.candles import MarketCandle
 from marketdata.config import Settings
-from marketdata.domain import DataStatus, InstrumentType, from_ns, utc_now
+from marketdata.domain import DataStatus, InstrumentType, from_ns
 from marketdata.observability import Metrics
 from marketdata.providers.base import PermanentConnectionError, PermanentProviderError, Subscription
 from marketdata.providers.candles import CandleProvider
@@ -108,8 +102,14 @@ class TradingViewCandleProvider(CandleProvider):
         self.grace = settings.candle_fetch_grace_seconds
         self.socket: ClientConnection | None = None
         self.decoder = FrameDecoder()
+        self.connection_generation = 0
+        self.request_serial = 0
+        self.fetching = False
+        self.effective_concurrency = settings.tradingview_candle_concurrency
 
     async def connect(self) -> None:
+        if self.socket is not None:
+            raise RuntimeError("candle socket already connected")
         if not 1 <= len(self.subscriptions) <= 100:
             raise PermanentConnectionError("tradingview_local_subscription_limit")
         for instrument, mapping in self.subscriptions:
@@ -126,6 +126,7 @@ class TradingViewCandleProvider(CandleProvider):
             ):
                 raise PermanentConnectionError("tradingview_identity_or_product_unsupported")
         self.connection_started(reconnecting=bool(self.health.reconnect_count))
+        self.connection_generation += 1
         try:
             self.socket = await connect(
                 self.settings.tradingview_ws_url,
@@ -138,20 +139,35 @@ class TradingViewCandleProvider(CandleProvider):
                 max_size=MAX_FRAME_UNITS,
             )
         except InvalidStatus as error:
+            if error.response.status_code == 429:
+                self.metrics.tradingview_throttle.labels("http_429").inc()
+                self.effective_concurrency = max(1, self.effective_concurrency // 2)
             if error.response.status_code in (400, 401, 403, 451):
                 raise PermanentConnectionError("tradingview_access_rejected") from None
             raise
         self.decoder = FrameDecoder()
         self.transport_connected()
-        await self.socket.send(encode_message("set_auth_token", ["unauthorized_user_token"]))
+        self.metrics.tradingview_sockets.set(1)
+        try:
+            await self.socket.send(encode_message("set_auth_token", ["unauthorized_user_token"]))
+        except ConnectionClosed as error:
+            self.metrics.tradingview_disconnects.inc()
+            self.metrics.tradingview_throttle.labels("connection").inc()
+            self.metrics.candle_request_errors.labels("connection").inc()
+            self.effective_concurrency = max(1, self.effective_concurrency // 2)
+            self.health.last_close_code = getattr(error.rcvd, "code", None)
+            self.health.last_close_reason = "upstream_disconnect"
+            raise
         self.subscriptions_requested()
 
     async def disconnect(self) -> None:
+        self.connection_generation += 1
         socket, self.socket = self.socket, None
         try:
             if socket:
                 await socket.close()
         finally:
+            self.metrics.tradingview_sockets.set(0)
             self.transport_disconnected()
 
     async def fetch_completed(
@@ -166,215 +182,6 @@ class TradingViewCandleProvider(CandleProvider):
     async def fetch_many(
         self, requests: list[tuple[Subscription, datetime, datetime, int]]
     ) -> dict[str, list[MarketCandle] | Exception]:
-        """One reader/socket; at most two outstanding independent chart sessions.
+        from marketdata.providers.tradingview_pipeline import retrieve
 
-        No concurrent recv, extra connections, new protocol commands or polling.
-        """
-        socket = self.socket
-        if socket is None:
-            raise ConnectionError("candle_transport_disconnected")
-        waiting = iter(requests)
-        active: dict[str, dict[str, Any]] = {}
-        results: dict[str, list[MarketCandle] | Exception] = {}
-
-        async def issue() -> bool:
-            request = next(waiting, None)
-            if request is None:
-                return False
-            pair, start, end, count = request
-            session = "cs_" + secrets.token_hex(6)
-            active[session] = dict(
-                pair=pair,
-                start=start,
-                end=end,
-                count=count,
-                info={},
-                bars={},
-                started=utc_now(),
-                timer=time.perf_counter(),
-                first=None,
-                available=None,
-            )
-            self.health.symbols[pair[0].canonical_symbol].last_fetch_started_at = active[session][
-                "started"
-            ]
-            self.metrics.candles.labels(self.name, "requested").inc()
-            for method, params in (
-                ("chart_create_session", [session, ""]),
-                ("resolve_symbol", [session, "symbol_1", pair[1].provider_symbol]),
-                ("create_series", [session, "s1", "s1", "symbol_1", "1", count, ""]),
-            ):
-                await socket.send(encode_message(method, params))
-            return True
-
-        async def finish(session: str, result: list[MarketCandle] | Exception) -> None:
-            state = active.pop(session)
-            symbol = state["pair"][0].canonical_symbol
-            parsed = utc_now()
-            duration = max(0, time.perf_counter() - state["timer"])
-            self.timings[symbol] = dict(
-                requested_start=state["start"].isoformat(),
-                requested_end=state["end"].isoformat(),
-                requested_bars=state["count"],
-                request_started_at=state["started"].isoformat(),
-                first_relevant_message_at=state["first"].isoformat() if state["first"] else None,
-                completed_candle_available_at=state["available"].isoformat()
-                if state["available"]
-                else None,
-                parser_completed_at=parsed.isoformat(),
-                duration_seconds=duration,
-            )
-            self.health.symbols[symbol].last_fetch_completed_at = parsed
-            if not isinstance(result, Exception):
-                self.health.symbols[symbol].last_successful_fetch_at = parsed
-            self.metrics.candle_symbol_latency.labels(self.name, symbol).observe(duration)
-            if duration > 5:
-                import logging
-
-                logging.getLogger(__name__).warning(
-                    "slow candle retrieval",
-                    extra={
-                        "context": dict(
-                            provider=self.name, canonical_symbol=symbol, duration=duration
-                        )
-                    },
-                )
-            results[symbol] = result
-            with suppress(ConnectionClosed):
-                await socket.send(encode_message("chart_delete_session", [session]))
-
-        try:
-            for _ in range(2):
-                if not await issue():
-                    break
-            while active:
-                timeout = min(
-                    self.settings.candle_request_timeout_seconds
-                    - (time.perf_counter() - v["timer"])
-                    for v in active.values()
-                )
-                if timeout <= 0:
-                    expired = [
-                        k
-                        for k, v in active.items()
-                        if time.perf_counter() - v["timer"]
-                        >= self.settings.candle_request_timeout_seconds
-                    ]
-                    for session in expired:
-                        await finish(session, TimeoutError("candle_request_timeout"))
-                        await issue()
-                    continue
-                try:
-                    raw = await asyncio.wait_for(socket.recv(), timeout)
-                except TimeoutError:
-                    continue
-                received = utc_now()
-                self.health.last_message_at = received
-                for body in self.decoder.feed(raw):  # type: ignore[arg-type]
-                    if body.startswith("~h~"):
-                        await socket.send(f"~m~{len(body)}~m~{body}")
-                        continue
-                    message = json.loads(body, parse_float=Decimal)
-                    if not isinstance(message, dict):
-                        raise ValueError("chart message must be an object")
-                    kind, params = message.get("m"), message.get("p", [])
-                    if kind in ("critical_error", "protocol_error"):
-                        raise PermanentConnectionError("tradingview_chart_protocol_rejected")
-                    if not params or params[0] not in active:
-                        continue
-                    session = params[0]
-                    state = active[session]
-                    state["first"] = state["first"] or received
-                    info, bars = state["info"], state["bars"]
-                    try:
-                        if kind in ("symbol_error", "series_error"):
-                            raise PermanentProviderError("tradingview_chart_unavailable")
-                        if kind == "symbol_resolved":
-                            if params[1] != "symbol_1":
-                                raise ValueError("unexpected resolved symbol identifier")
-                            info.update(params[2])
-                            validate_source(info, state["pair"])
-                            self.session_info[state["pair"][0].canonical_symbol] = {
-                                k: info[k]
-                                for k in (
-                                    "session",
-                                    "timezone",
-                                    "session_holidays",
-                                    "corrections",
-                                    "subsessions",
-                                    "subsession_id",
-                                )
-                                if k in info
-                            }
-                            # OANDA account trading hours need not match this chart feed.
-                            # Mark the documented maintenance neighbourhood UNKNOWN,
-                            # rather than asserting precise guest-feed closures.
-                            source_symbol = state["pair"][1].provider_symbol
-                            if source_symbol.startswith("OANDA:"):
-                                self.session_info[state["pair"][0].canonical_symbol][
-                                    "uncertain_break"
-                                ] = (
-                                    "1659-1805"
-                                    if source_symbol in ("OANDA:XAUUSD", "OANDA:XAGUSD")
-                                    else "1659-1705"
-                                )
-                        if kind in ("timescale_update", "du"):
-                            for row in params[1].get("s1", {}).get("s", []):
-                                values = row["v"]
-                                key = observed_decimal(values[0])
-                                if key is None:
-                                    raise ValueError("missing bar time")
-                                bars[key] = values
-                                if (
-                                    from_ns(int(key) * 1_000_000_000) + timedelta(minutes=1)
-                                    <= state["end"]
-                                ):
-                                    state["available"] = received
-                            if len(bars) > state["count"] + 2:
-                                raise ValueError("candle response exceeds requested bound")
-                        if kind == "series_completed":
-                            if params[1] != "s1" or params[3] != "s1":
-                                raise ValueError("unexpected chart series/turnaround")
-                            status = params[2]
-                            validate_source(info, state["pair"])
-                            if status not in ("streaming", "realtime"):
-                                raise PermanentProviderError("tradingview_candles_not_realtime")
-                            if len(params) > 4 and isinstance(params[4], dict):
-                                info["observed_update_period_seconds"] = str(
-                                    params[4].get("rt_update_period")
-                                )
-                            cutoff = min(state["end"], received - timedelta(seconds=self.grace))
-                            parse_timer = time.perf_counter()
-                            result = [
-                                parse_bar(v, state["pair"], info, received, status)
-                                for ts, v in sorted(bars.items())
-                                if state["start"] <= from_ns(int(ts) * 1_000_000_000)
-                                and from_ns(int(ts) * 1_000_000_000) + timedelta(minutes=1)
-                                <= cutoff
-                            ]
-                            self.metrics.candle_timing.labels(self.name, "parser").observe(
-                                max(0, time.perf_counter() - parse_timer)
-                            )
-                            self.metrics.candles.labels(self.name, "received").inc(len(result))
-                            await finish(session, result)
-                            await issue()
-                    except (
-                        ValueError,
-                        KeyError,
-                        TypeError,
-                        IndexError,
-                        PermanentProviderError,
-                    ) as error:
-                        await finish(session, error)
-                        await issue()
-        except Exception as error:
-            for pair, _, _, _ in requests:
-                results.setdefault(pair[0].canonical_symbol, error)
-            # Fatal transport errors must not be hidden by partial success.
-            if isinstance(error, PermanentConnectionError):
-                return {pair[0].canonical_symbol: error for pair, _, _, _ in requests}
-        finally:
-            for session in list(active):
-                with suppress(ConnectionClosed):
-                    await socket.send(encode_message("chart_delete_session", [session]))
-        return results
+        return await retrieve(self, requests)

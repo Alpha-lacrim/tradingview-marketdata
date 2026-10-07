@@ -1,6 +1,7 @@
 """Opt-in multi-minute LIVE verification: native source -> DB -> REST/WebSocket.
 
-Makes additional guest chart requests for comparison; never alters stored prices.
+Default makes additional guest chart requests for comparison; never alters stored prices.
+--stored-only observes the normal collector's committed WebSocket -> DB -> REST path instead.
 """
 
 import argparse
@@ -22,7 +23,7 @@ from marketdata.providers.tradingview_candles import TradingViewCandleProvider
 from marketdata.registry import Registry
 
 
-async def smoke(base_url: str, minutes: int) -> dict[str, object]:
+async def smoke(base_url: str, minutes: int, compare_source: bool = True) -> dict[str, object]:
     settings = Settings()
     registry = Registry.load(Path("config/instruments.tradingview.json"))
     pairs = registry.subscriptions("tradingview_guest")
@@ -56,9 +57,13 @@ async def smoke(base_url: str, minutes: int) -> dict[str, object]:
                 bucket = expected_minute(target, settings.candle_fetch_grace_seconds)
                 end = bucket + timedelta(minutes=1)
                 seen: set[str] = set()
+                payloads: dict[str, dict] = {}
 
                 def observe(
-                    raw: str | bytes, expected: datetime = bucket, observed: set[str] = seen
+                    raw: str | bytes,
+                    expected: datetime = bucket,
+                    observed: set[str] = seen,
+                    received_payloads: dict[str, dict] = payloads,
                 ) -> None:
                     message = json.loads(raw)
                     if (
@@ -68,6 +73,7 @@ async def smoke(base_url: str, minutes: int) -> dict[str, object]:
                     ):
                         assert message["persisted"] is True
                         observed.add(message["symbol"])
+                        received_payloads[message["symbol"]] = message
 
                 # Windows timers can wake slightly early. Recheck the wall-clock deadline
                 # and use its intended bucket rather than a possibly premature sample.
@@ -92,13 +98,15 @@ async def smoke(base_url: str, minutes: int) -> dict[str, object]:
                         f"{sorted(set(registry.by_symbol) - seen)}"
                     ) from None
                 verified = []
-                await source.connect()
+                if compare_source:
+                    await source.connect()
                 try:
                     for pair in pairs:
-                        bars = await source.fetch_completed(pair, bucket, end, 3)
-                        if not bars:
-                            continue
-                        candle = bars[-1]
+                        if compare_source:
+                            bars = await source.fetch_completed(pair, bucket, end, 3)
+                            if not bars:
+                                continue
+                            candle = bars[-1]
                         response = await client.get(
                             "/candles/" + pair[0].canonical_symbol,
                             params=dict(
@@ -110,21 +118,27 @@ async def smoke(base_url: str, minutes: int) -> dict[str, object]:
                         response.raise_for_status()
                         row = response.json()["items"][0]
                         assert row["complete"] and row["price_basis"] == "native"
-                        assert [Decimal(row[k]) for k in ("open", "high", "low", "close")] == [
-                            candle.open,
-                            candle.high,
-                            candle.low,
-                            candle.close,
-                        ], pair[1].provider_symbol
+                        actual = [Decimal(row[k]) for k in ("open", "high", "low", "close")]
+                        if not compare_source:
+                            delivered = payloads[pair[0].canonical_symbol]
+                            assert delivered["provider_symbol"] == pair[1].provider_symbol
+                            assert [
+                                Decimal(delivered[k]) for k in ("open", "high", "low", "close")
+                            ] == actual
+                        if compare_source:
+                            assert actual == [candle.open, candle.high, candle.low, candle.close], (
+                                pair[1].provider_symbol
+                            )
                         async with store.connection() as c:
                             dbrow = await c.fetchrow(
-                                "SELECT open,high,low,close FROM market_candles "
+                                "SELECT open,high,low,close,provider_symbol FROM market_candles "
                                 "WHERE instrument_id=$1 AND provider=$2 AND bucket_start=$3",
                                 pair[0].id,
                                 "tradingview_guest",
                                 bucket,
                             )
-                        assert list(dbrow) == [candle.open, candle.high, candle.low, candle.close]
+                        assert list(dbrow)[:4] == actual
+                        assert dbrow["provider_symbol"] == pair[1].provider_symbol
                         verified.append(pair[1].provider_symbol)
                 finally:
                     await source.disconnect()
@@ -148,6 +162,7 @@ async def smoke(base_url: str, minutes: int) -> dict[str, object]:
             )
         assert before == after
         return dict(
+            independent_source_comparison=compare_source,
             minutes=observations,
             raw_ticks_before=before,
             raw_ticks_after=after,
@@ -163,8 +178,29 @@ if __name__ == "__main__":
     parser.add_argument("--base-url", default="http://localhost:8000")
     parser.add_argument("--minutes", type=int, choices=range(2, 11), default=3)
     parser.add_argument("--output", type=Path)
+    parser.add_argument(
+        "--stored-only",
+        action="store_true",
+        help="no extra upstream requests; compare normal collector WebSocket, database and REST",
+    )
     args = parser.parse_args()
-    result = asyncio.run(smoke(args.base_url, args.minutes))
+    try:
+        result = asyncio.run(smoke(args.base_url, args.minutes, not args.stored_only))
+    except AssertionError as error:
+        if args.output:
+            args.output.write_text(
+                json.dumps(
+                    dict(
+                        passed=False,
+                        failure=str(error),
+                        independent_source_comparison=not args.stored_only,
+                    ),
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+        raise
     serialized = json.dumps(result, default=str, indent=2)
     print(serialized)
     if args.output:

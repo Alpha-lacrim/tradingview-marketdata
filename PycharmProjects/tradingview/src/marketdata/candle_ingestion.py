@@ -2,6 +2,7 @@
 
 import asyncio
 import logging
+import math
 import random
 import time
 from datetime import datetime, timedelta
@@ -52,10 +53,25 @@ class CandleIngestion:
         self.retry_at = 0.0
         self.reconnect_attempt = 0
         self.last_attempted_end: datetime | None = None
+        self.overrun_reported = False
         provider.backfill_minutes = settings.candle_backfill_minutes
 
     def log(self, message: str, level: int = logging.INFO, **context: Any) -> None:
         logger.log(level, message, extra={"context": {"provider": self.provider.name, **context}})
+
+    def observe_overrun(self, deadline: datetime, now: datetime) -> bool:
+        if now < deadline:
+            return False
+        if not self.overrun_reported:
+            self.overrun_reported = True
+            self.provider.metrics.candle_overruns.labels(self.provider.name).inc()
+            self.log(
+                "candle cycle overrun; finish bounded work then recover at next UTC target",
+                level=logging.WARNING,
+                next_target=deadline,
+                observed_at=now,
+            )
+        return True
 
     async def cycle(self, now: datetime | None = None) -> None:
         p, settings = self.provider, self.settings
@@ -65,9 +81,11 @@ class CandleIngestion:
         if self.last_attempted_end is not None and end <= self.last_attempted_end:
             return  # One attempt per closed minute, including clock regressions.
         startup = self.last_attempted_end is None
+        self.overrun_reported = False
         self.last_attempted_end = end
         target = end + timedelta(seconds=p.grace)
         p.timings.clear()
+        p.health.candle_retrieval = {}
         started, timer = utc_now(), time.perf_counter()
         summary: dict[str, Any] = dict(
             trigger="startup" if startup else "minute",
@@ -77,6 +95,9 @@ class CandleIngestion:
             fetch_cycle_started_at=started.isoformat(),
             scheduler_lateness_seconds=max(0, (now - target).total_seconds()),
             grace_to_fetch_start_seconds=max(0, (started - target).total_seconds()),
+            collection_budget_seconds=60
+            - settings.candle_fetch_grace_seconds
+            - settings.candle_cycle_safety_margin_seconds,
         )
         p.metrics.candle_cycle.labels(p.name).inc()
         p.metrics.candle_lateness.labels(p.name).set(summary["scheduler_lateness_seconds"])
@@ -157,6 +178,9 @@ class CandleIngestion:
             fetch_cycle_duration_seconds=max(0, time.perf_counter() - timer),
             instruments=dict(p.timings),
             fetch_failures=sum(isinstance(r, Exception) for r in results.values()),
+            requested_instruments=len(requests),
+            configured_instruments=len(p.subscriptions),
+            coverage_only=not requests,
         )
         network_failed = False
         for pair, start, _, _ in requests:
@@ -230,6 +254,8 @@ class CandleIngestion:
                     (i.id, m.provider, beginning, end, p.session_info.get(i.canonical_symbol, {}))
                 )
         current = [c for c in self.pending if c.bucket_start == expected]
+        summary["completed_current_instruments"] = len(current)
+        summary["complete_current_minute"] = len(current) == len(p.subscriptions)
         if current:
             receipts = [
                 datetime.fromisoformat(
@@ -240,10 +266,17 @@ class CandleIngestion:
                 for c in current
             ]
             first, last = min(receipts), max(receipts)
+            ordered = sorted(receipts)
             summary.update(
                 close_to_first_receive_seconds=max(0, (first - end).total_seconds()),
                 close_to_last_receive_seconds=max(0, (last - end).total_seconds()),
                 first_to_last_receive_seconds=max(0, (last - first).total_seconds()),
+                close_to_p50_receive_seconds=max(
+                    0, (ordered[math.ceil(len(ordered) * 0.5) - 1] - end).total_seconds()
+                ),
+                close_to_p95_receive_seconds=max(
+                    0, (ordered[math.ceil(len(ordered) * 0.95) - 1] - end).total_seconds()
+                ),
             )
         attempt = 0
         while True:
@@ -283,6 +316,8 @@ class CandleIngestion:
             "close_to_first_receive",
             "close_to_last_receive",
             "first_to_last_receive",
+            "close_to_p50_receive",
+            "close_to_p95_receive",
             "db_write",
             "close_to_commit",
         ):
@@ -359,6 +394,21 @@ class CandleIngestion:
             ):
                 self.recovering.discard(i.canonical_symbol)
                 self.log("native candle backfill completed", canonical_symbol=i.canonical_symbol)
+        summary.update(
+            retrieval=dict(p.health.candle_retrieval),
+            cycle_duration_seconds=max(0, time.perf_counter() - timer),
+            overrun=self.observe_overrun(target + timedelta(minutes=1), utc_now()),
+        )
+        p.metrics.candle_timing.labels(p.name, "cycle_duration").observe(
+            summary["cycle_duration_seconds"]
+        )
+        if summary["cycle_duration_seconds"] > summary["collection_budget_seconds"]:
+            self.log(
+                "candle minute safety budget exceeded",
+                level=logging.WARNING,
+                duration=summary["cycle_duration_seconds"],
+                budget=summary["collection_budget_seconds"],
+            )
         p.health.last_candle_cycle = summary
         p.refresh_health()
         self.log("candle cycle completed", **summary)
@@ -366,6 +416,19 @@ class CandleIngestion:
     async def run(self) -> None:
         try:
             while True:
+                deadline = next_collection(utc_now(), self.settings.candle_fetch_grace_seconds)
+                alarm: asyncio.TimerHandle | None = None
+
+                def watch_overrun(target: datetime = deadline) -> None:
+                    nonlocal alarm
+                    if not self.observe_overrun(target, utc_now()):
+                        alarm = asyncio.get_running_loop().call_later(
+                            min(30, max(0.001, (target - utc_now()).total_seconds())), watch_overrun
+                        )
+
+                alarm = asyncio.get_running_loop().call_later(
+                    min(30, max(0.001, (deadline - utc_now()).total_seconds())), watch_overrun
+                )
                 try:
                     await self.cycle()
                 except Exception as error:
@@ -376,6 +439,9 @@ class CandleIngestion:
                     self.log(
                         "candle cycle failed", level=logging.ERROR, category=type(error).__name__
                     )
+                finally:
+                    if alarm:
+                        alarm.cancel()
                 target = next_collection(utc_now(), self.settings.candle_fetch_grace_seconds)
                 while True:
                     remaining = (target - utc_now()).total_seconds()

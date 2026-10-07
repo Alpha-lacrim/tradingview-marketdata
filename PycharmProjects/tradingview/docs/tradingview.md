@@ -256,6 +256,12 @@ Validated settings: `TRADINGVIEW_STORAGE_MODE=candles|ticks` (default candles),
 `CANDLE_INTERVAL=1m`, `CANDLE_FETCH_GRACE_SECONDS=2` (0..30),
 `CANDLE_BACKFILL_MINUTES=300` (3..1440), `CANDLE_CORRECTION_LOOKBACK_MINUTES=3` (1..30,
 no larger than recovery horizon), `CANDLE_REQUEST_TIMEOUT_SECONDS=15` (1..60).
+`TRADINGVIEW_CANDLE_CONCURRENCY=2` bounds outstanding requests (1..12), with one socket
+and one series per temporary chart session. `CANDLE_CYCLE_SAFETY_MARGIN_SECONDS=10`
+(1..30) gives a default 48-second cycle-body warning budget; grace plus margin must be
+less than 60 seconds. Configured concurrency is an upper bound: timeout/disconnect/protocol
+symptoms halve the effective next-cycle window, down to one. It never automatically rises;
+operator reconfiguration/restart is required. Existing minute-cycle backoff also applies.
 Only the experimental guest adapter changes mode. Other providers retain their tick pipeline.
 
 Startup immediately reconciles each instrument's own durable state through the latest minute
@@ -268,10 +274,24 @@ No once-per-second upstream polling or continuous quote subscription is used.
 A small rolling overlap retrieves the last three completed minutes in that same cycle. Recent
 missing/UNKNOWN ranges extend the request backwards, bounded by 300 wall-clock minutes and
 301 bars (allowing a forming bar). Only completed, identity-validated native bars are accepted.
-One guest socket has at most **two outstanding chart sessions**, routed by observed session IDs
-through one receiver. No simultaneous recv calls, new protocol commands or per-symbol sockets.
+One guest socket has a bounded sliding window of chart sessions (default **two**), routed by
+session, symbol and series identifiers through an independently owned receiver task. Dispatch
+and session cleanup cannot stop that receiver from consuming available frames. IDs are never
+reused across batches/connections, and a connection-generation check rejects old readers.
+No simultaneous recv calls, new protocol commands or per-symbol sockets.
 Each chart session closes after completion; the socket closes between cycles. Individual
 symbol errors/timeouts remain visible without discarding successful unrelated responses.
+Each request has its own deadline, measured from dispatch, not a giant batch timeout. Work
+is locally capped at 100 instruments and the configured history horizon. Shutdown cancels
+and joins the reader and all waiters. If a cycle crosses the next UTC target, an owned timer
+counts/logs the overrun; the collector finishes its bounded work and schedules the next future
+UTC boundary. It never starts overlapping cycles. The following cycle recovers skipped history.
+
+A controlled two-series/shared-session experiment was explicitly rejected upstream with
+`exceed limit of series in the session`. The adapter retains one series per chart session
+and does not work around that restriction. A socket pool has not been justified or implemented.
+See [retrieval scalability measurements](candle-retrieval-scalability.md) for live versus
+synthetic results, conservative escalation commands and the limits of 100-instrument claims.
 
 ### Schema, corrections and recovery
 
@@ -380,7 +400,8 @@ Prometheus metric mapping (all marketdata_ prefixed):
 - candle_fetch_cycle_total counts collection attempts, including failed DB reads.
 - candle_timing_seconds{stage=...}: scheduler_lateness, grace_to_fetch_start,
   fetch_cycle_duration, close_to_first_receive, close_to_last_receive,
-  first_to_last_receive, parser, db_write, close_to_commit.
+  first_to_last_receive, close_to_p50_receive, close_to_p95_receive, cycle_duration,
+  parser, db_write, close_to_commit.
 - candle_symbol_fetch_seconds{provider,symbol}: bounded configured-symbol request latency,
   including failed/timed-out requests.
 - candles_total{operation=...}: requested, received, persisted/upserted (changed rows),
@@ -390,6 +411,11 @@ Prometheus metric mapping (all marketdata_ prefixed):
 - candle_missing_minutes, candle_minutes_behind, candle_expected_state{expectation=...},
   candle_age_seconds and candle_scheduler_lateness_seconds are coverage/lag gauges.
 - database_errors_total and reconnects_total expose outage attempts independently.
+- candle_request_concurrency, candle_requests_inflight, candle_cycle_instrument_count,
+  candle_request_timeout_total, candle_cycle_overrun_total and candle_response_ignored_total
+  expose bounded pipeline operation. tradingview_socket_count, tradingview_socket_disconnect_total,
+  tradingview_request_error_total{category} and tradingview_possible_throttle_total{reason}
+  distinguish connection errors and overload **symptoms**, not proof of upstream throttling.
 
 Operational transitions log session expectation changes, gap opens/closes, outside-horizon gaps,
 corrections, slow requests (>5s), cycle start/completion, DB unavailability/recovery and shutdown
@@ -399,6 +425,9 @@ are not candle-mode primary health metrics.
 
 Read-only soak observation polls the **local** API/DB, never the upstream source. It records
 cycle summaries, per-symbol distributions, normal-cycle stage distributions (startup excluded),
+and `complete_cycle_latency` restricted to all-instrument successful normal cycles. Always
+report failed/partial and coverage-only cycles alongside successful latency quantiles; an
+empty backoff cycle must not appear to be a fast complete collection. It also records
 counters/resets, corrections/backfills, gaps,
 closures/uncertainty, raw row counts, duplicates and malformed/forming bars. No fault injection
 or memory measurement is claimed. Use the same single collector throughout each run:

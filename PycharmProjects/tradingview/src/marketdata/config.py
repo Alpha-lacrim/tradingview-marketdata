@@ -55,12 +55,16 @@ class Settings(BaseSettings):
     candle_backfill_minutes: int = Field(default=300, ge=3, le=1440)
     candle_correction_lookback_minutes: int = Field(default=3, ge=1, le=30)
     candle_request_timeout_seconds: float = Field(default=15, ge=1, le=60)
+    tradingview_candle_concurrency: int = Field(default=2, ge=1, le=12)
+    candle_cycle_safety_margin_seconds: float = Field(default=10, ge=1, le=30)
     tradingview_frame_timeout_seconds: float = Field(default=45, ge=10, le=3600)
     tradingview_observation_timeout_seconds: float = Field(default=60, ge=10, le=86400)
     tradingview_symbol_stale_seconds: dict[str, float] = Field(default_factory=dict)
 
     @model_validator(mode="after")
     def valid(self) -> Self:
+        if self.candle_fetch_grace_seconds + self.candle_cycle_safety_margin_seconds >= 60:
+            raise ValueError("candle grace + safety margin must leave a positive minute budget")
         if any(
             not 1 <= seconds <= 86400 for seconds in self.tradingview_symbol_stale_seconds.values()
         ):

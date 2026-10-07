@@ -25,9 +25,12 @@ STAGES = (
     "fetch_cycle_duration",
     "close_to_first_receive",
     "close_to_last_receive",
+    "close_to_p50_receive",
+    "close_to_p95_receive",
     "first_to_last_receive",
     "db_write",
     "close_to_commit",
+    "cycle_duration",
 )
 
 
@@ -91,6 +94,12 @@ async def run(args: argparse.Namespace) -> None:
                                 "marketdata_candles_total",
                                 "marketdata_database_errors_total",
                                 "marketdata_reconnects_total",
+                                "marketdata_candle_request_timeout_total",
+                                "marketdata_candle_cycle_overrun_total",
+                                "marketdata_tradingview_request_error_total",
+                                "marketdata_tradingview_socket_disconnect_total",
+                                "marketdata_tradingview_possible_throttle_total",
+                                "marketdata_candle_response_ignored_total",
                             ):
                                 continue
                             key = sample.name + str(sorted(sample.labels.items()))
@@ -150,6 +159,30 @@ async def run(args: argparse.Namespace) -> None:
                             )
                             for s in STAGES
                         },
+                        complete_cycle_latency={
+                            s: distribution(
+                                [
+                                    r[s + "_seconds"]
+                                    for r in cycles.values()
+                                    if s + "_seconds" in r
+                                    and r.get("trigger") == "minute"
+                                    and r.get("complete_current_minute")
+                                    and "cycle_duration_seconds" in r
+                                ]
+                            )
+                            for s in STAGES
+                        },
+                        complete_normal_cycles=sum(
+                            r.get("trigger") == "minute"
+                            and bool(r.get("complete_current_minute"))
+                            and "cycle_duration_seconds" in r
+                            for r in cycles.values()
+                        ),
+                        normal_source_cycles=sum(
+                            r.get("trigger") == "minute" and bool(r.get("requested_instruments"))
+                            for r in cycles.values()
+                        ),
+                        fetch_failures=sum(r.get("fetch_failures", 0) for r in cycles.values()),
                         corrections=sum(r.get("corrections", 0) for r in cycles.values()),
                         db_failures=sum(r.get("db_failures", 0) for r in cycles.values()),
                     )

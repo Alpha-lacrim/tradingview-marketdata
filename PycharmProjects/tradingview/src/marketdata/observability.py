@@ -64,6 +64,64 @@ class Metrics:
             ["provider"],
             registry=self.registry,
         )
+        self.candle_window = Gauge(
+            "marketdata_candle_request_concurrency",
+            "Effective request window",
+            ["provider"],
+            registry=self.registry,
+        )
+        self.candle_inflight = Gauge(
+            "marketdata_candle_requests_inflight",
+            "Dispatched unfinished requests",
+            ["provider"],
+            registry=self.registry,
+        )
+        self.candle_request_errors = Counter(
+            "marketdata_tradingview_request_error_total",
+            "Bounded retrieval error categories",
+            ["category"],
+            registry=self.registry,
+        )
+        self.candle_request_timeouts = Counter(
+            "marketdata_candle_request_timeout_total",
+            "Individual request deadlines",
+            ["provider"],
+            registry=self.registry,
+        )
+        self.candle_ignored = Counter(
+            "marketdata_candle_response_ignored_total",
+            "Unmatched or duplicate response frames",
+            ["reason"],
+            registry=self.registry,
+        )
+        self.candle_instrument_count = Gauge(
+            "marketdata_candle_cycle_instrument_count",
+            "Jobs in the latest collection cycle",
+            ["provider"],
+            registry=self.registry,
+        )
+        self.candle_overruns = Counter(
+            "marketdata_candle_cycle_overrun_total",
+            "Cycles crossing their next scheduled target",
+            ["provider"],
+            registry=self.registry,
+        )
+        self.tradingview_sockets = Gauge(
+            "marketdata_tradingview_socket_count",
+            "Currently connected candle sockets",
+            registry=self.registry,
+        )
+        self.tradingview_disconnects = Counter(
+            "marketdata_tradingview_socket_disconnect_total",
+            "Unexpected candle socket failures",
+            registry=self.registry,
+        )
+        self.tradingview_throttle = Counter(
+            "marketdata_tradingview_possible_throttle_total",
+            "Overload symptoms, NOT confirmed limits",
+            ["reason"],
+            registry=self.registry,
+        )
         self.candle_timing = Histogram(
             "marketdata_candle_timing_seconds",
             "Separated monotonic stage durations / clamped UTC close latencies",

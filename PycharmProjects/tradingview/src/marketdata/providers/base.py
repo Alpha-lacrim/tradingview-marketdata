@@ -94,6 +94,7 @@ class ProviderHealth(BaseModel):
     storage_mode: str = "ticks"
     expected_closed_minute: datetime | None = None
     last_candle_cycle: dict[str, object] = Field(default_factory=dict)
+    candle_retrieval: dict[str, object] = Field(default_factory=dict)
 
 
 class MarketDataProvider(ABC):

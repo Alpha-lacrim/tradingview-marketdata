@@ -358,10 +358,24 @@ multi-process fan-out remain outside this version.
 ### Native candle reliability
 
 The experimental guest collector uses one UTC-minute cycle plus two seconds of start grace,
-a three-minute correction overlap and a 300-minute bounded recovery horizon. Two outstanding
-chart requests share one socket. Migration 0004 adds session-aware tri-state coverage and an
+a three-minute correction overlap and a 300-minute bounded recovery horizon. Bounded outstanding
+chart requests (configurable upper bound, default two) share one socket. An independent receiver
+routes replies while the bounded dispatcher sends/cleans up sessions. Individual timeouts reduce
+the next-cycle window; a cycle overrun is counted and recovered without overlapping collectors.
+Migration 0004 adds session-aware tri-state coverage and an
 atomic correction audit; it preserves all native candles and historical raw ticks. EXPECTED
 gaps and UNKNOWN coverage keep health degraded; supported closures do not create false gaps.
 Larger native timeframes query corrected 1m rows directly. See [guest operations](docs/tradingview.md)
 for timestamp/latency semantics, outage recovery, Prometheus labels, read-only soak commands
 and historical reconciliation. No multi-hour reliability claim is made without an executed soak.
+
+See [retrieval scalability](docs/candle-retrieval-scalability.md) for the live/synthetic benchmark
+matrix and capacity limits. The 100-instrument result is **synthetic only**; shared-session
+multi-series was explicitly rejected upstream, and no socket pool was introduced. The offline
+benchmark exercises 17/34/64/100 instruments at windows 1/2/4/6/8/12 and bounded 300-minute
+history retrieval without modifying the production registry. To verify the normal collector's
+WebSocket/DB/REST path without additional upstream requests:
+
+```powershell
+uv run python scripts/smoke_tradingview_candles.py --stored-only --minutes 3 --output artifacts/stored-candle-smoke.json
+```

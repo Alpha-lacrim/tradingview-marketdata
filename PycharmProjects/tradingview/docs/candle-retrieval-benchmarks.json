@@ -1,0 +1,1795 @@
+{
+  "measured_date": "2026-10-07",
+  "quantile_method": "nearest rank; three samples per synthetic/persistence cell, p95=max",
+  "synthetic_model": "one socket; independent per-symbol reply delay 0.35*(0.7+index%5*0.15) seconds; no vendor/network/DB model; real parser/routing",
+  "memory_measurement": "additional Python tracemalloc peak above pre-cycle allocation; not RSS; CPU process_time seconds",
+  "retrieval": {
+    "three_completed_bars": [
+      {
+        "instrument_count": 17,
+        "window": 1,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 6.024159700027667,
+          "p95": 6.042919000028633,
+          "max": 6.042919000028633
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.260571,
+          "p95": 0.267942,
+          "max": 0.267942
+        },
+        "last": {
+          "samples": 3,
+          "p50": 5.999485,
+          "p95": 6.028521,
+          "max": 6.028521
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 3.14297,
+          "p95": 3.174071,
+          "max": 3.174071
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 5.999485,
+          "p95": 6.028521,
+          "max": 6.028521
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.078125,
+          "p95": 0.109375,
+          "max": 0.109375
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 11812,
+          "p95": 1226120,
+          "max": 1226120
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 17,
+        "window": 2,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 3.08912770007737,
+          "p95": 3.102436100016348,
+          "max": 3.102436100016348
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.257049,
+          "p95": 0.262097,
+          "max": 0.262097
+        },
+        "last": {
+          "samples": 3,
+          "p50": 3.083658,
+          "p95": 3.097578,
+          "max": 3.097578
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 1.697505,
+          "p95": 1.699071,
+          "max": 1.699071
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 3.083658,
+          "p95": 3.097578,
+          "max": 3.097578
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.0625,
+          "p95": 0.078125,
+          "max": 0.078125
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 13978,
+          "p95": 14042,
+          "max": 14042
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 17,
+        "window": 4,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 1.6452902999008074,
+          "p95": 1.656388400006108,
+          "max": 1.656388400006108
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.254821,
+          "p95": 0.260966,
+          "max": 0.260966
+        },
+        "last": {
+          "samples": 3,
+          "p50": 1.640541,
+          "p95": 1.651464,
+          "max": 1.651464
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 0.97235,
+          "p95": 0.982224,
+          "max": 0.982224
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 1.640541,
+          "p95": 1.651464,
+          "max": 1.651464
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.078125,
+          "p95": 0.09375,
+          "max": 0.09375
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 18355,
+          "p95": 18402,
+          "max": 18402
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 17,
+        "window": 6,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 1.120884499978274,
+          "p95": 1.1385035999119282,
+          "max": 1.1385035999119282
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.252505,
+          "p95": 0.257808,
+          "max": 0.257808
+        },
+        "last": {
+          "samples": 3,
+          "p50": 1.116711,
+          "p95": 1.134395,
+          "max": 1.134395
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 0.651521,
+          "p95": 0.654299,
+          "max": 0.654299
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 1.116711,
+          "p95": 1.134395,
+          "max": 1.134395
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.046875,
+          "p95": 0.0625,
+          "max": 0.0625
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 23306,
+          "p95": 23390,
+          "max": 23390
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 17,
+        "window": 8,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 0.8853955999948084,
+          "p95": 0.8862466999562457,
+          "max": 0.8862466999562457
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.256655,
+          "p95": 0.260913,
+          "max": 0.260913
+        },
+        "last": {
+          "samples": 3,
+          "p50": 0.880159,
+          "p95": 0.881956,
+          "max": 0.881956
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 0.566866,
+          "p95": 0.569468,
+          "max": 0.569468
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 0.880159,
+          "p95": 0.881956,
+          "max": 0.881956
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.03125,
+          "p95": 0.046875,
+          "max": 0.046875
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 27938,
+          "p95": 28444,
+          "max": 28444
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 17,
+        "window": 12,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 0.7291032000211999,
+          "p95": 0.7391368000535294,
+          "max": 0.7391368000535294
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.257584,
+          "p95": 0.259328,
+          "max": 0.259328
+        },
+        "last": {
+          "samples": 3,
+          "p50": 0.724036,
+          "p95": 0.734001,
+          "max": 0.734001
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 0.427335,
+          "p95": 0.430183,
+          "max": 0.430183
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 0.724036,
+          "p95": 0.734001,
+          "max": 0.734001
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.046875,
+          "p95": 0.078125,
+          "max": 0.078125
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 37408,
+          "p95": 37408,
+          "max": 37408
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 34,
+        "window": 1,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 12.23579010006506,
+          "p95": 12.288819200010039,
+          "max": 12.288819200010039
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.250513,
+          "p95": 0.252713,
+          "max": 0.252713
+        },
+        "last": {
+          "samples": 3,
+          "p50": 12.218835,
+          "p95": 12.265437,
+          "max": 12.265437
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 5.999457,
+          "p95": 6.01865,
+          "max": 6.01865
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 11.813882,
+          "p95": 11.848541,
+          "max": 11.848541
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.171875,
+          "p95": 0.1875,
+          "max": 0.1875
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 11958,
+          "p95": 197147,
+          "max": 197147
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 34,
+        "window": 2,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 6.240224400069565,
+          "p95": 6.273757899994962,
+          "max": 6.273757899994962
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.25502,
+          "p95": 0.25944,
+          "max": 0.25944
+        },
+        "last": {
+          "samples": 3,
+          "p50": 6.232461,
+          "p95": 6.257445,
+          "max": 6.257445
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 3.111776,
+          "p95": 3.127426,
+          "max": 3.127426
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 5.949916,
+          "p95": 5.953798,
+          "max": 5.953798
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.109375,
+          "p95": 0.109375,
+          "max": 0.109375
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 14234,
+          "p95": 167424,
+          "max": 167424
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 34,
+        "window": 4,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 3.143768700072542,
+          "p95": 3.1538806000025943,
+          "max": 3.1538806000025943
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.261724,
+          "p95": 0.262672,
+          "max": 0.262672
+        },
+        "last": {
+          "samples": 3,
+          "p50": 3.135328,
+          "p95": 3.146683,
+          "max": 3.146683
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 1.658384,
+          "p95": 1.660476,
+          "max": 1.660476
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 3.068043,
+          "p95": 3.071581,
+          "max": 3.071581
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.0625,
+          "p95": 0.078125,
+          "max": 0.078125
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 18658,
+          "p95": 169391,
+          "max": 169391
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 34,
+        "window": 6,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 2.194383700028993,
+          "p95": 2.1995513000292704,
+          "max": 2.1995513000292704
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.257851,
+          "p95": 0.262347,
+          "max": 0.262347
+        },
+        "last": {
+          "samples": 3,
+          "p50": 2.18788,
+          "p95": 2.191292,
+          "max": 2.191292
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 1.125519,
+          "p95": 1.132462,
+          "max": 1.132462
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 2.119875,
+          "p95": 2.125868,
+          "max": 2.125868
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.078125,
+          "p95": 0.109375,
+          "max": 0.109375
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 23626,
+          "p95": 189380,
+          "max": 189380
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 34,
+        "window": 8,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 1.6959721999010071,
+          "p95": 1.7230726999696344,
+          "max": 1.7230726999696344
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.25582,
+          "p95": 0.257567,
+          "max": 0.257567
+        },
+        "last": {
+          "samples": 3,
+          "p50": 1.688091,
+          "p95": 1.714043,
+          "max": 1.714043
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 0.875574,
+          "p95": 0.884421,
+          "max": 0.884421
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 1.642074,
+          "p95": 1.652397,
+          "max": 1.652397
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.15625,
+          "p95": 0.265625,
+          "max": 0.265625
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 28194,
+          "p95": 169627,
+          "max": 169627
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 34,
+        "window": 12,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 1.2620077000465244,
+          "p95": 1.2676011000294238,
+          "max": 1.2676011000294238
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.251401,
+          "p95": 0.258776,
+          "max": 0.258776
+        },
+        "last": {
+          "samples": 3,
+          "p50": 1.251946,
+          "p95": 1.260075,
+          "max": 1.260075
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 0.66907,
+          "p95": 0.682043,
+          "max": 0.682043
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 1.138359,
+          "p95": 1.143304,
+          "max": 1.143304
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.109375,
+          "p95": 0.15625,
+          "max": 0.15625
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 37714,
+          "p95": 169998,
+          "max": 169998
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 64,
+        "window": 1,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 22.964615399949253,
+          "p95": 23.00646569998935,
+          "max": 23.00646569998935
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.26216,
+          "p95": 0.262705,
+          "max": 0.262705
+        },
+        "last": {
+          "samples": 3,
+          "p50": 22.951088,
+          "p95": 22.985841,
+          "max": 22.985841
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 11.369614,
+          "p95": 11.420529,
+          "max": 11.420529
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 21.875097,
+          "p95": 21.899652,
+          "max": 21.899652
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.1875,
+          "p95": 0.1875,
+          "max": 0.1875
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 12356,
+          "p95": 373397,
+          "max": 373397
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 64,
+        "window": 2,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 11.649394400068559,
+          "p95": 11.68147890002001,
+          "max": 11.68147890002001
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.25752,
+          "p95": 0.265039,
+          "max": 0.265039
+        },
+        "last": {
+          "samples": 3,
+          "p50": 11.633721,
+          "p95": 11.66824,
+          "max": 11.66824
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 5.816481,
+          "p95": 5.830122,
+          "max": 5.830122
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 10.941429,
+          "p95": 11.028764,
+          "max": 11.028764
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.1875,
+          "p95": 0.1875,
+          "max": 0.1875
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 20818,
+          "p95": 323092,
+          "max": 323092
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 64,
+        "window": 4,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 5.864612499950454,
+          "p95": 5.880325700039975,
+          "max": 5.880325700039975
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.254158,
+          "p95": 0.259668,
+          "max": 0.259668
+        },
+        "last": {
+          "samples": 3,
+          "p50": 5.85196,
+          "p95": 5.867965,
+          "max": 5.867965
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 2.96296,
+          "p95": 2.971148,
+          "max": 2.971148
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 5.593913,
+          "p95": 5.649297,
+          "max": 5.649297
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.171875,
+          "p95": 0.21875,
+          "max": 0.21875
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 19106,
+          "p95": 323942,
+          "max": 323942
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 64,
+        "window": 6,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 4.004844199982472,
+          "p95": 4.058298400021158,
+          "max": 4.058298400021158
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.256215,
+          "p95": 0.257749,
+          "max": 0.257749
+        },
+        "last": {
+          "samples": 3,
+          "p50": 3.993057,
+          "p95": 4.045739,
+          "max": 4.045739
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 2.056394,
+          "p95": 2.075263,
+          "max": 2.075263
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 3.823587,
+          "p95": 3.836266,
+          "max": 3.836266
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.265625,
+          "p95": 0.265625,
+          "max": 0.265625
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 23960,
+          "p95": 340894,
+          "max": 340894
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 64,
+        "window": 8,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 3.014404400018975,
+          "p95": 3.0313283998984843,
+          "max": 3.0313283998984843
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.256448,
+          "p95": 0.264654,
+          "max": 0.264654
+        },
+        "last": {
+          "samples": 3,
+          "p50": 3.002088,
+          "p95": 3.016991,
+          "max": 3.016991
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 1.599847,
+          "p95": 1.615593,
+          "max": 1.615593
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 2.876099,
+          "p95": 2.904104,
+          "max": 2.904104
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.1875,
+          "p95": 0.234375,
+          "max": 0.234375
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 37639,
+          "p95": 323250,
+          "max": 323250
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 64,
+        "window": 12,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 2.171358700026758,
+          "p95": 2.1870907000266016,
+          "max": 2.1870907000266016
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.260142,
+          "p95": 0.263725,
+          "max": 0.263725
+        },
+        "last": {
+          "samples": 3,
+          "p50": 2.158827,
+          "p95": 2.173723,
+          "max": 2.173723
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 1.103055,
+          "p95": 1.14997,
+          "max": 1.14997
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 1.961571,
+          "p95": 1.974974,
+          "max": 1.974974
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.171875,
+          "p95": 0.1875,
+          "max": 0.1875
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 38162,
+          "p95": 322733,
+          "max": 322733
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 100,
+        "window": 1,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 36.05672849994153,
+          "p95": 36.13556230009999,
+          "max": 36.13556230009999
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.254665,
+          "p95": 0.26151,
+          "max": 0.26151
+        },
+        "last": {
+          "samples": 3,
+          "p50": 36.031038,
+          "p95": 36.114669,
+          "max": 36.114669
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 18.024582,
+          "p95": 18.024929,
+          "max": 18.024929
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 34.227888,
+          "p95": 34.309205,
+          "max": 34.309205
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.359375,
+          "p95": 0.390625,
+          "max": 0.390625
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 13484,
+          "p95": 388984,
+          "max": 388984
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 100,
+        "window": 2,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 18.127562999958172,
+          "p95": 18.16136590007227,
+          "max": 18.16136590007227
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.261455,
+          "p95": 0.26798,
+          "max": 0.26798
+        },
+        "last": {
+          "samples": 3,
+          "p50": 18.107768,
+          "p95": 18.14285,
+          "max": 18.14285
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 9.101778,
+          "p95": 9.133933,
+          "max": 9.133933
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 17.169472,
+          "p95": 17.22411,
+          "max": 17.22411
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.328125,
+          "p95": 0.359375,
+          "max": 0.359375
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 15336,
+          "p95": 450204,
+          "max": 450204
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 100,
+        "window": 4,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 9.245999399921857,
+          "p95": 9.247715499950573,
+          "max": 9.247715499950573
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.251904,
+          "p95": 0.256495,
+          "max": 0.256495
+        },
+        "last": {
+          "samples": 3,
+          "p50": 9.227116,
+          "p95": 9.227597,
+          "max": 9.227597
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 4.562224,
+          "p95": 4.562785,
+          "max": 4.562785
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 8.561417,
+          "p95": 8.580669,
+          "max": 8.580669
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.34375,
+          "p95": 0.390625,
+          "max": 0.390625
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 19760,
+          "p95": 373779,
+          "max": 373779
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 100,
+        "window": 6,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 6.247718799975701,
+          "p95": 6.251690899953246,
+          "max": 6.251690899953246
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.260453,
+          "p95": 0.264265,
+          "max": 0.264265
+        },
+        "last": {
+          "samples": 3,
+          "p50": 6.229574,
+          "p95": 6.231634,
+          "max": 6.231634
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 3.099204,
+          "p95": 3.114201,
+          "max": 3.114201
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 5.813758,
+          "p95": 5.829259,
+          "max": 5.829259
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.21875,
+          "p95": 0.328125,
+          "max": 0.328125
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 24714,
+          "p95": 372789,
+          "max": 372789
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 100,
+        "window": 8,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 4.773394600022584,
+          "p95": 4.829377599991858,
+          "max": 4.829377599991858
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.25923,
+          "p95": 0.265635,
+          "max": 0.265635
+        },
+        "last": {
+          "samples": 3,
+          "p50": 4.754045,
+          "p95": 4.80327,
+          "max": 4.80327
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 2.355796,
+          "p95": 2.364949,
+          "max": 2.364949
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 4.384727,
+          "p95": 4.425886,
+          "max": 4.425886
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.203125,
+          "p95": 0.265625,
+          "max": 0.265625
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 29296,
+          "p95": 449499,
+          "max": 449499
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 100,
+        "window": 12,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 3.25855289993342,
+          "p95": 3.260588200064376,
+          "max": 3.260588200064376
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.258517,
+          "p95": 0.258996,
+          "max": 0.258996
+        },
+        "last": {
+          "samples": 3,
+          "p50": 3.239175,
+          "p95": 3.240996,
+          "max": 3.240996
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 1.666566,
+          "p95": 1.678204,
+          "max": 1.678204
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 2.965925,
+          "p95": 2.989675,
+          "max": 2.989675
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.203125,
+          "p95": 0.40625,
+          "max": 0.40625
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 38819,
+          "p95": 372789,
+          "max": 372789
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      }
+    ],
+    "300_completed_bars": [
+      {
+        "instrument_count": 17,
+        "window": 2,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 3.589204499963671,
+          "p95": 3.6602288000285625,
+          "max": 3.6602288000285625
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.267531,
+          "p95": 0.271531,
+          "max": 0.271531
+        },
+        "last": {
+          "samples": 3,
+          "p50": 3.526345,
+          "p95": 3.613587,
+          "max": 3.613587
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 1.916836,
+          "p95": 1.950463,
+          "max": 1.950463
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 3.526345,
+          "p95": 3.613587,
+          "max": 3.613587
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 0.953125,
+          "p95": 0.953125,
+          "max": 0.953125
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 11790862,
+          "p95": 13171648,
+          "max": 13171648
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 34,
+        "window": 2,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 7.2211329999845475,
+          "p95": 7.230676400009543,
+          "max": 7.230676400009543
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.265183,
+          "p95": 0.270726,
+          "max": 0.270726
+        },
+        "last": {
+          "samples": 3,
+          "p50": 7.167851,
+          "p95": 7.17444,
+          "max": 7.17444
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 3.500908,
+          "p95": 3.561557,
+          "max": 3.561557
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 6.823968,
+          "p95": 6.835846,
+          "max": 6.835846
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 1.90625,
+          "p95": 2.046875,
+          "max": 2.046875
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 24204291,
+          "p95": 24451378,
+          "max": 24451378
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 64,
+        "window": 2,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 13.63641589996405,
+          "p95": 13.891379400040023,
+          "max": 13.891379400040023
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.268364,
+          "p95": 0.270293,
+          "max": 0.270293
+        },
+        "last": {
+          "samples": 3,
+          "p50": 13.57307,
+          "p95": 13.817813,
+          "max": 13.817813
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 6.745037,
+          "p95": 6.770497,
+          "max": 6.770497
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 12.773961,
+          "p95": 12.973873,
+          "max": 12.973873
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 3.796875,
+          "p95": 3.953125,
+          "max": 3.953125
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 46043349,
+          "p95": 46523623,
+          "max": 46523623
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      },
+      {
+        "instrument_count": 100,
+        "window": 2,
+        "strategy": "per_request",
+        "sockets": 1,
+        "cycle": {
+          "samples": 3,
+          "p50": 21.744538699975237,
+          "p95": 22.49867469992023,
+          "max": 22.49867469992023
+        },
+        "first": {
+          "samples": 3,
+          "p50": 0.271903,
+          "p95": 0.277023,
+          "max": 0.277023
+        },
+        "last": {
+          "samples": 3,
+          "p50": 21.652636,
+          "p95": 22.434347,
+          "max": 22.434347
+        },
+        "instrument_p50": {
+          "samples": 3,
+          "p50": 10.725492,
+          "p95": 11.565646,
+          "max": 11.565646
+        },
+        "instrument_p95": {
+          "samples": 3,
+          "p50": 20.574358,
+          "p95": 21.401555,
+          "max": 21.401555
+        },
+        "cpu_seconds": {
+          "samples": 3,
+          "p50": 6.75,
+          "p95": 7.4375,
+          "max": 7.4375
+        },
+        "additional_python_peak_bytes": {
+          "samples": 3,
+          "p50": 72284066,
+          "p95": 72831134,
+          "max": 72831134
+        },
+        "timeouts": 0,
+        "missing": 0,
+        "disconnects": 0.0,
+        "errors": 0
+      }
+    ]
+  },
+  "persistence": {
+    "plain_postgresql": [
+      {
+        "rows": 17,
+        "seconds": {
+          "samples": 3,
+          "p50": 0.05486709997057915,
+          "p95": 0.09722249989863485,
+          "max": 0.09722249989863485
+        }
+      },
+      {
+        "rows": 100,
+        "seconds": {
+          "samples": 3,
+          "p50": 0.2723665999947116,
+          "p95": 0.2902651000767946,
+          "max": 0.2902651000767946
+        }
+      },
+      {
+        "rows": 500,
+        "seconds": {
+          "samples": 3,
+          "p50": 1.0931587000377476,
+          "p95": 1.337111100088805,
+          "max": 1.337111100088805
+        }
+      }
+    ],
+    "timescale": [
+      {
+        "rows": 17,
+        "seconds": {
+          "samples": 3,
+          "p50": 0.0584783999947831,
+          "p95": 0.1106904000043869,
+          "max": 0.1106904000043869
+        }
+      },
+      {
+        "rows": 100,
+        "seconds": {
+          "samples": 3,
+          "p50": 0.323569200001657,
+          "p95": 0.3426088000414893,
+          "max": 0.3426088000414893
+        }
+      },
+      {
+        "rows": 500,
+        "seconds": {
+          "samples": 3,
+          "p50": 1.451397700002417,
+          "p95": 1.8710035000694916,
+          "max": 1.8710035000694916
+        }
+      }
+    ]
+  },
+  "live_final": {
+    "started_at": "2026-10-07T12:58:20.528829+00:00",
+    "actual_duration_seconds": 900.0129284999566,
+    "normal_cycles": 15,
+    "complete_normal_cycles": 13,
+    "counter_resets": 0,
+    "observer_failures": 0,
+    "corrections": 1,
+    "db_failures": 0,
+    "raw_ticks_before": 26216,
+    "raw_ticks_after": 26216,
+    "candle_rows_added": 255,
+    "malformed_candles": 0,
+    "duplicate_logical_candles": 0,
+    "unresolved_expected_gaps": 2,
+    "unknown_minutes": 0,
+    "not_expected_minutes": 0,
+    "complete_cycle_latency": {
+      "scheduler_lateness": {
+        "samples": 13,
+        "p50": 6.4e-05,
+        "p95": 0.000864,
+        "max": 0.000864
+      },
+      "grace_to_fetch_start": {
+        "samples": 13,
+        "p50": 8.5e-05,
+        "p95": 0.001005,
+        "max": 0.001005
+      },
+      "fetch_cycle_duration": {
+        "samples": 13,
+        "p50": 4.143232758997328,
+        "p95": 17.584147023000696,
+        "max": 17.584147023000696
+      },
+      "close_to_first_receive": {
+        "samples": 13,
+        "p50": 2.846088,
+        "p95": 3.789202,
+        "max": 3.789202
+      },
+      "close_to_last_receive": {
+        "samples": 13,
+        "p50": 6.014648,
+        "p95": 19.312567,
+        "max": 19.312567
+      },
+      "close_to_p50_receive": {
+        "samples": 13,
+        "p50": 4.491986,
+        "p95": 7.92442,
+        "max": 7.92442
+      },
+      "close_to_p95_receive": {
+        "samples": 13,
+        "p50": 6.014648,
+        "p95": 19.312567,
+        "max": 19.312567
+      },
+      "first_to_last_receive": {
+        "samples": 13,
+        "p50": 3.162523,
+        "p95": 15.523365,
+        "max": 15.523365
+      },
+      "db_write": {
+        "samples": 13,
+        "p50": 0.04342860199903953,
+        "p95": 0.07359939700108953,
+        "max": 0.07359939700108953
+      },
+      "close_to_commit": {
+        "samples": 13,
+        "p50": 6.186909,
+        "p95": 19.633241,
+        "max": 19.633241
+      },
+      "cycle_duration": {
+        "samples": 13,
+        "p50": 4.199902735999785,
+        "p95": 17.652072779001173,
+        "max": 17.652072779001173
+      }
+    },
+    "window_cycles": {
+      "2": 7,
+      "1": 8
+    },
+    "timeouts": 3,
+    "overruns": 0,
+    "fetch_failures": 3,
+    "backfilled": 3,
+    "complete_by_window": {
+      "1": {
+        "cycles": 7,
+        "latency": {
+          "cycle_duration": {
+            "samples": 7,
+            "p50": 7.142149870000139,
+            "p95": 17.652072779001173,
+            "max": 17.652072779001173
+          },
+          "fetch_cycle_duration": {
+            "samples": 7,
+            "p50": 7.076535889998922,
+            "p95": 17.584147023000696,
+            "max": 17.584147023000696
+          },
+          "close_to_first_receive": {
+            "samples": 7,
+            "p50": 2.846088,
+            "p95": 3.789202,
+            "max": 3.789202
+          },
+          "close_to_p50_receive": {
+            "samples": 7,
+            "p50": 4.526454,
+            "p95": 7.92442,
+            "max": 7.92442
+          },
+          "close_to_last_receive": {
+            "samples": 7,
+            "p50": 8.779674,
+            "p95": 19.312567,
+            "max": 19.312567
+          },
+          "close_to_commit": {
+            "samples": 7,
+            "p50": 9.129368,
+            "p95": 19.633241,
+            "max": 19.633241
+          },
+          "db_write": {
+            "samples": 7,
+            "p50": 0.0423397880003904,
+            "p95": 0.05168811199837364,
+            "max": 0.05168811199837364
+          }
+        }
+      },
+      "2": {
+        "cycles": 6,
+        "latency": {
+          "cycle_duration": {
+            "samples": 6,
+            "p50": 3.6908514569986437,
+            "p95": 5.336744781998277,
+            "max": 5.336744781998277
+          },
+          "fetch_cycle_duration": {
+            "samples": 6,
+            "p50": 3.638232892997621,
+            "p95": 5.266324484000506,
+            "max": 5.266324484000506
+          },
+          "close_to_first_receive": {
+            "samples": 6,
+            "p50": 2.78855,
+            "p95": 3.749324,
+            "max": 3.749324
+          },
+          "close_to_p50_receive": {
+            "samples": 6,
+            "p50": 4.45883,
+            "p95": 5.392878,
+            "max": 5.392878
+          },
+          "close_to_last_receive": {
+            "samples": 6,
+            "p50": 5.530192,
+            "p95": 6.990143,
+            "max": 6.990143
+          },
+          "close_to_commit": {
+            "samples": 6,
+            "p50": 5.678925,
+            "p95": 7.326724,
+            "max": 7.326724
+          },
+          "db_write": {
+            "samples": 6,
+            "p50": 0.05176344899882679,
+            "p95": 0.07359939700108953,
+            "max": 0.07359939700108953
+          }
+        }
+      }
+    },
+    "all_attempt_latency": {
+      "scheduler_lateness": {
+        "samples": 15,
+        "p50": 6.4e-05,
+        "p95": 0.000864,
+        "max": 0.000864
+      },
+      "grace_to_fetch_start": {
+        "samples": 15,
+        "p50": 8.5e-05,
+        "p95": 0.001005,
+        "max": 0.001005
+      },
+      "fetch_cycle_duration": {
+        "samples": 15,
+        "p50": 4.339447901002131,
+        "p95": 24.26208171899998,
+        "max": 24.26208171899998
+      },
+      "close_to_first_receive": {
+        "samples": 15,
+        "p50": 3.180561,
+        "p95": 4.310969,
+        "max": 4.310969
+      },
+      "close_to_last_receive": {
+        "samples": 15,
+        "p50": 6.102809,
+        "p95": 25.942415,
+        "max": 25.942415
+      },
+      "close_to_p50_receive": {
+        "samples": 15,
+        "p50": 4.526454,
+        "p95": 7.92442,
+        "max": 7.92442
+      },
+      "close_to_p95_receive": {
+        "samples": 15,
+        "p50": 6.102809,
+        "p95": 25.942415,
+        "max": 25.942415
+      },
+      "first_to_last_receive": {
+        "samples": 15,
+        "p50": 3.220667,
+        "p95": 22.121904,
+        "max": 22.121904
+      },
+      "db_write": {
+        "samples": 15,
+        "p50": 0.042390873000840656,
+        "p95": 0.07359939700108953,
+        "max": 0.07359939700108953
+      },
+      "close_to_commit": {
+        "samples": 15,
+        "p50": 6.41473,
+        "p95": 26.296211,
+        "max": 26.296211
+      },
+      "cycle_duration": {
+        "samples": 15,
+        "p50": 4.425433651002095,
+        "p95": 24.30575487799797,
+        "max": 24.30575487799797
+      }
+    },
+    "reconciliation": {
+      "start": "2026-10-07T12:58:00Z",
+      "end": "2026-10-07T13:13:00Z",
+      "instruments": 17,
+      "expected_minutes": 255,
+      "persisted_minutes": 255,
+      "missing_minutes": 0,
+      "all_invariants_hold": true
+    }
+  }
+}
