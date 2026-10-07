@@ -95,6 +95,7 @@ def test_native_captured_all_17_ohlc_identity_time_and_volume(row):
     "change",
     [
         dict(open=1.25),
+        dict(interval="5m"),
         dict(close="NaN"),
         dict(high="90"),
         dict(bucket_start=NOW),
@@ -147,6 +148,7 @@ def test_scheduler_startup_and_grace(second, expected_second, minutes):
     "kwargs",
     [
         dict(candle_interval="5m"),
+        dict(candle_backfill_minutes=3, candle_correction_lookback_minutes=4),
         dict(candle_fetch_grace_seconds=-1),
         dict(candle_fetch_grace_seconds=60),
         dict(candle_backfill_minutes=2),
@@ -204,6 +206,12 @@ class Replay(CandleProvider):
         self.fail = False
         self.calls = []
         self.omit = set()
+
+    async def subscribe(self, pairs):
+        self.session_info = {
+            p[0].canonical_symbol: {"session": "24x7", "timezone": "Etc/UTC"} for p in pairs
+        }
+        await super().subscribe(pairs)
 
     async def connect(self):
         self.transport_connected()

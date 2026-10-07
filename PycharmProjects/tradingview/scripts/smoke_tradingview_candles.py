@@ -53,30 +53,39 @@ async def smoke(base_url: str, minutes: int) -> dict[str, object]:
             assert json.loads(await ws.recv())["type"] == "subscribed"
             for _ in range(minutes):
                 target = next_collection(utc_now(), settings.candle_fetch_grace_seconds)
+                bucket = expected_minute(target, settings.candle_fetch_grace_seconds)
+                end = bucket + timedelta(minutes=1)
+                seen: set[str] = set()
+
+                def observe(
+                    raw: str | bytes, expected: datetime = bucket, observed: set[str] = seen
+                ) -> None:
+                    message = json.loads(raw)
+                    if (
+                        message.get("type") == "candle"
+                        and datetime.fromisoformat(message["bucket_start"].replace("Z", "+00:00"))
+                        == expected
+                    ):
+                        assert message["persisted"] is True
+                        observed.add(message["symbol"])
+
                 # Windows timers can wake slightly early. Recheck the wall-clock deadline
                 # and use its intended bucket rather than a possibly premature sample.
+                # Drain overlap/startup messages while waiting: a full client receive queue
+                # otherwise also delays control frames and can cause a false ping timeout.
                 while True:
                     remaining = (target - utc_now()).total_seconds()
                     if remaining <= 0:
                         break
-                    await asyncio.sleep(min(30, max(0.001, remaining)))
-                bucket = expected_minute(target, settings.candle_fetch_grace_seconds)
-                end = bucket + timedelta(minutes=1)
-                seen = set()
+                    try:
+                        observe(await asyncio.wait_for(ws.recv(), min(30, max(0.001, remaining))))
+                    except TimeoutError:
+                        pass
                 print(json.dumps(dict(awaiting_bucket=bucket.isoformat())), flush=True)
                 try:
                     async with asyncio.timeout(45):
                         while len(seen) < len(pairs):
-                            message = json.loads(await ws.recv())
-                            if (
-                                message.get("type") == "candle"
-                                and datetime.fromisoformat(
-                                    message["bucket_start"].replace("Z", "+00:00")
-                                )
-                                == bucket
-                            ):
-                                assert message["persisted"] is True
-                                seen.add(message["symbol"])
+                            observe(await ws.recv())
                 except TimeoutError:
                     raise AssertionError(
                         f"Missing WebSocket candles for {bucket}: "

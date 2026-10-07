@@ -254,92 +254,174 @@ same verified type. TVC oil supplies a sixth numeric field but no verified volum
 
 Validated settings: `TRADINGVIEW_STORAGE_MODE=candles|ticks` (default candles),
 `CANDLE_INTERVAL=1m`, `CANDLE_FETCH_GRACE_SECONDS=2` (0..30),
-`CANDLE_BACKFILL_MINUTES=300` (3..1440), `CANDLE_REQUEST_TIMEOUT_SECONDS=15` (1..60).
+`CANDLE_BACKFILL_MINUTES=300` (3..1440), `CANDLE_CORRECTION_LOOKBACK_MINUTES=3` (1..30,
+no larger than recovery horizon), `CANDLE_REQUEST_TIMEOUT_SECONDS=15` (1..60).
 Only the experimental guest adapter changes mode. Other providers retain their tick pipeline.
 
-Startup fetches the latest minute whose end plus grace has passed. Thereafter each cycle
-calculates the next UTC boundary plus grace from the current wall clock. Bounded waits
-notice clock changes; collection never accumulates sleep(60) drift. Slow cycles/outages are
-recovered from durable coverage on the next cycle. A regressed clock does not create an
-invalid range or finalize future buckets. Each request asks for at least three recent native
-bars (one may be forming), and up to recovery-window+1 during catch-up. Only newly missing
-completed minutes enter persistence; already covered minutes are not rewritten every cycle.
+Startup immediately reconciles each instrument's own durable state through the latest minute
+whose **end plus grace** has passed. Subsequent normal cycles calculate the next UTC boundary
+plus grace, with deadline rechecks and bounded sleeps for clock changes. A per-bucket attempt
+guard prevents repeated normal cycles or clock regressions from producing extra source polls.
+Two seconds is a **start grace**, not a promise that all candles commit two seconds after close.
+No once-per-second upstream polling or continuous quote subscription is used.
 
-One guest socket is used for sequential chart requests during a collection, with heartbeat
-echo/ping-pong. Chart sessions are deleted after each response; the socket closes between
-cycles. No continuous quote feed is started. Request/response sizes, request timeouts,
-subscriptions (local cap 100), history window and pending batch are bounded. Network failures
-use bounded exponential backoff/jitter gates and resume on minute scheduling; malformed or
-rejected symbols cannot create candles. Permanent source rejections require restart/operator
-intervention. A failed symbol does not terminate unrelated providers.
+A small rolling overlap retrieves the last three completed minutes in that same cycle. Recent
+missing/UNKNOWN ranges extend the request backwards, bounded by 300 wall-clock minutes and
+301 bars (allowing a forming bar). Only completed, identity-validated native bars are accepted.
+One guest socket has at most **two outstanding chart sessions**, routed by observed session IDs
+through one receiver. No simultaneous recv calls, new protocol commands or per-symbol sockets.
+Each chart session closes after completion; the socket closes between cycles. Individual
+symbol errors/timeouts remain visible without discarding successful unrelated responses.
 
-Migration `0003` adds:
+### Schema, corrections and recovery
 
-- `market_candles`: Decimal/NUMERIC OHLC, source identity, UTC bucket bounds, native basis,
-  source/status/volume semantics and receipt/provenance. Logical uniqueness is
-  `(instrument_id,provider,interval,bucket_start,price_basis)`.
-- `latest_candles`: efficient per-instrument/provider/basis state independent of tick history.
-- `candle_coverage`: durable coverage start/end and compact PostgreSQL `tstzmultirange` missing
-  ranges. Long outages do not require one operational row per missed minute.
+Migration `0003` created market_candles (optional seven-day-chunk Timescale hypertable),
+latest_candles and candle_coverage. Apply head `0004`, which adds not_expected/unknown
+multiranges, source session metadata and a candle_revisions audit table. All existing candles,
+raw ticks and tick-derived continuous aggregates remain. Previously blanket-calendar missing
+ranges become UNKNOWN until reconciled using source metadata; they are not silently declared
+complete. Ordinary PostgreSQL works without Timescale. Downgrade is only for disposable tests
+or an explicitly chosen operator rollback; 0004 downgrade removes the new audit/classification.
 
-Run `uv run alembic -x timescale=true upgrade head` for a seven-day-chunk candle hypertable.
-Omit the flag for plain PostgreSQL mode; no Timescale extension is required there. Existing
-`market_ticks`, `latest_prices` and tick-derived continuous aggregates remain untouched.
-COPY staging, candle UPSERT, latest UPSERT and coverage updates commit in one transaction.
-An identical receipt retry changes no row; an explicitly re-fetched/imported same-minute bar
-with a newer receipt can correct OHLC/volume/provenance. Older receipts cannot overwrite it.
-Routine collection does not continuously re-fetch previously covered minutes for corrections;
-automatic late-correction discovery is not implemented.
+COPY staging, candle UPSERT, latest state, revisions and coverage commit atomically. The logical
+key remains `(instrument_id,provider,interval,bucket_start,price_basis)`. Newer receipts can
+correct changed native OHLC, volume, source status or realtime classification. Older receipts
+cannot overwrite rows. An unchanged overlap bar leaves history/updated_at unchanged. A changed
+bar updates the same row and logs its changed fields; candle_revisions retains exact textual
+old/new OHLC/volume and discovery time. Receipt time is local observation time, **not an upstream
+revision identifier**. There is no protection against an upstream cache serving an older value
+with a newer local receipt. Corrections older than the overlap require a missing-minute fetch
+or explicit reconciliation; the collector does not scan an unlimited archive.
 
-A DB outage retains one bounded batch and retries with backoff. No further fetch occurs
-until it commits; no unlimited queue or disk spool is introduced. Shutdown cancellation logs
-and counts unpersisted bars. Restart recovers missing native history within the configured
-window. A cold start with no durable coverage begins at its latest closed minute; it cannot
-promise recovery before the first successful database commit.
+Only inserted/corrected rows fan out after successful commit; unchanged overlap bars do not
+produce repeated historical WebSocket messages. Latest close still uses latest_candles and is
+not freshened by a receipt of an older bucket. TVC oil volume remains NULL. 5m/15m/1h/1d are
+on-demand SQL rollups of persisted 1m, so corrections are visible on the next query. Volume is
+summed only for a single verified additive type (crypto base volume or OANDA tick count).
+No materialization refresh lag is introduced for native candles.
 
-### Gaps, health, latest prices and APIs
+DB failures retain at most one bounded batch and retry writes with jitter, without fetching
+more upstream data or acknowledging persistence. The API reports DB/writer degradation.
+When DB reads fail before retrieval, that minute attempts no upstream request. Recovery reads
+actual durable state, then the next minute cycle backfills recent history. If a retained write
+finally commits after several minutes, the following scheduled cycle reconciles those missed
+minutes. Cancellation logs/counts the unpersisted batch. There is no disk spool or crash-safe
+queue; recent native history is the recovery source. Cold start without a committed coverage
+anchor starts at its latest closed minute; it cannot promise earlier pre-installation history.
 
-Every minute after coverage starts is expected until a source actually supplies it. Missing
-minutes remain in durable ranges, including during quiet/closed markets; there is no invented
-market-open calendar or fabricated flat bar. After reconnect/restart, recent native history
-backfills gaps within the configured wall-clock window. Older/source-absent minutes remain
-explicit unresolved gaps. There is no unbounded archive replay or unsupported-history fallback.
+Network failures preserve previous committed data, record fetch failures, and retry on minute
+cycles behind a bounded backoff gate. Reconnect restores chart requests and validates metadata
+again. Short recoverable outages reconcile expected gaps; longer outages recover only available
+recent bars, retaining older expected gaps and UNKNOWN ranges. Missing historical bars are
+never fabricated. A provider-wide access/protocol rejection disables subscriptions until
+operator intervention/restart, without introducing authenticated access.
 
-`/providers` identifies `storage_mode:candles`, `expected_closed_minute`, and each symbol's
-`last_persisted_minute`, `minutes_behind`, `missing_candle_count`, age and stale flag.
-Health is healthy only when every configured instrument has the expected closed minute and
-no unresolved gaps/fetch failures. Therefore an old gap keeps the feed degraded even if its
-latest minute is present. A polling transport is intentionally disconnected while idle;
-`state:healthy, transport:disconnected` means complete persisted candle coverage, not an open
-quote socket. `/health` also includes candle-writer database health.
+### Session expectations and coverage health
 
-`/prices/latest?provider=tradingview_guest` reads latest_candles. It exposes `last` as the
-latest completed close, `price_basis:candle_close`, `interval:1m`, bucket_start/bucket_end,
-`age_ms` since bucket end, stale/threshold and provider state. A newer receipt of an old bar
-does not refresh its bucket age. It is not presented as a current live tick.
+For completed minutes since the coverage anchor:
 
-`/candles/{canonical}?provider=tradingview_guest&interval=1m` defaults to `basis=native` in
-candle mode. Explicit `basis=native` always reads market_candles, even in diagnostic tick
-mode. Start/end are aware UTC interval-aligned `[start,end)` bounds; max 31 days, limit 1..1000,
-with next_start/next_after_status pagination. Native 1m candles never depend on market_ticks.
-`5m`, `15m`, `1h`, `1d` are on-demand SQL rollups from stored 1m candles; no extra upstream
-subscriptions. Open/close use first/last constituent bars, high/low use extrema. Volume is
-summed only when all constituents have the same additive verified type and non-null volume.
-A larger bucket reports `complete:false` if still forming or missing constituent minutes;
-observations counts constituent minute bars. Days are UTC days, not session/settlement days.
-`1s` native requests are rejected. Explicit `basis=last|mid` still queries old tick aggregates.
+- **EXPECTED**: supported source session says trading should be active, or a native candle
+  positively proves that minute exists. EXPECTED = persisted bars + unresolved expected gaps.
+- **NOT_EXPECTED**: supported metadata establishes a closure/break/holiday; no gap is opened.
+- **UNKNOWN**: absent/unsupported calendar, correction-date syntax or uncertain maintenance
+  means absence cannot honestly be called data loss. Exposed separately and degrades health.
 
-`/ws/prices` canonical subscriptions receive `type:candle`, normalized OHLC/bucket/provenance
-and `persisted:true` after commit. Tick providers still send `type:tick,persisted:false`.
-Candle recovery can emit older backfilled buckets; consumers should use the logical key.
+Interpretation follows TradingView's [documented chart session format](https://www.tradingview.com/charting-library-docs/latest/connecting_data/time-and-sessions/Trading-Sessions/):
+local IANA time zones/DST, exclusive ends, default Monday-Friday trading days, overnight trading
+*day* attribution, explicit days, multiple simple sessions, F previous-day starts and default
+Monday-first historical schedule changes. Captured Binance 24x7 and OKX seven-day sessions
+remain expected on weekends. OANDA 1700-1700 New York means Sunday evening through Friday
+evening, **not** seven days. TVC's supported metadata describes its breaks/holidays; it is not
+substituted with a futures exchange calendar. Date-specific correction days and unsupported
+F-number/extended syntax remain UNKNOWN rather than using an invented precise schedule.
 
-Metrics include `marketdata_candles_total{provider,operation}` for requested, received,
-persisted, upserted, duplicates, fetch_failures, gaps_detected, backfilled and
-shutdown_unpersisted. Persisted/upserted count affected UPSERT rows, not exclusively inserts;
-exact receipt replays count as duplicates. Received includes valid returned bars before
-already-covered-minute filtering. Gauges report missing minutes, latest closed bucket age
-and scheduler lateness. Histograms report request/write duration. No tick-received/persisted
-counter is incremented by candle ingestion. Errors and losses are explicit structured logs.
+[OANDA's published operating hours](https://www.oanda.com/bvi-en/cfds/hours-of-operation/)
+identify daily FX/metal maintenance around the New York close. Those account trading hours
+have not been verified as exact guest-chart availability. Therefore the documented vicinity
+16:59-17:05 FX / 16:59-18:05 metals is conservatively UNKNOWN for absent bars, while actual
+native bars remain positive evidence. Neither this policy nor source metadata is a complete
+venue-maintenance/exceptional-holiday calendar. A session being open does not guarantee a trade
+every minute: sparse instruments such as XAUT may omit native bars. Such unresolved scheduled
+minutes stay visible; no flat candle is fabricated or claimed to represent data loss proven
+at the exchange. Calendar provenance is persisted; reconciliation uses the latest metadata,
+with only supported historical-session syntax, not a versioned independent calendar archive.
+
+`/providers` exposes expected_closed_minute, storage_mode and each symbol's session_expectation,
+latest_expected_completed_bucket, last_persisted_minute, minutes_behind (expected missing
+minutes after latest), missing_candle_count, unknown_minutes, not_expected_minutes,
+oldest_unresolved_expected_gap, recoverable_missing_count, outside_horizon_missing_count,
+backfill_horizon_minutes and fetch/persistence/correction timestamps. Known closed markets can
+remain healthy using their last expected completed bucket; old closes still show their real
+age. Any unresolved expected historical gap, UNKNOWN coverage or fetch failure prevents healthy
+coverage. Idle polling transport=disconnected is intentional. `/health` remains 503 while
+provider or DB health is degraded; `/providers` remains accessible during a DB outage.
+
+Latest endpoints expose candle_close, 1m bucket bounds, actual age since bucket end and stale
+status. They never present a completed close as a live tick. Native candle histories remain
+bounded/aligned [start,end), max 31 days, limit 1..1000 with pagination. Larger buckets can be
+partial at session boundaries; `complete` conservatively requires every wall-clock constituent
+minute, not a claim about session-adjusted completeness. Explicit last/mid basis still queries
+preserved historical ticks; native 1s is unsupported.
+
+Measured results and limits: [hardening verification](candle-hardening-verification.md).
+
+### Timing, metrics and soak observation
+
+The collector records bucket_end, scheduler target/wake, cycle start/finish, request start,
+first relevant message, completed-bar-message availability, parser completion, DB write start
+and **post-transaction-return commit acknowledgement**. Source message availability precedes
+validation; it does not claim the exchange's event-to-publication latency. Stage durations use
+monotonic clocks; wall-clock close latencies are clamped at zero for clock changes. The full
+latest cycle is in /providers and a structured cycle-completed log. No full upstream frames or
+credentials are exposed. Parser and per-symbol request durations are independently measured.
+
+Prometheus metric mapping (all marketdata_ prefixed):
+
+- candle_fetch_cycle_total counts collection attempts, including failed DB reads.
+- candle_timing_seconds{stage=...}: scheduler_lateness, grace_to_fetch_start,
+  fetch_cycle_duration, close_to_first_receive, close_to_last_receive,
+  first_to_last_receive, parser, db_write, close_to_commit.
+- candle_symbol_fetch_seconds{provider,symbol}: bounded configured-symbol request latency,
+  including failed/timed-out requests.
+- candles_total{operation=...}: requested, received, persisted/upserted (changed rows),
+  duplicates (unchanged/older rows), corrections, backfilled, fetch_failures, gap_open,
+  gap_close and shutdown_unpersisted. Replays after an uncertain commit are idempotent;
+  counters are process-local and not a financial audit ledger.
+- candle_missing_minutes, candle_minutes_behind, candle_expected_state{expectation=...},
+  candle_age_seconds and candle_scheduler_lateness_seconds are coverage/lag gauges.
+- database_errors_total and reconnects_total expose outage attempts independently.
+
+Operational transitions log session expectation changes, gap opens/closes, outside-horizon gaps,
+corrections, slow requests (>5s), cycle start/completion, DB unavailability/recovery and shutdown
+losses. DB retry logs are limited to the first failure per retained batch; session/outside-gap
+logs emit only on changes. Unchanged overlap bars are not individually logged. Tick counters
+are not candle-mode primary health metrics.
+
+Read-only soak observation polls the **local** API/DB, never the upstream source. It records
+cycle summaries, per-symbol distributions, normal-cycle stage distributions (startup excluded),
+counters/resets, corrections/backfills, gaps,
+closures/uncertainty, raw row counts, duplicates and malformed/forming bars. No fault injection
+or memory measurement is claimed. Use the same single collector throughout each run:
+
+```powershell
+uv run python scripts/soak_candles.py --seconds 3600 --output artifacts/soak-1h.json
+uv run python scripts/soak_candles.py --seconds 21600 --output artifacts/soak-6h.json
+uv run python scripts/soak_candles.py --seconds 86400 --output artifacts/soak-24h.json
+uv run python scripts/soak_candles.py --seconds 259200 --output artifacts/soak-72h.json
+uv run python scripts/reconcile_candles.py --start 2026-10-07T10:00:00Z --end 2026-10-07T11:00:00Z --output artifacts/reconciliation.json
+```
+
+The reconciliation command is read-only and reports EXPECTED/NOT_EXPECTED/UNKNOWN, persisted,
+missing expected, backfilled and corrected minutes per instrument/provider, plus the coverage
+invariant. Use completed aligned UTC ranges up to 31 days. Reconciliation before the collector's
+anchor describes missing scheduled history, not an ingestion guarantee before installation.
+The tests deterministically inject transport failures and independent DB read/write failures,
+including recovery beyond the horizon; no live access is needed. A manual live outage check
+is: record raw count and coverage, stop/restart only the app (restart recovery), or briefly
+stop/restart only DB; inspect /health and /providers during interruption, then reconcile all
+completed outage minutes after the next collection cycle. Preserve the DB volume. Do not use
+`down -v`. Deliberate Internet interruption is operator-controlled; never claim a simulated
+transport failure was a live network outage.
 
 ### Inspect stored data
 
@@ -353,8 +435,29 @@ SELECT bucket_start, count(*) FROM market_candles
 WHERE provider='tradingview_guest' GROUP BY bucket_start ORDER BY bucket_start DESC LIMIT 10;
 \watch 5
 
-SELECT i.canonical_symbol, c.coverage_start, c.coverage_end, c.missing
+SELECT i.canonical_symbol, c.coverage_start, c.coverage_end,
+       c.missing AS expected_gaps, c.not_expected, c.unknown
 FROM candle_coverage c JOIN instruments i ON i.id=c.instrument_id;
+
+SELECT i.canonical_symbol,r.bucket_start,r.changed_fields,r.discovered_at
+FROM candle_revisions r JOIN instruments i ON i.id=r.instrument_id
+ORDER BY r.discovered_at DESC LIMIT 100;
+
+-- Bounded range partitions, using durable classifications (inside coverage anchor).
+WITH minutes AS (
+  SELECT generate_series('2026-10-07 11:20:00+00'::timestamptz,
+                         '2026-10-07 11:39:00+00'::timestamptz,
+                         interval '1 minute') AS bucket
+)
+SELECT i.canonical_symbol,
+       count(*) FILTER (WHERE bucket <@ c.not_expected) AS not_expected,
+       count(*) FILTER (WHERE bucket <@ c.unknown) AS unknown,
+       count(*) FILTER (WHERE bucket <@ c.missing) AS expected_missing,
+       count(*) FILTER (WHERE NOT bucket <@ (c.not_expected+c.unknown)) AS expected
+FROM candle_coverage c JOIN instruments i ON i.id=c.instrument_id
+CROSS JOIN minutes
+WHERE bucket >= c.coverage_start AND bucket < c.coverage_end
+GROUP BY i.canonical_symbol;
 
 SELECT count(*) FROM market_ticks WHERE provider='tradingview_guest';
 ```

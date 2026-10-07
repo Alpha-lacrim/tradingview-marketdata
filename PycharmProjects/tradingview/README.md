@@ -354,3 +354,14 @@ definitions, choose product-specific rolls/calendars, measure longer load/outage
 and configure backup/retention and deployment access controls. Durable backfill/replay,
 crash-safe spooling, dynamic upstream subscriptions, per-user downstream entitlements and
 multi-process fan-out remain outside this version.
+
+### Native candle reliability
+
+The experimental guest collector uses one UTC-minute cycle plus two seconds of start grace,
+a three-minute correction overlap and a 300-minute bounded recovery horizon. Two outstanding
+chart requests share one socket. Migration 0004 adds session-aware tri-state coverage and an
+atomic correction audit; it preserves all native candles and historical raw ticks. EXPECTED
+gaps and UNKNOWN coverage keep health degraded; supported closures do not create false gaps.
+Larger native timeframes query corrected 1m rows directly. See [guest operations](docs/tradingview.md)
+for timestamp/latency semantics, outage recovery, Prometheus labels, read-only soak commands
+and historical reconciliation. No multi-hour reliability claim is made without an executed soak.

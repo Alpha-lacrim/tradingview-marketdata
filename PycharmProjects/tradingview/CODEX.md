@@ -1225,11 +1225,12 @@ Source map: `src/marketdata/domain.py` and `registry.py` own identity/normalizat
 activation, operational limits, schema semantics and provider references. `config/` holds
 non-secret instrument registries. `migrations/versions/` is the schema source of truth.
 
-Alembic head is `0003`. `candles.py` owns completed native candle validation/scheduling;
+Alembic head is `0004`. `candles.py` owns completed native candle validation/scheduling;
 `candle_ingestion.py` owns bounded minute collection/recovery through the optional
 `providers/candles.py` capability. The experimental guest default stores native closed 1m
 candles. Tick ingestion remains available explicitly and is unchanged for other providers.
-See `docs/tradingview.md` for polling health, provenance, gaps and opt-in live checks.
+Session classification belongs in `sessions.py`; 0004 adds tri-state coverage and correction
+audit provenance. See `docs/tradingview.md` for polling health, recovery, latency and live checks.
 
 Install using `uv sync --frozen --extra databento` (omit the extra when not needed).
 Local database: `docker compose up -d db`. Migrate explicitly with

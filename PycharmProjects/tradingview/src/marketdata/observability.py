@@ -58,6 +58,37 @@ class Metrics:
             ["provider", "symbol"],
             registry=self.registry,
         )
+        self.candle_cycle = Counter(
+            "marketdata_candle_fetch_cycle_total",
+            "Minute collection cycles",
+            ["provider"],
+            registry=self.registry,
+        )
+        self.candle_timing = Histogram(
+            "marketdata_candle_timing_seconds",
+            "Separated monotonic stage durations / clamped UTC close latencies",
+            ["provider", "stage"],
+            buckets=(0.001, 0.01, 0.05, 0.1, 0.25, 0.5, 1, 2, 3, 5, 8, 13, 21, 34, 60, 120),
+            registry=self.registry,
+        )
+        self.candle_symbol_latency = Histogram(
+            "marketdata_candle_symbol_fetch_seconds",
+            "Per configured symbol retrieval duration",
+            ["provider", "symbol"],
+            registry=self.registry,
+        )
+        self.candle_behind = Gauge(
+            "marketdata_candle_minutes_behind",
+            "Expected completed coverage lag",
+            ["provider", "symbol"],
+            registry=self.registry,
+        )
+        self.candle_expectation = Gauge(
+            "marketdata_candle_expected_state",
+            "One-hot current completed minute classification",
+            ["provider", "symbol", "expectation"],
+            registry=self.registry,
+        )
         self.messages = Counter(
             "marketdata_messages_total",
             "Upstream messages including control records",

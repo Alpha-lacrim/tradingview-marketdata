@@ -50,6 +50,20 @@ class SymbolHealth(BaseModel):
     last_persisted_minute: datetime | None = None
     minutes_behind: int | None = None
     missing_candle_count: int = 0
+    session_expectation: str = "UNKNOWN"
+    candle_state: Literal["healthy", "closed", "degraded", "unknown"] | None = None
+    latest_expected_completed_bucket: datetime | None = None
+    unknown_minutes: int = 0
+    not_expected_minutes: int = 0
+    oldest_unresolved_expected_gap: datetime | None = None
+    recoverable_missing_count: int = 0
+    outside_horizon_missing_count: int = 0
+    backfill_horizon_minutes: int = 300
+    last_fetch_started_at: datetime | None = None
+    last_fetch_completed_at: datetime | None = None
+    last_successful_fetch_at: datetime | None = None
+    last_persisted_at: datetime | None = None
+    last_correction_at: datetime | None = None
 
 
 class ProviderHealth(BaseModel):
@@ -79,6 +93,7 @@ class ProviderHealth(BaseModel):
     updated_at: datetime = Field(default_factory=utc_now)
     storage_mode: str = "ticks"
     expected_closed_minute: datetime | None = None
+    last_candle_cycle: dict[str, object] = Field(default_factory=dict)
 
 
 class MarketDataProvider(ABC):

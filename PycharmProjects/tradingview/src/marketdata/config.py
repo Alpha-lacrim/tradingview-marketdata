@@ -53,6 +53,7 @@ class Settings(BaseSettings):
     candle_interval: Literal["1m"] = "1m"
     candle_fetch_grace_seconds: float = Field(default=2, ge=0, le=30)
     candle_backfill_minutes: int = Field(default=300, ge=3, le=1440)
+    candle_correction_lookback_minutes: int = Field(default=3, ge=1, le=30)
     candle_request_timeout_seconds: float = Field(default=15, ge=1, le=60)
     tradingview_frame_timeout_seconds: float = Field(default=45, ge=10, le=3600)
     tradingview_observation_timeout_seconds: float = Field(default=60, ge=10, le=86400)
@@ -64,6 +65,8 @@ class Settings(BaseSettings):
             not 1 <= seconds <= 86400 for seconds in self.tradingview_symbol_stale_seconds.values()
         ):
             raise ValueError("TradingView symbol stale thresholds must be 1..86400 seconds")
+        if self.candle_correction_lookback_minutes > self.candle_backfill_minutes:
+            raise ValueError("candle correction lookback must fit within backfill horizon")
         if self.db_pool_min > self.db_pool_max or self.batch_size > self.queue_capacity:
             raise ValueError("pool min <= max and batch_size <= queue_capacity required")
         if self.reconnect_min_seconds > self.reconnect_max_seconds:

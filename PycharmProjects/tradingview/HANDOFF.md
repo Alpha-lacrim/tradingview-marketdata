@@ -2,135 +2,112 @@
 
 ## Current state - 2026-10-07
 
-The experimental guest source now defaults to **completed native 1-minute OHLC candles**
-for all 17 existing instruments. Native retrieval was proved before schema changes. Tick
-mode remains explicit (`TRADINGVIEW_STORAGE_MODE=ticks`); unrelated providers and all recorded
-raw history were preserved. Alembic head is **0003**. No new dependencies/infrastructure.
-AGENTS.md is unchanged; CODEX.md source map/execution notes, README, .env.example and guest
-operations docs were updated. Pre-existing health work and unrelated BATCHES_V1.md remain.
-Parent Git repository is C:/Users/Pouyan, main. Unrelated BATCHES_V1.md remains untracked.
+Experimental tradingview_guest defaults to completed native **1m candles**, all 17 existing
+instruments unchanged. Hardening is implemented and deployed. Alembic head **0004**; 0001-0003,
+market_candles constraints/hypertable, historical ticks and tick CAGGs are preserved. No new
+dependencies/infrastructure. ONE API/ingestion worker. Main Compose app localhost:8000;
+DB localhost:5432, retained volume tradingview_marketdata_pg. Use compose.yaml plus
+compose.tradingview.yaml for guest; bare Compose selects mock. Current health deliberately
+**degraded** because two older XAUT minutes are absent; no fabricated bars.
 
-## Source semantics / boundaries
+Parent Git root C:/Users/Pouyan, branch main. Baseline commit **6f3aa7a0**. Hardening is included
+in the commit containing this handoff. Scope Git to this project; preserve unrelated untracked BATCHES_V1.md.
+Secrets/.env/artifacts/research/exports ignored. AGENTS.md unchanged this task.
 
-- Guest-only WebSocket uses the existing public literal unauthorized_user_token, never login,
-  cookies, browser automation, entitlement bypass or domestic providers.
-- Cached/current served 32493.a85e902ab5ea671ba172.js verifies chart command serializers;
-  served 48903.3be128434799eed23346.js verifies createSeries ordering and OHLC indexes.
-- Verified commands: chart_create_session [cs, ""], resolve_symbol [cs, "symbol_1", source],
-  create_series [cs, "s1", "s1", "symbol_1", "1", count, ""], chart_delete_session [cs].
-  timescale_update/du series vectors are [epoch seconds,O,H,L,C,volume]. series_completed
-  reports streaming (observed rt_update_period=5); it completes a request, not every bar.
-- Source identity/type/currency/listed exchange, intraday, bar_source=trade,
-  bar_transform=none, bar_fillgaps=false and streaming/realtime status are required.
-  Forming bars never persist; a minute must end before the collection cutoff/grace.
-- Basis native, provenance native_upstream_chart. OANDA/TVC price construction is not
-  independently verified as executable last/bid/mid pricing. Preserve reported semantics.
-  Crypto base volume and OANDA tick counts are distinct additive types. TVC oil volume is
-  NULL because its sixth field lacks verified volume_type. No quote-volume reuse.
-- All 17 verified: BTC/ETH/SOL/XRP (BINANCE spot), OKX XAUTUSDT token; eight OANDA FX pairs;
-  OANDA XAUUSD/XAGUSD OTC metals; TVC USOIL/UKOIL reference commodities. No exchange futures,
-  physical-oil spot, perpetual or index substitution. Streaming is upstream reported, not
-  an independent latency audit or a data-use/redistribution license.
+## Decisions / implementation map
 
-## Implementation map / decisions
+- Existing guest-only transport, no accounts/cookies/browsers/new endpoints or instruments.
+  Protocol evidence, all-17 identities and native volume/price semantics:
+  docs/native-candle-verification.md and docs/tradingview.md. Native basis, exact Decimal/UTC;
+  no forming bars. Crypto base volume and OANDA tick count separate; TVC oil volume NULL.
+  TVC oil is a reference, OANDA metals OTC, XAUT a token, never exchange-futures substitutes.
+- tradingview_candles.py measures request/first-message/native-bar-availability/parser timings.
+  Original serial waits proved avoidable. At most **two outstanding chart sessions on ONE
+  socket**, one receiver routes existing session IDs. No source protocol expansion.
+- candle_ingestion.py immediately reconciles durable startup state per instrument, then
+  **ONE normal UTC-minute cycle + grace**; wall-clock deadline recomputed, duplicate-attempt
+  guard. Defaults: **2s grace / 3 completed minutes correction overlap / 300 completed
+  wall-clock minutes recovery horizon**, plus forming-bar allowance. No per-second upstream
+  polling or raw-tick writing. Overlap/backfill occurs within the same minute cycle.
+- sessions.py interprets supported source schedules with local IANA/DST, overnight/day/history
+  syntax and holidays. Crypto weekend EXPECTED; FX weekend NOT_EXPECTED. Unsupported calendars,
+  correction-date syntax and uncertain OANDA maintenance vicinity UNKNOWN. Actual native bars
+  positively establish EXPECTED. Compressed range classification uses day/session boundaries.
+- 0004 adds candle_coverage not_expected/unknown multiranges and session_info; candle_revisions
+  audit holds changed fields and exact old/new values. Previous blanket missing migrates to
+  UNKNOWN pending source reconciliation. No main historical data deletion or migration rewrite.
+- persistence.py COPY/stages then atomically UPSERTs changed values from newer receipts, latest,
+  coverage and audit. Unchanged overlap leaves history/updated_at alone; older receipts cannot
+  overwrite. Backfill provenance survives corrections. WebSocket emits actual changed committed
+  payloads only. Latest closes retain bucket age; older receipt cannot freshen the price.
+- EXPECTED minutes = persisted bars + unresolved expected gaps; NOT_EXPECTED/UNKNOWN separate.
+  Coverage health exposes latest expected/persisted, expected lag, unknown/gap counts, oldest
+  gap, recoverable/outside-horizon counts and fetch/persist/correction timestamps. Historical
+  expected gaps OR UNKNOWN prevent healthy. Idle disconnected transport is intentional.
+- DB read outage skips source fetch; write outage retains ONE bounded batch with jitter retries,
+  no new upstream collection/false acknowledgement. Actual durable state drives later recovery.
+  Network failures retry on minute cycles behind a backoff gate. Permanent rejection requires
+  operator intervention. Old unavailable expected minutes remain explicit/degraded. No disk
+  spool/distributed bus/crash-safe queue; cold start cannot promise pre-anchor history.
+- 5m/15m/1h/1d query SQL over native 1m: corrections propagate immediately, verified additive
+  volume only. Larger-bucket complete requires all wall-clock minutes, conservative at closures.
+- Full cycle traces: /providers and structured logs. Prometheus separates scheduler/fetch/
+  symbol/parser/write/close-to-commit timings, corrections, backfills, gaps and expectations.
+  Tick counters are not primary candle health. Unrelated tick providers remain unchanged.
 
-- New candles.py validates Decimal OHLC, UTC minute bounds, completed state and scheduling.
-  providers/candles.py adds optional native-candle capability without changing tick adapters.
-  providers/tradingview_candles.py owns guest chart transport/parsing. Factory selects mode.
-- candle_ingestion.py owns a separate bounded polling task, integrated by ingestion.py.
-  Startup recovers the latest closed minute; later cycles calculate UTC boundary + grace
-  each iteration, with bounded waits for clock changes. Slow cycles recover from coverage.
-  Sequential chart requests share one socket per collection; sessions and socket close after
-  use. Idle transport=disconnected can accompany healthy persisted candle coverage.
-- Settings: storage mode candles default; CANDLE_INTERVAL=1m; grace=2 seconds (0..30);
-  backfill window=300 completed minutes (3..1440), request timeout=15 seconds (1..60).
-  A request allows an extra forming bar. No continuous quote subscription/raw tick writes.
-- 0003 adds market_candles, latest_candles and candle_coverage. Timescale flag creates a
-  seven-day-chunk market_candles hypertable; plain PostgreSQL works without the extension.
-  Native history is independent of market_ticks. Existing 0001/0002 and 12 tick CAGGs remain.
-- COPY staging, native UPSERT, latest state and compact tstzmultirange missing ranges commit
-  atomically. Logical key: instrument/provider/interval/bucket_start/price_basis. Exact receipt
-  retries do nothing. Explicit newer-receipt retrievals can correct the same minute; older
-  receipts cannot overwrite it. No upstream revision ID or automatic late-correction scan.
-- Routine recovery filters already-covered bars: normal collection inserts one row per
-  available instrument/minute, without repeatedly updating a rolling history window.
-  Coverage expects every minute since its initial anchor. Quiet/closed/source-absent minutes
-  remain explicit gaps; no calendar is inferred. Recent history backfills within the bounded
-  window after outage/restart. Older gaps remain unresolved/degraded, never fabricated.
-- DB outage retains one bounded batch and retries; subsequent collection waits. Shutdown
-  logs/counts unpersisted candles. No disk spool. Cold start without durable coverage cannot
-  recover minutes preceding its first committed anchor. Network retry gates use bounded
-  exponential backoff/jitter; provider-wide permanent rejection stops all its symbols.
-- Candle health exposes expected_closed_minute plus per-symbol last_persisted_minute,
-  minutes_behind and missing_candle_count. ALL symbols must be current and gap-free.
-  Latest APIs use latest_candles, last=close, price_basis=candle_close, interval/bounds,
-  age since bucket end and stale status. An old close cannot be freshened by a newer receipt.
-- Native API basis defaults for active candle providers; explicit basis=native always works.
-  UTC-aligned bounded pagination; 5m/15m/1h/1d SQL rollups from stored 1m, no extra upstream
-  subscriptions. Larger buckets report complete=false if constituent minutes are missing.
-  Volume sum requires one verified additive type and no null constituent volume. No native 1s.
-- WebSocket emits type=candle,persisted=true after commit; backfill can arrive out of order.
-  Tick fan-out retains type=tick,persisted=false. Slow clients remain bounded/close 1013.
-- Candle counters: requested/received/persisted/upserted/duplicates/fetch_failures/gaps_detected/
-  backfilled/shutdown_unpersisted; missing/age/lateness gauges and request/write histograms.
-  Tick receive/persist counters are not incremented by candle ingestion.
+## Verified evidence
 
-## Existing tick behaviour to preserve
+- **180 passed Timescale; 177 passed +3 Timescale-only skips plain PostgreSQL**. Ruff, formatting
+  (56 files), strict mypy (25 source files), diff whitespace checks pass. Normal tests offline;
+  final targeted native-candle/reliability rerun: **86 passed**.
+  existing Starlette/httpx deprecation remains. Failure injection covers network/transport,
+  independent DB read/write, restart/different watermarks, horizons, sessions, integrity, rollups.
+- Both modes: fresh base->head, base downgrade/re-upgrade, 0004->0003->0004 on disposable *_test
+  DBs. Candle open=100.1234567890123456789 survived latter; hypertable only in Timescale mode.
+  No downgrade/deletion of main data. Isolated mock app passed REST/latest/history/candles/
+  health/actual WebSocket smoke then stopped.
+- Longest observation **900.007s, 15 normal cycles, 255 new rows**: 17 per bucket 11:36-11:50 UTC.
+  Four native corrections audited (including USOIL close, volume NULL); zero duplicates,
+  malformed/forming rows. Raw ticks **26,216->26,216**. Detailed diagnosis/baseline comparison:
+  docs/candle-hardening-verification.md.
+- Normal p50/p95/max seconds: first **3.443/7.322/7.322**; last **6.754/11.716/11.716**;
+  commit acknowledgement **7.122/12.142/12.142**; first-last **3.228/4.771/4.771**;
+  DB write call **0.036/0.117/0.117**. First-receive tail did not improve; differing network
+  windows/small sample limit comparison. Upstream internals unproven; DB not the main delay.
+- Live app restart **75.733s offline**: all 17 recovered buckets11:52/11:53 UTC. Live DB restart
+  **83.817s offline**: /health503 database=false, /providers200, all 17 recovered 11:54/11:55.
+  Raw unchanged, older gaps kept health degraded. Artifacts/live-candle-outages.json ignored.
+- Final deployed-build observer **180.009s**, startup +3 normal cycles, **51 new rows**,
+  17 each at 12:04/12:05/12:06 UTC, raw 26,216, no observer/DB failure or duplicate/forming rows.
+  Normal-only first3.792/4.409/4.409; last7.132/9.534/9.534;
+  commit7.648/9.925/9.925 seconds. Seven metric-series resets reflect ONE deployment.
+- XAUT 11:07 and 11:34 UTC absent from native history, one before deployment. Keep both scheduled
+  expected gaps; sparse trade-based charts may omit no-trade minutes, not proven transport loss.
+  Reconciliation [11:20,11:40) proved all 17 invariants: XAUT 19/20, other instruments 20/20.
+- Final WebSocket smoke initially failed because the test stopped draining overlap/startup
+  messages while sleeping; its full receive queue delayed ping control frames. Harness now
+  drains while waiting for the boundary. **Rerun passed 12:09/12:10 UTC**: all 17 independent
+  native OHLC -> DB -> REST comparisons and all 17 committed WebSocket candles each minute,
+  raw 26,216 unchanged. Evidence: artifacts/candle-hardening-final-smoke.json.
+- Ignored evidence: artifacts/candle-hardening-soak.json, live-candle-outages.json,
+  hardening-reconciliation.json, candle-final-soak.json, candle-final-normal-summary.json,
+  serial-candle-timings.json, pipelined-candle-timings.json. Earlier native verification
+  remains in artifacts/native-candle-final-smoke.json (09:57/09:58 all 17 source/DB/REST/WS).
+- Original row-rate comparison preserved: 556.9 raw ticks/min vs 17 candles/min, 96.947% fewer
+  history rows across different windows; not a disk/compression claim. No tick data deleted.
 
-Owned adapters -> bounded queue -> COPY -> atomic history/latest. Overflow drops NEW ticks
-with explicit metrics/logs; one retained batch retries DB outages, bounded shutdown reports
-losses. Decimal/UTC event-vs-receipt time and source nanoseconds remain intact. Health separates
-transport/feed/symbol freshness; tick mode needs all configured sources fresh in the current
-connection. Guest tick frame timeout 45s, observation timeout 60s, STALE_SECONDS=30, exact-source
-TRADINGVIEW_SYMBOL_STALE_SECONDS overrides. Reconnect revalidates identity/status. No tick
-historical backfill or disk spool. Concrete futures retain independent identity and explicit
-roll_at schedules. Mock is simulated; Binance live previously failed ConnectError; authenticated
-OANDA/Databento sessions remain untested without credentials/entitlements. ONE API/ingestion worker.
+## Continuation / limitations
 
-## Verification / measurements
+Read-only scripts/reconcile_candles.py proves bounded completeness partitions;
+scripts/soak_candles.py supports 1h/6h/24h/72h commands in docs. It polls local API/DB only,
+counts startup separately and excludes startup from normal latency distributions. Live smoke
+adds diagnostic source requests, without changing collector cadence. Test fixtures clear only
+migrated disposable *_test databases; never use main/user DB.
 
-- Captured all 17 native series; portable fixture tests preserve OHLC/Decimal/time/identity/
-  volume/status. Matrix: docs/native-candle-verification.md. Ignored research captures remain
-  in artifacts/tradingview-research; no accounts or browser operations were used.
-- Targeted candle suite: 43 passed. Full Timescale suite: 137 passed. Plain PostgreSQL mode:
-  134 passed, 3 Timescale-only skips. Normal suites require no live market connection.
-  One existing Starlette/httpx deprecation warning remains.
-- Ruff, formatting (50 Python files), strict mypy (24 source files) and diff whitespace checks
-  pass. Both modes tested fresh base->0003, downgrade base and re-upgrade. Additional plain
-  0003->0002->0003 preserved all 147 pre-existing raw rows in marketdata_smoke_test.
-- Compose guest app rebuilt, main database migrated to 0003. Initial live comparison matched
-  independent native requests -> parser -> DB -> REST for ALL 17 sources over closed buckets
-  09:39, 09:40, 09:41 UTC; WebSocket received all 17 committed candles per minute.
-  artifacts/native-candle-smoke.json retains results. Raw guest count stayed 26,216; observed
-  storage had exactly 17 rows/minute across consecutive buckets beginning 09:33 UTC.
-  Final rebuilt-collector repeat passed for 09:57 and 09:58 UTC: all 17 native/DB/REST OHLC
-  matched and all 17 WebSocket candles arrived each minute. artifacts/native-candle-final-smoke.json
-  records 442 candles across 26 consecutive minutes, still 26,216 raw ticks and no gaps.
-  Smoke scheduling now rechecks its wall-clock deadline (Windows sleeps can wake early);
-  the collector already used a deadline-rechecking scheduler.
-- Measured old receipt window [09:00,09:20) UTC: 11,138 raw ticks / 20 = 556.9 rows/minute.
-  Compared with observed 17 candle rows/minute: 96.947% fewer history rows (32.76x reduction).
-  Different measured windows; not a disk/compression claim. Full availability projects 24,480/day.
-- Isolated mock app at localhost:8001 passed scripts/smoke.py (30 instruments, REST/history/
-  candles/health/actual WebSocket); temporary process stopped. Existing tick mock path preserved.
-- scripts/inspect_tradingview_ticks.py inspected live volume and exported one historical minute
-  (17 derived last candles) without deleting raw data. Optional explicit --delete-raw requires
-  unchanged verified export/fingerprint and full selected-basis coverage; corrupt exports are
-  refused. Successful deletion tested ONLY on disposable data. No user history was deleted.
-- Prior short tick benchmark remains 50,000/50,000 persisted over 300 instruments in 10.155s,
-  zero drops; not rerun or reinterpreted as a candle/long-soak performance guarantee. CI not run remotely.
-
-## Local operation / next work
-
-Live Compose guest collector remains on localhost:8000; DB localhost:5432, retained volume
-tradingview_marketdata_pg. Use both compose.yaml and compose.tradingview.yaml for guest mode;
-bare Compose restores mock. Native smoke: scripts/smoke_tradingview_candles.py --minutes 3.
-Old smoke_tradingview.py explicitly requires ticks mode. Disposable *_test DBs are cleared by
-integration fixtures. Secrets/.env/exports/artifacts remain ignored. BATCHES_V1.md is unrelated.
-
-Next: multi-hour source/network/DB-outage soak; validate session-aware missing-minute policy
-before suppressing closed-session gaps; decide correction/replay/retention/backup policies.
-Guest protocol and availability remain unsupported/experimental; no independent latency audit,
-licensed exchange futures entitlement, unlimited archive backfill, durable queue, multi-worker
-fan-out, market consolidation or crash-safe loss guarantee. See docs/tradingview.md for SQL,
-maintenance constraints, provenance and operating procedures.
+Next: longer soak through session/weekend transitions; evidence-based sparse-bar and exceptional
+calendar policy; backup/retention policy. Actual Internet disconnection **NOT TESTED** (transport
+failure simulated); no multi-hour/day soak, complete/versioned exception calendar, upstream
+revision IDs, unlimited backfill, durable queue or crash-safe loss guarantee. Guest protocol,
+availability and source licensing remain experimental/unverified. Direct Binance ConnectError
+was linked to local network; authenticated OANDA/Databento await credentials/entitlements.
+Keep single worker and preserved historical ticks.

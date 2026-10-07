@@ -38,7 +38,7 @@ class MarketCandle(Model):
     volume: Decimal | None = None
     price_basis: Literal["native"] = "native"
     realtime_status: DataStatus
-    source_status: str
+    source_status: Literal["streaming", "realtime"]
     received_timestamp: datetime
     metadata: dict[str, Any] = Field(default_factory=dict)
 
