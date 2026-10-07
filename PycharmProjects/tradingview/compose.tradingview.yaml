@@ -1,0 +1,11 @@
+# Experimental guest source. Review docs/tradingview.md before running this override.
+# docker compose -f compose.yaml -f compose.tradingview.yaml up -d --build
+services:
+  app:
+    environment:
+      REGISTRY_FILE: config/instruments.tradingview.json
+      MARKET_DATA_PROVIDER_CRYPTO: tradingview_guest
+      MARKET_DATA_PROVIDER_FOREX: tradingview_guest
+      MARKET_DATA_PROVIDER_METALS: tradingview_guest
+      MARKET_DATA_PROVIDER_ENERGY: tradingview_guest
+      MARKET_DATA_PROVIDER_FUTURES: disabled

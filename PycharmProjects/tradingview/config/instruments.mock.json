@@ -1,0 +1,838 @@
+[
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BTCUSDT",
+      "display_name": "BTC/USDT (simulation)",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "tick_size": "0.01",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "BTC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "CRYPTO:BTCUSDT",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "60000"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:ETHUSDT",
+      "display_name": "ETH/USDT (simulation)",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "tick_size": "0.01",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "ETH",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "CRYPTO:ETHUSDT",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "3000"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:SOLUSDT",
+      "display_name": "SOL/USDT (simulation)",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "tick_size": "0.01",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "SOL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "CRYPTO:SOLUSDT",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "150"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:XRPUSDT",
+      "display_name": "XRP/USDT (simulation)",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "tick_size": "0.0001",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "XRP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "CRYPTO:XRPUSDT",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "0.5"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:SIM:EURUSD",
+      "display_name": "EURUSD (simulation)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.00001",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "EUR",
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FX:SIM:EURUSD",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "1.1"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:SIM:GBPUSD",
+      "display_name": "GBPUSD (simulation)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.00001",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "GBP",
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FX:SIM:GBPUSD",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "1.3"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:SIM:USDJPY",
+      "display_name": "USDJPY (simulation)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "SIM",
+      "currency": "JPY",
+      "tick_size": "0.001",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "USD",
+      "quote_asset": "JPY"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FX:SIM:USDJPY",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "150"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:SIM:USDCHF",
+      "display_name": "USDCHF (simulation)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "SIM",
+      "currency": "CHF",
+      "tick_size": "0.00001",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "USD",
+      "quote_asset": "CHF"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FX:SIM:USDCHF",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "0.9"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:SIM:AUDUSD",
+      "display_name": "AUDUSD (simulation)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.00001",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "AUD",
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FX:SIM:AUDUSD",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "0.65"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:SIM:USDCAD",
+      "display_name": "USDCAD (simulation)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "SIM",
+      "currency": "CAD",
+      "tick_size": "0.00001",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "USD",
+      "quote_asset": "CAD"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FX:SIM:USDCAD",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "1.35"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:SIM:NZDUSD",
+      "display_name": "NZDUSD (simulation)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.00001",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "NZD",
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FX:SIM:NZDUSD",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "0.6"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:SIM:EURGBP",
+      "display_name": "EURGBP (simulation)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "SIM",
+      "currency": "GBP",
+      "tick_size": "0.00001",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "EUR",
+      "quote_asset": "GBP"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FX:SIM:EURGBP",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "0.85"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "SPOT:SIM:XAUUSD",
+      "display_name": "XAU/USD (simulation)",
+      "asset_class": "metals",
+      "instrument_type": "spot",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.01",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "XAU",
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "SPOT:SIM:XAUUSD",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "2000"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "SPOT:SIM:XAGUSD",
+      "display_name": "XAG/USD (simulation)",
+      "asset_class": "metals",
+      "instrument_type": "spot",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.001",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "XAG",
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "SPOT:SIM:XAGUSD",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "25"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CFD:SIM:WTIUSD",
+      "display_name": "WTI CFD (simulation)",
+      "asset_class": "energy",
+      "instrument_type": "cfd",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.01",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "WTI",
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "CFD:SIM:WTIUSD",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "75"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CFD:SIM:BRENTUSD",
+      "display_name": "BRENT CFD (simulation)",
+      "asset_class": "energy",
+      "instrument_type": "cfd",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.01",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "base_asset": "BRENT",
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "CFD:SIM:BRENTUSD",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "80"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:GC:202712",
+      "display_name": "Gold futures (simulation)",
+      "asset_class": "metals",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.1",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "GC",
+      "contract_code": "SIM-GC-202712",
+      "contract_month": "2027-12-01",
+      "expiry": "2027-12-20T00:00:00Z",
+      "roll_at": "2027-12-10T00:00:00Z",
+      "multiplier": "100"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:GC:202712",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "2005"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:GC:202803",
+      "display_name": "Gold futures (simulation)",
+      "asset_class": "metals",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.1",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "GC",
+      "contract_code": "SIM-GC-202803",
+      "contract_month": "2028-03-01",
+      "expiry": "2028-03-20T00:00:00Z",
+      "roll_at": "2028-03-10T00:00:00Z",
+      "multiplier": "100"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:GC:202803",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "2005"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:SI:202712",
+      "display_name": "Silver futures (simulation)",
+      "asset_class": "metals",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.005",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "SI",
+      "contract_code": "SIM-SI-202712",
+      "contract_month": "2027-12-01",
+      "expiry": "2027-12-20T00:00:00Z",
+      "roll_at": "2027-12-10T00:00:00Z",
+      "multiplier": "5000"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:SI:202712",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "25.1"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:SI:202803",
+      "display_name": "Silver futures (simulation)",
+      "asset_class": "metals",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.005",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "SI",
+      "contract_code": "SIM-SI-202803",
+      "contract_month": "2028-03-01",
+      "expiry": "2028-03-20T00:00:00Z",
+      "roll_at": "2028-03-10T00:00:00Z",
+      "multiplier": "5000"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:SI:202803",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "25.1"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:CL:202712",
+      "display_name": "WTI futures (simulation)",
+      "asset_class": "energy",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.01",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "CL",
+      "contract_code": "SIM-CL-202712",
+      "contract_month": "2027-12-01",
+      "expiry": "2027-12-20T00:00:00Z",
+      "roll_at": "2027-12-10T00:00:00Z",
+      "multiplier": "1000"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:CL:202712",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "76"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:CL:202803",
+      "display_name": "WTI futures (simulation)",
+      "asset_class": "energy",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.01",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "CL",
+      "contract_code": "SIM-CL-202803",
+      "contract_month": "2028-03-01",
+      "expiry": "2028-03-20T00:00:00Z",
+      "roll_at": "2028-03-10T00:00:00Z",
+      "multiplier": "1000"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:CL:202803",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "76"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:BRENT:202712",
+      "display_name": "Brent futures (simulation)",
+      "asset_class": "energy",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.01",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "BRENT",
+      "contract_code": "SIM-BRENT-202712",
+      "contract_month": "2027-12-01",
+      "expiry": "2027-12-20T00:00:00Z",
+      "roll_at": "2027-12-10T00:00:00Z",
+      "multiplier": "1000"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:BRENT:202712",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "81"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:BRENT:202803",
+      "display_name": "Brent futures (simulation)",
+      "asset_class": "energy",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.01",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "BRENT",
+      "contract_code": "SIM-BRENT-202803",
+      "contract_month": "2028-03-01",
+      "expiry": "2028-03-20T00:00:00Z",
+      "roll_at": "2028-03-10T00:00:00Z",
+      "multiplier": "1000"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:BRENT:202803",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "81"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:ES:202712",
+      "display_name": "E-mini S&P 500 futures (simulation)",
+      "asset_class": "futures",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.25",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "ES",
+      "contract_code": "SIM-ES-202712",
+      "contract_month": "2027-12-01",
+      "expiry": "2027-12-20T00:00:00Z",
+      "roll_at": "2027-12-10T00:00:00Z",
+      "multiplier": "50"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:ES:202712",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "5000"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:ES:202803",
+      "display_name": "E-mini S&P 500 futures (simulation)",
+      "asset_class": "futures",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.25",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "ES",
+      "contract_code": "SIM-ES-202803",
+      "contract_month": "2028-03-01",
+      "expiry": "2028-03-20T00:00:00Z",
+      "roll_at": "2028-03-10T00:00:00Z",
+      "multiplier": "50"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:ES:202803",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "5000"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:NQ:202712",
+      "display_name": "E-mini Nasdaq-100 futures (simulation)",
+      "asset_class": "futures",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.25",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "NQ",
+      "contract_code": "SIM-NQ-202712",
+      "contract_month": "2027-12-01",
+      "expiry": "2027-12-20T00:00:00Z",
+      "roll_at": "2027-12-10T00:00:00Z",
+      "multiplier": "20"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:NQ:202712",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "18000"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:NQ:202803",
+      "display_name": "E-mini Nasdaq-100 futures (simulation)",
+      "asset_class": "futures",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "0.25",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "NQ",
+      "contract_code": "SIM-NQ-202803",
+      "contract_month": "2028-03-01",
+      "expiry": "2028-03-20T00:00:00Z",
+      "roll_at": "2028-03-10T00:00:00Z",
+      "multiplier": "20"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:NQ:202803",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "18000"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:YM:202712",
+      "display_name": "Dow futures (simulation)",
+      "asset_class": "futures",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "1",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "YM",
+      "contract_code": "SIM-YM-202712",
+      "contract_month": "2027-12-01",
+      "expiry": "2027-12-20T00:00:00Z",
+      "roll_at": "2027-12-10T00:00:00Z",
+      "multiplier": "5"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:YM:202712",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "38000"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FUTURES:SIM:YM:202803",
+      "display_name": "Dow futures (simulation)",
+      "asset_class": "futures",
+      "instrument_type": "future",
+      "exchange": "SIM",
+      "currency": "USD",
+      "tick_size": "1",
+      "metadata": {
+        "simulation_fixture": true
+      },
+      "root_symbol": "YM",
+      "contract_code": "SIM-YM-202803",
+      "contract_month": "2028-03-01",
+      "expiry": "2028-03-20T00:00:00Z",
+      "roll_at": "2028-03-10T00:00:00Z",
+      "multiplier": "5"
+    },
+    "mappings": [
+      {
+        "provider": "mock",
+        "provider_symbol": "FUTURES:SIM:YM:202803",
+        "realtime_status": "simulated",
+        "metadata": {
+          "simulation_initial_price": "38000"
+        }
+      }
+    ]
+  }
+]

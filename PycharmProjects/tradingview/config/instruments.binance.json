@@ -1,0 +1,82 @@
+[
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BTCUSDT",
+      "display_name": "BTC/USDT Binance spot",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "metadata": {},
+      "base_asset": "BTC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "binance",
+        "provider_symbol": "BTCUSDT",
+        "realtime_status": "realtime"
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:ETHUSDT",
+      "display_name": "ETH/USDT Binance spot",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "metadata": {},
+      "base_asset": "ETH",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "binance",
+        "provider_symbol": "ETHUSDT",
+        "realtime_status": "realtime"
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:SOLUSDT",
+      "display_name": "SOL/USDT Binance spot",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "metadata": {},
+      "base_asset": "SOL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "binance",
+        "provider_symbol": "SOLUSDT",
+        "realtime_status": "realtime"
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:XRPUSDT",
+      "display_name": "XRP/USDT Binance spot",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "metadata": {},
+      "base_asset": "XRP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "binance",
+        "provider_symbol": "XRPUSDT",
+        "realtime_status": "realtime"
+      }
+    ]
+  }
+]

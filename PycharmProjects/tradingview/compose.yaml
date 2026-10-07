@@ -1,0 +1,46 @@
+services:
+  db:
+    image: timescale/timescaledb:2.25.1-pg17
+    environment:
+      POSTGRES_USER: marketdata
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-marketdata}
+      POSTGRES_DB: marketdata
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - marketdata_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U marketdata -d marketdata"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  migrate:
+    build: .
+    command: [".venv/bin/alembic", "-x", "timescale=true", "upgrade", "head"]
+    environment:
+      DATABASE_URL: postgresql://marketdata:${POSTGRES_PASSWORD:-marketdata}@db:5432/marketdata
+    depends_on:
+      db:
+        condition: service_healthy
+  app:
+    build: .
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: postgresql://marketdata:${POSTGRES_PASSWORD:-marketdata}@db:5432/marketdata
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", ".venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+    stop_grace_period: 35s
+    restart: unless-stopped
+volumes:
+  marketdata_pg:
