@@ -2,6 +2,25 @@
 
 ## Current state - 2026-10-12
 
+Repository organization now places the application directly at the Git root on review branch
+`chore/root-layout`, based on main `324b1d83`. Work is in the separate clone
+`C:/Users/Pouyan/PycharmProjects/tradingview-marketdata`; the original home-rooted checkout
+and `PycharmProjects/tradingview` working directory, parent PyCharm project, environment,
+ignored artifacts and live containers remain intact. Do not pull the relocation into the
+home-rooted checkout; follow `docs/repository-layout.md` to adopt the new clone safely.
+GitHub visibility is PUBLIC, verified via GitHub on 2026-10-12; older private claims were stale.
+Publication is not deployment. The review branch preserves all existing commits.
+
+Root README now summarizes setup, capabilities and measured guest limitations. The original
+detailed platform reference is in `docs/platform-guide.md`; guest operations and evidence
+remain in their existing docs. Root CI no longer sets a nested working directory/cache path;
+the duplicate nested workflow and wrapper README/allowlist are removed. Packaging, Docker,
+scripts, registries and migration paths retain their application-relative layout. 89 relocated
+files match their original Git blobs, including all source/tests/scripts/config/migrations,
+AGENTS.md, dependency lock and Docker/Compose files. No application behavior changed.
+Git/Docker ignore rules also exclude plain/compressed SQL dumps, dump/backup/volume directories
+and local registry/IDE/operator files from the build context.
+
 Operator-authorized TradingView guest multi-WebSocket investigation now reaches actual
 native completed 1m candles through the production CandleIngestion cycle and PostgreSQL
 Store transaction. It does not demonstrate complete minute coverage or sustained capacity.
@@ -77,7 +96,28 @@ Harness retains growing diagnostics/tracing overhead and shared-host validation 
 parts of the experiment; these measurements are not a memory soak or isolated capacity claim.
 Earlier synthetic matrices and maximum-history findings remain in their existing documents.
 
-## Verification and restoration
+## Repository restructuring verification
+
+Fresh `uv sync --frozen --extra databento` and Docker build passed from the new root.
+Ruff lint and format checks passed (75 Python files); strict mypy passed 29 source files.
+CLI help/imports and Alembic head detection passed. Both Compose configurations validated,
+and actionlint passed for the single root CI workflow. GitHub's Markdown API rendered the
+README; 27 local documentation links/anchors and 21 sensitive artifact ignore examples passed.
+Git tracked paths contain no nested application or ignored private artifacts.
+
+Isolated Compose project `marketdata-root-review` used ports 55432/18000 and its own volume.
+Timescale tests: 281 passed (72.23s). Plain PostgreSQL mode: 278 passed, 3 Timescale-only skips
+(71.48s). Both disposable databases upgraded to 0004, downgraded to base and re-upgraded to
+0004. The actual mock network smoke passed: 30 instruments, healthy DB/feed, latest state,
+REST tick/candle history, metrics and WebSocket observations. Existing Starlette/httpx
+TestClient deprecation warning remains. No new live provider requests were made.
+Gitleaks 8.30.1 found no secrets in the staged diff or full exported tracked tree (4.43 MB).
+`git diff --check` passed. Review containers/network were removed with `down` after smoke/tests;
+the separate review volume was retained. Original main worktree remains clean and its original
+app/DB containers remain running; pre-existing guest coverage degradation was not repaired by
+this organization task. GitHub Actions results are available on the review branch/PR.
+
+## Prior implementation verification and restoration
 
 Final Timescale suite:281 passed (40.83s). Final ordinary PostgreSQL suite:278 passed +3
 Timescale-only skips (39.74s). Targeted pool/harness tests:45 passed +2 database skips.
@@ -95,17 +135,18 @@ health degraded even during currently complete cycles. REST remains available.
 
 ## Next work
 
+Review and merge the root-layout branch after CI; adopt the separate root checkout using
+`docs/repository-layout.md`. Keep operating the existing collector from its original directory
+until explicitly migrating deployment/configuration; a new Compose project name creates a
+different volume. Preserve `tradingview_marketdata_pg` and never use `down -v` for migration.
+
 Independently reverify a denser fixed universe for a new quiet-host comparison; preserve
 these original denominators/results. Separate source liquidity/completion from transport
 failure and timing. Compare bounded worker counts/windows without increasing connections
 after throttling. Run longer memory/native maximum-history persistence and real DB/network
 outage soaks before rollout. Complete minute coverage at128/256/512 remains unproven.
 Keep the original single application worker/17 registry. Publication does not deploy code.
-Git root is C:/Users/Pouyan; scope status/diffs to PycharmProjects/tradingview and preserve
-unrelated home files. Private publication remote is Alpha-lacrim/tradingview-marketdata;
-publication is not deployment. The operator requested committing and pushing this session's
-live benchmark implementation, regression tests, measured evidence and documentation to
-origin/main. The publication commit includes this handoff; verify local HEAD against remote
-main for the final publication SHA. Raw artifacts and local configuration remain ignored.
-Prepublication checks reconfirmed Ruff lint/format, strict mypy, staged diff whitespace and
-published evidence hashes/counts. Gitleaks scanned the staged changes and found no secrets.
+Remote is https://github.com/Alpha-lacrim/tradingview-marketdata. Publish the restructuring
+only to its dedicated review branch; main still contains the latest application implementation
+until merge. Raw artifacts and local configuration remain ignored. Recheck remote main before
+publication so concurrent implementation work is preserved.

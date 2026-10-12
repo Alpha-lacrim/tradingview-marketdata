@@ -1221,8 +1221,9 @@ Do not report planned work as completed.
 
 Source map: `src/marketdata/domain.py` and `registry.py` own identity/normalization;
 `providers/` owns documented transports/parsers; `ingestion.py` owns task/queue lifecycle;
-`persistence.py` owns PostgreSQL; `api.py` owns REST/WebSocket serving. `README.md` documents
-activation, operational limits, schema semantics and provider references. `config/` holds
+`persistence.py` owns PostgreSQL; `api.py` owns REST/WebSocket serving. `README.md` is the
+setup/repository overview; `docs/platform-guide.md` documents activation, operational limits,
+schema semantics and provider references. `config/` holds
 non-secret instrument registries. `migrations/versions/` is the schema source of truth.
 
 Alembic head is `0004`. `candles.py` owns completed native candle validation/scheduling;
@@ -1231,6 +1232,11 @@ Alembic head is `0004`. `candles.py` owns completed native candle validation/sch
 candles. Tick ingestion remains available explicitly and is unchanged for other providers.
 Session classification belongs in `sessions.py`; 0004 adds tri-state coverage and correction
 audit provenance. See `docs/tradingview.md` for polling health, recovery, latency and live checks.
+
+Run development commands from the Git repository root, which now directly contains
+`pyproject.toml`, `src/`, `tests/`, `config/` and `migrations/`. Existing home-rooted/nested
+checkouts must follow `docs/repository-layout.md` before adopting the relocation commit;
+use a separate clone to preserve the original working directory, IDE and database volume.
 
 Install using `uv sync --frozen --extra databento` (omit the extra when not needed).
 Local database: `docker compose up -d db`. Migrate explicitly with
