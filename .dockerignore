@@ -11,6 +11,17 @@ secrets
 pgdata
 *.dump
 *.backup
+*.sql
+*.sql.*
+*.sqlite
+*.sqlite3
+dumps
+backups
+volumes
+.idea
+.vscode
+BATCHES_V1.md
+config/*.local.json
 *.key
 *.pem
 __pycache__

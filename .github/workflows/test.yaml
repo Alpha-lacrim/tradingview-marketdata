@@ -5,9 +5,6 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: PycharmProjects/tradingview
     strategy:
       matrix:
         timescale: ["true", "false"]
@@ -31,7 +28,7 @@ jobs:
         with:
           version: "0.11.27"
           python-version: "3.12"
-          cache-dependency-glob: PycharmProjects/tradingview/uv.lock
+          cache-dependency-glob: uv.lock
       - run: uv sync --frozen --extra databento
       - run: uv run ruff check .
       - run: uv run ruff format --check .

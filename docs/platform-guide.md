@@ -1,74 +1,11 @@
-# Multi-asset market data
+# Platform reference
 
-Asynchronous market-data ingestion into PostgreSQL/TimescaleDB, with REST history, latest
-prices, OHLCV, provider health and downstream WebSocket subscriptions. Documented vendor
-adapters are supplemented by an explicitly requested, opt-in experimental TradingView guest
-collector. Read [its limitations and activation steps](docs/tradingview.md) before enabling it.
-
-The default is **simulated data only**: four crypto pairs, eight FX pairs, gold/silver spot
-simulations, WTI/Brent CFD simulations, and two synthetic concrete contracts for each of
-GC, SI, CL, Brent, ES, NQ and YM (30 instruments). Futures use the `SIM` venue and explicitly
-synthetic schedules, not invented exchange dates.
-
-## Review guide
-
-Existing commits are preserved with the project under `PycharmProjects/tradingview/` in the
-GitHub checkout. Run the commands below from that directory. The repository-root README
-links here; the root CI workflow runs the same project checks from this directory.
-
-| Area | Entry points |
-|---|---|
-| Application and APIs | `src/marketdata/api.py:create_app`, `providers/factory.py`; FastAPI lifespan owns startup/shutdown |
-| Identity and configuration | `domain.py`, `registry.py`, `config.py`, `config/instruments.*.json` |
-| Provider boundaries | `providers/base.py` tick interface; `providers/candles.py` optional native candle capability |
-| Guest candle transport | `providers/tradingview_candles.py` parser/socket lifecycle; `tradingview_pipeline.py` independent receiver, bounded dispatch and response demultiplexing |
-| Scheduling and recovery | `candles.py`, `candle_ingestion.py`, `sessions.py`; UTC-minute scheduling, overlap corrections, bounded backfill, EXPECTED/NOT_EXPECTED/UNKNOWN coverage |
-| Persistence | `persistence.py`; batched COPY/UPSERT, latest state, native candles, coverage and correction audit |
-| Schema | `migrations/versions/0001`–`0004`; ordinary PostgreSQL and optional Timescale hypertables/tick aggregates |
-| Serving and metrics | `api.py`, `fanout.py`, `observability.py`; REST history/latest/candles, committed-candle WebSocket updates, provider health and Prometheus |
-| Validation | `tests/`, `scripts/`; deterministic fixtures, integration tests, isolated benchmarks and opt-in live verification |
-
-Start with [guest semantics and operations](docs/tradingview.md), then
-[hardening evidence](docs/candle-hardening-verification.md) and
-[live/synthetic scalability results](docs/candle-retrieval-scalability.md).
-The latest live experiment reached **64 series**, with nine absent target bars; **100 live
-was not tested**. The clean ten-cycle 34-symbol window and the earlier failed handshake
-are both retained in the report. Synthetic 100-symbol results are not live guarantees.
-This unsupported guest transport is experimental, not an officially supported TradingView
-API or a production-readiness claim. `HANDOFF.md` records current operational limitations.
-
-Publication excludes local credentials, environment overrides, database volumes/dumps,
-logs/caches and raw generated research artifacts. Sanitized benchmark summaries and parser
-fixtures are included; recorded database history remains local. `.env.example` uses only
-public development defaults; replace them for any deployment.
-
-## Local setup
-
-Docker Compose v2.24+ and a running Linux Docker engine:
-
-```powershell
-Copy-Item .env.example .env
-docker compose up -d --build
-Invoke-RestMethod http://localhost:8000/health
-Invoke-RestMethod http://localhost:8000/prices/latest
-```
-
-The migration service runs before the app. Open [API docs](http://localhost:8000/docs).
-`docker compose down` stops the services and retains the named database volume. Ports bind
-to localhost; the application runs as an unprivileged user with one Uvicorn worker.
-
-For native development with Python 3.12+ and uv:
-
-```powershell
-uv sync --frozen --extra databento
-docker compose up -d db
-uv run alembic -x timescale=true upgrade head
-uv run uvicorn marketdata.api:create_app --factory --workers 1 --ws-max-size 16384
-```
-
-Run either the native app or the container app on port 8000. Databento's official SDK is
-optional; omit its extra for mock/Binance/OANDA. Application startup requires schema revision
-`0004` and never creates tables. `.env.example` contains safe local development defaults.
+Detailed architecture, documented provider adapters, configuration, instrument identity,
+database semantics and API contracts. Start with the [root README](../README.md) for setup
+and the repository map. Run all commands from the repository root. Guest-specific operations
+and measured limitations live in [TradingView operations](tradingview.md),
+[retrieval scalability](candle-retrieval-scalability.md), [connection pooling](candle-connection-pool.md)
+and [live PostgreSQL experiments](candle-live-end-to-end.md).
 
 ## Architecture and reliability
 
@@ -92,7 +29,7 @@ Transport connection alone never marks a feed healthy: all configured symbols mu
 fresh accepted observations in the current connection. `/providers` separates transport,
 subscription restoration and feed health, and reports per-symbol age/count/rejection state.
 Guest frame/observation timeouts and source-specific freshness overrides are documented in
-[TradingView operational health](docs/tradingview.md#operational-health-and-freshness).
+[TradingView operational health](tradingview.md#operational-health-and-freshness).
 
 The writer retains one batch and retries during database outages. Receive loops continue
 until the bounded queue fills, then **new ticks are dropped** with exact metrics and explicit
@@ -161,8 +98,8 @@ Official references:
 
 ## Configuration and live activation
 
-See `.env.example` and typed validation in `src/marketdata/config.py`.
-For the experimental guest source, use [the dedicated Compose override](docs/tradingview.md)
+See [`.env.example`](../.env.example) and typed validation in [`src/marketdata/config.py`](../src/marketdata/config.py).
+For the experimental guest source, use [the dedicated Compose override](tradingview.md)
 and `config/instruments.tradingview.json`; it rejects unverified/delayed delivery at runtime.
 
 - `MARKET_DATA_PROVIDER_CRYPTO`, `_FOREX`, `_METALS`, `_ENERGY`, `_FUTURES`: select `mock`,
@@ -267,35 +204,13 @@ storage requirements. Pool/query/write timeouts are bounded.
 
 ## APIs
 
-The experimental guest source defaults to **completed native 1-minute candle storage**.
-`0003` adds `market_candles`, `latest_candles` and durable `candle_coverage`; it preserves all
-raw history and tick continuous aggregates. Timescale upgrades create a seven-day-chunk candle
-hypertable; ordinary PostgreSQL remains supported. One bounded collection runs at each UTC
-minute boundary plus `CANDLE_FETCH_GRACE_SECONDS=2`, with immediate closed-minute recovery at
-startup. `TRADINGVIEW_STORAGE_MODE=ticks` explicitly restores the old diagnostic quote path.
-Other providers retain their existing ingestion behaviour.
-
-`/candles/{symbol}?provider=tradingview_guest` reads persisted native candles directly; use
-`basis=last` or `mid` explicitly for old tick-derived history. Native `1m`, `5m`, `15m`, `1h`
-and `1d` use stored 1m bars; larger intervals are SQL rollups with incomplete coverage marked
-`complete:false`. No 1-second native candles are offered. Latest guest prices expose
-`price_basis:candle_close`, interval, bucket bounds, close as `last`, age and staleness.
-Guest WebSocket updates have `type:candle`, native OHLC and `persisted:true` after commit.
-A one-minute sampled price is never presented as OHLC.
-
-See [candle operations and recovery](docs/tradingview.md#native-one-minute-candle-storage)
-and the [17-instrument verification matrix and measured reduction](docs/native-candle-verification.md).
-Run the opt-in live multi-minute check with:
-
-```powershell
-uv run python scripts/smoke_tradingview_candles.py --minutes 3 --output artifacts/native-candle-smoke.json
-```
-
-Missing minutes remain explicit. Source-session metadata supports conservative tri-state
-classification; unsupported or exceptional calendars remain UNKNOWN. No fabricated bars.
-Bounded native historical recovery defaults to 300 minutes. Existing tick
-inspection, verified derived exports and optional guarded deletion are documented separately;
-normal startup/migrations never delete raw data.
+The experimental guest source uses persisted native completed 1m candles by default;
+other providers use the tick pipeline. Native candle storage, larger-interval rollups,
+coverage, recovery, schema revisions 0003/0004 and opt-in verification commands are maintained
+in [TradingView operations](tradingview.md#native-one-minute-candle-storage).
+`/candles/{symbol}?provider=tradingview_guest` reads native candles; explicitly choose
+`basis=last` or `mid` for tick-derived history. Native WebSocket messages have `type:candle`
+and `persisted:true` after commit; tick messages have `type:tick` and `persisted:false`.
 
 | Endpoint | Behaviour |
 |---|---|
@@ -309,7 +224,7 @@ normal startup/migrations never delete raw data.
 | `/ticks/{symbol}?start=...&end=...&limit=100&cursor=...` | History with `next_cursor` |
 | `/candles/{symbol}?provider=mock&interval=1m&basis=last` | Candles with `next_start` |
 | `/futures/{exchange}/{root}/front` or `/next` | Concrete resolution; optional aware `at` |
-| WebSocket `/ws/prices` | Canonical subscribe/unsubscribe; normalized ticks |
+| WebSocket `/ws/prices` | Canonical subscribe/unsubscribe; normalized ticks or committed native candles |
 
 All table endpoints are GET. History ranges are `[start,end)`, default one hour. Tick windows
 cap at one day; candle windows cap at 31 days (one day without aggregates). Limits: 1..1000.
@@ -358,7 +273,7 @@ uv run pytest -q
 ```
 
 The smoke utility expects a running default mock app at localhost:8000. CI is configured
-for both migration modes and downgrade/re-upgrade. It has not been run remotely.
+for both migration modes and downgrade/re-upgrade. The root workflow runs these checks for both modes; see [GitHub Actions](https://github.com/Alpha-lacrim/tradingview-marketdata/actions) for current results.
 
 ```powershell
 uv run python -m marketdata.benchmark --seconds 10 --rate 5000 --instruments 300 --output artifacts/benchmark.json
@@ -387,33 +302,3 @@ definitions, choose product-specific rolls/calendars, measure longer load/outage
 and configure backup/retention and deployment access controls. Durable backfill/replay,
 crash-safe spooling, dynamic upstream subscriptions, per-user downstream entitlements and
 multi-process fan-out remain outside this version.
-
-### Native candle reliability
-
-The experimental guest collector uses one UTC-minute cycle plus two seconds of start grace,
-a three-minute correction overlap and a 300-minute bounded recovery horizon. Bounded outstanding
-chart requests (configurable upper bound, default two) share one socket. An independent receiver
-routes replies while the bounded dispatcher sends/cleans up sessions. Individual timeouts reduce
-the next-cycle window; a cycle overrun is counted and recovered without overlapping collectors.
-Migration 0004 adds session-aware tri-state coverage and an
-atomic correction audit; it preserves all native candles and historical raw ticks. EXPECTED
-gaps and UNKNOWN coverage keep health degraded; supported closures do not create false gaps.
-Larger native timeframes query corrected 1m rows directly. See [guest operations](docs/tradingview.md)
-for timestamp/latency semantics, outage recovery, Prometheus labels, read-only soak commands
-and historical reconciliation. No multi-hour reliability claim is made without an executed soak.
-
-See [retrieval scalability](docs/candle-retrieval-scalability.md) for the live/synthetic benchmark
-matrix and capacity limits. New opt-in [live end-to-end experiments](docs/candle-live-end-to-end.md)
-test guest multi-WebSocket retrieval through actual isolated PostgreSQL commits at staged
-128/256/512 targets, preserving failures and stages never reached.
-The [configurable connection pool](docs/candle-connection-pool.md) preserves one collection
-scheduler and independent bounded workers. Explicit experimental workers allow the operator's
-bounded investigation; numerical upstream allowances remain unverified. The application uses
-the single-socket 17-instrument default. The offline
-benchmark accepts arbitrary bounded counts, pool sizes, partition sizes and request budgets,
-including beyond 100, without modifying the production registry. To verify the normal collector's
-WebSocket/DB/REST path without additional upstream requests:
-
-```powershell
-uv run python scripts/smoke_tradingview_candles.py --stored-only --minutes 3 --output artifacts/stored-candle-smoke.json
-```
