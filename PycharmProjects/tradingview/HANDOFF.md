@@ -22,13 +22,17 @@ expected,11 absent XAUT minutes, all coverage invariants hold. Production is col
 
 Git root C:/Users/Pouyan, main. Retrieval baseline commit 34dfa53a (hardening 5fdfe972).
 Private GitHub review repository created: https://github.com/Alpha-lacrim/tradingview-marketdata.
-Source publication is pending the reviewed commit/push. Existing four commits and nested
+Published `main` tracks `origin/main`; remote visibility, branch SHA and all 86 file paths
+were verified against the local commit. Existing four commits and nested
 PycharmProjects/tradingview layout are retained. Root README/CI expose the project entry point;
 root ignore rules prevent unrelated home-directory files from being staged. Scope source
 commands to this project. BATCHES_V1.md remains local and unchanged; credentials, database
 history/volumes, dumps, logs/caches and raw artifacts/research are excluded. Sanitized fixtures
-and benchmark summaries are included. Gitleaks 8.30.1 checked all four historical commits and
-the publication snapshot with no leaks; DSNs contain only development defaults/env placeholders.
+and benchmark summaries are included. Gitleaks 8.30.1 checked the full implementation history
+and publication snapshot with no leaks; DSNs contain only development defaults/env placeholders.
+Publication reran 233 Timescale tests and 230 plain PostgreSQL tests (three expected skips),
+Ruff/format/mypy successfully. GitHub Actions was started on push; inspect its run for remote
+results. No transport, instrument or database redesign was performed for publication.
 
 ## Current live capacity result
 

@@ -68,7 +68,7 @@ uv run uvicorn marketdata.api:create_app --factory --workers 1 --ws-max-size 163
 
 Run either the native app or the container app on port 8000. Databento's official SDK is
 optional; omit its extra for mock/Binance/OANDA. Application startup requires schema revision
-`0003` and never creates tables. `.env.example` contains safe local development defaults.
+`0004` and never creates tables. `.env.example` contains safe local development defaults.
 
 ## Architecture and reliability
 
