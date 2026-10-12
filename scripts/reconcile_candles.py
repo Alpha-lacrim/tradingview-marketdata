@@ -24,11 +24,13 @@ async def reconcile(store: Store, start: datetime, end: datetime) -> list[dict[s
     ):
         raise ValueError("require aligned completed [start,end) range <=31 days")
     async with store.connection() as c:
-        mappings = await c.fetch("""SELECT i.id,i.canonical_symbol,c.provider,c.session_info
+        mappings = await c.fetch("""SELECT i.id,i.canonical_symbol,c.provider,c.session_info,
+            c.coverage_start
             FROM candle_coverage c JOIN instruments i ON i.id=c.instrument_id
             WHERE c.price_basis='native' ORDER BY i.canonical_symbol,c.provider""")
         summaries = []
         for row in mappings:
+            beginning = min(end, max(start, row["coverage_start"]))
             bars = await c.fetch(
                 """SELECT bucket_start,
                     coalesce((metadata->>'backfilled')::boolean,false) AS backfilled
@@ -36,7 +38,7 @@ async def reconcile(store: Store, start: datetime, end: datetime) -> list[dict[s
                 AND price_basis='native' AND bucket_start >= $3 AND bucket_start < $4""",
                 row["id"],
                 row["provider"],
-                start,
+                beginning,
                 end,
             )
             corrected = await c.fetchval(
@@ -46,14 +48,14 @@ async def reconcile(store: Store, start: datetime, end: datetime) -> list[dict[s
                     AND bucket_start >= $3 AND bucket_start < $4""",
                 row["id"],
                 row["provider"],
-                start,
+                beginning,
                 end,
             )
             supplied = {r["bucket_start"] for r in bars}
             info = json.loads(row["session_info"])
             counts = {s.value: 0 for s in Expectation}
             missing = []
-            bucket = start
+            bucket = beginning
             while bucket < end:
                 state = Expectation.EXPECTED if bucket in supplied else expectation(info, bucket)
                 counts[state.value] += 1
@@ -65,6 +67,8 @@ async def reconcile(store: Store, start: datetime, end: datetime) -> list[dict[s
                     symbol=row["canonical_symbol"],
                     provider=row["provider"],
                     completed_wall_clock_minutes=int((end - start).total_seconds() // 60),
+                    coverage_start=row["coverage_start"].isoformat(),
+                    evaluated_minutes=int((end - beginning).total_seconds() // 60),
                     **counts,
                     persisted_native_candles=len(bars),
                     missing_expected_minutes=len(missing),

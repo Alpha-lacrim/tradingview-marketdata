@@ -302,3 +302,11 @@ definitions, choose product-specific rolls/calendars, measure longer load/outage
 and configure backup/retention and deployment access controls. Durable backfill/replay,
 crash-safe spooling, dynamic upstream subscriptions, per-user downstream entitlements and
 multi-process fan-out remain outside this version.
+
+## Ordinary expanded candle pilot
+
+Instrument count comes from the selected registry. The validated
+`TRADINGVIEW_CANDLE_POOL_ENABLED` opt-in uses the existing connection pool in the ordinary
+collector. See [34-instrument activation, identity protection and rollback](production-instrument-expansion.md)
+and [native availability, recovery and diagnostics](native-availability-investigation.md).
+The original 17 registry remains unchanged; stopping subscriptions never deletes stored history.

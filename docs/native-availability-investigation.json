@@ -1,0 +1,1940 @@
+{
+  "classification": "Observed native response/commit shortfalls; upstream cause unverified",
+  "production_writes": false,
+  "stages": [
+    {
+      "count": 128,
+      "expected": 768,
+      "successful_requests": 621,
+      "failed_requests": 147,
+      "available_native_current": 602,
+      "immediate_committed": 602,
+      "eventual_committed": 743,
+      "recovered_after_current_cycle": 141,
+      "unresolved": 25,
+      "baseline": {
+        "expected": 384,
+        "successful_requests": 384,
+        "available_native_current": 373,
+        "committed_current": 373
+      },
+      "common_cohort": {
+        "sources": 128,
+        "expected": 768,
+        "eventual_committed": 743
+      },
+      "missing_by_venue": {
+        "BINANCE": 16,
+        "OKX": 9
+      },
+      "sources_missing_all_planned_minutes": [
+        "BINANCE:XUSDUSDT"
+      ],
+      "cycles": [
+        {
+          "phase": "baseline",
+          "bucket_start": "2026-10-12T10:47:00+00:00",
+          "successful_requests": 128,
+          "failed_requests": 0,
+          "available_native_current": 125,
+          "committed_current": 125,
+          "eventual_current": 125,
+          "successful_responses_without_target": [
+            "BINANCE:RLUSDUSDT",
+            "BINANCE:XUSDUSDT",
+            "OKX:CFXUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T10:48:18.026370+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 18.02637
+        },
+        {
+          "phase": "baseline",
+          "bucket_start": "2026-10-12T10:48:00+00:00",
+          "successful_requests": 128,
+          "failed_requests": 0,
+          "available_native_current": 124,
+          "committed_current": 124,
+          "eventual_current": 124,
+          "successful_responses_without_target": [
+            "BINANCE:RLUSDUSDT",
+            "BINANCE:SKHYBUSDT",
+            "BINANCE:XUSDUSDT",
+            "OKX:USDGUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T10:49:18.369653+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 18.369653
+        },
+        {
+          "phase": "baseline",
+          "bucket_start": "2026-10-12T10:49:00+00:00",
+          "successful_requests": 128,
+          "failed_requests": 0,
+          "available_native_current": 124,
+          "committed_current": 124,
+          "eventual_current": 124,
+          "successful_responses_without_target": [
+            "BINANCE:RLUSDUSDT",
+            "BINANCE:SKHYBUSDT",
+            "BINANCE:XUSDUSDT",
+            "OKX:BCHUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T10:50:18.996365+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 18.996365
+        },
+        {
+          "phase": "fault",
+          "bucket_start": "2026-10-12T10:50:00+00:00",
+          "successful_requests": 109,
+          "failed_requests": 19,
+          "available_native_current": 104,
+          "committed_current": 104,
+          "eventual_current": 123,
+          "successful_responses_without_target": [
+            "BINANCE:RLUSDUSDT",
+            "BINANCE:SKHYBUSDT",
+            "BINANCE:XUSDUSDT",
+            "OKX:USDGUSDT",
+            "OKX:XAUTUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T10:51:19.744435+00:00",
+          "db_failures": 1,
+          "close_to_commit_seconds": 19.744435
+        },
+        {
+          "phase": "recovery",
+          "bucket_start": "2026-10-12T10:51:00+00:00",
+          "successful_requests": 0,
+          "failed_requests": 128,
+          "available_native_current": 0,
+          "committed_current": 0,
+          "eventual_current": 122,
+          "successful_responses_without_target": [],
+          "db_commit_acknowledged_at": "2026-10-12T10:52:14.654348+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 14.654348
+        },
+        {
+          "phase": "recovery",
+          "bucket_start": "2026-10-12T10:52:00+00:00",
+          "successful_requests": 128,
+          "failed_requests": 0,
+          "available_native_current": 125,
+          "committed_current": 125,
+          "eventual_current": 125,
+          "successful_responses_without_target": [
+            "BINANCE:XUSDUSDT",
+            "OKX:USDGUSDT",
+            "OKX:XAUTUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T10:53:19.208303+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 19.208303
+        }
+      ]
+    },
+    {
+      "count": 256,
+      "expected": 1536,
+      "successful_requests": 1497,
+      "failed_requests": 39,
+      "available_native_current": 1386,
+      "immediate_committed": 1386,
+      "eventual_committed": 1419,
+      "recovered_after_current_cycle": 33,
+      "unresolved": 117,
+      "baseline": {
+        "expected": 768,
+        "successful_requests": 768,
+        "available_native_current": 709,
+        "committed_current": 709
+      },
+      "common_cohort": {
+        "sources": 128,
+        "expected": 768,
+        "eventual_committed": 745
+      },
+      "missing_by_venue": {
+        "OKX": 41,
+        "BINANCE": 76
+      },
+      "sources_missing_all_planned_minutes": [
+        "BINANCE:LITEBUSDT",
+        "BINANCE:XUSDUSDT"
+      ],
+      "cycles": [
+        {
+          "phase": "baseline",
+          "bucket_start": "2026-10-12T10:53:00+00:00",
+          "successful_requests": 256,
+          "failed_requests": 0,
+          "available_native_current": 225,
+          "committed_current": 225,
+          "eventual_current": 225,
+          "successful_responses_without_target": [
+            "BINANCE:AXSUSDT",
+            "BINANCE:BNCBUSDT",
+            "BINANCE:INTCBUSDT",
+            "BINANCE:JUPUSDT",
+            "BINANCE:KAIAUSDT",
+            "BINANCE:LAUSDT",
+            "BINANCE:LITEBUSDT",
+            "BINANCE:METISUSDT",
+            "BINANCE:PROMUSDT",
+            "BINANCE:QQQBUSDT",
+            "BINANCE:RLUSDUSDT",
+            "BINANCE:RONINUSDT",
+            "BINANCE:RUNEUSDT",
+            "BINANCE:SNXUSDT",
+            "BINANCE:SNXXBUSDT",
+            "BINANCE:SOXLBUSDT",
+            "BINANCE:SOXSBUSDT",
+            "BINANCE:WBETHUSDT",
+            "BINANCE:WLFIUSDT",
+            "BINANCE:XAUTUSDT",
+            "BINANCE:XUSDUSDT",
+            "OKX:CCUSDT",
+            "OKX:ICPUSDT",
+            "OKX:JUPUSDT",
+            "OKX:METUSDT",
+            "OKX:PENGUUSDT",
+            "OKX:RLUSDUSDT",
+            "OKX:XAUTUSDT",
+            "OKX:XCRCLUSDT",
+            "OKX:XSOXLUSDT",
+            "OKX:ZKUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T10:54:22.227536+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 22.227536
+        },
+        {
+          "phase": "baseline",
+          "bucket_start": "2026-10-12T10:54:00+00:00",
+          "successful_requests": 256,
+          "failed_requests": 0,
+          "available_native_current": 236,
+          "committed_current": 236,
+          "eventual_current": 236,
+          "successful_responses_without_target": [
+            "BINANCE:CFGUSDT",
+            "BINANCE:DODOUSDT",
+            "BINANCE:LITEBUSDT",
+            "BINANCE:MUBUSDT",
+            "BINANCE:QQQBUSDT",
+            "BINANCE:SKHYBUSDT",
+            "BINANCE:SOXLBUSDT",
+            "BINANCE:SOXSBUSDT",
+            "BINANCE:WBETHUSDT",
+            "BINANCE:WLFIUSDT",
+            "BINANCE:XUSDUSDT",
+            "OKX:APTUSDT",
+            "OKX:CRVUSDT",
+            "OKX:JUPUSDT",
+            "OKX:METUSDT",
+            "OKX:MONUSDT",
+            "OKX:OPUSDT",
+            "OKX:PENGUUSDT",
+            "OKX:RLUSDUSDT",
+            "OKX:XAUTUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T10:55:23.198149+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 23.198149
+        },
+        {
+          "phase": "baseline",
+          "bucket_start": "2026-10-12T10:55:00+00:00",
+          "successful_requests": 256,
+          "failed_requests": 0,
+          "available_native_current": 248,
+          "committed_current": 248,
+          "eventual_current": 248,
+          "successful_responses_without_target": [
+            "BINANCE:LITEBUSDT",
+            "BINANCE:QQQBUSDT",
+            "BINANCE:RONINUSDT",
+            "BINANCE:SOXSBUSDT",
+            "BINANCE:XAUTUSDT",
+            "BINANCE:XUSDUSDT",
+            "OKX:RLUSDUSDT",
+            "OKX:XAUTUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T10:56:23.420647+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 23.420647
+        },
+        {
+          "phase": "fault",
+          "bucket_start": "2026-10-12T10:56:00+00:00",
+          "successful_requests": 217,
+          "failed_requests": 39,
+          "available_native_current": 205,
+          "committed_current": 205,
+          "eventual_current": 238,
+          "successful_responses_without_target": [
+            "BINANCE:LAUSDT",
+            "BINANCE:NEOUSDT",
+            "BINANCE:PROMUSDT",
+            "BINANCE:RUNEUSDT",
+            "BINANCE:SKHYBUSDT",
+            "BINANCE:SNXXBUSDT",
+            "BINANCE:SOXSBUSDT",
+            "BINANCE:SPCXBUSDT",
+            "BINANCE:WBETHUSDT",
+            "BINANCE:WLFIUSDT",
+            "BINANCE:XUSDUSDT",
+            "OKX:XAUTUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T10:57:21.445015+00:00",
+          "db_failures": 1,
+          "close_to_commit_seconds": 21.445015
+        },
+        {
+          "phase": "recovery",
+          "bucket_start": "2026-10-12T10:57:00+00:00",
+          "successful_requests": 256,
+          "failed_requests": 0,
+          "available_native_current": 236,
+          "committed_current": 236,
+          "eventual_current": 236,
+          "successful_responses_without_target": [
+            "BINANCE:LITEBUSDT",
+            "BINANCE:MSTRBUSDT",
+            "BINANCE:RUNEUSDT",
+            "BINANCE:SKLUSDT",
+            "BINANCE:SNXUSDT",
+            "BINANCE:SOXSBUSDT",
+            "BINANCE:SPKUSDT",
+            "BINANCE:TRUMPUSDT",
+            "BINANCE:WBETHUSDT",
+            "BINANCE:WBTCUSDT",
+            "BINANCE:XUSDUSDT",
+            "OKX:BCHUSDT",
+            "OKX:ETHFIUSDT",
+            "OKX:JUPUSDT",
+            "OKX:METUSDT",
+            "OKX:MINAUSDT",
+            "OKX:RLUSDUSDT",
+            "OKX:XAUTUSDT",
+            "OKX:XCRCLUSDT",
+            "OKX:XDPUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T10:58:49.276124+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 49.276124
+        },
+        {
+          "phase": "recovery",
+          "bucket_start": "2026-10-12T10:58:00+00:00",
+          "successful_requests": 256,
+          "failed_requests": 0,
+          "available_native_current": 236,
+          "committed_current": 236,
+          "eventual_current": 236,
+          "successful_responses_without_target": [
+            "BINANCE:KAIAUSDT",
+            "BINANCE:LITEBUSDT",
+            "BINANCE:NEOUSDT",
+            "BINANCE:PENDLEUSDT",
+            "BINANCE:QQQBUSDT",
+            "BINANCE:RLUSDUSDT",
+            "BINANCE:RUNEUSDT",
+            "BINANCE:SPKUSDT",
+            "BINANCE:WBETHUSDT",
+            "BINANCE:WBTCUSDT",
+            "BINANCE:WLFIUSDT",
+            "BINANCE:XUSDUSDT",
+            "OKX:CRVUSDT",
+            "OKX:HBARUSDT",
+            "OKX:MINAUSDT",
+            "OKX:PEPEUSDT",
+            "OKX:RLUSDUSDT",
+            "OKX:TRXUSDT",
+            "OKX:XCRCLUSDT",
+            "OKX:XSOXLUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T10:59:23.036628+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 23.036628
+        }
+      ]
+    },
+    {
+      "count": 512,
+      "expected": 3072,
+      "successful_requests": 2988,
+      "failed_requests": 84,
+      "available_native_current": 2588,
+      "immediate_committed": 2588,
+      "eventual_committed": 2663,
+      "recovered_after_current_cycle": 75,
+      "unresolved": 409,
+      "baseline": {
+        "expected": 1536,
+        "successful_requests": 1536,
+        "available_native_current": 1271,
+        "committed_current": 1271
+      },
+      "common_cohort": {
+        "sources": 128,
+        "expected": 768,
+        "eventual_committed": 748
+      },
+      "missing_by_venue": {
+        "BINANCE": 264,
+        "OKX": 145
+      },
+      "sources_missing_all_planned_minutes": [
+        "BINANCE:XUSDUSDT",
+        "BINANCE:ZRXUSDT",
+        "OKX:XMETAUSDT"
+      ],
+      "cycles": [
+        {
+          "phase": "baseline",
+          "bucket_start": "2026-10-12T10:59:00+00:00",
+          "successful_requests": 512,
+          "failed_requests": 0,
+          "available_native_current": 378,
+          "committed_current": 378,
+          "eventual_current": 378,
+          "successful_responses_without_target": [
+            "BINANCE:1MBABYDOGEUSDT",
+            "BINANCE:AAPLBUSDT",
+            "BINANCE:ACHUSDT",
+            "BINANCE:ACTUSDT",
+            "BINANCE:ADXUSDT",
+            "BINANCE:AEVOUSDT",
+            "BINANCE:AIGENSYNUSDT",
+            "BINANCE:AIXBTUSDT",
+            "BINANCE:ALLOUSDT",
+            "BINANCE:AMDBUSDT",
+            "BINANCE:AMZNBUSDT",
+            "BINANCE:AUCTIONUSDT",
+            "BINANCE:AUSDT",
+            "BINANCE:BANDUSDT",
+            "BINANCE:BMNRBUSDT",
+            "BINANCE:CFGUSDT",
+            "BINANCE:COINBUSDT",
+            "BINANCE:CRCLBUSDT",
+            "BINANCE:CVCUSDT",
+            "BINANCE:CVXUSDT",
+            "BINANCE:CYPHBUSDT",
+            "BINANCE:EDENUSDT",
+            "BINANCE:ENSOUSDT",
+            "BINANCE:ENSUSDT",
+            "BINANCE:EULUSDT",
+            "BINANCE:FORMUSDT",
+            "BINANCE:GALAUSDT",
+            "BINANCE:GASUSDT",
+            "BINANCE:GENIUSUSDT",
+            "BINANCE:GOOGLBUSDT",
+            "BINANCE:GRTUSDT",
+            "BINANCE:HEIUSDT",
+            "BINANCE:HOMEUSDT",
+            "BINANCE:IOTAUSDT",
+            "BINANCE:IRENBUSDT",
+            "BINANCE:KAVAUSDT",
+            "BINANCE:LAYERUSDT",
+            "BINANCE:LAZIOUSDT",
+            "BINANCE:LITEBUSDT",
+            "BINANCE:MANTRAUSDT",
+            "BINANCE:MASKUSDT",
+            "BINANCE:MRVLBUSDT",
+            "BINANCE:MUUBUSDT",
+            "BINANCE:NOMUSDT",
+            "BINANCE:OGUSDT",
+            "BINANCE:OPENUSDT",
+            "BINANCE:OPNUSDT",
+            "BINANCE:PEOPLEUSDT",
+            "BINANCE:PROMUSDT",
+            "BINANCE:PROVEUSDT",
+            "BINANCE:QIUSDT",
+            "BINANCE:QQQBUSDT",
+            "BINANCE:QTUMUSDT",
+            "BINANCE:RADUSDT",
+            "BINANCE:REUSDT",
+            "BINANCE:RLUSDUSDT",
+            "BINANCE:ROBOUSDT",
+            "BINANCE:SKHYBUSDT",
+            "BINANCE:SOLVUSDT",
+            "BINANCE:SOMIUSDT",
+            "BINANCE:SOXSBUSDT",
+            "BINANCE:SPKUSDT",
+            "BINANCE:SPYBUSDT",
+            "BINANCE:SSVUSDT",
+            "BINANCE:STRAXUSDT",
+            "BINANCE:SUNUSDT",
+            "BINANCE:TNSRUSDT",
+            "BINANCE:TRBUSDT",
+            "BINANCE:TREEUSDT",
+            "BINANCE:TUSDT",
+            "BINANCE:VANAUSDT",
+            "BINANCE:VTHOUSDT",
+            "BINANCE:WBETHUSDT",
+            "BINANCE:WBTCUSDT",
+            "BINANCE:WCTUSDT",
+            "BINANCE:WLFIUSDT",
+            "BINANCE:XAIUSDT",
+            "BINANCE:XAUTUSDT",
+            "BINANCE:XTZUSDT",
+            "BINANCE:XUSDUSDT",
+            "BINANCE:YGGUSDT",
+            "BINANCE:ZBTUSDT",
+            "BINANCE:ZILUSDT",
+            "BINANCE:ZKCUSDT",
+            "BINANCE:ZRXUSDT",
+            "OKX:API3USDT",
+            "OKX:ARUSDT",
+            "OKX:ASTERUSDT",
+            "OKX:ATOMUSDT",
+            "OKX:AVAXUSDT",
+            "OKX:BASEDUSDT",
+            "OKX:BCHUSDT",
+            "OKX:CFGUSDT",
+            "OKX:COMPUSDT",
+            "OKX:COREUSDT",
+            "OKX:DASHUSDT",
+            "OKX:EDGEUSDT",
+            "OKX:ENSUSDT",
+            "OKX:ETCUSDT",
+            "OKX:GRVTUSDT",
+            "OKX:HBARUSDT",
+            "OKX:IOTAUSDT",
+            "OKX:LDOUSDT",
+            "OKX:METISUSDT",
+            "OKX:MORPHOUSDT",
+            "OKX:NEOUSDT",
+            "OKX:OKSOLUSDT",
+            "OKX:ONEUSDT",
+            "OKX:ORDIUSDT",
+            "OKX:PAXGUSDT",
+            "OKX:PENGUUSDT",
+            "OKX:PROSUSDT",
+            "OKX:RLUSDUSDT",
+            "OKX:SKYUSDT",
+            "OKX:TRBUSDT",
+            "OKX:TRUMPUSDT",
+            "OKX:USDGUSDT",
+            "OKX:VIRTUALUSDT",
+            "OKX:WLFIUSDT",
+            "OKX:XCOINUSDT",
+            "OKX:XCRCLUSDT",
+            "OKX:XDPUSDT",
+            "OKX:XGOOGLUSDT",
+            "OKX:XINTCUSDT",
+            "OKX:XIRENUSDT",
+            "OKX:XKORUUSDT",
+            "OKX:XMETAUSDT",
+            "OKX:XMUUSDT",
+            "OKX:XNBISUSDT",
+            "OKX:XNVDAUSDT",
+            "OKX:XSNXXUSDT",
+            "OKX:XSOXLUSDT",
+            "OKX:XSPCXUSDT",
+            "OKX:XTZUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T11:00:31.768145+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 31.768145
+        },
+        {
+          "phase": "baseline",
+          "bucket_start": "2026-10-12T11:00:00+00:00",
+          "successful_requests": 512,
+          "failed_requests": 0,
+          "available_native_current": 426,
+          "committed_current": 426,
+          "eventual_current": 426,
+          "successful_responses_without_target": [
+            "BINANCE:ACHUSDT",
+            "BINANCE:AEVOUSDT",
+            "BINANCE:ALICEUSDT",
+            "BINANCE:ARKMUSDT",
+            "BINANCE:AUCTIONUSDT",
+            "BINANCE:AUSDT",
+            "BINANCE:AVGOBUSDT",
+            "BINANCE:AXSUSDT",
+            "BINANCE:BANDUSDT",
+            "BINANCE:BIOUSDT",
+            "BINANCE:COTIUSDT",
+            "BINANCE:CYPHBUSDT",
+            "BINANCE:DOGSUSDT",
+            "BINANCE:EDENUSDT",
+            "BINANCE:EGLDUSDT",
+            "BINANCE:FORMUSDT",
+            "BINANCE:GASUSDT",
+            "BINANCE:GOOGLBUSDT",
+            "BINANCE:GUSDT",
+            "BINANCE:HMSTRUSDT",
+            "BINANCE:HOMEUSDT",
+            "BINANCE:IOSTUSDT",
+            "BINANCE:IOTAUSDT",
+            "BINANCE:KMNOUSDT",
+            "BINANCE:KSMUSDT",
+            "BINANCE:LAZIOUSDT",
+            "BINANCE:LSKUSDT",
+            "BINANCE:MANTRAUSDT",
+            "BINANCE:MASKUSDT",
+            "BINANCE:MIRAUSDT",
+            "BINANCE:OGUSDT",
+            "BINANCE:ONTUSDT",
+            "BINANCE:OPENUSDT",
+            "BINANCE:OPNUSDT",
+            "BINANCE:PARTIUSDT",
+            "BINANCE:PNUTUSDT",
+            "BINANCE:QQQBUSDT",
+            "BINANCE:QTUMUSDT",
+            "BINANCE:RLUSDUSDT",
+            "BINANCE:ROBOUSDT",
+            "BINANCE:RONINUSDT",
+            "BINANCE:SOLVUSDT",
+            "BINANCE:SPKUSDT",
+            "BINANCE:STRAXUSDT",
+            "BINANCE:SUNUSDT",
+            "BINANCE:TREEUSDT",
+            "BINANCE:TURBOUSDT",
+            "BINANCE:TUSDT",
+            "BINANCE:TWTUSDT",
+            "BINANCE:UMAUSDT",
+            "BINANCE:USDEBUSDT",
+            "BINANCE:VANAUSDT",
+            "BINANCE:WBETHUSDT",
+            "BINANCE:XAIUSDT",
+            "BINANCE:XECUSDT",
+            "BINANCE:XUSDUSDT",
+            "BINANCE:ZKCUSDT",
+            "BINANCE:ZRXUSDT",
+            "OKX:ALLOUSDT",
+            "OKX:API3USDT",
+            "OKX:ATOMUSDT",
+            "OKX:BETHUSDT",
+            "OKX:COMPUSDT",
+            "OKX:CROUSDT",
+            "OKX:DASHUSDT",
+            "OKX:ETCUSDT",
+            "OKX:IOTAUSDT",
+            "OKX:KITEUSDT",
+            "OKX:NEOUSDT",
+            "OKX:NMRUSDT",
+            "OKX:OKSOLUSDT",
+            "OKX:ONEUSDT",
+            "OKX:PROSUSDT",
+            "OKX:RLUSDUSDT",
+            "OKX:STXUSDT",
+            "OKX:TRBUSDT",
+            "OKX:USDGUSDT",
+            "OKX:WLFIUSDT",
+            "OKX:XDPUSDT",
+            "OKX:XGOOGLUSDT",
+            "OKX:XMETAUSDT",
+            "OKX:XSKHYUSDT",
+            "OKX:XSNXXUSDT",
+            "OKX:XXIAOMIUSDT",
+            "OKX:ZBCNUSDT",
+            "OKX:ZENUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T11:01:44.234115+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 44.234115
+        },
+        {
+          "phase": "baseline",
+          "bucket_start": "2026-10-12T11:01:00+00:00",
+          "successful_requests": 512,
+          "failed_requests": 0,
+          "available_native_current": 467,
+          "committed_current": 467,
+          "eventual_current": 467,
+          "successful_responses_without_target": [
+            "BINANCE:1MBABYDOGEUSDT",
+            "BINANCE:ACHUSDT",
+            "BINANCE:ALICEUSDT",
+            "BINANCE:BABABUSDT",
+            "BINANCE:BANKUSDT",
+            "BINANCE:CTSIUSDT",
+            "BINANCE:DOGSUSDT",
+            "BINANCE:GASUSDT",
+            "BINANCE:GENIUSUSDT",
+            "BINANCE:GOOGLBUSDT",
+            "BINANCE:HMSTRUSDT",
+            "BINANCE:IOSTUSDT",
+            "BINANCE:LAYERUSDT",
+            "BINANCE:SOLVUSDT",
+            "BINANCE:STRAXUSDT",
+            "BINANCE:SUNUSDT",
+            "BINANCE:TREEUSDT",
+            "BINANCE:TSTUSDT",
+            "BINANCE:TWTUSDT",
+            "BINANCE:UMAUSDT",
+            "BINANCE:USDEBUSDT",
+            "BINANCE:VTHOUSDT",
+            "BINANCE:WBETHUSDT",
+            "BINANCE:WLFIUSDT",
+            "BINANCE:XUSDUSDT",
+            "BINANCE:ZKCUSDT",
+            "BINANCE:ZRXUSDT",
+            "OKX:ALLOUSDT",
+            "OKX:API3USDT",
+            "OKX:BETHUSDT",
+            "OKX:CARDSUSDT",
+            "OKX:ENSUSDT",
+            "OKX:KITEUSDT",
+            "OKX:LINEAUSDT",
+            "OKX:NMRUSDT",
+            "OKX:PROSUSDT",
+            "OKX:TRBUSDT",
+            "OKX:USDGUSDT",
+            "OKX:XGOOGLUSDT",
+            "OKX:XMETAUSDT",
+            "OKX:XNBISUSDT",
+            "OKX:XNVDAUSDT",
+            "OKX:XSKHYUSDT",
+            "OKX:ZBCNUSDT",
+            "OKX:ZENUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T11:02:46.403189+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 46.403189
+        },
+        {
+          "phase": "fault",
+          "bucket_start": "2026-10-12T11:02:00+00:00",
+          "successful_requests": 428,
+          "failed_requests": 84,
+          "available_native_current": 397,
+          "committed_current": 397,
+          "eventual_current": 472,
+          "successful_responses_without_target": [
+            "BINANCE:1MBABYDOGEUSDT",
+            "BINANCE:ACHUSDT",
+            "BINANCE:AVGOBUSDT",
+            "BINANCE:BANDUSDT",
+            "BINANCE:CVCUSDT",
+            "BINANCE:GENIUSUSDT",
+            "BINANCE:HEMIUSDT",
+            "BINANCE:IOSTUSDT",
+            "BINANCE:JASMYUSDT",
+            "BINANCE:KAVAUSDT",
+            "BINANCE:LAYERUSDT",
+            "BINANCE:PROMUSDT",
+            "BINANCE:RLUSDUSDT",
+            "BINANCE:TNSRUSDT",
+            "BINANCE:TWTUSDT",
+            "BINANCE:USDEBUSDT",
+            "BINANCE:XUSDUSDT",
+            "BINANCE:ZKCUSDT",
+            "BINANCE:ZRXUSDT",
+            "OKX:BETHUSDT",
+            "OKX:CARDSUSDT",
+            "OKX:EDGEUSDT",
+            "OKX:GRVTUSDT",
+            "OKX:IOTAUSDT",
+            "OKX:PAXGUSDT",
+            "OKX:RVNUSDT",
+            "OKX:SENTUSDT",
+            "OKX:XKORUUSDT",
+            "OKX:XSNXXUSDT",
+            "OKX:XXIAOMIUSDT",
+            "OKX:ZBCNUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T11:03:46.997647+00:00",
+          "db_failures": 1,
+          "close_to_commit_seconds": 46.997647
+        },
+        {
+          "phase": "recovery",
+          "bucket_start": "2026-10-12T11:03:00+00:00",
+          "successful_requests": 512,
+          "failed_requests": 0,
+          "available_native_current": 474,
+          "committed_current": 474,
+          "eventual_current": 474,
+          "successful_responses_without_target": [
+            "BINANCE:1INCHUSDT",
+            "BINANCE:1MBABYDOGEUSDT",
+            "BINANCE:AAPLBUSDT",
+            "BINANCE:ARKUSDT",
+            "BINANCE:AVGOBUSDT",
+            "BINANCE:BABABUSDT",
+            "BINANCE:BANDUSDT",
+            "BINANCE:BANKUSDT",
+            "BINANCE:BNSOLUSDT",
+            "BINANCE:CYPHBUSDT",
+            "BINANCE:FRAXUSDT",
+            "BINANCE:IOTAUSDT",
+            "BINANCE:KAVAUSDT",
+            "BINANCE:MASKUSDT",
+            "BINANCE:MUUBUSDT",
+            "BINANCE:OGUSDT",
+            "BINANCE:PROMUSDT",
+            "BINANCE:QQQBUSDT",
+            "BINANCE:SECZBUSDT",
+            "BINANCE:SPYBUSDT",
+            "BINANCE:SSVUSDT",
+            "BINANCE:USDEBUSDT",
+            "BINANCE:WBETHUSDT",
+            "BINANCE:WLFIUSDT",
+            "BINANCE:XUSDUSDT",
+            "BINANCE:ZRXUSDT",
+            "OKX:CARDSUSDT",
+            "OKX:OKSOLUSDT",
+            "OKX:PAXGUSDT",
+            "OKX:PROSUSDT",
+            "OKX:USDGUSDT",
+            "OKX:XAUTUSDT",
+            "OKX:XMETAUSDT",
+            "OKX:XNBISUSDT",
+            "OKX:XSNDKUSDT",
+            "OKX:XSNXXUSDT",
+            "OKX:XXIAOMIUSDT",
+            "OKX:ZENUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T11:04:44.753877+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 44.753877
+        },
+        {
+          "phase": "recovery",
+          "bucket_start": "2026-10-12T11:04:00+00:00",
+          "successful_requests": 512,
+          "failed_requests": 0,
+          "available_native_current": 446,
+          "committed_current": 446,
+          "eventual_current": 446,
+          "successful_responses_without_target": [
+            "BINANCE:1INCHUSDT",
+            "BINANCE:AVGOBUSDT",
+            "BINANCE:BIOUSDT",
+            "BINANCE:BROCCOLI714USDT",
+            "BINANCE:CVCUSDT",
+            "BINANCE:CYPHBUSDT",
+            "BINANCE:DYDXUSDT",
+            "BINANCE:EULUSDT",
+            "BINANCE:GASUSDT",
+            "BINANCE:GENIUSUSDT",
+            "BINANCE:GUSDT",
+            "BINANCE:HEMIUSDT",
+            "BINANCE:HYPERUSDT",
+            "BINANCE:IOTAUSDT",
+            "BINANCE:KAVAUSDT",
+            "BINANCE:LAYERUSDT",
+            "BINANCE:LINEAUSDT",
+            "BINANCE:MASKUSDT",
+            "BINANCE:MUUBUSDT",
+            "BINANCE:OGUSDT",
+            "BINANCE:PROMUSDT",
+            "BINANCE:SECZBUSDT",
+            "BINANCE:SOXLBUSDT",
+            "BINANCE:SPYBUSDT",
+            "BINANCE:SUPERUSDT",
+            "BINANCE:TNSRUSDT",
+            "BINANCE:TREEUSDT",
+            "BINANCE:TSTUSDT",
+            "BINANCE:TURBOUSDT",
+            "BINANCE:TUSDT",
+            "BINANCE:TWTUSDT",
+            "BINANCE:UMAUSDT",
+            "BINANCE:USDEBUSDT",
+            "BINANCE:VANAUSDT",
+            "BINANCE:VTHOUSDT",
+            "BINANCE:WCTUSDT",
+            "BINANCE:XAIUSDT",
+            "BINANCE:XUSDUSDT",
+            "BINANCE:YGGUSDT",
+            "BINANCE:ZILUSDT",
+            "BINANCE:ZKCUSDT",
+            "BINANCE:ZRXUSDT",
+            "OKX:API3USDT",
+            "OKX:ATOMUSDT",
+            "OKX:BERAUSDT",
+            "OKX:BETHUSDT",
+            "OKX:BONKUSDT",
+            "OKX:ENSUSDT",
+            "OKX:FLOWUSDT",
+            "OKX:IOTAUSDT",
+            "OKX:LINEAUSDT",
+            "OKX:METISUSDT",
+            "OKX:OKSOLUSDT",
+            "OKX:ONEUSDT",
+            "OKX:PAXGUSDT",
+            "OKX:RLUSDUSDT",
+            "OKX:SHIBUSDT",
+            "OKX:SNXUSDT",
+            "OKX:XAUTUSDT",
+            "OKX:XMETAUSDT",
+            "OKX:XSKHYUSDT",
+            "OKX:XSNDKUSDT",
+            "OKX:XSNXXUSDT",
+            "OKX:XSOXLUSDT",
+            "OKX:XXIAOMIUSDT",
+            "OKX:ZAMAUSDT"
+          ],
+          "db_commit_acknowledged_at": "2026-10-12T11:05:41.537985+00:00",
+          "db_failures": 0,
+          "close_to_commit_seconds": 41.537985
+        }
+      ]
+    }
+  ],
+  "recurring_unresolved_sources": [
+    {
+      "source": "BINANCE:AXSUSDT",
+      "missing_by_stage": {
+        "256": 1,
+        "512": 1
+      }
+    },
+    {
+      "source": "BINANCE:CFGUSDT",
+      "missing_by_stage": {
+        "256": 1,
+        "512": 1
+      }
+    },
+    {
+      "source": "BINANCE:CRCLBUSDT",
+      "missing_by_stage": {
+        "128": 1,
+        "512": 1
+      }
+    },
+    {
+      "source": "BINANCE:KAIAUSDT",
+      "missing_by_stage": {
+        "128": 1,
+        "256": 2
+      }
+    },
+    {
+      "source": "BINANCE:LITEBUSDT",
+      "missing_by_stage": {
+        "256": 6,
+        "512": 1
+      }
+    },
+    {
+      "source": "BINANCE:PROMUSDT",
+      "missing_by_stage": {
+        "256": 2,
+        "512": 4
+      }
+    },
+    {
+      "source": "BINANCE:QQQBUSDT",
+      "missing_by_stage": {
+        "256": 4,
+        "512": 3
+      }
+    },
+    {
+      "source": "BINANCE:RLUSDUSDT",
+      "missing_by_stage": {
+        "128": 5,
+        "256": 2,
+        "512": 3
+      }
+    },
+    {
+      "source": "BINANCE:RONINUSDT",
+      "missing_by_stage": {
+        "256": 2,
+        "512": 1
+      }
+    },
+    {
+      "source": "BINANCE:SKHYBUSDT",
+      "missing_by_stage": {
+        "128": 3,
+        "256": 2,
+        "512": 1
+      }
+    },
+    {
+      "source": "BINANCE:SOXLBUSDT",
+      "missing_by_stage": {
+        "256": 2,
+        "512": 1
+      }
+    },
+    {
+      "source": "BINANCE:SOXSBUSDT",
+      "missing_by_stage": {
+        "256": 5,
+        "512": 1
+      }
+    },
+    {
+      "source": "BINANCE:SPKUSDT",
+      "missing_by_stage": {
+        "256": 3,
+        "512": 2
+      }
+    },
+    {
+      "source": "BINANCE:WBETHUSDT",
+      "missing_by_stage": {
+        "256": 5,
+        "512": 5
+      }
+    },
+    {
+      "source": "BINANCE:WBTCUSDT",
+      "missing_by_stage": {
+        "256": 3,
+        "512": 1
+      }
+    },
+    {
+      "source": "BINANCE:WLFIUSDT",
+      "missing_by_stage": {
+        "256": 4,
+        "512": 3
+      }
+    },
+    {
+      "source": "BINANCE:XAUTUSDT",
+      "missing_by_stage": {
+        "256": 2,
+        "512": 1
+      }
+    },
+    {
+      "source": "BINANCE:XUSDUSDT",
+      "missing_by_stage": {
+        "128": 6,
+        "256": 6,
+        "512": 6
+      }
+    },
+    {
+      "source": "OKX:BCHUSDT",
+      "missing_by_stage": {
+        "128": 1,
+        "256": 1,
+        "512": 1
+      }
+    },
+    {
+      "source": "OKX:HBARUSDT",
+      "missing_by_stage": {
+        "256": 1,
+        "512": 1
+      }
+    },
+    {
+      "source": "OKX:PENGUUSDT",
+      "missing_by_stage": {
+        "256": 2,
+        "512": 1
+      }
+    },
+    {
+      "source": "OKX:RLUSDUSDT",
+      "missing_by_stage": {
+        "256": 5,
+        "512": 3
+      }
+    },
+    {
+      "source": "OKX:USDGUSDT",
+      "missing_by_stage": {
+        "128": 4,
+        "512": 4
+      }
+    },
+    {
+      "source": "OKX:XAUTUSDT",
+      "missing_by_stage": {
+        "128": 3,
+        "256": 5,
+        "512": 2
+      }
+    },
+    {
+      "source": "OKX:XCRCLUSDT",
+      "missing_by_stage": {
+        "256": 3,
+        "512": 1
+      }
+    },
+    {
+      "source": "OKX:XDPUSDT",
+      "missing_by_stage": {
+        "256": 2,
+        "512": 2
+      }
+    },
+    {
+      "source": "OKX:XSOXLUSDT",
+      "missing_by_stage": {
+        "256": 3,
+        "512": 2
+      }
+    }
+  ],
+  "limitations": [
+    "Non-simultaneous stages use nested universes; count and time are confounded.",
+    "Historical raw frames/bounds were not retained; absent parsed targets do not prove permanent upstream omissions or no-trade minutes.",
+    "Recovered targets may reflect late availability or earlier retrieval/transport shortfalls; commit timing alone cannot distinguish these causes.",
+    "Venue/source-qualified identities remain separate; scanner discovery is not verification."
+  ],
+  "checkpoint_sha256": "4a75a37f349db9a6c9046d96c6fcb5973665c20b5ef5961575fa06fe17720ae6",
+  "atom_investigation": {
+    "source": "BINANCE:ATOMUSDT",
+    "instrument_id": "dbeaa19d-0890-5224-a58c-5744d3d0ce3d",
+    "target_bucket": "2026-10-12T12:14:00+00:00",
+    "conclusion": "Absent from both captured native chart history snapshots; not observed late or recovered. Permanent upstream absence/cause unverified.",
+    "initial_target_presence": "completed_candle_available_at=null at 12:15:09 UTC; no target timestamp seen before request completion",
+    "recovery_requests": "Ordinary requests repeatedly start at 12:14; activation remains 12:10. Target is inside the 300-minute recovery horizon.",
+    "probes": [
+      {
+        "started_at": "2026-10-12T12:49:25.339682+00:00",
+        "finished_at": "2026-10-12T12:49:29.079139+00:00",
+        "successful_requests": 1,
+        "raw_bar_count": 301,
+        "accepted_completed_candles": 298,
+        "requested_start": "2026-10-12T07:49:00+00:00",
+        "requested_end": "2026-10-12T12:49:00+00:00",
+        "requested_bars": 301,
+        "received_first_bucket": "2026-10-12T07:47:00+00:00",
+        "received_last_bucket": "2026-10-12T12:49:00+00:00",
+        "target_raw_present": false,
+        "target_parsed_present": false,
+        "production_commits": 0,
+        "source_semantics": {
+          "full_name": "BINANCE:ATOMUSDT",
+          "type": "spot",
+          "listed_exchange": "BINANCE",
+          "currency_code": "USDT",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "has_intraday": true,
+          "session": "24x7",
+          "timezone": "Etc/UTC"
+        },
+        "neighboring_native_vectors": [
+          {
+            "bucket_start": "2026-10-12T12:13:00+00:00",
+            "values": [
+              "1791807180.0",
+              "1.865",
+              "1.866",
+              "1.864",
+              "1.864",
+              "4877.71"
+            ]
+          },
+          {
+            "bucket_start": "2026-10-12T12:15:00+00:00",
+            "values": [
+              "1791807300.0",
+              "1.864",
+              "1.864",
+              "1.858",
+              "1.858",
+              "3150.17"
+            ]
+          }
+        ],
+        "cleanup": {
+          "connection_generation": 1,
+          "window": 1,
+          "peak_inflight": 1,
+          "strategy": "per_request",
+          "sockets": 1,
+          "jobs": 1,
+          "timeouts": 0,
+          "ignored_responses": 1,
+          "errors": {},
+          "sessions_created": 1,
+          "sessions_removed": 1,
+          "sessions_current": 0,
+          "pending_futures": 0,
+          "next_window": 1
+        },
+        "checkpoint_sha256": "2b98c8d9767f6573a5aa9a72df55e3a9b8a9cb55a98ab3fe9334e84a09588512"
+      },
+      {
+        "started_at": "2026-10-12T12:52:25.341014+00:00",
+        "finished_at": "2026-10-12T12:52:27.856638+00:00",
+        "successful_requests": 1,
+        "raw_bar_count": 301,
+        "accepted_completed_candles": 298,
+        "requested_start": "2026-10-12T07:52:00+00:00",
+        "requested_end": "2026-10-12T12:52:00+00:00",
+        "requested_bars": 301,
+        "received_first_bucket": "2026-10-12T07:50:00+00:00",
+        "received_last_bucket": "2026-10-12T12:52:00+00:00",
+        "target_raw_present": false,
+        "target_parsed_present": false,
+        "production_commits": 0,
+        "source_semantics": {
+          "full_name": "BINANCE:ATOMUSDT",
+          "type": "spot",
+          "listed_exchange": "BINANCE",
+          "currency_code": "USDT",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "has_intraday": true,
+          "session": "24x7",
+          "timezone": "Etc/UTC"
+        },
+        "neighboring_native_vectors": [
+          {
+            "bucket_start": "2026-10-12T12:13:00+00:00",
+            "values": [
+              "1791807180.0",
+              "1.865",
+              "1.866",
+              "1.864",
+              "1.864",
+              "4877.71"
+            ]
+          },
+          {
+            "bucket_start": "2026-10-12T12:15:00+00:00",
+            "values": [
+              "1791807300.0",
+              "1.864",
+              "1.864",
+              "1.858",
+              "1.858",
+              "3150.17"
+            ]
+          }
+        ],
+        "cleanup": {
+          "connection_generation": 1,
+          "window": 1,
+          "peak_inflight": 1,
+          "strategy": "per_request",
+          "sockets": 1,
+          "jobs": 1,
+          "timeouts": 0,
+          "ignored_responses": 1,
+          "errors": {},
+          "sessions_created": 1,
+          "sessions_removed": 1,
+          "sessions_current": 0,
+          "pending_futures": 0,
+          "next_window": 1
+        },
+        "checkpoint_sha256": "713310c33efff12036182b4e455107ced02cf24a3cffe85896347e8a72dcfdab"
+      }
+    ],
+    "persisted_target_count": 0,
+    "rest_target_count": 0,
+    "uncertainty": "Initial raw frames and pre-completion history bounds were not retained; possible transient publication/revision or later availability cannot be excluded."
+  },
+  "ordinary_34_observation": {
+    "scheduled_minutes": 24,
+    "bucket_range": [
+      "2026-10-12T12:25:00+00:00",
+      "2026-10-12T12:49:00+00:00"
+    ],
+    "expected": 816,
+    "successful_requests": 782,
+    "available_native_current": 782,
+    "immediate_committed": 782,
+    "eventual_committed": 816,
+    "retrieval_errors": 34,
+    "database_failures": 0,
+    "successful_transactions": 24,
+    "transactions_with_current_native": 23,
+    "close_to_commit_seconds": {
+      "samples": 23,
+      "min": 6.700105,
+      "p50": 9.384522,
+      "p95": 14.314191,
+      "max": 15.453904
+    },
+    "recovered": [
+      {
+        "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+        "source": "BINANCE:DOGEUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BNBUSDT",
+        "source": "BINANCE:BNBUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "SPOT:OANDA:XAGUSD",
+        "source": "OANDA:XAGUSD",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOTUSDT",
+        "source": "BINANCE:DOTUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LTCUSDT",
+        "source": "BINANCE:LTCUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:SOLUSDT",
+        "source": "BINANCE:SOLUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:XRPUSDT",
+        "source": "BINANCE:XRPUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:OKX:XAUTUSDT",
+        "source": "OKX:XAUTUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "FX:OANDA:USDJPY",
+        "source": "OANDA:USDJPY",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "FX:OANDA:NZDUSD",
+        "source": "OANDA:NZDUSD",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ICPUSDT",
+        "source": "BINANCE:ICPUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "FX:OANDA:AUDUSD",
+        "source": "OANDA:AUDUSD",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "FX:OANDA:USDCHF",
+        "source": "OANDA:USDCHF",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:SUIUSDT",
+        "source": "BINANCE:SUIUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:NEARUSDT",
+        "source": "BINANCE:NEARUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:FILUSDT",
+        "source": "BINANCE:FILUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ZECUSDT",
+        "source": "BINANCE:ZECUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BTCUSDT",
+        "source": "BINANCE:BTCUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:ETHUSDT",
+        "source": "BINANCE:ETHUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "REFERENCE:TVC:UKOIL",
+        "source": "TVC:UKOIL",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "FX:OANDA:GBPUSD",
+        "source": "OANDA:GBPUSD",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+        "source": "BINANCE:AAVEUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "FX:OANDA:EURGBP",
+        "source": "OANDA:EURGBP",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "SPOT:OANDA:XAUUSD",
+        "source": "OANDA:XAUUSD",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ADAUSDT",
+        "source": "BINANCE:ADAUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "FX:OANDA:USDCAD",
+        "source": "OANDA:USDCAD",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "FX:OANDA:EURUSD",
+        "source": "OANDA:EURUSD",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BCHUSDT",
+        "source": "BINANCE:BCHUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LINKUSDT",
+        "source": "BINANCE:LINKUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:TRXUSDT",
+        "source": "BINANCE:TRXUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "REFERENCE:TVC:USOIL",
+        "source": "TVC:USOIL",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+        "source": "BINANCE:ATOMUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:UNIUSDT",
+        "source": "BINANCE:UNIUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+        "source": "BINANCE:AVAXUSDT",
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 66.846071
+      }
+    ],
+    "cycles": [
+      {
+        "bucket_start": "2026-10-12T12:25:00+00:00",
+        "expected": 34,
+        "successful_requests": 0,
+        "available_native_current": 0,
+        "immediate_committed": 0,
+        "eventual_committed": 34,
+        "retrieval_errors": 34,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:26:14.089287+00:00",
+        "close_to_commit_seconds": null,
+        "db_write_seconds": 0.04154272099913214,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": [
+          {
+            "worker": "w00",
+            "error": "TimeoutError",
+            "phase": "handshake",
+            "http_status": null
+          },
+          {
+            "worker": "w01",
+            "error": "TimeoutError",
+            "phase": "handshake",
+            "http_status": null
+          }
+        ]
+      },
+      {
+        "bucket_start": "2026-10-12T12:26:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:27:06.846071+00:00",
+        "close_to_commit_seconds": 6.846071,
+        "db_write_seconds": 0.447079412999301,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:27:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:28:07.972686+00:00",
+        "close_to_commit_seconds": 7.972686,
+        "db_write_seconds": 0.4272280779987341,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:28:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:29:09.183818+00:00",
+        "close_to_commit_seconds": 9.183818,
+        "db_write_seconds": 0.41963757700068527,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:29:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:30:11.545329+00:00",
+        "close_to_commit_seconds": 11.545329,
+        "db_write_seconds": 0.4232988049989217,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:30:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:31:14.314191+00:00",
+        "close_to_commit_seconds": 14.314191,
+        "db_write_seconds": 0.39725293700030306,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:31:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:32:15.453904+00:00",
+        "close_to_commit_seconds": 15.453904,
+        "db_write_seconds": 0.3998922479986504,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:32:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:33:09.223772+00:00",
+        "close_to_commit_seconds": 9.223772,
+        "db_write_seconds": 0.3923045919982542,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:33:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:34:11.414076+00:00",
+        "close_to_commit_seconds": 11.414076,
+        "db_write_seconds": 0.4260422680017655,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:34:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:35:14.163371+00:00",
+        "close_to_commit_seconds": 14.163371,
+        "db_write_seconds": 0.4056526720014517,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:35:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:36:09.384522+00:00",
+        "close_to_commit_seconds": 9.384522,
+        "db_write_seconds": 0.5474413690026267,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:36:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:37:06.869416+00:00",
+        "close_to_commit_seconds": 6.869416,
+        "db_write_seconds": 0.44049624200124526,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:37:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:38:06.929575+00:00",
+        "close_to_commit_seconds": 6.929575,
+        "db_write_seconds": 0.4144225920026656,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:38:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:39:06.919873+00:00",
+        "close_to_commit_seconds": 6.919873,
+        "db_write_seconds": 0.4025769740001124,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:39:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:40:06.700105+00:00",
+        "close_to_commit_seconds": 6.700105,
+        "db_write_seconds": 0.39081641899974784,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:40:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:41:10.265531+00:00",
+        "close_to_commit_seconds": 10.265531,
+        "db_write_seconds": 0.43552807699961704,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:41:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:42:12.991512+00:00",
+        "close_to_commit_seconds": 12.991512,
+        "db_write_seconds": 0.4241410699978587,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:42:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:43:10.821403+00:00",
+        "close_to_commit_seconds": 10.821403,
+        "db_write_seconds": 0.4306616040012159,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:43:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:44:10.148942+00:00",
+        "close_to_commit_seconds": 10.148942,
+        "db_write_seconds": 0.38374292599837645,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:44:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:45:10.330875+00:00",
+        "close_to_commit_seconds": 10.330875,
+        "db_write_seconds": 0.40585969000312616,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:45:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:46:10.240558+00:00",
+        "close_to_commit_seconds": 10.240558,
+        "db_write_seconds": 0.38857079800072825,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:46:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:47:06.915842+00:00",
+        "close_to_commit_seconds": 6.915842,
+        "db_write_seconds": 0.4105769199995848,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:47:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:48:06.714629+00:00",
+        "close_to_commit_seconds": 6.714629,
+        "db_write_seconds": 0.4032906539978285,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      },
+      {
+        "bucket_start": "2026-10-12T12:48:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native_current": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "db_failures": 0,
+        "db_commit_acknowledged_at": "2026-10-12T12:49:07.212176+00:00",
+        "close_to_commit_seconds": 7.212176,
+        "db_write_seconds": 0.43451500100127305,
+        "successful_transactions": 1,
+        "cleanup_verified": true,
+        "worker_errors": []
+      }
+    ],
+    "rest_db_native_equality_checked": 816
+  },
+  "integrity": {
+    "original_identities_unchanged": true,
+    "old_gap_partitions_unchanged": true,
+    "raw_guest_ticks": 26216,
+    "new_pre_activation_candles": 0,
+    "schema_head": "0004",
+    "coverage_starts": [
+      {
+        "coverage_start": "2026-10-07 09:33:00+00:00",
+        "instruments": 17
+      },
+      {
+        "coverage_start": "2026-10-12 12:10:00+00:00",
+        "instruments": 17
+      }
+    ],
+    "database": true,
+    "ingestion_running": true,
+    "active_instruments": 34,
+    "historical_reconciliation": {
+      "partitions": 34,
+      "invariants_hold": true,
+      "new_instruments_evaluated_minutes": 45,
+      "new_expected": 765,
+      "new_persisted": 764,
+      "new_missing_expected": 1,
+      "checkpoint_sha256": "aae0c2669b0590afb119cadf496759acd7ff1358f2478cd5923ed77b1d0f3f25"
+    },
+    "duplicate_logical_candles": 0
+  },
+  "measured_at": "2026-10-12T12:56:30.648308+00:00",
+  "ordinary_log_sha256": "1f47b10880877aeeea770dae54544918114b1226547823fa9d4020ef2f40642e",
+  "downstream_smoke": {
+    "minutes": 2,
+    "verified_targets": 68,
+    "buckets": [
+      "2026-10-12T12:53:00+00:00",
+      "2026-10-12T12:54:00+00:00"
+    ],
+    "independent_source_comparison": false,
+    "checkpoint_sha256": "1bb04257d2d8d68df7f1a0d323c92f6e38c6c86b5054a1372ca11352b458fcbe"
+  }
+}

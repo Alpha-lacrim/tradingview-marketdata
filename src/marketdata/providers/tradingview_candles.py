@@ -110,7 +110,7 @@ class TradingViewCandleProvider(CandleProvider):
         self.fetching = False
         self.effective_concurrency = settings.tradingview_candle_concurrency
         self.job_limit = 100  # Local safeguard, not a documented upstream limit.
-        # Explicit experimental harness opt-in; the app factory retains its default.
+        # Explicit operator opt-in through the app pool factory or experimental harness.
         # This authorizes a local experiment, not a claim of upstream permitted limits.
         self.experimental_pool = experimental_pool
 

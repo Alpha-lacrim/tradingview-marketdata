@@ -56,6 +56,7 @@ class Settings(BaseSettings):
     candle_correction_lookback_minutes: int = Field(default=3, ge=1, le=30)
     candle_request_timeout_seconds: float = Field(default=15, ge=1, le=60)
     tradingview_candle_concurrency: int = Field(default=2, ge=1, le=12)
+    tradingview_candle_pool_enabled: bool = False
     # Integration declares ceilings; experimental harness ceilings are local safeguards.
     candle_pool_connections: int = Field(default=1, ge=1, le=32)
     candle_pool_worker_capacity: int = Field(default=100, ge=1, le=4096)
@@ -71,6 +72,30 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def valid(self) -> Self:
+        if self.tradingview_candle_pool_enabled:
+            if self.tradingview_storage_mode != "candles":
+                raise ValueError("TradingView candle pool requires candle storage mode")
+            # Bounded operator-authorized guest scope, not upstream entitlements.
+            if (
+                self.candle_pool_connections > 6
+                or self.candle_pool_worker_capacity > 100
+                or self.candle_pool_max_instruments > 600
+                or self.candle_pool_concurrency > 12
+                or self.candle_pool_max_instruments
+                > self.candle_pool_worker_capacity * self.candle_pool_connections
+                or self.candle_pool_concurrency
+                > self.tradingview_candle_concurrency * self.candle_pool_connections
+            ):
+                raise ValueError("TradingView pool exceeds bounded local capacity/request scope")
+            if (
+                self.candle_fetch_grace_seconds
+                + self.candle_pool_deadline_seconds
+                + self.candle_pool_cleanup_seconds
+                >= 60
+            ):
+                raise ValueError(
+                    "TradingView pool deadline and cleanup must fit the minute cadence"
+                )
         if self.candle_fetch_grace_seconds + self.candle_cycle_safety_margin_seconds >= 60:
             raise ValueError("candle grace + safety margin must leave a positive minute budget")
         if any(

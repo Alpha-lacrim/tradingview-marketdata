@@ -1261,7 +1261,14 @@ These commands generate simulated observations; they are not live-provider tests
 
 The operator authorized bounded guest multi-WebSocket investigation on 2026-10-12.
 `scripts/benchmark_live_pool.py` explicitly constructs experimental guest workers; the
-application factory keeps the original single-socket default. Experimental `PoolLimits`
+application factory keeps the original single-socket default and supports explicit
+TRADINGVIEW_CANDLE_POOL_ENABLED activation through validated Settings. Counts come from
+the selected registry, never benchmark count switches. See docs/production-instrument-expansion.md
+for the separate 34 pilot and original-17 rollback. Guest app pool safeguards are at most six
+connections, 100 instruments/jobs per worker, 600 total and 12 concurrent requests; these are
+local bounds within the operator-authorized investigation, not upstream entitlements.
+The pilot uses two paced workers, local windows two, global four. Do not increase a deployed
+universe merely because these ceilings allow it. Experimental `PoolLimits`
 are local safeguards, never documented upstream allowances or an entitlement claim.
 Keep the 100-instrument/job cap per worker, native identity/status validation, UTC cutoffs,
 Decimal parsing and access rejection behavior. Do not infer completed bars from successful

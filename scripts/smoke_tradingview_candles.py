@@ -23,9 +23,15 @@ from marketdata.providers.tradingview_candles import TradingViewCandleProvider
 from marketdata.registry import Registry
 
 
-async def smoke(base_url: str, minutes: int, compare_source: bool = True) -> dict[str, object]:
+async def smoke(
+    base_url: str,
+    minutes: int,
+    compare_source: bool = True,
+    registry_file: Path = Path("config/instruments.tradingview.json"),
+    checkpoint: Path | None = None,
+) -> dict[str, object]:
     settings = Settings()
-    registry = Registry.load(Path("config/instruments.tradingview.json"))
+    registry = Registry.load(registry_file)
     pairs = registry.subscriptions("tradingview_guest")
     source = TradingViewCandleProvider(settings, Metrics())
     await source.subscribe(pairs)
@@ -93,6 +99,23 @@ async def smoke(base_url: str, minutes: int, compare_source: bool = True) -> dic
                         while len(seen) < len(pairs):
                             observe(await ws.recv())
                 except TimeoutError:
+                    if checkpoint:
+                        await asyncio.to_thread(
+                            checkpoint.write_text,
+                            json.dumps(
+                                dict(
+                                    passed=False,
+                                    minutes=observations,
+                                    incomplete_bucket=bucket.isoformat(),
+                                    missing=sorted(set(registry.by_symbol) - seen),
+                                    websocket_instruments=len(seen),
+                                    provider_health=(await client.get("/providers")).json(),
+                                ),
+                                indent=2,
+                            )
+                            + "\n",
+                            encoding="utf-8",
+                        )
                     raise AssertionError(
                         f"Missing WebSocket candles for {bucket}: "
                         f"{sorted(set(registry.by_symbol) - seen)}"
@@ -142,16 +165,31 @@ async def smoke(base_url: str, minutes: int, compare_source: bool = True) -> dic
                         verified.append(pair[1].provider_symbol)
                 finally:
                     await source.disconnect()
-                assert len(verified) == 17
+                assert len(verified) == len(pairs)
                 latest = (
                     await client.get("/prices/latest", params=dict(provider="tradingview_guest"))
                 ).json()["items"]
-                assert len(latest) == 17 and all(t["price_basis"] == "candle_close" for t in latest)
+                latest_by_symbol = {t["canonical_symbol"]: t for t in latest}
+                assert all(
+                    latest_by_symbol[s]["price_basis"] == "candle_close" for s in registry.by_symbol
+                )
                 result = dict(
-                    bucket=bucket.isoformat(), verified=verified, websocket_instruments=len(seen)
+                    bucket=bucket.isoformat(),
+                    verified=verified,
+                    websocket_instruments=len(seen),
+                    provider_health=(await client.get("/providers")).json(),
                 )
                 observations.append(result)
-                print(json.dumps(result), flush=True)
+                if checkpoint:
+                    await asyncio.to_thread(
+                        checkpoint.write_text,
+                        json.dumps(dict(minutes=observations), indent=2) + "\n",
+                        encoding="utf-8",
+                    )
+                print(
+                    json.dumps({k: v for k, v in result.items() if k != "provider_health"}),
+                    flush=True,
+                )
         async with store.connection() as c:
             after = await c.fetchval(
                 "SELECT count(*) FROM market_ticks WHERE provider='tradingview_guest'"
@@ -179,22 +217,29 @@ if __name__ == "__main__":
     parser.add_argument("--minutes", type=int, choices=range(2, 11), default=3)
     parser.add_argument("--output", type=Path)
     parser.add_argument(
+        "--registry", type=Path, default=Path("config/instruments.tradingview.json")
+    )
+    parser.add_argument(
         "--stored-only",
         action="store_true",
         help="no extra upstream requests; compare normal collector WebSocket, database and REST",
     )
     args = parser.parse_args()
     try:
-        result = asyncio.run(smoke(args.base_url, args.minutes, not args.stored_only))
+        result = asyncio.run(
+            smoke(args.base_url, args.minutes, not args.stored_only, args.registry, args.output)
+        )
     except AssertionError as error:
         if args.output:
+            previous = json.loads(args.output.read_text()) if args.output.exists() else {}
             args.output.write_text(
                 json.dumps(
-                    dict(
-                        passed=False,
-                        failure=str(error),
-                        independent_source_comparison=not args.stored_only,
-                    ),
+                    {
+                        **previous,
+                        "passed": False,
+                        "failure": str(error),
+                        "independent_source_comparison": not args.stored_only,
+                    },
                     indent=2,
                 )
                 + "\n",

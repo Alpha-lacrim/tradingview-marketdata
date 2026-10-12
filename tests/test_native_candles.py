@@ -498,6 +498,7 @@ def test_native_candle_rest_latest_and_websocket(database_url, store, monkeypatc
     # Test-only replay uses receipt after every generated completed bar.
     monkeypatch.setattr("marketdata.candle_ingestion.utc_now", lambda: NOW)
     monkeypatch.setattr("marketdata.api.utc_now", lambda: NOW + timedelta(days=1))
+    monkeypatch.setattr("marketdata.persistence.utc_now", lambda: NOW - timedelta(minutes=2))
     settings = Settings(
         _env_file=None,
         database_url=database_url,

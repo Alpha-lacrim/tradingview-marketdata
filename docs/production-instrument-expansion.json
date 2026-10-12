@@ -1,0 +1,4320 @@
+{
+  "prior_evidence_sha256": "4a75a37f349db9a6c9046d96c6fcb5973665c20b5ef5961575fa06fe17720ae6",
+  "prior_evidence": "artifacts/live-pool-paced.json",
+  "selection": "Fixed 17 Binance spot additions with all three native baseline targets and all six eventual target minutes in the prior 128 stage. Scanner discovery alone is not proof. New canonical IDs are source-qualified; benchmark IDs are not reused.",
+  "additions": [
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:BNBUSDT",
+      "source_symbol": "BINANCE:BNBUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "7d75d50a-9d44-5b64-a5cf-b219da31fc28",
+        "canonical_symbol": "BENCHLIVE:BINANCE:BNBUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:BNBUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "751.42",
+        "high": "751.55",
+        "low": "751.35",
+        "close": "751.48",
+        "volume": "58.036",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:14.394602Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:DOGEUSDT",
+      "source_symbol": "BINANCE:DOGEUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "7d03db06-d5cb-585b-9502-897f4c97ed5b",
+        "canonical_symbol": "BENCHLIVE:BINANCE:DOGEUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:DOGEUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "0.08754",
+        "high": "0.08762",
+        "low": "0.08754",
+        "close": "0.08758",
+        "volume": "1106594.0",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:11.543249Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ADAUSDT",
+      "source_symbol": "BINANCE:ADAUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "7b32f789-d134-55df-b7b5-03544f747700",
+        "canonical_symbol": "BENCHLIVE:BINANCE:ADAUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:ADAUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "0.2529",
+        "high": "0.2533",
+        "low": "0.2529",
+        "close": "0.2532",
+        "volume": "40647.9",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:06.570989Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:LINKUSDT",
+      "source_symbol": "BINANCE:LINKUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "7607e420-79df-5626-b64e-21db55620b95",
+        "canonical_symbol": "BENCHLIVE:BINANCE:LINKUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:LINKUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "13.43",
+        "high": "13.45",
+        "low": "13.429",
+        "close": "13.448",
+        "volume": "525.23",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:15.824652Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:LTCUSDT",
+      "source_symbol": "BINANCE:LTCUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "f90a3957-4ba7-5832-be3c-e1f9a2219717",
+        "canonical_symbol": "BENCHLIVE:BINANCE:LTCUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:LTCUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "65.2",
+        "high": "65.23",
+        "low": "65.18",
+        "close": "65.21",
+        "volume": "207.969",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:05.049740Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:BCHUSDT",
+      "source_symbol": "BINANCE:BCHUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "a96c3157-5103-5122-bb2a-f3d3a6508357",
+        "canonical_symbol": "BENCHLIVE:BINANCE:BCHUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:BCHUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "283.6",
+        "high": "284.0",
+        "low": "283.6",
+        "close": "283.9",
+        "volume": "18.432",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:12.001809Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:AVAXUSDT",
+      "source_symbol": "BINANCE:AVAXUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "249c5157-4824-586f-bd9a-7b80051d271f",
+        "canonical_symbol": "BENCHLIVE:BINANCE:AVAXUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:AVAXUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "11.097",
+        "high": "11.104",
+        "low": "11.095",
+        "close": "11.104",
+        "volume": "1411.82",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:07.451075Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:TRXUSDT",
+      "source_symbol": "BINANCE:TRXUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "9a2e6bc9-5d91-5b5f-b071-78494326625f",
+        "canonical_symbol": "BENCHLIVE:BINANCE:TRXUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:TRXUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "0.3316",
+        "high": "0.3319",
+        "low": "0.3316",
+        "close": "0.3319",
+        "volume": "247794.6",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:15.060306Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:DOTUSDT",
+      "source_symbol": "BINANCE:DOTUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "5283150b-c67e-5993-99e5-933401a2b2c7",
+        "canonical_symbol": "BENCHLIVE:BINANCE:DOTUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:DOTUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "1.273",
+        "high": "1.273",
+        "low": "1.271",
+        "close": "1.272",
+        "volume": "5941.84",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:16.712532Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:NEARUSDT",
+      "source_symbol": "BINANCE:NEARUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "e9a553e9-bf1f-5f43-ba73-27317ded5ba5",
+        "canonical_symbol": "BENCHLIVE:BINANCE:NEARUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:NEARUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "5.808",
+        "high": "5.812",
+        "low": "5.804",
+        "close": "5.812",
+        "volume": "11255.8",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:05.705559Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:SUIUSDT",
+      "source_symbol": "BINANCE:SUIUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "7f754d6a-186c-5767-b675-2e649cc31b0f",
+        "canonical_symbol": "BENCHLIVE:BINANCE:SUIUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:SUIUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "1.1204",
+        "high": "1.1213",
+        "low": "1.1196",
+        "close": "1.1213",
+        "volume": "45022.2",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:14.739247Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:UNIUSDT",
+      "source_symbol": "BINANCE:UNIUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "7f012889-c5d8-5a36-b02d-4cfe3e8f855d",
+        "canonical_symbol": "BENCHLIVE:BINANCE:UNIUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:UNIUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "7.633",
+        "high": "7.65",
+        "low": "7.632",
+        "close": "7.648",
+        "volume": "8007.37",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:04.226071Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:FILUSDT",
+      "source_symbol": "BINANCE:FILUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "d66b1968-70f7-53a6-ad50-7c7bbef19211",
+        "canonical_symbol": "BENCHLIVE:BINANCE:FILUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:FILUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "1.2486",
+        "high": "1.252",
+        "low": "1.2484",
+        "close": "1.2519",
+        "volume": "21888.24",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:06.271697Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:AAVEUSDT",
+      "source_symbol": "BINANCE:AAVEUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "e3307660-9fb0-5f4a-bffa-1ce9cd9927b0",
+        "canonical_symbol": "BENCHLIVE:BINANCE:AAVEUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:AAVEUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "166.96",
+        "high": "167.07",
+        "low": "166.83",
+        "close": "167.02",
+        "volume": "168.333",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:05.379391Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ATOMUSDT",
+      "source_symbol": "BINANCE:ATOMUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "62e9d3bc-ea52-5ded-9d37-48cd708894b0",
+        "canonical_symbol": "BENCHLIVE:BINANCE:ATOMUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:ATOMUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "1.888",
+        "high": "1.89",
+        "low": "1.888",
+        "close": "1.89",
+        "volume": "618.07",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:07.990389Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ZECUSDT",
+      "source_symbol": "BINANCE:ZECUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "b8577733-1107-5e4b-af89-340fe10192f6",
+        "canonical_symbol": "BENCHLIVE:BINANCE:ZECUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:ZECUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "1310.38",
+        "high": "1315.44",
+        "low": "1310.09",
+        "close": "1314.6",
+        "volume": "387.099",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:13.837768Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ICPUSDT",
+      "source_symbol": "BINANCE:ICPUSDT",
+      "prior_baseline_native_targets": 3,
+      "prior_eventual_native_targets": 6,
+      "native_sample": {
+        "instrument_id": "adac4ab6-5a41-5f62-87bb-1332230b2c00",
+        "canonical_symbol": "BENCHLIVE:BINANCE:ICPUSDT",
+        "provider": "benchmark_live_pool_9dc653dffa42",
+        "provider_symbol": "BINANCE:ICPUSDT",
+        "interval": "1m",
+        "bucket_start": "2026-10-12T10:47:00Z",
+        "bucket_end": "2026-10-12T10:48:00Z",
+        "open": "3.435",
+        "high": "3.437",
+        "low": "3.434",
+        "close": "3.437",
+        "volume": "3764.91",
+        "price_basis": "native",
+        "realtime_status": "realtime",
+        "source_status": "streaming",
+        "received_timestamp": "2026-10-12T10:48:05.049740Z",
+        "metadata": {
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "bar_source": "trade",
+          "bar_transform": "none",
+          "bar_fillgaps": false,
+          "source_timezone": "Etc/UTC",
+          "source_update_period_seconds": "5",
+          "volume_type": "base",
+          "volume_additive": true,
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "backfilled": false,
+          "original_provider": "tradingview_guest",
+          "isolated_benchmark": true
+        }
+      }
+    }
+  ],
+  "live_activation": {
+    "measured_at": "2026-10-12T12:27:41.194540+00:00",
+    "deployed": true,
+    "left_running_instruments": 34,
+    "tested_64": false,
+    "path": "ordinary create_app/factory/CandleConnectionPool/CandleIngestion/Store; production marketdata TimescaleDB",
+    "new_coverage_start": "2026-10-12T12:10:00+00:00",
+    "scheduled_minutes": 10,
+    "scheduled_bucket_ranges": [
+      [
+        "2026-10-12T12:10:00+00:00",
+        "2026-10-12T12:16:00+00:00"
+      ],
+      [
+        "2026-10-12T12:21:00+00:00",
+        "2026-10-12T12:25:00+00:00"
+      ]
+    ],
+    "expected_targets": 340,
+    "successful_requests": 340,
+    "available_native_targets": 339,
+    "immediate_committed": 339,
+    "eventual_committed": 339,
+    "retrieval_errors": 0,
+    "database_failures": 0,
+    "successful_scheduled_transactions": 10,
+    "close_to_commit_seconds": {
+      "min": 6.536769,
+      "p50": 6.925422,
+      "p95": 11.797873,
+      "max": 11.797873
+    },
+    "db_write_seconds": {
+      "min": 0.3912769799972011,
+      "p50": 0.404555163000623,
+      "p95": 0.46269926199965994,
+      "max": 0.46269926199965994
+    },
+    "cycles": [
+      {
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "database_failures": 0,
+        "successful_transactions": 1,
+        "db_commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651,
+        "db_write_seconds": 0.42251447799935704,
+        "cycle_duration_seconds": 8.337920136997127,
+        "cleanup_verified": true,
+        "worker_http_statuses": [
+          null,
+          null
+        ]
+      },
+      {
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "database_failures": 0,
+        "successful_transactions": 1,
+        "db_commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187,
+        "db_write_seconds": 0.4548549920000369,
+        "cycle_duration_seconds": 4.685801703999459,
+        "cleanup_verified": true,
+        "worker_http_statuses": [
+          null,
+          null
+        ]
+      },
+      {
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "database_failures": 0,
+        "successful_transactions": 1,
+        "db_commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887,
+        "db_write_seconds": 0.42691401499905623,
+        "cycle_duration_seconds": 4.947025655001198,
+        "cleanup_verified": true,
+        "worker_http_statuses": [
+          null,
+          null
+        ]
+      },
+      {
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "database_failures": 0,
+        "successful_transactions": 1,
+        "db_commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422,
+        "db_write_seconds": 0.39868333200138295,
+        "cycle_duration_seconds": 4.951305025999318,
+        "cleanup_verified": true,
+        "worker_http_statuses": [
+          null,
+          null
+        ]
+      },
+      {
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native": 33,
+        "immediate_committed": 33,
+        "eventual_committed": 33,
+        "retrieval_errors": 0,
+        "database_failures": 0,
+        "successful_transactions": 1,
+        "db_commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329,
+        "db_write_seconds": 0.403391048002959,
+        "cycle_duration_seconds": 8.932400051999139,
+        "cleanup_verified": true,
+        "worker_http_statuses": [
+          null,
+          null
+        ]
+      },
+      {
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "database_failures": 0,
+        "successful_transactions": 1,
+        "db_commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873,
+        "db_write_seconds": 0.46269926199965994,
+        "cycle_duration_seconds": 9.836430067000038,
+        "cleanup_verified": true,
+        "worker_http_statuses": [
+          null,
+          null
+        ]
+      },
+      {
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "database_failures": 0,
+        "successful_transactions": 1,
+        "db_commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861,
+        "db_write_seconds": 0.3912769799972011,
+        "cycle_duration_seconds": 4.666877243998897,
+        "cleanup_verified": true,
+        "worker_http_statuses": [
+          null,
+          null
+        ]
+      },
+      {
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "database_failures": 0,
+        "successful_transactions": 1,
+        "db_commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959,
+        "db_write_seconds": 0.4528696789966489,
+        "cycle_duration_seconds": 8.179781904000265,
+        "cleanup_verified": true,
+        "worker_http_statuses": [
+          null,
+          null
+        ]
+      },
+      {
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "database_failures": 0,
+        "successful_transactions": 1,
+        "db_commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477,
+        "db_write_seconds": 0.404555163000623,
+        "cycle_duration_seconds": 8.263037246997555,
+        "cleanup_verified": true,
+        "worker_http_statuses": [
+          null,
+          null
+        ]
+      },
+      {
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "expected": 34,
+        "successful_requests": 34,
+        "available_native": 34,
+        "immediate_committed": 34,
+        "eventual_committed": 34,
+        "retrieval_errors": 0,
+        "database_failures": 0,
+        "successful_transactions": 1,
+        "db_commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769,
+        "db_write_seconds": 0.4044786849990487,
+        "cycle_duration_seconds": 4.56447400199977,
+        "cleanup_verified": true,
+        "worker_http_statuses": [
+          null,
+          null
+        ]
+      }
+    ],
+    "per_candle_first_commits": [
+      {
+        "symbol": "CRYPTO:BTCUSDT",
+        "source": "BINANCE:BTCUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:ETHUSDT",
+        "source": "BINANCE:ETHUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:SOLUSDT",
+        "source": "BINANCE:SOLUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:XRPUSDT",
+        "source": "BINANCE:XRPUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "FX:OANDA:EURUSD",
+        "source": "OANDA:EURUSD",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "FX:OANDA:GBPUSD",
+        "source": "OANDA:GBPUSD",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "FX:OANDA:USDJPY",
+        "source": "OANDA:USDJPY",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "FX:OANDA:USDCHF",
+        "source": "OANDA:USDCHF",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "FX:OANDA:AUDUSD",
+        "source": "OANDA:AUDUSD",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "FX:OANDA:USDCAD",
+        "source": "OANDA:USDCAD",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "FX:OANDA:NZDUSD",
+        "source": "OANDA:NZDUSD",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "FX:OANDA:EURGBP",
+        "source": "OANDA:EURGBP",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "SPOT:OANDA:XAUUSD",
+        "source": "OANDA:XAUUSD",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "SPOT:OANDA:XAGUSD",
+        "source": "OANDA:XAGUSD",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:OKX:XAUTUSDT",
+        "source": "OKX:XAUTUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "REFERENCE:TVC:USOIL",
+        "source": "TVC:USOIL",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "REFERENCE:TVC:UKOIL",
+        "source": "TVC:UKOIL",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BNBUSDT",
+        "source": "BINANCE:BNBUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+        "source": "BINANCE:DOGEUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ADAUSDT",
+        "source": "BINANCE:ADAUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LINKUSDT",
+        "source": "BINANCE:LINKUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LTCUSDT",
+        "source": "BINANCE:LTCUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BCHUSDT",
+        "source": "BINANCE:BCHUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+        "source": "BINANCE:AVAXUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:TRXUSDT",
+        "source": "BINANCE:TRXUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOTUSDT",
+        "source": "BINANCE:DOTUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:NEARUSDT",
+        "source": "BINANCE:NEARUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:SUIUSDT",
+        "source": "BINANCE:SUIUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:UNIUSDT",
+        "source": "BINANCE:UNIUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:FILUSDT",
+        "source": "BINANCE:FILUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+        "source": "BINANCE:AAVEUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+        "source": "BINANCE:ATOMUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ZECUSDT",
+        "source": "BINANCE:ZECUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ICPUSDT",
+        "source": "BINANCE:ICPUSDT",
+        "bucket_start": "2026-10-12T12:10:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:11:10.302651+00:00",
+        "close_to_commit_seconds": 10.302651
+      },
+      {
+        "symbol": "CRYPTO:BTCUSDT",
+        "source": "BINANCE:BTCUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:ETHUSDT",
+        "source": "BINANCE:ETHUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:SOLUSDT",
+        "source": "BINANCE:SOLUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:XRPUSDT",
+        "source": "BINANCE:XRPUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "FX:OANDA:EURUSD",
+        "source": "OANDA:EURUSD",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "FX:OANDA:GBPUSD",
+        "source": "OANDA:GBPUSD",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "FX:OANDA:USDJPY",
+        "source": "OANDA:USDJPY",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "FX:OANDA:USDCHF",
+        "source": "OANDA:USDCHF",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "FX:OANDA:AUDUSD",
+        "source": "OANDA:AUDUSD",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "FX:OANDA:USDCAD",
+        "source": "OANDA:USDCAD",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "FX:OANDA:NZDUSD",
+        "source": "OANDA:NZDUSD",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "FX:OANDA:EURGBP",
+        "source": "OANDA:EURGBP",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "SPOT:OANDA:XAUUSD",
+        "source": "OANDA:XAUUSD",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "SPOT:OANDA:XAGUSD",
+        "source": "OANDA:XAGUSD",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:OKX:XAUTUSDT",
+        "source": "OKX:XAUTUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "REFERENCE:TVC:USOIL",
+        "source": "TVC:USOIL",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "REFERENCE:TVC:UKOIL",
+        "source": "TVC:UKOIL",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BNBUSDT",
+        "source": "BINANCE:BNBUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+        "source": "BINANCE:DOGEUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ADAUSDT",
+        "source": "BINANCE:ADAUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LINKUSDT",
+        "source": "BINANCE:LINKUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LTCUSDT",
+        "source": "BINANCE:LTCUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BCHUSDT",
+        "source": "BINANCE:BCHUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+        "source": "BINANCE:AVAXUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:TRXUSDT",
+        "source": "BINANCE:TRXUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOTUSDT",
+        "source": "BINANCE:DOTUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:NEARUSDT",
+        "source": "BINANCE:NEARUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:SUIUSDT",
+        "source": "BINANCE:SUIUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:UNIUSDT",
+        "source": "BINANCE:UNIUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:FILUSDT",
+        "source": "BINANCE:FILUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+        "source": "BINANCE:AAVEUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+        "source": "BINANCE:ATOMUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ZECUSDT",
+        "source": "BINANCE:ZECUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ICPUSDT",
+        "source": "BINANCE:ICPUSDT",
+        "bucket_start": "2026-10-12T12:11:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:12:06.657187+00:00",
+        "close_to_commit_seconds": 6.657187
+      },
+      {
+        "symbol": "CRYPTO:BTCUSDT",
+        "source": "BINANCE:BTCUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:ETHUSDT",
+        "source": "BINANCE:ETHUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:SOLUSDT",
+        "source": "BINANCE:SOLUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:XRPUSDT",
+        "source": "BINANCE:XRPUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "FX:OANDA:EURUSD",
+        "source": "OANDA:EURUSD",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "FX:OANDA:GBPUSD",
+        "source": "OANDA:GBPUSD",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "FX:OANDA:USDJPY",
+        "source": "OANDA:USDJPY",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "FX:OANDA:USDCHF",
+        "source": "OANDA:USDCHF",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "FX:OANDA:AUDUSD",
+        "source": "OANDA:AUDUSD",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "FX:OANDA:USDCAD",
+        "source": "OANDA:USDCAD",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "FX:OANDA:NZDUSD",
+        "source": "OANDA:NZDUSD",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "FX:OANDA:EURGBP",
+        "source": "OANDA:EURGBP",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "SPOT:OANDA:XAUUSD",
+        "source": "OANDA:XAUUSD",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "SPOT:OANDA:XAGUSD",
+        "source": "OANDA:XAGUSD",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:OKX:XAUTUSDT",
+        "source": "OKX:XAUTUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "REFERENCE:TVC:USOIL",
+        "source": "TVC:USOIL",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "REFERENCE:TVC:UKOIL",
+        "source": "TVC:UKOIL",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BNBUSDT",
+        "source": "BINANCE:BNBUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+        "source": "BINANCE:DOGEUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ADAUSDT",
+        "source": "BINANCE:ADAUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LINKUSDT",
+        "source": "BINANCE:LINKUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LTCUSDT",
+        "source": "BINANCE:LTCUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BCHUSDT",
+        "source": "BINANCE:BCHUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+        "source": "BINANCE:AVAXUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:TRXUSDT",
+        "source": "BINANCE:TRXUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOTUSDT",
+        "source": "BINANCE:DOTUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:NEARUSDT",
+        "source": "BINANCE:NEARUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:SUIUSDT",
+        "source": "BINANCE:SUIUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:UNIUSDT",
+        "source": "BINANCE:UNIUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:FILUSDT",
+        "source": "BINANCE:FILUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+        "source": "BINANCE:AAVEUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+        "source": "BINANCE:ATOMUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ZECUSDT",
+        "source": "BINANCE:ZECUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ICPUSDT",
+        "source": "BINANCE:ICPUSDT",
+        "bucket_start": "2026-10-12T12:12:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:13:06.915887+00:00",
+        "close_to_commit_seconds": 6.915887
+      },
+      {
+        "symbol": "CRYPTO:BTCUSDT",
+        "source": "BINANCE:BTCUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:ETHUSDT",
+        "source": "BINANCE:ETHUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:SOLUSDT",
+        "source": "BINANCE:SOLUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:XRPUSDT",
+        "source": "BINANCE:XRPUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "FX:OANDA:EURUSD",
+        "source": "OANDA:EURUSD",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "FX:OANDA:GBPUSD",
+        "source": "OANDA:GBPUSD",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "FX:OANDA:USDJPY",
+        "source": "OANDA:USDJPY",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "FX:OANDA:USDCHF",
+        "source": "OANDA:USDCHF",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "FX:OANDA:AUDUSD",
+        "source": "OANDA:AUDUSD",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "FX:OANDA:USDCAD",
+        "source": "OANDA:USDCAD",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "FX:OANDA:NZDUSD",
+        "source": "OANDA:NZDUSD",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "FX:OANDA:EURGBP",
+        "source": "OANDA:EURGBP",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "SPOT:OANDA:XAUUSD",
+        "source": "OANDA:XAUUSD",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "SPOT:OANDA:XAGUSD",
+        "source": "OANDA:XAGUSD",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:OKX:XAUTUSDT",
+        "source": "OKX:XAUTUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "REFERENCE:TVC:USOIL",
+        "source": "TVC:USOIL",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "REFERENCE:TVC:UKOIL",
+        "source": "TVC:UKOIL",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BNBUSDT",
+        "source": "BINANCE:BNBUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+        "source": "BINANCE:DOGEUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ADAUSDT",
+        "source": "BINANCE:ADAUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LINKUSDT",
+        "source": "BINANCE:LINKUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LTCUSDT",
+        "source": "BINANCE:LTCUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BCHUSDT",
+        "source": "BINANCE:BCHUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+        "source": "BINANCE:AVAXUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:TRXUSDT",
+        "source": "BINANCE:TRXUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOTUSDT",
+        "source": "BINANCE:DOTUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:NEARUSDT",
+        "source": "BINANCE:NEARUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:SUIUSDT",
+        "source": "BINANCE:SUIUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:UNIUSDT",
+        "source": "BINANCE:UNIUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:FILUSDT",
+        "source": "BINANCE:FILUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+        "source": "BINANCE:AAVEUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+        "source": "BINANCE:ATOMUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ZECUSDT",
+        "source": "BINANCE:ZECUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ICPUSDT",
+        "source": "BINANCE:ICPUSDT",
+        "bucket_start": "2026-10-12T12:13:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:14:06.925422+00:00",
+        "close_to_commit_seconds": 6.925422
+      },
+      {
+        "symbol": "CRYPTO:BTCUSDT",
+        "source": "BINANCE:BTCUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:ETHUSDT",
+        "source": "BINANCE:ETHUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:SOLUSDT",
+        "source": "BINANCE:SOLUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:XRPUSDT",
+        "source": "BINANCE:XRPUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "FX:OANDA:EURUSD",
+        "source": "OANDA:EURUSD",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "FX:OANDA:GBPUSD",
+        "source": "OANDA:GBPUSD",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "FX:OANDA:USDJPY",
+        "source": "OANDA:USDJPY",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "FX:OANDA:USDCHF",
+        "source": "OANDA:USDCHF",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "FX:OANDA:AUDUSD",
+        "source": "OANDA:AUDUSD",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "FX:OANDA:USDCAD",
+        "source": "OANDA:USDCAD",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "FX:OANDA:NZDUSD",
+        "source": "OANDA:NZDUSD",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "FX:OANDA:EURGBP",
+        "source": "OANDA:EURGBP",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "SPOT:OANDA:XAUUSD",
+        "source": "OANDA:XAUUSD",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "SPOT:OANDA:XAGUSD",
+        "source": "OANDA:XAGUSD",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:OKX:XAUTUSDT",
+        "source": "OKX:XAUTUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "REFERENCE:TVC:USOIL",
+        "source": "TVC:USOIL",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "REFERENCE:TVC:UKOIL",
+        "source": "TVC:UKOIL",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BNBUSDT",
+        "source": "BINANCE:BNBUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+        "source": "BINANCE:DOGEUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ADAUSDT",
+        "source": "BINANCE:ADAUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LINKUSDT",
+        "source": "BINANCE:LINKUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LTCUSDT",
+        "source": "BINANCE:LTCUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BCHUSDT",
+        "source": "BINANCE:BCHUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+        "source": "BINANCE:AVAXUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:TRXUSDT",
+        "source": "BINANCE:TRXUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOTUSDT",
+        "source": "BINANCE:DOTUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:NEARUSDT",
+        "source": "BINANCE:NEARUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:SUIUSDT",
+        "source": "BINANCE:SUIUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:UNIUSDT",
+        "source": "BINANCE:UNIUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:FILUSDT",
+        "source": "BINANCE:FILUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+        "source": "BINANCE:AAVEUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ZECUSDT",
+        "source": "BINANCE:ZECUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ICPUSDT",
+        "source": "BINANCE:ICPUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:15:10.901329+00:00",
+        "close_to_commit_seconds": 10.901329
+      },
+      {
+        "symbol": "CRYPTO:BTCUSDT",
+        "source": "BINANCE:BTCUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:ETHUSDT",
+        "source": "BINANCE:ETHUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:SOLUSDT",
+        "source": "BINANCE:SOLUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:XRPUSDT",
+        "source": "BINANCE:XRPUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "FX:OANDA:EURUSD",
+        "source": "OANDA:EURUSD",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "FX:OANDA:GBPUSD",
+        "source": "OANDA:GBPUSD",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "FX:OANDA:USDJPY",
+        "source": "OANDA:USDJPY",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "FX:OANDA:USDCHF",
+        "source": "OANDA:USDCHF",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "FX:OANDA:AUDUSD",
+        "source": "OANDA:AUDUSD",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "FX:OANDA:USDCAD",
+        "source": "OANDA:USDCAD",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "FX:OANDA:NZDUSD",
+        "source": "OANDA:NZDUSD",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "FX:OANDA:EURGBP",
+        "source": "OANDA:EURGBP",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "SPOT:OANDA:XAUUSD",
+        "source": "OANDA:XAUUSD",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "SPOT:OANDA:XAGUSD",
+        "source": "OANDA:XAGUSD",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:OKX:XAUTUSDT",
+        "source": "OKX:XAUTUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "REFERENCE:TVC:USOIL",
+        "source": "TVC:USOIL",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "REFERENCE:TVC:UKOIL",
+        "source": "TVC:UKOIL",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BNBUSDT",
+        "source": "BINANCE:BNBUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+        "source": "BINANCE:DOGEUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ADAUSDT",
+        "source": "BINANCE:ADAUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LINKUSDT",
+        "source": "BINANCE:LINKUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LTCUSDT",
+        "source": "BINANCE:LTCUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BCHUSDT",
+        "source": "BINANCE:BCHUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+        "source": "BINANCE:AVAXUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:TRXUSDT",
+        "source": "BINANCE:TRXUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOTUSDT",
+        "source": "BINANCE:DOTUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:NEARUSDT",
+        "source": "BINANCE:NEARUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:SUIUSDT",
+        "source": "BINANCE:SUIUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:UNIUSDT",
+        "source": "BINANCE:UNIUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:FILUSDT",
+        "source": "BINANCE:FILUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+        "source": "BINANCE:AAVEUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+        "source": "BINANCE:ATOMUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ZECUSDT",
+        "source": "BINANCE:ZECUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ICPUSDT",
+        "source": "BINANCE:ICPUSDT",
+        "bucket_start": "2026-10-12T12:15:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:16:11.797873+00:00",
+        "close_to_commit_seconds": 11.797873
+      },
+      {
+        "symbol": "CRYPTO:BTCUSDT",
+        "source": "BINANCE:BTCUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:ETHUSDT",
+        "source": "BINANCE:ETHUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:SOLUSDT",
+        "source": "BINANCE:SOLUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:XRPUSDT",
+        "source": "BINANCE:XRPUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "FX:OANDA:EURUSD",
+        "source": "OANDA:EURUSD",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "FX:OANDA:GBPUSD",
+        "source": "OANDA:GBPUSD",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "FX:OANDA:USDJPY",
+        "source": "OANDA:USDJPY",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "FX:OANDA:USDCHF",
+        "source": "OANDA:USDCHF",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "FX:OANDA:AUDUSD",
+        "source": "OANDA:AUDUSD",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "FX:OANDA:USDCAD",
+        "source": "OANDA:USDCAD",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "FX:OANDA:NZDUSD",
+        "source": "OANDA:NZDUSD",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "FX:OANDA:EURGBP",
+        "source": "OANDA:EURGBP",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "SPOT:OANDA:XAUUSD",
+        "source": "OANDA:XAUUSD",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "SPOT:OANDA:XAGUSD",
+        "source": "OANDA:XAGUSD",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:OKX:XAUTUSDT",
+        "source": "OKX:XAUTUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "REFERENCE:TVC:USOIL",
+        "source": "TVC:USOIL",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "REFERENCE:TVC:UKOIL",
+        "source": "TVC:UKOIL",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BNBUSDT",
+        "source": "BINANCE:BNBUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+        "source": "BINANCE:DOGEUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ADAUSDT",
+        "source": "BINANCE:ADAUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LINKUSDT",
+        "source": "BINANCE:LINKUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LTCUSDT",
+        "source": "BINANCE:LTCUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BCHUSDT",
+        "source": "BINANCE:BCHUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+        "source": "BINANCE:AVAXUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:TRXUSDT",
+        "source": "BINANCE:TRXUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOTUSDT",
+        "source": "BINANCE:DOTUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:NEARUSDT",
+        "source": "BINANCE:NEARUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:SUIUSDT",
+        "source": "BINANCE:SUIUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:UNIUSDT",
+        "source": "BINANCE:UNIUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:FILUSDT",
+        "source": "BINANCE:FILUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+        "source": "BINANCE:AAVEUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+        "source": "BINANCE:ATOMUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ZECUSDT",
+        "source": "BINANCE:ZECUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ICPUSDT",
+        "source": "BINANCE:ICPUSDT",
+        "bucket_start": "2026-10-12T12:21:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:22:06.638610+00:00",
+        "close_to_commit_seconds": 6.63861
+      },
+      {
+        "symbol": "CRYPTO:BTCUSDT",
+        "source": "BINANCE:BTCUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:ETHUSDT",
+        "source": "BINANCE:ETHUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:SOLUSDT",
+        "source": "BINANCE:SOLUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:XRPUSDT",
+        "source": "BINANCE:XRPUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "FX:OANDA:EURUSD",
+        "source": "OANDA:EURUSD",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "FX:OANDA:GBPUSD",
+        "source": "OANDA:GBPUSD",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "FX:OANDA:USDJPY",
+        "source": "OANDA:USDJPY",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "FX:OANDA:USDCHF",
+        "source": "OANDA:USDCHF",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "FX:OANDA:AUDUSD",
+        "source": "OANDA:AUDUSD",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "FX:OANDA:USDCAD",
+        "source": "OANDA:USDCAD",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "FX:OANDA:NZDUSD",
+        "source": "OANDA:NZDUSD",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "FX:OANDA:EURGBP",
+        "source": "OANDA:EURGBP",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "SPOT:OANDA:XAUUSD",
+        "source": "OANDA:XAUUSD",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "SPOT:OANDA:XAGUSD",
+        "source": "OANDA:XAGUSD",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:OKX:XAUTUSDT",
+        "source": "OKX:XAUTUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "REFERENCE:TVC:USOIL",
+        "source": "TVC:USOIL",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "REFERENCE:TVC:UKOIL",
+        "source": "TVC:UKOIL",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BNBUSDT",
+        "source": "BINANCE:BNBUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+        "source": "BINANCE:DOGEUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ADAUSDT",
+        "source": "BINANCE:ADAUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LINKUSDT",
+        "source": "BINANCE:LINKUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LTCUSDT",
+        "source": "BINANCE:LTCUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BCHUSDT",
+        "source": "BINANCE:BCHUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+        "source": "BINANCE:AVAXUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:TRXUSDT",
+        "source": "BINANCE:TRXUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOTUSDT",
+        "source": "BINANCE:DOTUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:NEARUSDT",
+        "source": "BINANCE:NEARUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:SUIUSDT",
+        "source": "BINANCE:SUIUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:UNIUSDT",
+        "source": "BINANCE:UNIUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:FILUSDT",
+        "source": "BINANCE:FILUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+        "source": "BINANCE:AAVEUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+        "source": "BINANCE:ATOMUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ZECUSDT",
+        "source": "BINANCE:ZECUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ICPUSDT",
+        "source": "BINANCE:ICPUSDT",
+        "bucket_start": "2026-10-12T12:22:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:23:10.145959+00:00",
+        "close_to_commit_seconds": 10.145959
+      },
+      {
+        "symbol": "CRYPTO:BTCUSDT",
+        "source": "BINANCE:BTCUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:ETHUSDT",
+        "source": "BINANCE:ETHUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:SOLUSDT",
+        "source": "BINANCE:SOLUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:XRPUSDT",
+        "source": "BINANCE:XRPUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "FX:OANDA:EURUSD",
+        "source": "OANDA:EURUSD",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "FX:OANDA:GBPUSD",
+        "source": "OANDA:GBPUSD",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "FX:OANDA:USDJPY",
+        "source": "OANDA:USDJPY",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "FX:OANDA:USDCHF",
+        "source": "OANDA:USDCHF",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "FX:OANDA:AUDUSD",
+        "source": "OANDA:AUDUSD",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "FX:OANDA:USDCAD",
+        "source": "OANDA:USDCAD",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "FX:OANDA:NZDUSD",
+        "source": "OANDA:NZDUSD",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "FX:OANDA:EURGBP",
+        "source": "OANDA:EURGBP",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "SPOT:OANDA:XAUUSD",
+        "source": "OANDA:XAUUSD",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "SPOT:OANDA:XAGUSD",
+        "source": "OANDA:XAGUSD",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:OKX:XAUTUSDT",
+        "source": "OKX:XAUTUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "REFERENCE:TVC:USOIL",
+        "source": "TVC:USOIL",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "REFERENCE:TVC:UKOIL",
+        "source": "TVC:UKOIL",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BNBUSDT",
+        "source": "BINANCE:BNBUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+        "source": "BINANCE:DOGEUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ADAUSDT",
+        "source": "BINANCE:ADAUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LINKUSDT",
+        "source": "BINANCE:LINKUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LTCUSDT",
+        "source": "BINANCE:LTCUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BCHUSDT",
+        "source": "BINANCE:BCHUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+        "source": "BINANCE:AVAXUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:TRXUSDT",
+        "source": "BINANCE:TRXUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOTUSDT",
+        "source": "BINANCE:DOTUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:NEARUSDT",
+        "source": "BINANCE:NEARUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:SUIUSDT",
+        "source": "BINANCE:SUIUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:UNIUSDT",
+        "source": "BINANCE:UNIUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:FILUSDT",
+        "source": "BINANCE:FILUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+        "source": "BINANCE:AAVEUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+        "source": "BINANCE:ATOMUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ZECUSDT",
+        "source": "BINANCE:ZECUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ICPUSDT",
+        "source": "BINANCE:ICPUSDT",
+        "bucket_start": "2026-10-12T12:23:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:24:10.234770+00:00",
+        "close_to_commit_seconds": 10.23477
+      },
+      {
+        "symbol": "CRYPTO:BTCUSDT",
+        "source": "BINANCE:BTCUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:ETHUSDT",
+        "source": "BINANCE:ETHUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:SOLUSDT",
+        "source": "BINANCE:SOLUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:XRPUSDT",
+        "source": "BINANCE:XRPUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "FX:OANDA:EURUSD",
+        "source": "OANDA:EURUSD",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "FX:OANDA:GBPUSD",
+        "source": "OANDA:GBPUSD",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "FX:OANDA:USDJPY",
+        "source": "OANDA:USDJPY",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "FX:OANDA:USDCHF",
+        "source": "OANDA:USDCHF",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "FX:OANDA:AUDUSD",
+        "source": "OANDA:AUDUSD",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "FX:OANDA:USDCAD",
+        "source": "OANDA:USDCAD",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "FX:OANDA:NZDUSD",
+        "source": "OANDA:NZDUSD",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "FX:OANDA:EURGBP",
+        "source": "OANDA:EURGBP",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "SPOT:OANDA:XAUUSD",
+        "source": "OANDA:XAUUSD",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "SPOT:OANDA:XAGUSD",
+        "source": "OANDA:XAGUSD",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:OKX:XAUTUSDT",
+        "source": "OKX:XAUTUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "REFERENCE:TVC:USOIL",
+        "source": "TVC:USOIL",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "REFERENCE:TVC:UKOIL",
+        "source": "TVC:UKOIL",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BNBUSDT",
+        "source": "BINANCE:BNBUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+        "source": "BINANCE:DOGEUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ADAUSDT",
+        "source": "BINANCE:ADAUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LINKUSDT",
+        "source": "BINANCE:LINKUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:LTCUSDT",
+        "source": "BINANCE:LTCUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:BCHUSDT",
+        "source": "BINANCE:BCHUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+        "source": "BINANCE:AVAXUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:TRXUSDT",
+        "source": "BINANCE:TRXUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:DOTUSDT",
+        "source": "BINANCE:DOTUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:NEARUSDT",
+        "source": "BINANCE:NEARUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:SUIUSDT",
+        "source": "BINANCE:SUIUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:UNIUSDT",
+        "source": "BINANCE:UNIUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:FILUSDT",
+        "source": "BINANCE:FILUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+        "source": "BINANCE:AAVEUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+        "source": "BINANCE:ATOMUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ZECUSDT",
+        "source": "BINANCE:ZECUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      },
+      {
+        "symbol": "CRYPTO:BINANCE:ICPUSDT",
+        "source": "BINANCE:ICPUSDT",
+        "bucket_start": "2026-10-12T12:24:00+00:00",
+        "commit_acknowledged_at": "2026-10-12T12:25:06.536769+00:00",
+        "close_to_commit_seconds": 6.536769
+      }
+    ],
+    "resumed_startup": {
+      "bucket_end": "2026-10-12T12:21:00+00:00",
+      "native_targets": 34,
+      "successful_requests": 34,
+      "close_to_commit_seconds": 39.352188,
+      "backfilled_flagged": 68,
+      "previously_missed_recovered": 51,
+      "current_startup_targets_flagged_backfilled": 17,
+      "recovered": [
+        {
+          "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+          "source": "BINANCE:AAVEUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:ADAUSDT",
+          "source": "BINANCE:ADAUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+          "source": "BINANCE:ATOMUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+          "source": "BINANCE:AVAXUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:BCHUSDT",
+          "source": "BINANCE:BCHUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:BNBUSDT",
+          "source": "BINANCE:BNBUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+          "source": "BINANCE:DOGEUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:DOTUSDT",
+          "source": "BINANCE:DOTUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:FILUSDT",
+          "source": "BINANCE:FILUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:ICPUSDT",
+          "source": "BINANCE:ICPUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:LINKUSDT",
+          "source": "BINANCE:LINKUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:LTCUSDT",
+          "source": "BINANCE:LTCUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:NEARUSDT",
+          "source": "BINANCE:NEARUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:SUIUSDT",
+          "source": "BINANCE:SUIUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:TRXUSDT",
+          "source": "BINANCE:TRXUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:UNIUSDT",
+          "source": "BINANCE:UNIUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:ZECUSDT",
+          "source": "BINANCE:ZECUSDT",
+          "bucket_start": "2026-10-12T12:17:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 219.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+          "source": "BINANCE:AAVEUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:ADAUSDT",
+          "source": "BINANCE:ADAUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+          "source": "BINANCE:ATOMUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+          "source": "BINANCE:AVAXUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:BCHUSDT",
+          "source": "BINANCE:BCHUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:BNBUSDT",
+          "source": "BINANCE:BNBUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+          "source": "BINANCE:DOGEUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:DOTUSDT",
+          "source": "BINANCE:DOTUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:FILUSDT",
+          "source": "BINANCE:FILUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:ICPUSDT",
+          "source": "BINANCE:ICPUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:LINKUSDT",
+          "source": "BINANCE:LINKUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:LTCUSDT",
+          "source": "BINANCE:LTCUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:NEARUSDT",
+          "source": "BINANCE:NEARUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:SUIUSDT",
+          "source": "BINANCE:SUIUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:TRXUSDT",
+          "source": "BINANCE:TRXUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:UNIUSDT",
+          "source": "BINANCE:UNIUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:ZECUSDT",
+          "source": "BINANCE:ZECUSDT",
+          "bucket_start": "2026-10-12T12:18:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 159.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:AAVEUSDT",
+          "source": "BINANCE:AAVEUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:ADAUSDT",
+          "source": "BINANCE:ADAUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+          "source": "BINANCE:ATOMUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:AVAXUSDT",
+          "source": "BINANCE:AVAXUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:BCHUSDT",
+          "source": "BINANCE:BCHUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:BNBUSDT",
+          "source": "BINANCE:BNBUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:DOGEUSDT",
+          "source": "BINANCE:DOGEUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:DOTUSDT",
+          "source": "BINANCE:DOTUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:FILUSDT",
+          "source": "BINANCE:FILUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:ICPUSDT",
+          "source": "BINANCE:ICPUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:LINKUSDT",
+          "source": "BINANCE:LINKUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:LTCUSDT",
+          "source": "BINANCE:LTCUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:NEARUSDT",
+          "source": "BINANCE:NEARUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:SUIUSDT",
+          "source": "BINANCE:SUIUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:TRXUSDT",
+          "source": "BINANCE:TRXUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:UNIUSDT",
+          "source": "BINANCE:UNIUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        },
+        {
+          "symbol": "CRYPTO:BINANCE:ZECUSDT",
+          "source": "BINANCE:ZECUSDT",
+          "bucket_start": "2026-10-12T12:19:00+00:00",
+          "commit_acknowledged_at": "2026-10-12T12:21:39.352188+00:00",
+          "close_to_commit_seconds": 99.352188
+        }
+      ]
+    },
+    "rollback": {
+      "minutes": 2,
+      "websocket_db_rest_equal": true,
+      "universe": 17
+    },
+    "downstream_checks": {
+      "initial_complete_minutes_before_strict_failure": 4,
+      "initial_failed_bucket": "2026-10-12T12:14:00+00:00",
+      "resumed_complete_minutes": 3,
+      "resumed_websocket_db_rest_equal": true,
+      "scheduled_historical_rest_db_ohlcv_checked": true,
+      "local_observer_startup_race": "Initial resumed observer started before local HTTP readiness; EOF. Warmed rerun passed. No provider error inferred."
+    },
+    "integrity": {
+      "original_identities_unchanged": true,
+      "old_coverage_and_gap_partitions_unchanged": true,
+      "raw_guest_ticks_before": 26216,
+      "raw_guest_ticks_after": 26216,
+      "duplicate_logical_candles": 0,
+      "new_pre_activation_candles": 0,
+      "schema_head": "0004",
+      "coverage_starts": [
+        {
+          "coverage_start": "2026-10-07 09:33:00+00:00",
+          "instruments": 17
+        },
+        {
+          "coverage_start": "2026-10-12 12:10:00+00:00",
+          "instruments": 17
+        }
+      ],
+      "current_candle_rows": 15670
+    },
+    "current_native_addition_samples": [
+      {
+        "low": "748.69",
+        "high": "748.94",
+        "open": "748.69",
+        "close": "748.92",
+        "volume": "33.948",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "1f964168-f92e-59b9-b57c-64774f150bed",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:BNBUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:BNBUSDT",
+        "received_timestamp": "2026-10-12T12:27:05.472448Z"
+      },
+      {
+        "low": "0.08704",
+        "high": "0.08709",
+        "open": "0.08704",
+        "close": "0.08706",
+        "volume": "251410.0",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "0e3d7fc7-a532-52b9-8aa6-82c66d8e853d",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:DOGEUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:DOGEUSDT",
+        "received_timestamp": "2026-10-12T12:27:03.646648Z"
+      },
+      {
+        "low": "0.2499",
+        "high": "0.2501",
+        "open": "0.2499",
+        "close": "0.2501",
+        "volume": "29148.9",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "9fa8aa48-a8fa-5de5-86a4-52dd5b5135ef",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:ADAUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:ADAUSDT",
+        "received_timestamp": "2026-10-12T12:27:05.584796Z"
+      },
+      {
+        "low": "13.262",
+        "high": "13.272",
+        "open": "13.262",
+        "close": "13.271",
+        "volume": "480.05",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "be059940-5ac2-5f74-922a-f41835f6ded7",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:LINKUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:LINKUSDT",
+        "received_timestamp": "2026-10-12T12:27:03.800293Z"
+      },
+      {
+        "low": "64.59",
+        "high": "64.62",
+        "open": "64.6",
+        "close": "64.62",
+        "volume": "35.803",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "3319f030-8fbd-53c0-9245-1292d8c8c33d",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:LTCUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:LTCUSDT",
+        "received_timestamp": "2026-10-12T12:27:05.656357Z"
+      },
+      {
+        "low": "281.0",
+        "high": "281.2",
+        "open": "281.1",
+        "close": "281.2",
+        "volume": "64.866",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "ab30b9bd-10ce-52b3-a3e3-33d454451732",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:BCHUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:BCHUSDT",
+        "received_timestamp": "2026-10-12T12:27:03.966555Z"
+      },
+      {
+        "low": "10.941",
+        "high": "10.951",
+        "open": "10.941",
+        "close": "10.943",
+        "volume": "1199.52",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "fc172f35-5045-5ce9-95a6-13de0b10e509",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:AVAXUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:AVAXUSDT",
+        "received_timestamp": "2026-10-12T12:27:05.739794Z"
+      },
+      {
+        "low": "0.3318",
+        "high": "0.3319",
+        "open": "0.3318",
+        "close": "0.3319",
+        "volume": "23355.8",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "cca2a7c9-9aef-582b-9555-1553e99bef20",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:TRXUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:TRXUSDT",
+        "received_timestamp": "2026-10-12T12:27:03.966555Z"
+      },
+      {
+        "low": "1.269",
+        "high": "1.27",
+        "open": "1.269",
+        "close": "1.269",
+        "volume": "1841.47",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "2eb4d89b-3926-5956-a667-384c1c7217b0",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:DOTUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:DOTUSDT",
+        "received_timestamp": "2026-10-12T12:27:05.825832Z"
+      },
+      {
+        "low": "5.647",
+        "high": "5.657",
+        "open": "5.647",
+        "close": "5.653",
+        "volume": "8479.1",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "6523a3c4-bf42-510e-b31c-cc9ca0b2e89d",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:NEARUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:NEARUSDT",
+        "received_timestamp": "2026-10-12T12:27:04.140203Z"
+      },
+      {
+        "low": "1.1035",
+        "high": "1.1052",
+        "open": "1.1035",
+        "close": "1.1046",
+        "volume": "19131.7",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "5eeef619-c618-5c73-aa7a-1c9e1a1da058",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:SUIUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:SUIUSDT",
+        "received_timestamp": "2026-10-12T12:27:05.907736Z"
+      },
+      {
+        "low": "7.546",
+        "high": "7.555",
+        "open": "7.546",
+        "close": "7.554",
+        "volume": "8479.26",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "e5266bb2-d2a5-5d00-9e24-bcb33487fa08",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:UNIUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:UNIUSDT",
+        "received_timestamp": "2026-10-12T12:27:06.002316Z"
+      },
+      {
+        "low": "1.2395",
+        "high": "1.2439",
+        "open": "1.2405",
+        "close": "1.2437",
+        "volume": "19529.49",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "6c5fbf9f-55f1-5104-b3eb-01f26764d504",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:FILUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:FILUSDT",
+        "received_timestamp": "2026-10-12T12:27:04.140203Z"
+      },
+      {
+        "low": "166.32",
+        "high": "166.48",
+        "open": "166.32",
+        "close": "166.48",
+        "volume": "19.843",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "8cf121ce-c63c-5ca1-9282-9acd2371a76b",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:AAVEUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:AAVEUSDT",
+        "received_timestamp": "2026-10-12T12:27:04.316999Z"
+      },
+      {
+        "low": "1.857",
+        "high": "1.858",
+        "open": "1.857",
+        "close": "1.858",
+        "volume": "787.24",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "dbeaa19d-0890-5224-a58c-5744d3d0ce3d",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:ATOMUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:ATOMUSDT",
+        "received_timestamp": "2026-10-12T12:27:04.316999Z"
+      },
+      {
+        "low": "1292.43",
+        "high": "1293.51",
+        "open": "1292.43",
+        "close": "1292.9",
+        "volume": "20.246",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "702c5504-ab80-5639-9a2b-77d25a22aaa5",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:ZECUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:ZECUSDT",
+        "received_timestamp": "2026-10-12T12:27:04.485302Z"
+      },
+      {
+        "low": "3.427",
+        "high": "3.429",
+        "open": "3.428",
+        "close": "3.429",
+        "volume": "742.29",
+        "interval": "1m",
+        "metadata": {
+          "backfilled": false,
+          "bar_source": "trade",
+          "completion": "bucket_end <= collection cutoff; series_completed is request completion",
+          "provenance": "native_upstream_chart",
+          "resolution": "1",
+          "volume_type": "base",
+          "bar_fillgaps": false,
+          "bar_transform": "none",
+          "price_semantics": "native chart OHLC; broker/reference methodology not independently verified",
+          "source_timezone": "Etc/UTC",
+          "volume_additive": true,
+          "source_update_period_seconds": "5"
+        },
+        "provider": "tradingview_guest",
+        "bucket_end": "2026-10-12T12:27:00Z",
+        "price_basis": "native",
+        "bucket_start": "2026-10-12T12:26:00Z",
+        "instrument_id": "4e45dc28-47ac-5312-85cf-cc1ec8e8e8bd",
+        "source_status": "streaming",
+        "provider_symbol": "BINANCE:ICPUSDT",
+        "realtime_status": "realtime",
+        "canonical_symbol": "CRYPTO:BINANCE:ICPUSDT",
+        "received_timestamp": "2026-10-12T12:27:06.160161Z"
+      }
+    ],
+    "access": "No HTTP 429/access rejection observed; no scope increase beyond two workers/four requests. No independent provider license inferred.",
+    "latency_definition": "UTC bucket_end to local acknowledgement immediately after real Store transaction returns; not DB internal commit timestamp.",
+    "limitations": [
+      "Short pilot, shared-host development overlapped early cycles; not a sustained-capacity or memory-soak result.",
+      "One ATOM native omission persists; no substitute symbol, synthesized bar or validation relaxation.",
+      "Real PostgreSQL server outage/uncertain-commit failure not injected. Existing deterministic recovery suites passed.",
+      "Initial startup/transitional 17-eligible cycles, incidental uncaptured cycles and rollback minutes excluded from the 340-target scheduled denominator. Resumed startup and 51 recoveries reported separately."
+    ],
+    "checkpoints": [
+      {
+        "path": "artifacts/batch1-before.json",
+        "sha256": "e55cd9cd83a6dfed010d4a08cbc0d8a87a1ce462fcd31a61bebbe29fb27a82e2"
+      },
+      {
+        "path": "artifacts/batch1-pilot.log",
+        "sha256": "0ecfb450dceba7aea64fbfad407755353a9038b5bfc1fa37052ae7ce87ab02a8"
+      },
+      {
+        "path": "artifacts/batch1-pilot-smoke.json",
+        "sha256": "b8fbeda6050f10180292dd711977164a631f71db6131ef2eb125382cc5405a11"
+      },
+      {
+        "path": "artifacts/batch1-rollback-smoke.json",
+        "sha256": "b3b2dd2c127994ec82c6f09ebb302d78d09697a3e2dba9ac330842b24ece57b2"
+      },
+      {
+        "path": "artifacts/batch1-rollback.log",
+        "sha256": "ccd2d61fe09d7eb2ba3e41dd6d591b9393994f237c6363bb1d02fec56e964368"
+      },
+      {
+        "path": "artifacts/batch1-resumed-smoke.json",
+        "sha256": "8a21f2888d5f42686f1a94fe5aac7c92b056bbaac8d26fda93393728fa648cbb"
+      },
+      {
+        "path": "artifacts/batch1-resumed.log",
+        "sha256": "cbdc6364cd1a5a3ea7a30bdb075523e2734eb26eaac46075a914bae10b2b60c9"
+      },
+      {
+        "path": "artifacts/batch1-integrity.json",
+        "sha256": "9b10f5522952fef58d9b336c2a83f1d4853597b746ac0b7a2c53f030c9c98d09"
+      },
+      {
+        "path": "artifacts/batch1-reconciliation.json",
+        "sha256": "8a1f544f814630f38c0482c02c79fb9641dc46c883439aa6b7e903b23c5f230e"
+      },
+      {
+        "path": "artifacts/batch1-final-spotcheck.log",
+        "sha256": "bfae7cb26ca09bd9a546a1f42cc4d17ae37f51175e2c869c27641602177a1841"
+      }
+    ],
+    "additional_spot_check": {
+      "bucket_end": "2026-10-12T12:32:00+00:00",
+      "requested_instruments": 34,
+      "completed_current_instruments": 34,
+      "fetch_failures": 0,
+      "db_failures": 0,
+      "db_commit_completed_at": "2026-10-12T12:32:15.453904+00:00",
+      "close_to_commit_seconds": 15.453904,
+      "durable_current": 34,
+      "outside_primary_ten_cycle_denominator": true
+    },
+    "unresolved_native_targets": [
+      {
+        "symbol": "CRYPTO:BINANCE:ATOMUSDT",
+        "source": "BINANCE:ATOMUSDT",
+        "bucket_start": "2026-10-12T12:14:00+00:00",
+        "still_missing": true
+      }
+    ],
+    "omission_attribution": "Unresolved native targets; permanent upstream absence/cause unverified. See Batch 2 raw-history snapshots."
+  }
+}

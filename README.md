@@ -29,6 +29,12 @@ The opt-in multi-socket experiments reached 128/256/512 crypto spot targets, wit
 commits of 743/768, 1,419/1,536 and 2,663/3,072 respectively. All stages were incomplete;
 these results do not demonstrate complete coverage or sustained production capacity.
 An earlier unpaced run encountered HTTP 429 and stopped escalation.
+The ordinary collector now supports a validated, separate **34-instrument pilot**, with a
+tested 17-instrument rollback and durable activation boundaries. The local deployment remains
+34; 64 is deferred. See [pilot activation and persistence evidence](docs/production-instrument-expansion.md)
+and [the ATOM native-history/availability investigation](docs/native-availability-investigation.md).
+Request success, native availability and durable commits are measured separately.
+
 See [live end-to-end evidence](docs/candle-live-end-to-end.md),
 [earlier live/synthetic retrieval results](docs/candle-retrieval-scalability.md) and
 [guest limitations and activation](docs/tradingview.md).

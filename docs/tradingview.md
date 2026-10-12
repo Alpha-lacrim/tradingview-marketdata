@@ -2,8 +2,9 @@
 
 For the separately authorized 128/256/512-instrument multi-WebSocket investigation with
 actual native candle commits, completeness/latency/resource evidence and controlled recovery,
-see [live end-to-end experiment](candle-live-end-to-end.md). Production remains the original
-17-instrument single-socket collector; the experiment uses an isolated test database.
+see [live end-to-end experiment](candle-live-end-to-end.md), which used an isolated test database.
+The ordinary 34-instrument pilot, durable activation and original-17 rollback are documented
+in [production expansion](production-instrument-expansion.md).
 
 The operator explicitly requested investigation and use of TradingView extraction on
 2026-10-07. This opt-in adapter implements the guest chart/quote protocol observed in the public
@@ -294,7 +295,9 @@ UTC boundary. It never starts overlapping cycles. The following cycle recovers s
 
 A controlled two-series/shared-session experiment was explicitly rejected upstream with
 `exceed limit of series in the session`. The adapter retains one series per chart session
-and does not work around that restriction. A socket pool has not been justified or implemented.
+and does not work around that restriction. The existing connection pool is now available to
+the ordinary factory via TRADINGVIEW_CANDLE_POOL_ENABLED; it retains one series per session,
+bounded workers, global request limits, paced starts, shared 429 cooldown and access rejection.
 See [retrieval scalability measurements](candle-retrieval-scalability.md) for live versus
 synthetic results, conservative escalation commands and the limits of 100-instrument claims.
 

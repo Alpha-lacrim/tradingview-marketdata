@@ -129,7 +129,9 @@ class CandleIngestion:
                     for value in (
                         state.get("earliest_gap"),
                         state.get("earliest_unknown"),
-                        last + timedelta(minutes=1) if last else expected,
+                        last + timedelta(minutes=1)
+                        if last
+                        else state.get("coverage_end", expected),
                     )
                     if value is not None
                 ]
@@ -255,8 +257,13 @@ class CandleIngestion:
                     (i.id, m.provider, beginning, end, p.session_info.get(i.canonical_symbol, {}))
                 )
         current = [c for c in self.pending if c.bucket_start == expected]
+        activated = sum(
+            states[i.canonical_symbol].get("coverage_start", expected) <= expected
+            for i, _ in p.subscriptions
+        )
+        summary["activated_current_instruments"] = activated
         summary["completed_current_instruments"] = len(current)
-        summary["complete_current_minute"] = len(current) == len(p.subscriptions)
+        summary["complete_current_minute"] = len(current) == activated
         if current:
             receipts = [
                 datetime.fromisoformat(

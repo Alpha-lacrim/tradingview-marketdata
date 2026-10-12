@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import json
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from typing import Any, Literal
 from uuid import UUID
 
@@ -10,7 +10,7 @@ import asyncpg
 
 from marketdata.candles import MarketCandle
 from marketdata.config import Settings
-from marketdata.domain import Tick
+from marketdata.domain import Tick, utc_now
 from marketdata.registry import Registry
 from marketdata.sessions import classify_ranges
 
@@ -108,7 +108,14 @@ class Store:
         async with self.connection() as connection:
             return bool(await connection.fetchval("SELECT 1"))
 
-    async def register(self, registry: Registry) -> None:
+    async def register(
+        self, registry: Registry, *, candle_providers: list[str] | None = None
+    ) -> None:
+        # The next full UTC minute is the first collection bucket for a new source.
+        now = utc_now()
+        activation = now.replace(second=0, microsecond=0)
+        if activation < now:
+            activation += timedelta(minutes=1)
         async with self.connection() as connection, connection.transaction():
             for entry in registry.entries:
                 i = entry.instrument
@@ -142,16 +149,17 @@ class Store:
                         "canonical identity cannot be reassigned to a different instrument"
                     )
                 for m in entry.mappings:
-                    await connection.execute(
+                    registered_source = await connection.fetchval(
                         """
                         INSERT INTO provider_instruments
                         (instrument_id,provider,provider_symbol,realtime_status,data_delay_seconds,metadata)
                         VALUES ($1,$2,$3,$4,$5,$6)
                         ON CONFLICT (instrument_id,provider) DO UPDATE SET
-                        provider_symbol=EXCLUDED.provider_symbol,
                         realtime_status=EXCLUDED.realtime_status,
                         data_delay_seconds=EXCLUDED.data_delay_seconds,
                         metadata=EXCLUDED.metadata,updated_at=now()
+                        WHERE provider_instruments.provider_symbol=EXCLUDED.provider_symbol
+                        RETURNING provider_symbol
                     """,
                         i.id,
                         m.provider,
@@ -160,6 +168,25 @@ class Store:
                         m.data_delay_seconds,
                         json.dumps(m.metadata),
                     )
+                    if registered_source is None:
+                        raise ValueError("provider source identity cannot be reassigned")
+                    if m.provider in (candle_providers or []):
+                        # Existing coverage is immutable on registration. For legacy
+                        # stored-only history without coverage, preserve its first bar.
+                        await connection.execute(
+                            """
+                            INSERT INTO candle_coverage
+                                (instrument_id,provider,price_basis,coverage_start,coverage_end)
+                            SELECT $1,$2,'native',coalesce(min(bucket_start),$3),
+                                coalesce(min(bucket_start),$3)
+                            FROM market_candles WHERE instrument_id=$1 AND provider=$2
+                                AND price_basis='native'
+                            ON CONFLICT (instrument_id,provider,price_basis) DO NOTHING
+                            """,
+                            i.id,
+                            m.provider,
+                            activation,
+                        )
 
     async def write(self, ticks: list[Tick]) -> int:
         if not ticks:

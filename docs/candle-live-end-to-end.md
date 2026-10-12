@@ -4,7 +4,9 @@ The 2026-10-12 operator-authorized experiment uses actual TradingView guest WebS
 native completed 1m bars, the production `CandleIngestion.cycle` reconciliation path and
 the production `Store.write_candles` PostgreSQL transaction. Supported numerical guest
 connection allowances remain unverified. No authentication, entitlement or access-control
-workaround is used. The application keeps its original 17 instruments and one socket.
+workaround is used. At the time of this historical experiment the application kept its
+original 17 instruments and one socket. It now has a separately verified
+[34-instrument ordinary pilot](production-instrument-expansion.md).
 
 ## Reproduction
 
@@ -51,8 +53,8 @@ latencies belong in `candle-live-end-to-end.json`. Preserve failed runs separate
 
 An immediate candle must exist durably after that target's cycle transaction. Eventual
 completeness counts only actual native candles durably read back in later cycles. Successful
-network responses without the target bar remain source omissions. Missing minute targets
-from scheduler overruns are included in eventual denominators. EXPECTED/UNKNOWN/NOT_EXPECTED
+network responses without the target bar remain observed native-target shortfalls. Missing
+minute targets from scheduler overruns are included in eventual denominators. EXPECTED/UNKNOWN/NOT_EXPECTED
 coverage semantics remain the production store's responsibility; no synthetic replacement
 bars are created. Candles/latest/coverage/correction audit commit atomically.
 
@@ -61,6 +63,11 @@ then a new pool acquisition reads durable OHLCV/source/status and checks exact D
 All candles in that transaction share its acknowledgement. This is close-to-local-commit-ack
 latency, not PostgreSQL's internal commit timestamp or independently audited exchange latency.
 Replay leaves the first commit measurement intact. Later corrections do not rewrite it.
+
+The [Batch 2 availability audit](native-availability-investigation.md) separates request
+success, native availability, commits and recoveries, and compares the common source cohort.
+Historical raw response bounds were not captured; references below to source omissions mean
+observed missing native targets, not verified permanent upstream omissions or no-trade minutes.
 
 Resource measurements include process CPU seconds and one-core utilization, 250ms sampled
 Windows working-set RSS, traced allocation peak, task count, event-loop lag and post-cycle

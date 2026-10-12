@@ -1,0 +1,828 @@
+[
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BTCUSDT",
+      "display_name": "BTC/USDT Binance spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "BTC"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BTCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:ETHUSDT",
+      "display_name": "ETH/USDT Binance spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "ETH"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ETHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:SOLUSDT",
+      "display_name": "SOL/USDT Binance spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "SOL"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SOLUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:XRPUSDT",
+      "display_name": "XRP/USDT Binance spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "XRP"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:XRPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:EURUSD",
+      "display_name": "EUR/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "EUR"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:GBPUSD",
+      "display_name": "GBP/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "GBP"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:USDJPY",
+      "display_name": "USD/JPY OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "quote_asset": "JPY",
+      "base_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:USDJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:USDCHF",
+      "display_name": "USD/CHF OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CHF",
+      "quote_asset": "CHF",
+      "base_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:USDCHF",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:AUDUSD",
+      "display_name": "AUD/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "AUD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:AUDUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:USDCAD",
+      "display_name": "USD/CAD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CAD",
+      "quote_asset": "CAD",
+      "base_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:USDCAD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:NZDUSD",
+      "display_name": "NZD/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "NZD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:NZDUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:EURGBP",
+      "display_name": "EUR/GBP OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "GBP",
+      "quote_asset": "GBP",
+      "base_asset": "EUR"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURGBP",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "SPOT:OANDA:XAUUSD",
+      "display_name": "XAU/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "metals",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "XAU",
+      "metadata": {
+        "product_semantics": "OANDA broker OTC metal quote; not COMEX futures"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:XAUUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "SPOT:OANDA:XAGUSD",
+      "display_name": "XAG/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "metals",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "XAG",
+      "metadata": {
+        "product_semantics": "OANDA broker OTC metal quote; not COMEX futures"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:XAGUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:XAUTUSDT",
+      "display_name": "XAUT/USDT OKX token spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "XAUT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:XAUTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "REFERENCE:TVC:USOIL",
+      "display_name": "WTI TVC commodity reference series",
+      "asset_class": "energy",
+      "instrument_type": "reference",
+      "exchange": "TVC",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "metadata": {
+        "product_semantics": "TVC commodity reference series; physical spot/CFD methodology unverified; not an exchange future"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "TVC:USOIL",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "REFERENCE:TVC:UKOIL",
+      "display_name": "Brent TVC commodity reference series",
+      "asset_class": "energy",
+      "instrument_type": "reference",
+      "exchange": "TVC",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "metadata": {
+        "product_semantics": "TVC commodity reference series; physical spot/CFD methodology unverified; not an exchange future"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "TVC:UKOIL",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BNBUSDT",
+      "display_name": "BNB/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BNB",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BNBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:DOGEUSDT",
+      "display_name": "DOGE/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DOGE",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DOGEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ADAUSDT",
+      "display_name": "ADA/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ADA",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ADAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:LINKUSDT",
+      "display_name": "LINK/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LINK",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LINKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:LTCUSDT",
+      "display_name": "LTC/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LTC",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LTCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BCHUSDT",
+      "display_name": "BCH/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BCH",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BCHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:AVAXUSDT",
+      "display_name": "AVAX/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AVAX",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AVAXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:TRXUSDT",
+      "display_name": "TRX/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TRX",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TRXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:DOTUSDT",
+      "display_name": "DOT/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DOT",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DOTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:NEARUSDT",
+      "display_name": "NEAR/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "NEAR",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:NEARUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SUIUSDT",
+      "display_name": "SUI/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SUI",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SUIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:UNIUSDT",
+      "display_name": "UNI/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "UNI",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:UNIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:FILUSDT",
+      "display_name": "FIL/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FIL",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FILUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:AAVEUSDT",
+      "display_name": "AAVE/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AAVE",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AAVEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ATOMUSDT",
+      "display_name": "ATOM/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ATOM",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ATOMUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ZECUSDT",
+      "display_name": "ZEC/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ZEC",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ZECUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ICPUSDT",
+      "display_name": "ICP/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ICP",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ICPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  }
+]

@@ -76,6 +76,51 @@ async def test_out_of_order_slow_symbol_does_not_block_other_replies():
     await p.disconnect()
 
 
+async def test_successful_request_does_not_imply_native_target_available():
+    p, socket, pairs, end = pipeline(count=2, missing={0})
+    await p.subscribe(pairs)
+    p.socket = socket
+    try:
+        result = await p.fetch_many([(pair, end - timedelta(minutes=3), end, 4) for pair in pairs])
+        missing = p.timings[pairs[0][0].canonical_symbol]
+        complete = p.timings[pairs[1][0].canonical_symbol]
+        assert isinstance(result[pairs[0][0].canonical_symbol], list)
+        assert missing["source_status"] == "streaming"
+        assert missing["received_bar_count"] == 3  # Includes the forming bar.
+        assert missing["received_first_bucket"] == (end - timedelta(minutes=3)).isoformat()
+        assert missing["received_last_bucket"] == end.isoformat()
+        assert missing["received_current_target"] is False
+        assert missing["accepted_current_target"] is False
+        assert missing["accepted_completed_candles"] == 2
+        assert complete["received_bar_count"] == 4
+        assert complete["received_current_target"] is True
+        assert complete["accepted_current_target"] is True
+        assert complete["accepted_completed_candles"] == 3
+        no_receiver_leaks(p)
+    finally:
+        await p.disconnect()
+
+
+async def test_diagnostics_distinguish_raw_target_from_completion_filter(monkeypatch):
+    import marketdata.providers.tradingview_pipeline as transport
+
+    p, socket, pairs, end = pipeline(count=1)
+    p.grace = 2
+    monkeypatch.setattr(transport, "utc_now", lambda: end + timedelta(seconds=1))
+    await p.subscribe(pairs)
+    p.socket = socket
+    try:
+        result = await p.fetch_many([(pairs[0], end - timedelta(minutes=3), end, 4)])
+        assert len(result[pairs[0][0].canonical_symbol]) == 2
+        timing = p.timings[pairs[0][0].canonical_symbol]
+        assert timing["received_current_target"] is True
+        assert timing["accepted_current_target"] is False
+        assert timing["accepted_completed_candles"] == 2
+        no_receiver_leaks(p)
+    finally:
+        await p.disconnect()
+
+
 async def test_timeout_isolated_remaining_jobs_continue_and_window_decreases():
     p, socket, pairs, end = pipeline(count=100, drop={0})
     await p.subscribe(pairs)
@@ -114,6 +159,8 @@ async def test_request_diagnostics_identify_session_metadata_and_cleanup():
             assert timing["source_status"] == "streaming"
         else:
             assert timing["first_metadata_at"] is None
+            assert timing["accepted_completed_candles"] is None
+            assert timing["received_first_bucket"] is None
             assert timing["last_socket_frame_at"] is not None  # successful siblings kept reading
     assert len(sessions) == 4
     no_receiver_leaks(p)

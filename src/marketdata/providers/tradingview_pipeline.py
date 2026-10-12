@@ -136,6 +136,20 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
             requested_start=state.start.isoformat(),
             requested_end=state.end.isoformat(),
             requested_bars=state.count,
+            # Request completion is not proof of a complete native minute grid.
+            # Retain bounds and target presence before filtering, without OHLC payloads.
+            received_bar_count=len(state.bars),
+            received_first_bucket=from_ns(int(min(state.bars)) * 1_000_000_000).isoformat()
+            if state.bars and isinstance(result, list)
+            else None,
+            received_last_bucket=from_ns(int(max(state.bars)) * 1_000_000_000).isoformat()
+            if state.bars and isinstance(result, list)
+            else None,
+            received_current_target=state.available is not None,
+            accepted_completed_candles=len(result) if isinstance(result, list) else None,
+            accepted_current_target=any(c.bucket_end == state.end for c in result)
+            if isinstance(result, list)
+            else None,
             request_started_at=state.started.isoformat(),
             first_relevant_message_at=state.first.isoformat() if state.first else None,
             completed_candle_available_at=state.available.isoformat() if state.available else None,

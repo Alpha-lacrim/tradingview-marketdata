@@ -181,7 +181,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         app.state.service, app.state.registry, app.state.store = service, registry, store
         try:
             await store.connect()
-            await store.register(registry)
+            await store.register(registry, candle_providers=store.candle_providers)
             await service.start()
             yield
         finally:
