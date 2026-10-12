@@ -91,6 +91,35 @@ async def test_timeout_isolated_remaining_jobs_continue_and_window_decreases():
     await p.disconnect()
 
 
+async def test_request_diagnostics_identify_session_metadata_and_cleanup():
+    p, socket, pairs, end = pipeline(count=4, window=2, drop={0})
+    await p.subscribe(pairs)
+    p.socket = socket
+    result = await p.fetch_many([(pair, end - timedelta(minutes=3), end, 4) for pair in pairs])
+    stats = p.health.candle_retrieval
+    assert stats["sessions_created"] == stats["sessions_removed"] == 4
+    assert stats["sessions_current"] == stats["pending_futures"] == 0
+    sessions = set()
+    for pair in pairs:
+        timing = p.timings[pair[0].canonical_symbol]
+        sessions.add(timing["chart_session_id"])
+        assert timing["connection_generation"] == p.connection_generation
+        assert timing["request_sent_at"] is not None
+        assert datetime.fromisoformat(timing["timeout_deadline"]) > datetime.fromisoformat(
+            timing["request_started_at"]
+        )
+        if isinstance(result[pair[0].canonical_symbol], list):
+            assert timing["first_metadata_at"] is not None
+            assert timing["source_info"]["full_name"] == pair[1].provider_symbol
+            assert timing["source_status"] == "streaming"
+        else:
+            assert timing["first_metadata_at"] is None
+            assert timing["last_socket_frame_at"] is not None  # successful siblings kept reading
+    assert len(sessions) == 4
+    no_receiver_leaks(p)
+    await p.disconnect()
+
+
 async def test_receiver_keeps_reading_while_dispatcher_waits_for_cleanup():
     p, socket, pairs, end = pipeline(count=4)
     released, blocked = asyncio.Event(), asyncio.Event()

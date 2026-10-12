@@ -46,6 +46,11 @@ class Request:
     available: datetime | None = None
     parsed: datetime | None = None
     finished_timer: float | None = None
+    session: str = ""
+    sent: datetime | None = None
+    metadata_received: datetime | None = None
+    source_status: str | None = None
+    created: bool = False
 
 
 async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, Result]:
@@ -82,6 +87,10 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
         timeouts=0,
         ignored_responses=0,
         errors={},
+        sessions_created=0,
+        sessions_removed=0,
+        sessions_current=0,
+        pending_futures=0,
     )
     p.health.candle_retrieval = stats
     p.metrics.candle_window.labels(p.name).set(window)
@@ -123,6 +132,32 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
             completed_candle_available_at=state.available.isoformat() if state.available else None,
             parser_completed_at=parsed.isoformat(),
             duration_seconds=duration,
+            socket_id=f"guest-{generation}",
+            connection_generation=generation,
+            chart_session_id=state.session,
+            request_sent_at=state.sent.isoformat() if state.sent else None,
+            timeout_deadline=(state.started + timedelta(seconds=timeout)).isoformat(),
+            last_socket_frame_at=p.health.last_message_at.isoformat()
+            if p.health.last_message_at
+            else None,
+            first_metadata_at=state.metadata_received.isoformat()
+            if state.metadata_received
+            else None,
+            source_status=state.source_status,
+            source_info={
+                key: state.info[key]
+                for key in (
+                    "full_name",
+                    "type",
+                    "listed_exchange",
+                    "currency_code",
+                    "volume_type",
+                    "session",
+                    "timezone",
+                    "observed_update_period_seconds",
+                )
+                if key in state.info
+            },
         )
         item = p.health.symbols[symbol]
         item.last_fetch_completed_at = parsed
@@ -164,6 +199,7 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
         # batches or connection generations; even a delayed old frame cannot route to a new job.
         session = f"cs_{generation:04x}{p.request_serial:08x}"
         state = Request(pair, start, end, count, asyncio.get_running_loop().create_future())
+        state.session = session
         active[session] = state
         p.health.symbols[pair[0].canonical_symbol].last_fetch_started_at = state.started
         stats["peak_inflight"] = max(stats["peak_inflight"], len(active))
@@ -171,8 +207,12 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
         p.metrics.candles.labels(p.name, "requested").inc()
         async with asyncio.timeout(timeout):
             await send("chart_create_session", [session, ""])
+            state.created = True
+            stats["sessions_created"] += 1
+            stats["sessions_current"] += 1
             await send("resolve_symbol", [session, "symbol_1", pair[1].provider_symbol])
             await send("create_series", [session, "s1", "s1", "symbol_1", "1", count, ""])
+            state.sent = utc_now()
         return True
 
     async def receive() -> None:
@@ -206,6 +246,7 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
                     if kind in ("symbol_error", "series_error"):
                         raise PermanentProviderError("tradingview_chart_unavailable")
                     if kind == "symbol_resolved":
+                        state.metadata_received = state.metadata_received or received
                         if params[1] != "symbol_1":
                             raise ValueError("unexpected resolved symbol identifier")
                         state.info.update(params[2])
@@ -248,6 +289,7 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
                         if params[1] != "s1" or params[3] != "s1":
                             raise ValueError("unexpected chart series/turnaround")
                         status = params[2]
+                        state.source_status = status
                         validate_source(state.info, state.pair)
                         if status not in ("streaming", "realtime"):
                             raise PermanentProviderError("tradingview_candles_not_realtime")
@@ -312,6 +354,8 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
                 remember(state, result)
                 p.metrics.candle_inflight.labels(p.name).set(len(active))
                 await send("chart_delete_session", [session])
+                stats["sessions_removed"] += 1
+                stats["sessions_current"] -= 1
             if receiver.done() and (active or len(results) < len(jobs)):
                 # Save completed requests first, including completions in the last frame
                 # before a disconnect. Unfinished work fails without discarding valid siblings.
@@ -344,10 +388,14 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
             async with asyncio.timeout(min(1, timeout)):
                 for session in active:
                     await socket.send(encode_message("chart_delete_session", [session]))
+                    if active[session].created:
+                        stats["sessions_removed"] += 1
+                        stats["sessions_current"] = max(0, stats["sessions_current"] - 1)
         except (ConnectionClosed, OSError, TimeoutError):
             pass
         p.metrics.candle_inflight.labels(p.name).set(0)
         p.metrics.candle_window.labels(p.name).set(p.effective_concurrency)
         stats["next_window"] = p.effective_concurrency
+        stats["pending_futures"] = sum(not state.future.done() for state in active.values())
         p.fetching = False
     return results

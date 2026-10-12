@@ -10,6 +10,38 @@ simulations, WTI/Brent CFD simulations, and two synthetic concrete contracts for
 GC, SI, CL, Brent, ES, NQ and YM (30 instruments). Futures use the `SIM` venue and explicitly
 synthetic schedules, not invented exchange dates.
 
+## Review guide
+
+Existing commits are preserved with the project under `PycharmProjects/tradingview/` in the
+GitHub checkout. Run the commands below from that directory. The repository-root README
+links here; the root CI workflow runs the same project checks from this directory.
+
+| Area | Entry points |
+|---|---|
+| Application and APIs | `src/marketdata/api.py:create_app`, `providers/factory.py`; FastAPI lifespan owns startup/shutdown |
+| Identity and configuration | `domain.py`, `registry.py`, `config.py`, `config/instruments.*.json` |
+| Provider boundaries | `providers/base.py` tick interface; `providers/candles.py` optional native candle capability |
+| Guest candle transport | `providers/tradingview_candles.py` parser/socket lifecycle; `tradingview_pipeline.py` independent receiver, bounded dispatch and response demultiplexing |
+| Scheduling and recovery | `candles.py`, `candle_ingestion.py`, `sessions.py`; UTC-minute scheduling, overlap corrections, bounded backfill, EXPECTED/NOT_EXPECTED/UNKNOWN coverage |
+| Persistence | `persistence.py`; batched COPY/UPSERT, latest state, native candles, coverage and correction audit |
+| Schema | `migrations/versions/0001`–`0004`; ordinary PostgreSQL and optional Timescale hypertables/tick aggregates |
+| Serving and metrics | `api.py`, `fanout.py`, `observability.py`; REST history/latest/candles, committed-candle WebSocket updates, provider health and Prometheus |
+| Validation | `tests/`, `scripts/`; deterministic fixtures, integration tests, isolated benchmarks and opt-in live verification |
+
+Start with [guest semantics and operations](docs/tradingview.md), then
+[hardening evidence](docs/candle-hardening-verification.md) and
+[live/synthetic scalability results](docs/candle-retrieval-scalability.md).
+The latest live experiment reached **64 series**, with nine absent target bars; **100 live
+was not tested**. The clean ten-cycle 34-symbol window and the earlier failed handshake
+are both retained in the report. Synthetic 100-symbol results are not live guarantees.
+This unsupported guest transport is experimental, not an officially supported TradingView
+API or a production-readiness claim. `HANDOFF.md` records current operational limitations.
+
+Publication excludes local credentials, environment overrides, database volumes/dumps,
+logs/caches and raw generated research artifacts. Sanitized benchmark summaries and parser
+fixtures are included; recorded database history remains local. `.env.example` uses only
+public development defaults; replace them for any deployment.
+
 ## Local setup
 
 Docker Compose v2.24+ and a running Linux Docker engine:
@@ -259,8 +291,9 @@ Run the opt-in live multi-minute check with:
 uv run python scripts/smoke_tradingview_candles.py --minutes 3 --output artifacts/native-candle-smoke.json
 ```
 
-Missing minutes remain explicit, including quiet/closed sessions: no market calendar or
-fabricated bars. Bounded native historical recovery defaults to 300 minutes. Existing tick
+Missing minutes remain explicit. Source-session metadata supports conservative tri-state
+classification; unsupported or exceptional calendars remain UNKNOWN. No fabricated bars.
+Bounded native historical recovery defaults to 300 minutes. Existing tick
 inspection, verified derived exports and optional guarded deletion are documented separately;
 normal startup/migrations never delete raw data.
 
@@ -370,7 +403,7 @@ for timestamp/latency semantics, outage recovery, Prometheus labels, read-only s
 and historical reconciliation. No multi-hour reliability claim is made without an executed soak.
 
 See [retrieval scalability](docs/candle-retrieval-scalability.md) for the live/synthetic benchmark
-matrix and capacity limits. The 100-instrument result is **synthetic only**; shared-session
+matrix and capacity limits. Live tests reached 64, while 100 remains **synthetic only**; shared-session
 multi-series was explicitly rejected upstream, and no socket pool was introduced. The offline
 benchmark exercises 17/34/64/100 instruments at windows 1/2/4/6/8/12 and bounded 300-minute
 history retrieval without modifying the production registry. To verify the normal collector's

@@ -1,0 +1,1639 @@
+{
+  "kind": "LIVE",
+  "date": "2026-10-12",
+  "budget_seconds": 48,
+  "escalation_threshold_seconds": 38,
+  "quantiles": "nearest rank; p95 equals max for these small windows",
+  "windows": [
+    {
+      "window": "initial",
+      "started_at": "2026-10-12T06:48:02+00:00",
+      "finished_at": "2026-10-12T06:50:11.450358+00:00",
+      "sockets": 1,
+      "concurrency_ceiling": 2,
+      "instrument_count": 17,
+      "summary": {
+        "cycles": 3,
+        "immediate_complete_cycles": 3,
+        "immediate_candles": 51,
+        "expected_candles": 51,
+        "cycle_seconds": {
+          "samples": 3,
+          "p50": 9.448192899999412,
+          "p95": 9.598887599999216,
+          "max": 9.598887599999216
+        },
+        "under_budget_percent": 100.0,
+        "safety_margin_seconds": 38.401112400000784,
+        "first_parsed": {
+          "samples": 3,
+          "p50": 4.528789,
+          "p95": 5.895405,
+          "max": 5.895405
+        },
+        "median_parsed": {
+          "samples": 3,
+          "p50": 7.489431,
+          "p95": 8.188275,
+          "max": 8.188275
+        },
+        "p95_parsed": {
+          "samples": 3,
+          "p50": 10.850519,
+          "p95": 11.056946,
+          "max": 11.056946
+        },
+        "last_parsed": {
+          "samples": 3,
+          "p50": 10.850519,
+          "p95": 11.056946,
+          "max": 11.056946
+        },
+        "timeouts": 0,
+        "disconnects": 0.0,
+        "budget_exceeded": 0,
+        "skipped_minute_targets": 0,
+        "possible_throttle": 0
+      },
+      "escalation_gate_passed": true,
+      "eventual_candles": 51,
+      "expected_candles": 51,
+      "unresolved": [],
+      "verdict": "VERIFIED LIVE",
+      "connection_failures": {},
+      "resource_ranges": {
+        "cpu_seconds": [
+          0.109375,
+          0.265625
+        ],
+        "python_current_bytes": [
+          1363552,
+          2508826
+        ],
+        "python_additional_peak_bytes": [
+          1075803,
+          1911913
+        ],
+        "tasks_after_cycle": [
+          1,
+          1
+        ],
+        "receiver_tasks_after_cycle": [
+          0,
+          0
+        ]
+      },
+      "effective_windows": [
+        2
+      ],
+      "client_cleanup_complete": true
+    },
+    {
+      "window": "initial",
+      "started_at": "2026-10-12T06:53:02+00:00",
+      "finished_at": "2026-10-12T06:59:12.075628+00:00",
+      "sockets": 1,
+      "concurrency_ceiling": 2,
+      "instrument_count": 34,
+      "summary": {
+        "cycles": 7,
+        "immediate_complete_cycles": 6,
+        "immediate_candles": 204,
+        "expected_candles": 238,
+        "cycle_seconds": {
+          "samples": 7,
+          "p50": 21.874023500000476,
+          "p95": 29.86100980000083,
+          "max": 29.86100980000083
+        },
+        "under_budget_percent": 100.0,
+        "safety_margin_seconds": 18.13899019999917,
+        "first_parsed": {
+          "samples": 6,
+          "p50": 5.727459,
+          "p95": 8.483121,
+          "max": 8.483121
+        },
+        "median_parsed": {
+          "samples": 6,
+          "p50": 13.528197,
+          "p95": 20.228417,
+          "max": 20.228417
+        },
+        "p95_parsed": {
+          "samples": 6,
+          "p50": 21.283031,
+          "p95": 30.688207,
+          "max": 30.688207
+        },
+        "last_parsed": {
+          "samples": 6,
+          "p50": 22.839915,
+          "p95": 30.707864,
+          "max": 30.707864
+        },
+        "timeouts": 0,
+        "disconnects": 0.0,
+        "budget_exceeded": 0,
+        "skipped_minute_targets": 0,
+        "possible_throttle": 0
+      },
+      "escalation_gate_passed": false,
+      "eventual_candles": 204,
+      "expected_candles": 238,
+      "unresolved": [
+        {
+          "symbol": "BENCH:BINANCE:AAVEUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:ADAUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:ATOMUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:AVAXUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:BCHUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:BNBUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:DOGEUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:DOTUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:HBARUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:LINKUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:LTCUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:NEARUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:SHIBUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:SUIUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:TAOUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:TRXUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:UNIUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:XLMUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "CRYPTO:BTCUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "CRYPTO:ETHUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "CRYPTO:SOLUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "CRYPTO:XRPUSDT",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "FX:OANDA:AUDUSD",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "FX:OANDA:EURGBP",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "FX:OANDA:EURUSD",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "FX:OANDA:GBPUSD",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "FX:OANDA:NZDUSD",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "FX:OANDA:USDCAD",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "FX:OANDA:USDCHF",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "FX:OANDA:USDJPY",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "REFERENCE:TVC:UKOIL",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "REFERENCE:TVC:USOIL",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "SPOT:OANDA:XAGUSD",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        },
+        {
+          "symbol": "SPOT:OANDA:XAUUSD",
+          "bucket": "2026-10-12T06:58:00+00:00"
+        }
+      ],
+      "verdict": "UNSTABLE / INCONCLUSIVE",
+      "connection_failures": {
+        "TimeoutError": 1
+      },
+      "resource_ranges": {
+        "cpu_seconds": [
+          0.125,
+          0.40625
+        ],
+        "python_current_bytes": [
+          2722124,
+          5668944
+        ],
+        "python_additional_peak_bytes": [
+          751976,
+          1208102
+        ],
+        "tasks_after_cycle": [
+          1,
+          1
+        ],
+        "receiver_tasks_after_cycle": [
+          0,
+          0
+        ]
+      },
+      "effective_windows": [
+        2
+      ],
+      "client_cleanup_complete": true
+    },
+    {
+      "window": "controlled_retry",
+      "started_at": "2026-10-12T07:03:02+00:00",
+      "finished_at": "2026-10-12T07:05:10.887447+00:00",
+      "sockets": 1,
+      "concurrency_ceiling": 2,
+      "instrument_count": 17,
+      "summary": {
+        "cycles": 3,
+        "immediate_complete_cycles": 3,
+        "immediate_candles": 51,
+        "expected_candles": 51,
+        "cycle_seconds": {
+          "samples": 3,
+          "p50": 6.886546100000487,
+          "p95": 8.873643900000388,
+          "max": 8.873643900000388
+        },
+        "under_budget_percent": 100.0,
+        "safety_margin_seconds": 39.12635609999961,
+        "first_parsed": {
+          "samples": 3,
+          "p50": 4.269625,
+          "p95": 4.807803,
+          "max": 4.807803
+        },
+        "median_parsed": {
+          "samples": 3,
+          "p50": 6.481757,
+          "p95": 7.431317,
+          "max": 7.431317
+        },
+        "p95_parsed": {
+          "samples": 3,
+          "p50": 8.483743,
+          "p95": 10.266516,
+          "max": 10.266516
+        },
+        "last_parsed": {
+          "samples": 3,
+          "p50": 8.483743,
+          "p95": 10.266516,
+          "max": 10.266516
+        },
+        "timeouts": 0,
+        "disconnects": 0.0,
+        "budget_exceeded": 0,
+        "skipped_minute_targets": 0,
+        "possible_throttle": 0
+      },
+      "escalation_gate_passed": true,
+      "eventual_candles": 51,
+      "expected_candles": 51,
+      "unresolved": [],
+      "verdict": "VERIFIED LIVE",
+      "connection_failures": {},
+      "resource_ranges": {
+        "cpu_seconds": [
+          0.171875,
+          0.21875
+        ],
+        "python_current_bytes": [
+          1445645,
+          1952948
+        ],
+        "python_additional_peak_bytes": [
+          953168,
+          1413661
+        ],
+        "tasks_after_cycle": [
+          1,
+          1
+        ],
+        "receiver_tasks_after_cycle": [
+          0,
+          0
+        ]
+      },
+      "effective_windows": [
+        2
+      ],
+      "client_cleanup_complete": true
+    },
+    {
+      "window": "controlled_retry",
+      "started_at": "2026-10-12T07:06:02+00:00",
+      "finished_at": "2026-10-12T07:15:09.962494+00:00",
+      "sockets": 1,
+      "concurrency_ceiling": 2,
+      "instrument_count": 34,
+      "summary": {
+        "cycles": 10,
+        "immediate_complete_cycles": 10,
+        "immediate_candles": 340,
+        "expected_candles": 340,
+        "cycle_seconds": {
+          "samples": 10,
+          "p50": 12.509780399999727,
+          "p95": 17.013900300000387,
+          "max": 17.013900300000387
+        },
+        "under_budget_percent": 100.0,
+        "safety_margin_seconds": 30.986099699999613,
+        "first_parsed": {
+          "samples": 10,
+          "p50": 3.970903,
+          "p95": 5.012563,
+          "max": 5.012563
+        },
+        "median_parsed": {
+          "samples": 10,
+          "p50": 8.680022,
+          "p95": 11.659171,
+          "max": 11.659171
+        },
+        "p95_parsed": {
+          "samples": 10,
+          "p50": 13.595105,
+          "p95": 18.144766,
+          "max": 18.144766
+        },
+        "last_parsed": {
+          "samples": 10,
+          "p50": 14.07886,
+          "p95": 18.457525,
+          "max": 18.457525
+        },
+        "timeouts": 0,
+        "disconnects": 0.0,
+        "budget_exceeded": 0,
+        "skipped_minute_targets": 0,
+        "possible_throttle": 0
+      },
+      "escalation_gate_passed": true,
+      "eventual_candles": 340,
+      "expected_candles": 340,
+      "unresolved": [],
+      "verdict": "VERIFIED LIVE",
+      "connection_failures": {},
+      "resource_ranges": {
+        "cpu_seconds": [
+          0.140625,
+          0.40625
+        ],
+        "python_current_bytes": [
+          2818080,
+          5451554
+        ],
+        "python_additional_peak_bytes": [
+          1077246,
+          1523052
+        ],
+        "tasks_after_cycle": [
+          1,
+          1
+        ],
+        "receiver_tasks_after_cycle": [
+          0,
+          0
+        ]
+      },
+      "effective_windows": [
+        2
+      ],
+      "client_cleanup_complete": true
+    },
+    {
+      "window": "controlled_retry",
+      "started_at": "2026-10-12T07:18:02+00:00",
+      "finished_at": "2026-10-12T07:27:25.245995+00:00",
+      "sockets": 1,
+      "concurrency_ceiling": 2,
+      "instrument_count": 64,
+      "summary": {
+        "cycles": 10,
+        "immediate_complete_cycles": 1,
+        "immediate_candles": 631,
+        "expected_candles": 640,
+        "cycle_seconds": {
+          "samples": 10,
+          "p50": 22.37113610000233,
+          "p95": 35.56187250000221,
+          "max": 35.56187250000221
+        },
+        "under_budget_percent": 100.0,
+        "safety_margin_seconds": 12.43812749999779,
+        "first_parsed": {
+          "samples": 10,
+          "p50": 4.243079,
+          "p95": 7.553878,
+          "max": 7.553878
+        },
+        "median_parsed": {
+          "samples": 10,
+          "p50": 13.685688,
+          "p95": 24.288471,
+          "max": 24.288471
+        },
+        "p95_parsed": {
+          "samples": 10,
+          "p50": 23.514164,
+          "p95": 36.267615,
+          "max": 36.267615
+        },
+        "last_parsed": {
+          "samples": 10,
+          "p50": 23.902464,
+          "p95": 36.993223,
+          "max": 36.993223
+        },
+        "timeouts": 0,
+        "disconnects": 0.0,
+        "budget_exceeded": 0,
+        "skipped_minute_targets": 0,
+        "possible_throttle": 0
+      },
+      "escalation_gate_passed": false,
+      "eventual_candles": 631,
+      "expected_candles": 640,
+      "unresolved": [
+        {
+          "symbol": "BENCH:BINANCE:GRTUSDT",
+          "bucket": "2026-10-12T07:21:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:RUNEUSDT",
+          "bucket": "2026-10-12T07:18:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:RUNEUSDT",
+          "bucket": "2026-10-12T07:19:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:RUNEUSDT",
+          "bucket": "2026-10-12T07:24:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:RUNEUSDT",
+          "bucket": "2026-10-12T07:26:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:TRUMPUSDT",
+          "bucket": "2026-10-12T07:20:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:TRUMPUSDT",
+          "bucket": "2026-10-12T07:25:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:VETUSDT",
+          "bucket": "2026-10-12T07:17:00+00:00"
+        },
+        {
+          "symbol": "BENCH:BINANCE:VETUSDT",
+          "bucket": "2026-10-12T07:22:00+00:00"
+        }
+      ],
+      "verdict": "UNSTABLE / INCONCLUSIVE",
+      "connection_failures": {},
+      "resource_ranges": {
+        "cpu_seconds": [
+          0.375,
+          0.734375
+        ],
+        "python_current_bytes": [
+          5076343,
+          8315151
+        ],
+        "python_additional_peak_bytes": [
+          1354082,
+          1469858
+        ],
+        "tasks_after_cycle": [
+          1,
+          1
+        ],
+        "receiver_tasks_after_cycle": [
+          0,
+          0
+        ]
+      },
+      "effective_windows": [
+        2
+      ],
+      "client_cleanup_complete": true
+    }
+  ],
+  "verified_additions": [
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:BNBUSDT",
+      "source_symbol": "BINANCE:BNBUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:BNBUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:ADAUSDT",
+      "source_symbol": "BINANCE:ADAUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:ADAUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:DOGEUSDT",
+      "source_symbol": "BINANCE:DOGEUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:DOGEUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:LINKUSDT",
+      "source_symbol": "BINANCE:LINKUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:LINKUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:TRXUSDT",
+      "source_symbol": "BINANCE:TRXUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:TRXUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:XLMUSDT",
+      "source_symbol": "BINANCE:XLMUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:XLMUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:NEARUSDT",
+      "source_symbol": "BINANCE:NEARUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:NEARUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:BCHUSDT",
+      "source_symbol": "BINANCE:BCHUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:BCHUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:LTCUSDT",
+      "source_symbol": "BINANCE:LTCUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:LTCUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:UNIUSDT",
+      "source_symbol": "BINANCE:UNIUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:UNIUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:AVAXUSDT",
+      "source_symbol": "BINANCE:AVAXUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:AVAXUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:SUIUSDT",
+      "source_symbol": "BINANCE:SUIUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:SUIUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:HBARUSDT",
+      "source_symbol": "BINANCE:HBARUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:HBARUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:TAOUSDT",
+      "source_symbol": "BINANCE:TAOUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:TAOUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:SHIBUSDT",
+      "source_symbol": "BINANCE:SHIBUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:SHIBUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:AAVEUSDT",
+      "source_symbol": "BINANCE:AAVEUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:AAVEUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:DOTUSDT",
+      "source_symbol": "BINANCE:DOTUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:DOTUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:51:14.102994+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:ATOMUSDT",
+      "source_symbol": "BINANCE:ATOMUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:ATOMUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T06:52:06.168188+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:ETCUSDT",
+      "source_symbol": "BINANCE:ETCUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:ETCUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:FILUSDT",
+      "source_symbol": "BINANCE:FILUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:FILUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:APTUSDT",
+      "source_symbol": "BINANCE:APTUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:APTUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:ARBUSDT",
+      "source_symbol": "BINANCE:ARBUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:ARBUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:OPUSDT",
+      "source_symbol": "BINANCE:OPUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:OPUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:INJUSDT",
+      "source_symbol": "BINANCE:INJUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:INJUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:ICPUSDT",
+      "source_symbol": "BINANCE:ICPUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:ICPUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:RUNEUSDT",
+      "source_symbol": "BINANCE:RUNEUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:RUNEUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:SEIUSDT",
+      "source_symbol": "BINANCE:SEIUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:SEIUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:WIFUSDT",
+      "source_symbol": "BINANCE:WIFUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:WIFUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:PEPEUSDT",
+      "source_symbol": "BINANCE:PEPEUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:PEPEUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:ENAUSDT",
+      "source_symbol": "BINANCE:ENAUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:ENAUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:FETUSDT",
+      "source_symbol": "BINANCE:FETUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:FETUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:RENDERUSDT",
+      "source_symbol": "BINANCE:RENDERUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:RENDERUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:JUPUSDT",
+      "source_symbol": "BINANCE:JUPUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:JUPUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:WLDUSDT",
+      "source_symbol": "BINANCE:WLDUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:WLDUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:TRUMPUSDT",
+      "source_symbol": "BINANCE:TRUMPUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:TRUMPUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:16:06.203786+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:PENGUUSDT",
+      "source_symbol": "BINANCE:PENGUUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:PENGUUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:ONDOUSDT",
+      "source_symbol": "BINANCE:ONDOUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:ONDOUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:ALGOUSDT",
+      "source_symbol": "BINANCE:ALGOUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:ALGOUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:VETUSDT",
+      "source_symbol": "BINANCE:VETUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:VETUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:POLUSDT",
+      "source_symbol": "BINANCE:POLUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:POLUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:BINANCE:GRTUSDT",
+      "source_symbol": "BINANCE:GRTUSDT",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "BINANCE:GRTUSDT",
+        "type": "spot",
+        "listed_exchange": "BINANCE",
+        "currency_code": "USDT",
+        "volume_type": "base",
+        "session": "24x7",
+        "timezone": "Etc/UTC",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:OANDA:AUDCAD",
+      "source_symbol": "OANDA:AUDCAD",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "OANDA:AUDCAD",
+        "type": "forex",
+        "listed_exchange": "OANDA",
+        "currency_code": "CAD",
+        "volume_type": "tick",
+        "session": "1700-1700",
+        "timezone": "America/New_York",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:OANDA:AUDCHF",
+      "source_symbol": "OANDA:AUDCHF",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "OANDA:AUDCHF",
+        "type": "forex",
+        "listed_exchange": "OANDA",
+        "currency_code": "CHF",
+        "volume_type": "tick",
+        "session": "1700-1700",
+        "timezone": "America/New_York",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:OANDA:AUDJPY",
+      "source_symbol": "OANDA:AUDJPY",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "OANDA:AUDJPY",
+        "type": "forex",
+        "listed_exchange": "OANDA",
+        "currency_code": "JPY",
+        "volume_type": "tick",
+        "session": "1700-1700",
+        "timezone": "America/New_York",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:OANDA:AUDNZD",
+      "source_symbol": "OANDA:AUDNZD",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "OANDA:AUDNZD",
+        "type": "forex",
+        "listed_exchange": "OANDA",
+        "currency_code": "NZD",
+        "volume_type": "tick",
+        "session": "1700-1700",
+        "timezone": "America/New_York",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:OANDA:CADCHF",
+      "source_symbol": "OANDA:CADCHF",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "OANDA:CADCHF",
+        "type": "forex",
+        "listed_exchange": "OANDA",
+        "currency_code": "CHF",
+        "volume_type": "tick",
+        "session": "1700-1700",
+        "timezone": "America/New_York",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:OANDA:CADJPY",
+      "source_symbol": "OANDA:CADJPY",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "OANDA:CADJPY",
+        "type": "forex",
+        "listed_exchange": "OANDA",
+        "currency_code": "JPY",
+        "volume_type": "tick",
+        "session": "1700-1700",
+        "timezone": "America/New_York",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    },
+    {
+      "canonical_benchmark_identifier": "BENCH:OANDA:CHFJPY",
+      "source_symbol": "OANDA:CHFJPY",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "independent_native_verification": true,
+      "realtime_status": "realtime",
+      "update_mode": "streaming",
+      "source_info": {
+        "full_name": "OANDA:CHFJPY",
+        "type": "forex",
+        "listed_exchange": "OANDA",
+        "currency_code": "JPY",
+        "volume_type": "tick",
+        "session": "1700-1700",
+        "timezone": "America/New_York",
+        "observed_update_period_seconds": "5"
+      },
+      "verified_at": "2026-10-12T07:17:06.629932+00:00"
+    }
+  ],
+  "prior_missing_recovered": true,
+  "combined_34": {
+    "attempts": 17,
+    "complete_cycles": 16,
+    "immediate_candles": 544,
+    "expected_candles": 578,
+    "eventual_candles": 578
+  },
+  "verdict_100": "NOT TESTED",
+  "stop_reason": "stage failed conservative escalation gate",
+  "isolated_native_persistence": {
+    "started_at": "2026-10-12T07:36:02+00:00",
+    "finished_at": "2026-10-12T07:36:11.491088+00:00",
+    "instrument_count": 34,
+    "cycle_seconds": 9.47805309999967,
+    "first_parsed_seconds": 3.721321,
+    "last_parsed_seconds": 11.251536,
+    "persisted_rows": 34,
+    "db_write_seconds": 0.33621169999969425,
+    "close_to_commit_seconds": 12.002363,
+    "production_writes": 0,
+    "isolated_database_name": "marketdata_benchmark_ts_test"
+  },
+  "production_writes": 0,
+  "raw_artifacts": [
+    "live-capacity-oct12-staged.json",
+    "live-capacity-oct12-retry.json",
+    "live-capacity-native-persistence.json"
+  ]
+}

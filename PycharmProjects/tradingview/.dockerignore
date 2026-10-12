@@ -2,7 +2,17 @@
 .git
 .env
 .env.local
+.env.*
+!.env.example
 artifacts
+research
+logs
+secrets
+pgdata
+*.dump
+*.backup
+*.key
+*.pem
 __pycache__
 .pytest_cache
 .mypy_cache

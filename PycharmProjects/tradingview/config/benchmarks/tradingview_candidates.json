@@ -1,0 +1,2270 @@
+[
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:BNBUSDT",
+      "display_name": "Benchmark-only candidate BNB/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BNB",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BNBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/BNBUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:ADAUSDT",
+      "display_name": "Benchmark-only candidate ADA/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ADA",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ADAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/ADAUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:DOGEUSDT",
+      "display_name": "Benchmark-only candidate DOGE/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DOGE",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DOGEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/DOGEUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:LINKUSDT",
+      "display_name": "Benchmark-only candidate LINK/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LINK",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LINKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/LINKUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:TRXUSDT",
+      "display_name": "Benchmark-only candidate TRX/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TRX",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TRXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/TRXUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:XLMUSDT",
+      "display_name": "Benchmark-only candidate XLM/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "XLM",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:XLMUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/XLMUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:NEARUSDT",
+      "display_name": "Benchmark-only candidate NEAR/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "NEAR",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:NEARUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/NEARUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:BCHUSDT",
+      "display_name": "Benchmark-only candidate BCH/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BCH",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BCHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/BCHUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:LTCUSDT",
+      "display_name": "Benchmark-only candidate LTC/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LTC",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LTCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/LTCUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:UNIUSDT",
+      "display_name": "Benchmark-only candidate UNI/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "UNI",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:UNIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/UNIUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:AVAXUSDT",
+      "display_name": "Benchmark-only candidate AVAX/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AVAX",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AVAXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/AVAXUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:SUIUSDT",
+      "display_name": "Benchmark-only candidate SUI/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SUI",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SUIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/SUIUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:HBARUSDT",
+      "display_name": "Benchmark-only candidate HBAR/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "HBAR",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:HBARUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/HBARUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:TAOUSDT",
+      "display_name": "Benchmark-only candidate TAO/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TAO",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TAOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/TAOUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:SHIBUSDT",
+      "display_name": "Benchmark-only candidate SHIB/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SHIB",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SHIBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/SHIBUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:AAVEUSDT",
+      "display_name": "Benchmark-only candidate AAVE/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AAVE",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AAVEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/AAVEUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:DOTUSDT",
+      "display_name": "Benchmark-only candidate DOT/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DOT",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DOTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/DOTUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:ATOMUSDT",
+      "display_name": "Benchmark-only candidate ATOM/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ATOM",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ATOMUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/ATOMUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:ETCUSDT",
+      "display_name": "Benchmark-only candidate ETC/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ETC",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ETCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/ETCUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:FILUSDT",
+      "display_name": "Benchmark-only candidate FIL/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FIL",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FILUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/FILUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:APTUSDT",
+      "display_name": "Benchmark-only candidate APT/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "APT",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:APTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/APTUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:ARBUSDT",
+      "display_name": "Benchmark-only candidate ARB/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ARB",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ARBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/ARBUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:OPUSDT",
+      "display_name": "Benchmark-only candidate OP/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "OP",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:OPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/OPUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:INJUSDT",
+      "display_name": "Benchmark-only candidate INJ/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "INJ",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:INJUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/INJUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:ICPUSDT",
+      "display_name": "Benchmark-only candidate ICP/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ICP",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ICPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/ICPUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:RUNEUSDT",
+      "display_name": "Benchmark-only candidate RUNE/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "RUNE",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:RUNEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/RUNEUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:SEIUSDT",
+      "display_name": "Benchmark-only candidate SEI/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SEI",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SEIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/SEIUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:WIFUSDT",
+      "display_name": "Benchmark-only candidate WIF/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "WIF",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:WIFUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/WIFUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:PEPEUSDT",
+      "display_name": "Benchmark-only candidate PEPE/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PEPE",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PEPEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/PEPEUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:ENAUSDT",
+      "display_name": "Benchmark-only candidate ENA/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ENA",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ENAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/ENAUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:FETUSDT",
+      "display_name": "Benchmark-only candidate FET/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FET",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FETUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/FETUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:RENDERUSDT",
+      "display_name": "Benchmark-only candidate RENDER/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "RENDER",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:RENDERUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/RENDERUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:JUPUSDT",
+      "display_name": "Benchmark-only candidate JUP/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "JUP",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:JUPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/JUPUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:WLDUSDT",
+      "display_name": "Benchmark-only candidate WLD/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "WLD",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:WLDUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/WLDUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:TRUMPUSDT",
+      "display_name": "Benchmark-only candidate TRUMP/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TRUMP",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TRUMPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/TRUMPUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:PENGUUSDT",
+      "display_name": "Benchmark-only candidate PENGU/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PENGU",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PENGUUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/PENGUUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:ONDOUSDT",
+      "display_name": "Benchmark-only candidate ONDO/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ONDO",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ONDOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/ONDOUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:ALGOUSDT",
+      "display_name": "Benchmark-only candidate ALGO/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ALGO",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ALGOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/ALGOUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:VETUSDT",
+      "display_name": "Benchmark-only candidate VET/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "VET",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:VETUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/VETUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:POLUSDT",
+      "display_name": "Benchmark-only candidate POL/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "POL",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:POLUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/POLUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:GRTUSDT",
+      "display_name": "Benchmark-only candidate GRT/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "GRT",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:GRTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/GRTUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:AUDCAD",
+      "display_name": "Benchmark-only candidate AUD/CAD OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CAD",
+      "base_asset": "AUD",
+      "quote_asset": "CAD",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:AUDCAD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/AUDCAD/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:AUDCHF",
+      "display_name": "Benchmark-only candidate AUD/CHF OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CHF",
+      "base_asset": "AUD",
+      "quote_asset": "CHF",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:AUDCHF",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/AUDCHF/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:AUDJPY",
+      "display_name": "Benchmark-only candidate AUD/JPY OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "base_asset": "AUD",
+      "quote_asset": "JPY",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:AUDJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/AUDJPY/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:AUDNZD",
+      "display_name": "Benchmark-only candidate AUD/NZD OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "NZD",
+      "base_asset": "AUD",
+      "quote_asset": "NZD",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:AUDNZD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/AUDNZD/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:CADCHF",
+      "display_name": "Benchmark-only candidate CAD/CHF OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CHF",
+      "base_asset": "CAD",
+      "quote_asset": "CHF",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:CADCHF",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/CADCHF/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:CADJPY",
+      "display_name": "Benchmark-only candidate CAD/JPY OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "base_asset": "CAD",
+      "quote_asset": "JPY",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:CADJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/CADJPY/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:CHFJPY",
+      "display_name": "Benchmark-only candidate CHF/JPY OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "base_asset": "CHF",
+      "quote_asset": "JPY",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:CHFJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/CHFJPY/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:EURAUD",
+      "display_name": "Benchmark-only candidate EUR/AUD OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "AUD",
+      "base_asset": "EUR",
+      "quote_asset": "AUD",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURAUD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/EURAUD/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:EURCAD",
+      "display_name": "Benchmark-only candidate EUR/CAD OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CAD",
+      "base_asset": "EUR",
+      "quote_asset": "CAD",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURCAD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/EURCAD/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:EURCHF",
+      "display_name": "Benchmark-only candidate EUR/CHF OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CHF",
+      "base_asset": "EUR",
+      "quote_asset": "CHF",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURCHF",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/EURCHF/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:EURJPY",
+      "display_name": "Benchmark-only candidate EUR/JPY OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "base_asset": "EUR",
+      "quote_asset": "JPY",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/EURJPY/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:EURNZD",
+      "display_name": "Benchmark-only candidate EUR/NZD OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "NZD",
+      "base_asset": "EUR",
+      "quote_asset": "NZD",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURNZD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/EURNZD/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:GBPAUD",
+      "display_name": "Benchmark-only candidate GBP/AUD OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "AUD",
+      "base_asset": "GBP",
+      "quote_asset": "AUD",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPAUD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/GBPAUD/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:GBPCAD",
+      "display_name": "Benchmark-only candidate GBP/CAD OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CAD",
+      "base_asset": "GBP",
+      "quote_asset": "CAD",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPCAD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/GBPCAD/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:GBPCHF",
+      "display_name": "Benchmark-only candidate GBP/CHF OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CHF",
+      "base_asset": "GBP",
+      "quote_asset": "CHF",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPCHF",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/GBPCHF/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:GBPJPY",
+      "display_name": "Benchmark-only candidate GBP/JPY OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "base_asset": "GBP",
+      "quote_asset": "JPY",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/GBPJPY/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:GBPNZD",
+      "display_name": "Benchmark-only candidate GBP/NZD OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "NZD",
+      "base_asset": "GBP",
+      "quote_asset": "NZD",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPNZD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/GBPNZD/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:NZDCAD",
+      "display_name": "Benchmark-only candidate NZD/CAD OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CAD",
+      "base_asset": "NZD",
+      "quote_asset": "CAD",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:NZDCAD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/NZDCAD/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:OANDA:NZDJPY",
+      "display_name": "Benchmark-only candidate NZD/JPY OANDA",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "base_asset": "NZD",
+      "quote_asset": "JPY",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:NZDJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex",
+          "catalog_evidence": "https://www.tradingview.com/symbols/NZDJPY/?exchange=OANDA",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:ZECUSDT",
+      "display_name": "Benchmark-only candidate ZEC/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ZEC",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ZECUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/ZECUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:DASHUSDT",
+      "display_name": "Benchmark-only candidate DASH/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DASH",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DASHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/DASHUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:XTZUSDT",
+      "display_name": "Benchmark-only candidate XTZ/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "XTZ",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:XTZUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/XTZUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:IOTAUSDT",
+      "display_name": "Benchmark-only candidate IOTA/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "IOTA",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:IOTAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/IOTAUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:LDOUSDT",
+      "display_name": "Benchmark-only candidate LDO/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LDO",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LDOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/LDOUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:CRVUSDT",
+      "display_name": "Benchmark-only candidate CRV/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CRV",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CRVUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/CRVUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:APEUSDT",
+      "display_name": "Benchmark-only candidate APE/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "APE",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:APEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/APEUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:SANDUSDT",
+      "display_name": "Benchmark-only candidate SAND/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SAND",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SANDUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/SANDUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:MANAUSDT",
+      "display_name": "Benchmark-only candidate MANA/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "MANA",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:MANAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/MANAUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:AXSUSDT",
+      "display_name": "Benchmark-only candidate AXS/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AXS",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AXSUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/AXSUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:GALAUSDT",
+      "display_name": "Benchmark-only candidate GALA/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "GALA",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:GALAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/GALAUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:IMXUSDT",
+      "display_name": "Benchmark-only candidate IMX/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "IMX",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:IMXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/IMXUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:STXUSDT",
+      "display_name": "Benchmark-only candidate STX/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "STX",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:STXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/STXUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:EGLDUSDT",
+      "display_name": "Benchmark-only candidate EGLD/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "EGLD",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:EGLDUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/EGLDUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:FLOWUSDT",
+      "display_name": "Benchmark-only candidate FLOW/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FLOW",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FLOWUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/FLOWUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:ZROUSDT",
+      "display_name": "Benchmark-only candidate ZRO/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ZRO",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ZROUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/ZROUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:PYTHUSDT",
+      "display_name": "Benchmark-only candidate PYTH/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PYTH",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PYTHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/PYTHUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:JTOUSDT",
+      "display_name": "Benchmark-only candidate JTO/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "JTO",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:JTOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/JTOUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:STRKUSDT",
+      "display_name": "Benchmark-only candidate STRK/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "STRK",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:STRKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/STRKUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:TIAUSDT",
+      "display_name": "Benchmark-only candidate TIA/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TIA",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TIAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/TIAUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:BONKUSDT",
+      "display_name": "Benchmark-only candidate BONK/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BONK",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BONKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/BONKUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:FLOKIUSDT",
+      "display_name": "Benchmark-only candidate FLOKI/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FLOKI",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FLOKIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/FLOKIUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:ENSUSDT",
+      "display_name": "Benchmark-only candidate ENS/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ENS",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ENSUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/ENSUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "BENCH:BINANCE:CAKEUSDT",
+      "display_name": "Benchmark-only candidate CAKE/USDT BINANCE",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CAKE",
+      "quote_asset": "USDT",
+      "metadata": {
+        "benchmark_only": true
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CAKEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "catalog_evidence": "https://www.tradingview.com/symbols/CAKEUSDT/?exchange=BINANCE",
+          "independently_verified": false
+        }
+      }
+    ]
+  }
+]

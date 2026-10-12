@@ -1,0 +1,14 @@
+# This existing Git repository lives above the project. Publish only project paths.
+/*
+!/.gitignore
+!/README.md
+!/.github/
+!/PycharmProjects/
+
+/.github/*
+!/.github/workflows/
+/.github/workflows/*
+!/.github/workflows/test.yaml
+
+/PycharmProjects/*
+!/PycharmProjects/tradingview/

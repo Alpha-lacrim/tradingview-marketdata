@@ -1,8 +1,9 @@
-# Native candle retrieval scalability — 2026-10-07
+# Native candle retrieval scalability
 
 This experiment preserves the existing 17 instruments, native completed 1m semantics,
 three-minute correction overlap, 300-minute recovery horizon and one UTC-minute cycle.
-No new source commands, instruments, credentials or sockets were introduced.
+No new source commands, production instruments, credentials or sockets were introduced.
+The benchmark-only live universe and October 12 results are documented below.
 
 ## Protocol evidence and architecture
 
@@ -69,7 +70,7 @@ application reading/dispatch coupling is removed; it does not prove it dominated
 No per-instrument connection fanout was attempted. Raw artifacts:
 `retrieval-initial-probes.json`, `retrieval-window2-probes.json` under ignored `artifacts/`.
 
-## Final normal-collector live observation
+## Previous task: normal-collector live observation
 
 **LIVE: 900.013 seconds, 15 normal cycles, zero startup cycles or duplicate minute attempts.**
 Seven cycles used window two (six complete, one partial); eight used the protective window
@@ -77,7 +78,7 @@ one (seven complete, one partial). There were three individual timeouts in two c
 three expected gaps opened and subsequently backfilled, one audited NZD/USD close/volume
 correction, no DB/observer failures and no cycle overruns. These were ordinary collector
 cycles, with no additional upstream benchmark traffic. No higher window was tested after
-the low-window failures; the configured ceiling remains **two**, current process effective
+the low-window failures; the configured ceiling remained **two**, that process effective
 window **one**. This is conservative retention, not proof of a new global optimum.
 
 | Seconds, p50 / p95 / max | Supplied window-two baseline (15 complete) | New window two (6 complete of 7 attempts) | Whole observation (13 complete of 15, windows 2→1) |
@@ -211,10 +212,10 @@ Database, progress reads and production network tails still consume budget. Thes
 cannot establish a reliable live maximum or support extrapolation beyond the tested 100.
 Local guest subscription/job cap remains 100; raising it requires further validated capacity.
 
-**100-instrument feasibility: VERIFIED SYNTHETICALLY ONLY.** No 34/64/100-instrument live
-experiment or socket pool was run, and no unsupported production instruments were added.
-Upstream/network variability is the unresolved live limiting factor. The synthetic maximum
-tested is 100; the real maximum tested is 17, with intermittent failed low-window probes.
+The earlier scalability task established **100 instruments synthetically only**. The staged
+October 12 experiment below extends live evidence through 64 instruments. **100 live:
+NOT TESTED** after the 64-symbol completeness gate failed. No production symbols or socket
+pool were added. Synthetic timings do not establish live capacity.
 
 Per-job default deadline is 15 seconds, measured independently. Timeout frees its window
 slot, retains successful siblings, opens/retains appropriate coverage gaps and reduces the
@@ -275,9 +276,77 @@ the short observation outage using native history. It is not a production soak. 
 window change should instead observe the single normal collector, retain raw counts/coverage
 and restore the previous setting on instability. No automatic concurrent source experiments.
 
-## Validation and remaining limits
+## Staged live capacity harness
 
-The full offline/integration suites pass **225 tests Timescale / 222 plain PostgreSQL plus
+`scripts/benchmark_live_capacity.py` measures live retrieval without a database writer.
+It never registers candidates or writes production market history. The permanent registry
+remains `config/instruments.tradingview.json`. The separate
+`config/benchmarks/tradingview_candidates.json` contains **unverified candidates**, not
+enabled feeds: public symbol-page evidence is recorded per entry; real-time status remains
+unknown until the existing native parser verifies identity, semantics and completion mode.
+
+Stop the ordinary app first; leave PostgreSQL and its volume intact. Run exactly one harness:
+
+```powershell
+docker compose -f compose.yaml -f compose.tradingview.yaml stop app
+uv run python scripts/benchmark_live_capacity.py --collector-stopped --candidates config/benchmarks/tradingview_candidates.json --counts 17 34 64 100 --baseline-cycles 3 --cycles 10 --output artifacts/live-capacity.json
+# Always restore the ordinary collector, including after interruption or a failed gate.
+docker compose -f compose.yaml -f compose.tradingview.yaml up -d app
+```
+
+Stages must follow a prefix of 17/34/64/100. Every verification batch and capacity cycle
+waits for a future UTC minute plus grace; no concurrent collector or extra intraminute retry.
+The same provider retains its decrease-only effective window across cycles and stages,
+ceiling two, one socket. Three completed contiguous native bars must independently verify
+each addition before admission. Verification batches contain at most 17 candidates and
+are reported separately from capacity cycles. Invalid, delayed, sparse or incomplete
+verification stops escalation; no flat bars or substituted products are manufactured.
+
+The production baseline includes XAUT. Expanded sets omit **only** OKX:XAUTUSDT because
+its sparse native minutes are already known, and replace it with another verified symbol.
+Baseline absence is considered interpretable only when its request explicitly completes
+without the target bar; an XAUT timeout is still a failed request. Sparse absences remain
+in immediate/eventual counts and unresolved records. They are never called recovered.
+
+The conservative escalation gate requires at least 90% immediately complete cycles,
+all expected primary minutes eventually returned, p95 duration below **38s**, no disconnect,
+protocol/connection failure or skipped target. The 48s budget and extra 10s gate margin are
+reported independently. Multiple overload symptoms in a cycle stop the experiment. A
+failed gate alone does not establish an architectural capacity failure: inspect source
+stability, source-completed missing bars and request diagnostics first. Summaries include
+failed attempts, not just the successful tail. Cycles are sequential; an overrun realigns
+to a future UTC target and the next historical-series request covers skipped buckets.
+
+One request per symbol retrieves overlap and recoverable missing history together, bounded
+by the existing horizon. The in-memory reconciliation set proves which attempted/skipped
+minutes returned eventually; unresolved minutes remain explicit at termination. It does
+not claim source output for every wall-clock minute or unlimited historical recovery.
+
+Per-request diagnostics include socket generation, chart session, request-send timestamp,
+deadline, first metadata, last socket frame at completion, native availability, parser
+completion, verified source metadata and completion status. Lifecycle statistics count
+client session creation/removal sends and pending futures; deletion sends have no observed
+server acknowledgement. Closing the owned socket bounds any uncertain server cleanup.
+CPU is process CPU time; memory is traced Python allocation, **not total process RSS**.
+The checkpoint itself deliberately retains bounded prior-cycle evidence, so rising traced
+allocation alone is not proof of a transport leak. Receiver/task/future/session counts are
+checked separately. No socket pool or higher concurrency is introduced by this harness.
+
+A pre-request handshake timeout can have **one** controlled retry window:
+
+```powershell
+uv run python scripts/benchmark_live_capacity.py --collector-stopped --candidates config/benchmarks/tradingview_candidates.json --counts 17 34 64 100 --baseline-cycles 3 --cycles 10 --resume artifacts/live-capacity.json --output artifacts/live-capacity-retry.json
+```
+
+This preserves the original failed window inside the new result, retains its effective
+window, rechecks the production baseline, reuses only independently verified identities
+and carries unresolved targeted minutes into historical requests. It requires a checkpoint
+within one hour whose last failure is a timeout **before any request timing exists**.
+An access/protocol rejection, per-symbol timeout, stale checkpoint or second retry is
+rejected. A successful retry does not erase the original failure or establish its cause.
+Public symbol-page placeholders are not used as evidence of market-open/realtime status.
+
+The full offline/integration suites pass **233 tests Timescale / 230 plain PostgreSQL plus
 three Timescale-only skips**. They cover windows 1/2/4/6/8/12, 100-symbol routing, out-of-order
 responses, a slow symbol, isolated missing responses with 99 successes, stale generations,
 duplicate/extra frames, wrong series, reconnect/shutdown, no waiter/receiver leaks, owned
@@ -290,3 +359,112 @@ historical native data remain. The protocol is unsupported and its available his
 semantics and data-use rights remain experimental. Longer soaks, adverse-network sustained
 capacity, licensed high-count upstream coverage and a validated larger universe would be
 required before claiming reliable 100+ live capacity. Socket pools are not an assumed fix.
+
+## Staged LIVE results: October 12, 2026
+
+All times below are UTC. One socket, concurrency ceiling **2**, effective window **2**
+throughout every established connection. Retrieval only; no production DB writes. Duration
+includes connection setup, dispatch, receipt/parsing and cleanup, excluding the grace wait.
+Close-to-parsed timings include the two-second grace. Quantiles use nearest rank; with these
+small samples p95 equals max. Failed attempts remain in duration/completeness denominators.
+[Compact evidence and exact verified identities](candle-live-capacity-benchmarks.json) retain
+all stage summaries, resource ranges, source metadata and unresolved buckets.
+
+| Live instruments/window | UTC collection window | Cycles | Immediately complete cycles | p50 duration s | p95/max s | Request timeouts | Eventual candles | Overruns |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| 17 initial | 06:48:02–06:50:11 | 3 | 3/3 | 9.448 | 9.599 | 0 | 51/51 | 0 |
+| 34 initial | 06:53:02–06:59:12 | 7 | 6/7 | 21.874 | 29.861 | 0 | 238/238 after retry | 0 |
+| 17 retry control | 07:03:02–07:05:11 | 3 | 3/3 | 6.887 | 8.874 | 0 | 51/51 | 0 |
+| 34 controlled retry | 07:06:02–07:15:10 | 10 | 10/10 | 12.510 | 17.014 | 0 | 340/340 | 0 |
+| 64 | 07:18:02–07:27:25 | 10 | 1/10 | 22.371 | 35.562 | 0 | 631/640 | 0 |
+
+Every attempt finished below 48 seconds, with no skipped collection targets. The initial
+34 window stopped on **one opening-handshake TimeoutError**, before chart requests were sent;
+its failed attempt returned zero candles. There were no established-socket disconnects,
+server close codes, protocol errors or recorded possible-throttle symptoms. This does not
+establish whether the handshake failure was network- or server-originated. One controlled
+retry retained that failure, rechecked 17, then recovered all 34 missing target candles.
+Across **both** 34 windows: 16/17 complete cycles (94.12%), 544/578 immediate candles (94.12%),
+578/578 eventual candles (100%). The clean ten-cycle retry is **VERIFIED LIVE**, not a claim
+that the entire 17-attempt record was flawless.
+
+Additional symbols were selected from public TradingView symbol pages, then each independently
+returned **three contiguous completed native 1m bars**, exact source identity and accepted
+streaming/realtime completion metadata before admission. Page placeholders were not delivery
+status evidence. Forty-eight additions were verified: 41 Binance spot pairs and seven OANDA
+OTC FX pairs. The 84-entry candidate file itself remains unverified configuration; its remaining
+36 candidates were not native-tested. Expanded universes exclude known-sparse OKX XAUT;
+production 17 and both baseline controls retain it. OTC metals/FX and TVC oil remain distinct
+from exchange-traded futures; oil volume stays null.
+
+At 64, **all 640 requests completed successfully** with valid native series, correct symbol
+routing, Decimal OHLC, native basis and closed timestamps. Immediate/eventual target-minute
+completeness was **631/640 = 98.59%**, but only one cycle had all 64 target bars. Nine bars
+remained absent on repeated historical retrieval: RUNEUSDT four, TRUMPUSDT two, VETUSDT two,
+GRTUSDT one. Their initial three-bar verification had passed; longer observation exposed
+source availability/sparsity. Whether the exchange produced no trade or the vendor omitted
+a bar is unproven. These are **source-completed omissions**, not timeouts or proof that an
+existing bar could not be transported. No flat candles were fabricated.
+
+Thus 64 is **PARTIALLY VERIFIED for coverage / availability-confounded**, with successful
+transport and a **12.438s p95 safety margin**. The harness's stricter completeness gate returned
+UNSTABLE / INCONCLUSIVE, so escalation stopped. **100-instrument verdict: NOT TESTED.**
+No 100-symbol or two-socket live test was attempted. Extra sockets would not resolve bars
+absent from the source series; no evidence justified increasing concurrency or socket count.
+
+| Close → parsed seconds, p50 / p95 / max | 17 initial | 34 retry | 64 |
+|---|---|---|---|
+| First target candle | 4.529 / 5.895 / 5.895 | 3.971 / 5.013 / 5.013 | 4.243 / 7.554 / 7.554 |
+| Median instrument | 7.489 / 8.188 / 8.188 | 8.680 / 11.659 / 11.659 | 13.686 / 24.288 / 24.288 |
+| p95 instrument | 10.851 / 11.057 / 11.057 | 13.595 / 18.145 / 18.145 | 23.514 / 36.268 / 36.268 |
+| Last target candle | 10.851 / 11.057 / 11.057 | 14.079 / 18.458 / 18.458 | 23.902 / 36.993 / 36.993 |
+
+These parsed-target timings are not DB commit measurements or proof of exchange-audited
+latency. One request per symbol fetched the three-minute overlap and any pending recovery
+history together. Recovery of the failed 34 cycle did not prevent the following clean stage.
+The nine 64-source omissions remained explicit rather than being counted as recovered.
+Largest live universe tested: **64**. Largest clean ten-cycle immediate-complete universe:
+**34**. Largest universe with 100% eventual target coverage: **34**. Largest tested request
+universe below 48s at p95: **64**; this timing result does not imply complete minute coverage.
+No measured live capacity above 64 or sustainable long-soak maximum is claimed.
+
+### Lifecycle, persistence and restoration
+
+Every completed capacity cycle ended with zero pending futures, zero receiver tasks and
+one remaining owner task. Successful client session creation/removal sends matched the
+instrument count, with zero current sessions; sockets were closed. This verifies client
+ownership, not unobserved server deletion acknowledgements. At 64, process CPU was
+0.375–0.734s per cycle, current traced Python allocation 5.08–8.32MB and additional peak
+1.35–1.47MB. The checkpoint retains bounded per-cycle evidence, so memory grew with stored
+diagnostics. OS CPU utilization/RSS and long-term memory stability were **NOT TESTED**.
+
+A subsequent isolated native persistence test at **07:36:02–07:36:11 UTC** used the largest
+fully successful stage, 34. All 34 target candles committed to `marketdata_benchmark_ts_test`
+under a unique benchmark provider namespace: retrieval **9.478s**, batched DB write **0.336s**,
+close→commit **12.002s**. One sample, not persistence percentiles. Production history was
+untouched. To reproduce before restoring the ordinary app:
+
+```powershell
+# TEST_DATABASE_URL must name a migrated disposable database ending _test.
+uv run python scripts/benchmark_native_persistence.py --collector-stopped --capacity-results artifacts/live-capacity-retry.json --output artifacts/native-persistence.json
+```
+
+The normal Compose collector was rebuilt/restored with the original 17 and ceiling two.
+Raw ticks remained **26,216**, zero benchmark mappings in the main DB, zero duplicate or
+malformed/forming rows; migration head 0004 and candle hypertable remain intact. Restart
+reconciliation of **[06:47,07:47) UTC** returned 1,009/1,020 expected candles, all 11 missing
+minutes XAUT, all coverage invariants holding. No data was deleted. Older five-day outage
+gaps exceed the 300-minute horizon and correctly keep global health degraded.
+
+Stored-only REST/WebSocket smoke **FAILED** on missing XAUT at 07:49 UTC; DB had 16 candles
+then and 17 at 07:48, 07:50 and 07:47. This is retained as a failure, not an all-17 smoke pass.
+REST/provider APIs remained operational. Full regressions: **233 Timescale passed; 230 plain
+PostgreSQL passed, three Timescale-only skips**. Ruff, format (64 files), strict mypy (27
+modules) passed. No migration/schema or concurrency behavior changed; additions are benchmark
+tools, source identity evidence, request/lifecycle diagnostics and tests. Existing warning:
+Starlette/httpx TestClient deprecation.
+
+Next useful experiment: build a separately reverified dense universe excluding the four
+newly observed sparse sources, repeat the 64 gate, then consider 100 only if coverage and
+timing remain stable. Do not replace permanent instruments, fabricate omitted minutes,
+increase polling frequency or infer live feasibility from synthetic results.
