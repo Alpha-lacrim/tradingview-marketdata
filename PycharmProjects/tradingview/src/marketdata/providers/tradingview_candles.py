@@ -99,7 +99,7 @@ def parse_bar(
 class TradingViewCandleProvider(CandleProvider):
     supports_request_budget = True
 
-    def __init__(self, settings: Settings, metrics: Metrics):
+    def __init__(self, settings: Settings, metrics: Metrics, *, experimental_pool: bool = False):
         super().__init__("tradingview_guest", metrics)
         self.settings = settings
         self.grace = settings.candle_fetch_grace_seconds
@@ -110,9 +110,14 @@ class TradingViewCandleProvider(CandleProvider):
         self.fetching = False
         self.effective_concurrency = settings.tradingview_candle_concurrency
         self.job_limit = 100  # Local safeguard, not a documented upstream limit.
+        # Explicit experimental harness opt-in; the app factory retains its default.
+        # This authorizes a local experiment, not a claim of upstream permitted limits.
+        self.experimental_pool = experimental_pool
 
     async def connect(self) -> None:
-        if self.settings.candle_pool_connections != 1 or self.job_limit > 100:
+        if (
+            self.settings.candle_pool_connections != 1 and not self.experimental_pool
+        ) or self.job_limit > 100:
             raise PermanentConnectionError("tradingview_live_pool_permissions_unverified")
         if self.socket is not None:
             raise RuntimeError("candle socket already connected")

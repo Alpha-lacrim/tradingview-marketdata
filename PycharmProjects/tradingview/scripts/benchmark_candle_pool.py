@@ -2,7 +2,7 @@
 
 Same synthetic universe and latency function across configurations. A shared service
 capacity model deliberately separates provider-wide capacity from client parallelism.
-Live guest pooling is blocked until a permitted provider integration supplies limits.
+Opt-in live experiments use benchmark_live_pool.py and isolated PostgreSQL persistence.
 """
 
 import argparse
@@ -279,7 +279,7 @@ def summarize(rows):
 
 async def run(args):
     if args.live:
-        raise ValueError("BLOCKED: guest pool permissions unverified; no live requests issued")
+        raise ValueError("synthetic only: use benchmark_live_pool.py for opt-in live persistence")
     if (
         not 1 <= args.rounds <= 20
         or any(not 1 <= n <= 4096 for n in args.counts)

@@ -1,127 +1,111 @@
-# HANDOFF.md
+﻿# HANDOFF.md
 
 ## Current state - 2026-10-12
 
-The original deployed experimental tradingview_guest application still collects native
-completed 1m candles for the permanent 17 instruments. UTC-minute owner + 2s grace,
-correction overlap 3, recovery horizon 300, one socket/window 2. No production registry,
-schema, credentials, deployment or benchmark history changes were made in this session.
-Compose app localhost:8000 and DB localhost:5432 remain running. Old roughly 74k expected
-coverage gaps from a five-day outage lie outside recovery and keep health degraded; do
-not erase or fabricate them. Timescale native candle hypertable/head 0004, guest raw ticks
-26,216, no benchmark mappings, no duplicate native logical candles at verification.
+Operator-authorized TradingView guest multi-WebSocket investigation now reaches actual
+native completed 1m candles through the production CandleIngestion cycle and PostgreSQL
+Store transaction. It does not demonstrate complete minute coverage or sustained capacity.
+The original deployed image/registry remains 17 instruments, one socket/window two. It was
+paused during experiments and restored with docker compose start app, without rebuilding.
+Old five-day coverage gaps outside the 300-minute horizon remain; preserve them and the
+EXPECTED / NOT_EXPECTED / UNKNOWN distinctions. Main DB guest raw ticks remain 26,216;
+no benchmark mappings or production table truncation. Schema head is still 0004.
 
-## Retained connection-pool implementation
+## Implementation and decisions
 
-New providers/candle_pool.py is a CandleProvider capability behind the SAME CandleIngestion
-scheduler/persistence transaction. Sorted canonical round robin fixes unique ownership;
-workers have independent socket, decoder, receiver, generation, sessions, futures and
-symbol health. Shared request budget bounds unfinished requests; local windows separately
-bound sessions. Completed responses release shared permits before session cleanup, avoiding
-capacity deadlocks when global concurrency is smaller than summed worker windows.
-Worker tasks publish partial results incrementally; pool checks owner/source/window identities.
+TradingViewCandleProvider adds explicit experimental_pool=True construction for the live
+harness. Default app construction still rejects multisocket settings. Both local worker
+100-subscription/job safeguards remain, as do exact native identity/status validation,
+Decimal OHLCV, UTC cutoff, bounded history, unique ownership and access rejection. Experimental
+PoolLimits describe local safeguards, not documented upstream guest allowances/entitlements.
+No login, cookies, proxies or entitlement workaround was introduced.
 
-PoolLimits declares integration-verified connection/local/global ceilings, never infers
-permissions from observed access. Defaults: connections1, worker_capacity100, max_instruments100,
-global_concurrency2, deadline48s, close3s; existing worker window2 and request timeout15s.
-Application validation maxima are32 workers/4096 instruments/128 global requests.
-These fields apply when a permitted integration constructs the pool; the existing app factory
-still constructs the one-socket provider. Guest multisocket activation/job-limit expansion is
-rejected before network: tradingview_live_pool_permissions_unverified. Both live local100
-safeguards remain. No documented numerical guest socket permission was established; official
-TradingView policy/API references and the BLOCKED live boundary are in the pool document.
+The existing connection pool keeps one scheduler, independent workers, shared request
+budget, deadlines, cancellation/partial-result retention and independent network backoff.
+New configurable connection-start pacing defaults to zero; the experiment used two seconds.
+Worker timing now separates pacing wait and handshake. HTTP status is retained, HTTP 429
+reduces global concurrency and imposes at least 60s provider cooldown, honoring longer
+numeric or HTTP-date Retry-After. Waiting paced workers recheck the gate before connecting.
+Deadline classification now uses asyncio timeout.expired(), avoiding Windows clock-boundary
+misclassification. These post-run diagnostic/backoff refinements passed deterministic tests;
+no second live throttling run was induced.
 
-One connection attempt per nonempty worker/cycle; ordinary failures back off independently
-across later minutes. Successful peers continue and retain candles. HTTP429 gates the whole
-provider and decreases its window, never grows connections. Permanent access rejection or
-uncertain close cleanup blocks replacements. Cancellation joins worker/receiver/acquisition
-and emitter tasks. Cooperative deadline includes handshake/retrieval, then bounded I/O cleanup;
-CPU/JSON/OS stalls prevent a hard real-time return guarantee. Pipeline now yields every32
-parsed historical candles. UTC alignment, native Decimal OHLC/source/completion, EXPECTED /
-NOT_EXPECTED / UNKNOWN, bounded recovery, idempotent writes and rollups are unchanged.
+scripts/benchmark_live_pool.py is opt-in and requires collector-stopped plus a dedicated
+migrated TEST_DATABASE_URL ending _test. Do not use its database with pytest fixtures that
+truncate tables. It discovers exact current public scanner identities or accepts saved
+benchmark-only candidates, then uses the SAME ranked universe at 128/256/512. Unique test
+provider namespaces isolate writes. RecordingStore remaps persistence identity and reads
+back Decimal OHLCV/status after each actual transaction; every candle retains its first
+commit acknowledgement/latency across replay/correction. Evidence checkpoints are atomic.
+Three baseline cycles, one real client socket disconnect plus pretransaction DB failure,
+and two recovery cycles run per stage. Process CPU/RSS/traced allocation/task/event-loop
+measurements and native omissions are recorded. No source candles are synthesized.
 
-New low-cardinality connected-worker gauge; bounded health diagnostics report ownership,
-worker phases/backoff/errors/resources, request timings, pool throughput and slowest worker.
-Worker subset gauges cannot overwrite pool-wide coverage. No distributed infrastructure.
+scripts/summarize_live_pool.py publishes sanitized summaries, all per-candle first commits,
+missing-minute identities, native samples and SHA-256 of each raw checkpoint. Docs, README,
+CODEX.md and .env.example describe this workflow. The synthetic harness remains offline;
+its --live error directs operators to the new actual-persistence harness.
 
-## Measured evidence
+## Live evidence
 
-See docs/candle-connection-pool.md and docs/candle-pool-benchmarks.json for full configuration,
-timing/resource/availability summaries and reproducible commands. Raw artifacts/pool-*.json
-remain ignored. New synthetic workers have no network connector, require simulated mappings
-and label all native-shaped bars SIMULATED. No production benchmark writes.
+See docs/candle-live-end-to-end.md and docs/candle-live-end-to-end.json. Raw checkpoints,
+catalog response/candidates and full native payloads remain under ignored artifacts/.
+Eight unpaced socket starts at 10:45 UTC: two HTTP 429 handshakes, 96 successful requests,
+93 actual target commits out of 128. Stopped before escalation; failure retained.
 
-SYNTHETIC VERIFIED final independent-delay matrix:64/128/256/512,54 cycles,
-13,824/13,824 actual targets, all resources cleaned. Three cycles/configuration, p95=max,
-not sustained production percentiles. At512, p50/max seconds:
-- original single/window2:27.652/27.786;
-- single/window8:7.359/7.370;
-- four/window2/global8:8.112/8.361;
-- eight/window2/global16:5.457/5.465;
-- 31/window2/global32 (~17 instruments/worker):5.891/6.083.
-Equal-concurrency single beats four workers.31 workers cost5.250s CPU p95 vs2.953s for8.
-No support for fixing partitions at17 or changing the production default.
-Shared-source-capacity-two model at256: single/four/eight p50 16.777/17.438/18.447s;
-extra sockets do not overcome modeled provider capacity. No inference about real provider.
-Slower0.35s profile:256 single/window2 p95 46.418s leaves only1.582s retrieval margin,
-insufficient proof of full minute collection/commit. These short-response profiles preceded
-history cancellation fix; final principal/history matrices were rerun afterward.
+Paced run 10:48..11:05 UTC: fixed SIX sockets/window two/global twelve, 18 total cycles,
+909 catalog candidates, ranked BINANCE/OKX spot-USDT prefixes only. Not mixed FX/energy or
+futures capacity. All baseline requests completed. No further HTTP 429/access rejection.
+Instrument count: baseline immediate (three cycles); six-cycle immediate; eventual commits:
+- 128: 373/384; 602/768; 743/768 (25 unresolved).
+- 256: 709/768; 1,386/1,536; 1,419/1,536 (117 unresolved).
+- 512: 1,271/1,536; 2,588/3,072; 2,663/3,072 (409 unresolved).
+All are LIVE INCOMPLETE. Successful responses lacking targets remain source omissions.
+Actual ordinary PostgreSQL 17.7 DB marketdata_live_pool_test, head 0004, synchronous_commit,
+fsync and full_page_writes on: 4,825 paced rows plus 93 failed-run rows; all native/realtime/
+completed/aligned, zero duplicate logical candles. No schema migration added.
 
-Maximum-history256x300 completed bars/cycle: initial PARTIALLY VERIFIED cycles up to63.049s
-exposed CPU cancellation starvation, retained in pool-history-before-cancellation-fix.json.
-After cooperative parsing + per-bar simulated labeling, six cycles all256 targets:
-single/window8 p50/max30.547/37.673s; eight/window2/global16 20.735/22.702s.
-CPU p95 35.281/22.172s, extra traced peak182.5/184.8MiB; memory/CPU remain bottlenecks.
-512 maximum-history, integrated full-history persistence and long memory soak NOT TESTED.
+Immediate close-to-commit p95: 19.653 / 49.158 / 46.798s. Includes local acknowledgement,
+not server/exchange commit timestamp. All-cycle wall max: 18.157 / 47.765 / 46.055s.
+DB-write p95: 0.871 / 1.338 / 2.669s. Sampled RSS peaks: 134.648 / 186.719 / 259.520 MiB.
+512 baseline max45.578s leaves only2.422s against48s budget. Full metrics are in the JSON.
+Controlled failed targets recovered:19/19,33/39,75/84; remaining native gaps stay unresolved.
+128 also lost one whole recovery cycle to local DNS/handshake failure, then recovered most
+history. Each injected DB failure caused one retry then commit. Every cycle closed sockets
+and joined receivers. PostgreSQL server outage/uncertain-commit faults were NOT tested.
+Harness retains growing diagnostics/tracing overhead and shared-host validation ran during
+parts of the experiment; these measurements are not a memory soak or isolated capacity claim.
+Earlier synthetic matrices and maximum-history findings remain in their existing documents.
 
-At128, fixed source omissions yielded128 valid responses but126 targets;378/384 immediate
-AND eventual after bounded history per architecture. PARTIALLY VERIFIED coverage; transport
-valid, no fabricated recovery. Transient slow request with2s deadline retained127 targets,
-then recovered all128 on next simulated cycle (381/384 immediate,384/384 eventual).
-Integration test failed one16-instrument handshake worker, stored112 healthy results with
-UNKNOWN failed coverage, next minute recovered all256 two-minute candles; replay writes0.
-Isolated SIMULATED persistence17/100/500 on marketdata_benchmark_ts_test,3 rounds,
-p50/max0.059/0.109,0.243/0.284,1.242/1.620s, unique namespace only.
+## Verification and restoration
 
-## Live boundary and original 17 observation
+Final Timescale suite:281 passed (40.83s). Final ordinary PostgreSQL suite:278 passed +3
+Timescale-only skips (39.74s). Targeted pool/harness tests:45 passed +2 database skips.
+Ruff lint/format pass73 Python files; strict mypy
+passes29 source files. Fresh experiment DB migrations applied to head0004. git diff --check
+passes. Existing Starlette/httpx TestClient deprecation warning remains.
 
-New live requests: NONE. Existing deployed original image observed via local stored-only
-WS/REST/DB:08:53 UTC17/17 matching candles;08:54 UTC16/17, XAUT missing despite streaming
-successful native series and zero transport failures. Smoke exited1; failure retained, not
-called complete. Subsequent snapshot17 current. Source changes were NOT deployed/live-tested.
+Restoration stored-only smoke initially FAILED: bucket11:06 UTC had no WebSocket targets
+because the11:07 collection handshake failed;11:08 remained in backoff. Subsequent native
+history supplied those minutes.11:09 and11:14 cycles committed17/17;11:12 bucket had16/17.
+Preserve artifacts/live-pool-restoration-smoke.json. Warmed stored-only smoke PASSED for
+11:15 and11:16 buckets:17/17 each, WebSocket = PostgreSQL = REST, raw ticks unchanged26,216.
+Evidence:artifacts/live-pool-restoration-warm-smoke.json. Existing historical gaps keep
+health degraded even during currently complete cycles. REST remains available.
 
-Prior LIVE evidence remains in docs/candle-live-capacity-benchmarks.json and scalability doc:
-34 instruments10/10 complete cycles, all578 eventual across windows including one handshake
-failure;64 instruments640/640 responses but631/640 native targets, nine persistent omissions
-RUNE/TRUMP/VET/GRT. Largest live request universe64; clean ten-cycle universe34.
-The earlier source-completeness gate stopped100. No new permission follows from prior tests.
+## Next work
 
-## Validation and repository state
-
-Final full suites:270 passed TimescaleDB (50.01s);267 passed+3 expected skips ordinary
-PostgreSQL (49.97s). Ruff lint/format pass69 Python files; strict mypy pass29 source files;
-git diff --check pass. Existing Starlette/httpx deprecation warning remains. Tests cover
-ownership/parallelism/foreign routing/generations/failures/recovery/429/cancellation/global
-capacity/deadlines/stalled cleanup,512 routing,128 persistence and single-socket compatibility.
-No migration added; no production tables cleared/downgraded. Original17 registry preserved.
-
-Git root C:/Users/Pouyan, main; scope commands to PycharmProjects/tradingview. Initial project
-state was clean. This snapshot includes the pool implementation, regression tests and sanitized
-synthetic benchmark evidence. Publication destination is the private repository
-https://github.com/Alpha-lacrim/tradingview-marketdata, origin/main. Verify local/remote SHA
-for publication state. Prior baseline34dfa53a (hardening5fdfe972) remains in history.
-BATCHES_V1.md, raw ignored benchmark artifacts and unrelated home files are excluded.
-Staged Gitleaks scan found no secrets. Publication does not deploy the application or enable
-live pooling.
-
-## Next recommended actions
-
-Keep original17/single/window2. Obtain a documented entitled provider integration and its
-account-specific limits before wiring pool activation into production or live benchmarking.
-Use same verified dense identities for fair permitted live comparisons. Prefer a small bounded
-worker count; do not assume17 is optimal or multiply connections after throttling. Run longer
-controlled fault/memory soaks and integrated full-history persistence before rollout. Existing
-old coverage gaps and exceptional-calendar limitations remain unresolved; preserve tri-state
-source availability. One application worker/collector only; use compose.yaml +
-compose.tradingview.yaml for the original guest app, bare Compose chooses mock. The current
-app image is unchanged; do not describe offline source changes as deployed.
+Independently reverify a denser fixed universe for a new quiet-host comparison; preserve
+these original denominators/results. Separate source liquidity/completion from transport
+failure and timing. Compare bounded worker counts/windows without increasing connections
+after throttling. Run longer memory/native maximum-history persistence and real DB/network
+outage soaks before rollout. Complete minute coverage at128/256/512 remains unproven.
+Keep the original single application worker/17 registry. Publication does not deploy code.
+Git root is C:/Users/Pouyan; scope status/diffs to PycharmProjects/tradingview and preserve
+unrelated home files. Private publication remote is Alpha-lacrim/tradingview-marketdata;
+publication is not deployment. The operator requested committing and pushing this session's
+live benchmark implementation, regression tests, measured evidence and documentation to
+origin/main. The publication commit includes this handoff; verify local HEAD against remote
+main for the final publication SHA. Raw artifacts and local configuration remain ignored.
+Prepublication checks reconfirmed Ruff lint/format, strict mypy, staged diff whitespace and
+published evidence hashes/counts. Gitleaks scanned the staged changes and found no secrets.

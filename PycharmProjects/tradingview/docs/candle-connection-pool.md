@@ -1,6 +1,9 @@
 # Configurable candle connection pool
 
 Implementation status: **SYNTHETIC VERIFIED**.
+Separate operator-authorized live experiments now use the same pool and actual persistence;
+see [live end-to-end evidence](candle-live-end-to-end.md). Numerical upstream allowances remain
+unverified; experimental bounds are local safeguards.
 The production registry remains the original 17 and the application factory continues
 to select `TradingViewCandleProvider` with one socket and a request window of two.
 
@@ -44,9 +47,10 @@ the benchmark reports each worker's elapsed time. No adaptive repartitioning was
 
 `PoolLimits` is an immutable **integration-supplied** declaration of permitted connections,
 instruments per connection, total instruments, total concurrent requests and requests per
-connection. This is not proof of permission; a live integration must cite and verify its
-provider/account agreement before supplying these limits. Synthetic limits are explicitly
-simulated. Configuration exceeding the declaration is rejected before collection.
+connection. This is not proof of permission. Supported production integrations verify their
+provider/account agreement; explicitly authorized experimental harnesses declare local
+safeguards without claiming upstream allowances. Synthetic limits are explicitly simulated.
+Configuration exceeding the declaration is rejected before collection.
 
 | Setting | Default | Application validation ceiling | Meaning |
 |---|---:|---:|---|
@@ -56,13 +60,15 @@ simulated. Configuration exceeding the declaration is rejected before collection
 | `CANDLE_POOL_CONCURRENCY` | 2 | 128 | Shared dispatched unfinished request limit |
 | `CANDLE_POOL_DEADLINE_SECONDS` | 48 | 60 | Retrieval/handshake deadline for the whole pool |
 | `CANDLE_POOL_CLEANUP_SECONDS` | 3 | 10 | Each worker's additional close budget |
+| `CANDLE_POOL_CONNECT_INTERVAL_SECONDS` | 0 | 10 | Fixed delay between worker connection starts |
 | `TRADINGVIEW_CANDLE_CONCURRENCY` | 2 | 12 | Existing chart worker's local sliding window |
 | `CANDLE_REQUEST_TIMEOUT_SECONDS` | 15 | 60 | Individual chart request and bounded capacity acquisition |
 
 The pool fields apply when an integration constructs `CandleConnectionPool`; they do not
-silently replace an application's existing single provider. The present live guest adapter
-rejects `CANDLE_POOL_CONNECTIONS != 1` and attempts to expand its local job limit. No
-environment flag asserts permission or enables undocumented live guest pooling.
+silently replace an application's existing single provider. The guest adapter's default
+rejects `CANDLE_POOL_CONNECTIONS != 1`. The new live harness explicitly constructs workers
+with `experimental_pool=True`, retaining each worker's 100-subscription/job safeguard.
+No environment flag asserts upstream permission or activates production guest pooling.
 
 The old 100-subscription and 100-job limits are **application safeguards**, not verified
 upstream capabilities. They remain intact for the live adapter. Only `SyntheticCandleProvider`,
@@ -78,8 +84,10 @@ socket are supported by prior observations; this does not establish permission f
 sockets. TradingView's [published policies](https://www.tradingview.com/policies/) restrict
 automated/non-display reuse, and its [API help](https://www.tradingview.com/support/solutions/43000474413-i-need-access-to-your-api-in-order-to-get-data-or-indicator-values/)
 does not offer a public market-data download API. Checked October 12, 2026. No numerical
-guest connection allowance was established. New live pool/high-count tests are **BLOCKED**,
-rather than assuming the operator's request establishes upstream permission.
+guest connection allowance was established. The operator's 2026-10-12 instruction authorizes
+bounded technical investigation with local experimental ceilings. It does not establish
+upstream allowances. The new harness records throttling/access rejection and stops escalation;
+see the measured evidence, including failed runs, before drawing a capacity conclusion.
 
 ## Resource lifecycle, deadlines and failures
 
@@ -273,8 +281,9 @@ worker fails; the next minute recovers all 128 originals and all 128 new target 
 Failed first-handshake observations remain UNKNOWN without verified session knowledge;
 known EXPECTED gaps enter normal bounded recovery. Repeated writes change zero rows.
 
-No new live chart requests were made. **BLOCKED**: no documented permission for guest
-multisocket/high-count automated collection was established. The existing deployed
+In the earlier synthetic implementation session, no new live chart requests were made.
+That session blocked new guest multisocket/high-count tests. The subsequent operator-authorized
+live experiments are in [end-to-end evidence](candle-live-end-to-end.md). The existing deployed
 17-instrument application was observed via stored-only local API/DB/WS smoke: 08:53 UTC
 had all 17 identical native targets; 08:54 had 16 because XAUT's successful streaming
 series lacked its target bar (17 successful requests, zero transport failures). The smoke
@@ -285,8 +294,9 @@ Production retained 17 mappings, 26,216 guest raw ticks, zero duplicate native l
 candles and no benchmark mappings. Existing old coverage gaps still degrade health.
 
 Historical live 64-instrument evidence had 640/640 responses but 631/640 native targets;
-its source-completeness gate stopped escalation. Live >100, live pooling, a 17-per-socket
-live optimum and sustained pool operation are **NOT TESTED/BLOCKED**. A documented,
+its source-completeness gate stopped escalation. A 17-per-socket live optimum and sustained
+pool operation remain **NOT TESTED**; subsequent >100/live pool experiments are separate.
+A documented,
 entitled integration and longer controlled measurements are prerequisites to rollout.
 
 ### Final independent-response comparison
@@ -334,4 +344,5 @@ The existing Starlette/httpx deprecation warning remains. Pool routing/ownership
 bounds are tested at up to 512 simulated instruments. Native persistence/coverage and API
 tests ran on both database modes; no production data were cleared. Pool diagnostics remain
 compatible with the existing health object. Longer memory/failure soaks, integrated maximum
-history persistence and permitted live benchmarks are outstanding before production rollout.
+history persistence remain outstanding before production rollout. Separate live experiments
+and their failures are now documented in [end-to-end evidence](candle-live-end-to-end.md).

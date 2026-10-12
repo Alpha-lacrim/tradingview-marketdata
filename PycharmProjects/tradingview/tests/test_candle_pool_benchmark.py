@@ -54,5 +54,5 @@ async def test_transient_deadline_failures_recover_with_bounded_history(harness)
 
 
 async def test_live_pool_fails_before_network(harness):
-    with pytest.raises(ValueError, match="permissions unverified"):
+    with pytest.raises(ValueError, match="synthetic only"):
         await harness.run(Namespace(live=True))

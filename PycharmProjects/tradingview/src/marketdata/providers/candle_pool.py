@@ -8,15 +8,18 @@ incrementally if partial results are to survive a cycle deadline.
 from __future__ import annotations
 
 import asyncio
+import math
 import random
 import time
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import datetime
+from email.utils import parsedate_to_datetime
 from typing import Any
 
 from marketdata.candles import MarketCandle
 from marketdata.config import Settings
+from marketdata.domain import utc_now
 from marketdata.observability import Metrics
 from marketdata.providers.base import PermanentConnectionError, PermanentProviderError, Subscription
 from marketdata.providers.candles import CandleProvider
@@ -25,9 +28,21 @@ Result = list[MarketCandle] | Exception
 Job = tuple[Subscription, datetime, datetime, int]
 
 
+def retry_after_seconds(value: str) -> float:
+    """Honor numeric or HTTP-date Retry-After, with a conservative minute minimum."""
+    try:
+        seconds = float(value)
+    except ValueError:
+        try:
+            seconds = (parsedate_to_datetime(value) - utc_now()).total_seconds()
+        except (TypeError, ValueError, OverflowError):
+            seconds = 60
+    return max(60, seconds) if math.isfinite(seconds) else 60
+
+
 @dataclass(frozen=True)
 class PoolLimits:
-    """Integration's verified ceilings (synthetic integrations declare simulated limits)."""
+    """Integration ceilings; experimental harnesses declare local, unverified safeguards."""
 
     connections: int
     instruments_per_connection: int
@@ -268,22 +283,36 @@ class CandleConnectionPool(CandleProvider):
             stats["workers"][p.worker_id] = worker_stats
             timer = time.perf_counter()
             result: dict[str, Result] = {}
+            cycle_timeout = asyncio.timeout_at(deadline)
             try:
                 if self.stopped:
                     raise self.stopped
                 if time.monotonic() < max(worker.retry_at, self.retry_at):
                     raise ConnectionError("candle_worker_backoff")
-                async with asyncio.timeout_at(deadline):
+                async with cycle_timeout:
+                    # Fixed pacing reduces connection bursts without replacement workers.
+                    await asyncio.sleep(index * self.settings.candle_pool_connect_interval_seconds)
+                    # A preceding worker may have reported provider-wide throttling
+                    # while this worker waited for its fixed start slot.
+                    if self.stopped:
+                        raise self.stopped
+                    if time.monotonic() < max(worker.retry_at, self.retry_at):
+                        raise ConnectionError("candle_worker_backoff")
+                    connect_timer = time.perf_counter()
                     await p.connect()
+                    worker_stats["connect_wait_seconds"] = connect_timer - timer
+                    worker_stats["handshake_seconds"] = time.perf_counter() - connect_timer
                     worker_stats["state"] = "collecting"
                     worker_stats["phase"] = "requests"
                     self.transport_connected()
                     result = await p.fetch_many(jobs)
             except Exception as error:
                 worker_stats["error"] = type(error).__name__
+                worker_stats["http_status"] = getattr(
+                    getattr(error, "response", None), "status_code", None
+                )
                 worker_stats["deadline_exceeded"] = (
-                    isinstance(error, TimeoutError)
-                    and asyncio.get_running_loop().time() >= deadline
+                    isinstance(error, TimeoutError) and cycle_timeout.expired()
                 )
                 result = dict(p.completed_results)
                 result.update(
@@ -362,10 +391,20 @@ class CandleConnectionPool(CandleProvider):
                 worker.attempts = 0
                 worker.retry_at = 0
             # Explicit HTTP 429 is provider-wide: do not create replacement sockets.
-            if any(
-                getattr(getattr(e, "response", None), "status_code", None) == 429 for e in errors
-            ):
-                self.retry_at = max(self.retry_at, worker.retry_at)
+            throttled = [
+                e
+                for e in errors
+                if getattr(getattr(e, "response", None), "status_code", None) == 429
+            ]
+            if throttled:
+                cooldown = 60.0
+                for rejection in throttled:
+                    response = getattr(rejection, "response", None)
+                    headers = getattr(response, "headers", {})
+                    retry_value = headers.get("Retry-After", "") if hasattr(headers, "get") else ""
+                    cooldown = max(cooldown, retry_after_seconds(retry_value))
+                self.retry_at = max(self.retry_at, worker.retry_at, time.monotonic() + cooldown)
+                worker_stats["provider_cooldown_seconds"] = cooldown
                 self.effective_concurrency = max(1, self.effective_concurrency // 2)
             worker_stats.update(
                 retry_at_monotonic=worker.retry_at, reconnect_attempts=worker.attempts

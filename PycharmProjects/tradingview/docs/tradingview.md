@@ -1,5 +1,10 @@
 # Experimental TradingView guest market data
 
+For the separately authorized 128/256/512-instrument multi-WebSocket investigation with
+actual native candle commits, completeness/latency/resource evidence and controlled recovery,
+see [live end-to-end experiment](candle-live-end-to-end.md). Production remains the original
+17-instrument single-socket collector; the experiment uses an isolated test database.
+
 The operator explicitly requested investigation and use of TradingView extraction on
 2026-10-07. This opt-in adapter implements the guest chart/quote protocol observed in the public
 site's own JavaScript. It is **unsupported and experimental**. TradingView does not offer a

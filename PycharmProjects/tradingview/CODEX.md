@@ -1250,3 +1250,45 @@ Full local container smoke: `docker compose up -d --build`, then
 `uv run python scripts/smoke.py`. Load test against a separate migrated database:
 `uv run python -m marketdata.benchmark --seconds 10 --rate 5000 --instruments 300`.
 These commands generate simulated observations; they are not live-provider tests.
+
+## Live guest pool experiment
+
+The operator authorized bounded guest multi-WebSocket investigation on 2026-10-12.
+`scripts/benchmark_live_pool.py` explicitly constructs experimental guest workers; the
+application factory keeps the original single-socket default. Experimental `PoolLimits`
+are local safeguards, never documented upstream allowances or an entitlement claim.
+Keep the 100-instrument/job cap per worker, native identity/status validation, UTC cutoffs,
+Decimal parsing and access rejection behavior. Do not infer completed bars from successful
+requests. HTTP 429 reduces global concurrency and imposes at least 60s provider cooldown
+(honor longer numeric/date Retry-After); the live harness stops escalation and checkpoints.
+Connection starts can be paced with `CANDLE_POOL_CONNECT_INTERVAL_SECONDS` (default 0).
+
+Stop the ordinary collector while experimenting. Use a dedicated migrated PostgreSQL
+database ending `_test`, separate from databases used by pytest fixtures (which truncate
+tables). The harness registers benchmark-only identities in unique provider namespaces,
+uses the actual `CandleIngestion.cycle` and `Store.write_candles` transaction, and reads back
+exact native OHLCV/status from another acquired connection after commit. No production
+table truncation, registry replacement or deployment is needed. Restore the prior collector
+afterward with `docker compose start app`; do not rebuild it incidentally.
+
+Run `uv run python scripts/benchmark_live_pool.py --collector-stopped --discover
+--counts 128 256 512 --cycles 3 --connections 6 --connect-interval 2
+--output artifacts/live-pool-paced.json` with `TEST_DATABASE_URL` set. Supply this as one
+shell command. `--discover` records current TradingView scanner identities and ranks spot
+USDT candidates by reported volume * close; this ranks candidates only, not native proof.
+Use the same saved candidate file for repeated comparisons. Chart responses independently
+validate every source. Never swap sparse instruments after seeing results within a run.
+
+Each stage has baseline cycles, one labelled client socket disconnect plus one pretransaction
+DB failure, and two recovery cycles. Preserve immediate and eventual durable completeness,
+all first-commit candle timestamps/latencies, source omissions, worker/connection diagnostics,
+CPU/RSS/traced memory/event-loop lag and cleanup. Commit time means local acknowledgement
+after transaction return, not a server-side/exchange timestamp. Short-run percentiles are
+descriptive, not sustained-capacity claims. Preserve failed checkpoints; publish sanitized
+measured evidence and mark stages never reached as NOT TESTED. See
+`docs/candle-live-end-to-end.md` for actual results and remaining limitations.
+Publish both successful/partial and stopped checkpoints with `uv run python
+scripts/summarize_live_pool.py artifacts/live-pool.json artifacts/live-pool-paced.json`.
+Preserve raw checkpoint hashes and every candle's first commit timestamp; report request
+success separately from native-minute completeness. Use a quiet host for capacity comparisons
+and disclose concurrent development workload when reporting exploratory runs.

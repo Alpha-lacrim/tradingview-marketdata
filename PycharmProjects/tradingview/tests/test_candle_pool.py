@@ -1,6 +1,7 @@
 """Pool ownership, failures, deadlines, resource limits and durable recovery."""
 
 import asyncio
+import time
 from datetime import timedelta
 from decimal import Decimal
 
@@ -16,7 +17,7 @@ from marketdata.domain import DataStatus, RegistryEntry
 from marketdata.fanout import Fanout
 from marketdata.observability import Metrics
 from marketdata.providers.base import PermanentConnectionError
-from marketdata.providers.candle_pool import CandleConnectionPool, PoolLimits
+from marketdata.providers.candle_pool import CandleConnectionPool, PoolLimits, retry_after_seconds
 from marketdata.providers.synthetic_candles import SyntheticCandleProvider
 from marketdata.providers.tradingview import encode_message
 from marketdata.providers.tradingview_candles import TradingViewCandleProvider
@@ -299,12 +300,57 @@ async def test_provider_wide_429_backoff_does_not_multiply_connections(monkeypat
     monkeypatch.setattr(pool.workers[0].provider, "connect", rejected)
     await run(pool, pairs, end)
     assert pool.retry_at > 0 and pool.effective_concurrency == 2
+    assert pool.retry_at - time.monotonic() > 59
     before = sum(len(w.provider.sockets) for w in pool.workers)
     await pool.connect()
     result = await pool.fetch_many(jobs(pairs, end))
     await pool.disconnect()
     assert all(isinstance(v, ConnectionError) for v in result.values())
     assert sum(len(w.provider.sockets) for w in pool.workers) == before
+    clean(pool)
+
+
+@pytest.mark.parametrize("value,minimum", [("120", 120), ("0", 60), ("bad", 60), ("nan", 60)])
+def test_http429_cooldown_respects_retry_after(value, minimum):
+    assert retry_after_seconds(value) == minimum
+
+
+def test_http429_cooldown_accepts_http_date():
+    from email.utils import format_datetime
+
+    from marketdata.domain import utc_now
+
+    value = format_datetime(utc_now() + timedelta(seconds=180), usegmt=True)
+    assert 178 <= retry_after_seconds(value) <= 180
+
+
+async def test_paced_connections_share_deadline_and_separate_wait_from_handshake():
+    pool, pairs, end = make_pool(count=8, deadline=0.25)
+    pool.settings.candle_pool_connect_interval_seconds = 0.6
+    result = await run(pool, pairs, end)
+    assert sum(isinstance(v, list) for v in result.values()) == 4
+    assert len(pool.workers[1].provider.sockets) == 0
+    workers = pool.health.candle_retrieval["workers"]
+    assert workers["w01"]["deadline_exceeded"]
+    assert workers["w00"]["handshake_seconds"] >= 0
+    assert workers["w00"]["connect_wait_seconds"] >= 0
+    assert workers["w00"]["duration_seconds"] >= (
+        workers["w00"]["handshake_seconds"] + workers["w00"]["connect_wait_seconds"]
+    )
+    clean(pool)
+
+
+async def test_http429_prevents_waiting_paced_workers_from_connecting(monkeypatch):
+    pool, pairs, end = make_pool(count=8)
+    pool.settings.candle_pool_connect_interval_seconds = 0.03
+
+    async def rejected():
+        raise InvalidStatus(Response(429, "Too Many Requests", []))
+
+    monkeypatch.setattr(pool.workers[0].provider, "connect", rejected)
+    result = await run(pool, pairs, end)
+    assert all(isinstance(v, Exception) for v in result.values())
+    assert not pool.workers[1].provider.sockets
     clean(pool)
 
 

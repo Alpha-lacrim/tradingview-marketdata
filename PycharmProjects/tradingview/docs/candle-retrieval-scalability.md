@@ -1,5 +1,9 @@
 # Native candle retrieval scalability
 
+Current live investigations at 128/256/512, including actual PostgreSQL commits and recovery,
+are documented in [live end-to-end evidence](candle-live-end-to-end.md). The results below
+retain earlier retrieval-only and synthetic experiments as historical evidence.
+
 The current implementation includes a configurable, bounded candle connection pool tested
 with synthetic transports beyond 100 instruments. See [connection pool architecture and
 benchmarks](candle-connection-pool.md) for current limits, failure behavior and comparisons.
