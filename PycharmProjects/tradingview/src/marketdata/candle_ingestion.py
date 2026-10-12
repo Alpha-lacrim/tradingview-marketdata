@@ -207,12 +207,13 @@ class CandleIngestion:
                     self.disabled.add(symbol)
                 elif not isinstance(result, (ValueError, KeyError, TypeError, IndexError)):
                     network_failed = True
-                    self.reconnect_attempt += 1
-                    delay = min(
-                        settings.reconnect_max_seconds,
-                        settings.reconnect_min_seconds * 2 ** min(self.reconnect_attempt, 16),
-                    )
-                    self.retry_at = time.monotonic() + random.uniform(delay, delay * 1.2)
+                    if not p.handles_transport_backoff:
+                        self.reconnect_attempt += 1
+                        delay = min(
+                            settings.reconnect_max_seconds,
+                            settings.reconnect_min_seconds * 2 ** min(self.reconnect_attempt, 16),
+                        )
+                        self.retry_at = time.monotonic() + random.uniform(delay, delay * 1.2)
                 else:
                     p.metrics.parse_failures.labels(p.name).inc()
                 self.log(

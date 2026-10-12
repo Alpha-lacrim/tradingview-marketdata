@@ -403,10 +403,12 @@ for timestamp/latency semantics, outage recovery, Prometheus labels, read-only s
 and historical reconciliation. No multi-hour reliability claim is made without an executed soak.
 
 See [retrieval scalability](docs/candle-retrieval-scalability.md) for the live/synthetic benchmark
-matrix and capacity limits. Live tests reached 64, while 100 remains **synthetic only**; shared-session
-multi-series was explicitly rejected upstream, and no socket pool was introduced. The offline
-benchmark exercises 17/34/64/100 instruments at windows 1/2/4/6/8/12 and bounded 300-minute
-history retrieval without modifying the production registry. To verify the normal collector's
+matrix and capacity limits. Prior live tests reached 64; larger universes remain **synthetic only**.
+The [configurable connection pool](docs/candle-connection-pool.md) preserves one collection
+scheduler and independent bounded workers. Live guest pooling is blocked by unverified
+provider permission; the single-socket 17-instrument default remains unchanged. The new offline
+benchmark accepts arbitrary bounded counts, pool sizes, partition sizes and request budgets,
+including beyond 100, without modifying the production registry. To verify the normal collector's
 WebSocket/DB/REST path without additional upstream requests:
 
 ```powershell

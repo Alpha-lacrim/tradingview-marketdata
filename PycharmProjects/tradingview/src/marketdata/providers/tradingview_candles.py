@@ -3,6 +3,7 @@
 See docs/tradingview.md. No quote sampling, login, cookies or browser automation.
 """
 
+import asyncio
 import re
 from datetime import datetime, timedelta
 from typing import Any
@@ -96,6 +97,8 @@ def parse_bar(
 
 
 class TradingViewCandleProvider(CandleProvider):
+    supports_request_budget = True
+
     def __init__(self, settings: Settings, metrics: Metrics):
         super().__init__("tradingview_guest", metrics)
         self.settings = settings
@@ -106,8 +109,11 @@ class TradingViewCandleProvider(CandleProvider):
         self.request_serial = 0
         self.fetching = False
         self.effective_concurrency = settings.tradingview_candle_concurrency
+        self.job_limit = 100  # Local safeguard, not a documented upstream limit.
 
     async def connect(self) -> None:
+        if self.settings.candle_pool_connections != 1 or self.job_limit > 100:
+            raise PermanentConnectionError("tradingview_live_pool_permissions_unverified")
         if self.socket is not None:
             raise RuntimeError("candle socket already connected")
         if not 1 <= len(self.subscriptions) <= 100:
@@ -149,7 +155,10 @@ class TradingViewCandleProvider(CandleProvider):
         self.transport_connected()
         self.metrics.tradingview_sockets.set(1)
         try:
-            await self.socket.send(encode_message("set_auth_token", ["unauthorized_user_token"]))
+            async with asyncio.timeout(self.settings.candle_request_timeout_seconds):
+                await self.socket.send(
+                    encode_message("set_auth_token", ["unauthorized_user_token"])
+                )
         except ConnectionClosed as error:
             self.metrics.tradingview_disconnects.inc()
             self.metrics.tradingview_throttle.labels("connection").inc()
@@ -169,6 +178,16 @@ class TradingViewCandleProvider(CandleProvider):
         finally:
             self.metrics.tradingview_sockets.set(0)
             self.transport_disconnected()
+
+    def _parse_native_bar(
+        self,
+        values: list[Any],
+        pair: Subscription,
+        info: dict[str, Any],
+        received: datetime,
+        source_status: str,
+    ) -> MarketCandle:
+        return parse_bar(values, pair, info, received, source_status)
 
     async def fetch_completed(
         self, pair: Subscription, start: datetime, end: datetime, count: int

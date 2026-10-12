@@ -48,10 +48,16 @@ class SyntheticChartSocket:
         delays: dict[int, float] | None = None,
         drop: set[int] | None = None,
         duplicate: bool = False,
+        missing: set[int] | None = None,
+        missing_bucket: datetime | None = None,
+        service_slots: asyncio.Semaphore | None = None,
     ):
         self.end, self.latency = end, latency
         self.delays, self.drop = delays or {}, drop or set()
         self.duplicate = duplicate
+        self.missing = missing or set()
+        self.missing_bucket = missing_bucket or end - timedelta(minutes=1)
+        self.service_slots = service_slots
         self.messages: asyncio.Queue[str | Exception] = asyncio.Queue(maxsize=64)
         self.sessions: dict[str, str] = {}
         self.tasks: dict[str, asyncio.Task[None]] = {}
@@ -101,6 +107,13 @@ class SyntheticChartSocket:
                 await asyncio.gather(task, return_exceptions=True)
 
     async def emit(self, session: str, source: str, index: int, count: int) -> None:
+        if self.service_slots is not None:
+            async with self.service_slots:
+                await self._emit(session, source, index, count)
+        else:
+            await self._emit(session, source, index, count)
+
+    async def _emit(self, session: str, source: str, index: int, count: int) -> None:
         await asyncio.sleep(self.delays.get(index, self.latency * (0.7 + (index % 5) * 0.15)))
         info: dict[str, Any] = dict(
             full_name=source,
@@ -128,6 +141,10 @@ class SyntheticChartSocket:
                 ]
             )
             for offset in range(count - 1, -1, -1)
+            if not (
+                index in self.missing
+                and self.end - timedelta(minutes=offset) == self.missing_bucket
+            )
         ]
         for kind, args in (
             ("symbol_resolved", [session, "symbol_1", info]),

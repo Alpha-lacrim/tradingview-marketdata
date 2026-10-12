@@ -378,6 +378,28 @@ async def test_auth_send_disconnect_is_measured_and_reduces_window(monkeypatch):
     await p.disconnect()
 
 
+async def test_auth_send_timeout_retains_owned_socket_for_bounded_cleanup(monkeypatch):
+    p, socket, pairs, _ = pipeline(count=1)
+    await p.subscribe(pairs)
+
+    async def blocked_send(raw):
+        await asyncio.Event().wait()
+
+    async def connect(*args, **kwargs):
+        return socket
+
+    socket.send = blocked_send
+    monkeypatch.setattr("marketdata.providers.tradingview_candles.connect", connect)
+    try:
+        with pytest.raises(TimeoutError):
+            await p.connect()
+        assert p.socket is socket
+    finally:
+        await p.disconnect()
+    assert socket.closed and p.socket is None
+    assert p.metrics.tradingview_sockets._value.get() == 0
+
+
 @pytest.mark.parametrize("count,duplicate", [(101, False), (2, True)])
 async def test_invalid_job_universe_rejected_before_any_dispatch(count, duplicate):
     p, socket, pairs, end = pipeline(count=count)

@@ -4,17 +4,22 @@ import logging
 from abc import abstractmethod
 from collections.abc import AsyncIterator
 from datetime import datetime, timedelta
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from marketdata.candles import MarketCandle, expected_minute
 from marketdata.domain import Tick, utc_now
 from marketdata.providers.base import MarketDataProvider, Subscription
 from marketdata.sessions import Expectation, classify_ranges, expectation
 
+if TYPE_CHECKING:
+    from marketdata.providers.candle_pool import RequestBudget
+
 
 class CandleProvider(MarketDataProvider):
     grace: float = 2
     backfill_minutes: int = 300
+    handles_transport_backoff: bool = False
+    supports_request_budget: bool = False
 
     def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)
@@ -24,6 +29,9 @@ class CandleProvider(MarketDataProvider):
         self.timings: dict[str, dict[str, Any]] = {}
         self.reported_states: dict[str, tuple[str, int]] = {}
         self.session_info: dict[str, dict[str, Any]] = {}
+        self.worker_id = ""
+        self.request_budget: RequestBudget | None = None
+        self.completed_results: dict[str, list[MarketCandle] | Exception] = {}
 
     @abstractmethod
     async def fetch_completed(
@@ -49,6 +57,11 @@ class CandleProvider(MarketDataProvider):
 
     def refresh_health(self, now: datetime | None = None) -> None:
         now = now or utc_now()
+        if self.worker_id:
+            # Pool owns provider-wide persisted coverage and gauges. A connection
+            # worker must not overwrite them with its partial subscription set.
+            self.health.updated_at = now
+            return
         h = self.health
         expected = expected_minute(now, self.grace)
         h.expected_closed_minute = expected

@@ -111,6 +111,12 @@ class Metrics:
             "Currently connected candle sockets",
             registry=self.registry,
         )
+        self.candle_pool_sockets = Gauge(
+            "marketdata_candle_pool_connected_workers",
+            "Connected workers in the bounded candle pool",
+            ["provider"],
+            registry=self.registry,
+        )
         self.tradingview_disconnects = Counter(
             "marketdata_tradingview_socket_disconnect_total",
             "Unexpected candle socket failures",

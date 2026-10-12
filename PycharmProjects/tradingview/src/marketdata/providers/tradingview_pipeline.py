@@ -21,7 +21,7 @@ from marketdata.candles import MarketCandle
 from marketdata.domain import from_ns, utc_now
 from marketdata.providers.base import PermanentConnectionError, PermanentProviderError, Subscription
 from marketdata.providers.tradingview import encode_message, observed_decimal
-from marketdata.providers.tradingview_candles import parse_bar, validate_source
+from marketdata.providers.tradingview_candles import validate_source
 
 if TYPE_CHECKING:
     from marketdata.providers.tradingview_candles import TradingViewCandleProvider
@@ -51,6 +51,7 @@ class Request:
     metadata_received: datetime | None = None
     source_status: str | None = None
     created: bool = False
+    permit: bool = False
 
 
 async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, Result]:
@@ -58,8 +59,8 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
     if socket is None:
         raise ConnectionError("candle_transport_disconnected")
     symbols = [pair[0].canonical_symbol for pair, _, _, _ in jobs]
-    if len(symbols) != len(set(symbols)) or len(jobs) > 100:
-        raise ValueError("unique candle jobs required; local cap is 100")
+    if len(symbols) != len(set(symbols)) or len(jobs) > p.job_limit:
+        raise ValueError("unique candle jobs required within local worker cap")
     if any(
         end <= start
         or end - start > timedelta(minutes=p.settings.candle_backfill_minutes)
@@ -72,6 +73,7 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
         raise RuntimeError("candle retrieval already in progress")
     p.fetching = True
     p.timings.clear()
+    p.completed_results.clear()
     active: dict[str, Request] = {}
     results: dict[str, Result] = {}
     waiting = iter(jobs)
@@ -93,8 +95,14 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
         pending_futures=0,
     )
     p.health.candle_retrieval = stats
-    p.metrics.candle_window.labels(p.name).set(window)
-    p.metrics.candle_instrument_count.labels(p.name).set(len(jobs))
+    if p.request_budget is None:
+        p.metrics.candle_window.labels(p.name).set(window)
+        p.metrics.candle_instrument_count.labels(p.name).set(len(jobs))
+
+    def release(state: Request) -> None:
+        if state.permit and p.request_budget is not None:
+            state.permit = False
+            p.request_budget.release()
 
     def error_seen(error: Exception) -> None:
         category = (
@@ -120,6 +128,7 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
             p.effective_concurrency = max(1, min(p.effective_concurrency, window // 2))
 
     def remember(state: Request, result: Result) -> None:
+        release(state)
         symbol = state.pair[0].canonical_symbol
         parsed = state.parsed or utc_now()
         duration = max(0, (state.finished_timer or time.perf_counter()) - state.timer)
@@ -132,7 +141,8 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
             completed_candle_available_at=state.available.isoformat() if state.available else None,
             parser_completed_at=parsed.isoformat(),
             duration_seconds=duration,
-            socket_id=f"guest-{generation}",
+            socket_id=f"guest-{p.worker_id}-{generation}" if p.worker_id else f"guest-{generation}",
+            worker_id=p.worker_id,
             connection_generation=generation,
             chart_session_id=state.session,
             request_sent_at=state.sent.isoformat() if state.sent else None,
@@ -166,6 +176,7 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
         else:
             item.last_successful_fetch_at = parsed
         results[symbol] = result
+        p.completed_results[symbol] = result
         p.metrics.candle_symbol_latency.labels(p.name, symbol).observe(duration)
         if duration > 5:
             logger.warning(
@@ -194,16 +205,36 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
         if job is None:
             return False
         pair, start, end, count = job
+        if p.request_budget is not None:
+            # The receiver releases permits on response completion independently of
+            # dispatch. A worker blocked on global capacity must also notice disconnects.
+            acquisition = asyncio.create_task(p.request_budget.acquire())
+            try:
+                async with asyncio.timeout(timeout):
+                    await asyncio.wait([acquisition, receiver], return_when=asyncio.FIRST_COMPLETED)
+                    if not acquisition.done():
+                        receiver.result()
+                        raise ConnectionError("candle_receiver_stopped")
+                    await acquisition
+            except BaseException:
+                acquisition.cancel()
+                await asyncio.gather(acquisition, return_exceptions=True)
+                if not acquisition.cancelled() and acquisition.exception() is None:
+                    p.request_budget.release()
+                raise
         p.request_serial += 1
         # Identifiers are client-assigned in the observed serializer. Never reused across
         # batches or connection generations; even a delayed old frame cannot route to a new job.
-        session = f"cs_{generation:04x}{p.request_serial:08x}"
+        session = f"cs_{p.worker_id}{generation:04x}{p.request_serial:08x}"
         state = Request(pair, start, end, count, asyncio.get_running_loop().create_future())
         state.session = session
+        state.permit = p.request_budget is not None
         active[session] = state
+        stats["pending_futures"] = sum(not s.future.done() for s in active.values())
         p.health.symbols[pair[0].canonical_symbol].last_fetch_started_at = state.started
         stats["peak_inflight"] = max(stats["peak_inflight"], len(active))
-        p.metrics.candle_inflight.labels(p.name).set(len(active))
+        if p.request_budget is None:
+            p.metrics.candle_inflight.labels(p.name).set(len(active))
         p.metrics.candles.labels(p.name, "requested").inc()
         async with asyncio.timeout(timeout):
             await send("chart_create_session", [session, ""])
@@ -299,12 +330,26 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
                             )
                         cutoff = min(state.end, received - timedelta(seconds=p.grace))
                         parse_timer = time.perf_counter()
-                        result = [
-                            parse_bar(v, state.pair, state.info, received, status)
-                            for ts, v in sorted(state.bars.items())
-                            if state.start <= from_ns(int(ts) * 1_000_000_000)
-                            and from_ns(int(ts) * 1_000_000_000) + timedelta(minutes=1) <= cutoff
-                        ]
+                        result = []
+                        for ts, values in sorted(state.bars.items()):
+                            bucket = from_ns(int(ts) * 1_000_000_000)
+                            if state.start <= bucket and bucket + timedelta(minutes=1) <= cutoff:
+                                result.append(
+                                    p._parse_native_bar(
+                                        values, state.pair, state.info, received, status
+                                    )
+                                )
+                                if len(result) % 32 == 0:
+                                    # Large recovery responses must not starve receiver
+                                    # peers, request deadlines, shutdown or the scheduler.
+                                    await asyncio.sleep(0)
+                                    current_generation()
+                                    if state.future.done():
+                                        break
+                                    if time.perf_counter() - state.timer >= timeout:
+                                        raise TimeoutError("candle_parser_request_timeout")
+                        if state.future.done():
+                            continue  # Dispatcher timed out/cancelled this request during a yield.
                         state.parsed = utc_now()
                         state.finished_timer = time.perf_counter()
                         p.metrics.candle_timing.labels(p.name, "parser").observe(
@@ -312,6 +357,7 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
                         )
                         p.metrics.candles.labels(p.name, "received").inc(len(result))
                         state.future.set_result(result)
+                        release(state)
                 except (
                     ValueError,
                     KeyError,
@@ -323,6 +369,7 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
                     state.parsed = utc_now()
                     state.finished_timer = time.perf_counter()
                     state.future.set_result(error)
+                    release(state)
 
     receiver = asyncio.create_task(receive(), name="tradingview-candle-receiver")
     try:
@@ -352,7 +399,9 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
                 if not state.future.done():
                     state.future.cancel()
                 remember(state, result)
-                p.metrics.candle_inflight.labels(p.name).set(len(active))
+                stats["pending_futures"] = sum(not s.future.done() for s in active.values())
+                if p.request_budget is None:
+                    p.metrics.candle_inflight.labels(p.name).set(len(active))
                 await send("chart_delete_session", [session])
                 stats["sessions_removed"] += 1
                 stats["sessions_current"] -= 1
@@ -378,10 +427,19 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
                 error_seen(error)
         if isinstance(error, PermanentConnectionError):
             results = {symbol: error for symbol in symbols}
+        p.completed_results.update(results)
     finally:
         receiver.cancel()
         await asyncio.gather(receiver, return_exceptions=True)
         for state in active.values():
+            # Deadline/cancellation can land between receipt and dispatcher observation.
+            if (
+                state.future.done()
+                and not state.future.cancelled()
+                and state.pair[0].canonical_symbol not in results
+            ):
+                remember(state, state.future.result())
+            release(state)
             state.future.cancel()
         # Bounded cleanup even on cancellation; never leave a detached receiver/future.
         try:
@@ -393,8 +451,9 @@ async def retrieve(p: TradingViewCandleProvider, jobs: list[Job]) -> dict[str, R
                         stats["sessions_current"] = max(0, stats["sessions_current"] - 1)
         except (ConnectionClosed, OSError, TimeoutError):
             pass
-        p.metrics.candle_inflight.labels(p.name).set(0)
-        p.metrics.candle_window.labels(p.name).set(p.effective_concurrency)
+        if p.request_budget is None:
+            p.metrics.candle_inflight.labels(p.name).set(0)
+            p.metrics.candle_window.labels(p.name).set(p.effective_concurrency)
         stats["next_window"] = p.effective_concurrency
         stats["pending_futures"] = sum(not state.future.done() for state in active.values())
         p.fetching = False

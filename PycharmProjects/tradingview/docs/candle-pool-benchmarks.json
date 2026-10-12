@@ -1,0 +1,2907 @@
+{
+  "date": "2026-10-12",
+  "host": "Windows development host; original application remained running",
+  "sample_policy": "three cycles per configuration; nearest-rank p95 equals observed maximum",
+  "scope": "offline real dispatcher/decoder/parser/lifecycle; no new live source requests; no production benchmark writes",
+  "memory_policy": "python_peak_bytes is additional traced peak above entry, not total process memory; RSS sampled at entry/exit; tracing overhead included",
+  "profiles": {
+    "independent": {
+      "status": "SYNTHETIC VERIFIED",
+      "code_iteration": "final",
+      "model": {
+        "latency": 0.1,
+        "handshake": 0.03,
+        "service_capacity": 0,
+        "deadline": 48,
+        "bars": 4
+      },
+      "cycles": 54,
+      "summaries": [
+        {
+          "count": 64,
+          "connections": 1,
+          "window": 2,
+          "global_window": 2,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 3.5039493999975093,
+            "p95": 3.526009299999714,
+            "max": 3.526009299999714
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.083695,
+            "p95": 0.08822,
+            "max": 0.08822
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 3.406407,
+            "p95": 3.42517,
+            "max": 3.42517
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.158831,
+            "p95": 2.159149,
+            "max": 2.159149
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 5.477094,
+            "p95": 5.499805,
+            "max": 5.499805
+          },
+          "successful_requests": 192,
+          "native_targets": 192,
+          "eventual_targets": 192,
+          "expected_targets": 192,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.21875,
+            "p95": 0.25,
+            "max": 0.25
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 11662,
+            "p95": 1186161,
+            "max": 1186161
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 44.473990700000286,
+          "rss_after_max_bytes": 70946816,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 2,
+          "sessions_created": 192,
+          "sessions_removed": 192
+        },
+        {
+          "count": 64,
+          "connections": 1,
+          "window": 8,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 1.035648900000524,
+            "p95": 1.0589648000022862,
+            "max": 1.0589648000022862
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.085791,
+            "p95": 0.090325,
+            "max": 0.090325
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 0.938443,
+            "p95": 0.944829,
+            "max": 0.944829
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.163539,
+            "p95": 2.164082,
+            "max": 2.164082
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 3.0052440000000002,
+            "p95": 3.032311,
+            "max": 3.032311
+          },
+          "successful_requests": 192,
+          "native_targets": 192,
+          "eventual_targets": 192,
+          "expected_targets": 192,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.203125,
+            "p95": 0.25,
+            "max": 0.25
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 18900,
+            "p95": 974363,
+            "max": 974363
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 46.941035199997714,
+          "rss_after_max_bytes": 72081408,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 192,
+          "sessions_removed": 192
+        },
+        {
+          "count": 64,
+          "connections": 4,
+          "window": 2,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 1.0804538000011235,
+            "p95": 1.082071700002416,
+            "max": 1.082071700002416
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.087428,
+            "p95": 0.090706,
+            "max": 0.090706
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 0.8911,
+            "p95": 0.906749,
+            "max": 0.906749
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.213919,
+            "p95": 2.228202,
+            "max": 2.228202
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 3.024123,
+            "p95": 3.026897,
+            "max": 3.026897
+          },
+          "successful_requests": 192,
+          "native_targets": 192,
+          "eventual_targets": 192,
+          "expected_targets": 192,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.28125,
+            "p95": 0.421875,
+            "max": 0.421875
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 31754,
+            "p95": 1071010,
+            "max": 1071010
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 46.917928299997584,
+          "rss_after_max_bytes": 72134656,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 12,
+            "p50": 0.998955199996999,
+            "p95": 1.019390299999941,
+            "max": 1.019390299999941
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 192,
+          "sessions_removed": 192
+        },
+        {
+          "count": 64,
+          "connections": 8,
+          "window": 2,
+          "global_window": 16,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 0.7537855000009586,
+            "p95": 0.8225978000009491,
+            "max": 0.8225978000009491
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.083681,
+            "p95": 0.089504,
+            "max": 0.089504
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 0.529543,
+            "p95": 0.536838,
+            "max": 0.536838
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.274259,
+            "p95": 2.2995200000000002,
+            "max": 2.2995200000000002
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 2.721111,
+            "p95": 2.763953,
+            "max": 2.763953
+          },
+          "successful_requests": 192,
+          "native_targets": 192,
+          "eventual_targets": 192,
+          "expected_targets": 192,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.390625,
+            "p95": 0.453125,
+            "max": 0.453125
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 1126276,
+            "p95": 1160155,
+            "max": 1160155
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 47.17740219999905,
+          "rss_after_max_bytes": 71290880,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 24,
+            "p50": 0.6419716000018525,
+            "p95": 0.7027697999983502,
+            "max": 0.7446029999991879
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 16,
+          "sessions_created": 192,
+          "sessions_removed": 192
+        },
+        {
+          "count": 128,
+          "connections": 1,
+          "window": 2,
+          "global_window": 2,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 6.924790400000347,
+            "p95": 7.013499999997293,
+            "max": 7.013499999997293
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.085923,
+            "p95": 0.086814,
+            "max": 0.086814
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 6.823713,
+            "p95": 6.844359,
+            "max": 6.844359
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.169337,
+            "p95": 2.194706,
+            "max": 2.194706
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 8.901422,
+            "p95": 8.964548,
+            "max": 8.964548
+          },
+          "successful_requests": 384,
+          "native_targets": 384,
+          "eventual_targets": 384,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.484375,
+            "p95": 0.484375,
+            "max": 0.484375
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 41940,
+            "p95": 2074436,
+            "max": 2074436
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 40.98650000000271,
+          "rss_after_max_bytes": 76644352,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 2,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        },
+        {
+          "count": 128,
+          "connections": 1,
+          "window": 8,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 1.930752799999027,
+            "p95": 1.9321749999980966,
+            "max": 1.9321749999980966
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.085161,
+            "p95": 0.088245,
+            "max": 0.088245
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 1.79161,
+            "p95": 1.7944,
+            "max": 1.7944
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.19185,
+            "p95": 2.194445,
+            "max": 2.194445
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 3.895133,
+            "p95": 3.905199,
+            "max": 3.905199
+          },
+          "successful_requests": 384,
+          "native_targets": 384,
+          "eventual_targets": 384,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.5625,
+            "p95": 0.59375,
+            "max": 0.59375
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 41993,
+            "p95": 1646070,
+            "max": 1646070
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 46.0678250000019,
+          "rss_after_max_bytes": 76656640,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        },
+        {
+          "count": 128,
+          "connections": 4,
+          "window": 2,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 2.1876582999975653,
+            "p95": 2.236837500000547,
+            "max": 2.236837500000547
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.081644,
+            "p95": 0.084005,
+            "max": 0.084005
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 1.868433,
+            "p95": 1.913364,
+            "max": 1.913364
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.301901,
+            "p95": 2.304712,
+            "max": 2.304712
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 4.096666,
+            "p95": 4.136043,
+            "max": 4.136043
+          },
+          "successful_requests": 384,
+          "native_targets": 384,
+          "eventual_targets": 384,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.734375,
+            "p95": 0.796875,
+            "max": 0.796875
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 32541,
+            "p95": 2071313,
+            "max": 2071313
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 45.76316249999945,
+          "rss_after_max_bytes": 76759040,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 12,
+            "p50": 2.0100191999990784,
+            "p95": 2.089269599997351,
+            "max": 2.089269599997351
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        },
+        {
+          "count": 128,
+          "connections": 8,
+          "window": 2,
+          "global_window": 16,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 1.510023300001194,
+            "p95": 1.5452344999976049,
+            "max": 1.5452344999976049
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.088858,
+            "p95": 0.10105,
+            "max": 0.10105
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 1.064066,
+            "p95": 1.095235,
+            "max": 1.095235
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.447925,
+            "p95": 2.483821,
+            "max": 2.483821
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 3.427186,
+            "p95": 3.4484120000000003,
+            "max": 3.4484120000000003
+          },
+          "successful_requests": 384,
+          "native_targets": 384,
+          "eventual_targets": 384,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.890625,
+            "p95": 0.890625,
+            "max": 0.890625
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 2113446,
+            "p95": 2122301,
+            "max": 2122301
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 46.454765500002395,
+          "rss_after_max_bytes": 76763136,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 24,
+            "p50": 1.316276099998504,
+            "p95": 1.4158526999999594,
+            "max": 1.4177741000021342
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 16,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        },
+        {
+          "count": 256,
+          "connections": 1,
+          "window": 2,
+          "global_window": 2,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 13.835333600000013,
+            "p95": 13.917701899998065,
+            "max": 13.917701899998065
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.085576,
+            "p95": 0.086006,
+            "max": 0.086006
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 13.589846,
+            "p95": 13.683191,
+            "max": 13.683191
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.234509,
+            "p95": 2.236837,
+            "max": 2.236837
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 15.738778,
+            "p95": 15.842651,
+            "max": 15.842651
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 1.0625,
+            "p95": 1.234375,
+            "max": 1.234375
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 27762,
+            "p95": 3594255,
+            "max": 3594255
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 34.082298100001935,
+          "rss_after_max_bytes": 86798336,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 2,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        },
+        {
+          "count": 256,
+          "connections": 1,
+          "window": 8,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 3.7174827000017103,
+            "p95": 3.7787462000014784,
+            "max": 3.7787462000014784
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.086204,
+            "p95": 0.089424,
+            "max": 0.089424
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 3.478861,
+            "p95": 3.506975,
+            "max": 3.506975
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.252154,
+            "p95": 2.2742459999999998,
+            "max": 2.2742459999999998
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 5.665229,
+            "p95": 5.678570000000001,
+            "max": 5.678570000000001
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.875,
+            "p95": 1.046875,
+            "max": 1.046875
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 89102,
+            "p95": 3802684,
+            "max": 3802684
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 44.22125379999852,
+          "rss_after_max_bytes": 86908928,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        },
+        {
+          "count": 256,
+          "connections": 4,
+          "window": 2,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 4.267198099998495,
+            "p95": 4.38750440000149,
+            "max": 4.38750440000149
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.087428,
+            "p95": 0.093458,
+            "max": 0.093458
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 3.687335,
+            "p95": 3.806349,
+            "max": 3.806349
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.478529,
+            "p95": 2.5289479999999998,
+            "max": 2.5289479999999998
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 6.078428,
+            "p95": 6.243807,
+            "max": 6.243807
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 1.203125,
+            "p95": 1.21875,
+            "max": 1.21875
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 65346,
+            "p95": 4303411,
+            "max": 4303411
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 43.61249559999851,
+          "rss_after_max_bytes": 86769664,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 12,
+            "p50": 3.9607102000009036,
+            "p95": 4.147056200003135,
+            "max": 4.147056200003135
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        },
+        {
+          "count": 256,
+          "connections": 8,
+          "window": 2,
+          "global_window": 16,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 2.67327369999839,
+            "p95": 2.8465252999994846,
+            "max": 2.8465252999994846
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.087409,
+            "p95": 0.095553,
+            "max": 0.095553
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 1.958197,
+            "p95": 2.004323,
+            "max": 2.004323
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.610913,
+            "p95": 2.759281,
+            "max": 2.759281
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 4.474559,
+            "p95": 4.675192,
+            "max": 4.675192
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 1.484375,
+            "p95": 1.515625,
+            "max": 1.515625
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 4118079,
+            "p95": 4131742,
+            "max": 4131742
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 45.153474700000515,
+          "rss_after_max_bytes": 87126016,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 24,
+            "p50": 2.357836100003624,
+            "p95": 2.584593399998994,
+            "max": 2.5864697999968485
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 16,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        },
+        {
+          "count": 256,
+          "connections": 16,
+          "window": 2,
+          "global_window": 32,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 2.3113529999973252,
+            "p95": 2.4572035999990476,
+            "max": 2.4572035999990476
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.095872,
+            "p95": 0.098098,
+            "max": 0.098098
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 1.200783,
+            "p95": 1.294377,
+            "max": 1.294377
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 3.1364840000000003,
+            "p95": 3.1414470000000003,
+            "max": 3.1414470000000003
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 4.159427,
+            "p95": 4.338271000000001,
+            "max": 4.338271000000001
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 1.75,
+            "p95": 1.84375,
+            "max": 1.84375
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 4215904,
+            "p95": 4411985,
+            "max": 4411985
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 45.54279640000095,
+          "rss_after_max_bytes": 86781952,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 48,
+            "p50": 2.0439991999992344,
+            "p95": 2.300137899997935,
+            "max": 2.3058917000016663
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 32,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        },
+        {
+          "count": 512,
+          "connections": 1,
+          "window": 2,
+          "global_window": 2,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 27.651894299997366,
+            "p95": 27.785756299999775,
+            "max": 27.785756299999775
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.084664,
+            "p95": 0.086909,
+            "max": 0.086909
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 27.173626,
+            "p95": 27.320385,
+            "max": 27.320385
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.386527,
+            "p95": 2.405592,
+            "max": 2.405592
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 29.49129,
+            "p95": 29.623261,
+            "max": 29.623261
+          },
+          "successful_requests": 1536,
+          "native_targets": 1536,
+          "eventual_targets": 1536,
+          "expected_targets": 1536,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 1.890625,
+            "p95": 2.109375,
+            "max": 2.109375
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 183906,
+            "p95": 7606847,
+            "max": 7606847
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 20.214243700000225,
+          "rss_after_max_bytes": 107429888,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 2,
+          "sessions_created": 1536,
+          "sessions_removed": 1536
+        },
+        {
+          "count": 512,
+          "connections": 1,
+          "window": 8,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 7.358900600000197,
+            "p95": 7.37031289999868,
+            "max": 7.37031289999868
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.076687,
+            "p95": 0.081718,
+            "max": 0.081718
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 6.906655,
+            "p95": 6.931453,
+            "max": 6.931453
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.339354,
+            "p95": 2.3882149999999998,
+            "max": 2.3882149999999998
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 9.172918,
+            "p95": 9.218231,
+            "max": 9.218231
+          },
+          "successful_requests": 1536,
+          "native_targets": 1536,
+          "eventual_targets": 1536,
+          "expected_targets": 1536,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 1.9375,
+            "p95": 2.125,
+            "max": 2.125
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 183778,
+            "p95": 7594555,
+            "max": 7594555
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 40.62968710000132,
+          "rss_after_max_bytes": 107761664,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 1536,
+          "sessions_removed": 1536
+        },
+        {
+          "count": 512,
+          "connections": 4,
+          "window": 2,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 8.111524399999325,
+            "p95": 8.360970099998667,
+            "max": 8.360970099998667
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.085204,
+            "p95": 0.091759,
+            "max": 0.091759
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 7.25313,
+            "p95": 7.260924,
+            "max": 7.260924
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.710635,
+            "p95": 2.871707,
+            "max": 2.871707
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 9.828776000000001,
+            "p95": 10.033058,
+            "max": 10.033058
+          },
+          "successful_requests": 1536,
+          "native_targets": 1536,
+          "eventual_targets": 1536,
+          "expected_targets": 1536,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 2.46875,
+            "p95": 2.5,
+            "max": 2.5
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 136610,
+            "p95": 8065569,
+            "max": 8065569
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 39.63902990000133,
+          "rss_after_max_bytes": 108404736,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 12,
+            "p50": 7.571222000002308,
+            "p95": 7.824310399999376,
+            "max": 7.824310399999376
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 1536,
+          "sessions_removed": 1536
+        },
+        {
+          "count": 512,
+          "connections": 8,
+          "window": 2,
+          "global_window": 16,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 5.4569441999992705,
+            "p95": 5.464533400001528,
+            "max": 5.464533400001528
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.076551,
+            "p95": 0.088736,
+            "max": 0.088736
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 3.973754,
+            "p95": 4.020515,
+            "max": 4.020515
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 3.214757,
+            "p95": 3.274242,
+            "max": 3.274242
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 7.103353,
+            "p95": 7.113267,
+            "max": 7.113267
+          },
+          "successful_requests": 1536,
+          "native_targets": 1536,
+          "eventual_targets": 1536,
+          "expected_targets": 1536,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 2.65625,
+            "p95": 2.953125,
+            "max": 2.953125
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 8186085,
+            "p95": 8186365,
+            "max": 8186365
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 42.53546659999847,
+          "rss_after_max_bytes": 106819584,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 24,
+            "p50": 4.815557900001295,
+            "p95": 4.988249099998939,
+            "max": 4.99949209999977
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 16,
+          "sessions_created": 1536,
+          "sessions_removed": 1536
+        },
+        {
+          "count": 512,
+          "connections": 31,
+          "window": 2,
+          "global_window": 32,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 5.89132029999746,
+            "p95": 6.08282710000276,
+            "max": 6.08282710000276
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.093264,
+            "p95": 0.096209,
+            "max": 0.096209
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 2.044882,
+            "p95": 2.101345,
+            "max": 2.101345
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 5.654351999999999,
+            "p95": 5.836195,
+            "max": 5.836195
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 7.604029,
+            "p95": 7.855502,
+            "max": 7.855502
+          },
+          "successful_requests": 1536,
+          "native_targets": 1536,
+          "eventual_targets": 1536,
+          "expected_targets": 1536,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 5.1875,
+            "p95": 5.25,
+            "max": 5.25
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 8547946,
+            "p95": 8573443,
+            "max": 8573443
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 41.91717289999724,
+          "rss_after_max_bytes": 107020288,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 93,
+            "p50": 5.504179499999736,
+            "p95": 5.7272916000001715,
+            "max": 5.771180300002015
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 32,
+          "sessions_created": 1536,
+          "sessions_removed": 1536
+        }
+      ]
+    },
+    "slower": {
+      "status": "SYNTHETIC VERIFIED",
+      "code_iteration": "before history cancellation fix; short response",
+      "model": {
+        "latency": 0.35,
+        "handshake": 0.03,
+        "service_capacity": 0,
+        "deadline": 48,
+        "bars": 4
+      },
+      "cycles": 24,
+      "summaries": [
+        {
+          "count": 128,
+          "connections": 1,
+          "window": 2,
+          "global_window": 2,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 23.20491679999759,
+            "p95": 23.220415100000537,
+            "max": 23.220415100000537
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.259026,
+            "p95": 0.262553,
+            "max": 0.262553
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 23.088231,
+            "p95": 23.093968,
+            "max": 23.093968
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.345289,
+            "p95": 2.345738,
+            "max": 2.345738
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 25.175858,
+            "p95": 25.181753,
+            "max": 25.181753
+          },
+          "successful_requests": 384,
+          "native_targets": 384,
+          "eventual_targets": 384,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.53125,
+            "p95": 0.546875,
+            "max": 0.546875
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 18730,
+            "p95": 2816118,
+            "max": 2816118
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 24.779584899999463,
+          "rss_after_max_bytes": 76288000,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 2,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        },
+        {
+          "count": 128,
+          "connections": 1,
+          "window": 8,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 5.993514199999481,
+            "p95": 6.028856900000392,
+            "max": 6.028856900000392
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.259979,
+            "p95": 0.262945,
+            "max": 0.262945
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 5.886782,
+            "p95": 5.933826,
+            "max": 5.933826
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.328399,
+            "p95": 2.338971,
+            "max": 2.338971
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 7.963807,
+            "p95": 7.995921,
+            "max": 7.995921
+          },
+          "successful_requests": 384,
+          "native_targets": 384,
+          "eventual_targets": 384,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.625,
+            "p95": 0.671875,
+            "max": 0.671875
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 41990,
+            "p95": 2648596,
+            "max": 2648596
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 41.97114309999961,
+          "rss_after_max_bytes": 76300288,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        },
+        {
+          "count": 128,
+          "connections": 4,
+          "window": 2,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 6.076442000001407,
+            "p95": 6.0970651999996335,
+            "max": 6.0970651999996335
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.254385,
+            "p95": 0.258412,
+            "max": 0.258412
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 5.878264,
+            "p95": 5.909608,
+            "max": 5.909608
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.388232,
+            "p95": 2.3980449999999998,
+            "max": 2.3980449999999998
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 8.019897,
+            "p95": 8.043694,
+            "max": 8.043694
+          },
+          "successful_requests": 384,
+          "native_targets": 384,
+          "eventual_targets": 384,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.625,
+            "p95": 0.765625,
+            "max": 0.765625
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 32431,
+            "p95": 1949776,
+            "max": 1949776
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 41.90293480000037,
+          "rss_after_max_bytes": 76357632,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 12,
+            "p50": 5.895720800002891,
+            "p95": 6.023691300000792,
+            "max": 6.023691300000792
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        },
+        {
+          "count": 128,
+          "connections": 8,
+          "window": 2,
+          "global_window": 16,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 3.380513300002349,
+            "p95": 3.3929465000001073,
+            "max": 3.3929465000001073
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.260024,
+            "p95": 0.265211,
+            "max": 0.265211
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 3.125308,
+            "p95": 3.125379,
+            "max": 3.125379
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.462838,
+            "p95": 2.470587,
+            "max": 2.470587
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 5.328129000000001,
+            "p95": 5.344523000000001,
+            "max": 5.344523000000001
+          },
+          "successful_requests": 384,
+          "native_targets": 384,
+          "eventual_targets": 384,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.5,
+            "p95": 0.609375,
+            "max": 0.609375
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 2188651,
+            "p95": 2189485,
+            "max": 2189485
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 44.60705349999989,
+          "rss_after_max_bytes": 76886016,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 24,
+            "p50": 3.1368976999983715,
+            "p95": 3.312076400001388,
+            "max": 3.3272166999995534
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 16,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        },
+        {
+          "count": 256,
+          "connections": 1,
+          "window": 2,
+          "global_window": 2,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 46.365326499999355,
+            "p95": 46.41763849999916,
+            "max": 46.41763849999916
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.256724,
+            "p95": 0.258884,
+            "max": 0.258884
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 46.200102,
+            "p95": 46.237268,
+            "max": 46.237268
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.375575,
+            "p95": 2.3794370000000002,
+            "max": 2.3794370000000002
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 48.305554,
+            "p95": 48.357826,
+            "max": 48.357826
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.9375,
+            "p95": 1.109375,
+            "max": 1.109375
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 27482,
+            "p95": 5339820,
+            "max": 5339820
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 1.582361500000843,
+          "rss_after_max_bytes": 87244800,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 2,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        },
+        {
+          "count": 256,
+          "connections": 1,
+          "window": 8,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 11.952755800000887,
+            "p95": 12.531255399997463,
+            "max": 12.531255399997463
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.257999,
+            "p95": 0.263413,
+            "max": 0.263413
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 11.789424,
+            "p95": 11.899899,
+            "max": 11.899899
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.3663980000000002,
+            "p95": 2.404526,
+            "max": 2.404526
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 13.895398,
+            "p95": 14.038202,
+            "max": 14.038202
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.96875,
+            "p95": 2.203125,
+            "max": 2.203125
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 89780,
+            "p95": 5335238,
+            "max": 5335238
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 35.46874460000254,
+          "rss_after_max_bytes": 87252992,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        },
+        {
+          "count": 256,
+          "connections": 4,
+          "window": 2,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 12.093009500000335,
+            "p95": 14.736182399999961,
+            "max": 14.736182399999961
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.254301,
+            "p95": 0.257838,
+            "max": 0.257838
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 11.765042,
+            "p95": 12.262193,
+            "max": 12.262193
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.4807040000000002,
+            "p95": 3.8563929999999997,
+            "max": 3.8563929999999997
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 13.989669,
+            "p95": 15.861223,
+            "max": 15.861223
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 1.28125,
+            "p95": 5.609375,
+            "max": 5.609375
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 65339,
+            "p95": 4387110,
+            "max": 4387110
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 33.26381760000004,
+          "rss_after_max_bytes": 87625728,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 12,
+            "p50": 11.870717300000251,
+            "p95": 13.58101280000119,
+            "max": 13.58101280000119
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        },
+        {
+          "count": 256,
+          "connections": 8,
+          "window": 2,
+          "global_window": 16,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 6.584990100000141,
+            "p95": 10.623414800000319,
+            "max": 10.623414800000319
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.254043,
+            "p95": 0.281235,
+            "max": 0.281235
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 5.987049,
+            "p95": 7.049394,
+            "max": 7.049394
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.746342,
+            "p95": 5.123499,
+            "max": 5.123499
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 8.483278,
+            "p95": 11.890726,
+            "max": 11.890726
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 1.34375,
+            "p95": 6.78125,
+            "max": 6.78125
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 4271491,
+            "p95": 4482323,
+            "max": 4482323
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 37.37658519999968,
+          "rss_after_max_bytes": 86233088,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 24,
+            "p50": 6.292832399998588,
+            "p95": 9.672845900000539,
+            "max": 9.697341300001426
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 16,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        }
+      ]
+    },
+    "shared_capacity": {
+      "status": "SYNTHETIC VERIFIED",
+      "code_iteration": "before history cancellation fix; short response",
+      "model": {
+        "latency": 0.1,
+        "handshake": 0.03,
+        "service_capacity": 2,
+        "deadline": 48,
+        "bars": 4
+      },
+      "cycles": 18,
+      "summaries": [
+        {
+          "count": 128,
+          "connections": 1,
+          "window": 8,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 8.3334872000014,
+            "p95": 9.329982999999629,
+            "max": 9.329982999999629
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.100421,
+            "p95": 0.102862,
+            "max": 0.102862
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 7.763238,
+            "p95": 8.754262,
+            "max": 8.754262
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.44635,
+            "p95": 2.468873,
+            "max": 2.468873
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 10.10756,
+            "p95": 11.121248,
+            "max": 11.121248
+          },
+          "successful_requests": 384,
+          "native_targets": 384,
+          "eventual_targets": 384,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 2.03125,
+            "p95": 2.09375,
+            "max": 2.09375
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 2580679,
+            "p95": 2816899,
+            "max": 2816899
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 38.67001700000037,
+          "rss_after_max_bytes": 75628544,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        },
+        {
+          "count": 128,
+          "connections": 4,
+          "window": 2,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 8.707240899999306,
+            "p95": 8.781947899999068,
+            "max": 8.781947899999068
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.087048,
+            "p95": 0.100151,
+            "max": 0.100151
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 7.473067,
+            "p95": 7.529384,
+            "max": 7.529384
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.9317539999999997,
+            "p95": 2.9890179999999997,
+            "max": 2.9890179999999997
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 10.360003,
+            "p95": 10.37495,
+            "max": 10.37495
+          },
+          "successful_requests": 384,
+          "native_targets": 384,
+          "eventual_targets": 384,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 2.890625,
+            "p95": 2.953125,
+            "max": 2.953125
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 62426,
+            "p95": 2225035,
+            "max": 2225035
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 39.21805210000093,
+          "rss_after_max_bytes": 75853824,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 12,
+            "p50": 8.027102200001536,
+            "p95": 8.208466899999621,
+            "max": 8.208466899999621
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        },
+        {
+          "count": 128,
+          "connections": 8,
+          "window": 2,
+          "global_window": 16,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 9.212581799998588,
+            "p95": 9.37396549999903,
+            "max": 9.37396549999903
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.102648,
+            "p95": 0.105269,
+            "max": 0.105269
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 7.531934,
+            "p95": 7.781026,
+            "max": 7.781026
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 3.464574,
+            "p95": 3.5154389999999998,
+            "max": 3.5154389999999998
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 10.789726,
+            "p95": 10.944204,
+            "max": 10.944204
+          },
+          "successful_requests": 384,
+          "native_targets": 384,
+          "eventual_targets": 384,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 3.328125,
+            "p95": 3.515625,
+            "max": 3.515625
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 2185765,
+            "p95": 2191101,
+            "max": 2191101
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 38.62603450000097,
+          "rss_after_max_bytes": 76390400,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 24,
+            "p50": 8.393533500002377,
+            "p95": 8.688165600000502,
+            "max": 8.802617199999077
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 16,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        },
+        {
+          "count": 256,
+          "connections": 1,
+          "window": 8,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 16.776587899999868,
+            "p95": 16.949342399999296,
+            "max": 16.949342399999296
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.102786,
+            "p95": 0.106996,
+            "max": 0.106996
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 15.769733,
+            "p95": 15.969719,
+            "max": 15.969719
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.830009,
+            "p95": 2.842852,
+            "max": 2.842852
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 18.514511,
+            "p95": 18.70001,
+            "max": 18.70001
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 3.875,
+            "p95": 4.28125,
+            "max": 4.28125
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 5127051,
+            "p95": 5133948,
+            "max": 5133948
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 31.050657600000704,
+          "rss_after_max_bytes": 86540288,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        },
+        {
+          "count": 256,
+          "connections": 4,
+          "window": 2,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 17.437546200002544,
+            "p95": 17.441502000001492,
+            "max": 17.441502000001492
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.085417,
+            "p95": 0.094305,
+            "max": 0.094305
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 14.963809,
+            "p95": 15.00474,
+            "max": 15.00474
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 3.636936,
+            "p95": 3.7339320000000003,
+            "max": 3.7339320000000003
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 18.558773,
+            "p95": 18.603421,
+            "max": 18.603421
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 5.671875,
+            "p95": 5.6875,
+            "max": 5.6875
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 65399,
+            "p95": 4095332,
+            "max": 4095332
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 30.558497999998508,
+          "rss_after_max_bytes": 87027712,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 12,
+            "p50": 16.109636100001808,
+            "p95": 16.351881599999615,
+            "max": 16.351881599999615
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        },
+        {
+          "count": 256,
+          "connections": 8,
+          "window": 2,
+          "global_window": 16,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 18.446605299999646,
+            "p95": 18.47596920000069,
+            "max": 18.47596920000069
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.102483,
+            "p95": 0.11714,
+            "max": 0.11714
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 14.948643,
+            "p95": 14.957396,
+            "max": 14.957396
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 4.78628,
+            "p95": 4.846503,
+            "max": 4.846503
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 19.633453,
+            "p95": 19.687959,
+            "max": 19.687959
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 6.609375,
+            "p95": 6.78125,
+            "max": 6.78125
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 4271339,
+            "p95": 4271743,
+            "max": 4271743
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 29.52403079999931,
+          "rss_after_max_bytes": 86642688,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 24,
+            "p50": 17.033786600000894,
+            "p95": 17.35022839999874,
+            "max": 17.42642170000181
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 16,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        }
+      ]
+    },
+    "maximum_history": {
+      "status": "SYNTHETIC VERIFIED",
+      "code_iteration": "final",
+      "model": {
+        "latency": 0.1,
+        "handshake": 0.03,
+        "service_capacity": 0,
+        "deadline": 48,
+        "bars": 301
+      },
+      "cycles": 6,
+      "summaries": [
+        {
+          "count": 256,
+          "connections": 1,
+          "window": 8,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 30.546862900002452,
+            "p95": 37.673429899998155,
+            "max": 37.673429899998155
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.24969,
+            "p95": 0.282165,
+            "max": 0.282165
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 29.951149,
+            "p95": 37.439942,
+            "max": 37.439942
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.313257,
+            "p95": 2.632053,
+            "max": 2.632053
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 32.359497000000005,
+            "p95": 39.534824,
+            "max": 39.534824
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 29.328125,
+            "p95": 35.28125,
+            "max": 35.28125
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 190981641,
+            "p95": 191338753,
+            "max": 191338753
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 10.326570100001845,
+          "rss_after_max_bytes": 411172864,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        },
+        {
+          "count": 256,
+          "connections": 8,
+          "window": 2,
+          "global_window": 16,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 20.734689799999614,
+            "p95": 22.70210919999954,
+            "max": 22.70210919999954
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.619052,
+            "p95": 0.730509,
+            "max": 0.730509
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 18.166392,
+            "p95": 19.490951,
+            "max": 19.490951
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.7581759999999997,
+            "p95": 3.016013,
+            "max": 3.016013
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 20.509581,
+            "p95": 22.03313,
+            "max": 22.03313
+          },
+          "successful_requests": 768,
+          "native_targets": 768,
+          "eventual_targets": 768,
+          "expected_targets": 768,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 20.375,
+            "p95": 22.171875,
+            "max": 22.171875
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 320072,
+            "p95": 193769189,
+            "max": 193769189
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 25.29789080000046,
+          "rss_after_max_bytes": 417693696,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 24,
+            "p50": 19.41517699999895,
+            "p95": 21.934420099998533,
+            "max": 22.212098399999377
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 16,
+          "sessions_created": 768,
+          "sessions_removed": 768
+        }
+      ]
+    },
+    "history_before_fix": {
+      "status": "PARTIALLY VERIFIED",
+      "code_iteration": "before cooperative parsing fix",
+      "model": {
+        "latency": 0.1,
+        "handshake": 0.03,
+        "service_capacity": 0,
+        "deadline": 48,
+        "bars": 301
+      },
+      "cycles": 6,
+      "summaries": [
+        {
+          "count": 256,
+          "connections": 1,
+          "window": 8,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 52.62396380000064,
+            "p95": 53.6718953999989,
+            "max": 53.6718953999989
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.174221,
+            "p95": 0.215149,
+            "max": 0.215149
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 48.700343,
+            "p95": 48.818283,
+            "max": 48.818283
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.312658,
+            "p95": 2.455779,
+            "max": 2.455779
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 50.570093,
+            "p95": 50.8296,
+            "max": 50.8296
+          },
+          "successful_requests": 582,
+          "native_targets": 582,
+          "eventual_targets": 582,
+          "expected_targets": 768,
+          "failures": 186,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 47.609375,
+            "p95": 48.890625,
+            "max": 48.890625
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 174514061,
+            "p95": 324132361,
+            "max": 324132361
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": -5.671895399998903,
+          "rss_after_max_bytes": 589955072,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 589,
+          "sessions_removed": 589
+        },
+        {
+          "count": 256,
+          "connections": 8,
+          "window": 2,
+          "global_window": 16,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 51.16596799999752,
+            "p95": 63.04913899999883,
+            "max": 63.04913899999883
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.69812,
+            "p95": 0.887283,
+            "max": 0.887283
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 44.840508,
+            "p95": 50.446404,
+            "max": 50.446404
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 5.3069690000000005,
+            "p95": 5.4650110000000005,
+            "max": 5.4650110000000005
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 49.740797,
+            "p95": 55.037128,
+            "max": 55.037128
+          },
+          "successful_requests": 624,
+          "native_targets": 624,
+          "eventual_targets": 624,
+          "expected_targets": 768,
+          "failures": 144,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 45.4375,
+            "p95": 55.921875,
+            "max": 55.921875
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 15881281,
+            "p95": 61972648,
+            "max": 61972648
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": -15.049138999998831,
+          "rss_after_max_bytes": 438886400,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 24,
+            "p50": 49.19942629999787,
+            "p95": 60.96716899999956,
+            "max": 61.96521609999763
+          },
+          "worker_deadline_expiries": 8,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 16,
+          "sessions_created": 624,
+          "sessions_removed": 624
+        }
+      ],
+      "verdict_note": "Older harness status was unconditional. PARTIALLY VERIFIED corrects the verdict using actual incomplete/late cycle records; original raw measurements retained."
+    },
+    "fixed_source_omissions": {
+      "status": "PARTIALLY VERIFIED",
+      "code_iteration": "final",
+      "model": {
+        "latency": 0.02,
+        "handshake": 0.03,
+        "service_capacity": 0,
+        "deadline": 48,
+        "bars": 4,
+        "missing_indices": [
+          0,
+          1
+        ],
+        "recovery": true
+      },
+      "cycles": 6,
+      "summaries": [
+        {
+          "count": 128,
+          "connections": 1,
+          "window": 8,
+          "global_window": 8,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 0.7258435000003374,
+            "p95": 0.8589137000017217,
+            "max": 0.8589137000017217
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.029525,
+            "p95": 0.031137,
+            "max": 0.031137
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 0.623499,
+            "p95": 0.705287,
+            "max": 0.705287
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.107071,
+            "p95": 2.138764,
+            "max": 2.138764
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 2.6929030000000003,
+            "p95": 2.812919,
+            "max": 2.812919
+          },
+          "successful_requests": 384,
+          "native_targets": 378,
+          "eventual_targets": 378,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.328125,
+            "p95": 0.46875,
+            "max": 0.46875
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 1914336,
+            "p95": 2219689,
+            "max": 2219689
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 47.14108629999828,
+          "rss_after_max_bytes": 76816384,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 0
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 8,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        },
+        {
+          "count": 128,
+          "connections": 8,
+          "window": 2,
+          "global_window": 16,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 0.6256916999991518,
+            "p95": 0.7032760000001872,
+            "max": 0.7032760000001872
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.007199,
+            "p95": 0.007572,
+            "max": 0.007572
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 0.284344,
+            "p95": 0.293443,
+            "max": 0.293443
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.291899,
+            "p95": 2.304443,
+            "max": 2.304443
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 2.538083,
+            "p95": 2.592348,
+            "max": 2.592348
+          },
+          "successful_requests": 384,
+          "native_targets": 378,
+          "eventual_targets": 378,
+          "expected_targets": 384,
+          "failures": 0,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.578125,
+            "p95": 0.65625,
+            "max": 0.65625
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 76542,
+            "p95": 2106605,
+            "max": 2106605
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": 47.29672399999981,
+          "rss_after_max_bytes": 76865536,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 24,
+            "p50": 0.4865033999994921,
+            "p95": 0.5679878000009921,
+            "max": 0.5706623000005493
+          },
+          "worker_deadline_expiries": 0,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 16,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        }
+      ]
+    },
+    "transient_deadline_recovery": {
+      "status": "PARTIALLY VERIFIED",
+      "code_iteration": "final",
+      "model": {
+        "latency": 0.01,
+        "handshake": 0.03,
+        "service_capacity": 0,
+        "deadline": 2.0,
+        "bars": 4,
+        "slow_seconds": 4,
+        "recovery": true
+      },
+      "cycles": 3,
+      "summaries": [
+        {
+          "count": 128,
+          "connections": 8,
+          "window": 2,
+          "global_window": 16,
+          "cycles": 3,
+          "duration": {
+            "samples": 3,
+            "p50": 2.1122990000003483,
+            "p95": 2.132349699997576,
+            "max": 2.132349699997576
+          },
+          "first_parsed": {
+            "samples": 3,
+            "p50": 0.009324,
+            "p95": 0.009744,
+            "max": 0.009744
+          },
+          "last_parsed": {
+            "samples": 3,
+            "p50": 0.382643,
+            "p95": 0.43867,
+            "max": 0.43867
+          },
+          "modeled_close_to_first": {
+            "samples": 3,
+            "p50": 2.342313,
+            "p95": 2.363546,
+            "max": 2.363546
+          },
+          "modeled_close_to_last": {
+            "samples": 3,
+            "p50": 2.715146,
+            "p95": 2.793172,
+            "max": 2.793172
+          },
+          "successful_requests": 381,
+          "native_targets": 381,
+          "eventual_targets": 384,
+          "expected_targets": 384,
+          "failures": 3,
+          "cpu_seconds": {
+            "samples": 3,
+            "p50": 0.6875,
+            "p95": 0.765625,
+            "max": 0.765625
+          },
+          "python_peak_bytes": {
+            "samples": 3,
+            "p50": 2109500,
+            "p95": 2493369,
+            "max": 2493369
+          },
+          "cleanup_passed": true,
+          "minimum_safety_margin_seconds": -0.13234969999757595,
+          "rss_after_max_bytes": 88875008,
+          "tasks_after_max": 1,
+          "worker_duration": {
+            "samples": 24,
+            "p50": 0.5643010999992839,
+            "p95": 2.0071496999989904,
+            "max": 2.020703999998659
+          },
+          "worker_deadline_expiries": 3,
+          "worker_handshake_failures": 0,
+          "request_timeouts": 0,
+          "request_error_categories": {},
+          "peak_unfinished_requests": 16,
+          "sessions_created": 384,
+          "sessions_removed": 384
+        }
+      ]
+    }
+  },
+  "persistence": {
+    "status": "SYNTHETIC VERIFIED",
+    "database": "marketdata_benchmark_ts_test",
+    "mode": "isolated simulated native transaction, unique provider namespace; no production writes",
+    "summaries": [
+      {
+        "count": 17,
+        "changed_rows": 51,
+        "duration": {
+          "samples": 3,
+          "p50": 0.059251899998344015,
+          "p95": 0.10893839999698685,
+          "max": 0.10893839999698685
+        }
+      },
+      {
+        "count": 100,
+        "changed_rows": 300,
+        "duration": {
+          "samples": 3,
+          "p50": 0.24270650000107707,
+          "p95": 0.2840343000025314,
+          "max": 0.2840343000025314
+        }
+      },
+      {
+        "count": 500,
+        "changed_rows": 1500,
+        "duration": {
+          "samples": 3,
+          "p50": 1.2420997000008356,
+          "p95": 1.6204614999987825,
+          "max": 1.6204614999987825
+        }
+      }
+    ]
+  },
+  "live": {
+    "new_live_pool_or_high_count": "BLOCKED: documented guest permission unverified; no new upstream requests issued",
+    "historical_single_socket_64": {
+      "status": "PARTIALLY VERIFIED",
+      "requests": 640,
+      "native_targets": 631,
+      "cycles": 10,
+      "reference": "candle-live-capacity-benchmarks.json"
+    },
+    "original_17_stored_only_smoke": {
+      "status": "PARTIALLY VERIFIED",
+      "deployed_image": "original, not updated source",
+      "complete_bucket_start": "2026-10-12T08:53:00+00:00",
+      "complete_targets": 17,
+      "next_missing_observation": {
+        "bucket_end": "2026-10-12T08:55:00+00:00",
+        "fetch_failures": 0,
+        "completed_current_instruments": 16,
+        "requested_instruments": 17,
+        "xaut": {
+          "source_status": "streaming",
+          "completed_candle_available_at": null,
+          "parser_completed_at": "2026-10-12T08:55:05.135955+00:00",
+          "duration_seconds": 0.25992456799940555
+        }
+      },
+      "smoke_exit": 1,
+      "next_snapshot_current_targets": 17
+    },
+    "production_guard": {
+      "mappings": 17,
+      "benchmark_mappings": 0,
+      "guest_raw_ticks": 26216,
+      "duplicate_native_logical_candles": 0,
+      "schema_head": "0004"
+    }
+  }
+}

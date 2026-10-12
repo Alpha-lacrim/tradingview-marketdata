@@ -2,112 +2,126 @@
 
 ## Current state - 2026-10-12
 
-Experimental tradingview_guest stores native completed 1m candles for the permanent 17
-instruments. One UTC-minute cycle plus 2s grace, correction overlap 3, recovery horizon 300
-minutes. One guest socket per cycle, one temporary chart session/series per symbol,
-independent receiver, bounded sliding concurrency ceiling 2; decrease-only overload fallback
-floor 1. No authenticated access, browser automation, socket pool or production universe change.
+The original deployed experimental tradingview_guest application still collects native
+completed 1m candles for the permanent 17 instruments. UTC-minute owner + 2s grace,
+correction overlap 3, recovery horizon 300, one socket/window 2. No production registry,
+schema, credentials, deployment or benchmark history changes were made in this session.
+Compose app localhost:8000 and DB localhost:5432 remain running. Old roughly 74k expected
+coverage gaps from a five-day outage lie outside recovery and keep health degraded; do
+not erase or fabricate them. Timescale native candle hypertable/head 0004, guest raw ticks
+26,216, no benchmark mappings, no duplicate native logical candles at verification.
 
-Compose app localhost:8000 and DB localhost:5432 are RUNNING after the live capacity test. Compose marks the app unhealthy because durable
-coverage gaps keep /health degraded; the API and collector are operational.
-Use compose.yaml + compose.tradingview.yaml, ONE worker/collector. Bare Compose selects mock.
-Volume tradingview_marketdata_pg preserved. Native market_candles remains a Timescale
-hypertable, head 0004; constraints/latest/coverage/revisions/tick aggregates unchanged.
-Raw tradingview_guest ticks remain 26,216. No benchmark mappings entered the main DB.
+## Retained connection-pool implementation
 
-Five-day environment/process outage leaves roughly 74k older expected unresolved minutes
-outside recovery horizon. Global health correctly remains degraded; do not erase coverage
-or fabricate bars. Recent pause reconciliation [06:47,07:47) UTC:1,009 persisted of1,020
-expected,11 absent XAUT minutes, all coverage invariants hold. Production is collecting again.
+New providers/candle_pool.py is a CandleProvider capability behind the SAME CandleIngestion
+scheduler/persistence transaction. Sorted canonical round robin fixes unique ownership;
+workers have independent socket, decoder, receiver, generation, sessions, futures and
+symbol health. Shared request budget bounds unfinished requests; local windows separately
+bound sessions. Completed responses release shared permits before session cleanup, avoiding
+capacity deadlocks when global concurrency is smaller than summed worker windows.
+Worker tasks publish partial results incrementally; pool checks owner/source/window identities.
 
-Git root C:/Users/Pouyan, main. Retrieval baseline commit 34dfa53a (hardening 5fdfe972).
-Private GitHub review repository created: https://github.com/Alpha-lacrim/tradingview-marketdata.
-Published `main` tracks `origin/main`; remote visibility, branch SHA and all 86 file paths
-were verified against the local commit. Existing four commits and nested
-PycharmProjects/tradingview layout are retained. Root README/CI expose the project entry point;
-root ignore rules prevent unrelated home-directory files from being staged. Scope source
-commands to this project. BATCHES_V1.md remains local and unchanged; credentials, database
-history/volumes, dumps, logs/caches and raw artifacts/research are excluded. Sanitized fixtures
-and benchmark summaries are included. Gitleaks 8.30.1 checked the full implementation history
-and publication snapshot with no leaks; DSNs contain only development defaults/env placeholders.
-Publication reran 233 Timescale tests and 230 plain PostgreSQL tests (three expected skips),
-Ruff/format/mypy successfully. GitHub Actions was started on push; inspect its run for remote
-results. No transport, instrument or database redesign was performed for publication.
+PoolLimits declares integration-verified connection/local/global ceilings, never infers
+permissions from observed access. Defaults: connections1, worker_capacity100, max_instruments100,
+global_concurrency2, deadline48s, close3s; existing worker window2 and request timeout15s.
+Application validation maxima are32 workers/4096 instruments/128 global requests.
+These fields apply when a permitted integration constructs the pool; the existing app factory
+still constructs the one-socket provider. Guest multisocket activation/job-limit expansion is
+rejected before network: tradingview_live_pool_permissions_unverified. Both live local100
+safeguards remain. No documented numerical guest socket permission was established; official
+TradingView policy/API references and the BLOCKED live boundary are in the pool document.
 
-## Current live capacity result
+One connection attempt per nonempty worker/cycle; ordinary failures back off independently
+across later minutes. Successful peers continue and retain candles. HTTP429 gates the whole
+provider and decreases its window, never grows connections. Permanent access rejection or
+uncertain close cleanup blocks replacements. Cancellation joins worker/receiver/acquisition
+and emitter tasks. Cooperative deadline includes handshake/retrieval, then bounded I/O cleanup;
+CPU/JSON/OS stalls prevent a hard real-time return guarantee. Pipeline now yields every32
+parsed historical candles. UTC alignment, native Decimal OHLC/source/completion, EXPECTED /
+NOT_EXPECTED / UNKNOWN, bounded recovery, idempotent writes and rollups are unchanged.
 
-100-instrument LIVE verdict: **NOT TESTED**. Largest live request universe 64; largest clean
-10-cycle immediate-complete universe 34. One socket/ceiling 2 was sufficient for all 64 chart
-responses, but source completeness gate prevented escalation. No higher window/pool tested.
+New low-cardinality connected-worker gauge; bounded health diagnostics report ownership,
+worker phases/backoff/errors/resources, request timings, pool throughput and slowest worker.
+Worker subset gauges cannot overwrite pool-wide coverage. No distributed infrastructure.
 
-October12 UTC windows:
--17 controls:06:48-06:50 and07:03-07:05,3 cycles each, all51/51 candles per window.
--34 initial:06:53-06:59,6 complete of7 attempts; final opening-handshake timeout BEFORE
- chart requests. Controlled retry preserved failure and recovered all 34 missing minutes.
--34 retry:07:06-07:15,10/10 immediately complete,340/340; duration p50/p95/max
- 12.510/17.014/17.014s. Both34 windows:544/578 immediate94.12%,578/578 eventual100%.
--64:07:18-07:27,10 cycles,640/640 valid native-series requests;631/640 target bars,
- only1/10 all-complete cycles. Nine omitted buckets remained absent on history retries:
- RUNE4,TRUMP2,VET2,GRT1. Initial three-bar verification had passed. Source sparsity/publication
- cause unproven; NOT a demonstrated transport capacity failure. Duration22.371/35.562/35.562s,
- p95 margin12.438s to48s. 100 escalation stopped, no unsupported reliability claim.
--All stages:0 individual request timeouts,0 established disconnect/protocol/throttle symptoms,
- no overruns/skipped targets; effective window 2. One handshake timeout retained separately.
--Client sessions created/removed match; pending futures/receiver tasks 0 after cycles, owner 1.
- Counts are client sends, not server acknowledgements. Memory includes retained checkpoint
- evidence; OS RSS/long-term memory stability not measured.
--Isolated native 34 persistence07:36:34 rows, retrieval9.478s, DBwrite0.336s,
- close-to-commit12.002s; marketdata_benchmark_ts_test unique provider namespace, no main writes.
--Production restored/rebuilt. Stored-only smoke FAILED on XAUT at 07:49 (16bars); adjacent
- 07:47/07:48/07:50 DB buckets17. No duplicate/malformed/forming candles. REST/providers200.
+## Measured evidence
 
-Exact windows, verified identities/status/session evidence, timing/resource distributions
-and omissions: docs/candle-live-capacity-benchmarks.json and docs/candle-retrieval-scalability.md.
-Raw ignored artifacts:live-capacity-oct12-staged.json,live-capacity-oct12-retry.json (retains
-prior_window),live-capacity-native-persistence.json,live-capacity-restored-reconciliation.json.
-Earlier Oct7 interrupted/production samples remain separate, not pooled as October12 evidence.
+See docs/candle-connection-pool.md and docs/candle-pool-benchmarks.json for full configuration,
+timing/resource/availability summaries and reproducible commands. Raw artifacts/pool-*.json
+remain ignored. New synthetic workers have no network connector, require simulated mappings
+and label all native-shaped bars SIMULATED. No production benchmark writes.
 
-## Implementation and tools
+SYNTHETIC VERIFIED final independent-delay matrix:64/128/256/512,54 cycles,
+13,824/13,824 actual targets, all resources cleaned. Three cycles/configuration, p95=max,
+not sustained production percentiles. At512, p50/max seconds:
+- original single/window2:27.652/27.786;
+- single/window8:7.359/7.370;
+- four/window2/global8:8.112/8.361;
+- eight/window2/global16:5.457/5.465;
+- 31/window2/global32 (~17 instruments/worker):5.891/6.083.
+Equal-concurrency single beats four workers.31 workers cost5.250s CPU p95 vs2.953s for8.
+No support for fixing partitions at17 or changing the production default.
+Shared-source-capacity-two model at256: single/four/eight p50 16.777/17.438/18.447s;
+extra sockets do not overcome modeled provider capacity. No inference about real provider.
+Slower0.35s profile:256 single/window2 p95 46.418s leaves only1.582s retrieval margin,
+insufficient proof of full minute collection/commit. These short-response profiles preceded
+history cancellation fix; final principal/history matrices were rerun afterward.
 
-providers/tradingview_candles.py owns native parsing/metadata/socket lifecycle;
-tradingview_pipeline.py owns dispatch/demux/deadlines. New additive request diagnostics:
-socket generation/session/send/deadline/first metadata/last frame/status/source info and
-client lifecycle counts. No protocol, persistence schema or concurrency-policy change.
-Shared-session multiple series were previously rejected: "exceed limit of series in the
-session". No workaround. Correction/history is ONE bounded series request per symbol,
-up to 301 bars including forming allowance. 48s body warning budget; cycles never overlap.
+Maximum-history256x300 completed bars/cycle: initial PARTIALLY VERIFIED cycles up to63.049s
+exposed CPU cancellation starvation, retained in pool-history-before-cancellation-fix.json.
+After cooperative parsing + per-bar simulated labeling, six cycles all256 targets:
+single/window8 p50/max30.547/37.673s; eight/window2/global16 20.735/22.702s.
+CPU p95 35.281/22.172s, extra traced peak182.5/184.8MiB; memory/CPU remain bottlenecks.
+512 maximum-history, integrated full-history persistence and long memory soak NOT TESTED.
 
-scripts/benchmark_live_capacity.py: retrieval-only staged 17/34/64/100, one futureminute
-per verification/capacity cycle. STOP normal app first; leave DB/volume. Gate requires>=90%
-complete cycles, all primary targets eventually present,p95<38s,no disconnect/protocol
-failure/skipped targets. Resume permits ONE recent pre-request handshake-timeout retry,
-retains prior evidence and missing targets; does not retry access/per-symbol errors.
-config/benchmarks/tradingview_candidates.json has84 UNVERIFIED candidates, not production
-feeds.48 additions verified live; expanded set excludes known sparse XAUT, production retains.
+At128, fixed source omissions yielded128 valid responses but126 targets;378/384 immediate
+AND eventual after bounded history per architecture. PARTIALLY VERIFIED coverage; transport
+valid, no fabricated recovery. Transient slow request with2s deadline retained127 targets,
+then recovered all128 on next simulated cycle (381/384 immediate,384/384 eventual).
+Integration test failed one16-instrument handshake worker, stored112 healthy results with
+UNKNOWN failed coverage, next minute recovered all256 two-minute candles; replay writes0.
+Isolated SIMULATED persistence17/100/500 on marketdata_benchmark_ts_test,3 rounds,
+p50/max0.059/0.109,0.243/0.284,1.242/1.620s, unique namespace only.
 
-scripts/benchmark_native_persistence.py uses largest passed stage from a fresh checkpoint,
-TEST_DATABASE_URL ending_test only, unique namespace; never main DB. Stop normal collector
-before use. Always restore with:
-docker compose -f compose.yaml -f compose.tradingview.yaml up -d --build app
+## Live boundary and original 17 observation
 
-scripts/soak_candles.py observes LOCAL API/DB, no extra source requests.
-scripts/smoke_tradingview_candles.py --stored-only observes committed WS/DB/REST.
-scripts/reconcile_candles.py performs read-only bounded historical tri-state reconciliation.
-Earlier synthetic17/34/64/100 and history/persistence matrices are in scalability docs;
-100 synthetic atwindow 2~18.1s is NOT live evidence. Prior actual DB/restart failure tests
-and native all 17 semantics remain in docs/candle-hardening-verification.md,
-docs/native-candle-verification.md and docs/tradingview.md.
+New live requests: NONE. Existing deployed original image observed via local stored-only
+WS/REST/DB:08:53 UTC17/17 matching candles;08:54 UTC16/17, XAUT missing despite streaming
+successful native series and zero transport failures. Smoke exited1; failure retained, not
+called complete. Subsequent snapshot17 current. Source changes were NOT deployed/live-tested.
 
-## Validation and next actions
+Prior LIVE evidence remains in docs/candle-live-capacity-benchmarks.json and scalability doc:
+34 instruments10/10 complete cycles, all578 eventual across windows including one handshake
+failure;64 instruments640/640 responses but631/640 native targets, nine persistent omissions
+RUNE/TRUMP/VET/GRT. Largest live request universe64; clean ten-cycle universe34.
+The earlier source-completeness gate stopped100. No new permission follows from prior tests.
 
-Final full suites:233 passed Timescale;230 passed+3 Timescale-only skips plain PostgreSQL.
-Ruff, format 64files, strict mypy 27modules pass. Existing Starlette/httpx warning remains.
-Tests cover demux/interleaving/generation/timeouts/cleanup, session/correction/recovery/API,
-100+ batched persistence, benchmark escalation/resume guards and test DB isolation.
-No new migration; mainhead 0004/hypertable rechecked. No user data deletion/downgrade.
+## Validation and repository state
 
-Next priority: a benchmark-only dense universe excluding newly sparse RUNE/TRUMP/VET/GRT,
-independently reverify sources, repeat 64 gate, then 100 only if stable. Preserve current 17
-and ceiling 2. No claim of reliable 100 live, long soak, socket-pool optimum, complete exceptional
-calendar, unlimited history or crash-safe spool. Unsupported guest protocol/source availability
-and data-use rights remain experimental; legitimate credentialed providers stay isolated.
+Final full suites:270 passed TimescaleDB (50.01s);267 passed+3 expected skips ordinary
+PostgreSQL (49.97s). Ruff lint/format pass69 Python files; strict mypy pass29 source files;
+git diff --check pass. Existing Starlette/httpx deprecation warning remains. Tests cover
+ownership/parallelism/foreign routing/generations/failures/recovery/429/cancellation/global
+capacity/deadlines/stalled cleanup,512 routing,128 persistence and single-socket compatibility.
+No migration added; no production tables cleared/downgraded. Original17 registry preserved.
+
+Git root C:/Users/Pouyan, main; scope commands to PycharmProjects/tradingview. Initial project
+state was clean. This snapshot includes the pool implementation, regression tests and sanitized
+synthetic benchmark evidence. Publication destination is the private repository
+https://github.com/Alpha-lacrim/tradingview-marketdata, origin/main. Verify local/remote SHA
+for publication state. Prior baseline34dfa53a (hardening5fdfe972) remains in history.
+BATCHES_V1.md, raw ignored benchmark artifacts and unrelated home files are excluded.
+Staged Gitleaks scan found no secrets. Publication does not deploy the application or enable
+live pooling.
+
+## Next recommended actions
+
+Keep original17/single/window2. Obtain a documented entitled provider integration and its
+account-specific limits before wiring pool activation into production or live benchmarking.
+Use same verified dense identities for fair permitted live comparisons. Prefer a small bounded
+worker count; do not assume17 is optimal or multiply connections after throttling. Run longer
+controlled fault/memory soaks and integrated full-history persistence before rollout. Existing
+old coverage gaps and exceptional-calendar limitations remain unresolved; preserve tri-state
+source availability. One application worker/collector only; use compose.yaml +
+compose.tradingview.yaml for the original guest app, bare Compose chooses mock. The current
+app image is unchanged; do not describe offline source changes as deployed.

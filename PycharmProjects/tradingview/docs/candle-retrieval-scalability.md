@@ -1,9 +1,14 @@
 # Native candle retrieval scalability
 
-This experiment preserves the existing 17 instruments, native completed 1m semantics,
-three-minute correction overlap, 300-minute recovery horizon and one UTC-minute cycle.
-No new source commands, production instruments, credentials or sockets were introduced.
-The benchmark-only live universe and October 12 results are documented below.
+The current implementation includes a configurable, bounded candle connection pool tested
+with synthetic transports beyond 100 instruments. See [connection pool architecture and
+benchmarks](candle-connection-pool.md) for current limits, failure behavior and comparisons.
+Live TradingView guest pooling remains BLOCKED by unverified permission. The default stays
+one socket, original 17 instruments, native completed 1m semantics, three-minute correction
+overlap, 300-minute recovery horizon and one UTC-minute cycle.
+
+The following sections retain the earlier single-socket experiments and live evidence;
+they are historical comparisons, not evidence that multiple live sockets are permitted.
 
 ## Protocol evidence and architecture
 
@@ -41,8 +46,8 @@ Failures remain per-symbol; valid siblings survive a timeout or disconnect. A pr
 protocol/access rejection still halts the provider. Cancellation joins the receiver and
 cancels outstanding futures; cleanup itself is bounded.
 
-There is no socket pool, automatic increase algorithm or priority scheduler. None has been
-justified by live evidence. Multiple **chart sessions** can coexist on one socket; multiple
+This baseline had no socket pool, automatic increase algorithm or priority scheduler.
+The later offline pool does not establish a live optimum. Multiple **chart sessions** can coexist on one socket; multiple
 **series in one session** were rejected. These are different capabilities.
 
 ## Initial live probes: escalation stopped

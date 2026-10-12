@@ -56,6 +56,13 @@ class Settings(BaseSettings):
     candle_correction_lookback_minutes: int = Field(default=3, ge=1, le=30)
     candle_request_timeout_seconds: float = Field(default=15, ge=1, le=60)
     tradingview_candle_concurrency: int = Field(default=2, ge=1, le=12)
+    # Integration must independently declare provider-permitted limits.
+    candle_pool_connections: int = Field(default=1, ge=1, le=32)
+    candle_pool_worker_capacity: int = Field(default=100, ge=1, le=4096)
+    candle_pool_max_instruments: int = Field(default=100, ge=1, le=4096)
+    candle_pool_concurrency: int = Field(default=2, ge=1, le=128)
+    candle_pool_deadline_seconds: float = Field(default=48, gt=0, le=60)
+    candle_pool_cleanup_seconds: float = Field(default=3, gt=0, le=10)
     candle_cycle_safety_margin_seconds: float = Field(default=10, ge=1, le=30)
     tradingview_frame_timeout_seconds: float = Field(default=45, ge=10, le=3600)
     tradingview_observation_timeout_seconds: float = Field(default=60, ge=10, le=86400)
