@@ -63,8 +63,7 @@ project, read [the safe checkout migration guide](docs/repository-layout.md) bef
 
 ## Quick start
 
-Clone the repository and enter it. While the restructuring is under review, add
-`--branch chore/root-layout` to the clone command; after merge the default branch uses this layout.
+Clone the repository and enter it:
 
 ```text
 git clone https://github.com/Alpha-lacrim/tradingview-marketdata.git

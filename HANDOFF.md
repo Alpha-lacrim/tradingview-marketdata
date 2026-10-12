@@ -2,14 +2,15 @@
 
 ## Current state - 2026-10-12
 
-Repository organization now places the application directly at the Git root on review branch
-`chore/root-layout`, based on main `324b1d83`. Work is in the separate clone
+Repository organization now places the application directly at the Git root on `main`.
+Restructuring commit `533e568` was reviewed on `chore/root-layout` and merged through PR #1
+as `5d5492b`; all preceding implementation commits remain ancestors. Work is in the separate clone
 `C:/Users/Pouyan/PycharmProjects/tradingview-marketdata`; the original home-rooted checkout
 and `PycharmProjects/tradingview` working directory, parent PyCharm project, environment,
 ignored artifacts and live containers remain intact. Do not pull the relocation into the
 home-rooted checkout; follow `docs/repository-layout.md` to adopt the new clone safely.
 GitHub visibility is PUBLIC, verified via GitHub on 2026-10-12; older private claims were stale.
-Publication is not deployment. The review branch preserves all existing commits.
+Publication is not deployment. The separate clone is synchronized to the new `main` layout.
 
 Root README now summarizes setup, capabilities and measured guest limitations. The original
 detailed platform reference is in `docs/platform-guide.md`; guest operations and evidence
@@ -115,7 +116,10 @@ Gitleaks 8.30.1 found no secrets in the staged diff or full exported tracked tre
 `git diff --check` passed. Review containers/network were removed with `down` after smoke/tests;
 the separate review volume was retained. Original main worktree remains clean and its original
 app/DB containers remain running; pre-existing guest coverage degradation was not repaired by
-this organization task. GitHub Actions results are available on the review branch/PR.
+this organization task. GitHub Actions passed both database modes for the branch push, PR #1
+and merged main (`5d5492b`, run 38244983432). Remote README HTML checks passed: one title,
+five sections, two tables, five code blocks and 25 links. No browser was available for a
+visual screenshot; rendering was verified through GitHub's rendered README API.
 
 ## Prior implementation verification and restoration
 
@@ -135,7 +139,7 @@ health degraded even during currently complete cycles. REST remains available.
 
 ## Next work
 
-Review and merge the root-layout branch after CI; adopt the separate root checkout using
+PR #1 is merged; adopt the separate root checkout using
 `docs/repository-layout.md`. Keep operating the existing collector from its original directory
 until explicitly migrating deployment/configuration; a new Compose project name creates a
 different volume. Preserve `tradingview_marketdata_pg` and never use `down -v` for migration.
@@ -146,7 +150,7 @@ failure and timing. Compare bounded worker counts/windows without increasing con
 after throttling. Run longer memory/native maximum-history persistence and real DB/network
 outage soaks before rollout. Complete minute coverage at128/256/512 remains unproven.
 Keep the original single application worker/17 registry. Publication does not deploy code.
-Remote is https://github.com/Alpha-lacrim/tradingview-marketdata. Publish the restructuring
-only to its dedicated review branch; main still contains the latest application implementation
-until merge. Raw artifacts and local configuration remain ignored. Recheck remote main before
-publication so concurrent implementation work is preserved.
+Remote is https://github.com/Alpha-lacrim/tradingview-marketdata. Main now contains the root
+layout and latest application implementation. Raw artifacts and local configuration remain
+ignored. Use dedicated branches for new work and recheck remote main before publication so
+concurrent implementation work is preserved.

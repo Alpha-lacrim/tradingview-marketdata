@@ -25,15 +25,14 @@ The original home-rooted checkout, application directory, `.venv`, ignored artif
 operator notes, IDE files and running containers were preserved. The review branch changes
 the Git tree; it does not relocate the existing local application or deploy a new image.
 
-Until the review branch is merged, a new clone must explicitly select it:
+PR #1 merged the restructuring into `main`; normal clones now use the new layout:
 
 ```text
-git clone --branch chore/root-layout https://github.com/Alpha-lacrim/tradingview-marketdata.git
+git clone https://github.com/Alpha-lacrim/tradingview-marketdata.git
 cd tradingview-marketdata
 ```
 
-After merge, normal clones use the new layout automatically. Existing nested/home-rooted
-checkouts should use a separate clone rather than pull the relocation commit into the home
+Existing nested/home-rooted checkouts should use a separate clone rather than pull the relocation commit into the home
 directory: a pull there would put the application at the home root and remove the old tracked
 paths. Keep the old checkout available until local configuration and data access are checked.
 Copy only needed ignored settings/artifacts deliberately; never add credentials or database
