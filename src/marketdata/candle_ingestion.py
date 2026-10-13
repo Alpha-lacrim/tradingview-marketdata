@@ -350,7 +350,9 @@ class CandleIngestion:
         p.metrics.candles.labels(p.name, "persisted").inc(changed)
         p.metrics.candles.labels(p.name, "upserted").inc(changed)
         p.metrics.candles.labels(p.name, "duplicates").inc(len(self.pending) - changed)
-        changed_keys = details.get("changed_keys")
+        keys = details.get("changed_keys")
+        # Large native-history recovery must not perform a linear search per candle.
+        changed_keys = set(keys) if keys is not None else None
         for candle in details.get("changed_candles", self.pending):
             if (
                 changed_keys is not None

@@ -53,6 +53,21 @@ async def test_outage_retains_batch_and_receive_does_not_block(pair):
     assert ingestion.database_healthy
 
 
+async def test_monitor_records_application_loop_lag_and_stops_with_service():
+    ingestion = service(Writer())
+    await ingestion.start()
+    await asyncio.sleep(1.1)
+    await ingestion.stop()
+    samples = {
+        sample.name: sample.value
+        for metric in ingestion.metrics.registry.collect()
+        for sample in metric.samples
+    }
+    assert samples["marketdata_event_loop_lag_seconds_count"] >= 1
+    assert samples["marketdata_event_loop_lag_max_seconds"] >= 0
+    assert ingestion.monitor_task.done()
+
+
 async def test_queue_full_is_visible_and_shutdown_drains(pair):
     ingestion = service(Writer())
     tick = normalize(*pair, datetime.now(UTC), last="1")

@@ -1,0 +1,630 @@
+{
+  "captured_at": "2026-10-13T07:42:20.846147+00:00",
+  "url": "https://scanner.tradingview.com/global/scan",
+  "request": {
+    "symbols": {
+      "tickers": [
+        "OANDA:EURUSD",
+        "OANDA:GBPUSD",
+        "OANDA:USDJPY",
+        "OANDA:USDCHF",
+        "OANDA:AUDUSD",
+        "OANDA:USDCAD",
+        "OANDA:NZDUSD",
+        "OANDA:EURGBP",
+        "OANDA:EURJPY",
+        "OANDA:EURCHF",
+        "OANDA:EURAUD",
+        "OANDA:EURCAD",
+        "OANDA:EURNZD",
+        "OANDA:GBPJPY",
+        "OANDA:GBPCHF",
+        "OANDA:GBPAUD",
+        "OANDA:GBPCAD",
+        "OANDA:GBPNZD",
+        "OANDA:AUDJPY",
+        "OANDA:CADJPY",
+        "OANDA:CHFJPY",
+        "FX:EURUSD",
+        "FX:GBPUSD",
+        "FX:USDJPY",
+        "FX:USDCHF",
+        "FX:AUDUSD",
+        "FX:USDCAD",
+        "FX:NZDUSD",
+        "FX:EURGBP",
+        "FX:EURJPY",
+        "FX:EURCHF",
+        "FX:EURAUD",
+        "FX:EURCAD",
+        "FX:EURNZD",
+        "FX:GBPJPY",
+        "FX:GBPCHF",
+        "FX:GBPAUD",
+        "FX:GBPCAD",
+        "FX:GBPNZD",
+        "FX:AUDJPY",
+        "FX:CADJPY",
+        "FX:CHFJPY",
+        "OANDA:XAUUSD",
+        "OANDA:XAGUSD",
+        "OANDA:XPTUSD",
+        "OANDA:XPDUSD",
+        "FX:XAUUSD",
+        "FX:XAGUSD",
+        "TVC:USOIL",
+        "TVC:UKOIL",
+        "OANDA:WTICOUSD",
+        "OANDA:BCOUSD",
+        "OANDA:BRENTCOUSD",
+        "OANDA:NATGASUSD",
+        "FX:USOIL",
+        "FX:UKOIL",
+        "FX:NGAS",
+        "NYMEX:CL1!",
+        "NYMEX:NG1!",
+        "NYMEX:BZ1!",
+        "COMEX:GC1!",
+        "COMEX:SI1!",
+        "NYMEX:PL1!",
+        "NYMEX:PA1!"
+      ]
+    },
+    "columns": [
+      "name",
+      "exchange",
+      "type",
+      "currency",
+      "description"
+    ],
+    "range": [
+      0,
+      200
+    ]
+  },
+  "response": {
+    "totalCount": 54,
+    "data": [
+      {
+        "s": "OANDA:EURUSD",
+        "d": [
+          "EURUSD",
+          "OANDA",
+          "forex",
+          "USD",
+          "EUR/USD"
+        ]
+      },
+      {
+        "s": "OANDA:GBPUSD",
+        "d": [
+          "GBPUSD",
+          "OANDA",
+          "forex",
+          "USD",
+          "GBP/USD"
+        ]
+      },
+      {
+        "s": "OANDA:USDJPY",
+        "d": [
+          "USDJPY",
+          "OANDA",
+          "forex",
+          "JPY",
+          "USD/JPY"
+        ]
+      },
+      {
+        "s": "OANDA:USDCHF",
+        "d": [
+          "USDCHF",
+          "OANDA",
+          "forex",
+          "CHF",
+          "USD/CHF"
+        ]
+      },
+      {
+        "s": "OANDA:AUDUSD",
+        "d": [
+          "AUDUSD",
+          "OANDA",
+          "forex",
+          "USD",
+          "AUD/USD"
+        ]
+      },
+      {
+        "s": "OANDA:USDCAD",
+        "d": [
+          "USDCAD",
+          "OANDA",
+          "forex",
+          "CAD",
+          "USD/CAD"
+        ]
+      },
+      {
+        "s": "OANDA:NZDUSD",
+        "d": [
+          "NZDUSD",
+          "OANDA",
+          "forex",
+          "USD",
+          "NZD/USD"
+        ]
+      },
+      {
+        "s": "OANDA:EURGBP",
+        "d": [
+          "EURGBP",
+          "OANDA",
+          "forex",
+          "GBP",
+          "EUR/GBP"
+        ]
+      },
+      {
+        "s": "OANDA:EURJPY",
+        "d": [
+          "EURJPY",
+          "OANDA",
+          "forex",
+          "JPY",
+          "EUR/JPY"
+        ]
+      },
+      {
+        "s": "OANDA:EURCHF",
+        "d": [
+          "EURCHF",
+          "OANDA",
+          "forex",
+          "CHF",
+          "EUR/CHF"
+        ]
+      },
+      {
+        "s": "OANDA:EURAUD",
+        "d": [
+          "EURAUD",
+          "OANDA",
+          "forex",
+          "AUD",
+          "EUR/AUD"
+        ]
+      },
+      {
+        "s": "OANDA:EURCAD",
+        "d": [
+          "EURCAD",
+          "OANDA",
+          "forex",
+          "CAD",
+          "EUR/CAD"
+        ]
+      },
+      {
+        "s": "OANDA:EURNZD",
+        "d": [
+          "EURNZD",
+          "OANDA",
+          "forex",
+          "NZD",
+          "EUR/NZD"
+        ]
+      },
+      {
+        "s": "OANDA:GBPJPY",
+        "d": [
+          "GBPJPY",
+          "OANDA",
+          "forex",
+          "JPY",
+          "GBP/JPY"
+        ]
+      },
+      {
+        "s": "OANDA:GBPCHF",
+        "d": [
+          "GBPCHF",
+          "OANDA",
+          "forex",
+          "CHF",
+          "GBP/CHF"
+        ]
+      },
+      {
+        "s": "OANDA:GBPAUD",
+        "d": [
+          "GBPAUD",
+          "OANDA",
+          "forex",
+          "AUD",
+          "GBP/AUD"
+        ]
+      },
+      {
+        "s": "OANDA:GBPCAD",
+        "d": [
+          "GBPCAD",
+          "OANDA",
+          "forex",
+          "CAD",
+          "GBP/CAD"
+        ]
+      },
+      {
+        "s": "OANDA:GBPNZD",
+        "d": [
+          "GBPNZD",
+          "OANDA",
+          "forex",
+          "NZD",
+          "GBP/NZD"
+        ]
+      },
+      {
+        "s": "OANDA:AUDJPY",
+        "d": [
+          "AUDJPY",
+          "OANDA",
+          "forex",
+          "JPY",
+          "AUD/JPY"
+        ]
+      },
+      {
+        "s": "OANDA:CADJPY",
+        "d": [
+          "CADJPY",
+          "OANDA",
+          "forex",
+          "JPY",
+          "CAD/JPY"
+        ]
+      },
+      {
+        "s": "OANDA:CHFJPY",
+        "d": [
+          "CHFJPY",
+          "OANDA",
+          "forex",
+          "JPY",
+          "CHF/JPY"
+        ]
+      },
+      {
+        "s": "FX:EURUSD",
+        "d": [
+          "EURUSD",
+          "FX",
+          "forex",
+          "USD",
+          "Euro vs. US Dollar"
+        ]
+      },
+      {
+        "s": "FX:GBPUSD",
+        "d": [
+          "GBPUSD",
+          "FX",
+          "forex",
+          "USD",
+          "Great British Pound vs. US Dollar"
+        ]
+      },
+      {
+        "s": "FX:USDJPY",
+        "d": [
+          "USDJPY",
+          "FX",
+          "forex",
+          "JPY",
+          "US Dollar vs. Japanese Yen"
+        ]
+      },
+      {
+        "s": "FX:USDCHF",
+        "d": [
+          "USDCHF",
+          "FX",
+          "forex",
+          "CHF",
+          "US Dollar vs. Swiss Franc"
+        ]
+      },
+      {
+        "s": "FX:AUDUSD",
+        "d": [
+          "AUDUSD",
+          "FX",
+          "forex",
+          "USD",
+          "Australian Dollar vs. US Dollar"
+        ]
+      },
+      {
+        "s": "FX:USDCAD",
+        "d": [
+          "USDCAD",
+          "FX",
+          "forex",
+          "CAD",
+          "US Dollar vs. Canadian Dollar"
+        ]
+      },
+      {
+        "s": "FX:NZDUSD",
+        "d": [
+          "NZDUSD",
+          "FX",
+          "forex",
+          "USD",
+          "New Zealand Dollar vs. US Dollar"
+        ]
+      },
+      {
+        "s": "FX:EURGBP",
+        "d": [
+          "EURGBP",
+          "FX",
+          "forex",
+          "GBP",
+          "Euro vs. Great British Pound"
+        ]
+      },
+      {
+        "s": "FX:EURJPY",
+        "d": [
+          "EURJPY",
+          "FX",
+          "forex",
+          "JPY",
+          "Euro vs. Japanese Yen"
+        ]
+      },
+      {
+        "s": "FX:EURCHF",
+        "d": [
+          "EURCHF",
+          "FX",
+          "forex",
+          "CHF",
+          "Euro vs. Swiss Franc"
+        ]
+      },
+      {
+        "s": "FX:EURAUD",
+        "d": [
+          "EURAUD",
+          "FX",
+          "forex",
+          "AUD",
+          "Euro vs. Australian Dollar"
+        ]
+      },
+      {
+        "s": "FX:EURCAD",
+        "d": [
+          "EURCAD",
+          "FX",
+          "forex",
+          "CAD",
+          "Euro vs. Canadian Dollar"
+        ]
+      },
+      {
+        "s": "FX:EURNZD",
+        "d": [
+          "EURNZD",
+          "FX",
+          "forex",
+          "NZD",
+          "Euro vs. New Zealand Dollar"
+        ]
+      },
+      {
+        "s": "FX:GBPJPY",
+        "d": [
+          "GBPJPY",
+          "FX",
+          "forex",
+          "JPY",
+          "Great British Pound vs. Japanese Yen"
+        ]
+      },
+      {
+        "s": "FX:GBPCHF",
+        "d": [
+          "GBPCHF",
+          "FX",
+          "forex",
+          "CHF",
+          "Great British Pound vs. Swiss Franc"
+        ]
+      },
+      {
+        "s": "FX:GBPAUD",
+        "d": [
+          "GBPAUD",
+          "FX",
+          "forex",
+          "AUD",
+          "Great British Pound vs. Australian Dollar"
+        ]
+      },
+      {
+        "s": "FX:GBPCAD",
+        "d": [
+          "GBPCAD",
+          "FX",
+          "forex",
+          "CAD",
+          "Great British Pound vs. Canadian Dollar"
+        ]
+      },
+      {
+        "s": "FX:GBPNZD",
+        "d": [
+          "GBPNZD",
+          "FX",
+          "forex",
+          "NZD",
+          "Great British Pound vs. New Zealand Dollar"
+        ]
+      },
+      {
+        "s": "FX:AUDJPY",
+        "d": [
+          "AUDJPY",
+          "FX",
+          "forex",
+          "JPY",
+          "Australian Dollar vs. Japanese Yen"
+        ]
+      },
+      {
+        "s": "FX:CADJPY",
+        "d": [
+          "CADJPY",
+          "FX",
+          "forex",
+          "JPY",
+          "Canadian Dollar vs. Japanese Yen"
+        ]
+      },
+      {
+        "s": "FX:CHFJPY",
+        "d": [
+          "CHFJPY",
+          "FX",
+          "forex",
+          "JPY",
+          "Swiss Franc vs. Japanese Yen"
+        ]
+      },
+      {
+        "s": "OANDA:XAUUSD",
+        "d": [
+          "XAUUSD",
+          "OANDA",
+          "commodity",
+          "USD",
+          "Gold"
+        ]
+      },
+      {
+        "s": "FX:XAUUSD",
+        "d": [
+          "XAUUSD",
+          "FX",
+          "commodity",
+          "USD",
+          "XAU/USD Spot - Gold"
+        ]
+      },
+      {
+        "s": "OANDA:NATGASUSD",
+        "d": [
+          "NATGASUSD",
+          "OANDA",
+          "commodity",
+          "USD",
+          "Natural Gas"
+        ]
+      },
+      {
+        "s": "FX:USOIL",
+        "d": [
+          "USOIL",
+          "FX",
+          "commodity",
+          "USD",
+          "WTI Oil Future"
+        ]
+      },
+      {
+        "s": "FX:UKOIL",
+        "d": [
+          "UKOIL",
+          "FX",
+          "commodity",
+          "USD",
+          "Brent Oil Futures"
+        ]
+      },
+      {
+        "s": "NYMEX:CL1!",
+        "d": [
+          "CL1!",
+          "NYMEX",
+          "futures",
+          "USD",
+          "Crude Oil Futures"
+        ]
+      },
+      {
+        "s": "NYMEX:NG1!",
+        "d": [
+          "NG1!",
+          "NYMEX",
+          "futures",
+          "USD",
+          "Henry Hub Natural Gas Futures"
+        ]
+      },
+      {
+        "s": "NYMEX:BZ1!",
+        "d": [
+          "BZ1!",
+          "NYMEX",
+          "futures",
+          "USD",
+          "Brent Last Day Financial Futures"
+        ]
+      },
+      {
+        "s": "COMEX:GC1!",
+        "d": [
+          "GC1!",
+          "COMEX",
+          "futures",
+          "USD",
+          "Gold Futures"
+        ]
+      },
+      {
+        "s": "COMEX:SI1!",
+        "d": [
+          "SI1!",
+          "COMEX",
+          "futures",
+          "USD",
+          "Silver Futures"
+        ]
+      },
+      {
+        "s": "NYMEX:PL1!",
+        "d": [
+          "PL1!",
+          "NYMEX",
+          "futures",
+          "USD",
+          "Platinum Futures"
+        ]
+      },
+      {
+        "s": "NYMEX:PA1!",
+        "d": [
+          "PA1!",
+          "NYMEX",
+          "futures",
+          "USD",
+          "Palladium Futures"
+        ]
+      }
+    ]
+  }
+}

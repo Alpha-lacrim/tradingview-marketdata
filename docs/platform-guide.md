@@ -305,6 +305,12 @@ multi-process fan-out remain outside this version.
 
 ## Ordinary expanded candle pilot
 
+Current employer-required Binance/OANDA/FXCM/metals/energy candidates and source-specific
+coverage, quote identity and volume limits are in
+[business qualification](business-universe-qualification.md). The 99-source proposal is
+provisional and not deployed; the running 100 profile is the preserved accuracy-selected
+baseline. Native completed candle closes are separate from live quote observations.
+
 Instrument count comes from the selected registry. The validated
 `TRADINGVIEW_CANDLE_POOL_ENABLED` opt-in uses the existing connection pool in the ordinary
 collector. See [34-instrument activation, identity protection and rollback](production-instrument-expansion.md)

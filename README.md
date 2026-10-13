@@ -29,9 +29,15 @@ The opt-in multi-socket experiments reached 128/256/512 crypto spot targets, wit
 commits of 743/768, 1,419/1,536 and 2,663/3,072 respectively. All stages were incomplete;
 these results do not demonstrate complete coverage or sustained production capacity.
 An earlier unpaced run encountered HTTP 429 and stopped escalation.
-The ordinary collector now supports a validated, separate **34-instrument pilot**, with a
-tested 17-instrument rollback and durable activation boundaries. The local deployment remains
-34; 64 is deferred. See [pilot activation and persistence evidence](docs/production-instrument-expansion.md)
+The ordinary collector currently runs a fixed **100-instrument universe** against the
+existing database, with four paced sockets and global concurrency eight. That accuracy-selected
+profile achieved 99.9% eventual coverage in a 30-cycle window plus three settling cycles.
+The current priority is a separate provisional **99-source business proposal**: 50 Binance
+markets, both brokers for 21 OANDA/FXCM forex pairs, metals and energy. It is not deployed;
+see [business qualification, source gaps and approval decisions](docs/business-universe-qualification.md).
+Earlier ordinary 64/128/256 measurements and exact 34/17 image rollbacks are preserved.
+See [current scaling measurements and exact rollback](docs/ordinary-collector-scaling.md),
+[pilot activation and persistence evidence](docs/production-instrument-expansion.md)
 and [the ATOM native-history/availability investigation](docs/native-availability-investigation.md).
 Request success, native availability and durable commits are measured separately.
 

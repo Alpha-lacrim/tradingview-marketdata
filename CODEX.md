@@ -1305,3 +1305,35 @@ scripts/summarize_live_pool.py artifacts/live-pool.json artifacts/live-pool-pace
 Preserve raw checkpoint hashes and every candle's first commit timestamp; report request
 success separately from native-minute completeness. Use a quiet host for capacity comparisons
 and disclose concurrent development workload when reporting exploratory runs.
+
+## Ordinary collector scaling
+
+Use `docs/ordinary-collector-scaling.md` and its frozen native source evidence for ordinary
+application qualification. The current operator objective is the employer's business universe:
+50 provisional Binance spot USDT markets, BOTH OANDA/FXCM feeds for 21 proposed forex pairs,
+and correctly identified metals/energy. TradingView is the only data source; business relevance
+precedes completeness. See docs/business-universe-qualification.md. The provisional 99-source
+profile is not approved/deployed; production keeps the preserved accuracy-selected 100.
+The >=99.9% expected-minute goal remains a qualification target. Never remove required sparse
+markets to improve it. Further 256/512 escalation was canceled; earlier denominators stay visible.
+Reverify the existing Compose project,
+database system identifier and persistent volume before switching only app. Use the
+reviewed switch helper with explicit tested image/fallback settings; never create another
+collector or database from a worktree. Preserve activation starts and old coverage gaps.
+Report collector qualification separately from the source-coverage numerical gate; native
+source omissions remain unresolved targets, never transport failures or synthesized bars.
+Keep paced connections, shared request budgets/cooldown and at most six sockets/global 12.
+Recovery acknowledgement membership uses a set to avoid quadratic event-loop blocking;
+this narrow outage fix does not authorize the paused Batch 3 database changes.
+
+FXCM native symbols use FX: while quote metadata reports venue FXCM; only this captured
+relationship is normalized inside the quote adapter, retaining exact symbol/type/currency/delay
+gates. Unclassified numeric native volume stays NULL in the typed column and is retained as
+decimal source_volume_raw metadata with unknown, non-additive semantics. Never infer units.
+Business source probes use the isolated marketdata_business_qualification_test database and
+confirmed production idle windows, without a second ordinary scheduler or production changes.
+Historical capture percentages/acknowledgement ages are not simultaneous scheduled capacity
+proof. Keep the completed fastapi-batch1-isolation commit 6901bfadd44cb83ccdca49aac559e6f97a93a91d
+and its 0005 migration untouched. Integrate deliberately in a third worktree; see
+docs/fastapi-business-integration.md. The legacy collector has no advisory lock and must stop
+before a lock-aware deployment; its exact-0004 Store also needs a tested migration rollback plan.

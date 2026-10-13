@@ -1,0 +1,20 @@
+# Use ONLY with the verified tradingview project and its original project directory.
+# The selected image is built from the clean main-based ordinary-scale worktree.
+services:
+  app:
+    image: ${TRADINGVIEW_SCALE_IMAGE:-tradingview-app:ordinary-scale}
+    environment:
+      REGISTRY_FILE: config/instruments.tradingview-${TRADINGVIEW_INSTRUMENT_COUNT:-64}.json
+      TRADINGVIEW_STORAGE_MODE: candles
+      TRADINGVIEW_CANDLE_POOL_ENABLED: "true"
+      TRADINGVIEW_CANDLE_CONCURRENCY: "2"
+      CANDLE_FETCH_GRACE_SECONDS: ${TRADINGVIEW_SCALE_GRACE_SECONDS:-2}
+      CANDLE_POOL_CONNECTIONS: ${TRADINGVIEW_SCALE_CONNECTIONS:-2}
+      CANDLE_POOL_WORKER_CAPACITY: "100"
+      CANDLE_POOL_MAX_INSTRUMENTS: ${TRADINGVIEW_INSTRUMENT_COUNT:-64}
+      CANDLE_POOL_CONCURRENCY: ${TRADINGVIEW_SCALE_CONCURRENCY:-4}
+      CANDLE_POOL_CONNECT_INTERVAL_SECONDS: "2"
+      CANDLE_POOL_DEADLINE_SECONDS: "48"
+      CANDLE_POOL_CLEANUP_SECONDS: "3"
+      # A two-minute recovery at 256 can publish more than the default 256-slot queue.
+      WEBSOCKET_QUEUE_CAPACITY: "1024"

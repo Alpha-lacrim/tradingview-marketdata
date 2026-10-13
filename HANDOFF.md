@@ -1,166 +1,184 @@
-﻿# HANDOFF.md
+# HANDOFF.md
 
-## Current state — 2026-10-12
+## Current state — 2026-10-13
 
-The upstream application is already at the Git root following PR #1 (533e568 → 5d5492b →
-b94d1a2). The separate tradingview-marketdata clone and upstream root README/platform-guide,
-CI and ignore changes remain intact. Do not pull relocation into the home-rooted deployment
-checkout; see docs/repository-layout.md. This batch ports reviewed changes in an isolated
-root-layout worktree without relocating the deployed directory or changing its Docker project.
-Publication is not deployment. GitHub is public; never stage credentials or raw artifacts.
+The current priority is the employer's business universe, not maximizing candle availability
+by selecting unrelated sources. TradingView is the only market-data/directory/ranking source.
+User explicitly requires BOTH broker feeds for all 21 proposed forex pairs. The proposal is
+99 source entries: 50 Binance spot USDT, 21 OANDA, 21 FXCM, four OANDA OTC metals, TVC USOIL/
+UKOIL references and OANDA NATGASUSD CFD. Seven further same-underlying metal/energy source
+alternatives were tested. Seven futures aliases remain comparison-only/untested; no alias
+is persisted as a contract. All specific market/product/UI choices remain provisional.
 
-Batch 2 investigated BINANCE:ATOMUSDT's 12:14 UTC target without restarting or changing the
-running 34-instrument deployment. Two bounded idle-window raw native-history captures at
-12:49 and 12:52 both contain 12:13/12:15 neighbors and sufficient preceding history but no
-12:14 timestamp. Original target-presence diagnostics were null before request completion;
-ordinary recovery keeps requesting 12:14. The gap remains EXPECTED, not synthesized or
-classified as a verified permanent upstream omission. Cause/permanent absence and possible
-future publication remain unknown. Read docs/native-availability-investigation.md/json.
+**Production is unchanged during business qualification:** one accuracy-selected 100-source
+collector, four paced sockets, worker windows two, global eight, grace five, image
+tradingview-app:ordinary-100 (manifest ca498afb02f6232440e3386936a4097e865cf9fefdbd0481adc0cc7ce623023f).
+App container 5d580ce8ea9275f8683cbc8ec04e8dd9ffabfd7577358e7be88d9ff7d4e38433.
+No business promotion, no second ordinary scheduler/collector, no production test data.
+The two new business provider fixes below are host-tested and NOT in that deployed image.
 
-Separate 24 scheduled cycles over [12:25,12:49) UTC: 816 expected; 782 successful requests,
-782 available native targets, 782 immediate and 816 eventual commits. Both socket handshakes
-timed out at 12:26 (34 retrieval errors, zero DB failures); all 34 missed 12:25 bars recovered
-at 12:27:06.846071, latency 66.846s. 24 successful transactions include one coverage-only
-transaction; 23 had native current targets. Current close-to-commit min/p50/p95/max:
-6.700/9.385/14.314/15.454s. All 816 REST/DB OHLCV values matched. Stored-only WebSocket/DB/REST
-smoke passed 68/68 over buckets 12:53/12:54. Older gap partitions, activation and original
-identities match pre-pilot evidence. No diagnostic DB writes or 64 activation.
+Read docs/business-universe-qualification.md for complete results, root cause, decisions,
+network restrictions, source/product semantics and conditional activation plan.
+Machine-readable primary 99 ledger: docs/business-active-qualification.json/.csv.
+Full 106-source + futures comparison: docs/business-source-qualification.json/.csv.
+Inputs: docs/business-ranking-snapshot.json, business-directory-snapshot.json.
+Proposal: docs/business-universe-proposal.json; inventory: business-registry-inventory.json.
+Timestamp-level unresolved ledger: docs/business-missing-targets.json/.csv.
+FastAPI integration risks: docs/fastapi-business-integration.md.
+Frozen registry/evidence paths have scoped -text attributes to preserve recorded byte hashes
+across Windows/Linux checkouts. Manifest hashes describe staged Git blobs, excluding its self-hash.
+Exact file groups/hashes: docs/business-change-manifest.json.
+Frozen live evidence/hashes: docs/business-live-evidence.json. Raw originals are ignored
+artifacts/business-*.json. Do not overwrite the previous accuracy-selected registry/results.
 
-New source diagnostics separate raw history bounds/count/target presence from accepted
-completed count/target presence, with tests for missing and completion-filtered targets.
-They are host/committed source changes, not yet in the preserved running Batch 1 image.
-Offline analyze_native_availability.py reports separate request/native/commit/recovery counts
-and recurring source/cohort patterns. Opt-in probe_native_history.py permits one bounded
-read-only capture while workers are idle; aborts busy/cooldown/access-rejected states, no retries.
-Raw frames remain ignored; sanitized evidence/hashes are published. Historical patterns are
-observations, not proven no-trade/late-source causes. Common 128-source eventual counts were
-743/768, 745/768, 748/768 across larger non-simultaneous stages; time and count are confounded.
+## Git and deployment safety
 
-Batch 1 deployed the ordinary application with a separate 34-instrument pilot and left it
-running against the existing production marketdata TimescaleDB database. The normal path is
-create_app → selected registry → provider factory → CandleConnectionPool → CandleIngestion
-→ real Store transaction → PostgreSQL → REST/persisted WebSocket. No benchmark namespace or
-synthetic source is used. The original 17 registry is unchanged and remains a tested rollback.
-64 was neither tested nor activated; no new 256/512 experiment occurred in this session.
+Clean main-based worktree: artifacts/ordinary-scale, branch ordinary-scale-256,
+Base 2c5d0e6e51f51d0ae7298501df79e38859f3a464. Its name predates both priority changes.
+The finalized work is committed locally on this branch; `git log -1` gives its commit.
+No merge, push, deployment or publication. The old home-rooted
+checkout remains dirty at 324b1d83; do not pull root relocation into it. Its unrelated changes
+are preserved. Scaling changed only its DB restart-policy line and current-state handoff.
+Paused artifacts/batch3-database / batch3-database-efficiency remains untouched.
+No paused Batch 3 Store/configuration/retry rewrite was incorporated.
 
-Read docs/production-instrument-expansion.md and its adjacent JSON for operations and measured
-evidence. Raw checkpoints remain under ignored artifacts/batch1-*. The transport remains
-unsupported and experimental, with no inferred upstream entitlement or redistribution right.
-The pilot is distinct from the employer's eventual final selection.
+Project tradingview, deployed directory C:/Users/Pouyan/PycharmProjects/tradingview.
+DB container 62caad90d2e9367a5d823cc3775102a00a0e07a79046b1aba3cd30074c4b1238.
+Database marketdata; system identifier 7693817192740921379; schema 0004.
+Volume tradingview_marketdata_pg -> /var/lib/postgresql/data. Reverify before any action.
+DB restart policy unless-stopped was corrected in place after the earlier real outage,
+without restart/recreation; both deployment and clean compose.yaml retain that narrow fix.
+Business test resources use marketdata_business_qualification_test on the existing server;
+pytest uses separate marketdata_test / marketdata_plain_test. No fixture truncates production
+or the qualification database. No database was dropped/reset; no production migration ran.
 
-## Implementation and decisions
+## Actual business evidence
 
-TRADINGVIEW_CANDLE_POOL_ENABLED is an explicit validated ordinary-factory opt-in. Instrument
-count comes from REGISTRY_FILE; capacity overflow fails before registration/upstream I/O.
-The existing pool owns a single scheduler and sorted worker partitions. Pilot override uses
-two connections, local windows two, global four, two-second start pacing, 48-second deadline
-and three-second cleanup. Local guest safeguards are six sockets, 100 instruments/jobs per
-worker, 600 total and 12 global requests, not provider-granted numerical allowances. Grace +
-deadline + cleanup must fit one minute. Default/original override remains single socket and
-explicitly disables pooling. Native identity/status/completion and Decimal validation,
-provider-wide 429 cooldown/Retry-After, decreasing windows and rejection behavior remain.
+Binance list frozen 2026-10-13 07:41:10.599241 UTC from 506 TradingView-listed spot USDT
+pairs, ordered by 24h_vol|5 USD turnover, exact-symbol tie break, positive/non-null volume.
+This is explicitly NOT raw USDT quote volume; definition/eligibility still provisional.
+All 50 exact symbols passed live native spot/quote-currency/source validation. No OKX/perp
+substitution. Before the TradingView-only steer, Binance public directory transport failed
+and its market-data host returned 451; requests stopped without proxy/geographic workaround.
+No Binance endpoint data informed the proposal. The Iranian server has not been qualified.
 
-config/instruments.tradingview-pilot.json copies the original 17 entries unchanged and adds
-source-qualified CRYPTO:BINANCE:<BASE>USDT spot identities for BNB, DOGE, ADA, LINK, LTC, BCH,
-AVAX, TRX, DOT, NEAR, SUI, UNI, FIL, AAVE, ATOM, ZEC and ICP. Each addition had all three native
-baseline targets and all six eventual minutes in the previous 128 live stage, independent of
-scanner discovery. Prior/current native samples and the prior raw evidence hash are retained.
-Mapping status stays UNKNOWN until runtime chart validation proves streaming/realtime delivery.
+106-source historical qualification ran 07:52:03.100–07:58:43.395 UTC (400.295 seconds),
+two captures of fixed 06:49–07:49 UTC history. Confirmed production idle windows; two paced
+sockets/global four/local two; batches <=16; retrieval deadline12/cleanup3/request timeout8.
+212/212 successful native requests, 6,302 native/durable targets per capture, 212 exact
+independent DB readbacks. Zero native transport/HTTP/DNS/handshake/DB errors/retries; cleanup
+passed. Maximum per-source request1.757s, batch7.466s, DB acknowledgement0.153s.
+This is historical source compatibility, NOT simultaneous 99-source ordinary capacity.
+Historical acknowledgement ages include the lookback; never call them current-minute latency.
 
-Application registration atomically initializes a new native coverage row at the next full
-UTC-minute boundary, with an empty start=end interval. New additions start at 2026-10-12
-12:10 UTC; original 17 retain 2026-10-07 09:33 UTC. Registration never overwrites existing
-coverage. Legacy native history without coverage retains its first actual stored bucket.
-Restart before the first candle uses durable coverage_end. Current-minute diagnostics exclude
-not-yet-activated buckets. Source reassignment under the same instrument/provider key fails
-atomically; canonical IDs remain deterministic and original identities unchanged. Removing a
-source from active registry deletes no candles/latest/coverage/mappings. Reactivation resumes
-that history with bounded recovery. Read-only reconciliation excludes pre-activation time.
-No schema migration was required; head is still 0004.
+The employer accepts 99.0236% as a provisional development milestone; no further open-ended
+tuning or extended live test is required before FastAPI development. 99.9% remains a longer-term
+goal. All 5,940 test targets are EXPECTED; NOT_EXPECTED=0, UNKNOWN=0. Do not reinterpret unknown
+source-absence causes as UNKNOWN session minutes.
 
-## Measured live evidence
+Primary 99 expected5,940, first/eventual durable5,882 (99.023569%), recovered 0, unresolved58.
+Binance 2,963/3,000; OANDAforex 1,259/1,260; FXCMforex 1,260/1,260;
+primary metals 237/240; primary energy 163/180. All source ledgers remain visible.
+Conservative healthy snapshots 91/99 (98/106 including alternatives); no source is fully
+VERIFIED as production-ready. FDUSD had a stale source-timed last but fresh delivered
+bid/ask deltas; bid/ask source time is unavailable and not borrowed from last.
 
-Ten scheduled full-universe cycles cover buckets [12:10,12:16) and [12:21,12:25) UTC:
-340 expected targets; 340 successful requests; 339 actual native targets; 339 immediate and
-339 eventual durable commits (99.706%); ten successful transactions; zero retrieval/database
-errors. ATOM 12:14 was not seen before initial request completion and remains an EXPECTED
-gap. Batch 2 confirmed snapshot absence, not permanent absence/cause. No synthesis or source
-replacement occurred. Nine of ten scheduled minutes were full.
-Initial startup/transitional 17-eligible cycles, incidental uncaptured cycles and original-17
-rollback interval are excluded from this denominator; resumed startup is reported separately.
+RLUSD 34, palladium OANDA:XPDUSD 3 and OANDA:NATGASUSD 17 gaps remained on a later 104-bar
+native recheck; responses spanned both sides of the fixed window and recovered 0. Other
+required gaps: CTK 1, U 1, DOT 1 and OANDA CADJPY 1. All are source-absent in successful native
+captures, not transport/DB loss; underlying no-trade versus publication cause remains UNKNOWN.
+Do not claim permanent loss, infer closure, erase counters, replace markets or synthesize bars.
 
-Scheduled close-to-local-commit min/p50/p95=max: 6.537/6.925/11.798s. DB write:
-0.391/0.405/0.463s. This measures actual real transaction-return acknowledgement, not internal
-PostgreSQL commit time or request duration. Short samples are not sustained-capacity claims.
-A later separately recorded final spot check of bucket 12:31 UTC persisted 34/34, zero
-retrieval/database errors, with 15.454s close-to-commit; 11.798s is not a latency ceiling.
-Development/tests/image builds overlapped parts of initial observation on the shared host.
+## FXCM identity, volume, storage and API proof
 
-First five-minute strict smoke failed on ATOM after four 34/34 WebSocket/DB/REST minutes;
-retain artifacts/batch1-pilot-smoke.json and batch1-pilot.log. Live original-17 rollback then
-passed two consecutive minutes (34/34 exact WebSocket/DB/REST). Restore startup recovered
-51/51 newly suspended targets over [12:17,12:20), plus 17 current new startup targets. Startup
-marked all 68 backfilled; only 51 were previously missed historical targets. Startup current
-close-to-commit was 39.352s; recovered candles 81.352–201.352s. Old history was retained.
-Warmed post-restart three-minute strict smoke passed 102/102 targets; preserve
-batch1-resumed-smoke.json. An earlier local observer started before recreated-app HTTP
-readiness and saw WebSocket EOF; warmed rerun passed. This was not a provider failure.
-Additional REST/DB read-back verified exact Decimal OHLCV/source/status for all 339 scheduled
-persisted targets, plus the one true absence. Published evidence preserves per-candle first
-commit acknowledgements and checkpoint hashes. No provider server outage was injected.
+TradingView FXCM source symbols use FX:; native full_name/ listed_exchange are FX:EURUSD / FX.
+Quote metadata reports exchange FXCM. The old quote gate compared FXCM with FX and rejected
+valid streaming quotes. The scoped quote adapter now normalizes only that captured namespace/
+venue relationship, retaining exact symbol, type, currency and delay validation. Initial
+26 rejected quote captures are preserved separately; post-fix all 26 FXCM sources emitted
+accepted quotes. Regression cases reject wrong source, exchange, currency, type and delay.
 
-Every measured pool cycle ended with workers disconnected, no cleanup errors and zero active
-requests/sessions/pending futures. No HTTP 429 or access rejection. Actual rollback/restoration
-kept one collector at a time and retained all activation timestamps. The new sources have
-zero pre-activation candles. Original IDs/mappings and all old missing/unknown partitions
-outside the 300-minute horizon match the before snapshot. Guest raw ticks remain 26,216;
-zero duplicate logical candles. Five-day reconciliation proved all 34 coverage partitions
-while evaluating new sources only from activation. Database and ingestion are healthy;
-global health remains degraded due historical gaps and ATOM's missing minute. REST is available.
+OANDA has validated tick volume; Binance has validated source-reported base traded volume.
+FXCM/TVC native samples have numeric raw vectors but no validated type/units. Typed volume
+stays NULL; new parser retains finite raw decimal strings as source_volume_raw metadata,
+unknown and non-additive. Do not call them simply absent, traded contracts or physical units.
+50 live native candles independently matched NULL volume plus raw metadata in the test DB.
+Quote volume's measurement window remains unverified; never combine broker volumes.
 
-## Verification and operations
+A corrected isolated two-broker CandleIngestion.cycle covered target 08:29 UTC: requested 2,
+current native 2, received 72, changed/backfilled 62, fetch 11.827s, DB 0.0746s, whole 11.911s,
+close-to-commit 42.620s after deliberate 25.717s idle-phase scheduler deferral. Both independent
+coverage starts 07:53 remained intact, ends advanced08:29, 36 minutes per broker, zero missing/
+unknown; native API returned 36 each. DB regression makes disjoint broker gaps and proves
+OANDA-only recovery leaves FXCM missing and both starts unchanged. Harness preflight/ownership
+errors were fixed and retained separately, not counted as upstream failures.
 
-Batch 2 final root-layout publication checkout: TimescaleDB 296 passed (53.06s), PostgreSQL
-293 passed plus three expected Timescale skips (52.21s). Both disposable test DBs ran
-Alembic upgrade head; Ruff lint/format and strict mypy passed. Targeted diagnostics/audit:
-47 passed, four integration cases deselected. Five-day read-only reconciliation through
-12:55 UTC proved all 34 partitions: additions evaluated 45 minutes, 764/765 stored, only
-ATOM 12:14 missing. Running app container remains the same instance started 12:21:33 UTC.
-No migration change or production truncation/deletion. Existing TestClient warning remains.
+14 actual OANDA/FXCM EURUSD quote deltas were persisted with exact payload readback and
+queried via an existing in-process stored-only API client: OANDA 8, FXCM 6. Zero providers/
+public port; latest correctly stale without an active source. This is isolated persistence
+and historical API access, NOT continuous realtime UI streaming. Production candle-mode
+latest close remains candle_close. Real simultaneous quote/candle UI behavior is future work.
+Provisional default UI: OANDA 20 pairs for explicit tick-volume semantics on tied coverage,
+FXCM CADJPY for better observed native coverage. Retain BOTH histories; no automatic failover.
 
-Batch 1 TimescaleDB suite: 292 passed (44.76s). Ordinary PostgreSQL: 289 passed, three expected
-Timescale-only skips (43.49s). Targeted activation/restart tests pass; Ruff lint/format and
-strict mypy pass; both migrated disposable test databases ran Alembic upgrade head; scoped
-diff whitespace check passes. Existing Starlette/httpx TestClient deprecation warning remains.
-No production tables were truncated/dropped and no migration changed. Final application image
-contains the source/registry changes; scripts are host-side read-only observers.
+## Preserved earlier ordinary evidence
 
-Activation: build app with compose.yaml + compose.tradingview.yaml +
-compose.tradingview-pilot.yaml, stop app, then up -d --no-deps --no-build app with those files.
-Rollback: stop app, then up -d --no-deps --no-build app using only compose.yaml +
-compose.tradingview.yaml. Do not touch DB volumes or launch another worker/collector. Full
-commands and stored-only smoke options are in docs/production-instrument-expansion.md.
+Accuracy-selected 100 completed 30 scheduled cycles plus 3 settling, targets ending06:56–07:25
+UTC, finished07:28:24. Expected3,000; requests 2,975; native/immediate 2,972; recovered 25;
+eventual2,997 (exactly99.9%). Unresolved EIGEN end06:58, OKX PUMP07:14, Binance DOT07:16.
+All 2,997 DB/REST/stored-WebSocket matches; worker cleanup passed, DB errors/retries 0.
+Current close-to-commit p50/p95/max 22.984/33.052/39.161s; eventual maximum 88.290s.
+Slowest cycle 34.253; warning budget45, remaining 10.747; next-deadline margin 25.747.
+CPU 116.25s; peak RSS 250.1MiB; loop lag max 0.363s/p95bucket<=5ms. Old history hash/activation
+starts, DBidentity/schema and 26,216 rawticks were preserved. Its numerical gate passed;
+older zero-request-error gate failed. This short accuracy-selected result does not qualify
+business coverage or sustained production reliability.
 
-The deployment checkout's Git boundary is intentionally C:/Users/Pouyan with an allowlist
-and only three tracked wrapper paths outside PycharmProjects/tradingview. However, fetched
-origin/main has already merged root relocation through PR #1 (533e568, 5d5492b, b94d1a2).
-Do not pull that relocation into the home-rooted checkout. Publication uses an isolated
-worktree artifacts/batch2-publication based on the current upstream root layout, preserving
-upstream work and the deployed directory. Port only reviewed files; no blanket home-directory
-staging, credentials, raw artifacts or database files. Repository is public according to the
-upstream relocation handoff; older private claims were stale. Publication is not deployment.
+64 ten cycles 639/640 native/durable;128 four/global8 eventual1,280/1,280 after32 handshake
+recoveries;128 six/global8 ten cycles1,270/1,280;256 four/global8 ten cycles2,394/2,560.
+An earlier128 six/global8 checkpoint has only two cycles before host/Docker interruption.
+Further256 tuning was canceled; no new512 activation. Keep failed/partial denominators.
+Earlier real startup recovered 38,084 native candles; post-commit list membership blocked
+loop about 53s. Set membership fixes that narrow defect; DB schema/Store unchanged. Older
+gaps beyond300-minute recovery horizon remain unresolved. Prepared 70s interruption test
+was NOT RUN after the business steer. Ordinary evidence is in ordinary-collector-scaling.*.
 
-## Previous experiments and next actions
+## Verification and next branch
 
-Prior isolated 128/256/512 experiments and their failures remain documented in
-candle-live-end-to-end.md/json: all were LIVE INCOMPLETE, and eight unpaced sockets previously
-caused HTTP 429. They are separate from this production pilot. Preserve raw evidence and
-existing larger-stage denominators; no new larger-stage claims are made here.
+Final suites: 316 TimescaleDB passed (46.88s); PostgreSQL mode 313 passed +3 expected aggregate
+skips (45.56s). Both isolated DBs ran upgrade head (0004). PostgreSQL mode used a separate DB on the
+Timescale host with no continuous aggregates; a standalone plain-PostgreSQL server was not
+requalified during finalization. The initial stricter extension preflight stopped before tests;
+a verified no-aggregate database then passed the full compatible suite. Ruff lint/format and strict mypy passed.
+Existing Starlette/httpx deprecation warning remains. Native source, quote persistence/API,
+namespace normalization, broker separation/coverage and unknown-volume proofs are recorded.
 
-Continue the fixed 34 universe for longer quiet-host/native availability and memory soaks.
-Continue investigating unresolved native targets without replacing symbols or pretending
-transport success means native coverage. Test real DB/server and network outages and uncertain
-commit recovery in a controlled setting. Keep 64 inactive until longer 34 evidence supports
-it; then evaluate within the same granted scope without increasing request/connection pressure
-after throttling. Original five-day gaps beyond recovery horizon remain unresolved and must
-not be cleared. Confirm employer final instrument selection independently of this pilot.
+The separate FastAPI worktree is clean on fastapi-batch1-isolation at local commit
+6901bfadd44cb83ccdca49aac559e6f97a93a91d. It was inspected read-only and left untouched.
+It contains migration 0005, API-only/collector-only startup, advisory-lock ownership, read-only
+API Store, collector status and the network-observable 1013 fix. None was merged or deployed.
+
+Next: integrate both local commits in a third worktree; read docs/fastapi-business-integration.md.
+Resolve Compose/startup/metrics/docs overlaps, preserve scoped provider fixes and the recovery
+fan-out set fix, run both branch suites and isolated 0004-to-0005 migration/rollback checks.
+The legacy deployed collector has no new advisory lock and MUST be stopped before starting the
+lock-aware collector. Its Store requires exactly 0004, so a post-0005 rollback needs a tested
+compatible old-registry image or reviewed status-only downgrade; no blind legacy restart.
+Do not merge or modify either completed worktree now. Batch 3 stays paused.
+
+No further automatic deployment. Obtain employer decisions on ranking/stablecoin markets,
+pair list, commodity price definitions/volume and UI defaults; retain required sparse
+sources and their documented limitations; qualify simultaneous ordinary business collection and deployment-host networking
+before promotion. Current Count=99 business switch is NOT implemented: current helper accepts
+17/34/64/100/128/256 presets. Prepare a reviewed business override/guarded registry-path switch
+only after approval; do not accidentally target a missing instruments.tradingview-99.json.
+
+Preserved exact original-image rollbacks, from this worktree, without deleting expanded data:
+./scripts/Switch-OrdinaryCollector.ps1 -Count 34
+./scripts/Switch-OrdinaryCollector.ps1 -Count 17
+Tag tradingview-app:rollback-34-20261012; config SHA
+7936134ccf5aea4f4f8ca6e5641b4ea773cf7ddf56f36d7eeae3f748af22bc42.
+The old image retains the long-recovery fan-out defect; do not assume outage-free rollback.
+Retain ordinary-100 exact image/config/volume as the current fallback. XAUT activation/history,
+all expanded history and unresolved gaps remain preserved. Globalhealth remains degraded for
+old coverage gaps, which is not a current PostgreSQL outage.

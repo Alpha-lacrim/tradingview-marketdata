@@ -1,6 +1,7 @@
 services:
   db:
     image: timescale/timescaledb:2.25.1-pg17
+    restart: unless-stopped
     environment:
       POSTGRES_USER: marketdata
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-marketdata}
