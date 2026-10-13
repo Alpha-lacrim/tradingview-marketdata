@@ -1,166 +1,206 @@
-﻿# HANDOFF.md
+﻿# FastAPI Batch 1 handoff — 2026-10-13
 
-## Current state — 2026-10-12
+## Scope and Git boundary
 
-The upstream application is already at the Git root following PR #1 (533e568 → 5d5492b →
-b94d1a2). The separate tradingview-marketdata clone and upstream root README/platform-guide,
-CI and ignore changes remain intact. Do not pull relocation into the home-rooted deployment
-checkout; see docs/repository-layout.md. This batch ports reviewed changes in an isolated
-root-layout worktree without relocating the deployed directory or changing its Docker project.
-Publication is not deployment. GitHub is public; never stage credentials or raw artifacts.
+Worktree: tradingview-fastapi-batch1, the dedicated sibling Git worktree.
+Branch: fastapi-batch1-isolation.
+Base: 2c5d0e6e51f51d0ae7298501df79e38859f3a464 (origin/main).
+Verified against git ls-remote origin refs/heads/main before work; the new worktree was clean.
+Batch 1 is finalized as a local commit on this branch for deliberate integration review.
+Retrieve its exact commit with git rev-parse fastapi-batch1-isolation. No merge, push or deployment.
 
-Batch 2 investigated BINANCE:ATOMUSDT's 12:14 UTC target without restarting or changing the
-running 34-instrument deployment. Two bounded idle-window raw native-history captures at
-12:49 and 12:52 both contain 12:13/12:15 neighbors and sufficient preceding history but no
-12:14 timestamp. Original target-presence diagnostics were null before request completion;
-ordinary recovery keeps requesting 12:14. The gap remains EXPECTED, not synthesized or
-classified as a verified permanent upstream omission. Cause/permanent absence and possible
-future publication remain unknown. Read docs/native-availability-investigation.md/json.
+The existing home-rooted deployment checkout, its unrelated local changes and the other
+worktrees remain independent. Inspection found local provider, activation, diagnostic,
+Compose and ingestion changes that differ from the public baseline. None were copied from
+unfinished work. The collector session owns artifacts/ordinary-scale and the reported
+approximately 100-instrument target. No registries, provider transports, ingestion algorithms
+or migrations 0001–0004 changed in this branch. Older pilot/availability evidence remains
+in docs; it describes historical measurements, not this branch's startup or deployed universe.
 
-Separate 24 scheduled cycles over [12:25,12:49) UTC: 816 expected; 782 successful requests,
-782 available native targets, 782 immediate and 816 eventual commits. Both socket handshakes
-timed out at 12:26 (34 retrieval errors, zero DB failures); all 34 missed 12:25 bars recovered
-at 12:27:06.846071, latency 66.846s. 24 successful transactions include one coverage-only
-transaction; 23 had native current targets. Current close-to-commit min/p50/p95/max:
-6.700/9.385/14.314/15.454s. All 816 REST/DB OHLCV values matched. Stored-only WebSocket/DB/REST
-smoke passed 68/68 over buckets 12:53/12:54. Older gap partitions, activation and original
-identities match pre-pilot evidence. No diagnostic DB writes or 64 activation.
+## Architecture
 
-New source diagnostics separate raw history bounds/count/target presence from accepted
-completed count/target presence, with tests for missing and completion-filtered targets.
-They are host/committed source changes, not yet in the preserved running Batch 1 image.
-Offline analyze_native_availability.py reports separate request/native/commit/recovery counts
-and recurring source/cohort patterns. Opt-in probe_native_history.py permits one bounded
-read-only capture while workers are idle; aborts busy/cooldown/access-rejected states, no retries.
-Raw frames remain ignored; sanitized evidence/hashes are published. Historical patterns are
-observations, not proven no-trade/late-source causes. Common 128-source eventual counts were
-743/768, 745/768, 748/768 across larger non-simultaneous stages; time and count are confounded.
+Previously create_app loaded the JSON registry, constructed providers, registered instruments
+and coverage, then started IngestionService in the FastAPI lifespan. Shutdown stopped the
+collector and closed the pool. Every API worker could create another collector.
 
-Batch 1 deployed the ordinary application with a separate 34-instrument pilot and left it
-running against the existing production marketdata TimescaleDB database. The normal path is
-create_app → selected registry → provider factory → CandleConnectionPool → CandleIngestion
-→ real Store transaction → PostgreSQL → REST/persisted WebSocket. No benchmark namespace or
-synthetic source is used. The original 17 registry is unchanged and remains a tested rollback.
-64 was neither tested nor activated; no new 256/512 experiment occurred in this session.
+Now create_app requires role api (default) and owns a read-only database pool, REST,
+authentication and API health/metrics. It never constructs providers, loads the registry
+file, registers instruments, acquires a collector lock or starts ingestion. Native capability
+and futures identities/roll schedules come from persistent state. History works with the
+collector stopped or external source access unavailable. Query failures return sanitized 503s.
+API /health depends on database readability; ingestion and feed health are separate fields.
 
-Read docs/production-instrument-expansion.md and its adjacent JSON for operations and measured
-evidence. Raw checkpoints remain under ignored artifacts/batch1-*. The transport remains
-unsupported and experimental, with no inferred upstream entitlement or redistribution right.
-The pilot is distinct from the employer's eventual final selection.
+python -m marketdata.collector requires role collector and owns existing provider lifecycle,
+registration, ingestion, recovery, persistence and collector metrics. It holds a dedicated
+PostgreSQL advisory lock before construction/registration, rejecting a second owner. Pool
+maximum must be >=2. Ownership connection loss stops ingestion and requires restart.
+Shutdown drains the existing writer and closes provider tasks, pool, status task and metrics
+listener. Existing ingestion/transport algorithms are unchanged.
 
-## Implementation and decisions
+Collector Store uses read_only=False and requires a write-capable database principal. The
+default mock Compose principal owns its tables; standalone tests proved collector writes.
+API Store uses read_only=True and was also tested with a genuinely SELECT-only principal.
+Each native process accepts its own DATABASE_URL. Production grants, credentials and separate
+Compose DSNs remain Batch 2 work; none were changed during this finalization.
 
-TRADINGVIEW_CANDLE_POOL_ENABLED is an explicit validated ordinary-factory opt-in. Instrument
-count comes from REGISTRY_FILE; capacity overflow fails before registration/upstream I/O.
-The existing pool owns a single scheduler and sorted worker partitions. Pilot override uses
-two connections, local windows two, global four, two-second start pacing, 48-second deadline
-and three-second cleanup. Local guest safeguards are six sockets, 100 instruments/jobs per
-worker, 600 total and 12 global requests, not provider-granted numerical allowances. Grace +
-deadline + cleanup must fit one minute. Default/original override remains single socket and
-explicitly disables pooling. Native identity/status/completion and Decimal validation,
-provider-wide 429 cooldown/Retry-After, decreasing windows and rejection behavior remain.
+Migration 0005 adds only collector_status, a singleton snapshot with server-clock expiry,
+run ID, writer database state, queue depth and sanitized ProviderHealth models. Default
+publication is five seconds with a 20-second TTL. Expired status is unknown/disconnected,
+never evidence of a live feed. Graceful shutdown reports stopped. No history, identities,
+source mappings or coverage are rewritten. This branch requires head 0005; production was
+not migrated. An actual SELECT-only role was verified in isolated tests; deployment role
+provisioning belongs to Batch 2.
 
-config/instruments.tradingview-pilot.json copies the original 17 entries unchanged and adds
-source-qualified CRYPTO:BINANCE:<BASE>USDT spot identities for BNB, DOGE, ADA, LINK, LTC, BCH,
-AVAX, TRX, DOT, NEAR, SUI, UNI, FIL, AAVE, ATOM, ZEC and ICP. Each addition had all three native
-baseline targets and all six eventual minutes in the previous 128 live stage, independent of
-scanner discovery. Prior/current native samples and the prior raw evidence hash are retained.
-Mapping status stays UNKNOWN until runtime chart validation proves streaming/realtime delivery.
+API-only /ws/prices authenticates, accepts the handshake, then immediately closes 1013 and
+reports cross-process streaming
+unavailable. No cross-process observations are implemented or claimed. The explicit
+create_combined_app, role combined, preserves original local tick/committed-candle fanout
+for one-worker development. Existing REST/auth/WebSocket tests now select that factory.
+Full independent UI streaming remains Batch 3.
 
-Application registration atomically initializes a new native coverage row at the next full
-UTC-minute boundary, with an empty start=end interval. New additions start at 2026-10-12
-12:10 UTC; original 17 retain 2026-10-07 09:33 UTC. Registration never overwrites existing
-coverage. Legacy native history without coverage retains its first actual stored bucket.
-Restart before the first candle uses durable coverage_end. Current-minute diagnostics exclude
-not-yet-activated buckets. Source reassignment under the same instrument/provider key fails
-atomically; canonical IDs remain deterministic and original identities unchanged. Removing a
-source from active registry deletes no candles/latest/coverage/mappings. Reactivation resumes
-that history with bounded recovery. Read-only reconciliation excludes pre-activation time.
-No schema migration was required; head is still 0004.
+Commands, contracts, configuration and rollback:
+[Independent processes](docs/fastapi-process-separation.md).
+Use explicit isolated DATABASE_URL in each terminal. Collector: APPLICATION_ROLE=collector
+with uv run python -m marketdata.collector. API: APPLICATION_ROLE=api with
+uv run uvicorn marketdata.api:create_app --factory --workers 2 --port 8001.
+Run both in separate terminals; Ctrl+C stops each owner independently.
 
-## Measured live evidence
+## Files changed and reasons
 
-Ten scheduled full-universe cycles cover buckets [12:10,12:16) and [12:21,12:25) UTC:
-340 expected targets; 340 successful requests; 339 actual native targets; 339 immediate and
-339 eventual durable commits (99.706%); ten successful transactions; zero retrieval/database
-errors. ATOM 12:14 was not seen before initial request completion and remains an EXPECTED
-gap. Batch 2 confirmed snapshot absence, not permanent absence/cause. No synthesis or source
-replacement occurred. Nine of ten scheduled minutes were full.
-Initial startup/transitional 17-eligible cycles, incidental uncaptured cycles and original-17
-rollback interval are excluded from this denominator; resumed startup is reported separately.
+| Files | Reason |
+|---|---|
+| src/marketdata/api.py | Read-only API factory, explicit combined compatibility, persistent health/metadata, separate readiness, honest WebSocket refusal |
+| src/marketdata/collector.py (new) | Collector owner, lock, health publication, signals, metrics and shutdown |
+| src/marketdata/persistence.py | Read-only pool, persistent registry/native capability, status methods and schema head check |
+| src/marketdata/config.py, .env.example | Roles, health TTL/interval, metrics and API ports |
+| src/marketdata/observability.py | API-local HTTP response counter and database health gauge |
+| migrations/versions/0005_collector_status.py (new) | Additive process health table; downgrade removes only it |
+| compose.yaml | Independent API/collector services and ports |
+| compose.tradingview.yaml, compose.tradingview-pilot.yaml | Existing provider settings target collector; registries unchanged |
+| compose.fastapi-test.yaml (new) | Separate PostgreSQL/TimescaleDB test project, tmpfs data, ports 55481/55482 |
+| tests/test_process_separation.py (new) | Zero provider startup, read-only role/history, identity/coverage, duplicate ownership, downtime, expiry and cleanup |
+| tests/test_process_restart.py, tests/process_isolation_worker.py (new) | Real mock collector/two HTTP API subprocesses; both restart directions |
+| tests/test_api.py, tests/test_health_api.py, tests/test_native_candles.py | Explicit combined legacy compatibility and separate writer health |
+| tests/conftest.py | Clear isolated collector status between integration tests |
+| scripts/smoke.py | Independent mock API smoke with opt-in combined WebSocket verification |
+| README.md, CODEX.md, docs/platform-guide.md, docs/tradingview.md, docs/fastapi-process-separation.md (new), HANDOFF.md | Architecture, commands, evidence, limits, rollback and review boundary |
 
-Scheduled close-to-local-commit min/p50/p95=max: 6.537/6.925/11.798s. DB write:
-0.391/0.405/0.463s. This measures actual real transaction-return acknowledgement, not internal
-PostgreSQL commit time or request duration. Short samples are not sustained-capacity claims.
-A later separately recorded final spot check of bucket 12:31 UTC persisted 34/34, zero
-retrieval/database errors, with 15.454s close-to-commit; 11.798s is not a latency ceiling.
-Development/tests/image builds overlapped parts of initial observation on the shared host.
+## Verification actually executed
 
-First five-minute strict smoke failed on ATOM after four 34/34 WebSocket/DB/REST minutes;
-retain artifacts/batch1-pilot-smoke.json and batch1-pilot.log. Live original-17 rollback then
-passed two consecutive minutes (34/34 exact WebSocket/DB/REST). Restore startup recovered
-51/51 newly suspended targets over [12:17,12:20), plus 17 current new startup targets. Startup
-marked all 68 backfilled; only 51 were previously missed historical targets. Startup current
-close-to-commit was 39.352s; recovered candles 81.352–201.352s. Old history was retained.
-Warmed post-restart three-minute strict smoke passed 102/102 targets; preserve
-batch1-resumed-smoke.json. An earlier local observer started before recreated-app HTTP
-readiness and saw WebSocket EOF; warmed rerun passed. This was not a provider failure.
-Additional REST/DB read-back verified exact Decimal OHLCV/source/status for all 339 scheduled
-persisted targets, plus the one true absence. Published evidence preserves per-candle first
-commit acknowledgements and checkpoint hashes. No provider server outage was injected.
+All database operations used the new fastapi-batch1-tests Compose project, tmpfs data,
+fastapi_batch1_test database, fastapi_test user, and loopback ports 55481/55482. No production
+connection or live market-data source was used. Both empty databases were migrated to 0005
+using the appropriate PostgreSQL/Timescale Alembic mode.
 
-Every measured pool cycle ended with workers disconnected, no cleanup errors and zero active
-requests/sessions/pending futures. No HTTP 429 or access rejection. Actual rollback/restoration
-kept one collector at a time and retained all activation timestamps. The new sources have
-zero pre-activation candles. Original IDs/mappings and all old missing/unknown partitions
-outside the 300-minute horizon match the before snapshot. Guest raw ticks remain 26,216;
-zero duplicate logical candles. Five-day reconciliation proved all 34 coverage partitions
-while evaluating new sources only from activation. Database and ingestion are healthy;
-global health remains degraded due historical gaps and ATOM's missing minute. REST is available.
+Implementation verification before finalization:
 
-## Verification and operations
+- TimescaleDB 2.25.1/PG17: 310 passed, 62.07 seconds.
+- PostgreSQL 17: 307 passed, 3 expected Timescale-only skips, 57.66 seconds.
+- uv run ruff check .: passed.
+- uv run ruff format --check .: passed, 87 files.
+- uv run mypy: strict, passed, 30 source files.
+- git diff --check: passed.
+- Compose config validation for base + guest + pilot: passed; app role api and collector
+  role collector/pilot registry, neither depends on the other service.
 
-Batch 2 final root-layout publication checkout: TimescaleDB 296 passed (53.06s), PostgreSQL
-293 passed plus three expected Timescale skips (52.21s). Both disposable test DBs ran
-Alembic upgrade head; Ruff lint/format and strict mypy passed. Targeted diagnostics/audit:
-47 passed, four integration cases deselected. Five-day read-only reconciliation through
-12:55 UTC proved all 34 partitions: additions evaluated 45 minutes, 764/765 stored, only
-ATOM 12:14 missing. Running app container remains the same instance started 12:21:33 UTC.
-No migration change or production truncation/deletion. Existing TestClient warning remains.
+Tests cover standalone tick/native collector persistence, API-only persisted history with
+forbidden construction/registration and absent registry file, two API lifespans and two
+real HTTP workers, independent collector/API restarts, actual SELECT-only role, unchanged
+identity/coverage snapshots, duplicate collector rejection, stopped/expired health, real
+backend termination/recovery, task/pool/metrics cleanup and legacy REST/auth/WebSocket
+contracts. API subprocesses forbid upstream constructors and Store.register; collectors
+in subprocess tests explicitly use mock providers only.
 
-Batch 1 TimescaleDB suite: 292 passed (44.76s). Ordinary PostgreSQL: 289 passed, three expected
-Timescale-only skips (43.49s). Targeted activation/restart tests pass; Ruff lint/format and
-strict mypy pass; both migrated disposable test databases ran Alembic upgrade head; scoped
-diff whitespace check passes. Existing Starlette/httpx TestClient deprecation warning remains.
-No production tables were truncated/dropped and no migration changed. Final application image
-contains the source/registry changes; scripts are host-side read-only observers.
+Additional local smoke paused/unpaused only fastapi-batch1-tests-postgres-1 after verifying
+its project label and mounts. REST and health returned 503 during DB unavailability. After
+unpause, historical native candles returned 200 with unchanged Decimal close 101, and health
+returned 200. No production outage was injected.
 
-Activation: build app with compose.yaml + compose.tradingview.yaml +
-compose.tradingview-pilot.yaml, stop app, then up -d --no-deps --no-build app with those files.
-Rollback: stop app, then up -d --no-deps --no-build app using only compose.yaml +
-compose.tradingview.yaml. Do not touch DB volumes or launch another worker/collector. Full
-commands and stored-only smoke options are in docs/production-instrument-expansion.md.
+In both modes, seeded native/tick history, captured row counts and sorted JSON content hashes
+for all eight market tables, downgraded only 0005 to 0004, and re-upgraded to 0005. All
+hashes/counts matched: instruments 43, mappings 47, ticks 22, latest prices 17, candles 1,
+latest candles 1, coverage 17, revisions 0. This proves preservation on disposable fixtures;
+no unchanged production row-count claim is made while its collector continues writing.
 
-The deployment checkout's Git boundary is intentionally C:/Users/Pouyan with an allowlist
-and only three tracked wrapper paths outside PycharmProjects/tradingview. However, fetched
-origin/main has already merged root relocation through PR #1 (533e568, 5d5492b, b94d1a2).
-Do not pull that relocation into the home-rooted checkout. Publication uses an isolated
-worktree artifacts/batch2-publication based on the current upstream root layout, preserving
-upstream work and the deployed directory. Port only reviewed files; no blanket home-directory
-staging, credentials, raw artifacts or database files. Repository is public according to the
-upstream relocation handoff; older private claims were stale. Publication is not deployment.
+Initial fixture failures were corrected before final validation. The remaining warning is
+the pre-existing Starlette/httpx TestClient deprecation. Docker app image build/full Compose
+application deployment and live provider tests were not executed. Actual subprocess HTTP
+and isolated database outage tests supplied local execution coverage. Disposable services
+were removed after verification; no task-owned collector/API test processes remain.
 
-## Previous experiments and next actions
+## Local finalization review
 
-Prior isolated 128/256/512 experiments and their failures remain documented in
-candle-live-end-to-end.md/json: all were LIVE INCOMPLETE, and eight unpaced sockets previously
-caused HTTP 429. They are separate from this production pilot. Preserve raw evidence and
-existing larger-stage denominators; no new larger-stage claims are made here.
+Reviewed all 25 Batch 1 files, including the seven formerly untracked source/test/documentation
+files. All belong to this architectural isolation task. Credential review found only explicit
+development placeholders and disposable test credentials. All files are UTF-8 text; no secrets,
+production credentials, generated databases, binary/machine-generated artifacts, environment
+files, dependency environments or unrelated edits are included in the local commit.
+The handoff's container identifiers are historical operational evidence, not generated artifacts.
 
-Continue the fixed 34 universe for longer quiet-host/native availability and memory soaks.
-Continue investigating unresolved native targets without replacing symbols or pretending
-transport success means native coverage. Test real DB/server and network outages and uncertain
-commit recovery in a controlled setting. Keep 64 inactive until longer 34 evidence supports
-it; then evaluate within the same granted scope without increasing request/connection pressure
-after throttling. Original five-day gaps beyond recovery horizon remain unresolved and must
-not be cleared. Confirm employer final instrument selection independently of this pilot.
+Fresh finalization checks: pytest -q -m 'not integration' passed 253 tests, with 57 integration
+cases deselected (35.05 seconds); Ruff lint/format and strict mypy passed. Alembic heads/history
+confirmed a single 0005 head following 0004; these commands did not connect to a database.
+Review found that the pre-accept WebSocket close was represented as 1013 by TestClient but
+would reject a real HTTP upgrade. Finalization added acceptance before the immediate close,
+a database-independent regression, and an actual network close-code assertion in the existing
+two-worker test. Full suites were rerun on new disposable services in the separate
+fastapi-batch1-finalization-tests project. Final committed-code results:
+
+- TimescaleDB 2.25.1/PG17: 311 passed, 71.41 seconds.
+- PostgreSQL 17: 308 passed, 3 expected Timescale-only skips, 67.17 seconds.
+- Ruff lint/format and strict mypy passed; git diff --check passed.
+- The real HTTP-worker network test received WebSocket close 1013 with the documented reason.
+- Empty disposable databases were upgraded to 0005 in their respective migration modes.
+
+The migration-preservation evidence above remains from the completed implementation verification;
+revision 0005 itself is unchanged. Documentation also clarifies the README migration range,
+collector write permissions and SELECT-only API boundary. No existing containers were restarted,
+production migrations executed or Batch 2 provisioning performed.
+
+## Production preservation evidence
+
+Read-only Docker metadata inspection identified project tradingview, image
+tradingview-app:ordinary-100, database container tradingview-db-1, production port 5432,
+database marketdata (Compose/HANDOFF), and volume tradingview_marketdata_pg. Before/after
+tests, IDs/start times and mounts matched:
+
+- App: 5d580ce8ea9275f8683cbc8ec04e8dd9ffabfd7577358e7be88d9ff7d4e38433;
+  start 2026-10-13T06:55:34.126022742Z.
+- DB: 62caad90d2e9367a5d823cc3775102a00a0e07a79046b1aba3cd30074c4b1238;
+  start 2026-10-13T06:10:45.245870893Z; same named data volume/mount.
+
+No production SQL, migrations, restart, volume operation, new TradingView connection,
+instrument change or collector deployment occurred. All edits are in this separate worktree.
+No registry/provider/ingestion/prior-migration diff exists against the base.
+
+## Rollback and remaining integration work
+
+This branch is undeployed, so production requires no rollback. Stop only task-owned native
+processes with Ctrl+C. Disposable cleanup command:
+docker compose -p fastapi-batch1-tests -f compose.fastapi-test.yaml down
+Do not use down -v or the tradingview project. Leave this worktree intact for review.
+
+For a future reviewed deployment rollback: stop that deployment's API/collector owners,
+set DATABASE_URL to its explicitly authorized database, run uv run alembic downgrade 0004
+using this branch's migrations, then launch preserved pre-Batch-1 code/image with one
+combined worker and previous configuration. The old code requires schema 0004, so a code-only
+rollback with schema 0005 fails startup. Downgrade removes only collector_status; preservation
+was tested above. Exact conditions/commands are in the process-separation guide. No production
+rollback was attempted.
+
+Expected integration overlaps: api.py startup; persistence.py pool/schema/metadata methods;
+config.py; observability.py alongside parallel loop-lag metrics; Compose service keys; factory
+startup ownership; deployment overrides; README/CODEX/HANDOFF. The parallel scale override
+currently targets app under the old combined architecture and must be reviewed for collector.
+The legacy combined collector does not acquire this branch's advisory lock: a successful new
+lock acquisition cannot prove it is absent. Integration must stop the legacy owner before
+activating the new collector and reconcile any lock protocol changes on the collector branch.
+Do not merge/copy it blindly. Factory/pool, activation and recovery changes remain owned by
+the collector session. Reconcile any competing migration head and preserve identities,
+activation/coverage and the 100-source target. Rerun the integrated full suite before deployment.
+
+Batch 2 must provision separate SELECT-only API credentials/grants (including alembic_version,
+collector_status, instruments/mappings, history/latest/coverage and aggregates), separate
+Compose secrets/DSNs, and validate the integrated deployment. Production provisioning and
+deployment were intentionally unexecuted because this task forbids shared runtime changes.
+Cross-process streaming remains Batch 3. No unresolved blocker remains for isolated Batch 1.

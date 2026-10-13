@@ -10,7 +10,8 @@ import asyncpg
 
 from marketdata.candles import MarketCandle
 from marketdata.config import Settings
-from marketdata.domain import Tick, utc_now
+from marketdata.domain import Instrument, ProviderInstrument, RegistryEntry, Tick, utc_now
+from marketdata.providers.base import ProviderHealth
 from marketdata.registry import Registry
 from marketdata.sessions import classify_ranges
 
@@ -65,8 +66,9 @@ def tick_record(tick: Tick) -> tuple[Any, ...]:
 
 
 class Store:
-    def __init__(self, settings: Settings):
+    def __init__(self, settings: Settings, *, read_only: bool = False):
         self.settings = settings
+        self.read_only = read_only
         # Serving config chooses active capabilities; offline queries prefer stored candles.
         self.candle_providers: list[str] | None = None
         self.pool: asyncpg.Pool | None = None
@@ -80,11 +82,15 @@ class Store:
             max_size=self.settings.db_pool_max,
             command_timeout=self.settings.db_timeout_seconds,
             timeout=self.settings.db_timeout_seconds,
-            server_settings={"timezone": "UTC", "application_name": "marketdata"},
+            server_settings={
+                "timezone": "UTC",
+                "application_name": "marketdata-api" if self.read_only else "marketdata-collector",
+                **({"default_transaction_read_only": "on"} if self.read_only else {}),
+            },
         )
         async with self.connection() as connection:
             version = await connection.fetchval("SELECT version_num FROM alembic_version")
-            if version != "0004":
+            if version != "0005":
                 raise RuntimeError("database migrations are not at head; run alembic upgrade head")
             self.has_aggregates = bool(
                 await connection.fetchval("SELECT to_regclass('candles_1m_last')")
@@ -107,6 +113,98 @@ class Store:
     async def ping(self) -> bool:
         async with self.connection() as connection:
             return bool(await connection.fetchval("SELECT 1"))
+
+    async def registry(self) -> Registry:
+        """Load persisted identities and roll schedules without registering anything."""
+        async with self.connection() as connection:
+            rows = await connection.fetch("""
+                SELECT i.payload, coalesce(jsonb_agg(jsonb_build_object(
+                    'provider', p.provider, 'provider_symbol', p.provider_symbol,
+                    'realtime_status', p.realtime_status,
+                    'data_delay_seconds', p.data_delay_seconds, 'metadata', p.metadata
+                ) ORDER BY p.provider) FILTER (WHERE p.provider IS NOT NULL), '[]') AS mappings
+                FROM instruments i LEFT JOIN provider_instruments p ON p.instrument_id=i.id
+                GROUP BY i.id ORDER BY i.canonical_symbol
+            """)
+        return Registry(
+            [
+                RegistryEntry(
+                    instrument=Instrument.model_validate_json(r["payload"]),
+                    mappings=[
+                        ProviderInstrument.model_validate(m) for m in json.loads(r["mappings"])
+                    ],
+                )
+                for r in rows
+            ]
+        )
+
+    async def native_provider(self, provider: str) -> bool:
+        async with self.connection() as connection:
+            return bool(
+                await connection.fetchval(
+                    """
+                SELECT EXISTS(SELECT 1 FROM candle_coverage
+                    WHERE provider=$1 AND price_basis='native')
+                    OR EXISTS(SELECT 1 FROM latest_candles WHERE provider=$1)
+            """,
+                    provider,
+                )
+            )
+
+    async def collector_status(self) -> dict[str, Any] | None:
+        async with self.connection() as connection:
+            row = await connection.fetchrow("""
+                SELECT *, expires_at > clock_timestamp() AS fresh FROM collector_status
+                WHERE singleton
+            """)
+        if row is None:
+            return None
+        status = dict(row)
+        status["providers"] = [
+            ProviderHealth.model_validate(p) for p in json.loads(row["providers"])
+        ]
+        if not status["fresh"] or not status["running"]:
+            for health in status["providers"]:
+                health.state = "disconnected"
+                health.transport = "disconnected"
+                health.subscription_restored = False
+                health.fresh_symbol_count = 0
+                health.stale_symbol_count = health.configured_symbol_count
+                health.stale_symbols = sorted(health.symbols)
+                health.degradation_reasons = [
+                    "collector_stopped" if status["fresh"] else "collector_status_expired"
+                ]
+                for symbol in health.symbols.values():
+                    symbol.stale = True
+                    symbol.observed_in_session = False
+        return status
+
+    async def publish_collector_status(
+        self,
+        run_id: UUID,
+        running: bool,
+        database_healthy: bool,
+        queue_depth: int,
+        providers: list[ProviderHealth],
+    ) -> None:
+        async with self.connection() as connection:
+            await connection.execute(
+                """
+                INSERT INTO collector_status
+                    (singleton,run_id,expires_at,running,database_healthy,queue_depth,providers)
+                VALUES (TRUE,$1,clock_timestamp()+$2*interval '1 second',$3,$4,$5,$6)
+                ON CONFLICT (singleton) DO UPDATE SET run_id=EXCLUDED.run_id,
+                    updated_at=clock_timestamp(),expires_at=EXCLUDED.expires_at,
+                    running=EXCLUDED.running,database_healthy=EXCLUDED.database_healthy,
+                    queue_depth=EXCLUDED.queue_depth,providers=EXCLUDED.providers
+            """,
+                run_id,
+                self.settings.collector_status_ttl_seconds,
+                running,
+                database_healthy,
+                queue_depth,
+                json.dumps([p.model_dump(mode="json") for p in providers]),
+            )
 
     async def register(
         self, registry: Registry, *, candle_providers: list[str] | None = None

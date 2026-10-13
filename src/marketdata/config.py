@@ -14,6 +14,11 @@ ProviderName = Literal["mock", "binance", "oanda", "databento", "tradingview_gue
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore", hide_input_in_errors=True)
 
+    application_role: Literal["api", "collector", "combined"] = "api"
+    collector_status_interval_seconds: float = Field(default=5, gt=0, le=30)
+    collector_status_ttl_seconds: float = Field(default=20, gt=0, le=120)
+    collector_metrics_port: int = Field(default=9000, ge=0, le=65535)
+    collector_metrics_host: str = "127.0.0.1"
     database_url: SecretStr = SecretStr(
         "postgresql://marketdata:marketdata@localhost:5432/marketdata"
     )
@@ -72,6 +77,10 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def valid(self) -> Self:
+        if self.collector_status_ttl_seconds <= self.collector_status_interval_seconds:
+            raise ValueError("collector status TTL must exceed its publish interval")
+        if self.application_role != "api" and self.db_pool_max < 2:
+            raise ValueError("collector requires at least two pool connections")
         if self.tradingview_candle_pool_enabled:
             if self.tradingview_storage_mode != "candles":
                 raise ValueError("TradingView candle pool requires candle storage mode")

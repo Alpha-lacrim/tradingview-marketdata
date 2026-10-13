@@ -1226,7 +1226,8 @@ setup/repository overview; `docs/platform-guide.md` documents activation, operat
 schema semantics and provider references. `config/` holds
 non-secret instrument registries. `migrations/versions/` is the schema source of truth.
 
-Alembic head is `0004`. `candles.py` owns completed native candle validation/scheduling;
+Alembic head is `0005`; 0005 adds only a collector health snapshot table. `candles.py` owns
+completed native candle validation/scheduling;
 `candle_ingestion.py` owns bounded minute collection/recovery through the optional
 `providers/candles.py` capability. The experimental guest default stores native closed 1m
 candles. Tick ingestion remains available explicitly and is unchanged for other providers.
@@ -1241,8 +1242,14 @@ use a separate clone to preserve the original working directory, IDE and databas
 Install using `uv sync --frozen --extra databento` (omit the extra when not needed).
 Local database: `docker compose up -d db`. Migrate explicitly with
 `uv run alembic -x timescale=true upgrade head`, or omit `-x timescale=true` for ordinary
-PostgreSQL mode. Application: `uv run uvicorn marketdata.api:create_app --factory --workers 1`.
-Never run multiple ingestion workers/replicas with this in-process fan-out design.
+PostgreSQL mode. API: `APPLICATION_ROLE=api` and
+`uv run uvicorn marketdata.api:create_app --factory --workers 2`.
+Collector: `APPLICATION_ROLE=collector` and `uv run python -m marketdata.collector`.
+Use `APPLICATION_ROLE=combined` with `marketdata.api:create_combined_app` and one worker only
+for development fanout compatibility. The API factory always serves database reads and never
+starts ingestion. See docs/fastapi-process-separation.md for isolated configuration, separate
+metrics, snapshot health, migrations and shutdown. Use explicit separate project names/ports
+when another deployment exists; never run these generic development commands against it.
 
 Required quality commands: `uv run pytest -q`, `uv run ruff check .`,
 `uv run ruff format --check .`, `uv run mypy`.
@@ -1252,8 +1259,10 @@ Verify downgrade/re-upgrade only on a disposable database. Force-refresh histori
 continuous aggregates in tests after writes: materialized corrections are eventually
 consistent, unlike the unmaterialized real-time tail.
 
-Full local container smoke: `docker compose up -d --build`, then
-`uv run python scripts/smoke.py`. Load test against a separate migrated database:
+Full isolated mock container smoke: configure unused ports,
+`docker compose -p fastapi-dev up -d --build`, then
+`uv run python scripts/smoke.py --base-url http://localhost:8001`.
+Load test against a separate migrated database:
 `uv run python -m marketdata.benchmark --seconds 10 --rate 5000 --instruments 300`.
 These commands generate simulated observations; they are not live-provider tests.
 
@@ -1281,8 +1290,10 @@ database ending `_test`, separate from databases used by pytest fixtures (which 
 tables). The harness registers benchmark-only identities in unique provider namespaces,
 uses the actual `CandleIngestion.cycle` and `Store.write_candles` transaction, and reads back
 exact native OHLCV/status from another acquired connection after commit. No production
-table truncation, registry replacement or deployment is needed. Restore the prior collector
-afterward with `docker compose start app`; do not rebuild it incidentally.
+table truncation, registry replacement or deployment is needed. For an isolated split-process
+development project, restore its collector with `docker compose -p fastapi-dev start collector`.
+The existing combined production deployment follows its owner's preserved operations; this
+FastAPI branch must not stop, restore or rebuild it during parallel development.
 
 Run `uv run python scripts/benchmark_live_pool.py --collector-stopped --discover
 --counts 128 256 512 --cycles 3 --connections 6 --connect-interval 2

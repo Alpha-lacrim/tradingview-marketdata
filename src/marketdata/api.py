@@ -27,9 +27,6 @@ from marketdata.ingestion import IngestionService
 from marketdata.observability import Metrics, configure_logging
 from marketdata.persistence import INTERVALS, Store
 from marketdata.providers.base import ProviderHealth
-from marketdata.providers.candles import CandleProvider
-from marketdata.providers.factory import build_providers
-from marketdata.registry import Registry
 
 logger = logging.getLogger(__name__)
 Limit = Annotated[int, Query(ge=1, le=1000)]
@@ -114,6 +111,9 @@ class Health(BaseModel):
     queue_depth: int
     provider_states: dict[str, str]
     provider_transports: dict[str, str]
+    ingestion_state: Literal["running", "stopped", "unknown"] = "unknown"
+    ingestion_database_state: Literal["healthy", "degraded", "unknown"] = "unknown"
+    streaming_mode: Literal["local", "unavailable"] = "unavailable"
 
 
 class Command(BaseModel):
@@ -159,36 +159,50 @@ def authorized(value: str | None, settings: Settings) -> bool:
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
+    """Database-only factory. No configuration can enable ingestion here."""
     settings = settings or Settings()
+    if settings.application_role != "api":
+        raise ValueError("API factory requires APPLICATION_ROLE=api")
+    return _create_app(settings, combined=False)
+
+
+def create_combined_app(settings: Settings | None = None) -> FastAPI:
+    """Explicit single-worker development compatibility, including local fanout."""
+    settings = settings or Settings()
+    if settings.application_role != "combined":
+        raise ValueError("combined factory requires APPLICATION_ROLE=combined")
+    return _create_app(settings, combined=True)
+
+
+def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
     metrics = Metrics()
-    store = Store(settings)
+    store = Store(settings, read_only=not combined)
     fanout = Fanout(settings.websocket_queue_capacity, settings.websocket_max_clients, metrics)
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+        nonlocal store
         configure_logging(settings.log_level)
-        registry = settings.selected_registry(Registry.load(settings.registry_file))
-        providers = await build_providers(settings, registry, metrics)
-        store.candle_providers = sorted(
-            {
-                mapping.provider
-                for p in providers
-                if isinstance(p, CandleProvider)
-                for _, mapping in p.subscriptions
-            }
-        )
-        service = IngestionService(settings, store, providers, fanout, metrics)
-        app.state.service, app.state.registry, app.state.store = service, registry, store
-        try:
-            await store.connect()
-            await store.register(registry, candle_providers=store.candle_providers)
-            await service.start()
-            yield
-        finally:
-            await service.stop()
-            await store.close()
+        if combined:
+            from marketdata.collector import collector_lifespan
+
+            async with collector_lifespan(settings, metrics=metrics, fanout=fanout) as runtime:
+                store = runtime.store
+                app.state.service = runtime.service
+                app.state.registry = runtime.registry
+                app.state.store = store
+                yield
+        else:
+            app.state.store = store
+            try:
+                await store.connect()
+                yield
+            finally:
+                await store.close()
 
     app = FastAPI(title="Multi-asset market data", version="0.1.0", lifespan=lifespan)
+
+    app.state.service = None
 
     @app.middleware("http")
     async def authenticate(request: Request, call_next: Any) -> Response:
@@ -197,6 +211,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         ):
             return JSONResponse({"detail": "authentication required"}, status_code=401)
         response: Response = await call_next(request)
+        metrics.api_requests.labels(request.method, str(response.status_code)).inc()
         return response
 
     async def database_error(request: Request, error: Exception) -> JSONResponse:
@@ -208,22 +223,65 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     for exception_type in (asyncpg.PostgresError, asyncpg.InterfaceError, OSError, TimeoutError):
         app.add_exception_handler(exception_type, database_error)
 
+    async def provider_healths() -> list[ProviderHealth]:
+        service: IngestionService | None = app.state.service
+        if service is not None:
+            return [await p.health_check() for p in service.providers]
+        snapshot = await store.collector_status()
+        return snapshot["providers"] if snapshot else []
+
     @app.get("/health", response_model=Health)
     async def health(response: Response) -> Health:
-        service: IngestionService = app.state.service
+        service: IngestionService | None = app.state.service
+        database = False
+        running = False
+        queue_depth = 0
+        healths: list[ProviderHealth] = []
+        ingestion_state: Literal["running", "stopped", "unknown"] = "unknown"
+        ingestion_database: Literal["healthy", "degraded", "unknown"] = "unknown"
         try:
             async with asyncio.timeout(settings.db_timeout_seconds):
-                database = (
-                    await store.ping()
-                    and service.database_healthy
-                    and all(c.database_healthy for c in service.candle_services.values())
-                )
-        except Exception:
+                database = await store.ping()
+                if service is not None:
+                    ingestion_database = (
+                        "healthy"
+                        if service.database_healthy
+                        and all(c.database_healthy for c in service.candle_services.values())
+                        else "degraded"
+                    )
+                    running = service.writer_task is not None and not service.writer_task.done()
+                    ingestion_state = "running" if running else "stopped"
+                    queue_depth = service.queue.qsize()
+                    healths = await provider_healths()
+                else:
+                    snapshot = await store.collector_status()
+                    if snapshot:
+                        running = snapshot["fresh"] and snapshot["running"]
+                        ingestion_state = (
+                            ("running" if running else "stopped")
+                            if snapshot["fresh"]
+                            else "unknown"
+                        )
+                        ingestion_database = (
+                            ("healthy" if snapshot["database_healthy"] else "degraded")
+                            if snapshot["fresh"]
+                            else "unknown"
+                        )
+                        queue_depth = snapshot["queue_depth"]
+                        healths = snapshot["providers"]
+        except (asyncpg.PostgresError, asyncpg.InterfaceError, OSError, TimeoutError, RuntimeError):
             database = False
-        running = service.writer_task is not None and not service.writer_task.done()
-        healths = [await p.health_check() for p in service.providers]
         states: dict[str, str] = {h.provider: h.state for h in healths}
-        ok = database and running and all(s == "healthy" for s in states.values())
+        metrics.api_database.set(int(database))
+        # API readiness is independent of collector/feed readiness.
+        ok = database
+        if combined:
+            ok = (
+                ok
+                and running
+                and ingestion_database == "healthy"
+                and all(s == "healthy" for s in states.values())
+            )
         if not ok:
             response.status_code = 503
         return Health(
@@ -231,19 +289,23 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             database=database,
             database_state="healthy" if database else "degraded",
             ingestion_running=running,
-            queue_depth=service.queue.qsize(),
+            queue_depth=queue_depth,
             provider_states=states,
             provider_transports={h.provider: h.transport for h in healths},
+            ingestion_state=ingestion_state,
+            ingestion_database_state=ingestion_database,
+            streaming_mode="local" if combined else "unavailable",
         )
 
     @app.get("/providers", response_model=list[ProviderHealth])
     async def provider_health() -> list[ProviderHealth]:
-        return [await p.health_check() for p in app.state.service.providers]
+        return await provider_healths()
 
     @app.get("/metrics", include_in_schema=False)
     async def prometheus() -> Response:
-        for p in app.state.service.providers:
-            p.refresh_health()
+        if app.state.service is not None:
+            for p in app.state.service.providers:
+                p.refresh_health()
         return Response(
             generate_latest(metrics.registry), headers={"Content-Type": CONTENT_TYPE_LATEST}
         )
@@ -271,29 +333,27 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             instrument=Instrument.model_validate(row),
         )
 
-    def latest_prices(rows: list[Tick | MarketCandle]) -> list[LatestPrice | LatestCandlePrice]:
-        service: IngestionService = app.state.service
+    async def latest_prices(
+        rows: list[Tick | MarketCandle],
+    ) -> list[LatestPrice | LatestCandlePrice]:
+        healths = await provider_healths()
         now = utc_now()
-        for p in service.providers:
-            p.refresh_health(now)
         items: list[LatestPrice | LatestCandlePrice] = []
         for tick in rows:
-            provider = next((p for p in service.providers if p.name == tick.provider), None)
-            # Dataset-scoped adapters use a health name different from Tick.provider.
-            if provider is None:
-                provider = next(
-                    (
-                        p
-                        for p in service.providers
-                        if any(
-                            m.provider == tick.provider
-                            and i.canonical_symbol == tick.canonical_symbol
-                            for i, m in p.subscriptions
-                        )
-                    ),
-                    None,
-                )
-            symbol_health = provider.health.symbols.get(tick.canonical_symbol) if provider else None
+            health = next(
+                (
+                    h
+                    for h in healths
+                    if h.provider == tick.provider
+                    or (
+                        h.provider.startswith(tick.provider + "_")
+                        and tick.canonical_symbol in h.symbols
+                        and h.symbols[tick.canonical_symbol].provider_symbol == tick.provider_symbol
+                    )
+                ),
+                None,
+            )
+            symbol_health = health.symbols.get(tick.canonical_symbol) if health else None
             if isinstance(tick, MarketCandle):
                 age_ms = max(0, int((now - tick.bucket_end).total_seconds() * 1000))
                 items.append(
@@ -312,7 +372,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                         stale=age_ms > (60 + settings.candle_fetch_grace_seconds) * 1000
                         or symbol_health is None
                         or symbol_health.stale,
-                        provider_state=provider.health.state if provider else None,
+                        provider_state=health.state if health else None,
                     )
                 )
                 continue
@@ -326,7 +386,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     age_ms=age_ms,
                     stale_after_seconds=threshold,
                     stale=age_ms > threshold * 1000 or symbol_health is None or symbol_health.stale,
-                    provider_state=provider.health.state if provider else None,
+                    provider_state=health.state if health else None,
                 )
             )
         return items
@@ -340,14 +400,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         next_after = (
             items[-1].canonical_symbol + "/" + items[-1].provider if len(rows) > limit else None
         )
-        return LatestPage(items=latest_prices(items), next_after=next_after)
+        return LatestPage(items=await latest_prices(items), next_after=next_after)
 
     @app.get("/prices/latest/{symbol}", response_model=list[LatestPrice | LatestCandlePrice])
     async def latest_symbol(
         symbol: str, provider: str | None = None
     ) -> list[LatestPrice | LatestCandlePrice]:
         await require_instrument(symbol)
-        return latest_prices(await store.latest(symbol, provider, 1000))
+        return await latest_prices(await store.latest(symbol, provider, 1000))
 
     @app.get("/ticks/{symbol}", response_model=TickPage)
     async def ticks(
@@ -379,7 +439,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         limit: Limit = 100,
         after_status: DataStatus | None = None,
     ) -> CandlePage:
-        basis = basis or ("native" if provider in (store.candle_providers or []) else "last")
+        basis = basis or ("native" if await store.native_provider(provider) else "last")
         if interval not in INTERVALS or (basis == "native" and interval == "1s"):
             raise HTTPException(422, "unsupported interval")
         # Full, UTC epoch-aligned buckets only; avoids mode-dependent partial candles.
@@ -433,7 +493,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         exchange: str, root: str, alias: Literal["front", "next"], at: datetime | None = None
     ) -> InstrumentResponse:
         try:
-            resolved = app.state.registry.resolve(
+            registry = app.state.registry if combined else await store.registry()
+            resolved = registry.resolve(
                 exchange, root, utc(at) if at else utc_now(), next_contract=alias == "next"
             )
         except ValueError:
@@ -448,6 +509,12 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     async def prices_socket(websocket: WebSocket) -> None:
         if not authorized(websocket.headers.get("authorization"), settings):
             await websocket.close(code=1008)
+            return
+        if not combined:
+            await websocket.accept()
+            await websocket.close(
+                code=1013, reason="cross-process streaming unavailable; query REST history"
+            )
             return
         try:
             client = fanout.register()

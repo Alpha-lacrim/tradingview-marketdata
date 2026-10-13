@@ -28,6 +28,17 @@ def configure_logging(level: str) -> None:
 class Metrics:
     def __init__(self) -> None:
         self.registry = CollectorRegistry()
+        self.api_requests = Counter(
+            "marketdata_api_requests_total",
+            "API HTTP responses",
+            ["method", "status"],
+            registry=self.registry,
+        )
+        self.api_database = Gauge(
+            "marketdata_api_database_healthy",
+            "Last API database health check",
+            registry=self.registry,
+        )
         self.candles = Counter(
             "marketdata_candles_total",
             "Candle operations",

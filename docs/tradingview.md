@@ -1,5 +1,11 @@
 # Experimental TradingView guest market data
 
+This FastAPI branch separates collection from serving; its Compose guest overrides target
+`collector`, while `app` serves database reads only. See [process separation](fastapi-process-separation.md)
+for current role commands, health snapshots and WebSocket limits. Deployment commands and
+measurements below describe the preceding combined deployment. Do not apply them to the
+running collector during parallel development; its owner controls that deployment.
+
 For the separately authorized 128/256/512-instrument multi-WebSocket investigation with
 actual native candle commits, completeness/latency/resource evidence and controlled recovery,
 see [live end-to-end experiment](candle-live-end-to-end.md), which used an isolated test database.

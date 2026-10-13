@@ -10,15 +10,14 @@ and [live PostgreSQL experiments](candle-live-end-to-end.md).
 ## Architecture and reliability
 
 ```text
-Provider transport -> parser -> Decimal/UTC Tick -> bounded asyncio queue -> batch writer
-                                             |                           |
-                                             v                           v
-                                    bounded client queues          COPY temporary stage
-                                             |                           |
-                                      WebSocket clients        atomic history + latest UPSERT
-                                                                         |
-                                                             REST / Timescale candles
+Collector process: provider -> parser -> Decimal/UTC observations -> ingestion -> PostgreSQL
+                                                                             -> health snapshot
+API workers: read-only PostgreSQL pools -> REST clients + API health/metrics
+Combined development only: ingestion -> local bounded fanout -> WebSocket clients
 ```
+
+See [independent processes](fastapi-process-separation.md) for explicit role commands,
+read-only serving, status expiry, graceful shutdown, safe isolated validation and rollback.
 
 Each provider has an owned task and independent reconnect/backoff/jitter. Subscription sets
 are restored after reconnect. Authentication, entitlement and invalid subscription failures
@@ -38,13 +37,16 @@ the queue plus one pending batch, plus bounded downstream/SDK queues. Persistent
 errors retain the batch for operator intervention. There is no disk spool or crash-safe
 recovery of queued observations.
 
-SIGTERM/SIGINT are handled by Uvicorn's lifespan. Shutdown stops providers, drains until
+Collector SIGTERM/SIGINT are handled by its dedicated entry point; API shutdown closes only
+its read pool. Collector shutdown stops providers, drains until
 `SHUTDOWN_TIMEOUT_SECONDS`, reports remaining observations as lost and closes the pool.
-WebSocket observations are emitted before persistence acknowledgement and include
+Combined-development WebSocket observations are emitted before persistence acknowledgement and include
 `persisted: false`. Slow consumers receive close code 1013 when their queue overflows.
 
-This version combines ingestion and serving in **one process**. Multiple Uvicorn workers or
-replicas would create duplicate subscriptions and independent fan-out; do not enable them.
+The default API factory is database-only and can use multiple workers. Collector ownership
+is separate and guarded by a database advisory lock. An explicit combined factory retains
+local fanout for single-worker development. API-only WebSocket streaming is unavailable
+until Batch 3; it closes with 1013 after checking authentication.
 No Redis, Kafka, RabbitMQ or large observability stack is required.
 
 ## Provider coverage
@@ -214,9 +216,9 @@ and `persisted:true` after commit; tick messages have `type:tick` and `persisted
 
 | Endpoint | Behaviour |
 |---|---|
-| `/health` | App/DB/writer/feed health; 503 when degraded |
+| `/health` | API DB readiness; separate ingestion/feed state; DB failures return 503 |
 | `/providers` | Sanitized state, errors, reconnects and instrument freshness |
-| `/metrics` | Prometheus received/persisted/drop/reconnect/parse/gap counters, queue/latency |
+| `/metrics` | API-local Prometheus metrics; collector metrics served separately |
 | `/instruments?limit=100&after=...` | Ordered canonical page; use last symbol for next page |
 | `/instruments/{symbol}` | Instrument and provider mappings |
 | `/prices/latest?provider=mock&limit=100&after=...` | Latest page with `next_after` |
@@ -224,7 +226,7 @@ and `persisted:true` after commit; tick messages have `type:tick` and `persisted
 | `/ticks/{symbol}?start=...&end=...&limit=100&cursor=...` | History with `next_cursor` |
 | `/candles/{symbol}?provider=mock&interval=1m&basis=last` | Candles with `next_start` |
 | `/futures/{exchange}/{root}/front` or `/next` | Concrete resolution; optional aware `at` |
-| WebSocket `/ws/prices` | Canonical subscribe/unsubscribe; normalized ticks or committed native candles |
+| WebSocket `/ws/prices` | Combined development fanout; API-only closes 1013 until Batch 3 |
 
 All table endpoints are GET. History ranges are `[start,end)`, default one hour. Tick windows
 cap at one day; candle windows cap at 31 days (one day without aggregates). Limits: 1..1000.
@@ -240,7 +242,10 @@ inactive sources are stale. Feed recovery cannot make an old database row fresh.
 receipt freshness, separate from upstream event age, data classification or market-open status.
 Native candle-close age instead measures time since `bucket_end`; candle coverage determines
 staleness. An intentionally idle polling transport can be disconnected while coverage is healthy.
-`/health` includes `database_state` and `provider_transports`; degraded components return 503.
+`/health` includes `database_state`, `provider_transports`, `ingestion_state`,
+`ingestion_database_state` and `streaming_mode`. API readiness depends on database access,
+so a feed outage does not disable historical REST. Collector provider health is periodically
+persisted and expires; an expired snapshot is disconnected/unknown, never inferred healthy.
 
 ```json
 {"action":"subscribe","symbols":["CRYPTO:BTCUSDT","FX:SIM:EURUSD","SPOT:SIM:XAUUSD"]}
@@ -262,17 +267,12 @@ uv run python scripts/smoke.py
 
 The offline suite needs no credentials or live markets. Integration tests skip unless
 `TEST_DATABASE_URL` points to a migrated disposable database ending in `_test`; fixtures
-clear its market-data tables. Create it separately:
+clear its market-data tables. Use the separate tmpfs test project, ports 55481/55482 and
+migration commands in [isolated validation](fastapi-process-separation.md#disposable-validation-and-preservation).
+Never create integration databases inside the running production database container.
 
-```powershell
-docker compose exec -T db createdb -U marketdata marketdata_test
-$env:DATABASE_URL='postgresql://marketdata:marketdata@localhost:5432/marketdata_test'
-uv run alembic -x timescale=true upgrade head
-$env:TEST_DATABASE_URL=$env:DATABASE_URL
-uv run pytest -q
-```
-
-The smoke utility expects a running default mock app at localhost:8000. CI is configured
+The smoke utility accepts `--base-url` for the isolated mock API and `--combined` for local
+WebSocket verification. CI is configured
 for both migration modes and downgrade/re-upgrade. The root workflow runs these checks for both modes; see [GitHub Actions](https://github.com/Alpha-lacrim/tradingview-marketdata/actions) for current results.
 
 ```powershell

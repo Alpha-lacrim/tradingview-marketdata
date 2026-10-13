@@ -487,14 +487,14 @@ async def test_maintenance_requires_verified_complete_export(store, tmp_path, mo
 def test_native_candle_rest_latest_and_websocket(database_url, store, monkeypatch):
     from fastapi.testclient import TestClient
 
-    from marketdata.api import create_app
+    from marketdata.api import create_combined_app as create_app
 
     async def build(settings, registry, metrics):
         p = Replay()
         await p.subscribe(registry.subscriptions("tradingview_guest")[:1])
         return [p]
 
-    monkeypatch.setattr("marketdata.api.build_providers", build)
+    monkeypatch.setattr("marketdata.collector.build_providers", build)
     # Test-only replay uses receipt after every generated completed bar.
     monkeypatch.setattr("marketdata.candle_ingestion.utc_now", lambda: NOW)
     monkeypatch.setattr("marketdata.api.utc_now", lambda: NOW + timedelta(days=1))
@@ -502,6 +502,7 @@ def test_native_candle_rest_latest_and_websocket(database_url, store, monkeypatc
     settings = Settings(
         _env_file=None,
         database_url=database_url,
+        application_role="combined",
         registry_file=REGISTRY,
         market_data_provider_crypto="tradingview_guest",
         market_data_provider_forex="tradingview_guest",
