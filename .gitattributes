@@ -1,0 +1,9 @@
+# Keep frozen registries/evidence byte-identical across Windows and Linux checkouts.
+/config/instruments.tradingview-64.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/config/instruments.tradingview-100.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/config/instruments.tradingview-128.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/config/instruments.tradingview-256.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/config/instruments.tradingview-business-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/docs/business-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/docs/business-*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/docs/ordinary-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

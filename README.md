@@ -29,13 +29,24 @@ The opt-in multi-socket experiments reached 128/256/512 crypto spot targets, wit
 commits of 743/768, 1,419/1,536 and 2,663/3,072 respectively. All stages were incomplete;
 these results do not demonstrate complete coverage or sustained production capacity.
 An earlier unpaced run encountered HTTP 429 and stopped escalation.
-The ordinary collector now supports a validated, separate **34-instrument pilot**, with a
-tested 17-instrument rollback and durable activation boundaries. This committed baseline
-documents a 34-source pilot. The separately running collector session owns the approximately
-100-source deployment; this FastAPI branch does not alter it.
-See [pilot activation and persistence evidence](docs/production-instrument-expansion.md)
+The unchanged legacy deployment runs a fixed **100-instrument universe** against the
+existing database, with four paced sockets and global concurrency eight. That accuracy-selected
+profile achieved 99.9% eventual coverage in a 30-cycle window plus three settling cycles.
+The current priority is a separate provisional **99-source business proposal**: 50 Binance
+markets, both brokers for 21 OANDA/FXCM forex pairs, metals and energy. It is not deployed;
+see [business qualification, source gaps and approval decisions](docs/business-universe-qualification.md).
+Earlier ordinary 64/128/256 measurements and exact 34/17 image rollbacks are preserved.
+See [current scaling measurements and exact rollback](docs/ordinary-collector-scaling.md),
+[pilot activation and persistence evidence](docs/production-instrument-expansion.md)
 and [the ATOM native-history/availability investigation](docs/native-availability-investigation.md).
 Request success, native availability and durable commits are measured separately.
+
+Both completed development streams are integrated locally on
+`integration/collector-fastapi-batch1`; see [integration verification and deployment boundaries](docs/collector-fastapi-integration.md).
+The default API builds zero providers; only the explicit collector owns ingestion. Schema
+0005 adds health only. This branch is undeployed. The running legacy collector has no new
+advisory lock and must exit before any future approved replacement starts. The provisional
+99-source registry is preserved and is never selected automatically.
 
 See [live end-to-end evidence](docs/candle-live-end-to-end.md),
 [earlier live/synthetic retrieval results](docs/candle-retrieval-scalability.md) and

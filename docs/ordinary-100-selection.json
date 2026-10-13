@@ -1,0 +1,1187 @@
+{
+  "start": "2026-10-13T05:41:00+00:00",
+  "end": "2026-10-13T06:41:00+00:00",
+  "selection": "original 33 excluding operator-approved inactive XAUT; 67 additions supplied all prior 60 completed minutes; selection frozen before qualification",
+  "selected_additions": [
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:USDCUSDT",
+      "provider_symbol": "BINANCE:USDCUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:BTCUSDT",
+      "provider_symbol": "OKX:BTCUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:ETHUSDT",
+      "provider_symbol": "OKX:ETHUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:USDCUSDT",
+      "provider_symbol": "OKX:USDCUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:USD1USDT",
+      "provider_symbol": "BINANCE:USD1USDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:WUSDT",
+      "provider_symbol": "BINANCE:WUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:ZECUSDT",
+      "provider_symbol": "OKX:ZECUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:SOLUSDT",
+      "provider_symbol": "OKX:SOLUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:STRKUSDT",
+      "provider_symbol": "BINANCE:STRKUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ENAUSDT",
+      "provider_symbol": "BINANCE:ENAUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:STRKUSDT",
+      "provider_symbol": "OKX:STRKUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:MUBARAKUSDT",
+      "provider_symbol": "BINANCE:MUBARAKUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:NEARUSDT",
+      "provider_symbol": "OKX:NEARUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:RSRUSDT",
+      "provider_symbol": "BINANCE:RSRUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:WUSDT",
+      "provider_symbol": "OKX:WUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ONDOUSDT",
+      "provider_symbol": "BINANCE:ONDOUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ZROUSDT",
+      "provider_symbol": "BINANCE:ZROUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:TAOUSDT",
+      "provider_symbol": "BINANCE:TAOUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:WLDUSDT",
+      "provider_symbol": "BINANCE:WLDUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:PUMPUSDT",
+      "provider_symbol": "BINANCE:PUMPUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:UUSDT",
+      "provider_symbol": "BINANCE:UUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:MAGICUSDT",
+      "provider_symbol": "BINANCE:MAGICUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:FDUSDUSDT",
+      "provider_symbol": "BINANCE:FDUSDUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:XRPUSDT",
+      "provider_symbol": "OKX:XRPUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:PEPEUSDT",
+      "provider_symbol": "BINANCE:PEPEUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:SUSDT",
+      "provider_symbol": "BINANCE:SUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:GTCUSDT",
+      "provider_symbol": "BINANCE:GTCUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:SNDKBUSDT",
+      "provider_symbol": "BINANCE:SNDKBUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:QNTUSDT",
+      "provider_symbol": "BINANCE:QNTUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:PLUMEUSDT",
+      "provider_symbol": "BINANCE:PLUMEUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:HYPEUSDT",
+      "provider_symbol": "BINANCE:HYPEUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:FETUSDT",
+      "provider_symbol": "BINANCE:FETUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:FILUSDT",
+      "provider_symbol": "OKX:FILUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:ONDOUSDT",
+      "provider_symbol": "OKX:ONDOUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:INJUSDT",
+      "provider_symbol": "BINANCE:INJUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:PAXGUSDT",
+      "provider_symbol": "BINANCE:PAXGUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:SUIUSDT",
+      "provider_symbol": "OKX:SUIUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:APTUSDT",
+      "provider_symbol": "BINANCE:APTUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:CFXUSDT",
+      "provider_symbol": "BINANCE:CFXUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:TIAUSDT",
+      "provider_symbol": "BINANCE:TIAUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:RLCUSDT",
+      "provider_symbol": "BINANCE:RLCUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:HYPEUSDT",
+      "provider_symbol": "OKX:HYPEUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:CKBUSDT",
+      "provider_symbol": "BINANCE:CKBUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:PYTHUSDT",
+      "provider_symbol": "BINANCE:PYTHUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:OKBUSDT",
+      "provider_symbol": "OKX:OKBUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:POLUSDT",
+      "provider_symbol": "BINANCE:POLUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ARBUSDT",
+      "provider_symbol": "BINANCE:ARBUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:UNIUSDT",
+      "provider_symbol": "OKX:UNIUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:HBARUSDT",
+      "provider_symbol": "BINANCE:HBARUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:LUMIAUSDT",
+      "provider_symbol": "BINANCE:LUMIAUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ZKUSDT",
+      "provider_symbol": "BINANCE:ZKUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:RENDERUSDT",
+      "provider_symbol": "BINANCE:RENDERUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:WLDUSDT",
+      "provider_symbol": "OKX:WLDUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ASTERUSDT",
+      "provider_symbol": "BINANCE:ASTERUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:ZROUSDT",
+      "provider_symbol": "OKX:ZROUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:EIGENUSDT",
+      "provider_symbol": "BINANCE:EIGENUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:PENGUUSDT",
+      "provider_symbol": "BINANCE:PENGUUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:GRAMUSDT",
+      "provider_symbol": "BINANCE:GRAMUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:LTCUSDT",
+      "provider_symbol": "OKX:LTCUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:BOMEUSDT",
+      "provider_symbol": "BINANCE:BOMEUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:DASHUSDT",
+      "provider_symbol": "BINANCE:DASHUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:TIAUSDT",
+      "provider_symbol": "OKX:TIAUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:CHIPUSDT",
+      "provider_symbol": "BINANCE:CHIPUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:LITUSDT",
+      "provider_symbol": "OKX:LITUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:ENAUSDT",
+      "provider_symbol": "OKX:ENAUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:OPUSDT",
+      "provider_symbol": "BINANCE:OPUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:PUMPUSDT",
+      "provider_symbol": "OKX:PUMPUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    }
+  ],
+  "mandatory_sources": [
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:UNIUSDT",
+      "provider_symbol": "BINANCE:UNIUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:BCHUSDT",
+      "provider_symbol": "BINANCE:BCHUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:AVAXUSDT",
+      "provider_symbol": "BINANCE:AVAXUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "SPOT:OANDA:XAUUSD",
+      "provider_symbol": "OANDA:XAUUSD",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "FX:OANDA:USDCHF",
+      "provider_symbol": "OANDA:USDCHF",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:NEARUSDT",
+      "provider_symbol": "BINANCE:NEARUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "REFERENCE:TVC:UKOIL",
+      "provider_symbol": "TVC:UKOIL",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:ETHUSDT",
+      "provider_symbol": "BINANCE:ETHUSDT",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:DOGEUSDT",
+      "provider_symbol": "BINANCE:DOGEUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ICPUSDT",
+      "provider_symbol": "BINANCE:ICPUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ADAUSDT",
+      "provider_symbol": "BINANCE:ADAUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "FX:OANDA:USDJPY",
+      "provider_symbol": "OANDA:USDJPY",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ATOMUSDT",
+      "provider_symbol": "BINANCE:ATOMUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "FX:OANDA:EURGBP",
+      "provider_symbol": "OANDA:EURGBP",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:TRXUSDT",
+      "provider_symbol": "BINANCE:TRXUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "SPOT:OANDA:XAGUSD",
+      "provider_symbol": "OANDA:XAGUSD",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "FX:OANDA:AUDUSD",
+      "provider_symbol": "OANDA:AUDUSD",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:XRPUSDT",
+      "provider_symbol": "BINANCE:XRPUSDT",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "FX:OANDA:USDCAD",
+      "provider_symbol": "OANDA:USDCAD",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "REFERENCE:TVC:USOIL",
+      "provider_symbol": "TVC:USOIL",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:AAVEUSDT",
+      "provider_symbol": "BINANCE:AAVEUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:DOTUSDT",
+      "provider_symbol": "BINANCE:DOTUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "FX:OANDA:EURUSD",
+      "provider_symbol": "OANDA:EURUSD",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:LINKUSDT",
+      "provider_symbol": "BINANCE:LINKUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:BNBUSDT",
+      "provider_symbol": "BINANCE:BNBUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:XAUTUSDT",
+      "provider_symbol": "OKX:XAUTUSDT",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 53
+    },
+    {
+      "canonical_symbol": "FX:OANDA:NZDUSD",
+      "provider_symbol": "OANDA:NZDUSD",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BTCUSDT",
+      "provider_symbol": "BINANCE:BTCUSDT",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ZECUSDT",
+      "provider_symbol": "BINANCE:ZECUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:LTCUSDT",
+      "provider_symbol": "BINANCE:LTCUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "FX:OANDA:GBPUSD",
+      "provider_symbol": "OANDA:GBPUSD",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:SUIUSDT",
+      "provider_symbol": "BINANCE:SUIUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:SOLUSDT",
+      "provider_symbol": "BINANCE:SOLUSDT",
+      "coverage_start": "2026-10-07 09:33:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:FILUSDT",
+      "provider_symbol": "BINANCE:FILUSDT",
+      "coverage_start": "2026-10-12 12:10:00+00:00",
+      "native": 60
+    }
+  ],
+  "all_candidates": [
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:USDCUSDT",
+      "provider_symbol": "BINANCE:USDCUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:BTCUSDT",
+      "provider_symbol": "OKX:BTCUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:ETHUSDT",
+      "provider_symbol": "OKX:ETHUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:USDCUSDT",
+      "provider_symbol": "OKX:USDCUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:USD1USDT",
+      "provider_symbol": "BINANCE:USD1USDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:WUSDT",
+      "provider_symbol": "BINANCE:WUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:ZECUSDT",
+      "provider_symbol": "OKX:ZECUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:SOLUSDT",
+      "provider_symbol": "OKX:SOLUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:STRKUSDT",
+      "provider_symbol": "BINANCE:STRKUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ENAUSDT",
+      "provider_symbol": "BINANCE:ENAUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:STRKUSDT",
+      "provider_symbol": "OKX:STRKUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:MUBARAKUSDT",
+      "provider_symbol": "BINANCE:MUBARAKUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:NEARUSDT",
+      "provider_symbol": "OKX:NEARUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:RSRUSDT",
+      "provider_symbol": "BINANCE:RSRUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:WUSDT",
+      "provider_symbol": "OKX:WUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ONDOUSDT",
+      "provider_symbol": "BINANCE:ONDOUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ZROUSDT",
+      "provider_symbol": "BINANCE:ZROUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:TAOUSDT",
+      "provider_symbol": "BINANCE:TAOUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:WLDUSDT",
+      "provider_symbol": "BINANCE:WLDUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:PUMPUSDT",
+      "provider_symbol": "BINANCE:PUMPUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:UUSDT",
+      "provider_symbol": "BINANCE:UUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:MAGICUSDT",
+      "provider_symbol": "BINANCE:MAGICUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:FDUSDUSDT",
+      "provider_symbol": "BINANCE:FDUSDUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:XRPUSDT",
+      "provider_symbol": "OKX:XRPUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:PEPEUSDT",
+      "provider_symbol": "BINANCE:PEPEUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:SUSDT",
+      "provider_symbol": "BINANCE:SUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:GTCUSDT",
+      "provider_symbol": "BINANCE:GTCUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:SNDKBUSDT",
+      "provider_symbol": "BINANCE:SNDKBUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:QNTUSDT",
+      "provider_symbol": "BINANCE:QNTUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:PLUMEUSDT",
+      "provider_symbol": "BINANCE:PLUMEUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:HYPEUSDT",
+      "provider_symbol": "BINANCE:HYPEUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:FETUSDT",
+      "provider_symbol": "BINANCE:FETUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:FILUSDT",
+      "provider_symbol": "OKX:FILUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:ONDOUSDT",
+      "provider_symbol": "OKX:ONDOUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:INJUSDT",
+      "provider_symbol": "BINANCE:INJUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:PAXGUSDT",
+      "provider_symbol": "BINANCE:PAXGUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:SUIUSDT",
+      "provider_symbol": "OKX:SUIUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:APTUSDT",
+      "provider_symbol": "BINANCE:APTUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:CFXUSDT",
+      "provider_symbol": "BINANCE:CFXUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:TIAUSDT",
+      "provider_symbol": "BINANCE:TIAUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:RLCUSDT",
+      "provider_symbol": "BINANCE:RLCUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:HYPEUSDT",
+      "provider_symbol": "OKX:HYPEUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:CKBUSDT",
+      "provider_symbol": "BINANCE:CKBUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:PYTHUSDT",
+      "provider_symbol": "BINANCE:PYTHUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:OKBUSDT",
+      "provider_symbol": "OKX:OKBUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:POLUSDT",
+      "provider_symbol": "BINANCE:POLUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ARBUSDT",
+      "provider_symbol": "BINANCE:ARBUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:UNIUSDT",
+      "provider_symbol": "OKX:UNIUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:HBARUSDT",
+      "provider_symbol": "BINANCE:HBARUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:LUMIAUSDT",
+      "provider_symbol": "BINANCE:LUMIAUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ZKUSDT",
+      "provider_symbol": "BINANCE:ZKUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:RENDERUSDT",
+      "provider_symbol": "BINANCE:RENDERUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:WLDUSDT",
+      "provider_symbol": "OKX:WLDUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ASTERUSDT",
+      "provider_symbol": "BINANCE:ASTERUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:ZROUSDT",
+      "provider_symbol": "OKX:ZROUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:EIGENUSDT",
+      "provider_symbol": "BINANCE:EIGENUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:PENGUUSDT",
+      "provider_symbol": "BINANCE:PENGUUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:GRAMUSDT",
+      "provider_symbol": "BINANCE:GRAMUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:LTCUSDT",
+      "provider_symbol": "OKX:LTCUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:BOMEUSDT",
+      "provider_symbol": "BINANCE:BOMEUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:DASHUSDT",
+      "provider_symbol": "BINANCE:DASHUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:TIAUSDT",
+      "provider_symbol": "OKX:TIAUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:CHIPUSDT",
+      "provider_symbol": "BINANCE:CHIPUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:LITUSDT",
+      "provider_symbol": "OKX:LITUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:ENAUSDT",
+      "provider_symbol": "OKX:ENAUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:OPUSDT",
+      "provider_symbol": "BINANCE:OPUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:PUMPUSDT",
+      "provider_symbol": "OKX:PUMPUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:BATUSDT",
+      "provider_symbol": "BINANCE:BATUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ERAUSDT",
+      "provider_symbol": "BINANCE:ERAUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:ARBUSDT",
+      "provider_symbol": "OKX:ARBUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:OGNUSDT",
+      "provider_symbol": "BINANCE:OGNUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:XPLUSDT",
+      "provider_symbol": "BINANCE:XPLUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ETHFIUSDT",
+      "provider_symbol": "BINANCE:ETHFIUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:EURUSDT",
+      "provider_symbol": "BINANCE:EURUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 60
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:DOGEUSDT",
+      "provider_symbol": "OKX:DOGEUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:BNBUSDT",
+      "provider_symbol": "OKX:BNBUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:REDUSDT",
+      "provider_symbol": "BINANCE:REDUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:DATAUSDT",
+      "provider_symbol": "OKX:DATAUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:MAGICUSDT",
+      "provider_symbol": "OKX:MAGICUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:GRASSUSDT",
+      "provider_symbol": "OKX:GRASSUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ALGOUSDT",
+      "provider_symbol": "BINANCE:ALGOUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:XLMUSDT",
+      "provider_symbol": "BINANCE:XLMUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:DOSUSDT",
+      "provider_symbol": "OKX:DOSUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:OKX:RSRUSDT",
+      "provider_symbol": "OKX:RSRUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:MARSCOINUSDT",
+      "provider_symbol": "BINANCE:MARSCOINUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:LDOUSDT",
+      "provider_symbol": "BINANCE:LDOUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:METUSDT",
+      "provider_symbol": "BINANCE:METUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 59
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:CTKUSDT",
+      "provider_symbol": "BINANCE:CTKUSDT",
+      "coverage_start": "2026-10-12 14:09:00+00:00",
+      "native": 58
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:IOUSDT",
+      "provider_symbol": "BINANCE:IOUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 57
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:RVNUSDT",
+      "provider_symbol": "BINANCE:RVNUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 57
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:CAKEUSDT",
+      "provider_symbol": "BINANCE:CAKEUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 57
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:ALTUSDT",
+      "provider_symbol": "BINANCE:ALTUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 55
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:SXTUSDT",
+      "provider_symbol": "BINANCE:SXTUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 52
+    },
+    {
+      "canonical_symbol": "CRYPTO:BINANCE:CYBERUSDT",
+      "provider_symbol": "BINANCE:CYBERUSDT",
+      "coverage_start": "2026-10-12 14:21:00+00:00",
+      "native": 48
+    }
+  ],
+  "approved_inactive_source": {
+    "symbol": "CRYPTO:OKX:XAUTUSDT",
+    "source": "OKX:XAUTUSDT",
+    "history_and_identity_preserved": true
+  },
+  "registry_sha256": "0ef7f3837a8f6a18f5ea570cc84ffc792e69100d07fdfb574593b639ec8b5600"
+}

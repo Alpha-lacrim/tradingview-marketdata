@@ -39,6 +39,17 @@ class Metrics:
             "Last API database health check",
             registry=self.registry,
         )
+        self.event_loop_lag = Histogram(
+            "marketdata_event_loop_lag_seconds",
+            "One-second monitor wake delay; sampled in the application event loop",
+            buckets=(0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 5),
+            registry=self.registry,
+        )
+        self.event_loop_lag_max = Gauge(
+            "marketdata_event_loop_lag_max_seconds",
+            "Maximum monitor wake delay since application start",
+            registry=self.registry,
+        )
         self.candles = Counter(
             "marketdata_candles_total",
             "Candle operations",

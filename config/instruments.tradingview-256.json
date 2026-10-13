@@ -1,0 +1,5712 @@
+[
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BTCUSDT",
+      "display_name": "BTC/USDT Binance spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "BTC"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BTCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:ETHUSDT",
+      "display_name": "ETH/USDT Binance spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "ETH"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ETHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:SOLUSDT",
+      "display_name": "SOL/USDT Binance spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "SOL"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SOLUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:XRPUSDT",
+      "display_name": "XRP/USDT Binance spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "XRP"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:XRPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:EURUSD",
+      "display_name": "EUR/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "EUR"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:GBPUSD",
+      "display_name": "GBP/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "GBP"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:USDJPY",
+      "display_name": "USD/JPY OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "quote_asset": "JPY",
+      "base_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:USDJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:USDCHF",
+      "display_name": "USD/CHF OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CHF",
+      "quote_asset": "CHF",
+      "base_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:USDCHF",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:AUDUSD",
+      "display_name": "AUD/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "AUD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:AUDUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:USDCAD",
+      "display_name": "USD/CAD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CAD",
+      "quote_asset": "CAD",
+      "base_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:USDCAD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:NZDUSD",
+      "display_name": "NZD/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "NZD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:NZDUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:EURGBP",
+      "display_name": "EUR/GBP OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "GBP",
+      "quote_asset": "GBP",
+      "base_asset": "EUR"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURGBP",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "SPOT:OANDA:XAUUSD",
+      "display_name": "XAU/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "metals",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "XAU",
+      "metadata": {
+        "product_semantics": "OANDA broker OTC metal quote; not COMEX futures"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:XAUUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "SPOT:OANDA:XAGUSD",
+      "display_name": "XAG/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "metals",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "XAG",
+      "metadata": {
+        "product_semantics": "OANDA broker OTC metal quote; not COMEX futures"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:XAGUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:XAUTUSDT",
+      "display_name": "XAUT/USDT OKX token spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "XAUT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:XAUTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "REFERENCE:TVC:USOIL",
+      "display_name": "WTI TVC commodity reference series",
+      "asset_class": "energy",
+      "instrument_type": "reference",
+      "exchange": "TVC",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "metadata": {
+        "product_semantics": "TVC commodity reference series; physical spot/CFD methodology unverified; not an exchange future"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "TVC:USOIL",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "REFERENCE:TVC:UKOIL",
+      "display_name": "Brent TVC commodity reference series",
+      "asset_class": "energy",
+      "instrument_type": "reference",
+      "exchange": "TVC",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "metadata": {
+        "product_semantics": "TVC commodity reference series; physical spot/CFD methodology unverified; not an exchange future"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "TVC:UKOIL",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BNBUSDT",
+      "display_name": "BNB/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BNB",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BNBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:DOGEUSDT",
+      "display_name": "DOGE/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DOGE",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DOGEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ADAUSDT",
+      "display_name": "ADA/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ADA",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ADAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:LINKUSDT",
+      "display_name": "LINK/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LINK",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LINKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:LTCUSDT",
+      "display_name": "LTC/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LTC",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LTCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BCHUSDT",
+      "display_name": "BCH/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BCH",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BCHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:AVAXUSDT",
+      "display_name": "AVAX/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AVAX",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AVAXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:TRXUSDT",
+      "display_name": "TRX/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TRX",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TRXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:DOTUSDT",
+      "display_name": "DOT/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DOT",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DOTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:NEARUSDT",
+      "display_name": "NEAR/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "NEAR",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:NEARUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SUIUSDT",
+      "display_name": "SUI/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SUI",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SUIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:UNIUSDT",
+      "display_name": "UNI/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "UNI",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:UNIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:FILUSDT",
+      "display_name": "FIL/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FIL",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FILUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:AAVEUSDT",
+      "display_name": "AAVE/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AAVE",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AAVEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ATOMUSDT",
+      "display_name": "ATOM/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ATOM",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ATOMUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ZECUSDT",
+      "display_name": "ZEC/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ZEC",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ZECUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ICPUSDT",
+      "display_name": "ICP/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ICP",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ICPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:USDCUSDT",
+      "display_name": "USDC/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "USDC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:USDCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:BTCUSDT",
+      "display_name": "BTC/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "BTC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:BTCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:ETHUSDT",
+      "display_name": "ETH/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "ETH",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:ETHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:USDCUSDT",
+      "display_name": "USDC/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "USDC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:USDCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:USD1USDT",
+      "display_name": "USD1/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "USD1",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:USD1USDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:WUSDT",
+      "display_name": "W/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "W",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:WUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:ZECUSDT",
+      "display_name": "ZEC/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "ZEC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:ZECUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:SOLUSDT",
+      "display_name": "SOL/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "SOL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:SOLUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:STRKUSDT",
+      "display_name": "STRK/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "STRK",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:STRKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ENAUSDT",
+      "display_name": "ENA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ENA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ENAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:STRKUSDT",
+      "display_name": "STRK/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "STRK",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:STRKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:MUBARAKUSDT",
+      "display_name": "MUBARAK/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "MUBARAK",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:MUBARAKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:NEARUSDT",
+      "display_name": "NEAR/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "NEAR",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:NEARUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:RSRUSDT",
+      "display_name": "RSR/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "RSR",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:RSRUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:WUSDT",
+      "display_name": "W/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "W",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:WUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ONDOUSDT",
+      "display_name": "ONDO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ONDO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ONDOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ZROUSDT",
+      "display_name": "ZRO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ZRO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ZROUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:TAOUSDT",
+      "display_name": "TAO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TAO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TAOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:WLDUSDT",
+      "display_name": "WLD/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "WLD",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:WLDUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:PUMPUSDT",
+      "display_name": "PUMP/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PUMP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PUMPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:UUSDT",
+      "display_name": "U/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "U",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:UUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:MAGICUSDT",
+      "display_name": "MAGIC/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "MAGIC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:MAGICUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:CTKUSDT",
+      "display_name": "CTK/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CTK",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CTKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:FDUSDUSDT",
+      "display_name": "FDUSD/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FDUSD",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FDUSDUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:XRPUSDT",
+      "display_name": "XRP/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "XRP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:XRPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:PEPEUSDT",
+      "display_name": "PEPE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PEPE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PEPEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SUSDT",
+      "display_name": "S/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "S",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:GTCUSDT",
+      "display_name": "GTC/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "GTC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:GTCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SNDKBUSDT",
+      "display_name": "SNDKB/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SNDKB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SNDKBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:DOGEUSDT",
+      "display_name": "DOGE/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "DOGE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:DOGEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:QNTUSDT",
+      "display_name": "QNT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "QNT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:QNTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:PLUMEUSDT",
+      "display_name": "PLUME/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PLUME",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PLUMEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:HYPEUSDT",
+      "display_name": "HYPE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "HYPE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:HYPEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:FETUSDT",
+      "display_name": "FET/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FET",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FETUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:FILUSDT",
+      "display_name": "FIL/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "FIL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:FILUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:ONDOUSDT",
+      "display_name": "ONDO/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "ONDO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:ONDOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:INJUSDT",
+      "display_name": "INJ/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "INJ",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:INJUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:PAXGUSDT",
+      "display_name": "PAXG/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PAXG",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PAXGUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:SUIUSDT",
+      "display_name": "SUI/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "SUI",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:SUIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:IOUSDT",
+      "display_name": "IO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "IO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:IOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:APTUSDT",
+      "display_name": "APT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "APT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:APTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:CFXUSDT",
+      "display_name": "CFX/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CFX",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CFXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:RVNUSDT",
+      "display_name": "RVN/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "RVN",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:RVNUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:TIAUSDT",
+      "display_name": "TIA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TIA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TIAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:RLCUSDT",
+      "display_name": "RLC/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "RLC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:RLCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:HYPEUSDT",
+      "display_name": "HYPE/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "HYPE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:HYPEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:CKBUSDT",
+      "display_name": "CKB/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CKB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CKBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:BNBUSDT",
+      "display_name": "BNB/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "BNB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:BNBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:PYTHUSDT",
+      "display_name": "PYTH/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PYTH",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PYTHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:REDUSDT",
+      "display_name": "RED/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "RED",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:REDUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:OKBUSDT",
+      "display_name": "OKB/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "OKB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:OKBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:DATAUSDT",
+      "display_name": "DATA/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "DATA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:DATAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:POLUSDT",
+      "display_name": "POL/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "POL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:POLUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ARBUSDT",
+      "display_name": "ARB/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ARB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ARBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:UNIUSDT",
+      "display_name": "UNI/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "UNI",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:UNIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:HBARUSDT",
+      "display_name": "HBAR/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "HBAR",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:HBARUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:LUMIAUSDT",
+      "display_name": "LUMIA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LUMIA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LUMIAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ZKUSDT",
+      "display_name": "ZK/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ZK",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ZKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:MAGICUSDT",
+      "display_name": "MAGIC/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "MAGIC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:MAGICUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:CYBERUSDT",
+      "display_name": "CYBER/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CYBER",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CYBERUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:RENDERUSDT",
+      "display_name": "RENDER/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "RENDER",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:RENDERUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:WLDUSDT",
+      "display_name": "WLD/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "WLD",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:WLDUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ASTERUSDT",
+      "display_name": "ASTER/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ASTER",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ASTERUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:GRASSUSDT",
+      "display_name": "GRASS/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "GRASS",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:GRASSUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ALGOUSDT",
+      "display_name": "ALGO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ALGO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ALGOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:ZROUSDT",
+      "display_name": "ZRO/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "ZRO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:ZROUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:EIGENUSDT",
+      "display_name": "EIGEN/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "EIGEN",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:EIGENUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:PENGUUSDT",
+      "display_name": "PENGU/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PENGU",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PENGUUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:GRAMUSDT",
+      "display_name": "GRAM/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "GRAM",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:GRAMUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:LTCUSDT",
+      "display_name": "LTC/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "LTC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:LTCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BOMEUSDT",
+      "display_name": "BOME/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BOME",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BOMEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:DASHUSDT",
+      "display_name": "DASH/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DASH",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DASHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:TIAUSDT",
+      "display_name": "TIA/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "TIA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:TIAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:CHIPUSDT",
+      "display_name": "CHIP/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CHIP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CHIPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:LITUSDT",
+      "display_name": "LIT/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "LIT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:LITUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:XLMUSDT",
+      "display_name": "XLM/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "XLM",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:XLMUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ALTUSDT",
+      "display_name": "ALT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ALT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ALTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:ENAUSDT",
+      "display_name": "ENA/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "ENA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:ENAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:OPUSDT",
+      "display_name": "OP/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "OP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:OPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:DOSUSDT",
+      "display_name": "DOS/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "DOS",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:DOSUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:PUMPUSDT",
+      "display_name": "PUMP/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "PUMP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:PUMPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:RSRUSDT",
+      "display_name": "RSR/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "RSR",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:RSRUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BATUSDT",
+      "display_name": "BAT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BAT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BATUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ERAUSDT",
+      "display_name": "ERA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ERA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ERAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:CAKEUSDT",
+      "display_name": "CAKE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CAKE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CAKEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:MARSCOINUSDT",
+      "display_name": "MARSCOIN/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "MARSCOIN",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:MARSCOINUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:ARBUSDT",
+      "display_name": "ARB/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "ARB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:ARBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:OGNUSDT",
+      "display_name": "OGN/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "OGN",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:OGNUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SXTUSDT",
+      "display_name": "SXT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SXT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SXTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:XPLUSDT",
+      "display_name": "XPL/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "XPL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:XPLUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ETHFIUSDT",
+      "display_name": "ETHFI/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ETHFI",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ETHFIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:LDOUSDT",
+      "display_name": "LDO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LDO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LDOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:METUSDT",
+      "display_name": "MET/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "MET",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:METUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:EURUSDT",
+      "display_name": "EUR/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "EUR",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:EURUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:RAYUSDT",
+      "display_name": "RAY/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "RAY",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:RAYUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:LINKUSDT",
+      "display_name": "LINK/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "LINK",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:LINKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:DYMUSDT",
+      "display_name": "DYM/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DYM",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DYMUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:MEGAUSDT",
+      "display_name": "MEGA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "MEGA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:MEGAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:AEROUSDT",
+      "display_name": "AERO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AERO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AEROUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SEIUSDT",
+      "display_name": "SEI/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SEI",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SEIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:AAVEUSDT",
+      "display_name": "AAVE/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "AAVE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:AAVEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:MINAUSDT",
+      "display_name": "MINA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "MINA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:MINAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:JSTUSDT",
+      "display_name": "JST/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "JST",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:JSTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:NIULAIUSDT",
+      "display_name": "NIULAI/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "NIULAI",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:NIULAIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:SUSDT",
+      "display_name": "S/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "S",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:SUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:GRAMUSDT",
+      "display_name": "GRAM/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "GRAM",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:GRAMUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:KORUBUSDT",
+      "display_name": "KORUB/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "KORUB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:KORUBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SANDUSDT",
+      "display_name": "SAND/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SAND",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SANDUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:AXLUSDT",
+      "display_name": "AXL/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AXL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AXLUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BIANRENSHENGUSDT",
+      "display_name": "BIANRENSHENG/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BIANRENSHENG",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BIANRENSHENGUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:ADAUSDT",
+      "display_name": "ADA/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "ADA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:ADAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:PONSUSDT",
+      "display_name": "PONS/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "PONS",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:PONSUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:MANTAUSDT",
+      "display_name": "MANTA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "MANTA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:MANTAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:CRVUSDT",
+      "display_name": "CRV/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CRV",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CRVUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:EIGENUSDT",
+      "display_name": "EIGEN/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "EIGEN",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:EIGENUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:PHAUSDT",
+      "display_name": "PHA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PHA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PHAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:VIRTUALUSDT",
+      "display_name": "VIRTUAL/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "VIRTUAL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:VIRTUALUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:WIFUSDT",
+      "display_name": "WIF/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "WIF",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:WIFUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:JTOUSDT",
+      "display_name": "JTO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "JTO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:JTOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ORCAUSDT",
+      "display_name": "ORCA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ORCA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ORCAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:FLOWUSDT",
+      "display_name": "FLOW/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FLOW",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FLOWUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:NMRUSDT",
+      "display_name": "NMR/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "NMR",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:NMRUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:NIGHTUSDT",
+      "display_name": "NIGHT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "NIGHT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:NIGHTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:NVDABUSDT",
+      "display_name": "NVDAB/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "NVDAB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:NVDABUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:MORPHOUSDT",
+      "display_name": "MORPHO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "MORPHO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:MORPHOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:TAOUSDT",
+      "display_name": "TAO/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "TAO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:TAOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:PYTHUSDT",
+      "display_name": "PYTH/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "PYTH",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:PYTHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:INJUSDT",
+      "display_name": "INJ/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "INJ",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:INJUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SHIBUSDT",
+      "display_name": "SHIB/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SHIB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SHIBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:XLMUSDT",
+      "display_name": "XLM/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "XLM",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:XLMUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:CHIPUSDT",
+      "display_name": "CHIP/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "CHIP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:CHIPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ARUSDT",
+      "display_name": "AR/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AR",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ARUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:RENDERUSDT",
+      "display_name": "RENDER/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "RENDER",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:RENDERUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:NILUSDT",
+      "display_name": "NIL/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "NIL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:NILUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SKYUSDT",
+      "display_name": "SKY/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SKY",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SKYUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:MOVRUSDT",
+      "display_name": "MOVR/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "MOVR",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:MOVRUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:DOTUSDT",
+      "display_name": "DOT/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "DOT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:DOTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ZENUSDT",
+      "display_name": "ZEN/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ZEN",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ZENUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:XPLUSDT",
+      "display_name": "XPL/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "XPL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:XPLUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ETCUSDT",
+      "display_name": "ETC/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ETC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ETCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BERAUSDT",
+      "display_name": "BERA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BERA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BERAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SENTUSDT",
+      "display_name": "SENT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SENT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SENTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SYRUPUSDT",
+      "display_name": "SYRUP/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SYRUP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SYRUPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:XMSTRUSDT",
+      "display_name": "MSTRX/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "MSTRX",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:XMSTRUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:POLUSDT",
+      "display_name": "POL/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "POL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:POLUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ZAMAUSDT",
+      "display_name": "ZAMA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ZAMA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ZAMAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:WALUSDT",
+      "display_name": "WAL/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "WAL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:WALUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:CTUSDT",
+      "display_name": "CT/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "CT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:CTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:BOMEUSDT",
+      "display_name": "BOME/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "BOME",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:BOMEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:API3USDT",
+      "display_name": "API3/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "API3",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:API3USDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:NIGHTUSDT",
+      "display_name": "NIGHT/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "NIGHT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:NIGHTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:KITEUSDT",
+      "display_name": "KITE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "KITE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:KITEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:BATUSDT",
+      "display_name": "BAT/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "BAT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:BATUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:FFUSDT",
+      "display_name": "FF/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FF",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FFUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ONEUSDT",
+      "display_name": "ONE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ONE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ONEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SAGAUSDT",
+      "display_name": "SAGA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SAGA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SAGAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:FETUSDT",
+      "display_name": "FET/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "FET",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:FETUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ROSEUSDT",
+      "display_name": "ROSE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ROSE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ROSEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:HUMAUSDT",
+      "display_name": "HUMA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "HUMA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:HUMAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:RAYUSDT",
+      "display_name": "RAY/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "RAY",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:RAYUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:SANDUSDT",
+      "display_name": "SAND/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "SAND",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:SANDUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:KAIAUSDT",
+      "display_name": "KAIA/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "KAIA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:KAIAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:STXUSDT",
+      "display_name": "STX/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "STX",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:STXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:DRAMBUSDT",
+      "display_name": "DRAMB/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DRAMB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DRAMBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:WIFUSDT",
+      "display_name": "WIF/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "WIF",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:WIFUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ACEUSDT",
+      "display_name": "ACE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ACE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ACEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:0GUSDT",
+      "display_name": "0G/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "0G",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:0GUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:LPTUSDT",
+      "display_name": "LPT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LPT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LPTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BONKUSDT",
+      "display_name": "BONK/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BONK",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BONKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:MEGAUSDT",
+      "display_name": "MEGA/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "MEGA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:MEGAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:EDUUSDT",
+      "display_name": "EDU/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "EDU",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:EDUUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:VETUSDT",
+      "display_name": "VET/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "VET",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:VETUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:JTOUSDT",
+      "display_name": "JTO/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "JTO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:JTOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:PIUSDT",
+      "display_name": "PI/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "PI",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:PIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BEAMXUSDT",
+      "display_name": "BEAM/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BEAM",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BEAMXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SYNUSDT",
+      "display_name": "SYN/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SYN",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SYNUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ORDIUSDT",
+      "display_name": "ORDI/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ORDI",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ORDIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:GLMRUSDT",
+      "display_name": "GLMR/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "GLMR",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:GLMRUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:PIXELUSDT",
+      "display_name": "PIXEL/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PIXEL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PIXELUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:TSLABUSDT",
+      "display_name": "TSLAB/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TSLAB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TSLABUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ARPAUSDT",
+      "display_name": "ARPA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ARPA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ARPAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SCRUSDT",
+      "display_name": "SCR/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SCR",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SCRUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:CUSDT",
+      "display_name": "C/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "C",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:COMPUSDT",
+      "display_name": "COMP/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "COMP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:COMPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SAHARAUSDT",
+      "display_name": "SAHARA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SAHARA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SAHARAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:DUSKUSDT",
+      "display_name": "DUSK/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DUSK",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DUSKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:ALGOUSDT",
+      "display_name": "ALGO/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "ALGO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:ALGOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:TUTUSDT",
+      "display_name": "TUT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TUT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TUTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:C98USDT",
+      "display_name": "C98/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "C98",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:C98USDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:VELODROMEUSDT",
+      "display_name": "VELO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "VELO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:VELODROMEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BBUSDT",
+      "display_name": "BB/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:2ZUSDT",
+      "display_name": "2Z/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "2Z",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:2ZUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:DEXEUSDT",
+      "display_name": "DEXE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DEXE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DEXEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:AVNTUSDT",
+      "display_name": "AVNT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AVNT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AVNTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:GMXUSDT",
+      "display_name": "GMX/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "GMX",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:GMXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:GIGGLEUSDT",
+      "display_name": "GIGGLE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "GIGGLE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:GIGGLEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:FLUXUSDT",
+      "display_name": "FLUX/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FLUX",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FLUXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:FIDAUSDT",
+      "display_name": "FIDA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FIDA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FIDAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:CHZUSDT",
+      "display_name": "CHZ/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CHZ",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CHZUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:CBRSBUSDT",
+      "display_name": "CBRSB/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CBRSB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CBRSBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:MANAUSDT",
+      "display_name": "MANA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "MANA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:MANAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:SEIUSDT",
+      "display_name": "SEI/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "SEI",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:SEIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:FLOKIUSDT",
+      "display_name": "FLOKI/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FLOKI",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FLOKIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:LUNCUSDT",
+      "display_name": "LUNC/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LUNC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LUNCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:NEIROUSDT",
+      "display_name": "NEIRO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "NEIRO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:NEIROUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ESPUSDT",
+      "display_name": "ESP/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ESP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ESPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:DYDXUSDT",
+      "display_name": "DYDX/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "DYDX",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:DYDXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:USDEUSDT",
+      "display_name": "USDE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "USDE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:USDEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:AVAUSDT",
+      "display_name": "AVA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AVA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AVAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:AUDIOUSDT",
+      "display_name": "AUDIO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AUDIO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AUDIOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:IMXUSDT",
+      "display_name": "IMX/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "IMX",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:IMXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:APEUSDT",
+      "display_name": "APE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "APE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:APEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BICOUSDT",
+      "display_name": "BICO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BICO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BICOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:VVVUSDT",
+      "display_name": "VVV/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "VVV",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:VVVUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:CPUSDT",
+      "display_name": "CP/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "CP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:CPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ZKPUSDT",
+      "display_name": "ZKP/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ZKP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ZKPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:GMTUSDT",
+      "display_name": "GMT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "GMT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:GMTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:CELOUSDT",
+      "display_name": "CELO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CELO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CELOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:INITUSDT",
+      "display_name": "INIT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "INIT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:INITUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ATUSDT",
+      "display_name": "AT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ATUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:KAITOUSDT",
+      "display_name": "KAITO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "KAITO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:KAITOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:OKX:2ZUSDT",
+      "display_name": "2Z/USDT OKX spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "OKX",
+      "currency": "USDT",
+      "base_asset": "2Z",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OKX:2ZUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  }
+]

@@ -1,8 +1,9 @@
 # FastAPI Batch 1: independent processes
 
-This branch is development only. It has not been merged or deployed. The running
-`tradingview` Compose project and its approximately 100-source collector belong to the
-parallel collector session. Do not run this branch's Compose commands in that project.
+Both development streams are integrated locally and remain undeployed. The running
+`tradingview` project still uses its legacy 100-source combined collector. Do not run this
+branch's Compose commands in that project. See [integration verification](collector-fastapi-integration.md)
+for exact commits, isolated test resources, the conflict inventory and replacement/rollback.
 
 ## Previous and new architecture
 
@@ -143,8 +144,9 @@ The default Compose `app` is now API-only; `collector` is a separate service. Ea
 on the explicit migration service, never on the other process. Guest/pilot overrides now
 target `collector`; they do not change registry contents or collection targets. Earlier
 pilot/guest deployment commands describe the old deployment and are not this branch's
-launch procedure. Reconcile the running owner's scale override deliberately before any
-future integration. No new Compose application deployment was performed in this session.
+launch procedure. The integrated scale override targets collector and requires a reviewed
+lock-aware image; the preserved legacy scale override/helper are schema-0004 only.
+No new Compose application deployment was performed during integration.
 
 ## Disposable validation and preservation
 
@@ -200,6 +202,7 @@ Batch 2 must provision a separate SELECT-only API role, grant access to instrume
 provider mappings, history/latest/coverage, aggregate views, alembic_version and
 collector_status, and supply independent API/collector secrets. Session read-only mode is
 already enforced but is not a substitute for database role permissions. Integration must
-also resolve the parallel collector's status/migration/Compose/HANDOFF overlaps, keep the
-100-source target unchanged, and rerun the complete suite. Batch 3 must implement/test
+use the verified integration commit as its base. The collector's status/migration/Compose/
+HANDOFF overlaps are reconciled and the existing deployment's 100-source target is unchanged.
+Batch 3 must implement/test
 cross-process streaming and collector-independent downstream subscriptions.

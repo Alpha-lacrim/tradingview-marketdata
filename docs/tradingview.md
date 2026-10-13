@@ -1,10 +1,19 @@
 # Experimental TradingView guest market data
 
-This FastAPI branch separates collection from serving; its Compose guest overrides target
+The integrated branch separates collection from serving; its Compose guest overrides target
 `collector`, while `app` serves database reads only. See [process separation](fastapi-process-separation.md)
 for current role commands, health snapshots and WebSocket limits. Deployment commands and
 measurements below describe the preceding combined deployment. Do not apply them to the
-running collector during parallel development; its owner controls that deployment.
+running collector during integration; its owner controls that deployment.
+
+Current business candidates, broker-specific qualification and volume limitations are in
+[business-universe qualification](business-universe-qualification.md). The deployed 100
+profile is the preserved accuracy-selected baseline, not that unapproved business proposal.
+FXCM chart identities use FX: while quotes report venue FXCM; the tested scoped quote fix
+preserves identity/delay gates. Current captures found numeric raw FXCM/TVC volume vectors
+without validated units/type; do not call them absent or traded volume. The reviewed parser
+retains finite raw values in unknown, non-additive metadata while typed volume remains NULL.
+These two provider fixes are tested in isolation and are not in the retained deployed image.
 
 For the separately authorized 128/256/512-instrument multi-WebSocket investigation with
 actual native candle commits, completeness/latency/resource evidence and controlled recovery,
@@ -160,7 +169,7 @@ threshold, session observation flag, stale flag, bounded source update mode and 
 category. Counters persist across reconnects and reset on process restart. Consecutive reconnect
 failures reset only after feed health is restored; `last_error` retains the last historical
 error after recovery. Arbitrary upstream text, session details and frames are never exposed.
-The current registry contains 17 symbols; the existing local subscription cap bounds this
+The original/default registry contains 17 symbols; the existing local subscription cap bounds this
 adapter's health payload to 100 symbols.
 
 `/health` adds `database_state` and `provider_transports` to its existing summary, and still

@@ -273,9 +273,16 @@ class TradingViewGuestProvider(MarketDataProvider):
         if delay is not None and delay != 0:
             self.reject(symbol, "tradingview_not_realtime")
         instrument, mapping = pair
+        # FXCM chart symbols use FX:, while captured quote identity reports FXCM.
+        # Keep the exact source symbol and require the broker's reported quote venue.
+        quote_exchange = (
+            "FXCM"
+            if instrument.exchange == "FX" and mapping.provider_symbol.startswith("FX:")
+            else instrument.exchange
+        )
         if all(key in metadata for key in IDENTITY_FIELDS) and (
             metadata["type"] != mapping.metadata["source_type"]
-            or str(metadata["exchange"]).casefold() != instrument.exchange.casefold()
+            or str(metadata["exchange"]).casefold() != quote_exchange.casefold()
             or metadata["currency_code"] != instrument.currency
         ):
             self.reject(symbol, "tradingview_source_identity_mismatch")
