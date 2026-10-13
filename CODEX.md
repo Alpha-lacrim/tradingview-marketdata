@@ -1226,6 +1226,12 @@ setup/repository overview; `docs/platform-guide.md` documents activation, operat
 schema semantics and provider references. `config/` holds
 non-secret instrument registries. `migrations/versions/` is the schema source of truth.
 
+Company REST contracts are in `api_models.py` / `api_v1.py`; shared persisted-observation
+selection is in `price_selection.py`. See `docs/api.md` for bounded native-history queries,
+explicit source identity, decimal serialization, production bearer/CORS configuration,
+company backend browser authentication and DBA-scoped SELECT-role setup. Validate API
+changes with `compose.batch2-test.yaml` under a separate project, never deployed resources.
+
 Alembic head is `0005`; 0005 adds only a collector health snapshot table. `candles.py` owns
 completed native candle validation/scheduling;
 `candle_ingestion.py` owns bounded minute collection/recovery through the optional

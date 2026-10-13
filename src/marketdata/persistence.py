@@ -3,7 +3,7 @@ from __future__ import annotations
 import asyncio
 import json
 from datetime import UTC, datetime, timedelta
-from typing import Any, Literal
+from typing import Any, Literal, cast
 from uuid import UUID
 
 import asyncpg
@@ -11,6 +11,7 @@ import asyncpg
 from marketdata.candles import MarketCandle
 from marketdata.config import Settings
 from marketdata.domain import Instrument, ProviderInstrument, RegistryEntry, Tick, utc_now
+from marketdata.price_selection import select_price
 from marketdata.providers.base import ProviderHealth
 from marketdata.registry import Registry
 from marketdata.sessions import classify_ranges
@@ -84,6 +85,7 @@ class Store:
             timeout=self.settings.db_timeout_seconds,
             server_settings={
                 "timezone": "UTC",
+                "statement_timeout": str(int(self.settings.db_timeout_seconds * 1000)),
                 "application_name": "marketdata-api" if self.read_only else "marketdata-collector",
                 **({"default_transaction_read_only": "on"} if self.read_only else {}),
             },
@@ -353,6 +355,23 @@ class Store:
     async def latest(
         self, symbol: str | None, provider: str | None, limit: int, after: str = ""
     ) -> list[Tick | MarketCandle]:
+        if self.candle_providers is None:
+            rows = await self.source_records(
+                [symbol] if symbol else None,
+                provider,
+                None,
+                None,
+                limit,
+                after,
+                observed_only=True,
+            )
+            now = rows[0]["as_of"] if rows else utc_now()
+            return [
+                observation
+                for row in rows
+                if (observation := select_price(row["tick"], row["candle"], now, self.settings))
+                is not None
+            ]
         async with self.connection() as c:
             rows = await c.fetch(
                 """WITH current AS (
@@ -380,6 +399,151 @@ class Store:
             (MarketCandle if r["kind"] == "candle" else Tick).model_validate_json(r["payload"])
             for r in rows
         ]
+
+    async def known_symbols(self, symbols: list[str]) -> set[str]:
+        async with self.connection() as c:
+            rows = await c.fetch(
+                "SELECT canonical_symbol FROM instruments WHERE canonical_symbol=ANY($1::text[])",
+                symbols,
+            )
+        return {r["canonical_symbol"] for r in rows}
+
+    async def source_records(
+        self,
+        symbols: list[str] | None,
+        provider: str | None,
+        provider_symbol: str | None,
+        asset_class: str | None,
+        limit: int,
+        after: str = "",
+        *,
+        observed_only: bool = False,
+    ) -> list[dict[str, Any]]:
+        """One bounded bulk lookup of mappings and dedicated latest-state tables."""
+        async with self.connection() as c:
+            rows = await c.fetch(
+                """
+                SELECT statement_timestamp() AS as_of,
+                    i.payload AS instrument,p.provider,p.provider_symbol,p.realtime_status,
+                    p.data_delay_seconds,t.payload AS tick,lc.payload AS candle,
+                    EXISTS(SELECT 1 FROM candle_coverage cc WHERE cc.instrument_id=i.id
+                        AND cc.provider=p.provider AND cc.price_basis='native')
+                        OR lc.payload IS NOT NULL AS native_history
+                FROM instruments i JOIN provider_instruments p ON p.instrument_id=i.id
+                LEFT JOIN latest_prices t ON t.instrument_id=i.id AND t.provider=p.provider
+                    AND t.payload->>'provider_symbol'=p.provider_symbol
+                LEFT JOIN latest_candles lc ON lc.instrument_id=i.id AND lc.provider=p.provider
+                    AND lc.price_basis='native' AND lc.payload->>'provider_symbol'=p.provider_symbol
+                WHERE ($1::text[] IS NULL OR i.canonical_symbol=ANY($1))
+                    AND ($2::text IS NULL OR p.provider=$2)
+                    AND ($3::text IS NULL OR p.provider_symbol=$3)
+                    AND ($4::text IS NULL OR i.asset_class=$4)
+                    AND (i.canonical_symbol,p.provider) >
+                        (split_part($5,'/',1),split_part($5,'/',2))
+                    AND (NOT $7 OR t.payload IS NOT NULL OR lc.payload IS NOT NULL)
+                ORDER BY i.canonical_symbol,p.provider LIMIT $6
+                """,
+                symbols,
+                provider,
+                provider_symbol,
+                asset_class,
+                after,
+                limit,
+                observed_only,
+            )
+        return [
+            dict(
+                r,
+                instrument=Instrument.model_validate_json(r["instrument"]),
+                tick=Tick.model_validate_json(r["tick"]) if r["tick"] else None,
+                candle=MarketCandle.model_validate_json(r["candle"]) if r["candle"] else None,
+            )
+            for r in rows
+        ]
+
+    async def coverage_summary(
+        self,
+        identities: list[tuple[UUID, str]],
+        start: datetime,
+        end: datetime,
+        as_of: datetime,
+    ) -> list[dict[str, Any]]:
+        """Clip stored tri-state ranges, treating untracked minutes as UNKNOWN.
+
+        Counts are calculated before the bounded gap-detail projection. No historical
+        minutes or recovered provenance are synthesized.
+        """
+        async with self.connection() as c:
+            rows = await c.fetch(
+                """
+                WITH requested AS (
+                    SELECT * FROM unnest($1::uuid[], $2::text[]) AS r(instrument_id,provider)
+                ), clipped AS (
+                    SELECT r.*,c.coverage_start,c.coverage_end,
+                        tstzmultirange(tstzrange($3,$4,'[)')) AS window,
+                        coalesce(c.missing,'{}'::tstzmultirange) *
+                            tstzmultirange(tstzrange($3,$4,'[)')) AS missing,
+                        coalesce(c.not_expected,'{}'::tstzmultirange) *
+                            tstzmultirange(tstzrange($3,$4,'[)')) AS not_expected,
+                        (coalesce(c.unknown,'{}'::tstzmultirange) *
+                            tstzmultirange(tstzrange($3,$4,'[)'))) +
+                            (tstzmultirange(tstzrange($3,$4,'[)')) -
+                                CASE WHEN c.coverage_start IS NULL THEN '{}'::tstzmultirange
+                                ELSE tstzmultirange(tstzrange(c.coverage_start,c.coverage_end,'[)'))
+                                END) AS unknown
+                    FROM requested r LEFT JOIN candle_coverage c USING(instrument_id,provider)
+                    WHERE c.price_basis='native' OR c.price_basis IS NULL
+                )
+                SELECT x.instrument_id,x.provider,x.coverage_start,x.coverage_end,
+                    (SELECT coalesce(sum(extract(epoch FROM upper(g)-lower(g))/60),0)::bigint
+                        FROM unnest(x.missing) g) AS missing_count,
+                    (SELECT coalesce(sum(extract(epoch FROM upper(g)-lower(g))/60),0)::bigint
+                        FROM unnest(x.not_expected) g) AS not_expected_count,
+                    (SELECT coalesce(sum(extract(epoch FROM upper(g)-lower(g))/60),0)::bigint
+                        FROM unnest(x.unknown) g) AS unknown_count,
+                    (SELECT count(*) FROM unnest(x.missing)) AS missing_range_count,
+                    ARRAY(SELECT g FROM unnest(x.missing) g ORDER BY lower(g) LIMIT 100)
+                        AS missing_ranges,
+                    stats.persisted,stats.recovered,lc.bucket_start AS last_persisted,
+                    CASE WHEN (lc.payload->>'bucket_end')::timestamptz <= $5
+                        THEN lc.bucket_start END AS last_completed
+                FROM clipped x LEFT JOIN LATERAL (
+                    SELECT count(*) AS persisted,
+                        count(*) FILTER (WHERE metadata->>'backfilled'='true') AS recovered
+                    FROM market_candles m WHERE m.instrument_id=x.instrument_id
+                        AND m.provider=x.provider AND m.interval='1m' AND m.price_basis='native'
+                        AND m.bucket_start >= $3 AND m.bucket_start < $4 AND m.bucket_end <= $5
+                ) stats ON TRUE
+                LEFT JOIN latest_candles lc USING(instrument_id,provider)
+                WHERE lc.price_basis='native' OR lc.price_basis IS NULL
+                """,
+                [i for i, _ in identities],
+                [p for _, p in identities],
+                start,
+                end,
+                as_of,
+            )
+        return [dict(r) for r in rows]
+
+    async def coverage_health(self) -> Literal["complete", "gaps", "unknown"]:
+        async with self.connection() as c:
+            return cast(
+                Literal["complete", "gaps", "unknown"],
+                await c.fetchval("""
+                SELECT CASE
+                    WHEN EXISTS(SELECT 1 FROM candle_coverage WHERE NOT isempty(missing))
+                        THEN 'gaps'
+                    WHEN EXISTS(SELECT 1 FROM candle_coverage WHERE NOT isempty(unknown))
+                        OR NOT EXISTS(SELECT 1 FROM candle_coverage)
+                        OR EXISTS(SELECT 1 FROM candle_coverage
+                            WHERE coverage_start >= coverage_end)
+                        OR EXISTS(SELECT 1 FROM provider_instruments p
+                            WHERE NOT EXISTS(SELECT 1 FROM candle_coverage c
+                                WHERE c.instrument_id=p.instrument_id AND c.provider=p.provider
+                                    AND c.price_basis='native')) THEN 'unknown'
+                    ELSE 'complete' END
+            """),
+            )
 
     async def candle_progress(self, instrument_id: UUID, provider: str) -> dict[str, Any]:
         async with self.connection() as c:
@@ -654,6 +818,10 @@ class Store:
         interval: str,
         limit: int,
         after_status: str | None = None,
+        *,
+        as_of: datetime | None = None,
+        provider_symbol: str | None = None,
+        cursor: tuple[datetime, str] | None = None,
     ) -> list[dict[str, Any]]:
         if interval not in INTERVALS or interval == "1s":
             raise ValueError("native candles support 1m or larger intervals")
@@ -666,8 +834,10 @@ class Store:
                     (array_agg(open ORDER BY bucket_start))[1] AS open,
                     max(high) AS high,min(low) AS low,
                     (array_agg(close ORDER BY bucket_start DESC))[1] AS close,
-                    CASE WHEN bool_and(coalesce((metadata->>'volume_additive')::boolean,false))
+                    CASE WHEN ($6::text::interval=interval '1 minute') OR
+                        (bool_and(coalesce((metadata->>'volume_additive')::boolean,false))
                         AND count(volume)=count(*) AND count(DISTINCT metadata->>'volume_type')=1
+                        )
                         THEN sum(volume) ELSE NULL END AS volume,
                     count(*) AS observations,
                     CASE WHEN count(DISTINCT provider_symbol)=1 THEN min(provider_symbol)
@@ -680,9 +850,13 @@ class Store:
                 FROM market_candles WHERE instrument_id=$1 AND provider=$2
                     AND interval='1m' AND price_basis='native'
                     AND bucket_start >= $3 AND bucket_start < $4
+                    AND ($8::timestamptz IS NULL OR bucket_end <= $8)
+                    AND ($9::text IS NULL OR provider_symbol=$9)
                 GROUP BY bucket,provider,realtime_status
                 ) SELECT * FROM rolled
                 WHERE ($7::text IS NULL OR bucket > $3 OR realtime_status > $7)
+                    AND ($8::timestamptz IS NULL OR bucket+$6::text::interval <= $8)
+                    AND ($10::timestamptz IS NULL OR (bucket,realtime_status) > ($10,$11::text))
                 ORDER BY bucket,realtime_status LIMIT $5
             """,
                 instrument_id,
@@ -692,6 +866,10 @@ class Store:
                 limit,
                 INTERVALS[interval],
                 after_status,
+                as_of,
+                provider_symbol,
+                cursor[0] if cursor else None,
+                cursor[1] if cursor else None,
             )
         return [
             dict(r, instrument_id=instrument_id, metadata=json.loads(r["metadata"])) for r in rows

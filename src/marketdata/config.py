@@ -46,6 +46,10 @@ class Settings(BaseSettings):
     websocket_max_symbols: int = Field(default=500, ge=1, le=5000)
     websocket_send_timeout_seconds: float = Field(default=5, gt=0)
     api_key: SecretStr | None = None
+    api_environment: Literal["development", "test", "production"] = "development"
+    api_cors_origins: list[str] = Field(default_factory=list)
+    api_history_max_days: int = Field(default=31, ge=1, le=366)
+    api_max_rows: int = Field(default=1000, ge=1, le=1000)
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
     binance_ws_url: str = "wss://stream.binance.com:9443"
     binance_rest_url: str = "https://api.binance.com"
@@ -77,6 +81,26 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def valid(self) -> Self:
+        if self.api_key is not None and not self.api_key.get_secret_value().strip():
+            raise ValueError("API_KEY must not be empty")
+        if self.api_environment == "production" and (
+            self.api_key is None or len(self.api_key.get_secret_value()) < 32
+        ):
+            raise ValueError("production requires an API_KEY of at least 32 characters")
+        for origin in self.api_cors_origins:
+            parsed_origin = urlsplit(origin)
+            if (
+                parsed_origin.scheme not in ("http", "https")
+                or not parsed_origin.hostname
+                or parsed_origin.username
+                or parsed_origin.password
+                or parsed_origin.path
+                or parsed_origin.query
+                or parsed_origin.fragment
+                or "*" in origin
+                or (self.api_environment == "production" and parsed_origin.scheme != "https")
+            ):
+                raise ValueError("CORS requires explicit origins; production requires HTTPS")
         if self.collector_status_ttl_seconds <= self.collector_status_interval_seconds:
             raise ValueError("collector status TTL must exceed its publish interval")
         if self.application_role != "api" and self.db_pool_max < 2:

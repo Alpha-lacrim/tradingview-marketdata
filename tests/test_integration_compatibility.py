@@ -185,10 +185,10 @@ async def test_broker_api_reads_during_independent_recovery_keep_quotes_and_gaps
             assert response.status_code == 200, response.text
             latest = response.json()[0]
             assert latest["provider_symbol"] == pairs[index][1].provider_symbol
-            assert latest["last"] == str(candles[index].close) and latest["stale"]
-            assert latest["price_basis"] == "candle_close"
-            # The existing latest route prefers native candles when both are stored.
-            # Quote history must still remain independently queryable for each broker.
+            assert latest["last"] == str(100 + index) and latest["stale"]
+            assert latest["price_type"] == "quote"
+            # Batch 2 uses the newer persisted observation when both candidates are stale.
+            # Native history and quotes must remain independently queryable for each broker.
             ticks = await client.get(
                 f"/ticks/{pairs[index][0].canonical_symbol}",
                 params={

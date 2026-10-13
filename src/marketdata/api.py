@@ -5,7 +5,7 @@ import base64
 import hmac
 import json
 import logging
-from collections.abc import AsyncIterator
+from collections.abc import AsyncIterator, Mapping
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
@@ -15,10 +15,15 @@ from uuid import UUID
 import anyio
 import asyncpg
 from fastapi import FastAPI, HTTPException, Query, Request, WebSocket, WebSocketDisconnect
+from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
+from fastapi.routing import APIRoute
 from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
 from pydantic import BaseModel, Field, ValidationError
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
+from marketdata.api_v1 import create_router
 from marketdata.candles import MarketCandle
 from marketdata.config import Settings
 from marketdata.domain import DataStatus, Instrument, ProviderInstrument, Tick, utc, utc_now
@@ -44,6 +49,7 @@ class TickPage(BaseModel):
 
 
 class LatestPrice(Tick):
+    price_type: Literal["quote"] = "quote"
     age_ms: int
     stale: bool
     stale_after_seconds: float
@@ -155,7 +161,10 @@ def history_window(
 def authorized(value: str | None, settings: Settings) -> bool:
     if settings.api_key is None:
         return True
-    return hmac.compare_digest(value or "", "Bearer " + settings.api_key.get_secret_value())
+    scheme, _, token = (value or "").partition(" ")
+    return scheme.lower() == "bearer" and hmac.compare_digest(
+        token.encode(), settings.api_key.get_secret_value().encode()
+    )
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
@@ -200,25 +209,89 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
             finally:
                 await store.close()
 
-    app = FastAPI(title="Multi-asset market data", version="0.1.0", lifespan=lifespan)
+    app = FastAPI(
+        title="Multi-asset market data",
+        version="1.0.0",
+        lifespan=lifespan,
+    )
 
     app.state.service = None
+    # Initialized before lifespan too, for tooling and tests; no connection is opened here.
+    app.state.store = store
+
+    def error_response(
+        request: Request, status: int, message: str, headers: Mapping[str, str] | None = None
+    ) -> JSONResponse:
+        codes = {
+            401: "authentication_required",
+            403: "access_denied",
+            404: "not_found",
+            422: "invalid_request",
+            503: "database_unavailable",
+        }
+        body = (
+            {"error": {"code": codes.get(status, "request_failed"), "message": message}}
+            if request.url.path.startswith("/api/v1/")
+            else {"detail": message}
+        )
+        return JSONResponse(body, status_code=status, headers=headers)
 
     @app.middleware("http")
     async def authenticate(request: Request, call_next: Any) -> Response:
-        if request.url.path != "/health" and not authorized(
-            request.headers.get("authorization"), settings
-        ):
-            return JSONResponse({"detail": "authentication required"}, status_code=401)
-        response: Response = await call_next(request)
+        if request.url.path not in {
+            "/health",
+            "/docs",
+            "/redoc",
+            "/openapi.json",
+            "/docs/oauth2-redirect",
+        } and not authorized(request.headers.get("authorization"), settings):
+            header = request.headers.get("authorization", "")
+            invalid = header[:7].lower() == "bearer " and bool(header[7:])
+            return error_response(
+                request,
+                403 if invalid else 401,
+                "invalid credentials" if invalid else "authentication required",
+                {"WWW-Authenticate": "Bearer"} if not invalid else None,
+            )
+        try:
+            if request.url.path.startswith("/api/v1/"):
+                async with asyncio.timeout(settings.db_timeout_seconds):
+                    response: Response = await call_next(request)
+            else:
+                response = await call_next(request)
+        except TimeoutError:
+            response = error_response(request, 503, "database temporarily unavailable")
         metrics.api_requests.labels(request.method, str(response.status_code)).inc()
         return response
+
+    # Outermost middleware so preflight and 401/403/503 responses have CORS headers.
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=settings.api_cors_origins,
+        allow_methods=["GET"],
+        allow_headers=["Authorization", "Content-Type"],
+        allow_credentials=False,
+        expose_headers=["WWW-Authenticate"],
+        max_age=600,
+    )
+
+    @app.exception_handler(StarletteHTTPException)
+    async def http_error(request: Request, error: StarletteHTTPException) -> JSONResponse:
+        return error_response(request, error.status_code, str(error.detail), error.headers)
+
+    @app.exception_handler(RequestValidationError)
+    async def validation_error(request: Request, error: RequestValidationError) -> JSONResponse:
+        if request.url.path.startswith("/api/v1/"):
+            return error_response(request, 422, "invalid query parameters")
+        from fastapi.exception_handlers import request_validation_exception_handler
+
+        return await request_validation_exception_handler(request, error)
 
     async def database_error(request: Request, error: Exception) -> JSONResponse:
         logger.error(
             "query database unavailable", extra={"context": {"category": type(error).__name__}}
         )
-        return JSONResponse({"detail": "database temporarily unavailable"}, status_code=503)
+        return error_response(request, 503, "database temporarily unavailable")
 
     for exception_type in (asyncpg.PostgresError, asyncpg.InterfaceError, OSError, TimeoutError):
         app.add_exception_handler(exception_type, database_error)
@@ -230,7 +303,7 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
         snapshot = await store.collector_status()
         return snapshot["providers"] if snapshot else []
 
-    @app.get("/health", response_model=Health)
+    @app.get("/health", response_model=Health, openapi_extra={"security": []})
     async def health(response: Response) -> Health:
         service: IngestionService | None = app.state.service
         database = False
@@ -391,7 +464,7 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
             )
         return items
 
-    @app.get("/prices/latest", response_model=LatestPage)
+    @app.get("/prices/latest", response_model=LatestPage, deprecated=True)
     async def latest(
         provider: str | None = None, limit: Limit = 100, after: str = ""
     ) -> LatestPage:
@@ -402,7 +475,11 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
         )
         return LatestPage(items=await latest_prices(items), next_after=next_after)
 
-    @app.get("/prices/latest/{symbol}", response_model=list[LatestPrice | LatestCandlePrice])
+    @app.get(
+        "/prices/latest/{symbol}",
+        response_model=list[LatestPrice | LatestCandlePrice],
+        deprecated=True,
+    )
     async def latest_symbol(
         symbol: str, provider: str | None = None
     ) -> list[LatestPrice | LatestCandlePrice]:
@@ -598,4 +675,8 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
                     except RuntimeError:
                         pass
 
+    for route in app.routes:
+        if isinstance(route, APIRoute) and route.path != "/health":
+            route.openapi_extra = {"security": [{"CompanyBearer": []}]}
+    app.include_router(create_router(settings))
     return app

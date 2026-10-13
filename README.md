@@ -15,6 +15,17 @@ benchmark evidence and parser fixtures are included; recorded database history r
 
 ## Current capabilities and limits
 
+Batch 2 adds a company-facing, versioned **read-only REST API** under `/api/v1` for
+instruments, persisted latest prices, completed native/derived candles, coverage and health.
+Fresh quotes and candle closes are explicitly distinct; missing data remains unavailable.
+Bearer authentication, production configuration checks, an explicit CORS allow-list and
+bounded pagination are documented in [the frontend API guide](docs/api.md).
+Use a company backend proxy for browser authentication; keep the service token server-side.
+Dedicated SELECT-only PostgreSQL grants are documented and independently tested.
+See [Batch 2 verification](docs/api-batch2-verification.md) for exact results and limits.
+This work starts from integration commit `35ab3c03662ad00e8114fb313f8d2d15459a78d9`
+and is undeployed. Schema head remains 0005; cross-process streaming remains Batch 3.
+
 | Adapter | Coverage | Current status |
 |---|---|---|
 | Mock | All initial categories | Simulated; no credentials or network required |

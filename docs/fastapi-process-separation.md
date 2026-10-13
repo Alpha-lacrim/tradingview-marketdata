@@ -1,5 +1,11 @@
 # FastAPI Batch 1: independent processes
 
+Batch 2 builds on this verified lifecycle separation. The company REST contracts,
+corrected default latest-price selection, production bearer configuration, CORS and
+tested dedicated SELECT-role instructions are now in [docs/api.md](api.md).
+This document retains the legacy Batch 1 route/health contracts; production credentials
+and deployment remain unprovisioned. Cross-process streaming remains Batch 3.
+
 Both development streams are integrated locally and remain undeployed. The running
 `tradingview` project still uses its legacy 100-source combined collector. Do not run this
 branch's Compose commands in that project. See [integration verification](collector-fastapi-integration.md)
@@ -198,11 +204,12 @@ remain. Baseline code requires schema 0004, so code-only rollback with schema 00
 startup. Test this sequence on the disposable database before approving any deployment.
 No production rollback command was executed.
 
-Batch 2 must provision a separate SELECT-only API role, grant access to instruments,
-provider mappings, history/latest/coverage, aggregate views, alembic_version and
-collector_status, and supply independent API/collector secrets. Session read-only mode is
-already enforced but is not a substitute for database role permissions. Integration must
-use the verified integration commit as its base. The collector's status/migration/Compose/
-HANDOFF overlaps are reconciled and the existing deployment's 100-source target is unchanged.
+Batch 2 documents scoped SELECT-only grants and independently verifies them on isolated
+PostgreSQL/TimescaleDB, including denial of writes with session read-only mode disabled.
+Production role/password provisioning and independent API/collector secrets are still
+operator/DBA work. Session read-only mode is not a substitute for role permissions.
+Batch 2 uses the exact verified integration commit as its base. The collector's
+status/migration/Compose overlaps remain reconciled and the deployment's 100-source target
+is unchanged. See the [API verification report](api-batch2-verification.md).
 Batch 3 must implement/test
 cross-process streaming and collector-independent downstream subscriptions.
