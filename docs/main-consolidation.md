@@ -2,7 +2,9 @@
 
 This review consolidates completed collector and FastAPI development without deploying it.
 Integration branch: `integration/completed-main`; target: `main`. The operator retains the
-final merge decision. No published history, prior branch or production resource is replaced.
+final merge decision; approval was granted on 2026-10-14 for reviewed PR #2. No published
+history, prior branch or production resource is replaced. Final head/merge checks are on
+[the PR](https://github.com/Alpha-lacrim/tradingview-marketdata/pull/2).
 
 ## Exact inputs and retained history
 
