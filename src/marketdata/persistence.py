@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import asyncio
 import json
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager, nullcontext, suppress
 from datetime import UTC, datetime, timedelta
 from typing import Any, Literal, cast
 from uuid import UUID
@@ -11,6 +13,7 @@ import asyncpg
 from marketdata.candles import MarketCandle
 from marketdata.config import Settings
 from marketdata.domain import Instrument, ProviderInstrument, RegistryEntry, Tick, utc_now
+from marketdata.observability import Metrics
 from marketdata.price_selection import select_price
 from marketdata.providers.base import ProviderHealth
 from marketdata.registry import Registry
@@ -75,6 +78,7 @@ class Store:
         self.pool: asyncpg.Pool | None = None
         self.has_aggregates = False
         self.last_candle_write: dict[str, Any] = {}
+        self.metrics: Metrics | None = None
 
     async def connect(self) -> None:
         self.pool = await asyncpg.create_pool(
@@ -92,16 +96,50 @@ class Store:
         )
         async with self.connection() as connection:
             version = await connection.fetchval("SELECT version_num FROM alembic_version")
-            if version != "0005":
+            if version != "0006":
                 raise RuntimeError("database migrations are not at head; run alembic upgrade head")
             self.has_aggregates = bool(
                 await connection.fetchval("SELECT to_regclass('candles_1m_last')")
             )
+            if self.read_only and self.settings.api_environment == "production":
+                unsafe = await connection.fetchval("""
+                    SELECT EXISTS(SELECT 1 FROM pg_roles WHERE rolname=current_user
+                        AND (rolsuper OR rolcreatedb OR rolcreaterole OR rolreplication
+                            OR rolbypassrls))
+                        OR has_schema_privilege(current_user,'public','CREATE')
+                        OR has_database_privilege(current_user,current_database(),'TEMP')
+                        OR EXISTS(SELECT 1 FROM unnest(ARRAY[
+                            'instruments','provider_instruments','market_ticks','latest_prices',
+                            'market_candles','latest_candles','candle_coverage','candle_revisions',
+                            'collector_status','marketdata_events','marketdata_event_clock',
+                            'alembic_version']) AS t(name)
+                            WHERE has_table_privilege(current_user,name,
+                                'INSERT,UPDATE,DELETE,TRUNCATE'))
+                """)
+                if unsafe:
+                    raise RuntimeError(
+                        "production API requires a dedicated SELECT-only database role"
+                    )
 
-    def connection(self) -> Any:
+    @asynccontextmanager
+    async def connection(self) -> AsyncIterator[Any]:
         if self.pool is None:
             raise RuntimeError("store is disconnected")
-        return self.pool.acquire(timeout=self.settings.db_timeout_seconds)
+
+        def measured(query: Any) -> None:
+            if self.metrics is not None:
+                self.metrics.api_query_latency.observe(query.elapsed)
+
+        async with self.pool.acquire(timeout=self.settings.db_timeout_seconds) as connection:
+            if self.metrics is not None:
+                connection.add_query_logger(measured)
+            try:
+                yield connection
+            finally:
+                if self.metrics is not None:
+                    # Terminated backends detach their pool proxy before context exit.
+                    with suppress(asyncpg.InterfaceError):
+                        connection.remove_query_logger(measured)
 
     async def close(self) -> None:
         if self.pool is not None:
@@ -302,7 +340,7 @@ class Store:
             )
             # Both history and latest state commit atomically. Retry the same UUIDs after
             # uncertain commits; only rows actually inserted can update latest state.
-            count = await connection.fetchval(f"""
+            result = await connection.fetchrow(f"""
                 WITH inserted AS (
                     INSERT INTO market_ticks ({columns}) SELECT {columns} FROM tick_stage
                     ON CONFLICT (storage_timestamp,tick_id) DO NOTHING RETURNING *
@@ -319,10 +357,18 @@ class Store:
                         tick_id=EXCLUDED.tick_id,payload=EXCLUDED.payload
                     WHERE (EXCLUDED.order_ns,EXCLUDED.received_timestamp,EXCLUDED.tick_id) >
                         (latest_prices.order_ns,latest_prices.received_timestamp,latest_prices.tick_id)
-                    RETURNING 1
-                ) SELECT count(*) FROM inserted
+                    RETURNING payload
+                ) SELECT (SELECT count(*) FROM inserted) AS count,
+                    coalesce((SELECT jsonb_agg(payload) FROM latest),'[]') AS latest
             """)
-            return int(count)
+            from marketdata.events import append_events
+
+            await append_events(
+                connection,
+                [("price_update", Tick.model_validate(p)) for p in json.loads(result["latest"])],
+                self.settings.marketdata_event_retention_count,
+            )
+            return int(result["count"])
 
     async def instruments(self, limit: int, after: str = "") -> list[dict[str, Any]]:
         async with self.connection() as c:
@@ -418,9 +464,10 @@ class Store:
         after: str = "",
         *,
         observed_only: bool = False,
+        connection: Any | None = None,
     ) -> list[dict[str, Any]]:
         """One bounded bulk lookup of mappings and dedicated latest-state tables."""
-        async with self.connection() as c:
+        async with self.connection() if connection is None else nullcontext(connection) as c:
             rows = await c.fetch(
                 """
                 SELECT statement_timestamp() AS as_of,
@@ -801,6 +848,24 @@ class Store:
                     FROM filled f WHERE (c.instrument_id,c.provider,c.price_basis)=
                         (f.instrument_id,f.provider,f.price_basis)
                 """)
+                from marketdata.events import append_events
+
+                corrected = {
+                    (r["instrument_id"], r["provider"], r["bucket_start"]) for r in revisions
+                }
+                await append_events(
+                    c,
+                    [
+                        (
+                            "candle_corrected"
+                            if (bar.instrument_id, bar.provider, bar.bucket_start) in corrected
+                            else "candle_completed",
+                            bar,
+                        )
+                        for bar in changed_candles
+                    ],
+                    self.settings.marketdata_event_retention_count,
+                )
         self.last_candle_write = {
             "corrections": revisions,
             "changed": changed,

@@ -151,7 +151,8 @@ class ServiceHealth(BaseModel):
     collector_updated_at: datetime | None = None
     data_freshness: Literal["fresh", "stale", "unavailable", "unknown"]
     historical_coverage: Literal["complete", "gaps", "unknown"]
-    streaming_mode: Literal["unavailable"] = "unavailable"
+    streaming_mode: Literal["database", "unavailable"] = "database"
+    websocket_delivery: Literal["idle", "operational", "degraded", "unknown"] = "unknown"
     provider_states: dict[str, str] = Field(default_factory=dict)
     source_count: int = 0
     fresh_sources: int = 0

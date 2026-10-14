@@ -41,7 +41,13 @@ async def brokers(store, monkeypatch):
 
 @asynccontextmanager
 async def api_client(store, **kwargs):
-    app = create_app(Settings(_env_file=None, database_url=store.settings.database_url, **kwargs))
+    app = create_app(
+        Settings(
+            _env_file=None,
+            database_url=kwargs.pop("database_url", store.settings.database_url),
+            **kwargs,
+        )
+    )
     async with app.router.lifespan_context(app):
         async with httpx.AsyncClient(
             transport=httpx.ASGITransport(app), base_url="http://test"
@@ -449,7 +455,7 @@ async def test_offline_health_no_provider_initialization_and_no_data_mutation(
         health = (await client.get("/api/v1/health")).json()
         assert health["api"] == health["database"] == "available"
         assert health["collector"] == "stopped" and health["status"] == "ok"
-        assert health["streaming_mode"] == "unavailable"
+        assert health["streaming_mode"] == "database"
         response = await client.get(
             "/api/v1/candles",
             params={
@@ -530,9 +536,10 @@ async def test_bulk_100_sources_constant_query_count(store, pair, monkeypatch):
 
 
 @pytest.mark.integration
-async def test_production_authentication_cors_and_openapi(store):
+async def test_production_authentication_cors_and_openapi(store, readonly_database_url):
     async with api_client(
         store,
+        database_url=readonly_database_url,
         api_environment="production",
         api_key=SecretStr(TOKEN),
         api_cors_origins=["https://frontend.example.com"],

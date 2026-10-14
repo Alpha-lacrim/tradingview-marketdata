@@ -1,5 +1,12 @@
 # FastAPI Batch 1: independent processes
 
+**Current Batch 3 extension:** `/api/v1/ws/marketdata` and
+`/api/v1/marketdata/changes` now deliver/reconcile committed observations across independent
+processes. Additive schema head is 0006. The legacy `/ws/prices` behavior below is preserved;
+its precommit ticks are not the new contract. Read [the current contract](api.md#websocket-market-data-v1)
+and [Batch 3 verification](api-batch3-verification.md). Browser/BFF authentication remains
+PROVISIONAL pending the company's final frontend/session design.
+
 Batch 2 builds on this verified lifecycle separation. The company REST contracts,
 corrected default latest-price selection, production bearer configuration, CORS and
 tested dedicated SELECT-role instructions are now in [docs/api.md](api.md).

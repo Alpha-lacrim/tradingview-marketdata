@@ -10,4 +10,4 @@ COPY config ./config
 RUN useradd --create-home appuser && chown -R appuser:appuser /app
 USER appuser
 EXPOSE 8000
-CMD [".venv/bin/uvicorn", "marketdata.api:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000", "--workers", "1", "--ws-max-size", "16384"]
+CMD [".venv/bin/uvicorn", "marketdata.api:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000", "--workers", "1", "--ws", "websockets", "--ws-max-size", "65536", "--ws-max-queue", "16"]

@@ -467,6 +467,20 @@ def create_router(settings: Settings) -> APIRouter:
                 else ("unavailable" if counts["unavailable"] or not rows else "fresh")
             )
             coverage_state = await store(request).coverage_health()
+            if getattr(request.app.state, "metrics", None) is not None:
+                request.app.state.metrics.api_database.set(1)
+            hub = getattr(request.app.state, "market_hub", None)
+            delivery: Literal["idle", "operational", "degraded", "unknown"] = "unknown"
+            if hub is not None:
+                delivery = (
+                    "degraded"
+                    if hub.task is None or hub.task.done()
+                    else "idle"
+                    if not hub.clients
+                    else "operational"
+                    if hub.database == "available"
+                    else "degraded"
+                )
             return ServiceHealth(
                 database="available",
                 status="ok",
@@ -477,6 +491,7 @@ def create_router(settings: Settings) -> APIRouter:
                 collector_updated_at=snapshot["updated_at"] if snapshot else None,
                 data_freshness=state,
                 historical_coverage=coverage_state,
+                websocket_delivery=delivery,
                 provider_states={p.provider: p.state for p in snapshot["providers"]}
                 if snapshot
                 else {},
@@ -487,14 +502,18 @@ def create_router(settings: Settings) -> APIRouter:
                 summary_truncated=len(rows) > 1000,
             )
         except (asyncpg.PostgresError, asyncpg.InterfaceError, OSError, TimeoutError, RuntimeError):
+            if getattr(request.app.state, "metrics", None) is not None:
+                request.app.state.metrics.api_database.set(0)
             response.status_code = 503
             return ServiceHealth(
                 database="unavailable",
                 status="degraded",
+                streaming_mode="unavailable",
                 as_of=now,
                 collector="unknown",
                 data_freshness="unknown",
                 historical_coverage="unknown",
+                websocket_delivery="degraded",
             )
 
     return router

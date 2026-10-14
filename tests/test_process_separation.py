@@ -292,7 +292,7 @@ def test_api_websocket_explicitly_unavailable(database_url, store):
             with pytest.raises(WebSocketDisconnect) as error:
                 socket.receive_json()
         assert error.value.code == 1013
-        assert client.get("/health").json()["streaming_mode"] == "unavailable"
+        assert client.get("/health").json()["streaming_mode"] == "database"
 
 
 @pytest.mark.integration

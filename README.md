@@ -15,16 +15,41 @@ benchmark evidence and parser fixtures are included; recorded database history r
 
 ## Current capabilities and limits
 
+Batch 4 qualifies the company API locally with 100 simulated instruments, real TCP REST/WS
+load, actual disposable database outages, read-only roles, Linux container restart and
+backup/restore. See [employer report](docs/api-batch4-verification.md),
+[frontend integration](docs/frontend-integration.md) and [production operations](docs/production-deployment.md).
+Production startup rejects write-capable API credentials. `/livez` separates process liveness
+from DB readiness; metrics include route/query latency, pool usage and WebSocket pressure.
+The production Compose definition mounts separate secrets and blocks unapproved guest
+ingestion. This is an isolated, undeployed qualification; target-host HTTPS/session/source
+rights and sustained capacity remain separate gates.
+
 Batch 2 adds a company-facing, versioned **read-only REST API** under `/api/v1` for
 instruments, persisted latest prices, completed native/derived candles, coverage and health.
 Fresh quotes and candle closes are explicitly distinct; missing data remains unavailable.
 Bearer authentication, production configuration checks, an explicit CORS allow-list and
 bounded pagination are documented in [the frontend API guide](docs/api.md).
-Use a company backend proxy for browser authentication; keep the service token server-side.
+The company BFF browser/session model is **PROVISIONAL**: the frontend and its final
+authentication architecture are not completed. Keep the service token server-side.
 Dedicated SELECT-only PostgreSQL grants are documented and independently tested.
 See [Batch 2 verification](docs/api-batch2-verification.md) for exact results and limits.
 This work starts from integration commit `35ab3c03662ad00e8114fb313f8d2d15459a78d9`
-and is undeployed. Schema head remains 0005; cross-process streaming remains Batch 3.
+and is undeployed. Batch 3 builds from verified Batch 2 `b9c08df5` in the isolated
+`fastapi/batch3-websocket` worktree; schema head is now **0006**.
+
+`/api/v1/ws/marketdata` provides authenticated, Origin-validated subscriptions, persisted
+price snapshots, genuine latest-quote updates, completed/corrected native candles, source
+freshness and heartbeats. A bounded transactional PostgreSQL journal and one reconciliation
+reader per API worker deliver committed changes across processes, with no new provider
+connections. `/api/v1/marketdata/changes` recovers missed inserts and old candle corrections;
+expired cursors require refreshing loaded REST chart history. WebSocket delivery is not
+exactly once or permanent history. Queue overflow/send timeout closes the client with 1013.
+See [commands, every message schema, limits and browser recovery](docs/api.md#websocket-market-data-v1),
+[browser JavaScript](examples/browser-marketdata.js), the [provisional BFF adapter](examples/company_bff.py)
+and [Batch 3 verification](docs/api-batch3-verification.md). There are no production changes
+or new live TradingView tests. TradingView candle mode has no genuine current quote stream:
+completed candle closes retain their explicit basis.
 
 | Adapter | Coverage | Current status |
 |---|---|---|
@@ -55,7 +80,8 @@ Request success, native availability and durable commits are measured separately
 Both completed development streams are integrated locally on
 `integration/collector-fastapi-batch1`; see [integration verification and deployment boundaries](docs/collector-fastapi-integration.md).
 The default API builds zero providers; only the explicit collector owns ingestion. Schema
-0005 adds health only. This branch is undeployed. The running legacy collector has no new
+0005 adds health only; additive 0006 adds the bounded committed-event journal. This branch is
+undeployed. The running legacy collector has no new
 advisory lock and must exit before any future approved replacement starts. The provisional
 99-source registry is preserved and is never selected automatically.
 
@@ -66,8 +92,9 @@ See [live end-to-end evidence](docs/candle-live-end-to-end.md),
 Instrument identity distinguishes spot, OTC, CFDs and concrete exchange futures. Prices use
 Decimal/PostgreSQL NUMERIC, and source and receipt timestamps remain distinct and UTC-aware.
 Physical WTI/Brent spot pricing is not implemented. API workers now read PostgreSQL
-independently of a dedicated collector. Cross-process WebSocket updates, crash-safe queue
-spooling and automatic tick replay/backfill remain outside this version.
+independently of a dedicated collector. Committed WebSocket updates and bounded REST
+reconciliation are available. Crash-safe ingestion queue spooling and upstream tick
+replay/backfill remain outside this version.
 
 ## Repository layout
 
@@ -79,7 +106,7 @@ Application files live directly at the Git repository root. Run commands below f
 ├── tests/                   # Deterministic tests, fixtures and database integration tests
 ├── scripts/                 # Smoke checks, reconciliation and opt-in benchmarks
 ├── config/                  # Non-secret instrument registries
-├── migrations/              # Alembic revisions 0001–0005
+├── migrations/              # Alembic revisions 0001–0006
 ├── docs/                    # Technical reference, operations and measured evidence
 ├── .github/workflows/       # PostgreSQL/TimescaleDB CI matrix
 ├── pyproject.toml, uv.lock  # Python package, tooling and locked dependencies
@@ -123,7 +150,7 @@ Read [process separation and safe operations](docs/fastapi-process-separation.md
 using any older deployment instructions.
 
 For native development, install Python 3.12+ and uv. Prepare a migrated disposable database
-using the test Compose file described in that guide. Startup requires schema head `0005`;
+using the test Compose file described in that guide. Startup requires schema head `0006`;
 neither process creates tables or runs migrations. Set `DATABASE_URL` in each terminal:
 
 ```powershell
@@ -143,7 +170,7 @@ API-only terminal (can serve persisted history while the collector is stopped):
 
 ```powershell
 $env:APPLICATION_ROLE='api'
-uv run uvicorn marketdata.api:create_app --factory --workers 2 --port 8001 --ws-max-size 16384
+uv run uvicorn marketdata.api:create_app --factory --workers 2 --port 8001 --ws websockets --ws-max-size 65536 --ws-max-queue 16
 ```
 
 Use both terminals for independent operation. Ctrl+C gracefully stops only that service.
@@ -151,8 +178,9 @@ API startup never constructs providers or registers instruments. Its read-only c
 uses persistent source metadata; provider credentials and a local registry file are not needed.
 API `/health` tests database readiness and reports ingestion/feed health separately.
 
-API-only `/ws/prices` closes with 1013 because cross-process streaming is deferred to Batch 3.
-For local WebSocket development instead, use `APPLICATION_ROLE=combined` with
+API-only legacy `/ws/prices` still closes with 1013. Use `/api/v1/ws/marketdata` for the
+committed cross-process contract and configure its Origin allow-list. For legacy local
+WebSocket development, use `APPLICATION_ROLE=combined` with
 `marketdata.api:create_combined_app`, one worker, and no other collector on that database.
 See the guide for full commands, validation, migration behavior and exact rollback steps.
 Omit the optional `databento` extra when using other adapters. Live providers require explicit

@@ -1,4 +1,12 @@
-# Market Data REST API v1
+# Market Data REST and WebSocket API v1
+
+**Batch 4:** [employer qualification](api-batch4-verification.md),
+[frontend handoff](frontend-integration.md), [production deployment](production-deployment.md).
+`GET /livez` is a public, database-independent liveness probe, excluded from OpenAPI.
+Versioned health adds `websocket_delivery` (idle/operational/degraded/unknown). Production
+startup requires a dedicated SELECT-only DB principal, with no schema CREATE/database TEMP
+or market-table write/administrative privileges. Unexpected errors return sanitized 500
+responses; all market responses disable caching. Production commands disable access logs.
 
 The company API reads persisted PostgreSQL/TimescaleDB records. It never contacts
 TradingView during HTTP requests. Base URL for the isolated local example is
@@ -25,7 +33,10 @@ health, metrics and all data reads require authentication. Documentation/schema 
 are public and contain contracts, not market records or credentials.
 
 Do **not** place the permanent service bearer token in browser JavaScript. The supported
-company architecture is browser → company backend-for-frontend (BFF) → market-data API.
+**PROVISIONAL** integration option is browser → company backend-for-frontend (BFF) → market-data API.
+The frontend is unfinished and its final authentication architecture is unknown. This is
+an optional adapter design, not a finalized company requirement; delivery depends only on
+API bearer authentication and explicit WebSocket Origin validation.
 The company backend authenticates/authorizes users using its existing identity/session
 system and adds the service token on the server. Prefer same-origin browser requests and
 Secure, HttpOnly, SameSite session cookies. The market-data service accepts bearer headers,
@@ -42,7 +53,7 @@ CORS headers. CORS is a browser policy, not authorization.
 
 ## Endpoint inventory and compatibility
 
-The exact OpenAPI inventory is **15 GET operations**:
+The OpenAPI inventory is **16 GET operations** (the 15 Batch 2 routes plus REST reconciliation):
 
 | Route | Starting-route classification | Contract |
 | --- | --- | --- |
@@ -52,6 +63,7 @@ The exact OpenAPI inventory is **15 GET operations**:
 | `/api/v1/candles/latest` | NEW | Bulk latest completed native 1m candles |
 | `/api/v1/coverage` | NEW | Bounded tri-state completeness and missing ranges |
 | `/api/v1/health` | NEW | Authenticated API/database/collector/freshness/coverage summary |
+| `/api/v1/marketdata/changes` | NEW in Batch 3 | Bounded commit-ordered replay; expired cursor returns 409 |
 | `/health` | KEEP | Public legacy readiness, HTTP 200 when DB is readable in API-only mode |
 | `/providers` | KEEP | Persisted collector health; expired/stopped snapshots are disconnected |
 | `/instruments` | KEEP | Legacy canonical list; `limit`, `after` |
@@ -69,7 +81,8 @@ non-OpenAPI surfaces:
 | Route | Classification | Behavior |
 | --- | --- | --- |
 | `/metrics` (GET) | INTERNAL ONLY | Authenticated per-worker Prometheus metrics, excluded from OpenAPI |
-| `/ws/prices` (WebSocket) | KEEP | API-only accepts/authenticates then closes **1013**; cross-process delivery is Batch 3 |
+| `/ws/prices` (WebSocket) | KEEP | API-only accepts/authenticates then closes **1013**; combined legacy fanout remains distinct |
+| `/api/v1/ws/marketdata` (WebSocket) | NEW in Batch 3 | Committed database events, snapshots and status; see contract below |
 | `/openapi.json` (GET/HEAD) | KEEP | Generated OpenAPI schema |
 | `/docs`, `/docs/oauth2-redirect`, `/redoc` (GET/HEAD) | KEEP | Swagger/ReDoc documentation |
 
@@ -261,11 +274,13 @@ stale sources make aggregate freshness stale, otherwise unavailable sources make
 unavailable, otherwise it is fresh. Counts include configured sources, not just those returning
 prices. Over 1000 sources makes aggregate freshness unknown and signals truncation. Coverage
 is gaps-first, otherwise unknown when tracking is missing/empty or stored UNKNOWN exists.
-`streaming_mode=unavailable`: cross-process WebSocket event delivery remains Batch 3.
+`streaming_mode=database` identifies Batch 3's database reconciliation delivery path; an
+unavailable database makes versioned health report `streaming_mode=unavailable`. This is
+separate from provider connectivity and does not imply a fresh upstream quote stream.
 
 Historical reads work with the collector stopped or TradingView unavailable. Failed database
 reads return 503 and do not reuse old HTTP values as if a query succeeded. Database startup
-requires existing migration head 0005 and fails if unreachable/unmigrated; no schema or role
+requires existing migration head 0006 and fails if unreachable/unmigrated; no schema or role
 is provisioned by FastAPI. Existing connection failures recover through the asyncpg pool
 once PostgreSQL is available again.
 
@@ -296,6 +311,7 @@ All v1 application errors use:
 | 401 | `authentication_required` | Missing/malformed bearer header |
 | 403 | `access_denied` | Incorrect bearer token |
 | 404 | `not_found` | Unknown canonical symbol/source mapping |
+| 409 | `resync_required` | Journal cursor expired or belongs to another epoch; refresh loaded chart history |
 | 422 | `invalid_request` | Invalid timestamps, ranges, interval, limit, symbol list or cursor |
 | 503 | `database_unavailable` | Database error or query deadline |
 | other HTTP errors | `request_failed` | For example an unsupported HTTP method |
@@ -305,6 +321,8 @@ returns the standard error envelope. OpenAPI documents both. CORS preflight uses
 middleware's 400 response. Legacy endpoints retain the previous `detail` error envelope.
 
 ## Frontend and server examples
+
+The BFF/browser paths in these examples are **PROVISIONAL**, not a known company frontend.
 
 Browser through the company BFF (the BFF authenticates the session and supplies the server
 bearer token; it must explicitly allow only approved market-data routes and query fields):
@@ -402,6 +420,7 @@ GRANT USAGE ON SCHEMA public TO marketdata_api;
 GRANT SELECT ON public.instruments, public.provider_instruments,
   public.market_ticks, public.latest_prices, public.market_candles, public.latest_candles,
   public.candle_coverage, public.candle_revisions, public.collector_status,
+  public.marketdata_event_clock, public.marketdata_events,
   public.alembic_version TO marketdata_api;
 ALTER ROLE marketdata_api SET default_transaction_read_only = on;
 ```
@@ -482,3 +501,327 @@ its unique synthetic fixture IDs on exit. Tests clear `_test` tables, so never p
 at valued history. [Verification report](api-batch2-verification.md) contains measured results,
 limitations and the remaining frontend/deployment work. No push, main merge or deployment
 is part of this batch.
+
+## WebSocket market data v1
+
+Endpoint: **`/api/v1/ws/marketdata`**. It works in API-only workers and the explicit combined
+factory, always from committed PostgreSQL state. REST remains the historical source of truth.
+The old `/ws/prices` is unchanged: combined ticks are observations **before commit**; its
+native candles are sent after Store returns successfully. API-only legacy sockets still
+close 1013. Do not infer durable events from legacy tick messages.
+
+### Delivery and cursor mechanics
+
+Revision **0006** adds `marketdata_event_clock` and `marketdata_events`. Existing market,
+latest, correction-audit and coverage tables are preserved. `Store.write` journals only
+successful latest-price changes, at most one quote per instrument/provider in a tick batch;
+intermediate persisted ticks remain queryable through REST. Identical numerical prices at
+new observation timestamps are eligible. Duplicate UUID retries and older ticks that cannot
+advance latest state create no quote event. `Store.write_candles` journals actual new native
+1m inserts and corrections; unchanged overlap/retry bars create no candle event. Coverage-only
+transactions create no candle event. Journal records and market records commit or roll back
+**together**. Failed transactions never publish committed events.
+
+A singleton counter UPDATE allocates a block of IDs **inside the data transaction**, at its
+end, and keeps the row lock until commit/rollback. A second writer cannot allocate a later
+cursor while the first is uncommitted. Readers see only the last committed head under MVCC;
+SERIAL/IDENTITY ordering is not used as commit ordering. Records within a batch are ordered
+by canonical instrument, provider and observation/bucket time. Across transactions ordering
+is journal commit order, not upstream tick sequence or candle-time order. A recovered old
+minute or correction can arrive after a newer minute: charts must upsert by logical identity.
+
+Each API worker owns one bounded journal reader and its own downstream queues. It polls
+only the indexed journal tail, default once per second when clients exist, and processes
+250-event pages. It does not scan the complete candle database or depend on collector memory.
+Catch-up yields between pages; no notification, Redis, broker, provider connection or new
+upstream access is needed. A disconnected reader retains its cursor and retries bounded
+queries. LISTEN/NOTIFY was considered but omitted: it would only be a wake-up hint, while
+reconciliation is still required for missed notifications. See PostgreSQL's
+[LISTEN race guidance](https://www.postgresql.org/docs/18/sql-listen.html) and
+[transactional NOTIFY behavior](https://www.postgresql.org/docs/18/sql-notify.html).
+Notification loss therefore cannot affect this implementation.
+
+Retention keeps the last `MARKETDATA_EVENT_RETENTION_COUNT` journal records, default 100,000,
+pruned transactionally on append. This is **an event count, not a promised time duration**;
+100 sources of minute candles alone generate approximately 144,000 events/day. Quotes and
+corrections shorten the retention window. Increasing retention never restores already-pruned
+records. Market/candle/tick history, activation starts and coverage gaps are never pruned by
+journal retention. PostgreSQL vacuum/disk monitoring remains ordinary DBA work.
+
+Only writers using these Store transactions publish events. Arbitrary administrative SQL,
+old collector binaries and aggregate refreshes do not publish journal events. The revised
+collector and 0006 must be adopted together in a future reviewed deployment. The reader is
+SELECT-only; it does not provision migrations or grants. Grant the existing API role SELECT
+on the two new tables after migration, using the scoped DBA procedure above. The collector
+role needs SELECT/UPDATE on the clock and SELECT/INSERT/DELETE on the journal. No API write
+credential, ticket table or server-side browser-session assumption is added.
+
+### Browser authentication (PROVISIONAL)
+
+**The company frontend is unfinished and its final authentication architecture is unknown.**
+The BFF is a provisional supported adapter option, not a required frontend implementation.
+The market-data service independently requires its configured bearer header and an exact
+allowed Origin. Browser WebSocket construction exposes URL/subprotocol parameters, not an
+arbitrary Authorization-header option; see the [browser constructor](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket).
+Never embed the permanent API key in JavaScript, query strings or subprotocols.
+
+If a BFF is adopted, the browser connects to its same-origin WS route with the company's
+real Secure/HttpOnly/SameSite session cookie. The BFF validates the user/session/read
+permission and exact browser Origin before upgrading, supplies the service bearer **only on
+the server-to-server header**, and forwards the validated Origin. It must enforce session
+expiry/revocation on open connections, sanitize logs, apply admission/rate limits, bound
+transport queues and use HTTPS/WSS. It must not forward user-supplied Authorization headers.
+Only approved browser Origins belong in `WEBSOCKET_ALLOWED_ORIGINS`, for example
+`["https://frontend.company.example"]`; the default empty list disables the new socket.
+Production origin validation requires HTTPS. REST CORS and WS Origins are separate settings;
+CORS does not authorize a WebSocket.
+
+[`examples/company_bff.py`](../examples/company_bff.py) is an optional bounded proxy adapter
+with an injected real-session authorizer, periodic revocation/expiry checks, fixed route
+allow-list and server-owned bearer header. It supplies **no login/session/user implementation**.
+Install only into the eventual backend after deciding that architecture. An alternative
+reviewed browser auth adapter can leave delivery/cursor/schema code unchanged. Native/test
+clients can supply the bearer header and allowed Origin directly. Origin validation is a
+browser defense, not a substitute for credentials, network access control or user permission.
+
+Failed authentication or missing/unapproved Origin is rejected **before registration and
+acceptance** (ASGI policy close 1008; real network handshake HTTP 403). Missing REST credentials
+remain 401, invalid REST credentials 403. Browsers often expose a rejected handshake only as
+1006; check the company's protected session endpoint first and use BFF/server diagnostics.
+No replayable one-time ticket is issued. Session anti-replay/CSRF/logout policy belongs to
+the eventual auth adapter; the API's permanent bearer is a server credential with the same
+read permission for every holder. No production credential/origin/session integration is
+supplied or activated in this worktree.
+
+### Commands and subscription JSON
+
+All commands are UTF-8 JSON **text**, with exactly the following fields: `action`, optional
+`symbols`, optional `request_id` (string at most 64 characters). Extra fields, wrong types,
+invalid symbols and malformed JSON are errors. Canonical symbols have 3-100 uppercase
+letters/digits/underscore/colon/period/hyphen. At most 100 entries per command; duplicate
+symbols are idempotent. Select identities from `/api/v1/instruments`, never invent them.
+The command below uses a canonical symbol in the default explicitly simulated registry.
+
+```json
+{"action":"subscribe","symbols":["CRYPTO:BTCUSDT"],"request_id":"prices-1"}
+```
+
+| action | symbols | Effect |
+| --- | --- | --- |
+| `subscribe` | Required nonempty list | Atomically add canonical instruments, across their persisted source mappings; ack followed by persisted price snapshot batches |
+| `unsubscribe` | Required nonempty list | Remove; repeats/absent instruments are safe no-ops; ack is a queue-order fence |
+| `snapshot` | Optional list | Refresh requested subscribed instruments, or all subscriptions if omitted/empty; ack and snapshots; never adds subscriptions |
+| `ping` | Omit/empty | Application heartbeat with matching request_id; transport ping/pong remains enabled independently |
+| `disconnect` | Omit/empty | Safe close 1000; no automatic server subscription restoration |
+
+Subscribe validates the entire request before changing state. Unknown symbols return error
+`unknown_symbol`; source/symbol/total capacity violations return `subscription_limit`.
+Malformed commands return `invalid_command`; DB failures return `database_unavailable`
+without installing an empty/fabricated snapshot. Repeated subscribe does not multiply
+subscriptions. Symbols are canonical identities, not provider aliases; every event preserves
+the exact provider/source/venue/broker. Unsubscribe acknowledgments follow any already queued
+events; events for removed instruments are not queued after that ack.
+
+### Event JSON schemas
+
+Every message has `version:1`, `type` and `server_timestamp` (UTC). The complete generated
+[JSON Schema](ws-marketdata.schema.json) is authoritative, including required fields, nulls,
+enums and nested price/candle definitions. Source identity and decimal strings are the same
+as REST v1. `request_id` echoes the command where applicable, otherwise null.
+
+| type | Additional fields and semantics |
+| --- | --- |
+| `subscription_ack` | `action` (subscribe/unsubscribe/snapshot), `request_id`, sorted full `symbols`, nullable `cursor`, nullable `snapshot_cursor` |
+| `price_snapshot` | `request_id`, `snapshot_cursor`, zero-based `batch`, `final`, `items:PriceItem[]`; one repeatable-read DB snapshot across all batches; no synthetic prices |
+| `price_update` | `cursor`, `event_id` (decimal **string**), `recorded_at` (UTC), `persisted:true`, `data:PriceItem`; actual persisted latest quote, never a candle masquerading as a quote |
+| `candle_completed` | Same durable envelope fields, `data:CompletedCandle`; newly inserted native completed 1m candle, including recovered old minutes |
+| `candle_corrected` | Same durable envelope fields, `data:CompletedCandle`; full replacement of the same native logical minute with newer receipt and changed OHLCV/status |
+| `source_status` | `collector` (running/stopped/unknown), `database` (available/unavailable), `batch`, `final`, `items:SourceState[]`; periodic current status, no durable event cursor |
+| `heartbeat` | nullable `cursor`, `database`, `request_id`; queue-ordered progress/checkpoint after eligible events have been enqueued, not proof the client applied them |
+| `error` | `code`, `message`, `request_id`; safe error without input payload/credentials |
+| `resync_required` | `code:cursor_expired`, `message`, `request_id`; best-effort advisory before close 1013 when worker falls beyond retention or epoch changes |
+
+`PriceItem` carries source identity plus `last`, `bid`, `ask` (decimal strings/null),
+`price_type`, `price_basis`, `source_timestamp`, `received_timestamp`, `freshness_basis`,
+`age_ms`, `freshness`, `stale_after_seconds`, `clock_skew`, `realtime_status`, `quote_freshness`,
+`realtime_quote_available`, `bucket_start`, `bucket_end`; see Latest prices above. Snapshots
+use the same persisted selection as `/api/v1/prices/latest`. `price_update` describes the
+journal's actual latest-quote observation at that commit, with freshness evaluated now;
+REST's combined latest selector can prefer a newer candle when that quote is stale. It is
+not a notification that a fabricated current market price exists.
+
+`CompletedCandle` contains `(instrument_id,canonical_symbol,provider,provider_symbol,venue,
+broker)`, `interval:1m`, `origin:native`, `base_interval:1m`, `price_basis:native`, UTC
+`bucket_start`/`bucket_end`, decimal `open`/`high`/`low`/`close`, nullable decimal `volume`,
+nullable `volume_type`, `realtime_status`, `source_status`, UTC `received_timestamp`,
+`observations:1`, `expected_observations:1`, `complete:true`. No forming candle is finalized.
+A corrected event replaces that minute; recompute/refetch any affected derived chart
+bucket via REST. There are no derived 5m/15m/1h/1d WebSocket completion promises.
+`recorded_at` is the DB journal row-write time **inside the transaction**, not an exchange
+or exact commit timestamp. `server_timestamp` is serialization time, not observation time.
+
+`SourceState` contains the same source identity and `freshness`, `quote_freshness`, `age_ms`,
+`price_type`, `price_basis`, `realtime_quote_available`, `source_timestamp`,
+`received_timestamp`, `provider_state`, `transport`, `session_expectation`, `candle_state`.
+Freshness is observation age independent of collector heartbeat. Absent/expired collector
+health stays unknown; stopped/expired provider transport is disconnected. Closure is only
+forwarded from a current source health snapshot (`NOT_EXPECTED`/`closed`), never inferred
+from silence or a stale price. Closed markets can legitimately have stale latest data.
+Database-unavailable status is authoritative: do not reuse its items as successful reads.
+
+**TradingView's current native-candle mode has no genuine persisted current-price quote
+stream.** It emits completed/corrected candles, snapshots whose price_type/basis can be
+`candle_close`, and status. Closing prices are never relabeled live quotes. Other configured
+persisted tick adapters can emit genuine new quote observations with their original
+simulated/delayed/indicative/unknown/realtime classifications. A changing number does not
+establish realtime entitlement or permission to redistribute data.
+
+### Initial snapshots and reconnect recovery
+
+The subscribe snapshot and `snapshot_cursor` are read in one repeatable-read transaction:
+all data visible at that fence is reflected in the snapshot, and subsequent eligible
+commits are journaled after it. New instruments skip events already represented by their
+snapshot. Existing instruments retain their own barrier when another is added, so adding
+an instrument never permanently skips their intervening candles. For an established
+connection, `snapshot_cursor` applies **only to the requested snapshot instruments**, not
+all previous subscriptions. Do not promote that partial snapshot fence to the full-chart
+checkpoint. `subscription_ack.cursor` is worker reconciliation progress, possibly older
+than the snapshot; it can be null. Heartbeat cursor is withheld until the worker reaches
+all subscription barriers.
+
+Clients own subscriptions and restore the desired full set on a new connection. Recommended
+procedure (implemented in [browser-marketdata.js](../examples/browser-marketdata.js)):
+
+1. Authenticate through the eventual adapter and fetch instruments; retain exact identities.
+2. Before initial historical reads, capture `/api/v1/marketdata/changes` without `after`;
+   it returns no events and the current committed `cursor`/`until`.
+3. Fetch and paginate REST candles for the visible chart window; fetch persisted latest prices.
+   Or do these bounded reads during the socket's synchronization phase, as the example does.
+4. Open a secure socket, restore all desired symbols and buffer incoming messages. On initial
+   subscribe ack take its complete new-subscription `snapshot_cursor` as fence H.
+5. Fetch changes with `after=<last applied checkpoint>&until=H&limit=250`, following the
+   returned `cursor` until `has_more=false`, preserving the same `until`. Process recovered
+   candles AND corrections anywhere in loaded history, not just buckets after the newest bar.
+6. If replay returns 409, refresh the **entire loaded chart window** through paginated REST
+   while continuing to buffer socket messages. This recovers changes older than a short
+   overlap. REST retains explicit gaps/unknown coverage; never fabricate missing minutes.
+7. Mark H applied, then process buffered/live messages in order. Upsert candles by
+   `(instrument_id,provider,provider_symbol,interval,bucket_start)`; reject an older receipt
+   version when REST has already shown a later correction. Decimal strings remain exact.
+8. Advance checkpoints only after application of durable events or ordered available-DB
+   heartbeats. Keep cached chart data and its checkpoint together; a cursor alone is not
+   chart history. Event IDs are strings (use BigInt if comparison is needed), scoped by epoch.
+9. After disconnect use exponential backoff with jitter, revalidate authentication, and repeat.
+   Show disconnected/stale state immediately, including while replay fails with 503. A socket
+   open event does not mean chart resynchronization has finished.
+
+REST changes returns `{items,cursor,until,has_more}`. `after` is exclusive and `until` inclusive.
+Omitting `until` captures the current head for that page; freeze the returned `until` for
+subsequent pages. The default head-only call is not a request to replay all old records.
+The cursor is a bounded version/epoch/position watermark, **not an auth credential**, wall
+clock or candle timestamp. Malformed/future cursors return 422. Expired/foreign-epoch cursors
+return 409, even mid-pagination if retention overtakes replay. Events are immutable within
+a retained journal; REST history itself is not a frozen MVCC snapshot across pages.
+
+Socket notifications are not permanent history and do not promise exactly-once delivery.
+Retransmission/replay may duplicate logical events. Checkpoints and candle upserts make
+recovery idempotent. API restart requires client reconnect; collector restart requires no
+API/provider reconstruction. During PostgreSQL outages existing sockets report unavailable
+status, keep their last cursor and recover once reads work. If retention was overtaken they
+close 1013 and require REST refresh. REST history is available during source/collector outages
+when PostgreSQL is available. Database backup restoration requires a fresh journal epoch
+before serving clients; restoring an old counter with the same epoch could reuse cursors.
+That administrative restore procedure is not performed here.
+
+### Limits and slow consumers
+
+Limits apply **per API worker**; a gateway's deployment-wide admission limit is still needed
+when scaling worker/replica count. Shared collector state is unnecessary. Defaults:
+
+| Setting / resource | Default and hard bound |
+| --- | --- |
+| `WEBSOCKET_MAX_CLIENTS` | 1000 clients/worker; configurable 1-10000 |
+| instrument subscriptions | min(100, WEBSOCKET_MAX_SYMBOLS); default existing setting 500, v1 cap **100** |
+| `WEBSOCKET_MAX_TOTAL_SUBSCRIPTIONS` | 10000 instrument/client pairs per worker; 1-100000 |
+| `WEBSOCKET_QUEUE_CAPACITY` | 256 outbound messages/client; 1-10000 |
+| `WEBSOCKET_MESSAGE_MAX_BYTES` | 65536 UTF-8 bytes incoming/outgoing; 1024-1048576 |
+| `WEBSOCKET_SEND_TIMEOUT_SECONDS` | 5 seconds per send/close; >0 to 30 |
+| `WEBSOCKET_SNAPSHOT_MAX_ROWS` | 1000 source rows/request, including all mappings; 1-1000 |
+| `WEBSOCKET_SNAPSHOT_BATCH_SIZE` | 25 rows/message; 1-100, must fit max rows |
+| `WEBSOCKET_HEARTBEAT_SECONDS` | 10 seconds; >0 to 60; queries/catch-up can delay it |
+| `MARKETDATA_POLL_SECONDS` | 1 second; 0.01-30; commit latency also includes query/send time |
+| `MARKETDATA_EVENT_BATCH_SIZE` | 250 events/reader page; 1-1000 |
+| REST changes `limit` | 1-1000, default 250, additionally capped by API_MAX_ROWS |
+| `MARKETDATA_EVENT_RETENTION_COUNT` | 100000 retained events; 1-1000000; not a time guarantee |
+
+Unknown symbols/invalid subscriptions are atomic errors, not partial acknowledgments.
+Oversized outgoing messages or queue overflow mark **only that client** failed and close
+**1013**, with a REST-resynchronization reason. Overflow increments the existing worker
+`marketdata_ws_dropped_total` metric. No silent coalescing/drop policy claims complete
+delivery; a best-effort resync advisory may itself be lost, so close/disconnect is authoritative.
+The database writer never awaits a socket. A slow send is canceled at its deadline and
+closes 1013; other queues/readers/ingestion keep working. Incoming oversize closes 1009,
+binary commands close 1003, client disconnect closes 1000. API shutdown cancels its owned
+reader, closes queues/sockets and pool; no detached market task is left running.
+
+Transport frame/reassembly queues must also be bounded **before** ASGI receives a command.
+Run Uvicorn with its bounded `websockets` backend, `--ws-max-size 65536 --ws-max-queue 16`,
+plus transport ping/pong (20-second defaults). The currently installed SansIO backend has
+an unbounded internal ASGI receive queue; the application-level checks alone cannot bound
+that transport. Set equivalent limits at the eventual BFF/gateway as well. The locked
+legacy websockets backend emits a Uvicorn deprecation warning; requalify bounds when
+changing server dependencies/backends. Do not assume a backend honors flags it ignores.
+
+### JavaScript use and isolated validation
+
+The browser module accepts endpoint paths and callbacks so it does not assume a completed
+company auth/UI. With a future same-origin BFF and real session endpoint:
+
+```javascript
+import { startMarketData } from './browser-marketdata.js';
+const stream = await startMarketData({
+  symbols: selectedCanonicalSymbols, // Choose from the instrument list, 1-100 instruments.
+  sessionUrl: '/session',             // Replace with the actual protected company endpoint.
+  onPrice: p => renderPrice(p.last, p.price_basis, p.freshness),
+  onCandle: c => upsertChartCandle(c), // Also invalidates derived buckets after corrections.
+  onStatus: s => s.items.forEach(i => showStale(i.canonical_symbol,
+    s.database !== 'available' || i.freshness !== 'fresh')),
+  onConnection: state => showConnectionState(state),
+  onError: error => showMarketDataError(error),
+});
+// Later: stream.stop();
+```
+
+Rendering callback functions are application integration points, not a UI supplied by this
+repository. No mock observations are used by these examples. The provisional Python adapter
+needs the company's real session-authorizer callback; its paths/expiry schema are not a
+final frontend contract. Production TLS/session/credential/gateway setup remains unexecuted.
+
+Use a separate project and only task-owned disposable databases:
+
+```powershell
+docker compose -p marketdata-batch3-tests -f compose.batch3-test.yaml up -d --wait
+$env:DATABASE_URL='postgresql://batch3_test:disposable_test@127.0.0.1:55791/marketdata_batch3_test'
+uv run alembic upgrade head
+$env:TEST_DATABASE_URL=$env:DATABASE_URL
+$env:BATCH3_TEST_CONTAINER='marketdata-batch3-tests-postgres-1'
+uv run pytest -q
+# Repeat on 55792 with alembic -x timescale=true upgrade head and matching timescale container.
+uv run ruff check .
+uv run ruff format --check .
+uv run mypy
+uv run mypy src examples/company_bff.py
+node --check examples/browser-marketdata.js
+git diff --check
+# Development API only, using this migrated test DB and an explicit approved Origin:
+$env:APPLICATION_ROLE='api'
+$env:WEBSOCKET_ALLOWED_ORIGINS='["https://frontend.company.example"]'
+uv run uvicorn marketdata.api:create_app --factory --workers 2 --port 8003 --ws websockets --ws-max-size 65536 --ws-max-queue 16
+# Remove only these task-owned disposable services after testing:
+docker compose -p marketdata-batch3-tests -f compose.batch3-test.yaml down
+```
+
+The actual-outage test inspects the exact disposable project/loopback DSN before pausing and
+resuming that container. It never targets production. Tests and publishers are explicitly
+simulated, with genuine provider fixture tests unchanged. Exact evidence and remaining limits
+are in [Batch 3 verification](api-batch3-verification.md).

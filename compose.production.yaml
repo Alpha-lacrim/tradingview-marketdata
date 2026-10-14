@@ -1,0 +1,111 @@
+# Separate Linux deployment definition. Existing installations require a reviewed switch.
+# External volume must already exist; Compose cannot silently create a replacement volume.
+services:
+  db:
+    image: ${DATABASE_IMAGE:?pin the reviewed database image}
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: marketdata_owner
+      POSTGRES_DB: marketdata
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets: [postgres_password]
+    volumes:
+      - database:/var/lib/postgresql/data
+    networks: [database]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U marketdata_owner -d marketdata"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    logging: &logging
+      driver: json-file
+      options: {max-size: "10m", max-file: "5"}
+  migrate:
+    image: ${MARKETDATA_IMAGE:?pin the reviewed application image}
+    profiles: [tools]
+    command: [.venv/bin/python, -m, marketdata.production, migrate]
+    secrets:
+      - source: migration_database_url
+        target: database_url
+    networks: [database]
+    depends_on:
+      db: {condition: service_healthy}
+    logging: *logging
+  app:
+    image: ${MARKETDATA_IMAGE:?pin the reviewed application image}
+    command: [.venv/bin/python, -m, marketdata.production, api]
+    restart: unless-stopped
+    environment:
+      API_WORKERS: "2"
+      API_CORS_ORIGINS: ${API_CORS_ORIGINS:-[]}
+      WEBSOCKET_ALLOWED_ORIGINS: ${WEBSOCKET_ALLOWED_ORIGINS:?exact HTTPS origins required}
+      FORWARDED_ALLOW_IPS: ${FORWARDED_ALLOW_IPS:?trusted proxy address required}
+      DB_POOL_MIN: "2"
+      DB_POOL_MAX: "10"
+      DB_TIMEOUT_SECONDS: "5"
+      WEBSOCKET_MAX_CLIENTS: "50"
+      WEBSOCKET_MAX_SYMBOLS: "100"
+      WEBSOCKET_MAX_TOTAL_SUBSCRIPTIONS: "5000"
+    secrets:
+      - source: api_database_url
+        target: database_url
+      - source: api_key
+        target: api_key
+    ports: ["127.0.0.1:${API_PORT:-8002}:8000"]
+    networks: [database, http]
+    depends_on:
+      db: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, .venv/bin/python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=6)"]
+      interval: 15s
+      timeout: 7s
+      retries: 3
+      start_period: 20s
+    stop_grace_period: 35s
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    logging: *logging
+  collector:
+    image: ${MARKETDATA_IMAGE:?pin the reviewed application image}
+    profiles: [ingestion]
+    command: [.venv/bin/python, -m, marketdata.production, collector]
+    restart: unless-stopped
+    environment:
+      REGISTRY_FILE: ${REGISTRY_FILE:-config/instruments.mock.json}
+      MARKET_DATA_PROVIDER_CRYPTO: ${MARKET_DATA_PROVIDER_CRYPTO:-disabled}
+      MARKET_DATA_PROVIDER_FOREX: ${MARKET_DATA_PROVIDER_FOREX:-disabled}
+      MARKET_DATA_PROVIDER_METALS: ${MARKET_DATA_PROVIDER_METALS:-disabled}
+      MARKET_DATA_PROVIDER_ENERGY: ${MARKET_DATA_PROVIDER_ENERGY:-disabled}
+      MARKET_DATA_PROVIDER_FUTURES: ${MARKET_DATA_PROVIDER_FUTURES:-disabled}
+      TRADINGVIEW_PRODUCTION_ACCESS_APPROVED: "false"
+      COLLECTOR_METRICS_HOST: "0.0.0.0"
+    secrets:
+      - source: collector_database_url
+        target: database_url
+    networks: [database, egress]
+    ports: ["127.0.0.1:9002:9000"]
+    depends_on:
+      db: {condition: service_healthy}
+    stop_grace_period: 35s
+    logging: *logging
+networks:
+  database: {internal: true}
+  http: {}
+  egress: {}
+volumes:
+  database:
+    external: true
+    name: ${MARKETDATA_VOLUME:?verified existing volume name required}
+secrets:
+  postgres_password:
+    file: ${DEPLOY_SECRETS_DIR:?private secret directory required}/postgres_password
+  migration_database_url:
+    file: ${DEPLOY_SECRETS_DIR}/migration_database_url
+  api_database_url:
+    file: ${DEPLOY_SECRETS_DIR}/api_database_url
+  collector_database_url:
+    file: ${DEPLOY_SECRETS_DIR}/collector_database_url
+  api_key:
+    file: ${DEPLOY_SECRETS_DIR}/api_key

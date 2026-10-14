@@ -39,6 +39,40 @@ class Metrics:
             "Last API database health check",
             registry=self.registry,
         )
+        self.api_latency = Histogram(
+            "marketdata_api_request_seconds",
+            "HTTP request duration including pool wait",
+            ["route", "status"],
+            buckets=(0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10),
+            registry=self.registry,
+        )
+        self.api_query_latency = Histogram(
+            "marketdata_api_query_seconds",
+            "Database statement execution duration",
+            registry=self.registry,
+        )
+        self.api_pool = Gauge(
+            "marketdata_api_pool_connections",
+            "Worker pool connections",
+            ["state"],
+            registry=self.registry,
+        )
+        self.api_ws_clients = Gauge(
+            "marketdata_api_ws_clients",
+            "Connected marketdata clients",
+            registry=self.registry,
+        )
+        self.api_ws_queue = Gauge(
+            "marketdata_api_ws_queue_messages",
+            "Worker queued marketdata messages",
+            ["state"],
+            registry=self.registry,
+        )
+        self.api_ws_reader = Gauge(
+            "marketdata_api_ws_reader_running",
+            "Journal reader task is alive",
+            registry=self.registry,
+        )
         self.event_loop_lag = Histogram(
             "marketdata_event_loop_lag_seconds",
             "One-second monitor wake delay; sampled in the application event loop",

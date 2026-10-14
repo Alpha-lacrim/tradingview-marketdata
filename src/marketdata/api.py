@@ -5,6 +5,7 @@ import base64
 import hmac
 import json
 import logging
+import time
 from collections.abc import AsyncIterator, Mapping
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime, timedelta
@@ -29,6 +30,7 @@ from marketdata.config import Settings
 from marketdata.domain import DataStatus, Instrument, ProviderInstrument, Tick, utc, utc_now
 from marketdata.fanout import Fanout
 from marketdata.ingestion import IngestionService
+from marketdata.market_stream import MarketHub, create_stream_router
 from marketdata.observability import Metrics, configure_logging
 from marketdata.persistence import INTERVALS, Store
 from marketdata.providers.base import ProviderHealth
@@ -119,7 +121,7 @@ class Health(BaseModel):
     provider_transports: dict[str, str]
     ingestion_state: Literal["running", "stopped", "unknown"] = "unknown"
     ingestion_database_state: Literal["healthy", "degraded", "unknown"] = "unknown"
-    streaming_mode: Literal["local", "unavailable"] = "unavailable"
+    streaming_mode: Literal["local", "database", "unavailable"] = "unavailable"
 
 
 class Command(BaseModel):
@@ -186,7 +188,39 @@ def create_combined_app(settings: Settings | None = None) -> FastAPI:
 def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
     metrics = Metrics()
     store = Store(settings, read_only=not combined)
+    store.metrics = metrics
     fanout = Fanout(settings.websocket_queue_capacity, settings.websocket_max_clients, metrics)
+
+    async def monitor(app: FastAPI) -> None:
+        loop = asyncio.get_running_loop()
+        maximum = 0.0
+        while True:
+            expected = loop.time() + 1
+            await asyncio.sleep(1)
+            lag = max(0.0, loop.time() - expected)
+            maximum = max(maximum, lag)
+            metrics.event_loop_lag.observe(lag)
+            metrics.event_loop_lag_max.set(maximum)
+            pool = getattr(app.state.store, "pool", None)
+            if pool is not None:
+                size, idle = pool.get_size(), pool.get_idle_size()
+                for state, value in (("size", size), ("idle", idle), ("used", size - idle)):
+                    metrics.api_pool.labels(state).set(value)
+            hub = app.state.market_hub
+            metrics.api_ws_clients.set(len(hub.clients))
+            depths = [c.queue.qsize() for c in hub.clients]
+            metrics.api_ws_queue.labels("total").set(sum(depths))
+            metrics.api_ws_queue.labels("maximum").set(max(depths, default=0))
+            metrics.api_ws_reader.set(int(hub.task is not None and not hub.task.done()))
+
+    @asynccontextmanager
+    async def monitoring(app: FastAPI) -> AsyncIterator[None]:
+        task = asyncio.create_task(monitor(app), name="api-runtime-monitor")
+        try:
+            yield
+        finally:
+            task.cancel()
+            await asyncio.gather(task, return_exceptions=True)
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
@@ -200,12 +234,36 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
                 app.state.service = runtime.service
                 app.state.registry = runtime.registry
                 app.state.store = store
-                yield
+                app.state.market_hub = MarketHub(store, settings, metrics)
+                app.state.market_hub.start()
+                try:
+                    async with monitoring(app):
+                        yield
+                finally:
+                    await app.state.market_hub.stop()
         else:
             app.state.store = store
             try:
-                await store.connect()
-                yield
+                try:
+                    await store.connect()
+                except (
+                    asyncpg.PostgresError,
+                    asyncpg.InterfaceError,
+                    OSError,
+                    TimeoutError,
+                ) as error:
+                    logger.error(
+                        "API database startup unavailable",
+                        extra={"context": {"category": type(error).__name__}},
+                    )
+                    raise RuntimeError("API database startup unavailable") from None
+                app.state.market_hub = MarketHub(store, settings, metrics)
+                app.state.market_hub.start()
+                try:
+                    async with monitoring(app):
+                        yield
+                finally:
+                    await app.state.market_hub.stop()
             finally:
                 await store.close()
 
@@ -218,6 +276,7 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
     app.state.service = None
     # Initialized before lifespan too, for tooling and tests; no connection is opened here.
     app.state.store = store
+    app.state.metrics = metrics
 
     def error_response(
         request: Request, status: int, message: str, headers: Mapping[str, str] | None = None
@@ -228,6 +287,8 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
             404: "not_found",
             422: "invalid_request",
             503: "database_unavailable",
+            409: "resync_required",
+            500: "internal_error",
         }
         body = (
             {"error": {"code": codes.get(status, "request_failed"), "message": message}}
@@ -238,7 +299,26 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
 
     @app.middleware("http")
     async def authenticate(request: Request, call_next: Any) -> Response:
+        began = time.perf_counter()
+
+        def record(response: Response) -> Response:
+            route = request.scope.get("route")
+            route_name = route.path if isinstance(route, APIRoute) else "unmatched"
+            method = (
+                request.method
+                if request.method
+                in {"GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "TRACE", "CONNECT"}
+                else "OTHER"
+            )
+            metrics.api_requests.labels(method, str(response.status_code)).inc()
+            metrics.api_latency.labels(route_name, str(response.status_code)).observe(
+                time.perf_counter() - began
+            )
+            response.headers["Cache-Control"] = "no-store"
+            return response
+
         if request.url.path not in {
+            "/livez",
             "/health",
             "/docs",
             "/redoc",
@@ -247,22 +327,29 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
         } and not authorized(request.headers.get("authorization"), settings):
             header = request.headers.get("authorization", "")
             invalid = header[:7].lower() == "bearer " and bool(header[7:])
-            return error_response(
-                request,
-                403 if invalid else 401,
-                "invalid credentials" if invalid else "authentication required",
-                {"WWW-Authenticate": "Bearer"} if not invalid else None,
+            return record(
+                error_response(
+                    request,
+                    403 if invalid else 401,
+                    "invalid credentials" if invalid else "authentication required",
+                    {"WWW-Authenticate": "Bearer"} if not invalid else None,
+                )
             )
         try:
-            if request.url.path.startswith("/api/v1/"):
+            if request.url.path not in {"/livez", "/docs", "/redoc", "/openapi.json"}:
                 async with asyncio.timeout(settings.db_timeout_seconds):
                     response: Response = await call_next(request)
             else:
                 response = await call_next(request)
         except TimeoutError:
             response = error_response(request, 503, "database temporarily unavailable")
-        metrics.api_requests.labels(request.method, str(response.status_code)).inc()
-        return response
+        except Exception as error:
+            # Never log exception text/traceback: database/SDK errors can contain secrets.
+            logger.error(
+                "API request failed", extra={"context": {"category": type(error).__name__}}
+            )
+            response = error_response(request, 500, "internal server error")
+        return record(response)
 
     # Outermost middleware so preflight and 401/403/503 responses have CORS headers.
     app.add_middleware(
@@ -302,6 +389,10 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
             return [await p.health_check() for p in service.providers]
         snapshot = await store.collector_status()
         return snapshot["providers"] if snapshot else []
+
+    @app.get("/livez", include_in_schema=False)
+    async def liveness() -> dict[str, str]:
+        return {"api": "alive"}
 
     @app.get("/health", response_model=Health, openapi_extra={"security": []})
     async def health(response: Response) -> Health:
@@ -367,7 +458,7 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
             provider_transports={h.provider: h.transport for h in healths},
             ingestion_state=ingestion_state,
             ingestion_database_state=ingestion_database,
-            streaming_mode="local" if combined else "unavailable",
+            streaming_mode="local" if combined else "database",
         )
 
     @app.get("/providers", response_model=list[ProviderHealth])
@@ -679,4 +770,9 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
         if isinstance(route, APIRoute) and route.path != "/health":
             route.openapi_extra = {"security": [{"CompanyBearer": []}]}
     app.include_router(create_router(settings))
+    stream_router = create_stream_router(settings)
+    for stream_route in stream_router.routes:
+        if isinstance(stream_route, APIRoute):
+            stream_route.openapi_extra = {"security": [{"CompanyBearer": []}]}
+    app.include_router(stream_router)
     return app

@@ -164,7 +164,7 @@ async def test_real_connection_failure_and_server_statement_timeout(store, monke
 
 
 async def test_real_http_workers_read_stored_broker_candles_without_collector(
-    store, brokers, tmp_path
+    store, brokers, tmp_path, readonly_database_url
 ):
     bars = [(await persist(store, p, [START]))[0] for p in brokers]
     before = await snapshot(store)
@@ -178,7 +178,7 @@ async def test_real_http_workers_read_stored_broker_candles_without_collector(
             log_path = tmp_path / f"api-v1-{i}.log"
             env = dict(
                 os.environ,
-                DATABASE_URL=store.settings.database_url.get_secret_value(),
+                DATABASE_URL=readonly_database_url,
                 API_ENVIRONMENT="production",
                 API_KEY=TOKEN,
             )

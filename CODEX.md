@@ -1219,6 +1219,19 @@ Do not report planned work as completed.
 
 # Implemented execution protocol
 
+For final company API qualification use `docs/api-batch4-verification.md` and
+`docs/production-deployment.md`. Batch 4 has a separate `compose.batch4-test.yaml`, project
+`marketdata-batch4-tests`, loopback ports 55891/55892, database `marketdata_batch4_test`.
+Run full suites with `TEST_DATABASE_URL` and matching `BATCH4_TEST_CONTAINER`; set
+`BATCH4_TEST_IMAGE=marketdata-batch4:qualification` after building that task-owned image to
+include actual Linux container smoke. The API load command is
+`uv run python scripts/qualify_api.py --output artifacts/batch4-performance.json`.
+It refuses other DSNs, creates 100 synthetic sources, runs real TCP load and pauses/unpauses
+only the verified disposable database. Never run it concurrently with pytest on the same DB.
+Production uses `compose.production.yaml` and separate mounted DSNs, not dev credentials.
+Schema head remains 0006; API-only readiness does not require collector connectivity.
+Unsupported guest production ingestion stays blocked unless access rights are established.
+
 Source map: `src/marketdata/domain.py` and `registry.py` own identity/normalization;
 `providers/` owns documented transports/parsers; `ingestion.py` owns task/queue lifecycle;
 `persistence.py` owns PostgreSQL; `api.py` owns REST/WebSocket serving. `README.md` is the
@@ -1232,7 +1245,15 @@ explicit source identity, decimal serialization, production bearer/CORS configur
 company backend browser authentication and DBA-scoped SELECT-role setup. Validate API
 changes with `compose.batch2-test.yaml` under a separate project, never deployed resources.
 
-Alembic head is `0005`; 0005 adds only a collector health snapshot table. `candles.py` owns
+Alembic head is `0006`; 0005 adds only a collector health snapshot table. 0006 adds the
+bounded committed-event journal and transactionally locked cursor clock. `events.py` owns
+append/reconciliation/snapshot fences; `market_stream.py` owns API worker readers/client
+lifecycle, and `ws_models.py` owns schemas. Every supported writer appends in its data
+transaction; a SERIAL/IDENTITY alone must never be used as a commit-order watermark.
+No PostgreSQL notification is required. Journal retention never deletes market history.
+Browser authentication architecture is unresolved; the BFF example is PROVISIONAL.
+See docs/api.md and docs/api-batch3-verification.md; validate only on compose.batch3-test.yaml
+with task-owned project/ports. `candles.py` owns
 completed native candle validation/scheduling;
 `candle_ingestion.py` owns bounded minute collection/recovery through the optional
 `providers/candles.py` capability. The experimental guest default stores native closed 1m
