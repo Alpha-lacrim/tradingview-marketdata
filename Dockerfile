@@ -1,9 +1,9 @@
 FROM python:3.12-slim
 WORKDIR /app
 COPY pyproject.toml uv.lock ./
-RUN --mount=type=cache,target=/root/.cache/uv pip install --no-cache-dir uv==0.11.27 && uv sync --frozen --no-dev --extra databento --no-install-project
+RUN --mount=type=cache,target=/root/.cache/uv pip install --no-cache-dir uv==0.11.27 && uv sync --frozen --no-dev --extra collector --extra migrations --extra databento --no-install-project
 COPY src ./src
-RUN --mount=type=cache,target=/root/.cache/uv uv sync --frozen --no-dev --extra databento
+RUN --mount=type=cache,target=/root/.cache/uv uv sync --frozen --no-dev --extra collector --extra migrations --extra databento
 COPY migrations ./migrations
 COPY alembic.ini ./
 COPY config ./config

@@ -1,0 +1,1031 @@
+{
+  "$defs": {
+    "CandleEvent": {
+      "properties": {
+        "version": {
+          "const": 1,
+          "default": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "server_timestamp": {
+          "format": "date-time",
+          "title": "Server Timestamp",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "candle_completed",
+            "candle_corrected"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "cursor": {
+          "title": "Cursor",
+          "type": "string"
+        },
+        "event_id": {
+          "title": "Event Id",
+          "type": "string"
+        },
+        "recorded_at": {
+          "format": "date-time",
+          "title": "Recorded At",
+          "type": "string"
+        },
+        "persisted": {
+          "const": true,
+          "default": true,
+          "title": "Persisted",
+          "type": "boolean"
+        },
+        "data": {
+          "$ref": "#/$defs/CompletedCandle"
+        }
+      },
+      "required": [
+        "server_timestamp",
+        "type",
+        "cursor",
+        "event_id",
+        "recorded_at",
+        "data"
+      ],
+      "title": "CandleEvent",
+      "type": "object"
+    },
+    "CompletedCandle": {
+      "properties": {
+        "instrument_id": {
+          "format": "uuid",
+          "title": "Instrument Id",
+          "type": "string"
+        },
+        "canonical_symbol": {
+          "title": "Canonical Symbol",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "provider_symbol": {
+          "description": "Exact persisted source symbol; never rewritten",
+          "title": "Provider Symbol",
+          "type": "string"
+        },
+        "venue": {
+          "title": "Venue",
+          "type": "string"
+        },
+        "broker": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Configured FX broker namespace; null if absent",
+          "title": "Broker"
+        },
+        "interval": {
+          "enum": [
+            "1m",
+            "5m",
+            "15m",
+            "1h",
+            "1d"
+          ],
+          "title": "Interval",
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "native",
+            "derived"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "base_interval": {
+          "const": "1m",
+          "default": "1m",
+          "title": "Base Interval",
+          "type": "string"
+        },
+        "price_basis": {
+          "const": "native",
+          "default": "native",
+          "title": "Price Basis",
+          "type": "string"
+        },
+        "bucket_start": {
+          "format": "date-time",
+          "title": "Bucket Start",
+          "type": "string"
+        },
+        "bucket_end": {
+          "format": "date-time",
+          "title": "Bucket End",
+          "type": "string"
+        },
+        "open": {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "title": "Open",
+          "type": "string"
+        },
+        "high": {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "title": "High",
+          "type": "string"
+        },
+        "low": {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "title": "Low",
+          "type": "string"
+        },
+        "close": {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "title": "Close",
+          "type": "string"
+        },
+        "volume": {
+          "anyOf": [
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Source volume only; null if units are unavailable",
+          "title": "Volume"
+        },
+        "volume_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Volume Type"
+        },
+        "realtime_status": {
+          "$ref": "#/$defs/DataStatus"
+        },
+        "source_status": {
+          "title": "Source Status",
+          "type": "string"
+        },
+        "received_timestamp": {
+          "format": "date-time",
+          "title": "Received Timestamp",
+          "type": "string"
+        },
+        "observations": {
+          "title": "Observations",
+          "type": "integer"
+        },
+        "expected_observations": {
+          "title": "Expected Observations",
+          "type": "integer"
+        },
+        "complete": {
+          "description": "All base minutes exist; elapsed partial buckets stay visible",
+          "title": "Complete",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "instrument_id",
+        "canonical_symbol",
+        "provider",
+        "provider_symbol",
+        "venue",
+        "broker",
+        "interval",
+        "origin",
+        "bucket_start",
+        "bucket_end",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "realtime_status",
+        "source_status",
+        "received_timestamp",
+        "observations",
+        "expected_observations",
+        "complete"
+      ],
+      "title": "CompletedCandle",
+      "type": "object"
+    },
+    "DataStatus": {
+      "enum": [
+        "realtime",
+        "delayed",
+        "indicative",
+        "simulated",
+        "end_of_day",
+        "unknown"
+      ],
+      "title": "DataStatus",
+      "type": "string"
+    },
+    "Heartbeat": {
+      "properties": {
+        "version": {
+          "const": 1,
+          "default": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "server_timestamp": {
+          "format": "date-time",
+          "title": "Server Timestamp",
+          "type": "string"
+        },
+        "type": {
+          "const": "heartbeat",
+          "default": "heartbeat",
+          "title": "Type",
+          "type": "string"
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Cursor"
+        },
+        "database": {
+          "enum": [
+            "available",
+            "unavailable"
+          ],
+          "title": "Database",
+          "type": "string"
+        },
+        "request_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Id"
+        }
+      },
+      "required": [
+        "server_timestamp",
+        "cursor",
+        "database"
+      ],
+      "title": "Heartbeat",
+      "type": "object"
+    },
+    "PriceEvent": {
+      "properties": {
+        "version": {
+          "const": 1,
+          "default": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "server_timestamp": {
+          "format": "date-time",
+          "title": "Server Timestamp",
+          "type": "string"
+        },
+        "type": {
+          "const": "price_update",
+          "default": "price_update",
+          "title": "Type",
+          "type": "string"
+        },
+        "cursor": {
+          "title": "Cursor",
+          "type": "string"
+        },
+        "event_id": {
+          "title": "Event Id",
+          "type": "string"
+        },
+        "recorded_at": {
+          "format": "date-time",
+          "title": "Recorded At",
+          "type": "string"
+        },
+        "persisted": {
+          "const": true,
+          "default": true,
+          "title": "Persisted",
+          "type": "boolean"
+        },
+        "data": {
+          "$ref": "#/$defs/PriceItem"
+        }
+      },
+      "required": [
+        "server_timestamp",
+        "cursor",
+        "event_id",
+        "recorded_at",
+        "data"
+      ],
+      "title": "PriceEvent",
+      "type": "object"
+    },
+    "PriceItem": {
+      "properties": {
+        "instrument_id": {
+          "format": "uuid",
+          "title": "Instrument Id",
+          "type": "string"
+        },
+        "canonical_symbol": {
+          "title": "Canonical Symbol",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "provider_symbol": {
+          "description": "Exact persisted source symbol; never rewritten",
+          "title": "Provider Symbol",
+          "type": "string"
+        },
+        "venue": {
+          "title": "Venue",
+          "type": "string"
+        },
+        "broker": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Configured FX broker namespace; null if absent",
+          "title": "Broker"
+        },
+        "last": {
+          "anyOf": [
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last"
+        },
+        "bid": {
+          "anyOf": [
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bid"
+        },
+        "ask": {
+          "anyOf": [
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ask"
+        },
+        "price_type": {
+          "enum": [
+            "quote",
+            "candle_close",
+            "unavailable"
+          ],
+          "title": "Price Type",
+          "type": "string"
+        },
+        "price_basis": {
+          "enum": [
+            "last",
+            "bid_ask",
+            "bid",
+            "ask",
+            "candle_close",
+            "unavailable"
+          ],
+          "title": "Price Basis",
+          "type": "string"
+        },
+        "source_timestamp": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Timestamp"
+        },
+        "received_timestamp": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Received Timestamp"
+        },
+        "freshness_basis": {
+          "enum": [
+            "source_and_receipt",
+            "receipt",
+            "unavailable"
+          ],
+          "title": "Freshness Basis",
+          "type": "string"
+        },
+        "age_ms": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Age Ms"
+        },
+        "freshness": {
+          "enum": [
+            "fresh",
+            "stale",
+            "unavailable"
+          ],
+          "title": "Freshness",
+          "type": "string"
+        },
+        "stale_after_seconds": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Stale After Seconds"
+        },
+        "clock_skew": {
+          "default": false,
+          "title": "Clock Skew",
+          "type": "boolean"
+        },
+        "realtime_status": {
+          "$ref": "#/$defs/DataStatus"
+        },
+        "quote_freshness": {
+          "enum": [
+            "fresh",
+            "stale",
+            "unavailable"
+          ],
+          "title": "Quote Freshness",
+          "type": "string"
+        },
+        "realtime_quote_available": {
+          "title": "Realtime Quote Available",
+          "type": "boolean"
+        },
+        "bucket_start": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bucket Start"
+        },
+        "bucket_end": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bucket End"
+        }
+      },
+      "required": [
+        "instrument_id",
+        "canonical_symbol",
+        "provider",
+        "provider_symbol",
+        "venue",
+        "broker",
+        "price_type",
+        "price_basis",
+        "freshness_basis",
+        "freshness",
+        "realtime_status",
+        "quote_freshness",
+        "realtime_quote_available"
+      ],
+      "title": "PriceItem",
+      "type": "object"
+    },
+    "PriceSnapshot": {
+      "properties": {
+        "version": {
+          "const": 1,
+          "default": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "server_timestamp": {
+          "format": "date-time",
+          "title": "Server Timestamp",
+          "type": "string"
+        },
+        "type": {
+          "const": "price_snapshot",
+          "default": "price_snapshot",
+          "title": "Type",
+          "type": "string"
+        },
+        "request_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Id"
+        },
+        "snapshot_cursor": {
+          "title": "Snapshot Cursor",
+          "type": "string"
+        },
+        "batch": {
+          "title": "Batch",
+          "type": "integer"
+        },
+        "final": {
+          "title": "Final",
+          "type": "boolean"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/$defs/PriceItem"
+          },
+          "title": "Items",
+          "type": "array"
+        }
+      },
+      "required": [
+        "server_timestamp",
+        "snapshot_cursor",
+        "batch",
+        "final",
+        "items"
+      ],
+      "title": "PriceSnapshot",
+      "type": "object"
+    },
+    "SocketError": {
+      "properties": {
+        "version": {
+          "const": 1,
+          "default": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "server_timestamp": {
+          "format": "date-time",
+          "title": "Server Timestamp",
+          "type": "string"
+        },
+        "type": {
+          "default": "error",
+          "enum": [
+            "error",
+            "resync_required"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "request_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Id"
+        }
+      },
+      "required": [
+        "server_timestamp",
+        "code",
+        "message"
+      ],
+      "title": "SocketError",
+      "type": "object"
+    },
+    "SourceState": {
+      "properties": {
+        "instrument_id": {
+          "format": "uuid",
+          "title": "Instrument Id",
+          "type": "string"
+        },
+        "canonical_symbol": {
+          "title": "Canonical Symbol",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "provider_symbol": {
+          "description": "Exact persisted source symbol; never rewritten",
+          "title": "Provider Symbol",
+          "type": "string"
+        },
+        "venue": {
+          "title": "Venue",
+          "type": "string"
+        },
+        "broker": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Configured FX broker namespace; null if absent",
+          "title": "Broker"
+        },
+        "freshness": {
+          "enum": [
+            "fresh",
+            "stale",
+            "unavailable"
+          ],
+          "title": "Freshness",
+          "type": "string"
+        },
+        "quote_freshness": {
+          "enum": [
+            "fresh",
+            "stale",
+            "unavailable"
+          ],
+          "title": "Quote Freshness",
+          "type": "string"
+        },
+        "age_ms": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Age Ms"
+        },
+        "price_type": {
+          "enum": [
+            "quote",
+            "candle_close",
+            "unavailable"
+          ],
+          "title": "Price Type",
+          "type": "string"
+        },
+        "price_basis": {
+          "title": "Price Basis",
+          "type": "string"
+        },
+        "realtime_quote_available": {
+          "title": "Realtime Quote Available",
+          "type": "boolean"
+        },
+        "source_timestamp": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Timestamp"
+        },
+        "received_timestamp": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Received Timestamp"
+        },
+        "provider_state": {
+          "title": "Provider State",
+          "type": "string"
+        },
+        "transport": {
+          "title": "Transport",
+          "type": "string"
+        },
+        "session_expectation": {
+          "title": "Session Expectation",
+          "type": "string"
+        },
+        "candle_state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Candle State"
+        }
+      },
+      "required": [
+        "instrument_id",
+        "canonical_symbol",
+        "provider",
+        "provider_symbol",
+        "venue",
+        "broker",
+        "freshness",
+        "quote_freshness",
+        "age_ms",
+        "price_type",
+        "price_basis",
+        "realtime_quote_available",
+        "source_timestamp",
+        "received_timestamp",
+        "provider_state",
+        "transport",
+        "session_expectation",
+        "candle_state"
+      ],
+      "title": "SourceState",
+      "type": "object"
+    },
+    "SourceStatus": {
+      "properties": {
+        "version": {
+          "const": 1,
+          "default": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "server_timestamp": {
+          "format": "date-time",
+          "title": "Server Timestamp",
+          "type": "string"
+        },
+        "type": {
+          "const": "source_status",
+          "default": "source_status",
+          "title": "Type",
+          "type": "string"
+        },
+        "collector": {
+          "enum": [
+            "running",
+            "stopped",
+            "unknown"
+          ],
+          "title": "Collector",
+          "type": "string"
+        },
+        "database": {
+          "enum": [
+            "available",
+            "unavailable"
+          ],
+          "title": "Database",
+          "type": "string"
+        },
+        "batch": {
+          "title": "Batch",
+          "type": "integer"
+        },
+        "final": {
+          "title": "Final",
+          "type": "boolean"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/$defs/SourceState"
+          },
+          "title": "Items",
+          "type": "array"
+        }
+      },
+      "required": [
+        "server_timestamp",
+        "collector",
+        "database",
+        "batch",
+        "final",
+        "items"
+      ],
+      "title": "SourceStatus",
+      "type": "object"
+    },
+    "SubscriptionAck": {
+      "properties": {
+        "version": {
+          "const": 1,
+          "default": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "server_timestamp": {
+          "format": "date-time",
+          "title": "Server Timestamp",
+          "type": "string"
+        },
+        "type": {
+          "const": "subscription_ack",
+          "default": "subscription_ack",
+          "title": "Type",
+          "type": "string"
+        },
+        "action": {
+          "enum": [
+            "subscribe",
+            "unsubscribe",
+            "snapshot"
+          ],
+          "title": "Action",
+          "type": "string"
+        },
+        "request_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Id"
+        },
+        "symbols": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Symbols",
+          "type": "array"
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Cursor"
+        },
+        "snapshot_cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Snapshot Cursor"
+        }
+      },
+      "required": [
+        "server_timestamp",
+        "action",
+        "symbols",
+        "cursor"
+      ],
+      "title": "SubscriptionAck",
+      "type": "object"
+    }
+  },
+  "discriminator": {
+    "mapping": {
+      "candle_completed": "#/$defs/CandleEvent",
+      "candle_corrected": "#/$defs/CandleEvent",
+      "error": "#/$defs/SocketError",
+      "heartbeat": "#/$defs/Heartbeat",
+      "price_snapshot": "#/$defs/PriceSnapshot",
+      "price_update": "#/$defs/PriceEvent",
+      "resync_required": "#/$defs/SocketError",
+      "source_status": "#/$defs/SourceStatus",
+      "subscription_ack": "#/$defs/SubscriptionAck"
+    },
+    "propertyName": "type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/PriceEvent"
+    },
+    {
+      "$ref": "#/$defs/CandleEvent"
+    },
+    {
+      "$ref": "#/$defs/PriceSnapshot"
+    },
+    {
+      "$ref": "#/$defs/SubscriptionAck"
+    },
+    {
+      "$ref": "#/$defs/SourceStatus"
+    },
+    {
+      "$ref": "#/$defs/Heartbeat"
+    },
+    {
+      "$ref": "#/$defs/SocketError"
+    }
+  ]
+}

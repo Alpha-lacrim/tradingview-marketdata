@@ -1,0 +1,6 @@
+# Use with compose.yaml in a new disposable project, before its first migration.
+services:
+  db:
+    image: timescale/timescaledb:2.25.1-pg17
+  migrate:
+    command: [".venv/bin/alembic", "-x", "timescale=true", "upgrade", "head"]

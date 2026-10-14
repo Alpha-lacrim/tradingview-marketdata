@@ -3,13 +3,16 @@
 import argparse
 import asyncio
 import json
+import os
 
 import httpx
 from websockets.asyncio.client import connect
 
 
 async def main(base_url, combined):
-    async with httpx.AsyncClient(base_url=base_url, timeout=10) as client:
+    token = os.environ.get("API_KEY")
+    headers = {"Authorization": "Bearer " + token} if token else {}
+    async with httpx.AsyncClient(base_url=base_url, timeout=10, headers=headers) as client:
         health = await client.get("/health")
         health.raise_for_status()
         instruments = (await client.get("/instruments")).json()
@@ -25,7 +28,9 @@ async def main(base_url, combined):
         if combined:
             assert health.json()["streaming_mode"] == "local"
             socket_url = base_url.replace("https://", "wss://").replace("http://", "ws://")
-            async with connect(socket_url.rstrip("/") + "/ws/prices") as socket:
+            async with connect(
+                socket_url.rstrip("/") + "/ws/prices", additional_headers=headers
+            ) as socket:
                 await socket.send(
                     json.dumps({"action": "subscribe", "symbols": ["CRYPTO:BTCUSDT"]})
                 )
@@ -33,7 +38,7 @@ async def main(base_url, combined):
                 tick = json.loads(await asyncio.wait_for(socket.recv(), 5))
                 assert tick["type"] == "tick" and tick["persisted"] is False
         else:
-            assert health.json()["streaming_mode"] == "unavailable"
+            assert health.json()["streaming_mode"] == "database"
         metrics = await client.get("/metrics")
         assert "marketdata_persisted_total" in metrics.text
         print(
@@ -43,7 +48,7 @@ async def main(base_url, combined):
                     "instruments": len(instruments),
                     "history_rows": len(history["items"]),
                     "candles": len(candles.json()["items"]),
-                    "websocket": "passed" if combined else "unavailable (Batch 3)",
+                    "websocket": "legacy passed" if combined else "use /api/v1/ws/marketdata",
                 },
                 indent=2,
             )

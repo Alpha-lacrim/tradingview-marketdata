@@ -18,6 +18,8 @@ from test_native_candles import make_candle
 from test_process_separation import forbidden
 
 from marketdata.api import create_app
+from marketdata.api_models import HistoricalCandlePage
+from marketdata.api_v1 import chart_data, completed_candle
 from marketdata.config import Settings
 from marketdata.domain import DataStatus, RegistryEntry, normalize
 from marketdata.persistence import Store
@@ -311,8 +313,9 @@ async def test_history_cursor_no_missing_duplicates_mixed_status_and_forming_exc
         {"symbol": "'; DROP TABLE instruments;--"},
     ],
 )
+@pytest.mark.parametrize("endpoint", ["/api/v1/candles", "/api/v1/dashboard/candles"])
 @pytest.mark.integration
-async def test_invalid_history_utc_bounds_and_injection(store, brokers, change):
+async def test_invalid_history_utc_bounds_and_injection(store, brokers, change, endpoint):
     params = {
         "symbol": brokers[0][0].canonical_symbol,
         "provider": "tradingview_guest",
@@ -321,7 +324,7 @@ async def test_invalid_history_utc_bounds_and_injection(store, brokers, change):
     }
     params.update(change)
     async with api_client(store) as (_, client):
-        response = await client.get("/api/v1/candles", params=params)
+        response = await client.get(endpoint, params=params)
         assert response.status_code == 422, response.text
         assert response.json()["error"]["code"] == "invalid_request"
         assert (await client.get("/api/v1/instruments")).status_code == 200
@@ -656,3 +659,205 @@ async def test_select_only_role_cannot_write_even_when_session_readonly_is_disab
         async with store.connection() as admin:
             await admin.execute(f"DROP OWNED BY {role}")
             await admin.execute(f"DROP ROLE {role}")
+
+
+DASHBOARD = "/api/v1/dashboard/candles"
+
+
+def assert_chart_types(data, length):
+    assert set(data) == set("abcdefgh")
+    assert all(isinstance(a, list) and len(a) == length for a in data.values())
+    for key in "af":
+        assert all(type(v) is int for v in data[key])
+    for key in "bcdegh":
+        assert all(type(v) is float for v in data[key])
+    assert data["a"] == sorted(data["a"])
+
+
+def test_chart_conversion_exact_mapping_and_unavailable_metrics(pair):
+    bar = make_candle(
+        pair,
+        START,
+        received_timestamp=NOW,
+        open="1.123456789012345678901",
+        close="2.25",
+        high="3.75",
+        low="0.125",
+        volume="42.5",
+    )
+    row = {
+        "instrument": pair[0],
+        "provider": pair[1].provider,
+        "provider_symbol": pair[1].provider_symbol,
+    }
+    data = bar.model_dump()
+    data.update(bucket=START, observations=1)
+    item = completed_candle(row, data, "1m")
+    page = HistoricalCandlePage(
+        items=[item], interval="1m", start=START, end=START + timedelta(minutes=1), as_of=NOW
+    )
+    actual = chart_data(page).model_dump(mode="json")
+    assert_chart_types(actual, 1)
+    assert actual == {
+        "a": [int(START.timestamp())],
+        "b": [float(bar.open)],
+        "c": [2.25],
+        "d": [3.75],
+        "e": [0.125],
+        "f": [0],
+        "g": [42.5],
+        "h": [0.0],
+    }
+    assert item.open == bar.open  # Existing decimal representation is untouched.
+    page.items = [item.model_copy(update={"volume": None})]
+    assert chart_data(page).g == [0.0]
+    page.items = []
+    assert chart_data(page).model_dump() == {k: [] for k in "abcdefgh"}
+
+
+@pytest.mark.parametrize("field", ["open", "high", "low", "close", "volume"])
+def test_chart_rejects_nonfinite_float64_without_replacing_with_zero(pair, field):
+    from fastapi import HTTPException
+
+    bar = make_candle(pair, START, received_timestamp=NOW)
+    data = bar.model_dump()
+    data.update(bucket=START, observations=1)
+    item = completed_candle(
+        {
+            "instrument": pair[0],
+            "provider": pair[1].provider,
+            "provider_symbol": pair[1].provider_symbol,
+        },
+        data,
+        "1m",
+    )
+    page = HistoricalCandlePage(
+        items=[item.model_copy(update={field: Decimal("1e1000")})],
+        interval="1m",
+        start=START,
+        end=START + timedelta(minutes=1),
+        as_of=NOW,
+    )
+    with pytest.raises(HTTPException) as error:
+        chart_data(page)
+    assert error.value.status_code == 503
+
+
+@pytest.mark.parametrize(
+    "interval,minutes", [("1m", 1), ("5m", 5), ("15m", 15), ("1h", 60), ("1d", 1440)]
+)
+@pytest.mark.parametrize("additive", [True, False])
+@pytest.mark.integration
+async def test_dashboard_persisted_alignment_gaps_volume_and_source_isolation(
+    store, brokers, interval, minutes, additive
+):
+    beginning = START - timedelta(days=7)
+    end = beginning + timedelta(minutes=minutes * 4)
+    for n, pair in enumerate(brokers):
+        bars = []
+        for i in [*range(minutes), minutes * 2, minutes * 3]:
+            bars.append(
+                make_candle(
+                    pair,
+                    beginning + timedelta(minutes=i),
+                    received_timestamp=NOW,
+                    open=str(10 + n + i),
+                    close=str(11 + n + i),
+                    high=str(12 + n + i),
+                    low=str(9 + n + i),
+                    volume="2.125" if i < minutes else None if i == minutes * 2 else "0",
+                    metadata={"volume_type": "base", "volume_additive": additive},
+                )
+            )
+        await store.write_candles(list(reversed(bars)), [])
+    async with api_client(store) as (_, client):
+        for pair in brokers:
+            params = {
+                "symbol": pair[0].canonical_symbol,
+                "provider": pair[1].provider,
+                "provider_symbol": pair[1].provider_symbol,
+                "interval": interval,
+                "start": beginning.isoformat(),
+                "end": end.isoformat(),
+            }
+            original = (await client.get("/api/v1/candles", params=params)).json()
+            response = await client.get(DASHBOARD, params=params)
+            assert response.status_code == 200, response.text
+            data = response.json()
+            assert_chart_types(data, 3)
+            assert data["a"] == [
+                int((beginning + timedelta(minutes=i)).timestamp())
+                for i in (0, minutes * 2, minutes * 3)
+            ]
+            for key, field in [("b", "open"), ("c", "close"), ("d", "high"), ("e", "low")]:
+                assert data[key] == [float(c[field]) for c in original["items"]]
+                assert all(isinstance(c[field], str) for c in original["items"])
+            assert data["g"] == [minutes * 2.125 if additive or minutes == 1 else 0.0, 0.0, 0.0]
+            assert data["f"] == [0, 0, 0] and data["h"] == [0.0, 0.0, 0.0]
+            assert original["items"][1]["volume"] is None
+            assert "X-Marketdata-Next-Cursor" not in response.headers
+            params["limit"] = 1
+            seen = {k: [] for k in "abcdefgh"}
+            while True:
+                part = await client.get(DASHBOARD, params=params)
+                assert part.status_code == 200, part.text
+                for k, values in part.json().items():
+                    seen[k].extend(values)
+                cursor = part.headers.get("X-Marketdata-Next-Cursor")
+                if not cursor:
+                    break
+                params["cursor"] = cursor
+            assert seen == data
+            assert (
+                await client.get(
+                    "/api/v1/candles",
+                    params={k: v for k, v in params.items() if k not in {"limit", "cursor"}},
+                )
+            ).json() == original
+
+
+@pytest.mark.integration
+async def test_dashboard_empty_auth_cors_limits_and_readonly(store, brokers, readonly_database_url):
+    pair = brokers[0]
+    params = {
+        "symbol": pair[0].canonical_symbol,
+        "provider": pair[1].provider,
+        "start": START.isoformat(),
+        "end": (START + timedelta(minutes=5)).isoformat(),
+    }
+    before = await snapshot(store)
+    async with api_client(
+        store,
+        database_url=readonly_database_url,
+        api_environment="production",
+        api_key=SecretStr(TOKEN),
+        api_max_rows=2,
+        api_cors_origins=["https://frontend.example.com"],
+    ) as (app, client):
+        assert (await client.get(DASHBOARD, params=params)).status_code == 401
+        assert (
+            await client.get(DASHBOARD, params=params, headers={"Authorization": "Bearer wrong"})
+        ).status_code == 403
+        headers = {"Authorization": "Bearer " + TOKEN, "Origin": "https://frontend.example.com"}
+        response = await client.get(DASHBOARD, params={**params, "limit": 2}, headers=headers)
+        assert response.status_code == 200, response.text
+        assert response.json() == {k: [] for k in "abcdefgh"}
+        assert "X-Marketdata-Next-Cursor" in response.headers["access-control-expose-headers"]
+        assert (
+            await client.get(DASHBOARD, params={**params, "limit": 3}, headers=headers)
+        ).status_code == 422
+        assert (
+            await client.get(
+                DASHBOARD, params={**params, "limit": 1, "cursor": "invalid"}, headers=headers
+            )
+        ).status_code == 422
+        assert (
+            await client.get(
+                DASHBOARD,
+                params={**params, "limit": 1, "provider_symbol": "wrong"},
+                headers=headers,
+            )
+        ).status_code == 404
+        async with app.state.store.connection() as c:
+            assert await c.fetchval("SHOW transaction_read_only") == "on"
+    assert await snapshot(store) == before

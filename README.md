@@ -4,6 +4,15 @@ An asynchronous Python platform for ingesting market data into PostgreSQL/Timesc
 and serving latest prices, historical ticks, OHLCV candles, provider health and WebSocket
 subscriptions through FastAPI.
 
+**Company API-only setup:** [standalone FastAPI guide](docs/standalone-api.md) provides a
+minimal independent image, disposable native candles/quotes, separate SELECT-only credentials,
+REST/WS examples and the external-producer contract. No TradingView or collector is required.
+
+**Self-contained handover:** copy [distributions/marketdata-fastapi](distributions/marketdata-fastapi/README.md)
+for the independently runnable project, with local source, lockfile, migrations, docs, tests,
+Docker setup and examples. It has been verified outside this repository and can later become
+its own repository when authorized.
+
 **The default configuration uses simulated data only.** It runs offline with 30 instruments:
 crypto, FX, gold/silver spot, WTI/Brent CFDs and synthetic concrete futures contracts.
 Live adapters require explicit activation; their implementation does not establish live
@@ -126,6 +135,9 @@ current implementation state and outstanding work. For an existing nested checko
 project, read [the safe checkout migration guide](docs/repository-layout.md) before switching.
 
 ## Quick start
+
+For the current integration verdict, local authentication/WS examples and collector
+dependencies, start with the [developer handoff](docs/developer-handoff.md).
 
 Clone the repository and enter it:
 

@@ -1,0 +1,382 @@
+{
+  "files": {
+    ".env.example": {
+      "adaptation": "verbatim",
+      "sha256": "ff12d087310c9d9c9ef767e08dfe4bfcfaf6ad8f98b806ba8a258a66bef670b3",
+      "sources": {
+        ".env.api.example": "ff12d087310c9d9c9ef767e08dfe4bfcfaf6ad8f98b806ba8a258a66bef670b3"
+      }
+    },
+    "Dockerfile": {
+      "adaptation": "verbatim",
+      "sha256": "e5b29e5f9f00d3e3655731fadc147447b0c9c918a3bffba74d207130087c70be",
+      "sources": {
+        "Dockerfile.api": "e5b29e5f9f00d3e3655731fadc147447b0c9c918a3bffba74d207130087c70be"
+      }
+    },
+    "alembic.ini": {
+      "adaptation": "verbatim",
+      "sha256": "7532ac32eec15df4a5476ed7aafe3396d51d4538f89b37fe22a8c05da370935f",
+      "sources": {
+        "alembic.ini": "7532ac32eec15df4a5476ed7aafe3396d51d4538f89b37fe22a8c05da370935f"
+      }
+    },
+    "compose.yaml": {
+      "adaptation": "portable filename/ports",
+      "sha256": "d78e0ffb933be78ec8629d7aba9d56871e4999ea1fa334882bb8e69af2c07cf8",
+      "sources": {
+        "compose.api.yaml": "b3cc2dc4230a41091034235513b3977f28de1b325535b5f05198291512471a26"
+      }
+    },
+    "config/instruments.mock.json": {
+      "adaptation": "verbatim",
+      "sha256": "238fc5f3a546291907141faff9e6216ec0c875c587fe6b3bc5138c2fbc9aefc5",
+      "sources": {
+        "config/instruments.mock.json": "238fc5f3a546291907141faff9e6216ec0c875c587fe6b3bc5138c2fbc9aefc5"
+      }
+    },
+    "config/instruments.tradingview-business-proposal.json": {
+      "adaptation": "test-only persisted broker registry",
+      "sha256": "44abf753bf160707a08f60d18dae541f2a24bea437e566e9925b2f159e6f9e8a",
+      "sources": {
+        "config/instruments.tradingview-business-proposal.json": "44abf753bf160707a08f60d18dae541f2a24bea437e566e9925b2f159e6f9e8a"
+      }
+    },
+    "docs/api.md": {
+      "adaptation": "contract sections; omit parent batch launch recipes",
+      "sha256": "7a5ac5fc6eff09496b7b2bf2d27f2ea92204dc82bf6b8048c182e6b21ac4ca60",
+      "sources": {
+        "docs/api.md": "e29d69200ce82148b5ce8d7386dc353741b099fe47f49e33aa2ca74eafa29301"
+      }
+    },
+    "docs/frontend-integration.md": {
+      "adaptation": "portable startup link/port",
+      "sha256": "c79228846a09f79a80d64e6cbb72b29616836f8e65820da711d1235ecac81722",
+      "sources": {
+        "docs/frontend-integration.md": "2d9663a8a235ebe14a7c497fb9913395e515064e0714836754eb715ae8409d7f"
+      }
+    },
+    "docs/openapi.json": {
+      "adaptation": "OpenAPI from the verified parent factory; no database or transport",
+      "sha256": "ef109446f756001270878b0342bf8d16d914df737cb0c7b4028baedc177108ba",
+      "sources": {
+        "src/marketdata/api.py": "84dd77442c598b4735cb7c1a14c3ef9932e646f343e6f49318fe14cf094a1204",
+        "src/marketdata/api_v1.py": "e12be327d9876c2795c5fe50d4684e2e32e0663baf7003ca1a2746b4835f8d06",
+        "src/marketdata/market_stream.py": "93c84908605fb278d27cf9a7c1f51593eef37febf5c765c3f0ef8c82472532ef"
+      }
+    },
+    "docs/ws-marketdata.schema.json": {
+      "adaptation": "verbatim",
+      "sha256": "6044c1651250b8f0d9de19528bbfc8153616268db76c0ad209291bec9e6ed31b",
+      "sources": {
+        "docs/ws-marketdata.schema.json": "6044c1651250b8f0d9de19528bbfc8153616268db76c0ad209291bec9e6ed31b"
+      }
+    },
+    "examples/browser-marketdata.js": {
+      "adaptation": "verbatim",
+      "sha256": "9017a4960d1fffa19d404db0a4ee31239cec75cc4516662838535a15694e516e",
+      "sources": {
+        "examples/browser-marketdata.js": "9017a4960d1fffa19d404db0a4ee31239cec75cc4516662838535a15694e516e"
+      }
+    },
+    "examples/company_bff.py": {
+      "adaptation": "verbatim",
+      "sha256": "29c0984ba3dc6f8d2d35db91b96ca64454707a8453527a18c54d197fa5743b85",
+      "sources": {
+        "examples/company_bff.py": "29c0984ba3dc6f8d2d35db91b96ca64454707a8453527a18c54d197fa5743b85"
+      }
+    },
+    "migrations/env.py": {
+      "adaptation": "verbatim",
+      "sha256": "0ccc49167076805dd8c4aa328799a101ea338678c22e9d5a611919a9baa786cb",
+      "sources": {
+        "migrations/env.py": "0ccc49167076805dd8c4aa328799a101ea338678c22e9d5a611919a9baa786cb"
+      }
+    },
+    "migrations/versions/0001_marketdata.py": {
+      "adaptation": "verbatim",
+      "sha256": "68c9a20364a9d9692195261a5f0b5e185b72e5719787ca35d656a4a02b699467",
+      "sources": {
+        "migrations/versions/0001_marketdata.py": "68c9a20364a9d9692195261a5f0b5e185b72e5719787ca35d656a4a02b699467"
+      }
+    },
+    "migrations/versions/0002_timescale.py": {
+      "adaptation": "verbatim",
+      "sha256": "fb631b1c4799a8f36f4b2b86cbb77a430226e33c35fa90b4a074449a81d9fb7d",
+      "sources": {
+        "migrations/versions/0002_timescale.py": "fb631b1c4799a8f36f4b2b86cbb77a430226e33c35fa90b4a074449a81d9fb7d"
+      }
+    },
+    "migrations/versions/0003_native_candles.py": {
+      "adaptation": "verbatim",
+      "sha256": "d027a4bf729aa3f962e8f125fc4d59626378489c95ec6c6375f0de518c817773",
+      "sources": {
+        "migrations/versions/0003_native_candles.py": "d027a4bf729aa3f962e8f125fc4d59626378489c95ec6c6375f0de518c817773"
+      }
+    },
+    "migrations/versions/0004_candle_reliability.py": {
+      "adaptation": "verbatim",
+      "sha256": "58ba3eee75e3d38aa895d308af1fce3106340694fb7405db5b31c73e261b0dee",
+      "sources": {
+        "migrations/versions/0004_candle_reliability.py": "58ba3eee75e3d38aa895d308af1fce3106340694fb7405db5b31c73e261b0dee"
+      }
+    },
+    "migrations/versions/0005_collector_status.py": {
+      "adaptation": "verbatim",
+      "sha256": "34675451fd110c01639d48e6da99039e1b2594d9a129d45a4961c79a54d203b0",
+      "sources": {
+        "migrations/versions/0005_collector_status.py": "34675451fd110c01639d48e6da99039e1b2594d9a129d45a4961c79a54d203b0"
+      }
+    },
+    "migrations/versions/0006_marketdata_events.py": {
+      "adaptation": "verbatim",
+      "sha256": "6a970c3d983f45b1c20afbda95a5ee5906fb871f8b2c7ced3b1ca47a51beff1a",
+      "sources": {
+        "migrations/versions/0006_marketdata_events.py": "6a970c3d983f45b1c20afbda95a5ee5906fb871f8b2c7ced3b1ca47a51beff1a"
+      }
+    },
+    "src/marketdata/__init__.py": {
+      "adaptation": "verbatim",
+      "sha256": "118fa8ba3a0a430b647d521ce05320cf1c18b03e9e1b08f0e0cbbfc6a3092574",
+      "sources": {
+        "src/marketdata/__init__.py": "118fa8ba3a0a430b647d521ce05320cf1c18b03e9e1b08f0e0cbbfc6a3092574"
+      }
+    },
+    "src/marketdata/api.py": {
+      "adaptation": "verbatim",
+      "sha256": "84dd77442c598b4735cb7c1a14c3ef9932e646f343e6f49318fe14cf094a1204",
+      "sources": {
+        "src/marketdata/api.py": "84dd77442c598b4735cb7c1a14c3ef9932e646f343e6f49318fe14cf094a1204"
+      }
+    },
+    "src/marketdata/api_models.py": {
+      "adaptation": "verbatim",
+      "sha256": "57ff80252733a46371cee12b7cef5f11f0f925ecbd484468906675ff27d4f0a4",
+      "sources": {
+        "src/marketdata/api_models.py": "57ff80252733a46371cee12b7cef5f11f0f925ecbd484468906675ff27d4f0a4"
+      }
+    },
+    "src/marketdata/api_v1.py": {
+      "adaptation": "verbatim",
+      "sha256": "e12be327d9876c2795c5fe50d4684e2e32e0663baf7003ca1a2746b4835f8d06",
+      "sources": {
+        "src/marketdata/api_v1.py": "e12be327d9876c2795c5fe50d4684e2e32e0663baf7003ca1a2746b4835f8d06"
+      }
+    },
+    "src/marketdata/candle_ingestion.py": {
+      "adaptation": "verbatim",
+      "sha256": "9145ff6099397997aec2ff7cef111db9375087a9744c096c6f3b2e902c86aef7",
+      "sources": {
+        "src/marketdata/candle_ingestion.py": "9145ff6099397997aec2ff7cef111db9375087a9744c096c6f3b2e902c86aef7"
+      }
+    },
+    "src/marketdata/candles.py": {
+      "adaptation": "verbatim",
+      "sha256": "7c6410788e1d6cc849b92c1dd2a6f009fd80b81a5588b5a476d4b6be765f90bc",
+      "sources": {
+        "src/marketdata/candles.py": "7c6410788e1d6cc849b92c1dd2a6f009fd80b81a5588b5a476d4b6be765f90bc"
+      }
+    },
+    "src/marketdata/config.py": {
+      "adaptation": "verbatim",
+      "sha256": "12f6fd151e645207b868887e6c2c83e4be586ed1c1a9c105e86adcb7f573dd06",
+      "sources": {
+        "src/marketdata/config.py": "12f6fd151e645207b868887e6c2c83e4be586ed1c1a9c105e86adcb7f573dd06"
+      }
+    },
+    "src/marketdata/domain.py": {
+      "adaptation": "verbatim",
+      "sha256": "8cbdfd6ceb85e01f6b0a10696aa2a20680df1a2d248c2ccf97204f05c39a7e87",
+      "sources": {
+        "src/marketdata/domain.py": "8cbdfd6ceb85e01f6b0a10696aa2a20680df1a2d248c2ccf97204f05c39a7e87"
+      }
+    },
+    "src/marketdata/events.py": {
+      "adaptation": "verbatim",
+      "sha256": "153e86d266d5eef7a3e81b5c3ad7f2e02bb6745171923b17ae77f0c6d324b8ac",
+      "sources": {
+        "src/marketdata/events.py": "153e86d266d5eef7a3e81b5c3ad7f2e02bb6745171923b17ae77f0c6d324b8ac"
+      }
+    },
+    "src/marketdata/fanout.py": {
+      "adaptation": "verbatim",
+      "sha256": "eda83c089537687be556ec48b88bdf230d6c4dd77e579cc41b98055271355844",
+      "sources": {
+        "src/marketdata/fanout.py": "eda83c089537687be556ec48b88bdf230d6c4dd77e579cc41b98055271355844"
+      }
+    },
+    "src/marketdata/ingestion.py": {
+      "adaptation": "verbatim",
+      "sha256": "1cbe92c492fc9aae7b23c4412a619912b63fc20b9c9d9b7db523e4194cde7ce0",
+      "sources": {
+        "src/marketdata/ingestion.py": "1cbe92c492fc9aae7b23c4412a619912b63fc20b9c9d9b7db523e4194cde7ce0"
+      }
+    },
+    "src/marketdata/market_stream.py": {
+      "adaptation": "verbatim",
+      "sha256": "93c84908605fb278d27cf9a7c1f51593eef37febf5c765c3f0ef8c82472532ef",
+      "sources": {
+        "src/marketdata/market_stream.py": "93c84908605fb278d27cf9a7c1f51593eef37febf5c765c3f0ef8c82472532ef"
+      }
+    },
+    "src/marketdata/observability.py": {
+      "adaptation": "verbatim",
+      "sha256": "4edef540bb6627fbccade78ed7a2a7bafe8ce9e909ff83652a1d50a69ef105a9",
+      "sources": {
+        "src/marketdata/observability.py": "4edef540bb6627fbccade78ed7a2a7bafe8ce9e909ff83652a1d50a69ef105a9"
+      }
+    },
+    "src/marketdata/persistence.py": {
+      "adaptation": "verbatim",
+      "sha256": "1f6dea4c55e3e1e1c729a681603a22fec644ac67d012c43d992405ccfc92e1bd",
+      "sources": {
+        "src/marketdata/persistence.py": "1f6dea4c55e3e1e1c729a681603a22fec644ac67d012c43d992405ccfc92e1bd"
+      }
+    },
+    "src/marketdata/price_selection.py": {
+      "adaptation": "verbatim",
+      "sha256": "5592ed67d472eda99dde963dee04b8a7498a9a1892664d6e485d50bd856c7ea3",
+      "sources": {
+        "src/marketdata/price_selection.py": "5592ed67d472eda99dde963dee04b8a7498a9a1892664d6e485d50bd856c7ea3"
+      }
+    },
+    "src/marketdata/production.py": {
+      "adaptation": "verbatim",
+      "sha256": "754979a1224b9455b85a7c6de751a3d41b359e26f9fe43490a6649eb180f2762",
+      "sources": {
+        "src/marketdata/production.py": "754979a1224b9455b85a7c6de751a3d41b359e26f9fe43490a6649eb180f2762"
+      }
+    },
+    "src/marketdata/providers/__init__.py": {
+      "adaptation": "verbatim",
+      "sha256": "f0233c166ffeafca843096e0d1c9d697869c169ceb500c3c7a74634160c77c05",
+      "sources": {
+        "src/marketdata/providers/__init__.py": "f0233c166ffeafca843096e0d1c9d697869c169ceb500c3c7a74634160c77c05"
+      }
+    },
+    "src/marketdata/providers/base.py": {
+      "adaptation": "verbatim",
+      "sha256": "d73f8945a548f7bf9e82f0fdca4c301e60f684f11baf3d777951a3d13b813892",
+      "sources": {
+        "src/marketdata/providers/base.py": "d73f8945a548f7bf9e82f0fdca4c301e60f684f11baf3d777951a3d13b813892"
+      }
+    },
+    "src/marketdata/providers/candle_pool.py": {
+      "adaptation": "verbatim",
+      "sha256": "1c7a0a1412835f8927c739419d0ed1dcf0a4a4ab689d285008653f70a58d6a2d",
+      "sources": {
+        "src/marketdata/providers/candle_pool.py": "1c7a0a1412835f8927c739419d0ed1dcf0a4a4ab689d285008653f70a58d6a2d"
+      }
+    },
+    "src/marketdata/providers/candles.py": {
+      "adaptation": "verbatim",
+      "sha256": "89950d795909de9f17ca0d1ee55917fab82d49d136a72244006d889ca09c6f4d",
+      "sources": {
+        "src/marketdata/providers/candles.py": "89950d795909de9f17ca0d1ee55917fab82d49d136a72244006d889ca09c6f4d"
+      }
+    },
+    "src/marketdata/registry.py": {
+      "adaptation": "verbatim",
+      "sha256": "b8d0f738dea113ce4291a45b540e57b47860584147ac679b87397d29a8a9a136",
+      "sources": {
+        "src/marketdata/registry.py": "b8d0f738dea113ce4291a45b540e57b47860584147ac679b87397d29a8a9a136"
+      }
+    },
+    "src/marketdata/sample_data.py": {
+      "adaptation": "verbatim",
+      "sha256": "b3529ff3e6dc513e9a25d710e0a19ee1b9c560d1db74e69bcdb7376efffddcd9",
+      "sources": {
+        "src/marketdata/sample_data.py": "b3529ff3e6dc513e9a25d710e0a19ee1b9c560d1db74e69bcdb7376efffddcd9"
+      }
+    },
+    "src/marketdata/sessions.py": {
+      "adaptation": "verbatim",
+      "sha256": "84c12788ad9068350938f610ac163bd452f6e8260799ad35f10ee0d9456caecf",
+      "sources": {
+        "src/marketdata/sessions.py": "84c12788ad9068350938f610ac163bd452f6e8260799ad35f10ee0d9456caecf"
+      }
+    },
+    "src/marketdata/ws_models.py": {
+      "adaptation": "verbatim",
+      "sha256": "6c4efa5ce10bd4af15c03d90916a5686c6340707d159d1c845c20cac2b022261",
+      "sources": {
+        "src/marketdata/ws_models.py": "6c4efa5ce10bd4af15c03d90916a5686c6340707d159d1c845c20cac2b022261"
+      }
+    },
+    "tests/browser-marketdata.test.mjs": {
+      "adaptation": "verbatim",
+      "sha256": "84e4e6ad5badae34903323c82f42ab283d09e7d8b62354b17ee55ddd17314e37",
+      "sources": {
+        "tests/browser-marketdata.test.mjs": "84e4e6ad5badae34903323c82f42ab283d09e7d8b62354b17ee55ddd17314e37"
+      }
+    },
+    "tests/conftest.py": {
+      "adaptation": "local fixture imports; absent collector assertion",
+      "sha256": "98649173179fdbe087a251815368488f49cbbb7acfd37ab3a9fabbbd387acdd7",
+      "sources": {
+        "tests/conftest.py": "98649173179fdbe087a251815368488f49cbbb7acfd37ab3a9fabbbd387acdd7"
+      }
+    },
+    "tests/helpers.py": {
+      "adaptation": "extract only transport-free fixture helpers",
+      "sha256": "efaba06b4358da67ea931c390819316c9894bfbacf1ca7758eb1ce637453239c",
+      "sources": {
+        "tests/test_integration_compatibility.py": "cd74241971577358ebc693fba021d8113f2272202738a0cd3d8efce94ef2dd83",
+        "tests/test_native_candles.py": "c99cd79202d70424ff6649a709a1d74e76ded70b773e2ae1f712e34b12379ac2",
+        "tests/test_process_separation.py": "19f172018da5600283922e15ebd12d91b78475a67cebb346ed5c86a2c3abbd70"
+      }
+    },
+    "tests/test_api_v1.py": {
+      "adaptation": "local fixture imports; absent collector assertion",
+      "sha256": "8b3505ff701069fb9de70cfa165943cde39f75e8b1529863025ed41846f223aa",
+      "sources": {
+        "tests/test_api_v1.py": "3f4c12d392e9d4af68b0c239cffa7fa73e1816d5aaf7f8d88c9c2bd357507a38"
+      }
+    },
+    "tests/test_browser_example.py": {
+      "adaptation": "local fixture imports; absent collector assertion",
+      "sha256": "fa4c540a90a30b7e4a8456010f032a7ccd88c7abc18891def0f3b682b2d9b551",
+      "sources": {
+        "tests/test_browser_example.py": "fa4c540a90a30b7e4a8456010f032a7ccd88c7abc18891def0f3b682b2d9b551"
+      }
+    },
+    "tests/test_company_bff_example.py": {
+      "adaptation": "local fixture imports; absent collector assertion",
+      "sha256": "ae2b9106001b0cc088362b755ab389acb64d8ccefff8f98ec5a8e7b05f23a489",
+      "sources": {
+        "tests/test_company_bff_example.py": "ae2b9106001b0cc088362b755ab389acb64d8ccefff8f98ec5a8e7b05f23a489"
+      }
+    },
+    "tests/test_domain.py": {
+      "adaptation": "local fixture imports; absent collector assertion",
+      "sha256": "53c48e6f4b7a79c73ae1385664dafb050371ab5b83906d214cc1d927ded7266b",
+      "sources": {
+        "tests/test_domain.py": "53c48e6f4b7a79c73ae1385664dafb050371ab5b83906d214cc1d927ded7266b"
+      }
+    },
+    "tests/test_market_permissions_migrations.py": {
+      "adaptation": "local fixture imports; absent collector assertion",
+      "sha256": "622d27c3a54430c6405cb192193c5fa5b766a778457b4fed183b44f4b2157142",
+      "sources": {
+        "tests/test_market_permissions_migrations.py": "777651af76aeb4d7623e1c2e947ce9db88182ff1a6f5e0b60646fea18893d876"
+      }
+    },
+    "tests/test_market_stream.py": {
+      "adaptation": "local fixture imports; absent collector assertion",
+      "sha256": "1fe6dabaa5b4e7ec1df7bc55b576ff738501252968a16846f37227537645e845",
+      "sources": {
+        "tests/test_market_stream.py": "53fdb2910fb88088a9eec8b3a49982d525bbb939d46aa9cd0526c87f74960d3d"
+      }
+    },
+    "tests/test_standalone_api.py": {
+      "adaptation": "local fixture imports; absent collector assertion",
+      "sha256": "2f6212bf492cb86b680f78a515dcffcdbc36cb25ae39fc00919e5beffece108f",
+      "sources": {
+        "tests/test_standalone_api.py": "6383076f2a95ccfad5e62a832bbdc6585701e58328ae8f0bc784ef573076ff53"
+      }
+    }
+  },
+  "hash_normalization": "CRLF to LF for text snapshots",
+  "policy": "API/schema snapshot; no collector or concrete transport. Distribution-owned files are not overwritten.",
+  "schema": 1
+}

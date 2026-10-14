@@ -9,17 +9,19 @@ description = "Legitimate multi-asset streaming market data and PostgreSQL persi
 requires-python = ">=3.12"
 dependencies = [
   "asyncpg>=0.30,<1", "fastapi>=0.115,<1", "uvicorn[standard]>=0.34,<1",
-  "pydantic>=2.10,<3", "pydantic-settings>=2.7,<3", "httpx>=0.28,<1",
-  "websockets>=15,<16", "alembic>=1.14,<2", "sqlalchemy>=2.0,<3",
-  "psycopg[binary]>=3.2,<4", "prometheus-client>=0.21,<1",
+  "pydantic>=2.10,<3", "pydantic-settings>=2.7,<3",
+  "websockets>=15,<16", "prometheus-client>=0.21,<1",
   "anyio>=4,<5",
 ]
 
 [project.optional-dependencies]
+collector = ["httpx>=0.28,<1"]
+migrations = ["alembic>=1.14,<2", "sqlalchemy>=2.0,<3", "psycopg[binary]>=3.2,<4"]
 databento = ["databento>=0.70,<1"]
 
 [dependency-groups]
-dev = ["pytest>=8,<9", "pytest-asyncio>=0.25,<2", "ruff>=0.11,<1", "mypy>=1.15,<2", "asyncpg-stubs>=0.30"]
+dev = ["pytest>=8,<9", "pytest-asyncio>=0.25,<2", "ruff>=0.11,<1", "mypy>=1.15,<2", "asyncpg-stubs>=0.30",
+  "httpx>=0.28,<1", "alembic>=1.14,<2", "sqlalchemy>=2.0,<3", "psycopg[binary]>=3.2,<4"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/marketdata"]

@@ -61,7 +61,11 @@ export async function startMarketData({
       candle.interval, candle.bucket_start].join("|");
     const previous = candles.get(key);
     // REST can see a later correction while earlier journal events are replayed.
-    if (previous && previous.received_timestamp > candle.received_timestamp) return;
+    // UTC serialization omits zero fractions; pad them before comparing, preserving microseconds.
+    const timestampKey = value => value.replace(/(?:\.(\d+))?Z$/, (_, fraction = "") =>
+      "." + fraction.padEnd(6, "0") + "Z");
+    if (previous && timestampKey(previous.received_timestamp) >
+        timestampKey(candle.received_timestamp)) return;
     candles.set(key, candle);
     onCandle(candle); // Upsert by logical key. Keep decimal strings; volume can be null.
   }
@@ -193,9 +197,12 @@ export async function startMarketData({
           } catch (error) {
             if (signal.aborted) return;
             onError(error);
+            if ([401, 403, 404, 422].includes(error.status)) stopped = true;
             connection.close();
           }
         } else if (recovering) {
+          // recover() fetches current prices after replay. The initial barrier snapshot is older.
+          if (message.type === "price_snapshot") return;
           if (buffered.length >= 4096) {
             onError(new Error("Recovery buffer full; reconnect and retry REST resynchronization"));
             connection.close();
@@ -217,7 +224,7 @@ export async function startMarketData({
     } catch (error) {
       if (signal.aborted) return;
       onError(error);
-      if (error.status === 401 || error.status === 403) stopped = true;
+      if ([401, 403, 404, 422].includes(error.status)) stopped = true;
       schedule();
     }
   }

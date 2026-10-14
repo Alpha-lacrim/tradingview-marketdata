@@ -1,7 +1,9 @@
 """Database-backed public REST routes; no provider or collector lifecycle ownership."""
 
 import base64
+import math
 from datetime import UTC, datetime, timedelta
+from decimal import Decimal
 from typing import Annotated, Any, Literal
 
 import asyncpg
@@ -10,6 +12,7 @@ from fastapi.security import HTTPBearer
 from pydantic import BaseModel, ValidationError, field_validator
 
 from marketdata.api_models import (
+    ChartData,
     CompletedCandle,
     CoverageItem,
     CoveragePage,
@@ -171,6 +174,29 @@ def completed_candle(
         observations=data["observations"],
         expected_observations=seconds // 60,
         complete=data["observations"] == seconds // 60,
+    )
+
+
+def chart_data(page: HistoricalCandlePage) -> ChartData:
+    """Convert only at the dashboard boundary; never infer missing financial metrics."""
+
+    def number(value: Decimal) -> float:
+        result = float(value)
+        if not math.isfinite(result):
+            raise HTTPException(503, "candle metric cannot be represented as finite float64")
+        return result
+
+    items = page.items
+    return ChartData(
+        a=[int(c.bucket_start.timestamp()) for c in items],
+        b=[number(c.open) for c in items],
+        c=[number(c.close) for c in items],
+        d=[number(c.high) for c in items],
+        e=[number(c.low) for c in items],
+        # observations counts base bars, not trades. Count/Value have no schema mapping.
+        f=[0 for _ in items],
+        g=[number(c.volume) if c.volume is not None else 0.0 for c in items],
+        h=[0.0 for _ in items],
     )
 
 
@@ -356,6 +382,44 @@ def create_router(settings: Settings) -> APIRouter:
         return HistoricalCandlePage(
             items=items, interval=interval, start=start, end=end, as_of=now, next_cursor=next_cursor
         )
+
+    @router.get(
+        "/dashboard/candles",
+        response_model=ChartData,
+        responses={
+            200: {
+                "headers": {
+                    "X-Marketdata-Next-Cursor": {
+                        "description": "Opaque history cursor; absent on the final page",
+                        "schema": {"type": "string"},
+                    }
+                }
+            }
+        },
+    )
+    async def dashboard_candles(
+        request: Request,
+        response: Response,
+        symbol: Symbol,
+        provider: Provider,
+        provider_symbol: SourceSymbol | None = None,
+        interval: HistoricalInterval = "1m",
+        start: datetime | None = None,
+        end: datetime | None = None,
+        limit: Limit = 100,
+        cursor: Annotated[str | None, Query(max_length=2048)] = None,
+    ) -> ChartData:
+        """Go ChartData using the existing native history query and pagination.
+
+        Count/Value are unavailable in schema 0006. Missing metrics use approved zeros.
+        Use /candles for exact decimals, status, completeness and source metadata.
+        """
+        page = await candles(
+            request, symbol, provider, provider_symbol, interval, start, end, limit, cursor
+        )
+        if page.next_cursor is not None:
+            response.headers["X-Marketdata-Next-Cursor"] = page.next_cursor
+        return chart_data(page)
 
     @router.get("/candles/latest", response_model=LatestCandlePage)
     async def latest_candles(

@@ -60,6 +60,7 @@ The OpenAPI inventory is **16 GET operations** (the 15 Batch 2 routes plus REST 
 | `/api/v1/instruments` | NEW | Paginated configured source identities and verified persisted availability |
 | `/api/v1/prices/latest` | NEW | Bulk persisted quote/candle-close/unavailable results |
 | `/api/v1/candles` | NEW | Completed native 1m history and derived UTC intervals |
+| `/api/v1/dashboard/candles` | NEW | Go ChartData a–h numeric arrays; approved missing-metric zeros |
 | `/api/v1/candles/latest` | NEW | Bulk latest completed native 1m candles |
 | `/api/v1/coverage` | NEW | Bounded tri-state completeness and missing ranges |
 | `/api/v1/health` | NEW | Authenticated API/database/collector/freshness/coverage summary |
@@ -221,6 +222,90 @@ only when every row has known, identical additive source units and a non-null va
 otherwise volume and volume_type are null. Unknown/raw volume metadata does not become
 traded quantity. `realtime_status`, `source_status` and maximum underlying receipt timestamp
 retain source provenance; a status group does not prove the rollup is complete.
+
+## Go dashboard candle compatibility
+
+`GET /api/v1/dashboard/candles` is a separate, opt-in **ChartData** endpoint.
+Existing `/api/v1/candles`, legacy REST and all WebSocket payloads retain their contracts.
+It reuses persisted native history, source selection, UTC windows, authentication, configured
+row/range limits and read-only connections. No collector or provider credentials are needed.
+
+Required: `symbol` (canonical identity), `provider`. Optional: exact `provider_symbol`,
+`interval` (`1m`, `5m`, `15m`, `1h`, `1d`), timezone-aware aligned `start`/`end`,
+`limit` (default 100, at most 1000 and API_MAX_ROWS), and opaque `cursor`.
+The window is [start, end); defaults and API_HISTORY_MAX_DAYS match `/api/v1/candles`.
+Each request selects one instrument/provider/source. Discover genuine identities through
+`/api/v1/instruments`; never concatenate different sources into one chart.
+
+| JSON key | Go field / type | Mapping |
+|---|---|---|
+| a | Time / []int64 | Persisted candle bucket start, Unix seconds (UTC) |
+| b | Open / []float64 | Open |
+| c | Close / []float64 | Close |
+| d | High / []float64 | High |
+| e | Low / []float64 | Low |
+| f | Count / []int64 | Unavailable in schema 0006: approved 0 placeholder |
+| g | Volume / []float64 | Genuine typed stored volume, otherwise approved 0.0 |
+| h | Value / []float64 | Unavailable in schema 0006: approved 0.0 placeholder |
+
+All eight fields are arrays, equal-length and index-aligned, with no `i` or other keys.
+Empty history returns:
+
+```json
+{"a":[],"b":[],"c":[],"d":[],"e":[],"f":[],"g":[],"h":[]}
+```
+
+After the disposable README migration/seed commands, copy this request (public demo token):
+
+```sh
+curl -H "Authorization: Bearer sample-development-token-32-characters" "http://localhost:8015/api/v1/dashboard/candles?symbol=DEMO%3ABTCUSD&provider=sample&interval=1m&limit=2"
+```
+
+Illustrative response for two simulated persisted candles; actual seed prices/times depend
+on when it runs. The seed has no volume, Count or Value:
+
+```json
+{"a":[1791763200,1791763260],"b":[10.0,11.0],"c":[11.0,12.0],"d":[12.0,13.0],"e":[9.0,10.0],"f":[0,0],"g":[0.0,0.0],"h":[0.0,0.0]}
+```
+
+When more rows exist, read header `X-Marketdata-Next-Cursor` and repeat the same query
+with that value in `cursor`, URL-encoded by your client. The header is absent on the last
+page and exposed to allowed CORS Origins. Do not assume a limited page is the entire window.
+Cursor identity/window/as-of checks match the original history endpoint.
+
+Prices/volume remain PostgreSQL NUMERIC/Python Decimal until this response boundary, where
+explicit IEEE-754 float64 conversion produces JSON numbers. Float64 may lose decimal
+precision (about 15–17 significant digits). The original API keeps exact decimal strings.
+A metric outside finite float64 range yields HTTP 503 instead of NaN/Infinity or substitute
+zero. Integer timestamps are source bucket starts, never local receive time.
+
+**Approved unavailable-metric convention:** frontend developers explicitly approved zeros.
+Zero may mean unavailable, not actual zero activity. The shape cannot distinguish those
+meanings per row; use the original API for nullable volume and volume_type.
+The schema/domain/producer pipeline stores no defined trade Count or traded Value, so f/h
+are currently always placeholders. `observations` counts base-minute candles, not trades,
+and is never used as Count. Arbitrary metadata is not a defined metric contract.
+Unknown raw source volume is not promoted from metadata. Value is never substituted for
+Volume or calculated as price × volume. Stored volume retains source semantics: for example,
+volume_type=tick is source tick activity, not automatically traded units or trade Count.
+Use the original API volume_type before assigning a financial quantity/unit to g.
+
+1m reads genuine stored native bars. Larger intervals reuse existing UTC rollups: first
+open, last close, max high, min low. Volume is summed only when every constituent has
+volume and existing source metadata declares consistent units and additive semantics;
+otherwise g is the unavailable zero. Gaps remain gaps; elapsed partial rollups stay visible
+without synthetic base candles. Existing status partitions can yield multiple rows at one
+timestamp; ordering/pagination preserve them instead of merging statuses. ChartData has no
+identity, status, completeness or availability metadata; retain request context and consult
+`/api/v1/candles` / coverage for those distinctions. Do not infer realtime status or complete
+coverage from the chart shape.
+
+Future Count/Value integration requires a separate producer/business contract: define what
+Count counts (trade count or another source-defined metric), nonnegative int64 bounds,
+Value units/currency, genuine provenance, availability and rollup rules before adding typed
+persistence/query mappings and regression tests. Use genuine metric values once mappings
+exist. This release changes no schema or collector and does not assume arbitrary metadata
+already supplies these metrics.
 
 ## Latest completed candles
 

@@ -1270,6 +1270,18 @@ checkouts must follow `docs/repository-layout.md` before adopting the relocation
 use a separate clone to preserve the original working directory, IDE and database volume.
 
 Install using `uv sync --frozen --extra databento` (omit the extra when not needed).
+API-only runtime: `uv sync --frozen --no-dev`, then use `uv run --no-sync` to avoid reinstalling
+development dependencies. Collector runtimes without dev tools require `--extra collector`;
+administrative migration environments require `--extra migrations`. The full Dockerfile
+explicitly retains collector/migration/Databento extras. The minimal `Dockerfile.api` defaults
+to the API runtime; its `tools` target is separate. Use `docs/standalone-api.md` and
+`compose.api.yaml` for a disposable API-only handover with sample native data and SELECT-only
+credentials; this setup has no collector and never runs migrations at API startup.
+The portable `distributions/marketdata-fastapi/` snapshot is refreshed with
+`uv run --no-sync python scripts/export_fastapi_distribution.py`; use `--check` for source
+parity. It protects manual distribution edits. Keep schema/API source authoritative here
+until repository extraction is authorized; validate delivery from a fresh copy outside this
+repository using that project's README commands and disposable DBs.
 Local database: `docker compose up -d db`. Migrate explicitly with
 `uv run alembic -x timescale=true upgrade head`, or omit `-x timescale=true` for ordinary
 PostgreSQL mode. API: `APPLICATION_ROLE=api` and

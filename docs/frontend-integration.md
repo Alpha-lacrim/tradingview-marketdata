@@ -1,5 +1,8 @@
 # Company frontend handoff
 
+See the [developer handoff](developer-handoff.md) for isolated local setup, runnable requests,
+the readiness verdict and the separate simultaneous TradingView quote/candle milestone.
+
 The API serves persisted data without PostgreSQL credentials in the frontend. The operator
 must supply the final HTTPS hostname and the company's existing authenticated backend routes.
 Local service base: `http://127.0.0.1:8002/api/v1`. Production service base:

@@ -826,59 +826,71 @@ name = "marketdata-platform"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
-    { name = "alembic" },
     { name = "anyio" },
     { name = "asyncpg" },
     { name = "fastapi" },
-    { name = "httpx" },
     { name = "prometheus-client" },
-    { name = "psycopg", extra = ["binary"] },
     { name = "pydantic" },
     { name = "pydantic-settings" },
-    { name = "sqlalchemy" },
     { name = "uvicorn", extra = ["standard"] },
     { name = "websockets" },
 ]
 
 [package.optional-dependencies]
+collector = [
+    { name = "httpx" },
+]
 databento = [
     { name = "databento" },
+]
+migrations = [
+    { name = "alembic" },
+    { name = "psycopg", extra = ["binary"] },
+    { name = "sqlalchemy" },
 ]
 
 [package.dev-dependencies]
 dev = [
+    { name = "alembic" },
     { name = "asyncpg-stubs" },
+    { name = "httpx" },
     { name = "mypy" },
+    { name = "psycopg", extra = ["binary"] },
     { name = "pytest" },
     { name = "pytest-asyncio" },
     { name = "ruff" },
+    { name = "sqlalchemy" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "alembic", specifier = ">=1.14,<2" },
+    { name = "alembic", marker = "extra == 'migrations'", specifier = ">=1.14,<2" },
     { name = "anyio", specifier = ">=4,<5" },
     { name = "asyncpg", specifier = ">=0.30,<1" },
     { name = "databento", marker = "extra == 'databento'", specifier = ">=0.70,<1" },
     { name = "fastapi", specifier = ">=0.115,<1" },
-    { name = "httpx", specifier = ">=0.28,<1" },
+    { name = "httpx", marker = "extra == 'collector'", specifier = ">=0.28,<1" },
     { name = "prometheus-client", specifier = ">=0.21,<1" },
-    { name = "psycopg", extras = ["binary"], specifier = ">=3.2,<4" },
+    { name = "psycopg", extras = ["binary"], marker = "extra == 'migrations'", specifier = ">=3.2,<4" },
     { name = "pydantic", specifier = ">=2.10,<3" },
     { name = "pydantic-settings", specifier = ">=2.7,<3" },
-    { name = "sqlalchemy", specifier = ">=2.0,<3" },
+    { name = "sqlalchemy", marker = "extra == 'migrations'", specifier = ">=2.0,<3" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.34,<1" },
     { name = "websockets", specifier = ">=15,<16" },
 ]
-provides-extras = ["databento"]
+provides-extras = ["collector", "migrations", "databento"]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "alembic", specifier = ">=1.14,<2" },
     { name = "asyncpg-stubs", specifier = ">=0.30" },
+    { name = "httpx", specifier = ">=0.28,<1" },
     { name = "mypy", specifier = ">=1.15,<2" },
+    { name = "psycopg", extras = ["binary"], specifier = ">=3.2,<4" },
     { name = "pytest", specifier = ">=8,<9" },
     { name = "pytest-asyncio", specifier = ">=0.25,<2" },
     { name = "ruff", specifier = ">=0.11,<1" },
+    { name = "sqlalchemy", specifier = ">=2.0,<3" },
 ]
 
 [[package]]

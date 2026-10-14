@@ -10,7 +10,7 @@ from collections.abc import AsyncIterator, Mapping
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
-from typing import Annotated, Any, Literal
+from typing import TYPE_CHECKING, Annotated, Any, Literal
 from uuid import UUID
 
 import anyio
@@ -29,11 +29,13 @@ from marketdata.candles import MarketCandle
 from marketdata.config import Settings
 from marketdata.domain import DataStatus, Instrument, ProviderInstrument, Tick, utc, utc_now
 from marketdata.fanout import Fanout
-from marketdata.ingestion import IngestionService
 from marketdata.market_stream import MarketHub, create_stream_router
 from marketdata.observability import Metrics, configure_logging
 from marketdata.persistence import INTERVALS, Store
 from marketdata.providers.base import ProviderHealth
+
+if TYPE_CHECKING:
+    from marketdata.ingestion import IngestionService
 
 logger = logging.getLogger(__name__)
 Limit = Annotated[int, Query(ge=1, le=1000)]
@@ -358,7 +360,7 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
         allow_methods=["GET"],
         allow_headers=["Authorization", "Content-Type"],
         allow_credentials=False,
-        expose_headers=["WWW-Authenticate"],
+        expose_headers=["WWW-Authenticate", "X-Marketdata-Next-Cursor"],
         max_age=600,
     )
 

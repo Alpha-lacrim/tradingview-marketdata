@@ -1,11 +1,11 @@
-"""Version 1 public contracts. Decimal values serialize as JSON strings."""
+"""Version 1 public contracts. Decimal values serialize as JSON strings except opt-in ChartData."""
 
 from datetime import datetime
 from decimal import Decimal
 from typing import Literal
 from uuid import UUID
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, FiniteFloat
 
 from marketdata.domain import AssetClass, DataStatus, InstrumentType
 
@@ -168,3 +168,17 @@ class ErrorBody(BaseModel):
 
 class ErrorResponse(BaseModel):
     error: ErrorBody
+
+
+class ChartData(BaseModel):
+    """Go dashboard contract; zeros may represent unavailable metrics."""
+
+    model_config = {"extra": "forbid"}
+    a: list[int] = Field(description="Persisted candle bucket start, Unix seconds")
+    b: list[FiniteFloat] = Field(description="Open as IEEE-754 float64")
+    c: list[FiniteFloat] = Field(description="Close as IEEE-754 float64")
+    d: list[FiniteFloat] = Field(description="High as IEEE-754 float64")
+    e: list[FiniteFloat] = Field(description="Low as IEEE-754 float64")
+    f: list[int] = Field(description="Count unavailable in schema 0006; compatibility zero")
+    g: list[FiniteFloat] = Field(description="Stored source volume, or compatibility zero")
+    h: list[FiniteFloat] = Field(description="Value unavailable in schema 0006; compatibility zero")

@@ -1,0 +1,65 @@
+# Disposable standalone demo only. No .env, collector, external volume or provider connection.
+services:
+  db:
+    image: postgres:16.1
+    environment:
+      POSTGRES_USER: sample_owner
+      POSTGRES_PASSWORD: sample_disposable
+      POSTGRES_DB: marketdata_standalone_test
+    ports:
+      - "127.0.0.1:${STANDALONE_DB_PORT:-55914}:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sample_owner -d marketdata_standalone_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  migrate:
+    profiles: [tools]
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+      target: tools
+    command: [".venv/bin/alembic", "upgrade", "head"]
+    environment:
+      DATABASE_URL: postgresql://sample_owner:sample_disposable@db:5432/marketdata_standalone_test
+    depends_on:
+      db:
+        condition: service_healthy
+  seed:
+    profiles: [tools]
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+      target: runtime
+    command: [".venv/bin/python", "-m", "marketdata.sample_data", "--prepare-reader"]
+    environment:
+      DATABASE_URL: postgresql://sample_owner:sample_disposable@db:5432/marketdata_standalone_test
+      API_ENVIRONMENT: test
+    depends_on:
+      db:
+        condition: service_healthy
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+      target: runtime
+    environment:
+      APPLICATION_ROLE: api
+      API_ENVIRONMENT: test
+      DATABASE_URL: postgresql://sample_api:sample_read_only@db:5432/marketdata_standalone_test
+      API_KEY: ${STANDALONE_API_KEY:-sample-development-token-32-characters}
+      WEBSOCKET_ALLOWED_ORIGINS: '["http://localhost:${STANDALONE_API_PORT:-8005}"]'
+      API_CORS_ORIGINS: '["http://localhost:${STANDALONE_API_PORT:-8005}"]'
+    ports:
+      - "127.0.0.1:${STANDALONE_API_PORT:-8005}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", ".venv/bin/python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    stop_grace_period: 35s
