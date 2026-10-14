@@ -1,5 +1,10 @@
 # Ordinary collector instrument activation
 
+This preserves the original 34/17 pilot evidence. Current deployed accuracy-selected 100
+results are in ordinary-collector-scaling.md; the unapproved employer business proposal,
+source qualification and preserved-history activation conditions are in
+[business-universe qualification](business-universe-qualification.md).
+
 The separate `config/instruments.tradingview-pilot.json` contains the original 17 entries
 unchanged plus 17 Binance USDT **spot** pairs: BNB, DOGE, ADA, LINK, LTC, BCH, AVAX, TRX,
 DOT, NEAR, SUI, UNI, FIL, AAVE, ATOM, ZEC and ICP. This fixed pilot is not the employer's

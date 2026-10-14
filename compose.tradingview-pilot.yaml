@@ -1,6 +1,6 @@
 # Apply after compose.tradingview.yaml. This is a pilot, not the employer's final universe.
 services:
-  app:
+  collector:
     environment:
       REGISTRY_FILE: config/instruments.tradingview-pilot.json
       TRADINGVIEW_STORAGE_MODE: candles

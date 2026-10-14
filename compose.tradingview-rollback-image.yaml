@@ -1,0 +1,5 @@
+# Last known-good ordinary 34 image, tagged before the scaling session.
+# Pair with the pilot override for 34, or only the original guest override for 17.
+services:
+  app:
+    image: tradingview-app:rollback-34-20261012

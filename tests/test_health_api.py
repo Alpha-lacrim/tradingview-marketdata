@@ -4,7 +4,7 @@ from types import SimpleNamespace
 import httpx
 from test_tradingview import Clock, make_provider, observe_all, quote_for
 
-from marketdata.api import create_app
+from marketdata.api import create_combined_app as create_app
 from marketdata.config import Settings
 from marketdata.fanout import Fanout
 from marketdata.ingestion import IngestionService
@@ -18,7 +18,7 @@ async def test_health_serialization_and_latest_receipt_freshness(monkeypatch):
     rows = []
 
     class FakeStore:
-        def __init__(self, settings):
+        def __init__(self, settings, **kwargs):
             pass
 
         async def ping(self):
@@ -31,7 +31,7 @@ async def test_health_serialization_and_latest_receipt_freshness(monkeypatch):
             return {"id": "unused"}
 
     monkeypatch.setattr("marketdata.api.Store", FakeStore)
-    app = create_app(Settings(_env_file=None))
+    app = create_app(Settings(_env_file=None, application_role="combined"))
     service = IngestionService(
         provider.settings, None, [provider], Fanout(1, 1, provider.metrics), provider.metrics
     )
@@ -81,7 +81,10 @@ async def test_health_serialization_and_latest_receipt_freshness(monkeypatch):
         assert latest["provider_state"] == "healthy" and latest["stale"] is True
         service.database_healthy = False
         response = await client.get("/health")
-        assert response.status_code == 503 and response.json()["database_state"] == "degraded"
+        assert (
+            response.status_code == 503
+            and response.json()["ingestion_database_state"] == "degraded"
+        )
         assert response.json()["provider_states"] == {provider.name: "healthy"}
         service.database_healthy = True
         service.providers = []

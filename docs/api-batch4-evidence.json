@@ -1,0 +1,2131 @@
+{
+  "reports": {
+    "pg": {
+      "simulated": true,
+      "fixture_sources": 100,
+      "configured_asset_classes": [
+        "crypto",
+        "forex",
+        "metals",
+        "energy"
+      ],
+      "candles_per_source": 1440,
+      "deliberately_missing_minutes": 3,
+      "transport": "real loopback TCP; separate native API process",
+      "collector": "deterministic Store writes; no provider connection",
+      "limits": {
+        "pool": 10,
+        "ws_queue": 256,
+        "poll_seconds": 1
+      },
+      "platform": "win32",
+      "python_version": "3.12.7",
+      "host_cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "host_logical_cpus": 20,
+      "measured_at": "2026-10-14T06:07:45.428182+00:00",
+      "rest": [
+        {
+          "name": "instruments100",
+          "samples": 120,
+          "p50_ms": 12.593,
+          "p95_ms": 17.349,
+          "p99_ms": 33.957,
+          "max_ms": 34.677,
+          "concurrency": 1,
+          "elapsed_seconds": 1.627,
+          "requests_per_second": 73.765,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "latest100",
+          "samples": 120,
+          "p50_ms": 21.35,
+          "p95_ms": 25.109,
+          "p99_ms": 26.517,
+          "max_ms": 49.77,
+          "concurrency": 1,
+          "elapsed_seconds": 2.561,
+          "requests_per_second": 46.865,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history500",
+          "samples": 120,
+          "p50_ms": 31.886,
+          "p95_ms": 41.238,
+          "p99_ms": 50.37,
+          "max_ms": 62.131,
+          "concurrency": 1,
+          "elapsed_seconds": 3.844,
+          "requests_per_second": 31.217,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history1000",
+          "samples": 120,
+          "p50_ms": 44.803,
+          "p95_ms": 75.964,
+          "p99_ms": 81.907,
+          "max_ms": 92.718,
+          "concurrency": 1,
+          "elapsed_seconds": 5.818,
+          "requests_per_second": 20.624,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "coverage100",
+          "samples": 120,
+          "p50_ms": 84.083,
+          "p95_ms": 99.532,
+          "p99_ms": 111.443,
+          "max_ms": 124.795,
+          "concurrency": 1,
+          "elapsed_seconds": 10.143,
+          "requests_per_second": 11.831,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "instruments100",
+          "samples": 120,
+          "p50_ms": 55.486,
+          "p95_ms": 116.457,
+          "p99_ms": 122.058,
+          "max_ms": 125.114,
+          "concurrency": 8,
+          "elapsed_seconds": 0.964,
+          "requests_per_second": 124.478,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "latest100",
+          "samples": 120,
+          "p50_ms": 85.457,
+          "p95_ms": 106.354,
+          "p99_ms": 112.616,
+          "max_ms": 113.626,
+          "concurrency": 8,
+          "elapsed_seconds": 1.309,
+          "requests_per_second": 91.694,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history500",
+          "samples": 120,
+          "p50_ms": 141.014,
+          "p95_ms": 210.894,
+          "p99_ms": 230.793,
+          "max_ms": 247.938,
+          "concurrency": 8,
+          "elapsed_seconds": 2.309,
+          "requests_per_second": 51.974,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history1000",
+          "samples": 120,
+          "p50_ms": 300.576,
+          "p95_ms": 359.653,
+          "p99_ms": 372.153,
+          "max_ms": 381.155,
+          "concurrency": 8,
+          "elapsed_seconds": 4.494,
+          "requests_per_second": 26.702,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "coverage100",
+          "samples": 120,
+          "p50_ms": 169.17,
+          "p95_ms": 248.847,
+          "p99_ms": 264.212,
+          "max_ms": 273.34,
+          "concurrency": 8,
+          "elapsed_seconds": 2.642,
+          "requests_per_second": 45.427,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "instruments100",
+          "samples": 120,
+          "p50_ms": 132.297,
+          "p95_ms": 489.361,
+          "p99_ms": 544.769,
+          "max_ms": 599.26,
+          "concurrency": 24,
+          "elapsed_seconds": 1.038,
+          "requests_per_second": 115.614,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "latest100",
+          "samples": 120,
+          "p50_ms": 183.674,
+          "p95_ms": 351.773,
+          "p99_ms": 411.954,
+          "max_ms": 444.668,
+          "concurrency": 24,
+          "elapsed_seconds": 1.181,
+          "requests_per_second": 101.631,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history500",
+          "samples": 120,
+          "p50_ms": 347.711,
+          "p95_ms": 558.84,
+          "p99_ms": 637.67,
+          "max_ms": 670.006,
+          "concurrency": 24,
+          "elapsed_seconds": 2.036,
+          "requests_per_second": 58.949,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history1000",
+          "samples": 120,
+          "p50_ms": 598.581,
+          "p95_ms": 943.713,
+          "p99_ms": 1102.723,
+          "max_ms": 1367.152,
+          "concurrency": 24,
+          "elapsed_seconds": 3.395,
+          "requests_per_second": 35.345,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "coverage100",
+          "samples": 120,
+          "p50_ms": 380.892,
+          "p95_ms": 515.359,
+          "p99_ms": 552.443,
+          "max_ms": 651.326,
+          "concurrency": 24,
+          "elapsed_seconds": 2.074,
+          "requests_per_second": 57.868,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        }
+      ],
+      "websocket": [
+        {
+          "clients": 5,
+          "subscriptions": 500,
+          "received": 1500,
+          "expected": 1500,
+          "ack_to_delivery": {
+            "samples": 1500,
+            "p50_ms": 861.022,
+            "p95_ms": 870.495,
+            "p99_ms": 872.361,
+            "max_ms": 872.653
+          },
+          "negative_ack_deltas": 0,
+          "rest_during_writes": {
+            "samples": 120,
+            "p50_ms": 257.913,
+            "p95_ms": 371.02,
+            "p99_ms": 393.584,
+            "max_ms": 425.471,
+            "concurrency": 8,
+            "elapsed_seconds": 4.175,
+            "requests_per_second": 28.746,
+            "statuses": {
+              "200": 120
+            },
+            "failed_rate": 0.0
+          }
+        },
+        {
+          "clients": 20,
+          "subscriptions": 2000,
+          "received": 6000,
+          "expected": 6000,
+          "ack_to_delivery": {
+            "samples": 6000,
+            "p50_ms": 1056.417,
+            "p95_ms": 1093.526,
+            "p99_ms": 1095.916,
+            "max_ms": 1096.464
+          },
+          "negative_ack_deltas": 0,
+          "rest_during_writes": {
+            "samples": 120,
+            "p50_ms": 256.906,
+            "p95_ms": 381.063,
+            "p99_ms": 409.71,
+            "max_ms": 414.729,
+            "concurrency": 8,
+            "elapsed_seconds": 4.129,
+            "requests_per_second": 29.06,
+            "statuses": {
+              "200": 120
+            },
+            "failed_rate": 0.0
+          }
+        },
+        {
+          "clients": 50,
+          "subscriptions": 5000,
+          "received": 15000,
+          "expected": 15000,
+          "ack_to_delivery": {
+            "samples": 15000,
+            "p50_ms": 920.177,
+            "p95_ms": 1366.275,
+            "p99_ms": 1373.329,
+            "max_ms": 1374.817
+          },
+          "negative_ack_deltas": 0,
+          "rest_during_writes": {
+            "samples": 120,
+            "p50_ms": 293.717,
+            "p95_ms": 619.466,
+            "p99_ms": 657.514,
+            "max_ms": 683.351,
+            "concurrency": 8,
+            "elapsed_seconds": 5.175,
+            "requests_per_second": 23.188,
+            "statuses": {
+              "200": 120
+            },
+            "failed_rate": 0.0
+          }
+        }
+      ],
+      "database_version": "PostgreSQL 17.11 (Debian 17.11-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+      "fixture_candles": 143997,
+      "history_plan": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 7979.75,
+            "Total Cost": 7982.75,
+            "Plan Rows": 30,
+            "Plan Width": 336,
+            "Actual Startup Time": 0.827,
+            "Actual Total Time": 3.13,
+            "Actual Rows": 1000,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 124,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Aggregate",
+                "Strategy": "Sorted",
+                "Partial Mode": "Simple",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 7979.75,
+                "Total Cost": 7982.75,
+                "Plan Rows": 30,
+                "Plan Width": 336,
+                "Actual Startup Time": 0.826,
+                "Actual Total Time": 3.084,
+                "Actual Rows": 1000,
+                "Actual Loops": 1,
+                "Group Key": [
+                  "(date_bin(('1 minute'::cstring)::interval, market_candles.bucket_start, '1970-01-01 00:00:00+00'::timestamp with time zone))",
+                  "market_candles.realtime_status"
+                ],
+                "Shared Hit Blocks": 124,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Sort",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 7979.75,
+                    "Total Cost": 7979.83,
+                    "Plan Rows": 30,
+                    "Plan Width": 197,
+                    "Actual Startup Time": 0.803,
+                    "Actual Total Time": 0.838,
+                    "Actual Rows": 1000,
+                    "Actual Loops": 1,
+                    "Sort Key": [
+                      "(date_bin(('1 minute'::cstring)::interval, market_candles.bucket_start, '1970-01-01 00:00:00+00'::timestamp with time zone))",
+                      "market_candles.realtime_status",
+                      "market_candles.bucket_start"
+                    ],
+                    "Sort Method": "quicksort",
+                    "Sort Space Used": 228,
+                    "Sort Space Type": "Memory",
+                    "Shared Hit Blocks": 124,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0,
+                    "Plans": [
+                      {
+                        "Node Type": "Bitmap Heap Scan",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Relation Name": "market_candles",
+                        "Alias": "market_candles",
+                        "Startup Cost": 260.55,
+                        "Total Cost": 7979.02,
+                        "Plan Rows": 30,
+                        "Plan Width": 197,
+                        "Actual Startup Time": 0.096,
+                        "Actual Total Time": 0.49,
+                        "Actual Rows": 1000,
+                        "Actual Loops": 1,
+                        "Recheck Cond": "((instrument_id = '2542f600-f74b-5c60-ba6e-c07057b42387'::uuid) AND (provider = 'qualification'::text) AND (\"interval\" = '1m'::text) AND (bucket_start >= '2026-10-10 07:20:00+00'::timestamp with time zone) AND (bucket_start < '2026-10-11 00:00:00+00'::timestamp with time zone) AND (price_basis = 'native'::text))",
+                        "Rows Removed by Index Recheck": 0,
+                        "Filter": "((bucket_end <= '2026-10-14 06:08:13.087799+00'::timestamp with time zone) AND (provider_symbol = 'SIM_000'::text) AND ((date_bin(('1 minute'::cstring)::interval, bucket_start, '1970-01-01 00:00:00+00'::timestamp with time zone) + ('1 minute'::cstring)::interval) <= '2026-10-14 06:08:13.087799+00'::timestamp with time zone))",
+                        "Rows Removed by Filter": 0,
+                        "Exact Heap Blocks": 112,
+                        "Lossy Heap Blocks": 0,
+                        "Shared Hit Blocks": 124,
+                        "Shared Read Blocks": 0,
+                        "Shared Dirtied Blocks": 0,
+                        "Shared Written Blocks": 0,
+                        "Local Hit Blocks": 0,
+                        "Local Read Blocks": 0,
+                        "Local Dirtied Blocks": 0,
+                        "Local Written Blocks": 0,
+                        "Temp Read Blocks": 0,
+                        "Temp Written Blocks": 0,
+                        "Plans": [
+                          {
+                            "Node Type": "Bitmap Index Scan",
+                            "Parent Relationship": "Outer",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Index Name": "market_candles_pkey",
+                            "Startup Cost": 0.0,
+                            "Total Cost": 260.54,
+                            "Plan Rows": 3006,
+                            "Plan Width": 0,
+                            "Actual Startup Time": 0.081,
+                            "Actual Total Time": 0.081,
+                            "Actual Rows": 1000,
+                            "Actual Loops": 1,
+                            "Index Cond": "((instrument_id = '2542f600-f74b-5c60-ba6e-c07057b42387'::uuid) AND (provider = 'qualification'::text) AND (\"interval\" = '1m'::text) AND (bucket_start >= '2026-10-10 07:20:00+00'::timestamp with time zone) AND (bucket_start < '2026-10-11 00:00:00+00'::timestamp with time zone) AND (price_basis = 'native'::text))",
+                            "Shared Hit Blocks": 12,
+                            "Shared Read Blocks": 0,
+                            "Shared Dirtied Blocks": 0,
+                            "Shared Written Blocks": 0,
+                            "Local Hit Blocks": 0,
+                            "Local Read Blocks": 0,
+                            "Local Dirtied Blocks": 0,
+                            "Local Written Blocks": 0,
+                            "Temp Read Blocks": 0,
+                            "Temp Written Blocks": 0
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 3,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.202,
+          "Triggers": [],
+          "Execution Time": 3.204
+        }
+      ],
+      "pagination_gap_decimal_readback": true,
+      "health_without_collector": {
+        "api": "available",
+        "database": "available",
+        "status": "ok",
+        "as_of": "2026-10-14T06:09:14.898372Z",
+        "collector": "unknown",
+        "collector_updated_at": null,
+        "data_freshness": "stale",
+        "historical_coverage": "gaps",
+        "streaming_mode": "database",
+        "websocket_delivery": "idle",
+        "provider_states": {},
+        "source_count": 147,
+        "fresh_sources": 100,
+        "stale_sources": 17,
+        "unavailable_sources": 30,
+        "summary_truncated": false
+      },
+      "database_degradation": {
+        "samples": 16,
+        "p50_ms": 5009.899,
+        "p95_ms": 5042.267,
+        "p99_ms": 5042.267,
+        "max_ms": 5049.11,
+        "concurrency": 8,
+        "elapsed_seconds": 10.06,
+        "requests_per_second": 1.59,
+        "statuses": {
+          "503": 16
+        },
+        "failed_rate": 1.0
+      },
+      "database_recovery_seconds": 0.009482300003583077,
+      "recovered_history": {
+        "samples": 24,
+        "p50_ms": 278.05,
+        "p95_ms": 378.206,
+        "p99_ms": 380.717,
+        "max_ms": 386.578,
+        "concurrency": 8,
+        "elapsed_seconds": 0.902,
+        "requests_per_second": 26.61,
+        "statuses": {
+          "200": 24
+        },
+        "failed_rate": 0.0
+      },
+      "worker_metrics": "# HELP marketdata_api_requests_total API HTTP responses\n# TYPE marketdata_api_requests_total counter\nmarketdata_api_requests_total{method=\"GET\",status=\"200\"} 2191.0\nmarketdata_api_requests_total{method=\"GET\",status=\"503\"} 16.0\n# HELP marketdata_api_requests_created API HTTP responses\n# TYPE marketdata_api_requests_created gauge\nmarketdata_api_requests_created{method=\"GET\",status=\"200\"} 1.7919580944864447e+09\nmarketdata_api_requests_created{method=\"GET\",status=\"503\"} 1.79195816002324e+09\n# HELP marketdata_api_database_healthy Last API database health check\n# TYPE marketdata_api_database_healthy gauge\nmarketdata_api_database_healthy 1.0\n# HELP marketdata_api_request_seconds HTTP request duration including pool wait\n# TYPE marketdata_api_request_seconds histogram\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_count{route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_sum{route=\"/health\",status=\"200\"} 0.013202399997680914\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/instruments\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/instruments\",status=\"200\"} 112.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/instruments\",status=\"200\"} 152.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/instruments\",status=\"200\"} 248.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/instruments\",status=\"200\"} 331.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/instruments\",status=\"200\"} 14.68566930009547\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/prices/latest\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/prices/latest\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/prices/latest\",status=\"200\"} 121.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/prices/latest\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/prices/latest\",status=\"200\"} 266.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/prices/latest\",status=\"200\"} 25.94844179997017\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/candles\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/candles\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/candles\",status=\"200\"} 69.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/candles\",status=\"200\"} 244.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/candles\",status=\"200\"} 294.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/candles\",status=\"200\"} 745.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/candles\",status=\"200\"} 1029.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/candles\",status=\"200\"} 1104.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/candles\",status=\"200\"} 1107.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/candles\",status=\"200\"} 1107.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/candles\",status=\"200\"} 1107.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/candles\",status=\"200\"} 1107.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/candles\",status=\"200\"} 1107.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/candles\",status=\"200\"} 239.85443489999307\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/coverage\",status=\"200\"} 130.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/coverage\",status=\"200\"} 261.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/coverage\",status=\"200\"} 359.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/coverage\",status=\"200\"} 64.37558179999905\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/health\",status=\"200\"} 0.023653900003409944\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/candles\",status=\"503\"} 8.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/candles\",status=\"503\"} 16.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/candles\",status=\"503\"} 16.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/candles\",status=\"503\"} 16.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/candles\",status=\"503\"} 80.03327410000202\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_count{route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_sum{route=\"/livez\",status=\"200\"} 0.0007143999973777682\n# HELP marketdata_api_request_seconds_created HTTP request duration including pool wait\n# TYPE marketdata_api_request_seconds_created gauge\nmarketdata_api_request_seconds_created{route=\"/health\",status=\"200\"} 1.7919580944864447e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/instruments\",status=\"200\"} 1.79195809452012e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/prices/latest\",status=\"200\"} 1.7919580961303704e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/candles\",status=\"200\"} 1.791958098705115e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/coverage\",status=\"200\"} 1.7919581084630425e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/health\",status=\"200\"} 1.7919581549204102e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/candles\",status=\"503\"} 1.79195816002324e+09\nmarketdata_api_request_seconds_created{route=\"/livez\",status=\"200\"} 1.79195816508607e+09\n# HELP marketdata_api_query_seconds Database statement execution duration\n# TYPE marketdata_api_query_seconds histogram\nmarketdata_api_query_seconds_bucket{le=\"0.005\"} 2532.0\nmarketdata_api_query_seconds_bucket{le=\"0.01\"} 2532.0\nmarketdata_api_query_seconds_bucket{le=\"0.025\"} 4064.0\nmarketdata_api_query_seconds_bucket{le=\"0.05\"} 5134.0\nmarketdata_api_query_seconds_bucket{le=\"0.075\"} 5446.0\nmarketdata_api_query_seconds_bucket{le=\"0.1\"} 5721.0\nmarketdata_api_query_seconds_bucket{le=\"0.25\"} 5875.0\nmarketdata_api_query_seconds_bucket{le=\"0.5\"} 5880.0\nmarketdata_api_query_seconds_bucket{le=\"0.75\"} 5880.0\nmarketdata_api_query_seconds_bucket{le=\"1.0\"} 5880.0\nmarketdata_api_query_seconds_bucket{le=\"2.5\"} 5880.0\nmarketdata_api_query_seconds_bucket{le=\"5.0\"} 5884.0\nmarketdata_api_query_seconds_bucket{le=\"7.5\"} 5890.0\nmarketdata_api_query_seconds_bucket{le=\"10.0\"} 5890.0\nmarketdata_api_query_seconds_bucket{le=\"+Inf\"} 5890.0\nmarketdata_api_query_seconds_count 5890.0\nmarketdata_api_query_seconds_sum 177.01700000016717\n# HELP marketdata_api_query_seconds_created Database statement execution duration\n# TYPE marketdata_api_query_seconds_created gauge\nmarketdata_api_query_seconds_created 1.791958094219755e+09\n# HELP marketdata_api_pool_connections Worker pool connections\n# TYPE marketdata_api_pool_connections gauge\nmarketdata_api_pool_connections{state=\"size\"} 8.0\nmarketdata_api_pool_connections{state=\"idle\"} 8.0\nmarketdata_api_pool_connections{state=\"used\"} 0.0\n# HELP marketdata_api_ws_clients Connected marketdata clients\n# TYPE marketdata_api_ws_clients gauge\nmarketdata_api_ws_clients 0.0\n# HELP marketdata_api_ws_queue_messages Worker queued marketdata messages\n# TYPE marketdata_api_ws_queue_messages gauge\nmarketdata_api_ws_queue_messages{state=\"total\"} 0.0\nmarketdata_api_ws_queue_messages{state=\"maximum\"} 0.0\nmarketdata_api_ws_queue_messages{state=\"high_water\"} 100.0\n# HELP marketdata_api_ws_reader_running Journal reader task is alive\n# TYPE marketdata_api_ws_reader_running gauge\nmarketdata_api_ws_reader_running 1.0\n# HELP marketdata_event_loop_lag_seconds One-second monitor wake delay; sampled in the application event loop\n# TYPE marketdata_event_loop_lag_seconds histogram\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.001\"} 39.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.005\"} 39.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.01\"} 39.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.025\"} 60.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.05\"} 69.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.1\"} 71.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.25\"} 71.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.5\"} 71.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"1.0\"} 71.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"5.0\"} 71.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"+Inf\"} 71.0\nmarketdata_event_loop_lag_seconds_count 71.0\nmarketdata_event_loop_lag_seconds_sum 0.8229999999966822\n# HELP marketdata_event_loop_lag_seconds_created One-second monitor wake delay; sampled in the application event loop\n# TYPE marketdata_event_loop_lag_seconds_created gauge\nmarketdata_event_loop_lag_seconds_created 1.791958094219755e+09\n# HELP marketdata_event_loop_lag_max_seconds Maximum monitor wake delay since application start\n# TYPE marketdata_event_loop_lag_max_seconds gauge\nmarketdata_event_loop_lag_max_seconds 0.06300000000192085\n# HELP marketdata_candles_total Candle operations\n# TYPE marketdata_candles_total counter\n# HELP marketdata_candle_seconds Candle request/write duration\n# TYPE marketdata_candle_seconds histogram\n# HELP marketdata_candle_scheduler_lateness_seconds Collection start lateness\n# TYPE marketdata_candle_scheduler_lateness_seconds gauge\n# HELP marketdata_candle_age_seconds Latest completed bucket end age; -1 if absent\n# TYPE marketdata_candle_age_seconds gauge\n# HELP marketdata_candle_missing_minutes Unresolved missing minutes since coverage start\n# TYPE marketdata_candle_missing_minutes gauge\n# HELP marketdata_candle_fetch_cycle_total Minute collection cycles\n# TYPE marketdata_candle_fetch_cycle_total counter\n# HELP marketdata_candle_request_concurrency Effective request window\n# TYPE marketdata_candle_request_concurrency gauge\n# HELP marketdata_candle_requests_inflight Dispatched unfinished requests\n# TYPE marketdata_candle_requests_inflight gauge\n# HELP marketdata_tradingview_request_error_total Bounded retrieval error categories\n# TYPE marketdata_tradingview_request_error_total counter\n# HELP marketdata_candle_request_timeout_total Individual request deadlines\n# TYPE marketdata_candle_request_timeout_total counter\n# HELP marketdata_candle_response_ignored_total Unmatched or duplicate response frames\n# TYPE marketdata_candle_response_ignored_total counter\n# HELP marketdata_candle_cycle_instrument_count Jobs in the latest collection cycle\n# TYPE marketdata_candle_cycle_instrument_count gauge\n# HELP marketdata_candle_cycle_overrun_total Cycles crossing their next scheduled target\n# TYPE marketdata_candle_cycle_overrun_total counter\n# HELP marketdata_tradingview_socket_count Currently connected candle sockets\n# TYPE marketdata_tradingview_socket_count gauge\nmarketdata_tradingview_socket_count 0.0\n# HELP marketdata_candle_pool_connected_workers Connected workers in the bounded candle pool\n# TYPE marketdata_candle_pool_connected_workers gauge\n# HELP marketdata_tradingview_socket_disconnect_total Unexpected candle socket failures\n# TYPE marketdata_tradingview_socket_disconnect_total counter\nmarketdata_tradingview_socket_disconnect_total 0.0\n# HELP marketdata_tradingview_socket_disconnect_created Unexpected candle socket failures\n# TYPE marketdata_tradingview_socket_disconnect_created gauge\nmarketdata_tradingview_socket_disconnect_created 1.791958094219755e+09\n# HELP marketdata_tradingview_possible_throttle_total Overload symptoms, NOT confirmed limits\n# TYPE marketdata_tradingview_possible_throttle_total counter\n# HELP marketdata_candle_timing_seconds Separated monotonic stage durations / clamped UTC close latencies\n# TYPE marketdata_candle_timing_seconds histogram\n# HELP marketdata_candle_symbol_fetch_seconds Per configured symbol retrieval duration\n# TYPE marketdata_candle_symbol_fetch_seconds histogram\n# HELP marketdata_candle_minutes_behind Expected completed coverage lag\n# TYPE marketdata_candle_minutes_behind gauge\n# HELP marketdata_candle_expected_state One-hot current completed minute classification\n# TYPE marketdata_candle_expected_state gauge\n# HELP marketdata_messages_total Upstream messages including control records\n# TYPE marketdata_messages_total counter\n# HELP marketdata_received_total Normalized ticks\n# TYPE marketdata_received_total counter\n# HELP marketdata_persisted_total Inserted rows\n# TYPE marketdata_persisted_total counter\nmarketdata_persisted_total 0.0\n# HELP marketdata_persisted_created Inserted rows\n# TYPE marketdata_persisted_created gauge\nmarketdata_persisted_created 1.791958094219755e+09\n# HELP marketdata_dropped_total Explicitly lost ticks\n# TYPE marketdata_dropped_total counter\n# HELP marketdata_reconnects_total Reconnect attempts\n# TYPE marketdata_reconnects_total counter\n# HELP marketdata_parse_failures_total Malformed messages\n# TYPE marketdata_parse_failures_total counter\n# HELP marketdata_sequence_gaps_total Observed trade ID gaps\n# TYPE marketdata_sequence_gaps_total counter\n# HELP marketdata_database_errors_total Persistence failures\n# TYPE marketdata_database_errors_total counter\nmarketdata_database_errors_total 0.0\n# HELP marketdata_database_errors_created Persistence failures\n# TYPE marketdata_database_errors_created gauge\nmarketdata_database_errors_created 1.791958094219755e+09\n# HELP marketdata_queue_depth Pending ticks\n# TYPE marketdata_queue_depth gauge\nmarketdata_queue_depth 0.0\n# HELP marketdata_batch_seconds Database batch duration\n# TYPE marketdata_batch_seconds histogram\nmarketdata_batch_seconds_bucket{le=\"0.005\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.01\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.025\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.05\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.075\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.1\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.25\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.5\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.75\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"1.0\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"2.5\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"5.0\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"7.5\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"10.0\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"+Inf\"} 0.0\nmarketdata_batch_seconds_count 0.0\nmarketdata_batch_seconds_sum 0.0\n# HELP marketdata_batch_seconds_created Database batch duration\n# TYPE marketdata_batch_seconds_created gauge\nmarketdata_batch_seconds_created 1.791958094219755e+09\n# HELP marketdata_ws_dropped_total Slow client queue losses\n# TYPE marketdata_ws_dropped_total counter\nmarketdata_ws_dropped_total 0.0\n# HELP marketdata_ws_dropped_created Slow client queue losses\n# TYPE marketdata_ws_dropped_created gauge\nmarketdata_ws_dropped_created 1.791958094219755e+09\n# HELP marketdata_connection_up Transport connected\n# TYPE marketdata_connection_up gauge\n# HELP marketdata_connection_age_seconds Current connection age; zero offline\n# TYPE marketdata_connection_age_seconds gauge\n# HELP marketdata_feed_healthy All configured symbols current according to storage mode\n# TYPE marketdata_feed_healthy gauge\n# HELP marketdata_symbol_observations_total Valid normalized observations\n# TYPE marketdata_symbol_observations_total counter\n# HELP marketdata_symbol_observation_age_seconds Receipt age; -1 when never observed\n# TYPE marketdata_symbol_observation_age_seconds gauge\n# HELP marketdata_symbol_fresh Fresh observation in current connection\n# TYPE marketdata_symbol_fresh gauge\n# HELP marketdata_symbols Configured/fresh/stale symbol counts\n# TYPE marketdata_symbols gauge\n# HELP marketdata_rejected_observations_total Suppressed price observations\n# TYPE marketdata_rejected_observations_total counter\n# HELP marketdata_unknown_messages_total Unrecognized message types\n# TYPE marketdata_unknown_messages_total counter\n# HELP marketdata_transport_timeouts_total No application frames within timeout\n# TYPE marketdata_transport_timeouts_total counter\n",
+      "read_only_database_role": true,
+      "worker_exit_code": 0,
+      "api_resources": {
+        "database_queries": {
+          "samples": 5890,
+          "p50_ms": 15.0,
+          "p95_ms": 78.0,
+          "p99_ms": 125.0,
+          "max_ms": 5016.0
+        },
+        "event_loop_lag": {
+          "samples": 683,
+          "p50_ms": 0,
+          "p95_ms": 41.0,
+          "p99_ms": 103.0,
+          "max_ms": 291.0
+        },
+        "elapsed_seconds": 72.09156489999441,
+        "cpu_seconds": 44.578125,
+        "cpu_average_one_core_percent": 61.835424243930454,
+        "peak_rss_bytes": 125169664,
+        "peak_pool_used": 10,
+        "peak_pool_size": 10,
+        "peak_ws_clients": 50,
+        "sampled_peak_ws_queue": 5,
+        "observed_queue_high_water": 100
+      }
+    },
+    "timescale": {
+      "simulated": true,
+      "fixture_sources": 100,
+      "configured_asset_classes": [
+        "crypto",
+        "forex",
+        "metals",
+        "energy"
+      ],
+      "candles_per_source": 1440,
+      "deliberately_missing_minutes": 3,
+      "transport": "real loopback TCP; separate native API process",
+      "collector": "deterministic Store writes; no provider connection",
+      "limits": {
+        "pool": 10,
+        "ws_queue": 256,
+        "poll_seconds": 1
+      },
+      "platform": "win32",
+      "python_version": "3.12.7",
+      "host_cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "host_logical_cpus": 20,
+      "measured_at": "2026-10-14T06:10:04.979914+00:00",
+      "rest": [
+        {
+          "name": "instruments100",
+          "samples": 120,
+          "p50_ms": 10.258,
+          "p95_ms": 12.955,
+          "p99_ms": 25.564,
+          "max_ms": 36.557,
+          "concurrency": 1,
+          "elapsed_seconds": 1.312,
+          "requests_per_second": 91.464,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "latest100",
+          "samples": 120,
+          "p50_ms": 14.716,
+          "p95_ms": 16.719,
+          "p99_ms": 18.686,
+          "max_ms": 35.841,
+          "concurrency": 1,
+          "elapsed_seconds": 1.808,
+          "requests_per_second": 66.386,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history500",
+          "samples": 120,
+          "p50_ms": 22.268,
+          "p95_ms": 26.367,
+          "p99_ms": 39.897,
+          "max_ms": 46.235,
+          "concurrency": 1,
+          "elapsed_seconds": 2.772,
+          "requests_per_second": 43.289,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history1000",
+          "samples": 120,
+          "p50_ms": 38.327,
+          "p95_ms": 56.729,
+          "p99_ms": 61.761,
+          "max_ms": 86.564,
+          "concurrency": 1,
+          "elapsed_seconds": 4.894,
+          "requests_per_second": 24.519,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "coverage100",
+          "samples": 120,
+          "p50_ms": 62.514,
+          "p95_ms": 75.513,
+          "p99_ms": 82.257,
+          "max_ms": 92.892,
+          "concurrency": 1,
+          "elapsed_seconds": 7.57,
+          "requests_per_second": 15.852,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "instruments100",
+          "samples": 120,
+          "p50_ms": 45.34,
+          "p95_ms": 71.199,
+          "p99_ms": 90.42,
+          "max_ms": 115.302,
+          "concurrency": 8,
+          "elapsed_seconds": 0.761,
+          "requests_per_second": 157.646,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "latest100",
+          "samples": 120,
+          "p50_ms": 58.624,
+          "p95_ms": 78.964,
+          "p99_ms": 82.56,
+          "max_ms": 90.419,
+          "concurrency": 8,
+          "elapsed_seconds": 0.931,
+          "requests_per_second": 128.93,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history500",
+          "samples": 120,
+          "p50_ms": 117.297,
+          "p95_ms": 152.524,
+          "p99_ms": 159.375,
+          "max_ms": 195.988,
+          "concurrency": 8,
+          "elapsed_seconds": 1.854,
+          "requests_per_second": 64.735,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history1000",
+          "samples": 120,
+          "p50_ms": 196.046,
+          "p95_ms": 238.059,
+          "p99_ms": 251.463,
+          "max_ms": 258.416,
+          "concurrency": 8,
+          "elapsed_seconds": 3.011,
+          "requests_per_second": 39.855,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "coverage100",
+          "samples": 120,
+          "p50_ms": 105.8,
+          "p95_ms": 149.706,
+          "p99_ms": 158.483,
+          "max_ms": 169.557,
+          "concurrency": 8,
+          "elapsed_seconds": 1.747,
+          "requests_per_second": 68.688,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "instruments100",
+          "samples": 120,
+          "p50_ms": 126.829,
+          "p95_ms": 203.351,
+          "p99_ms": 259.388,
+          "max_ms": 275.803,
+          "concurrency": 24,
+          "elapsed_seconds": 0.75,
+          "requests_per_second": 160.098,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "latest100",
+          "samples": 120,
+          "p50_ms": 117.426,
+          "p95_ms": 529.941,
+          "p99_ms": 595.037,
+          "max_ms": 634.403,
+          "concurrency": 24,
+          "elapsed_seconds": 1.03,
+          "requests_per_second": 116.468,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history500",
+          "samples": 120,
+          "p50_ms": 313.034,
+          "p95_ms": 435.702,
+          "p99_ms": 519.294,
+          "max_ms": 562.015,
+          "concurrency": 24,
+          "elapsed_seconds": 1.713,
+          "requests_per_second": 70.067,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history1000",
+          "samples": 120,
+          "p50_ms": 605.568,
+          "p95_ms": 891.272,
+          "p99_ms": 988.196,
+          "max_ms": 1229.11,
+          "concurrency": 24,
+          "elapsed_seconds": 3.326,
+          "requests_per_second": 36.075,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "coverage100",
+          "samples": 120,
+          "p50_ms": 259.112,
+          "p95_ms": 440.681,
+          "p99_ms": 485.736,
+          "max_ms": 506.556,
+          "concurrency": 24,
+          "elapsed_seconds": 1.564,
+          "requests_per_second": 76.75,
+          "statuses": {
+            "200": 120
+          },
+          "failed_rate": 0.0
+        }
+      ],
+      "websocket": [
+        {
+          "clients": 5,
+          "subscriptions": 500,
+          "received": 1500,
+          "expected": 1500,
+          "ack_to_delivery": {
+            "samples": 1500,
+            "p50_ms": 904.241,
+            "p95_ms": 1017.478,
+            "p99_ms": 1018.216,
+            "max_ms": 1018.361
+          },
+          "negative_ack_deltas": 0,
+          "rest_during_writes": {
+            "samples": 120,
+            "p50_ms": 219.114,
+            "p95_ms": 283.044,
+            "p99_ms": 294.583,
+            "max_ms": 331.139,
+            "concurrency": 8,
+            "elapsed_seconds": 3.398,
+            "requests_per_second": 35.312,
+            "statuses": {
+              "200": 120
+            },
+            "failed_rate": 0.0
+          }
+        },
+        {
+          "clients": 20,
+          "subscriptions": 2000,
+          "received": 6000,
+          "expected": 6000,
+          "ack_to_delivery": {
+            "samples": 6000,
+            "p50_ms": 367.01,
+            "p95_ms": 455.292,
+            "p99_ms": 457.456,
+            "max_ms": 458.002
+          },
+          "negative_ack_deltas": 0,
+          "rest_during_writes": {
+            "samples": 120,
+            "p50_ms": 221.873,
+            "p95_ms": 330.489,
+            "p99_ms": 388.275,
+            "max_ms": 408.887,
+            "concurrency": 8,
+            "elapsed_seconds": 3.526,
+            "requests_per_second": 34.031,
+            "statuses": {
+              "200": 120
+            },
+            "failed_rate": 0.0
+          }
+        },
+        {
+          "clients": 50,
+          "subscriptions": 5000,
+          "received": 15000,
+          "expected": 15000,
+          "ack_to_delivery": {
+            "samples": 15000,
+            "p50_ms": 1432.586,
+            "p95_ms": 1687.67,
+            "p99_ms": 1693.621,
+            "max_ms": 1695.07
+          },
+          "negative_ack_deltas": 0,
+          "rest_during_writes": {
+            "samples": 120,
+            "p50_ms": 231.576,
+            "p95_ms": 448.682,
+            "p99_ms": 497.1,
+            "max_ms": 508.826,
+            "concurrency": 8,
+            "elapsed_seconds": 3.904,
+            "requests_per_second": 30.741,
+            "statuses": {
+              "200": 120
+            },
+            "failed_rate": 0.0
+          }
+        }
+      ],
+      "database_version": "PostgreSQL 17.7 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+      "fixture_candles": 143997,
+      "history_plan": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 1742.49,
+            "Total Cost": 1743.29,
+            "Plan Rows": 8,
+            "Plan Width": 336,
+            "Actual Startup Time": 1.09,
+            "Actual Total Time": 3.342,
+            "Actual Rows": 1000,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 124,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Aggregate",
+                "Strategy": "Sorted",
+                "Partial Mode": "Simple",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 1742.49,
+                "Total Cost": 1743.29,
+                "Plan Rows": 8,
+                "Plan Width": 336,
+                "Actual Startup Time": 1.089,
+                "Actual Total Time": 3.295,
+                "Actual Rows": 1000,
+                "Actual Loops": 1,
+                "Group Key": [
+                  "(date_bin(('1 minute'::cstring)::interval, market_candles.bucket_start, '1970-01-01 00:00:00+00'::timestamp with time zone))",
+                  "market_candles.realtime_status"
+                ],
+                "Shared Hit Blocks": 124,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Sort",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 1742.49,
+                    "Total Cost": 1742.51,
+                    "Plan Rows": 8,
+                    "Plan Width": 197,
+                    "Actual Startup Time": 1.05,
+                    "Actual Total Time": 1.084,
+                    "Actual Rows": 1000,
+                    "Actual Loops": 1,
+                    "Sort Key": [
+                      "(date_bin(('1 minute'::cstring)::interval, market_candles.bucket_start, '1970-01-01 00:00:00+00'::timestamp with time zone))",
+                      "market_candles.realtime_status",
+                      "market_candles.bucket_start"
+                    ],
+                    "Sort Method": "quicksort",
+                    "Sort Space Used": 228,
+                    "Sort Space Type": "Memory",
+                    "Shared Hit Blocks": 124,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0,
+                    "Plans": [
+                      {
+                        "Node Type": "Result",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Startup Cost": 0.42,
+                        "Total Cost": 1742.37,
+                        "Plan Rows": 8,
+                        "Plan Width": 197,
+                        "Actual Startup Time": 0.027,
+                        "Actual Total Time": 0.662,
+                        "Actual Rows": 1000,
+                        "Actual Loops": 1,
+                        "Shared Hit Blocks": 124,
+                        "Shared Read Blocks": 0,
+                        "Shared Dirtied Blocks": 0,
+                        "Shared Written Blocks": 0,
+                        "Local Hit Blocks": 0,
+                        "Local Read Blocks": 0,
+                        "Local Dirtied Blocks": 0,
+                        "Local Written Blocks": 0,
+                        "Temp Read Blocks": 0,
+                        "Temp Written Blocks": 0,
+                        "Plans": [
+                          {
+                            "Node Type": "Custom Scan",
+                            "Parent Relationship": "Outer",
+                            "Custom Plan Provider": "ChunkAppend",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Relation Name": "market_candles",
+                            "Alias": "market_candles",
+                            "Startup Cost": 0.42,
+                            "Total Cost": 1742.23,
+                            "Plan Rows": 8,
+                            "Plan Width": 189,
+                            "Actual Startup Time": 0.026,
+                            "Actual Total Time": 0.502,
+                            "Actual Rows": 1000,
+                            "Actual Loops": 1,
+                            "Order": [
+                              "market_candles.bucket_start"
+                            ],
+                            "Startup Exclusion": true,
+                            "Runtime Exclusion": false,
+                            "Chunks excluded during startup": 0,
+                            "Shared Hit Blocks": 124,
+                            "Shared Read Blocks": 0,
+                            "Shared Dirtied Blocks": 0,
+                            "Shared Written Blocks": 0,
+                            "Local Hit Blocks": 0,
+                            "Local Read Blocks": 0,
+                            "Local Dirtied Blocks": 0,
+                            "Local Written Blocks": 0,
+                            "Temp Read Blocks": 0,
+                            "Temp Written Blocks": 0,
+                            "Plans": [
+                              {
+                                "Node Type": "Index Scan",
+                                "Parent Relationship": "child",
+                                "Parallel Aware": false,
+                                "Async Capable": false,
+                                "Scan Direction": "Forward",
+                                "Index Name": "2_4_market_candles_pkey",
+                                "Relation Name": "_hyper_14_2_chunk",
+                                "Alias": "_hyper_14_2_chunk",
+                                "Startup Cost": 0.42,
+                                "Total Cost": 1742.23,
+                                "Plan Rows": 8,
+                                "Plan Width": 189,
+                                "Actual Startup Time": 0.026,
+                                "Actual Total Time": 0.458,
+                                "Actual Rows": 1000,
+                                "Actual Loops": 1,
+                                "Index Cond": "((instrument_id = 'c1230dce-4036-5c7e-ade5-db468d9fa11b'::uuid) AND (provider = 'qualification'::text) AND (\"interval\" = '1m'::text) AND (bucket_start >= '2026-10-10 07:20:00+00'::timestamp with time zone) AND (bucket_start < '2026-10-11 00:00:00+00'::timestamp with time zone) AND (price_basis = 'native'::text))",
+                                "Rows Removed by Index Recheck": 0,
+                                "Filter": "((bucket_end <= '2026-10-14 06:10:31.695546+00'::timestamp with time zone) AND (provider_symbol = 'SIM_000'::text) AND ((date_bin(('1 minute'::cstring)::interval, bucket_start, '1970-01-01 00:00:00+00'::timestamp with time zone) + ('1 minute'::cstring)::interval) <= '2026-10-14 06:10:31.695546+00'::timestamp with time zone))",
+                                "Rows Removed by Filter": 0,
+                                "Shared Hit Blocks": 124,
+                                "Shared Read Blocks": 0,
+                                "Shared Dirtied Blocks": 0,
+                                "Shared Written Blocks": 0,
+                                "Local Hit Blocks": 0,
+                                "Local Read Blocks": 0,
+                                "Local Dirtied Blocks": 0,
+                                "Local Written Blocks": 0,
+                                "Temp Read Blocks": 0,
+                                "Temp Written Blocks": 0
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 24,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.444,
+          "Triggers": [],
+          "Execution Time": 3.515
+        }
+      ],
+      "pagination_gap_decimal_readback": true,
+      "health_without_collector": {
+        "api": "available",
+        "database": "available",
+        "status": "ok",
+        "as_of": "2026-10-14T06:11:21.620943Z",
+        "collector": "unknown",
+        "collector_updated_at": null,
+        "data_freshness": "stale",
+        "historical_coverage": "gaps",
+        "streaming_mode": "database",
+        "websocket_delivery": "idle",
+        "provider_states": {},
+        "source_count": 147,
+        "fresh_sources": 100,
+        "stale_sources": 17,
+        "unavailable_sources": 30,
+        "summary_truncated": false
+      },
+      "database_degradation": {
+        "samples": 16,
+        "p50_ms": 5021.078,
+        "p95_ms": 5051.988,
+        "p99_ms": 5051.988,
+        "max_ms": 5052.13,
+        "concurrency": 8,
+        "elapsed_seconds": 10.066,
+        "requests_per_second": 1.589,
+        "statuses": {
+          "503": 16
+        },
+        "failed_rate": 1.0
+      },
+      "database_recovery_seconds": 0.010850200000277255,
+      "recovered_history": {
+        "samples": 24,
+        "p50_ms": 321.07,
+        "p95_ms": 361.922,
+        "p99_ms": 375.671,
+        "max_ms": 388.369,
+        "concurrency": 8,
+        "elapsed_seconds": 1.013,
+        "requests_per_second": 23.693,
+        "statuses": {
+          "200": 24
+        },
+        "failed_rate": 0.0
+      },
+      "worker_metrics": "# HELP marketdata_api_requests_total API HTTP responses\n# TYPE marketdata_api_requests_total counter\nmarketdata_api_requests_total{method=\"GET\",status=\"200\"} 2191.0\nmarketdata_api_requests_total{method=\"GET\",status=\"503\"} 16.0\n# HELP marketdata_api_requests_created API HTTP responses\n# TYPE marketdata_api_requests_created gauge\nmarketdata_api_requests_created{method=\"GET\",status=\"200\"} 1.7919582335101879e+09\nmarketdata_api_requests_created{method=\"GET\",status=\"503\"} 1.7919582868004763e+09\n# HELP marketdata_api_database_healthy Last API database health check\n# TYPE marketdata_api_database_healthy gauge\nmarketdata_api_database_healthy 1.0\n# HELP marketdata_api_request_seconds HTTP request duration including pool wait\n# TYPE marketdata_api_request_seconds histogram\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_count{route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_sum{route=\"/health\",status=\"200\"} 0.01490149999881396\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/instruments\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/instruments\",status=\"200\"} 116.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/instruments\",status=\"200\"} 139.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/instruments\",status=\"200\"} 246.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/instruments\",status=\"200\"} 315.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/instruments\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/instruments\",status=\"200\"} 15.851999900056398\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/prices/latest\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/prices/latest\",status=\"200\"} 7.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/prices/latest\",status=\"200\"} 149.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/prices/latest\",status=\"200\"} 257.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/prices/latest\",status=\"200\"} 331.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/prices/latest\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/prices/latest\",status=\"200\"} 14.452702299924567\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/candles\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/candles\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/candles\",status=\"200\"} 121.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/candles\",status=\"200\"} 248.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/candles\",status=\"200\"} 338.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/candles\",status=\"200\"} 873.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/candles\",status=\"200\"} 1038.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/candles\",status=\"200\"} 1106.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/candles\",status=\"200\"} 1107.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/candles\",status=\"200\"} 1107.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/candles\",status=\"200\"} 1107.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/candles\",status=\"200\"} 1107.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/candles\",status=\"200\"} 1107.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/candles\",status=\"200\"} 207.09615969991864\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/coverage\",status=\"200\"} 199.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/coverage\",status=\"200\"} 311.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/coverage\",status=\"200\"} 360.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/coverage\",status=\"200\"} 47.43020180003077\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/health\",status=\"200\"} 0.03914299999451032\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/candles\",status=\"503\"} 8.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/candles\",status=\"503\"} 16.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/candles\",status=\"503\"} 16.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/candles\",status=\"503\"} 16.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/candles\",status=\"503\"} 80.13163440001517\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_count{route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_sum{route=\"/livez\",status=\"200\"} 0.0011005000051227398\n# HELP marketdata_api_request_seconds_created HTTP request duration including pool wait\n# TYPE marketdata_api_request_seconds_created gauge\nmarketdata_api_request_seconds_created{route=\"/health\",status=\"200\"} 1.7919582335107267e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/instruments\",status=\"200\"} 1.7919582335471482e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/prices/latest\",status=\"200\"} 1.7919582348393226e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/candles\",status=\"200\"} 1.7919582366584866e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/coverage\",status=\"200\"} 1.7919582443902173e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/health\",status=\"200\"} 1.791958281659094e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/candles\",status=\"503\"} 1.7919582868004763e+09\nmarketdata_api_request_seconds_created{route=\"/livez\",status=\"200\"} 1.7919582918325582e+09\n# HELP marketdata_api_query_seconds Database statement execution duration\n# TYPE marketdata_api_query_seconds histogram\nmarketdata_api_query_seconds_bucket{le=\"0.005\"} 2662.0\nmarketdata_api_query_seconds_bucket{le=\"0.01\"} 2662.0\nmarketdata_api_query_seconds_bucket{le=\"0.025\"} 4233.0\nmarketdata_api_query_seconds_bucket{le=\"0.05\"} 5398.0\nmarketdata_api_query_seconds_bucket{le=\"0.075\"} 5660.0\nmarketdata_api_query_seconds_bucket{le=\"0.1\"} 5801.0\nmarketdata_api_query_seconds_bucket{le=\"0.25\"} 5866.0\nmarketdata_api_query_seconds_bucket{le=\"0.5\"} 5866.0\nmarketdata_api_query_seconds_bucket{le=\"0.75\"} 5866.0\nmarketdata_api_query_seconds_bucket{le=\"1.0\"} 5866.0\nmarketdata_api_query_seconds_bucket{le=\"2.5\"} 5866.0\nmarketdata_api_query_seconds_bucket{le=\"5.0\"} 5868.0\nmarketdata_api_query_seconds_bucket{le=\"7.5\"} 5876.0\nmarketdata_api_query_seconds_bucket{le=\"10.0\"} 5876.0\nmarketdata_api_query_seconds_bucket{le=\"+Inf\"} 5876.0\nmarketdata_api_query_seconds_count 5876.0\nmarketdata_api_query_seconds_sum 155.64599999988422\n# HELP marketdata_api_query_seconds_created Database statement execution duration\n# TYPE marketdata_api_query_seconds_created gauge\nmarketdata_api_query_seconds_created 1.7919582333278558e+09\n# HELP marketdata_api_pool_connections Worker pool connections\n# TYPE marketdata_api_pool_connections gauge\nmarketdata_api_pool_connections{state=\"size\"} 8.0\nmarketdata_api_pool_connections{state=\"idle\"} 7.0\nmarketdata_api_pool_connections{state=\"used\"} 1.0\n# HELP marketdata_api_ws_clients Connected marketdata clients\n# TYPE marketdata_api_ws_clients gauge\nmarketdata_api_ws_clients 0.0\n# HELP marketdata_api_ws_queue_messages Worker queued marketdata messages\n# TYPE marketdata_api_ws_queue_messages gauge\nmarketdata_api_ws_queue_messages{state=\"total\"} 0.0\nmarketdata_api_ws_queue_messages{state=\"maximum\"} 0.0\nmarketdata_api_ws_queue_messages{state=\"high_water\"} 100.0\n# HELP marketdata_api_ws_reader_running Journal reader task is alive\n# TYPE marketdata_api_ws_reader_running gauge\nmarketdata_api_ws_reader_running 1.0\n# HELP marketdata_event_loop_lag_seconds One-second monitor wake delay; sampled in the application event loop\n# TYPE marketdata_event_loop_lag_seconds histogram\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.001\"} 40.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.005\"} 40.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.01\"} 40.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.025\"} 52.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.05\"} 55.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.1\"} 59.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.25\"} 59.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.5\"} 59.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"1.0\"} 59.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"5.0\"} 59.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"+Inf\"} 59.0\nmarketdata_event_loop_lag_seconds_count 59.0\nmarketdata_event_loop_lag_seconds_sum 0.5419999999940046\n# HELP marketdata_event_loop_lag_seconds_created One-second monitor wake delay; sampled in the application event loop\n# TYPE marketdata_event_loop_lag_seconds_created gauge\nmarketdata_event_loop_lag_seconds_created 1.7919582333278558e+09\n# HELP marketdata_event_loop_lag_max_seconds Maximum monitor wake delay since application start\n# TYPE marketdata_event_loop_lag_max_seconds gauge\nmarketdata_event_loop_lag_max_seconds 0.07799999999406282\n# HELP marketdata_candles_total Candle operations\n# TYPE marketdata_candles_total counter\n# HELP marketdata_candle_seconds Candle request/write duration\n# TYPE marketdata_candle_seconds histogram\n# HELP marketdata_candle_scheduler_lateness_seconds Collection start lateness\n# TYPE marketdata_candle_scheduler_lateness_seconds gauge\n# HELP marketdata_candle_age_seconds Latest completed bucket end age; -1 if absent\n# TYPE marketdata_candle_age_seconds gauge\n# HELP marketdata_candle_missing_minutes Unresolved missing minutes since coverage start\n# TYPE marketdata_candle_missing_minutes gauge\n# HELP marketdata_candle_fetch_cycle_total Minute collection cycles\n# TYPE marketdata_candle_fetch_cycle_total counter\n# HELP marketdata_candle_request_concurrency Effective request window\n# TYPE marketdata_candle_request_concurrency gauge\n# HELP marketdata_candle_requests_inflight Dispatched unfinished requests\n# TYPE marketdata_candle_requests_inflight gauge\n# HELP marketdata_tradingview_request_error_total Bounded retrieval error categories\n# TYPE marketdata_tradingview_request_error_total counter\n# HELP marketdata_candle_request_timeout_total Individual request deadlines\n# TYPE marketdata_candle_request_timeout_total counter\n# HELP marketdata_candle_response_ignored_total Unmatched or duplicate response frames\n# TYPE marketdata_candle_response_ignored_total counter\n# HELP marketdata_candle_cycle_instrument_count Jobs in the latest collection cycle\n# TYPE marketdata_candle_cycle_instrument_count gauge\n# HELP marketdata_candle_cycle_overrun_total Cycles crossing their next scheduled target\n# TYPE marketdata_candle_cycle_overrun_total counter\n# HELP marketdata_tradingview_socket_count Currently connected candle sockets\n# TYPE marketdata_tradingview_socket_count gauge\nmarketdata_tradingview_socket_count 0.0\n# HELP marketdata_candle_pool_connected_workers Connected workers in the bounded candle pool\n# TYPE marketdata_candle_pool_connected_workers gauge\n# HELP marketdata_tradingview_socket_disconnect_total Unexpected candle socket failures\n# TYPE marketdata_tradingview_socket_disconnect_total counter\nmarketdata_tradingview_socket_disconnect_total 0.0\n# HELP marketdata_tradingview_socket_disconnect_created Unexpected candle socket failures\n# TYPE marketdata_tradingview_socket_disconnect_created gauge\nmarketdata_tradingview_socket_disconnect_created 1.7919582333278558e+09\n# HELP marketdata_tradingview_possible_throttle_total Overload symptoms, NOT confirmed limits\n# TYPE marketdata_tradingview_possible_throttle_total counter\n# HELP marketdata_candle_timing_seconds Separated monotonic stage durations / clamped UTC close latencies\n# TYPE marketdata_candle_timing_seconds histogram\n# HELP marketdata_candle_symbol_fetch_seconds Per configured symbol retrieval duration\n# TYPE marketdata_candle_symbol_fetch_seconds histogram\n# HELP marketdata_candle_minutes_behind Expected completed coverage lag\n# TYPE marketdata_candle_minutes_behind gauge\n# HELP marketdata_candle_expected_state One-hot current completed minute classification\n# TYPE marketdata_candle_expected_state gauge\n# HELP marketdata_messages_total Upstream messages including control records\n# TYPE marketdata_messages_total counter\n# HELP marketdata_received_total Normalized ticks\n# TYPE marketdata_received_total counter\n# HELP marketdata_persisted_total Inserted rows\n# TYPE marketdata_persisted_total counter\nmarketdata_persisted_total 0.0\n# HELP marketdata_persisted_created Inserted rows\n# TYPE marketdata_persisted_created gauge\nmarketdata_persisted_created 1.7919582333278558e+09\n# HELP marketdata_dropped_total Explicitly lost ticks\n# TYPE marketdata_dropped_total counter\n# HELP marketdata_reconnects_total Reconnect attempts\n# TYPE marketdata_reconnects_total counter\n# HELP marketdata_parse_failures_total Malformed messages\n# TYPE marketdata_parse_failures_total counter\n# HELP marketdata_sequence_gaps_total Observed trade ID gaps\n# TYPE marketdata_sequence_gaps_total counter\n# HELP marketdata_database_errors_total Persistence failures\n# TYPE marketdata_database_errors_total counter\nmarketdata_database_errors_total 0.0\n# HELP marketdata_database_errors_created Persistence failures\n# TYPE marketdata_database_errors_created gauge\nmarketdata_database_errors_created 1.7919582333278558e+09\n# HELP marketdata_queue_depth Pending ticks\n# TYPE marketdata_queue_depth gauge\nmarketdata_queue_depth 0.0\n# HELP marketdata_batch_seconds Database batch duration\n# TYPE marketdata_batch_seconds histogram\nmarketdata_batch_seconds_bucket{le=\"0.005\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.01\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.025\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.05\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.075\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.1\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.25\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.5\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.75\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"1.0\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"2.5\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"5.0\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"7.5\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"10.0\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"+Inf\"} 0.0\nmarketdata_batch_seconds_count 0.0\nmarketdata_batch_seconds_sum 0.0\n# HELP marketdata_batch_seconds_created Database batch duration\n# TYPE marketdata_batch_seconds_created gauge\nmarketdata_batch_seconds_created 1.7919582333278558e+09\n# HELP marketdata_ws_dropped_total Slow client queue losses\n# TYPE marketdata_ws_dropped_total counter\nmarketdata_ws_dropped_total 0.0\n# HELP marketdata_ws_dropped_created Slow client queue losses\n# TYPE marketdata_ws_dropped_created gauge\nmarketdata_ws_dropped_created 1.7919582333278558e+09\n# HELP marketdata_connection_up Transport connected\n# TYPE marketdata_connection_up gauge\n# HELP marketdata_connection_age_seconds Current connection age; zero offline\n# TYPE marketdata_connection_age_seconds gauge\n# HELP marketdata_feed_healthy All configured symbols current according to storage mode\n# TYPE marketdata_feed_healthy gauge\n# HELP marketdata_symbol_observations_total Valid normalized observations\n# TYPE marketdata_symbol_observations_total counter\n# HELP marketdata_symbol_observation_age_seconds Receipt age; -1 when never observed\n# TYPE marketdata_symbol_observation_age_seconds gauge\n# HELP marketdata_symbol_fresh Fresh observation in current connection\n# TYPE marketdata_symbol_fresh gauge\n# HELP marketdata_symbols Configured/fresh/stale symbol counts\n# TYPE marketdata_symbols gauge\n# HELP marketdata_rejected_observations_total Suppressed price observations\n# TYPE marketdata_rejected_observations_total counter\n# HELP marketdata_unknown_messages_total Unrecognized message types\n# TYPE marketdata_unknown_messages_total counter\n# HELP marketdata_transport_timeouts_total No application frames within timeout\n# TYPE marketdata_transport_timeouts_total counter\n",
+      "read_only_database_role": true,
+      "worker_exit_code": 0,
+      "api_resources": {
+        "database_queries": {
+          "samples": 5876,
+          "p50_ms": 15.0,
+          "p95_ms": 63.0,
+          "p99_ms": 110.0,
+          "max_ms": 5031.0
+        },
+        "event_loop_lag": {
+          "samples": 579,
+          "p50_ms": 0,
+          "p95_ms": 25.0,
+          "p99_ms": 56.0,
+          "max_ms": 212.0
+        },
+        "elapsed_seconds": 59.7441284000015,
+        "cpu_seconds": 36.078125,
+        "cpu_average_one_core_percent": 60.38773343289596,
+        "peak_rss_bytes": 121806848,
+        "peak_pool_used": 10,
+        "peak_pool_size": 10,
+        "peak_ws_clients": 50,
+        "sampled_peak_ws_queue": 0,
+        "observed_queue_high_water": 100
+      }
+    }
+  },
+  "resource_profiles": {
+    "pg": {
+      "simulated": true,
+      "fixture_sources": 100,
+      "configured_asset_classes": [
+        "crypto",
+        "forex",
+        "metals",
+        "energy"
+      ],
+      "candles_per_source": 1440,
+      "deliberately_missing_minutes": 3,
+      "transport": "real loopback TCP; separate native API process",
+      "collector": "deterministic Store writes; no provider connection",
+      "limits": {
+        "pool": 10,
+        "ws_queue": 256,
+        "poll_seconds": 1
+      },
+      "platform": "win32",
+      "python_version": "3.12.7",
+      "host_cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "host_logical_cpus": 20,
+      "measured_at": "2026-10-14T06:17:34.848775+00:00",
+      "rest": [
+        {
+          "name": "instruments100",
+          "samples": 40,
+          "p50_ms": 38.499,
+          "p95_ms": 95.219,
+          "p99_ms": 95.891,
+          "max_ms": 100.526,
+          "concurrency": 8,
+          "elapsed_seconds": 0.283,
+          "requests_per_second": 141.529,
+          "statuses": {
+            "200": 40
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "latest100",
+          "samples": 40,
+          "p50_ms": 52.047,
+          "p95_ms": 91.392,
+          "p99_ms": 103.83,
+          "max_ms": 126.793,
+          "concurrency": 8,
+          "elapsed_seconds": 0.34,
+          "requests_per_second": 117.819,
+          "statuses": {
+            "200": 40
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history500",
+          "samples": 40,
+          "p50_ms": 114.981,
+          "p95_ms": 216.548,
+          "p99_ms": 218.211,
+          "max_ms": 245.108,
+          "concurrency": 8,
+          "elapsed_seconds": 0.696,
+          "requests_per_second": 57.502,
+          "statuses": {
+            "200": 40
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history1000",
+          "samples": 40,
+          "p50_ms": 263.988,
+          "p95_ms": 329.463,
+          "p99_ms": 336.314,
+          "max_ms": 385.463,
+          "concurrency": 8,
+          "elapsed_seconds": 1.382,
+          "requests_per_second": 28.939,
+          "statuses": {
+            "200": 40
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "coverage100",
+          "samples": 40,
+          "p50_ms": 551.662,
+          "p95_ms": 898.019,
+          "p99_ms": 904.949,
+          "max_ms": 905.408,
+          "concurrency": 8,
+          "elapsed_seconds": 3.106,
+          "requests_per_second": 12.879,
+          "statuses": {
+            "200": 40
+          },
+          "failed_rate": 0.0
+        }
+      ],
+      "websocket": [
+        {
+          "clients": 20,
+          "subscriptions": 2000,
+          "received": 6000,
+          "expected": 6000,
+          "ack_to_delivery": {
+            "samples": 6000,
+            "p50_ms": 474.801,
+            "p95_ms": 551.161,
+            "p99_ms": 553.294,
+            "max_ms": 553.813
+          },
+          "negative_ack_deltas": 0,
+          "rest_during_writes": {
+            "samples": 40,
+            "p50_ms": 309.272,
+            "p95_ms": 396.777,
+            "p99_ms": 406.323,
+            "max_ms": 459.493,
+            "concurrency": 8,
+            "elapsed_seconds": 1.621,
+            "requests_per_second": 24.669,
+            "statuses": {
+              "200": 40
+            },
+            "failed_rate": 0.0
+          }
+        }
+      ],
+      "database_version": "PostgreSQL 17.11 (Debian 17.11-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+      "fixture_candles": 143997,
+      "history_plan": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 4029.7,
+            "Total Cost": 4030.2,
+            "Plan Rows": 5,
+            "Plan Width": 336,
+            "Actual Startup Time": 0.781,
+            "Actual Total Time": 3.026,
+            "Actual Rows": 1000,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 124,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Aggregate",
+                "Strategy": "Sorted",
+                "Partial Mode": "Simple",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 4029.7,
+                "Total Cost": 4030.2,
+                "Plan Rows": 5,
+                "Plan Width": 336,
+                "Actual Startup Time": 0.78,
+                "Actual Total Time": 2.976,
+                "Actual Rows": 1000,
+                "Actual Loops": 1,
+                "Group Key": [
+                  "(date_bin(('1 minute'::cstring)::interval, market_candles.bucket_start, '1970-01-01 00:00:00+00'::timestamp with time zone))",
+                  "market_candles.realtime_status"
+                ],
+                "Shared Hit Blocks": 124,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Sort",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 4029.7,
+                    "Total Cost": 4029.71,
+                    "Plan Rows": 5,
+                    "Plan Width": 197,
+                    "Actual Startup Time": 0.763,
+                    "Actual Total Time": 0.796,
+                    "Actual Rows": 1000,
+                    "Actual Loops": 1,
+                    "Sort Key": [
+                      "(date_bin(('1 minute'::cstring)::interval, market_candles.bucket_start, '1970-01-01 00:00:00+00'::timestamp with time zone))",
+                      "market_candles.realtime_status",
+                      "market_candles.bucket_start"
+                    ],
+                    "Sort Method": "quicksort",
+                    "Sort Space Used": 228,
+                    "Sort Space Type": "Memory",
+                    "Shared Hit Blocks": 124,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0,
+                    "Plans": [
+                      {
+                        "Node Type": "Bitmap Heap Scan",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Relation Name": "market_candles",
+                        "Alias": "market_candles",
+                        "Startup Cost": 173.22,
+                        "Total Cost": 4029.64,
+                        "Plan Rows": 5,
+                        "Plan Width": 197,
+                        "Actual Startup Time": 0.089,
+                        "Actual Total Time": 0.456,
+                        "Actual Rows": 1000,
+                        "Actual Loops": 1,
+                        "Recheck Cond": "((instrument_id = '4f0d0430-ed10-5382-b29a-287d2fba6c09'::uuid) AND (provider = 'qualification'::text) AND (\"interval\" = '1m'::text) AND (bucket_start >= '2026-10-10 07:20:00+00'::timestamp with time zone) AND (bucket_start < '2026-10-11 00:00:00+00'::timestamp with time zone) AND (price_basis = 'native'::text))",
+                        "Rows Removed by Index Recheck": 0,
+                        "Filter": "((bucket_end <= '2026-10-14 06:17:58.905539+00'::timestamp with time zone) AND (provider_symbol = 'SIM_000'::text) AND ((date_bin(('1 minute'::cstring)::interval, bucket_start, '1970-01-01 00:00:00+00'::timestamp with time zone) + ('1 minute'::cstring)::interval) <= '2026-10-14 06:17:58.905539+00'::timestamp with time zone))",
+                        "Rows Removed by Filter": 0,
+                        "Exact Heap Blocks": 112,
+                        "Lossy Heap Blocks": 0,
+                        "Shared Hit Blocks": 124,
+                        "Shared Read Blocks": 0,
+                        "Shared Dirtied Blocks": 0,
+                        "Shared Written Blocks": 0,
+                        "Local Hit Blocks": 0,
+                        "Local Read Blocks": 0,
+                        "Local Dirtied Blocks": 0,
+                        "Local Written Blocks": 0,
+                        "Temp Read Blocks": 0,
+                        "Temp Written Blocks": 0,
+                        "Plans": [
+                          {
+                            "Node Type": "Bitmap Index Scan",
+                            "Parent Relationship": "Outer",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Index Name": "market_candles_pkey",
+                            "Startup Cost": 0.0,
+                            "Total Cost": 173.22,
+                            "Plan Rows": 1240,
+                            "Plan Width": 0,
+                            "Actual Startup Time": 0.073,
+                            "Actual Total Time": 0.073,
+                            "Actual Rows": 1000,
+                            "Actual Loops": 1,
+                            "Index Cond": "((instrument_id = '4f0d0430-ed10-5382-b29a-287d2fba6c09'::uuid) AND (provider = 'qualification'::text) AND (\"interval\" = '1m'::text) AND (bucket_start >= '2026-10-10 07:20:00+00'::timestamp with time zone) AND (bucket_start < '2026-10-11 00:00:00+00'::timestamp with time zone) AND (price_basis = 'native'::text))",
+                            "Shared Hit Blocks": 12,
+                            "Shared Read Blocks": 0,
+                            "Shared Dirtied Blocks": 0,
+                            "Shared Written Blocks": 0,
+                            "Local Hit Blocks": 0,
+                            "Local Read Blocks": 0,
+                            "Local Dirtied Blocks": 0,
+                            "Local Written Blocks": 0,
+                            "Temp Read Blocks": 0,
+                            "Temp Written Blocks": 0
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 3,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.196,
+          "Triggers": [],
+          "Execution Time": 3.083
+        }
+      ],
+      "pagination_gap_decimal_readback": true,
+      "health_without_collector": {
+        "api": "available",
+        "database": "available",
+        "status": "ok",
+        "as_of": "2026-10-14T06:18:10.919480Z",
+        "collector": "unknown",
+        "collector_updated_at": null,
+        "data_freshness": "stale",
+        "historical_coverage": "gaps",
+        "streaming_mode": "database",
+        "websocket_delivery": "idle",
+        "provider_states": {},
+        "source_count": 147,
+        "fresh_sources": 100,
+        "stale_sources": 17,
+        "unavailable_sources": 30,
+        "summary_truncated": false
+      },
+      "database_degradation": {
+        "samples": 16,
+        "p50_ms": 5017.512,
+        "p95_ms": 5037.089,
+        "p99_ms": 5037.089,
+        "max_ms": 5040.742,
+        "concurrency": 8,
+        "elapsed_seconds": 10.052,
+        "requests_per_second": 1.592,
+        "statuses": {
+          "503": 16
+        },
+        "failed_rate": 1.0
+      },
+      "database_recovery_seconds": 0.009656700000050478,
+      "recovered_history": {
+        "samples": 24,
+        "p50_ms": 216.061,
+        "p95_ms": 260.7,
+        "p99_ms": 264.818,
+        "max_ms": 305.009,
+        "concurrency": 8,
+        "elapsed_seconds": 0.742,
+        "requests_per_second": 32.366,
+        "statuses": {
+          "200": 24
+        },
+        "failed_rate": 0.0
+      },
+      "worker_metrics": "# HELP marketdata_api_requests_total API HTTP responses\n# TYPE marketdata_api_requests_total counter\nmarketdata_api_requests_total{method=\"GET\",status=\"200\"} 271.0\nmarketdata_api_requests_total{method=\"GET\",status=\"503\"} 16.0\n# HELP marketdata_api_requests_created API HTTP responses\n# TYPE marketdata_api_requests_created gauge\nmarketdata_api_requests_created{method=\"GET\",status=\"200\"} 1.7919586808714986e+09\nmarketdata_api_requests_created{method=\"GET\",status=\"503\"} 1.7919586960821748e+09\n# HELP marketdata_api_database_healthy Last API database health check\n# TYPE marketdata_api_database_healthy gauge\nmarketdata_api_database_healthy 1.0\n# HELP marketdata_api_request_seconds HTTP request duration including pool wait\n# TYPE marketdata_api_request_seconds histogram\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_count{route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_sum{route=\"/health\",status=\"200\"} 0.03298380000342149\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/instruments\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/instruments\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/instruments\",status=\"200\"} 27.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/instruments\",status=\"200\"} 34.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/instruments\",status=\"200\"} 1.0849475999930291\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/prices/latest\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/prices/latest\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/prices/latest\",status=\"200\"} 13.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/prices/latest\",status=\"200\"} 1.21152990002156\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/candles\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/candles\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/candles\",status=\"200\"} 4.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/candles\",status=\"200\"} 5.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/candles\",status=\"200\"} 33.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/candles\",status=\"200\"} 117.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/candles\",status=\"200\"} 26.81149369996274\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/coverage\",status=\"200\"} 10.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/coverage\",status=\"200\"} 23.16417200006981\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/health\",status=\"200\"} 0.03976870000042254\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/candles\",status=\"503\"} 7.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/candles\",status=\"503\"} 16.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/candles\",status=\"503\"} 16.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/candles\",status=\"503\"} 16.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/candles\",status=\"503\"} 80.05338870001287\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_count{route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_sum{route=\"/livez\",status=\"200\"} 0.0006308000010903925\n# HELP marketdata_api_request_seconds_created HTTP request duration including pool wait\n# TYPE marketdata_api_request_seconds_created gauge\nmarketdata_api_request_seconds_created{route=\"/health\",status=\"200\"} 1.7919586808714986e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/instruments\",status=\"200\"} 1.7919586809286153e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/prices/latest\",status=\"200\"} 1.7919586811887252e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/candles\",status=\"200\"} 1.7919586815280967e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/coverage\",status=\"200\"} 1.7919586844614608e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/health\",status=\"200\"} 1.7919586909581661e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/candles\",status=\"503\"} 1.7919586960821748e+09\nmarketdata_api_request_seconds_created{route=\"/livez\",status=\"200\"} 1.7919587011097965e+09\n# HELP marketdata_api_query_seconds Database statement execution duration\n# TYPE marketdata_api_query_seconds histogram\nmarketdata_api_query_seconds_bucket{le=\"0.005\"} 411.0\nmarketdata_api_query_seconds_bucket{le=\"0.01\"} 411.0\nmarketdata_api_query_seconds_bucket{le=\"0.025\"} 609.0\nmarketdata_api_query_seconds_bucket{le=\"0.05\"} 722.0\nmarketdata_api_query_seconds_bucket{le=\"0.075\"} 744.0\nmarketdata_api_query_seconds_bucket{le=\"0.1\"} 768.0\nmarketdata_api_query_seconds_bucket{le=\"0.25\"} 773.0\nmarketdata_api_query_seconds_bucket{le=\"0.5\"} 803.0\nmarketdata_api_query_seconds_bucket{le=\"0.75\"} 805.0\nmarketdata_api_query_seconds_bucket{le=\"1.0\"} 813.0\nmarketdata_api_query_seconds_bucket{le=\"2.5\"} 813.0\nmarketdata_api_query_seconds_bucket{le=\"5.0\"} 814.0\nmarketdata_api_query_seconds_bucket{le=\"7.5\"} 822.0\nmarketdata_api_query_seconds_bucket{le=\"10.0\"} 822.0\nmarketdata_api_query_seconds_bucket{le=\"+Inf\"} 822.0\nmarketdata_api_query_seconds_count 822.0\nmarketdata_api_query_seconds_sum 77.42300000000978\n# HELP marketdata_api_query_seconds_created Database statement execution duration\n# TYPE marketdata_api_query_seconds_created gauge\nmarketdata_api_query_seconds_created 1.7919586802228148e+09\n# HELP marketdata_api_pool_connections Worker pool connections\n# TYPE marketdata_api_pool_connections gauge\nmarketdata_api_pool_connections{state=\"size\"} 8.0\nmarketdata_api_pool_connections{state=\"idle\"} 6.0\nmarketdata_api_pool_connections{state=\"used\"} 2.0\n# HELP marketdata_api_ws_clients Connected marketdata clients\n# TYPE marketdata_api_ws_clients gauge\nmarketdata_api_ws_clients 0.0\n# HELP marketdata_api_ws_queue_messages Worker queued marketdata messages\n# TYPE marketdata_api_ws_queue_messages gauge\nmarketdata_api_ws_queue_messages{state=\"total\"} 0.0\nmarketdata_api_ws_queue_messages{state=\"maximum\"} 0.0\nmarketdata_api_ws_queue_messages{state=\"high_water\"} 100.0\n# HELP marketdata_api_ws_reader_running Journal reader task is alive\n# TYPE marketdata_api_ws_reader_running gauge\nmarketdata_api_ws_reader_running 1.0\n# HELP marketdata_event_loop_lag_seconds One-second monitor wake delay; sampled in the application event loop\n# TYPE marketdata_event_loop_lag_seconds histogram\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.001\"} 4.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.005\"} 4.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.01\"} 4.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.025\"} 19.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.05\"} 21.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.1\"} 21.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.25\"} 21.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.5\"} 21.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"1.0\"} 21.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"5.0\"} 21.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"+Inf\"} 21.0\nmarketdata_event_loop_lag_seconds_count 21.0\nmarketdata_event_loop_lag_seconds_sum 0.32699999999749707\n# HELP marketdata_event_loop_lag_seconds_created One-second monitor wake delay; sampled in the application event loop\n# TYPE marketdata_event_loop_lag_seconds_created gauge\nmarketdata_event_loop_lag_seconds_created 1.7919586802228148e+09\n# HELP marketdata_event_loop_lag_max_seconds Maximum monitor wake delay since application start\n# TYPE marketdata_event_loop_lag_max_seconds gauge\nmarketdata_event_loop_lag_max_seconds 0.046999999998661224\n# HELP marketdata_candles_total Candle operations\n# TYPE marketdata_candles_total counter\n# HELP marketdata_candle_seconds Candle request/write duration\n# TYPE marketdata_candle_seconds histogram\n# HELP marketdata_candle_scheduler_lateness_seconds Collection start lateness\n# TYPE marketdata_candle_scheduler_lateness_seconds gauge\n# HELP marketdata_candle_age_seconds Latest completed bucket end age; -1 if absent\n# TYPE marketdata_candle_age_seconds gauge\n# HELP marketdata_candle_missing_minutes Unresolved missing minutes since coverage start\n# TYPE marketdata_candle_missing_minutes gauge\n# HELP marketdata_candle_fetch_cycle_total Minute collection cycles\n# TYPE marketdata_candle_fetch_cycle_total counter\n# HELP marketdata_candle_request_concurrency Effective request window\n# TYPE marketdata_candle_request_concurrency gauge\n# HELP marketdata_candle_requests_inflight Dispatched unfinished requests\n# TYPE marketdata_candle_requests_inflight gauge\n# HELP marketdata_tradingview_request_error_total Bounded retrieval error categories\n# TYPE marketdata_tradingview_request_error_total counter\n# HELP marketdata_candle_request_timeout_total Individual request deadlines\n# TYPE marketdata_candle_request_timeout_total counter\n# HELP marketdata_candle_response_ignored_total Unmatched or duplicate response frames\n# TYPE marketdata_candle_response_ignored_total counter\n# HELP marketdata_candle_cycle_instrument_count Jobs in the latest collection cycle\n# TYPE marketdata_candle_cycle_instrument_count gauge\n# HELP marketdata_candle_cycle_overrun_total Cycles crossing their next scheduled target\n# TYPE marketdata_candle_cycle_overrun_total counter\n# HELP marketdata_tradingview_socket_count Currently connected candle sockets\n# TYPE marketdata_tradingview_socket_count gauge\nmarketdata_tradingview_socket_count 0.0\n# HELP marketdata_candle_pool_connected_workers Connected workers in the bounded candle pool\n# TYPE marketdata_candle_pool_connected_workers gauge\n# HELP marketdata_tradingview_socket_disconnect_total Unexpected candle socket failures\n# TYPE marketdata_tradingview_socket_disconnect_total counter\nmarketdata_tradingview_socket_disconnect_total 0.0\n# HELP marketdata_tradingview_socket_disconnect_created Unexpected candle socket failures\n# TYPE marketdata_tradingview_socket_disconnect_created gauge\nmarketdata_tradingview_socket_disconnect_created 1.7919586802228148e+09\n# HELP marketdata_tradingview_possible_throttle_total Overload symptoms, NOT confirmed limits\n# TYPE marketdata_tradingview_possible_throttle_total counter\n# HELP marketdata_candle_timing_seconds Separated monotonic stage durations / clamped UTC close latencies\n# TYPE marketdata_candle_timing_seconds histogram\n# HELP marketdata_candle_symbol_fetch_seconds Per configured symbol retrieval duration\n# TYPE marketdata_candle_symbol_fetch_seconds histogram\n# HELP marketdata_candle_minutes_behind Expected completed coverage lag\n# TYPE marketdata_candle_minutes_behind gauge\n# HELP marketdata_candle_expected_state One-hot current completed minute classification\n# TYPE marketdata_candle_expected_state gauge\n# HELP marketdata_messages_total Upstream messages including control records\n# TYPE marketdata_messages_total counter\n# HELP marketdata_received_total Normalized ticks\n# TYPE marketdata_received_total counter\n# HELP marketdata_persisted_total Inserted rows\n# TYPE marketdata_persisted_total counter\nmarketdata_persisted_total 0.0\n# HELP marketdata_persisted_created Inserted rows\n# TYPE marketdata_persisted_created gauge\nmarketdata_persisted_created 1.7919586802228148e+09\n# HELP marketdata_dropped_total Explicitly lost ticks\n# TYPE marketdata_dropped_total counter\n# HELP marketdata_reconnects_total Reconnect attempts\n# TYPE marketdata_reconnects_total counter\n# HELP marketdata_parse_failures_total Malformed messages\n# TYPE marketdata_parse_failures_total counter\n# HELP marketdata_sequence_gaps_total Observed trade ID gaps\n# TYPE marketdata_sequence_gaps_total counter\n# HELP marketdata_database_errors_total Persistence failures\n# TYPE marketdata_database_errors_total counter\nmarketdata_database_errors_total 0.0\n# HELP marketdata_database_errors_created Persistence failures\n# TYPE marketdata_database_errors_created gauge\nmarketdata_database_errors_created 1.7919586802228148e+09\n# HELP marketdata_queue_depth Pending ticks\n# TYPE marketdata_queue_depth gauge\nmarketdata_queue_depth 0.0\n# HELP marketdata_batch_seconds Database batch duration\n# TYPE marketdata_batch_seconds histogram\nmarketdata_batch_seconds_bucket{le=\"0.005\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.01\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.025\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.05\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.075\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.1\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.25\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.5\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.75\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"1.0\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"2.5\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"5.0\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"7.5\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"10.0\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"+Inf\"} 0.0\nmarketdata_batch_seconds_count 0.0\nmarketdata_batch_seconds_sum 0.0\n# HELP marketdata_batch_seconds_created Database batch duration\n# TYPE marketdata_batch_seconds_created gauge\nmarketdata_batch_seconds_created 1.7919586802228148e+09\n# HELP marketdata_ws_dropped_total Slow client queue losses\n# TYPE marketdata_ws_dropped_total counter\nmarketdata_ws_dropped_total 0.0\n# HELP marketdata_ws_dropped_created Slow client queue losses\n# TYPE marketdata_ws_dropped_created gauge\nmarketdata_ws_dropped_created 1.7919586802228148e+09\n# HELP marketdata_connection_up Transport connected\n# TYPE marketdata_connection_up gauge\n# HELP marketdata_connection_age_seconds Current connection age; zero offline\n# TYPE marketdata_connection_age_seconds gauge\n# HELP marketdata_feed_healthy All configured symbols current according to storage mode\n# TYPE marketdata_feed_healthy gauge\n# HELP marketdata_symbol_observations_total Valid normalized observations\n# TYPE marketdata_symbol_observations_total counter\n# HELP marketdata_symbol_observation_age_seconds Receipt age; -1 when never observed\n# TYPE marketdata_symbol_observation_age_seconds gauge\n# HELP marketdata_symbol_fresh Fresh observation in current connection\n# TYPE marketdata_symbol_fresh gauge\n# HELP marketdata_symbols Configured/fresh/stale symbol counts\n# TYPE marketdata_symbols gauge\n# HELP marketdata_rejected_observations_total Suppressed price observations\n# TYPE marketdata_rejected_observations_total counter\n# HELP marketdata_unknown_messages_total Unrecognized message types\n# TYPE marketdata_unknown_messages_total counter\n# HELP marketdata_transport_timeouts_total No application frames within timeout\n# TYPE marketdata_transport_timeouts_total counter\n",
+      "read_only_database_role": true,
+      "database_resources": {
+        "sampled_by": "docker stats --no-stream, one-second spacing after each sample",
+        "samples": [
+          {
+            "CPUPerc": "4.28%",
+            "MemUsage": "917.3MiB / 7.568GiB",
+            "PIDs": "10"
+          },
+          {
+            "CPUPerc": "30.04%",
+            "MemUsage": "938.9MiB / 7.568GiB",
+            "PIDs": "16"
+          },
+          {
+            "CPUPerc": "632.51%",
+            "MemUsage": "1.158GiB / 7.568GiB",
+            "PIDs": "16"
+          },
+          {
+            "CPUPerc": "150.15%",
+            "MemUsage": "1.162GiB / 7.568GiB",
+            "PIDs": "16"
+          },
+          {
+            "CPUPerc": "3.76%",
+            "MemUsage": "1.163GiB / 7.568GiB",
+            "PIDs": "17"
+          },
+          {
+            "CPUPerc": "0.38%",
+            "MemUsage": "1.163GiB / 7.568GiB",
+            "PIDs": "17"
+          },
+          {
+            "CPUPerc": "0.00%",
+            "MemUsage": "1.163GiB / 7.568GiB",
+            "PIDs": "17"
+          },
+          {
+            "CPUPerc": "0.00%",
+            "MemUsage": "1.163GiB / 7.568GiB",
+            "PIDs": "17"
+          },
+          {
+            "CPUPerc": "0.01%",
+            "MemUsage": "1.163GiB / 7.568GiB",
+            "PIDs": "17"
+          },
+          {
+            "CPUPerc": "0.00%",
+            "MemUsage": "1.163GiB / 7.568GiB",
+            "PIDs": "17"
+          }
+        ],
+        "peak_cpu_percent": 632.51
+      },
+      "worker_exit_code": 0,
+      "api_resources": {
+        "database_queries": {
+          "samples": 822,
+          "p50_ms": 0.0,
+          "p95_ms": 453.0,
+          "p99_ms": 828.0,
+          "max_ms": 5031.0
+        },
+        "event_loop_lag": {
+          "samples": 205,
+          "p50_ms": 9.0,
+          "p95_ms": 25.0,
+          "p99_ms": 25.0,
+          "max_ms": 41.0
+        },
+        "elapsed_seconds": 21.84275979999802,
+        "cpu_seconds": 5.890625,
+        "cpu_average_one_core_percent": 26.968318353253757,
+        "peak_rss_bytes": 110141440,
+        "peak_pool_used": 9,
+        "peak_pool_size": 9,
+        "peak_ws_clients": 20,
+        "sampled_peak_ws_queue": 0,
+        "observed_queue_high_water": 100
+      }
+    },
+    "timescale": {
+      "simulated": true,
+      "fixture_sources": 100,
+      "configured_asset_classes": [
+        "crypto",
+        "forex",
+        "metals",
+        "energy"
+      ],
+      "candles_per_source": 1440,
+      "deliberately_missing_minutes": 3,
+      "transport": "real loopback TCP; separate native API process",
+      "collector": "deterministic Store writes; no provider connection",
+      "limits": {
+        "pool": 10,
+        "ws_queue": 256,
+        "poll_seconds": 1
+      },
+      "platform": "win32",
+      "python_version": "3.12.7",
+      "host_cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+      "host_logical_cpus": 20,
+      "measured_at": "2026-10-14T06:19:49.444531+00:00",
+      "rest": [
+        {
+          "name": "instruments100",
+          "samples": 40,
+          "p50_ms": 48.044,
+          "p95_ms": 118.985,
+          "p99_ms": 126.215,
+          "max_ms": 127.634,
+          "concurrency": 8,
+          "elapsed_seconds": 0.32,
+          "requests_per_second": 124.821,
+          "statuses": {
+            "200": 40
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "latest100",
+          "samples": 40,
+          "p50_ms": 56.761,
+          "p95_ms": 88.44,
+          "p99_ms": 93.301,
+          "max_ms": 160.018,
+          "concurrency": 8,
+          "elapsed_seconds": 0.371,
+          "requests_per_second": 107.709,
+          "statuses": {
+            "200": 40
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history500",
+          "samples": 40,
+          "p50_ms": 118.991,
+          "p95_ms": 176.594,
+          "p99_ms": 180.003,
+          "max_ms": 186.867,
+          "concurrency": 8,
+          "elapsed_seconds": 0.641,
+          "requests_per_second": 62.356,
+          "statuses": {
+            "200": 40
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "history1000",
+          "samples": 40,
+          "p50_ms": 348.958,
+          "p95_ms": 413.381,
+          "p99_ms": 413.465,
+          "max_ms": 419.042,
+          "concurrency": 8,
+          "elapsed_seconds": 1.715,
+          "requests_per_second": 23.326,
+          "statuses": {
+            "200": 40
+          },
+          "failed_rate": 0.0
+        },
+        {
+          "name": "coverage100",
+          "samples": 40,
+          "p50_ms": 138.606,
+          "p95_ms": 269.32,
+          "p99_ms": 274.939,
+          "max_ms": 283.222,
+          "concurrency": 8,
+          "elapsed_seconds": 0.845,
+          "requests_per_second": 47.345,
+          "statuses": {
+            "200": 40
+          },
+          "failed_rate": 0.0
+        }
+      ],
+      "websocket": [
+        {
+          "clients": 20,
+          "subscriptions": 2000,
+          "received": 6000,
+          "expected": 6000,
+          "ack_to_delivery": {
+            "samples": 6000,
+            "p50_ms": 666.125,
+            "p95_ms": 911.223,
+            "p99_ms": 916.406,
+            "max_ms": 917.582
+          },
+          "negative_ack_deltas": 0,
+          "rest_during_writes": {
+            "samples": 40,
+            "p50_ms": 360.411,
+            "p95_ms": 496.936,
+            "p99_ms": 498.659,
+            "max_ms": 632.763,
+            "concurrency": 8,
+            "elapsed_seconds": 1.884,
+            "requests_per_second": 21.236,
+            "statuses": {
+              "200": 40
+            },
+            "failed_rate": 0.0
+          }
+        }
+      ],
+      "database_version": "PostgreSQL 17.7 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+      "fixture_candles": 143997,
+      "history_plan": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 1538.84,
+            "Total Cost": 1539.44,
+            "Plan Rows": 6,
+            "Plan Width": 336,
+            "Actual Startup Time": 1.048,
+            "Actual Total Time": 3.358,
+            "Actual Rows": 1000,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 124,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Aggregate",
+                "Strategy": "Sorted",
+                "Partial Mode": "Simple",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 1538.84,
+                "Total Cost": 1539.44,
+                "Plan Rows": 6,
+                "Plan Width": 336,
+                "Actual Startup Time": 1.047,
+                "Actual Total Time": 3.312,
+                "Actual Rows": 1000,
+                "Actual Loops": 1,
+                "Group Key": [
+                  "(date_bin(('1 minute'::cstring)::interval, market_candles.bucket_start, '1970-01-01 00:00:00+00'::timestamp with time zone))",
+                  "market_candles.realtime_status"
+                ],
+                "Shared Hit Blocks": 124,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Sort",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 1538.84,
+                    "Total Cost": 1538.86,
+                    "Plan Rows": 6,
+                    "Plan Width": 197,
+                    "Actual Startup Time": 1.019,
+                    "Actual Total Time": 1.061,
+                    "Actual Rows": 1000,
+                    "Actual Loops": 1,
+                    "Sort Key": [
+                      "(date_bin(('1 minute'::cstring)::interval, market_candles.bucket_start, '1970-01-01 00:00:00+00'::timestamp with time zone))",
+                      "market_candles.realtime_status",
+                      "market_candles.bucket_start"
+                    ],
+                    "Sort Method": "quicksort",
+                    "Sort Space Used": 228,
+                    "Sort Space Type": "Memory",
+                    "Shared Hit Blocks": 124,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0,
+                    "Plans": [
+                      {
+                        "Node Type": "Result",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Startup Cost": 0.42,
+                        "Total Cost": 1538.76,
+                        "Plan Rows": 6,
+                        "Plan Width": 197,
+                        "Actual Startup Time": 0.032,
+                        "Actual Total Time": 0.628,
+                        "Actual Rows": 1000,
+                        "Actual Loops": 1,
+                        "Shared Hit Blocks": 124,
+                        "Shared Read Blocks": 0,
+                        "Shared Dirtied Blocks": 0,
+                        "Shared Written Blocks": 0,
+                        "Local Hit Blocks": 0,
+                        "Local Read Blocks": 0,
+                        "Local Dirtied Blocks": 0,
+                        "Local Written Blocks": 0,
+                        "Temp Read Blocks": 0,
+                        "Temp Written Blocks": 0,
+                        "Plans": [
+                          {
+                            "Node Type": "Custom Scan",
+                            "Parent Relationship": "Outer",
+                            "Custom Plan Provider": "ChunkAppend",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Relation Name": "market_candles",
+                            "Alias": "market_candles",
+                            "Startup Cost": 0.42,
+                            "Total Cost": 1538.66,
+                            "Plan Rows": 6,
+                            "Plan Width": 189,
+                            "Actual Startup Time": 0.031,
+                            "Actual Total Time": 0.497,
+                            "Actual Rows": 1000,
+                            "Actual Loops": 1,
+                            "Order": [
+                              "market_candles.bucket_start"
+                            ],
+                            "Startup Exclusion": true,
+                            "Runtime Exclusion": false,
+                            "Chunks excluded during startup": 0,
+                            "Shared Hit Blocks": 124,
+                            "Shared Read Blocks": 0,
+                            "Shared Dirtied Blocks": 0,
+                            "Shared Written Blocks": 0,
+                            "Local Hit Blocks": 0,
+                            "Local Read Blocks": 0,
+                            "Local Dirtied Blocks": 0,
+                            "Local Written Blocks": 0,
+                            "Temp Read Blocks": 0,
+                            "Temp Written Blocks": 0,
+                            "Plans": [
+                              {
+                                "Node Type": "Index Scan",
+                                "Parent Relationship": "child",
+                                "Parallel Aware": false,
+                                "Async Capable": false,
+                                "Scan Direction": "Forward",
+                                "Index Name": "2_4_market_candles_pkey",
+                                "Relation Name": "_hyper_14_2_chunk",
+                                "Alias": "_hyper_14_2_chunk",
+                                "Startup Cost": 0.42,
+                                "Total Cost": 1538.66,
+                                "Plan Rows": 6,
+                                "Plan Width": 189,
+                                "Actual Startup Time": 0.03,
+                                "Actual Total Time": 0.452,
+                                "Actual Rows": 1000,
+                                "Actual Loops": 1,
+                                "Index Cond": "((instrument_id = '2ad9f8db-0d9f-5e1f-ad7b-701a0e99be6e'::uuid) AND (provider = 'qualification'::text) AND (\"interval\" = '1m'::text) AND (bucket_start >= '2026-10-10 07:20:00+00'::timestamp with time zone) AND (bucket_start < '2026-10-11 00:00:00+00'::timestamp with time zone) AND (price_basis = 'native'::text))",
+                                "Rows Removed by Index Recheck": 0,
+                                "Filter": "((bucket_end <= '2026-10-14 06:20:24.249172+00'::timestamp with time zone) AND (provider_symbol = 'SIM_000'::text) AND ((date_bin(('1 minute'::cstring)::interval, bucket_start, '1970-01-01 00:00:00+00'::timestamp with time zone) + ('1 minute'::cstring)::interval) <= '2026-10-14 06:20:24.249172+00'::timestamp with time zone))",
+                                "Rows Removed by Filter": 0,
+                                "Shared Hit Blocks": 124,
+                                "Shared Read Blocks": 0,
+                                "Shared Dirtied Blocks": 0,
+                                "Shared Written Blocks": 0,
+                                "Local Hit Blocks": 0,
+                                "Local Read Blocks": 0,
+                                "Local Dirtied Blocks": 0,
+                                "Local Written Blocks": 0,
+                                "Temp Read Blocks": 0,
+                                "Temp Written Blocks": 0
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 24,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.583,
+          "Triggers": [],
+          "Execution Time": 3.568
+        }
+      ],
+      "pagination_gap_decimal_readback": true,
+      "health_without_collector": {
+        "api": "available",
+        "database": "available",
+        "status": "ok",
+        "as_of": "2026-10-14T06:20:34.080616Z",
+        "collector": "unknown",
+        "collector_updated_at": null,
+        "data_freshness": "stale",
+        "historical_coverage": "gaps",
+        "streaming_mode": "database",
+        "websocket_delivery": "idle",
+        "provider_states": {},
+        "source_count": 147,
+        "fresh_sources": 100,
+        "stale_sources": 17,
+        "unavailable_sources": 30,
+        "summary_truncated": false
+      },
+      "database_degradation": {
+        "samples": 16,
+        "p50_ms": 5037.443,
+        "p95_ms": 5048.699,
+        "p99_ms": 5048.699,
+        "max_ms": 5050.003,
+        "concurrency": 8,
+        "elapsed_seconds": 10.086,
+        "requests_per_second": 1.586,
+        "statuses": {
+          "503": 16
+        },
+        "failed_rate": 1.0
+      },
+      "database_recovery_seconds": 0.015906200002063997,
+      "recovered_history": {
+        "samples": 24,
+        "p50_ms": 291.773,
+        "p95_ms": 348.168,
+        "p99_ms": 380.994,
+        "max_ms": 430.009,
+        "concurrency": 8,
+        "elapsed_seconds": 0.849,
+        "requests_per_second": 28.276,
+        "statuses": {
+          "200": 24
+        },
+        "failed_rate": 0.0
+      },
+      "worker_metrics": "# HELP marketdata_api_requests_total API HTTP responses\n# TYPE marketdata_api_requests_total counter\nmarketdata_api_requests_total{method=\"GET\",status=\"200\"} 271.0\nmarketdata_api_requests_total{method=\"GET\",status=\"503\"} 16.0\n# HELP marketdata_api_requests_created API HTTP responses\n# TYPE marketdata_api_requests_created gauge\nmarketdata_api_requests_created{method=\"GET\",status=\"200\"} 1.7919588257907536e+09\nmarketdata_api_requests_created{method=\"GET\",status=\"503\"} 1.7919588392260826e+09\n# HELP marketdata_api_database_healthy Last API database health check\n# TYPE marketdata_api_database_healthy gauge\nmarketdata_api_database_healthy 1.0\n# HELP marketdata_api_request_seconds HTTP request duration including pool wait\n# TYPE marketdata_api_request_seconds histogram\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_count{route=\"/health\",status=\"200\"} 2.0\nmarketdata_api_request_seconds_sum{route=\"/health\",status=\"200\"} 0.01965050000580959\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/instruments\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/instruments\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/instruments\",status=\"200\"} 18.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/instruments\",status=\"200\"} 34.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/instruments\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/instruments\",status=\"200\"} 1.3866876999964006\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/prices/latest\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/prices/latest\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/prices/latest\",status=\"200\"} 13.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/prices/latest\",status=\"200\"} 31.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/prices/latest\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/prices/latest\",status=\"200\"} 1.4572225000083563\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/candles\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/candles\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/candles\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/candles\",status=\"200\"} 14.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/candles\",status=\"200\"} 45.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/candles\",status=\"200\"} 92.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/candles\",status=\"200\"} 146.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/candles\",status=\"200\"} 147.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/candles\",status=\"200\"} 29.497604299976956\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/coverage\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/coverage\",status=\"200\"} 3.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/coverage\",status=\"200\"} 40.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/coverage\",status=\"200\"} 5.553366799969808\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/health\",status=\"200\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/health\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/health\",status=\"200\"} 0.02434969999740133\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/api/v1/candles\",status=\"503\"} 0.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/api/v1/candles\",status=\"503\"} 2.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/api/v1/candles\",status=\"503\"} 16.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/api/v1/candles\",status=\"503\"} 16.0\nmarketdata_api_request_seconds_count{route=\"/api/v1/candles\",status=\"503\"} 16.0\nmarketdata_api_request_seconds_sum{route=\"/api/v1/candles\",status=\"503\"} 80.26036200001545\nmarketdata_api_request_seconds_bucket{le=\"0.005\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.01\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.025\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.05\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.1\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.25\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"0.5\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"1.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"2.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"5.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"10.0\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_bucket{le=\"+Inf\",route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_count{route=\"/livez\",status=\"200\"} 1.0\nmarketdata_api_request_seconds_sum{route=\"/livez\",status=\"200\"} 0.0008382000014535151\n# HELP marketdata_api_request_seconds_created HTTP request duration including pool wait\n# TYPE marketdata_api_request_seconds_created gauge\nmarketdata_api_request_seconds_created{route=\"/health\",status=\"200\"} 1.7919588257907536e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/instruments\",status=\"200\"} 1.79195882585345e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/prices/latest\",status=\"200\"} 1.7919588261548588e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/candles\",status=\"200\"} 1.7919588265391624e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/coverage\",status=\"200\"} 1.7919588290186374e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/health\",status=\"200\"} 1.7919588341053724e+09\nmarketdata_api_request_seconds_created{route=\"/api/v1/candles\",status=\"503\"} 1.7919588392260826e+09\nmarketdata_api_request_seconds_created{route=\"/livez\",status=\"200\"} 1.7919588442974489e+09\n# HELP marketdata_api_query_seconds Database statement execution duration\n# TYPE marketdata_api_query_seconds histogram\nmarketdata_api_query_seconds_bucket{le=\"0.005\"} 364.0\nmarketdata_api_query_seconds_bucket{le=\"0.01\"} 364.0\nmarketdata_api_query_seconds_bucket{le=\"0.025\"} 590.0\nmarketdata_api_query_seconds_bucket{le=\"0.05\"} 738.0\nmarketdata_api_query_seconds_bucket{le=\"0.075\"} 777.0\nmarketdata_api_query_seconds_bucket{le=\"0.1\"} 788.0\nmarketdata_api_query_seconds_bucket{le=\"0.25\"} 808.0\nmarketdata_api_query_seconds_bucket{le=\"0.5\"} 809.0\nmarketdata_api_query_seconds_bucket{le=\"0.75\"} 809.0\nmarketdata_api_query_seconds_bucket{le=\"1.0\"} 809.0\nmarketdata_api_query_seconds_bucket{le=\"2.5\"} 809.0\nmarketdata_api_query_seconds_bucket{le=\"5.0\"} 810.0\nmarketdata_api_query_seconds_bucket{le=\"7.5\"} 818.0\nmarketdata_api_query_seconds_bucket{le=\"10.0\"} 818.0\nmarketdata_api_query_seconds_bucket{le=\"+Inf\"} 818.0\nmarketdata_api_query_seconds_count 818.0\nmarketdata_api_query_seconds_sum 60.86400000001595\n# HELP marketdata_api_query_seconds_created Database statement execution duration\n# TYPE marketdata_api_query_seconds_created gauge\nmarketdata_api_query_seconds_created 1.7919588255798392e+09\n# HELP marketdata_api_pool_connections Worker pool connections\n# TYPE marketdata_api_pool_connections gauge\nmarketdata_api_pool_connections{state=\"size\"} 8.0\nmarketdata_api_pool_connections{state=\"idle\"} 7.0\nmarketdata_api_pool_connections{state=\"used\"} 1.0\n# HELP marketdata_api_ws_clients Connected marketdata clients\n# TYPE marketdata_api_ws_clients gauge\nmarketdata_api_ws_clients 0.0\n# HELP marketdata_api_ws_queue_messages Worker queued marketdata messages\n# TYPE marketdata_api_ws_queue_messages gauge\nmarketdata_api_ws_queue_messages{state=\"total\"} 0.0\nmarketdata_api_ws_queue_messages{state=\"maximum\"} 0.0\nmarketdata_api_ws_queue_messages{state=\"high_water\"} 100.0\n# HELP marketdata_api_ws_reader_running Journal reader task is alive\n# TYPE marketdata_api_ws_reader_running gauge\nmarketdata_api_ws_reader_running 1.0\n# HELP marketdata_event_loop_lag_seconds One-second monitor wake delay; sampled in the application event loop\n# TYPE marketdata_event_loop_lag_seconds histogram\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.001\"} 10.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.005\"} 10.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.01\"} 10.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.025\"} 17.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.05\"} 17.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.1\"} 18.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.25\"} 19.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"0.5\"} 19.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"1.0\"} 19.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"5.0\"} 19.0\nmarketdata_event_loop_lag_seconds_bucket{le=\"+Inf\"} 19.0\nmarketdata_event_loop_lag_seconds_count 19.0\nmarketdata_event_loop_lag_seconds_sum 0.3110000000015134\n# HELP marketdata_event_loop_lag_seconds_created One-second monitor wake delay; sampled in the application event loop\n# TYPE marketdata_event_loop_lag_seconds_created gauge\nmarketdata_event_loop_lag_seconds_created 1.7919588255798392e+09\n# HELP marketdata_event_loop_lag_max_seconds Maximum monitor wake delay since application start\n# TYPE marketdata_event_loop_lag_max_seconds gauge\nmarketdata_event_loop_lag_max_seconds 0.125\n# HELP marketdata_candles_total Candle operations\n# TYPE marketdata_candles_total counter\n# HELP marketdata_candle_seconds Candle request/write duration\n# TYPE marketdata_candle_seconds histogram\n# HELP marketdata_candle_scheduler_lateness_seconds Collection start lateness\n# TYPE marketdata_candle_scheduler_lateness_seconds gauge\n# HELP marketdata_candle_age_seconds Latest completed bucket end age; -1 if absent\n# TYPE marketdata_candle_age_seconds gauge\n# HELP marketdata_candle_missing_minutes Unresolved missing minutes since coverage start\n# TYPE marketdata_candle_missing_minutes gauge\n# HELP marketdata_candle_fetch_cycle_total Minute collection cycles\n# TYPE marketdata_candle_fetch_cycle_total counter\n# HELP marketdata_candle_request_concurrency Effective request window\n# TYPE marketdata_candle_request_concurrency gauge\n# HELP marketdata_candle_requests_inflight Dispatched unfinished requests\n# TYPE marketdata_candle_requests_inflight gauge\n# HELP marketdata_tradingview_request_error_total Bounded retrieval error categories\n# TYPE marketdata_tradingview_request_error_total counter\n# HELP marketdata_candle_request_timeout_total Individual request deadlines\n# TYPE marketdata_candle_request_timeout_total counter\n# HELP marketdata_candle_response_ignored_total Unmatched or duplicate response frames\n# TYPE marketdata_candle_response_ignored_total counter\n# HELP marketdata_candle_cycle_instrument_count Jobs in the latest collection cycle\n# TYPE marketdata_candle_cycle_instrument_count gauge\n# HELP marketdata_candle_cycle_overrun_total Cycles crossing their next scheduled target\n# TYPE marketdata_candle_cycle_overrun_total counter\n# HELP marketdata_tradingview_socket_count Currently connected candle sockets\n# TYPE marketdata_tradingview_socket_count gauge\nmarketdata_tradingview_socket_count 0.0\n# HELP marketdata_candle_pool_connected_workers Connected workers in the bounded candle pool\n# TYPE marketdata_candle_pool_connected_workers gauge\n# HELP marketdata_tradingview_socket_disconnect_total Unexpected candle socket failures\n# TYPE marketdata_tradingview_socket_disconnect_total counter\nmarketdata_tradingview_socket_disconnect_total 0.0\n# HELP marketdata_tradingview_socket_disconnect_created Unexpected candle socket failures\n# TYPE marketdata_tradingview_socket_disconnect_created gauge\nmarketdata_tradingview_socket_disconnect_created 1.7919588255798392e+09\n# HELP marketdata_tradingview_possible_throttle_total Overload symptoms, NOT confirmed limits\n# TYPE marketdata_tradingview_possible_throttle_total counter\n# HELP marketdata_candle_timing_seconds Separated monotonic stage durations / clamped UTC close latencies\n# TYPE marketdata_candle_timing_seconds histogram\n# HELP marketdata_candle_symbol_fetch_seconds Per configured symbol retrieval duration\n# TYPE marketdata_candle_symbol_fetch_seconds histogram\n# HELP marketdata_candle_minutes_behind Expected completed coverage lag\n# TYPE marketdata_candle_minutes_behind gauge\n# HELP marketdata_candle_expected_state One-hot current completed minute classification\n# TYPE marketdata_candle_expected_state gauge\n# HELP marketdata_messages_total Upstream messages including control records\n# TYPE marketdata_messages_total counter\n# HELP marketdata_received_total Normalized ticks\n# TYPE marketdata_received_total counter\n# HELP marketdata_persisted_total Inserted rows\n# TYPE marketdata_persisted_total counter\nmarketdata_persisted_total 0.0\n# HELP marketdata_persisted_created Inserted rows\n# TYPE marketdata_persisted_created gauge\nmarketdata_persisted_created 1.7919588255798392e+09\n# HELP marketdata_dropped_total Explicitly lost ticks\n# TYPE marketdata_dropped_total counter\n# HELP marketdata_reconnects_total Reconnect attempts\n# TYPE marketdata_reconnects_total counter\n# HELP marketdata_parse_failures_total Malformed messages\n# TYPE marketdata_parse_failures_total counter\n# HELP marketdata_sequence_gaps_total Observed trade ID gaps\n# TYPE marketdata_sequence_gaps_total counter\n# HELP marketdata_database_errors_total Persistence failures\n# TYPE marketdata_database_errors_total counter\nmarketdata_database_errors_total 0.0\n# HELP marketdata_database_errors_created Persistence failures\n# TYPE marketdata_database_errors_created gauge\nmarketdata_database_errors_created 1.7919588255798392e+09\n# HELP marketdata_queue_depth Pending ticks\n# TYPE marketdata_queue_depth gauge\nmarketdata_queue_depth 0.0\n# HELP marketdata_batch_seconds Database batch duration\n# TYPE marketdata_batch_seconds histogram\nmarketdata_batch_seconds_bucket{le=\"0.005\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.01\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.025\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.05\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.075\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.1\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.25\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.5\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"0.75\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"1.0\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"2.5\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"5.0\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"7.5\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"10.0\"} 0.0\nmarketdata_batch_seconds_bucket{le=\"+Inf\"} 0.0\nmarketdata_batch_seconds_count 0.0\nmarketdata_batch_seconds_sum 0.0\n# HELP marketdata_batch_seconds_created Database batch duration\n# TYPE marketdata_batch_seconds_created gauge\nmarketdata_batch_seconds_created 1.7919588255798392e+09\n# HELP marketdata_ws_dropped_total Slow client queue losses\n# TYPE marketdata_ws_dropped_total counter\nmarketdata_ws_dropped_total 0.0\n# HELP marketdata_ws_dropped_created Slow client queue losses\n# TYPE marketdata_ws_dropped_created gauge\nmarketdata_ws_dropped_created 1.7919588255798392e+09\n# HELP marketdata_connection_up Transport connected\n# TYPE marketdata_connection_up gauge\n# HELP marketdata_connection_age_seconds Current connection age; zero offline\n# TYPE marketdata_connection_age_seconds gauge\n# HELP marketdata_feed_healthy All configured symbols current according to storage mode\n# TYPE marketdata_feed_healthy gauge\n# HELP marketdata_symbol_observations_total Valid normalized observations\n# TYPE marketdata_symbol_observations_total counter\n# HELP marketdata_symbol_observation_age_seconds Receipt age; -1 when never observed\n# TYPE marketdata_symbol_observation_age_seconds gauge\n# HELP marketdata_symbol_fresh Fresh observation in current connection\n# TYPE marketdata_symbol_fresh gauge\n# HELP marketdata_symbols Configured/fresh/stale symbol counts\n# TYPE marketdata_symbols gauge\n# HELP marketdata_rejected_observations_total Suppressed price observations\n# TYPE marketdata_rejected_observations_total counter\n# HELP marketdata_unknown_messages_total Unrecognized message types\n# TYPE marketdata_unknown_messages_total counter\n# HELP marketdata_transport_timeouts_total No application frames within timeout\n# TYPE marketdata_transport_timeouts_total counter\n",
+      "read_only_database_role": true,
+      "database_resources": {
+        "sampled_by": "docker stats --no-stream, one-second spacing after each sample",
+        "samples": [
+          {
+            "CPUPerc": "67.69%",
+            "MemUsage": "1.251GiB / 7.568GiB",
+            "PIDs": "20"
+          },
+          {
+            "CPUPerc": "27.07%",
+            "MemUsage": "1.223GiB / 7.568GiB",
+            "PIDs": "19"
+          },
+          {
+            "CPUPerc": "121.54%",
+            "MemUsage": "1.233GiB / 7.568GiB",
+            "PIDs": "19"
+          },
+          {
+            "CPUPerc": "20.55%",
+            "MemUsage": "1.237GiB / 7.568GiB",
+            "PIDs": "20"
+          },
+          {
+            "CPUPerc": "0.00%",
+            "MemUsage": "1.236GiB / 7.568GiB",
+            "PIDs": "20"
+          },
+          {
+            "CPUPerc": "0.00%",
+            "MemUsage": "1.236GiB / 7.568GiB",
+            "PIDs": "20"
+          },
+          {
+            "CPUPerc": "0.00%",
+            "MemUsage": "1.236GiB / 7.568GiB",
+            "PIDs": "20"
+          },
+          {
+            "CPUPerc": "0.00%",
+            "MemUsage": "1.236GiB / 7.568GiB",
+            "PIDs": "20"
+          },
+          {
+            "CPUPerc": "0.00%",
+            "MemUsage": "1.236GiB / 7.568GiB",
+            "PIDs": "20"
+          }
+        ],
+        "peak_cpu_percent": 121.54
+      },
+      "worker_exit_code": 0,
+      "api_resources": {
+        "database_queries": {
+          "samples": 818,
+          "p50_ms": 15.0,
+          "p95_ms": 63.0,
+          "p99_ms": 265.0,
+          "max_ms": 5031.0
+        },
+        "event_loop_lag": {
+          "samples": 178,
+          "p50_ms": 9.0,
+          "p95_ms": 41.0,
+          "p99_ms": 103.0,
+          "max_ms": 150.0
+        },
+        "elapsed_seconds": 19.790886800001317,
+        "cpu_seconds": 7.109375,
+        "cpu_average_one_core_percent": 35.922468112947456,
+        "peak_rss_bytes": 106876928,
+        "peak_pool_used": 9,
+        "peak_pool_size": 9,
+        "peak_ws_clients": 20,
+        "sampled_peak_ws_queue": 0,
+        "observed_queue_high_water": 100
+      }
+    }
+  },
+  "suites": {
+    "pg": {
+      "tests": "439",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "3",
+      "time": "109.595"
+    },
+    "timescale": {
+      "tests": "439",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "115.393"
+    }
+  },
+  "raw_artifact_sha256": {
+    "artifacts\\batch4-pg-performance.json": "692550d1584aebc6332c8fc24b2066a6a784a588197ff7620e2347c8bc108bb5",
+    "artifacts\\batch4-timescale-performance.json": "7b40573d920601e2cd4ab195c30e177108e036c6653310421824f304abe52151",
+    "artifacts\\batch4-pg-final.xml": "3d5498e40ab15d18d2a2a6c8b9612d2c49dafb760fcf21108691041b0db37a3d",
+    "artifacts\\batch4-timescale-final.xml": "d445d89c1d78d5f49b1f5263df5dfbe0dd5605a3ccfa814629326a0063aa1f3f",
+    "artifacts\\batch4-pg-resources.json": "a11e679e6c35cf54b0a9364892d5e0b15881aaef39b6eb706bf7b768fdb04888",
+    "artifacts\\batch4-timescale-resources.json": "f0c5adaf48ed88b04a48e3b201e5263f7e06a9df48c7ad0d77c83d8f03cf69fe"
+  }
+}

@@ -1219,6 +1219,19 @@ Do not report planned work as completed.
 
 # Implemented execution protocol
 
+For final company API qualification use `docs/api-batch4-verification.md` and
+`docs/production-deployment.md`. Batch 4 has a separate `compose.batch4-test.yaml`, project
+`marketdata-batch4-tests`, loopback ports 55891/55892, database `marketdata_batch4_test`.
+Run full suites with `TEST_DATABASE_URL` and matching `BATCH4_TEST_CONTAINER`; set
+`BATCH4_TEST_IMAGE=marketdata-batch4:qualification` after building that task-owned image to
+include actual Linux container smoke. The API load command is
+`uv run python scripts/qualify_api.py --output artifacts/batch4-performance.json`.
+It refuses other DSNs, creates 100 synthetic sources, runs real TCP load and pauses/unpauses
+only the verified disposable database. Never run it concurrently with pytest on the same DB.
+Production uses `compose.production.yaml` and separate mounted DSNs, not dev credentials.
+Schema head remains 0006; API-only readiness does not require collector connectivity.
+Unsupported guest production ingestion stays blocked unless access rights are established.
+
 Source map: `src/marketdata/domain.py` and `registry.py` own identity/normalization;
 `providers/` owns documented transports/parsers; `ingestion.py` owns task/queue lifecycle;
 `persistence.py` owns PostgreSQL; `api.py` owns REST/WebSocket serving. `README.md` is the
@@ -1226,7 +1239,22 @@ setup/repository overview; `docs/platform-guide.md` documents activation, operat
 schema semantics and provider references. `config/` holds
 non-secret instrument registries. `migrations/versions/` is the schema source of truth.
 
-Alembic head is `0004`. `candles.py` owns completed native candle validation/scheduling;
+Company REST contracts are in `api_models.py` / `api_v1.py`; shared persisted-observation
+selection is in `price_selection.py`. See `docs/api.md` for bounded native-history queries,
+explicit source identity, decimal serialization, production bearer/CORS configuration,
+company backend browser authentication and DBA-scoped SELECT-role setup. Validate API
+changes with `compose.batch2-test.yaml` under a separate project, never deployed resources.
+
+Alembic head is `0006`; 0005 adds only a collector health snapshot table. 0006 adds the
+bounded committed-event journal and transactionally locked cursor clock. `events.py` owns
+append/reconciliation/snapshot fences; `market_stream.py` owns API worker readers/client
+lifecycle, and `ws_models.py` owns schemas. Every supported writer appends in its data
+transaction; a SERIAL/IDENTITY alone must never be used as a commit-order watermark.
+No PostgreSQL notification is required. Journal retention never deletes market history.
+Browser authentication architecture is unresolved; the BFF example is PROVISIONAL.
+See docs/api.md and docs/api-batch3-verification.md; validate only on compose.batch3-test.yaml
+with task-owned project/ports. `candles.py` owns
+completed native candle validation/scheduling;
 `candle_ingestion.py` owns bounded minute collection/recovery through the optional
 `providers/candles.py` capability. The experimental guest default stores native closed 1m
 candles. Tick ingestion remains available explicitly and is unchanged for other providers.
@@ -1241,8 +1269,14 @@ use a separate clone to preserve the original working directory, IDE and databas
 Install using `uv sync --frozen --extra databento` (omit the extra when not needed).
 Local database: `docker compose up -d db`. Migrate explicitly with
 `uv run alembic -x timescale=true upgrade head`, or omit `-x timescale=true` for ordinary
-PostgreSQL mode. Application: `uv run uvicorn marketdata.api:create_app --factory --workers 1`.
-Never run multiple ingestion workers/replicas with this in-process fan-out design.
+PostgreSQL mode. API: `APPLICATION_ROLE=api` and
+`uv run uvicorn marketdata.api:create_app --factory --workers 2`.
+Collector: `APPLICATION_ROLE=collector` and `uv run python -m marketdata.collector`.
+Use `APPLICATION_ROLE=combined` with `marketdata.api:create_combined_app` and one worker only
+for development fanout compatibility. The API factory always serves database reads and never
+starts ingestion. See docs/fastapi-process-separation.md for isolated configuration, separate
+metrics, snapshot health, migrations and shutdown. Use explicit separate project names/ports
+when another deployment exists; never run these generic development commands against it.
 
 Required quality commands: `uv run pytest -q`, `uv run ruff check .`,
 `uv run ruff format --check .`, `uv run mypy`.
@@ -1252,8 +1286,10 @@ Verify downgrade/re-upgrade only on a disposable database. Force-refresh histori
 continuous aggregates in tests after writes: materialized corrections are eventually
 consistent, unlike the unmaterialized real-time tail.
 
-Full local container smoke: `docker compose up -d --build`, then
-`uv run python scripts/smoke.py`. Load test against a separate migrated database:
+Full isolated mock container smoke: configure unused ports,
+`docker compose -p fastapi-dev up -d --build`, then
+`uv run python scripts/smoke.py --base-url http://localhost:8001`.
+Load test against a separate migrated database:
 `uv run python -m marketdata.benchmark --seconds 10 --rate 5000 --instruments 300`.
 These commands generate simulated observations; they are not live-provider tests.
 
@@ -1281,8 +1317,10 @@ database ending `_test`, separate from databases used by pytest fixtures (which 
 tables). The harness registers benchmark-only identities in unique provider namespaces,
 uses the actual `CandleIngestion.cycle` and `Store.write_candles` transaction, and reads back
 exact native OHLCV/status from another acquired connection after commit. No production
-table truncation, registry replacement or deployment is needed. Restore the prior collector
-afterward with `docker compose start app`; do not rebuild it incidentally.
+table truncation, registry replacement or deployment is needed. For an isolated split-process
+development project, restore its collector with `docker compose -p fastapi-dev start collector`.
+The existing combined production deployment follows its owner's preserved operations; this
+FastAPI branch must not stop, restore or rebuild it during parallel development.
 
 Run `uv run python scripts/benchmark_live_pool.py --collector-stopped --discover
 --counts 128 256 512 --cycles 3 --connections 6 --connect-interval 2
@@ -1305,3 +1343,38 @@ scripts/summarize_live_pool.py artifacts/live-pool.json artifacts/live-pool-pace
 Preserve raw checkpoint hashes and every candle's first commit timestamp; report request
 success separately from native-minute completeness. Use a quiet host for capacity comparisons
 and disclose concurrent development workload when reporting exploratory runs.
+
+## Ordinary collector scaling
+
+Use `docs/ordinary-collector-scaling.md` and its frozen native source evidence for ordinary
+application qualification. The current operator objective is the employer's business universe:
+50 provisional Binance spot USDT markets, BOTH OANDA/FXCM feeds for 21 proposed forex pairs,
+and correctly identified metals/energy. TradingView is the only data source; business relevance
+precedes completeness. See docs/business-universe-qualification.md. The provisional 99-source
+profile is not approved/deployed; production keeps the preserved accuracy-selected 100.
+The >=99.9% expected-minute goal remains a qualification target. Never remove required sparse
+markets to improve it. Further 256/512 escalation was canceled; earlier denominators stay visible.
+The existing schema-0004 deployment uses the preserved legacy switch helper and
+compose.tradingview-legacy-scale.yaml; never execute that helper during integration.
+Split-process compose.tradingview-scale.yaml targets collector and requires an explicit
+reviewed lock-aware image. It cannot use the old combined images. Follow
+docs/collector-fastapi-integration.md for stop-and-replace and schema-compatible rollback.
+Preserve activation starts and old coverage gaps.
+Report collector qualification separately from the source-coverage numerical gate; native
+source omissions remain unresolved targets, never transport failures or synthesized bars.
+Keep paced connections, shared request budgets/cooldown and at most six sockets/global 12.
+Recovery acknowledgement membership uses a set to avoid quadratic event-loop blocking;
+this narrow outage fix does not authorize the paused Batch 3 database changes.
+
+FXCM native symbols use FX: while quote metadata reports venue FXCM; only this captured
+relationship is normalized inside the quote adapter, retaining exact symbol/type/currency/delay
+gates. Unclassified numeric native volume stays NULL in the typed column and is retained as
+decimal source_volume_raw metadata with unknown, non-additive semantics. Never infer units.
+Business source probes use the isolated marketdata_business_qualification_test database and
+confirmed production idle windows, without a second ordinary scheduler or production changes.
+Historical capture percentages/acknowledgement ages are not simultaneous scheduled capacity
+proof. Both completed streams are integrated in integration/collector-fastapi-batch1;
+original commits/branches remain untouched. See docs/collector-fastapi-integration.md for
+isolated test commands, migration preservation and the conflict inventory. The legacy
+collector has no advisory lock and must stop before a lock-aware deployment; its exact-0004
+Store requires a tested status-only downgrade before legacy code rollback.

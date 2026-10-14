@@ -14,6 +14,11 @@ ProviderName = Literal["mock", "binance", "oanda", "databento", "tradingview_gue
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore", hide_input_in_errors=True)
 
+    application_role: Literal["api", "collector", "combined"] = "api"
+    collector_status_interval_seconds: float = Field(default=5, gt=0, le=30)
+    collector_status_ttl_seconds: float = Field(default=20, gt=0, le=120)
+    collector_metrics_port: int = Field(default=9000, ge=0, le=65535)
+    collector_metrics_host: str = "127.0.0.1"
     database_url: SecretStr = SecretStr(
         "postgresql://marketdata:marketdata@localhost:5432/marketdata"
     )
@@ -39,8 +44,21 @@ class Settings(BaseSettings):
     websocket_queue_capacity: int = Field(default=256, ge=1, le=10000)
     websocket_max_clients: int = Field(default=1000, ge=1, le=10000)
     websocket_max_symbols: int = Field(default=500, ge=1, le=5000)
-    websocket_send_timeout_seconds: float = Field(default=5, gt=0)
+    websocket_send_timeout_seconds: float = Field(default=5, gt=0, le=30)
+    websocket_allowed_origins: list[str] = Field(default_factory=list)
+    websocket_max_total_subscriptions: int = Field(default=10000, ge=1, le=100000)
+    websocket_message_max_bytes: int = Field(default=65536, ge=1024, le=1048576)
+    websocket_snapshot_max_rows: int = Field(default=1000, ge=1, le=1000)
+    websocket_snapshot_batch_size: int = Field(default=25, ge=1, le=100)
+    websocket_heartbeat_seconds: float = Field(default=10, gt=0, le=60)
+    marketdata_poll_seconds: float = Field(default=1, ge=0.01, le=30)
+    marketdata_event_batch_size: int = Field(default=250, ge=1, le=1000)
+    marketdata_event_retention_count: int = Field(default=100000, ge=1, le=1000000)
     api_key: SecretStr | None = None
+    api_environment: Literal["development", "test", "production"] = "development"
+    api_cors_origins: list[str] = Field(default_factory=list)
+    api_history_max_days: int = Field(default=31, ge=1, le=366)
+    api_max_rows: int = Field(default=1000, ge=1, le=1000)
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
     binance_ws_url: str = "wss://stream.binance.com:9443"
     binance_rest_url: str = "https://api.binance.com"
@@ -50,6 +68,7 @@ class Settings(BaseSettings):
     databento_api_key: SecretStr | None = None
     tradingview_ws_url: str = "wss://data.tradingview.com/socket.io/websocket"
     tradingview_storage_mode: Literal["ticks", "candles"] = "candles"
+    tradingview_production_access_approved: bool = False
     candle_interval: Literal["1m"] = "1m"
     candle_fetch_grace_seconds: float = Field(default=2, ge=0, le=30)
     candle_backfill_minutes: int = Field(default=300, ge=3, le=1440)
@@ -72,6 +91,34 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def valid(self) -> Self:
+        if self.api_key is not None and not self.api_key.get_secret_value().strip():
+            raise ValueError("API_KEY must not be empty")
+        if (
+            self.api_environment == "production"
+            and self.application_role in {"api", "combined"}
+            and (self.api_key is None or len(self.api_key.get_secret_value()) < 32)
+        ):
+            raise ValueError("production requires an API_KEY of at least 32 characters")
+        for origin in self.api_cors_origins + self.websocket_allowed_origins:
+            parsed_origin = urlsplit(origin)
+            if (
+                parsed_origin.scheme not in ("http", "https")
+                or not parsed_origin.hostname
+                or parsed_origin.username
+                or parsed_origin.password
+                or parsed_origin.path
+                or parsed_origin.query
+                or parsed_origin.fragment
+                or "*" in origin
+                or (self.api_environment == "production" and parsed_origin.scheme != "https")
+            ):
+                raise ValueError("CORS requires explicit origins; production requires HTTPS")
+        if self.websocket_snapshot_batch_size > self.websocket_snapshot_max_rows:
+            raise ValueError("snapshot batch size must fit snapshot row limit")
+        if self.collector_status_ttl_seconds <= self.collector_status_interval_seconds:
+            raise ValueError("collector status TTL must exceed its publish interval")
+        if self.application_role != "api" and self.db_pool_max < 2:
+            raise ValueError("collector requires at least two pool connections")
         if self.tradingview_candle_pool_enabled:
             if self.tradingview_storage_mode != "candles":
                 raise ValueError("TradingView candle pool requires candle storage mode")
@@ -132,6 +179,14 @@ class Settings(BaseSettings):
             provider = getattr(self, f"market_data_provider_{category}")
             if provider == "disabled":
                 continue
+            if (
+                provider == "tradingview_guest"
+                and self.api_environment == "production"
+                and not self.tradingview_production_access_approved
+            ):
+                raise ValueError(
+                    "production TradingView ingestion requires established access rights"
+                )
             mappings = [m for m in entry.mappings if m.provider == provider]
             if not mappings:
                 raise ValueError(f"missing {provider} mapping for {i.canonical_symbol}")

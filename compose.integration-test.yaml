@@ -1,0 +1,33 @@
+# Disposable integration databases only. No production file, volume or environment file.
+# docker compose -p collector-fastapi-integration-tests -f compose.integration-test.yaml up -d --wait
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: integration_test
+      POSTGRES_PASSWORD: disposable_test
+      POSTGRES_DB: collector_fastapi_test
+    ports:
+      - "127.0.0.1:55591:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U integration_test -d collector_fastapi_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  timescale:
+    image: timescale/timescaledb:2.25.1-pg17
+    environment:
+      POSTGRES_USER: integration_test
+      POSTGRES_PASSWORD: disposable_test
+      POSTGRES_DB: collector_fastapi_test
+    ports:
+      - "127.0.0.1:55592:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U integration_test -d collector_fastapi_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 30

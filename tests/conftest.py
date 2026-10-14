@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urlunsplit
+from uuid import uuid4
 
 import pytest
 
@@ -38,8 +39,30 @@ async def store(database_url, registry):
         await c.execute(
             "TRUNCATE latest_prices, market_ticks, provider_instruments, instruments CASCADE"
         )
+        await c.execute("TRUNCATE collector_status")
     await store.register(registry)
     try:
         yield store
     finally:
         await store.close()
+
+
+@pytest.fixture
+async def readonly_database_url(store):
+    role = "batch4_read_" + uuid4().hex
+    async with store.connection() as c:
+        database = await c.fetchval("SELECT current_database()")
+        assert database.endswith("_test") and database.replace("_", "").isalnum()
+        await c.execute(f"REVOKE TEMP ON DATABASE {database} FROM PUBLIC")
+        await c.execute(f"CREATE ROLE {role} LOGIN PASSWORD 'disposable_test'")
+        await c.execute(f"GRANT USAGE ON SCHEMA public TO {role}")
+        await c.execute(f"GRANT SELECT ON ALL TABLES IN SCHEMA public TO {role}")
+    parsed = urlsplit(store.settings.database_url.get_secret_value())
+    try:
+        yield urlunsplit(
+            parsed._replace(netloc=f"{role}:disposable_test@{parsed.hostname}:{parsed.port}")
+        )
+    finally:
+        async with store.connection() as c:
+            await c.execute(f"DROP OWNED BY {role}")
+            await c.execute(f"DROP ROLE {role}")

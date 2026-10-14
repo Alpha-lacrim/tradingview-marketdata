@@ -96,6 +96,16 @@ class Instrument(Model):
     def id(self) -> UUID:
         return uuid5(NAMESPACE_URL, "marketdata:instrument:" + self.canonical_symbol)
 
+    @property
+    def broker(self) -> str | None:
+        """Broker namespace of configured FX:<broker>:<pair> identities, if present.
+
+        This is registry identity, not a claim of verified upstream availability.
+        Exchange/source prefixes remain independent (e.g. a broker may use FX:).
+        """
+        parts = self.canonical_symbol.split(":")
+        return parts[1] if len(parts) == 3 and parts[0] == "FX" else None
+
     @field_validator("expiry", "roll_at")
     @classmethod
     def timestamps(cls, value: datetime | None) -> datetime | None:

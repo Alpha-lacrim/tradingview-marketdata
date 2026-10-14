@@ -5,7 +5,7 @@ import pytest
 from fastapi.testclient import TestClient
 from pydantic import SecretStr
 
-from marketdata.api import create_app
+from marketdata.api import create_combined_app as create_app
 from marketdata.config import Settings
 
 pytestmark = pytest.mark.integration
@@ -15,6 +15,7 @@ def test_complete_mock_rest_and_websocket_pipeline(database_url, store):
     app = create_app(
         Settings(
             _env_file=None,
+            application_role="combined",
             database_url=database_url,
             mock_ticks_per_second=500,
             batch_flush_seconds=0.01,
@@ -74,7 +75,10 @@ def test_complete_mock_rest_and_websocket_pipeline(database_url, store):
 
 def test_authentication_covers_rest_and_websocket(database_url):
     settings = Settings(
-        _env_file=None, database_url=database_url, api_key=SecretStr("test-only-token")
+        _env_file=None,
+        application_role="combined",
+        database_url=database_url,
+        api_key=SecretStr("test-only-token"),
     )
     with TestClient(create_app(settings)) as client:
         assert client.get("/instruments").status_code == 401

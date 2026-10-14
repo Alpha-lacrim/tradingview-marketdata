@@ -63,6 +63,18 @@ def parse_bar(
         raise ValueError("missing OHLC price")
     opening, high, low, close = prices
     assert opening is not None and high is not None and low is not None and close is not None
+    unclassified_volume: dict[str, str] = {}
+    if info.get("volume_type") not in ("base", "tick"):
+        try:
+            raw_volume = observed_decimal(values[5])
+        except ValueError:
+            raw_volume = None
+        if raw_volume is not None:
+            # Preserve source evidence without claiming units or aggregating unknown volume.
+            unclassified_volume = {
+                "source_volume_raw": str(raw_volume),
+                "source_volume_classification": "unknown",
+            }
     return MarketCandle(
         instrument_id=instrument.id,
         canonical_symbol=instrument.canonical_symbol,
@@ -79,6 +91,7 @@ def parse_bar(
         source_status="streaming" if source_status == "streaming" else "realtime",
         received_timestamp=received,
         metadata={
+            **unclassified_volume,
             "provenance": "native_upstream_chart",
             "resolution": "1",
             "bar_source": info["bar_source"],

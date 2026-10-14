@@ -1,0 +1,32 @@
+# Task-owned disposable databases; no production ports, env files or volumes.
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: batch3_test
+      POSTGRES_PASSWORD: disposable_test
+      POSTGRES_DB: marketdata_batch3_test
+    ports:
+      - "127.0.0.1:55791:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U batch3_test -d marketdata_batch3_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  timescale:
+    image: timescale/timescaledb:2.25.1-pg17
+    environment:
+      POSTGRES_USER: batch3_test
+      POSTGRES_PASSWORD: disposable_test
+      POSTGRES_DB: marketdata_batch3_test
+    ports:
+      - "127.0.0.1:55792:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U batch3_test -d marketdata_batch3_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 30

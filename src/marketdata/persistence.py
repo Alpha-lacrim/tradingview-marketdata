@@ -2,15 +2,20 @@ from __future__ import annotations
 
 import asyncio
 import json
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager, nullcontext, suppress
 from datetime import UTC, datetime, timedelta
-from typing import Any, Literal
+from typing import Any, Literal, cast
 from uuid import UUID
 
 import asyncpg
 
 from marketdata.candles import MarketCandle
 from marketdata.config import Settings
-from marketdata.domain import Tick, utc_now
+from marketdata.domain import Instrument, ProviderInstrument, RegistryEntry, Tick, utc_now
+from marketdata.observability import Metrics
+from marketdata.price_selection import select_price
+from marketdata.providers.base import ProviderHealth
 from marketdata.registry import Registry
 from marketdata.sessions import classify_ranges
 
@@ -65,13 +70,15 @@ def tick_record(tick: Tick) -> tuple[Any, ...]:
 
 
 class Store:
-    def __init__(self, settings: Settings):
+    def __init__(self, settings: Settings, *, read_only: bool = False):
         self.settings = settings
+        self.read_only = read_only
         # Serving config chooses active capabilities; offline queries prefer stored candles.
         self.candle_providers: list[str] | None = None
         self.pool: asyncpg.Pool | None = None
         self.has_aggregates = False
         self.last_candle_write: dict[str, Any] = {}
+        self.metrics: Metrics | None = None
 
     async def connect(self) -> None:
         self.pool = await asyncpg.create_pool(
@@ -80,20 +87,59 @@ class Store:
             max_size=self.settings.db_pool_max,
             command_timeout=self.settings.db_timeout_seconds,
             timeout=self.settings.db_timeout_seconds,
-            server_settings={"timezone": "UTC", "application_name": "marketdata"},
+            server_settings={
+                "timezone": "UTC",
+                "statement_timeout": str(int(self.settings.db_timeout_seconds * 1000)),
+                "application_name": "marketdata-api" if self.read_only else "marketdata-collector",
+                **({"default_transaction_read_only": "on"} if self.read_only else {}),
+            },
         )
         async with self.connection() as connection:
             version = await connection.fetchval("SELECT version_num FROM alembic_version")
-            if version != "0004":
+            if version != "0006":
                 raise RuntimeError("database migrations are not at head; run alembic upgrade head")
             self.has_aggregates = bool(
                 await connection.fetchval("SELECT to_regclass('candles_1m_last')")
             )
+            if self.read_only and self.settings.api_environment == "production":
+                unsafe = await connection.fetchval("""
+                    SELECT EXISTS(SELECT 1 FROM pg_roles WHERE rolname=current_user
+                        AND (rolsuper OR rolcreatedb OR rolcreaterole OR rolreplication
+                            OR rolbypassrls))
+                        OR has_schema_privilege(current_user,'public','CREATE')
+                        OR has_database_privilege(current_user,current_database(),'TEMP')
+                        OR EXISTS(SELECT 1 FROM unnest(ARRAY[
+                            'instruments','provider_instruments','market_ticks','latest_prices',
+                            'market_candles','latest_candles','candle_coverage','candle_revisions',
+                            'collector_status','marketdata_events','marketdata_event_clock',
+                            'alembic_version']) AS t(name)
+                            WHERE has_table_privilege(current_user,name,
+                                'INSERT,UPDATE,DELETE,TRUNCATE'))
+                """)
+                if unsafe:
+                    raise RuntimeError(
+                        "production API requires a dedicated SELECT-only database role"
+                    )
 
-    def connection(self) -> Any:
+    @asynccontextmanager
+    async def connection(self) -> AsyncIterator[Any]:
         if self.pool is None:
             raise RuntimeError("store is disconnected")
-        return self.pool.acquire(timeout=self.settings.db_timeout_seconds)
+
+        def measured(query: Any) -> None:
+            if self.metrics is not None:
+                self.metrics.api_query_latency.observe(query.elapsed)
+
+        async with self.pool.acquire(timeout=self.settings.db_timeout_seconds) as connection:
+            if self.metrics is not None:
+                connection.add_query_logger(measured)
+            try:
+                yield connection
+            finally:
+                if self.metrics is not None:
+                    # Terminated backends detach their pool proxy before context exit.
+                    with suppress(asyncpg.InterfaceError):
+                        connection.remove_query_logger(measured)
 
     async def close(self) -> None:
         if self.pool is not None:
@@ -107,6 +153,98 @@ class Store:
     async def ping(self) -> bool:
         async with self.connection() as connection:
             return bool(await connection.fetchval("SELECT 1"))
+
+    async def registry(self) -> Registry:
+        """Load persisted identities and roll schedules without registering anything."""
+        async with self.connection() as connection:
+            rows = await connection.fetch("""
+                SELECT i.payload, coalesce(jsonb_agg(jsonb_build_object(
+                    'provider', p.provider, 'provider_symbol', p.provider_symbol,
+                    'realtime_status', p.realtime_status,
+                    'data_delay_seconds', p.data_delay_seconds, 'metadata', p.metadata
+                ) ORDER BY p.provider) FILTER (WHERE p.provider IS NOT NULL), '[]') AS mappings
+                FROM instruments i LEFT JOIN provider_instruments p ON p.instrument_id=i.id
+                GROUP BY i.id ORDER BY i.canonical_symbol
+            """)
+        return Registry(
+            [
+                RegistryEntry(
+                    instrument=Instrument.model_validate_json(r["payload"]),
+                    mappings=[
+                        ProviderInstrument.model_validate(m) for m in json.loads(r["mappings"])
+                    ],
+                )
+                for r in rows
+            ]
+        )
+
+    async def native_provider(self, provider: str) -> bool:
+        async with self.connection() as connection:
+            return bool(
+                await connection.fetchval(
+                    """
+                SELECT EXISTS(SELECT 1 FROM candle_coverage
+                    WHERE provider=$1 AND price_basis='native')
+                    OR EXISTS(SELECT 1 FROM latest_candles WHERE provider=$1)
+            """,
+                    provider,
+                )
+            )
+
+    async def collector_status(self) -> dict[str, Any] | None:
+        async with self.connection() as connection:
+            row = await connection.fetchrow("""
+                SELECT *, expires_at > clock_timestamp() AS fresh FROM collector_status
+                WHERE singleton
+            """)
+        if row is None:
+            return None
+        status = dict(row)
+        status["providers"] = [
+            ProviderHealth.model_validate(p) for p in json.loads(row["providers"])
+        ]
+        if not status["fresh"] or not status["running"]:
+            for health in status["providers"]:
+                health.state = "disconnected"
+                health.transport = "disconnected"
+                health.subscription_restored = False
+                health.fresh_symbol_count = 0
+                health.stale_symbol_count = health.configured_symbol_count
+                health.stale_symbols = sorted(health.symbols)
+                health.degradation_reasons = [
+                    "collector_stopped" if status["fresh"] else "collector_status_expired"
+                ]
+                for symbol in health.symbols.values():
+                    symbol.stale = True
+                    symbol.observed_in_session = False
+        return status
+
+    async def publish_collector_status(
+        self,
+        run_id: UUID,
+        running: bool,
+        database_healthy: bool,
+        queue_depth: int,
+        providers: list[ProviderHealth],
+    ) -> None:
+        async with self.connection() as connection:
+            await connection.execute(
+                """
+                INSERT INTO collector_status
+                    (singleton,run_id,expires_at,running,database_healthy,queue_depth,providers)
+                VALUES (TRUE,$1,clock_timestamp()+$2*interval '1 second',$3,$4,$5,$6)
+                ON CONFLICT (singleton) DO UPDATE SET run_id=EXCLUDED.run_id,
+                    updated_at=clock_timestamp(),expires_at=EXCLUDED.expires_at,
+                    running=EXCLUDED.running,database_healthy=EXCLUDED.database_healthy,
+                    queue_depth=EXCLUDED.queue_depth,providers=EXCLUDED.providers
+            """,
+                run_id,
+                self.settings.collector_status_ttl_seconds,
+                running,
+                database_healthy,
+                queue_depth,
+                json.dumps([p.model_dump(mode="json") for p in providers]),
+            )
 
     async def register(
         self, registry: Registry, *, candle_providers: list[str] | None = None
@@ -202,7 +340,7 @@ class Store:
             )
             # Both history and latest state commit atomically. Retry the same UUIDs after
             # uncertain commits; only rows actually inserted can update latest state.
-            count = await connection.fetchval(f"""
+            result = await connection.fetchrow(f"""
                 WITH inserted AS (
                     INSERT INTO market_ticks ({columns}) SELECT {columns} FROM tick_stage
                     ON CONFLICT (storage_timestamp,tick_id) DO NOTHING RETURNING *
@@ -219,10 +357,18 @@ class Store:
                         tick_id=EXCLUDED.tick_id,payload=EXCLUDED.payload
                     WHERE (EXCLUDED.order_ns,EXCLUDED.received_timestamp,EXCLUDED.tick_id) >
                         (latest_prices.order_ns,latest_prices.received_timestamp,latest_prices.tick_id)
-                    RETURNING 1
-                ) SELECT count(*) FROM inserted
+                    RETURNING payload
+                ) SELECT (SELECT count(*) FROM inserted) AS count,
+                    coalesce((SELECT jsonb_agg(payload) FROM latest),'[]') AS latest
             """)
-            return int(count)
+            from marketdata.events import append_events
+
+            await append_events(
+                connection,
+                [("price_update", Tick.model_validate(p)) for p in json.loads(result["latest"])],
+                self.settings.marketdata_event_retention_count,
+            )
+            return int(result["count"])
 
     async def instruments(self, limit: int, after: str = "") -> list[dict[str, Any]]:
         async with self.connection() as c:
@@ -255,6 +401,23 @@ class Store:
     async def latest(
         self, symbol: str | None, provider: str | None, limit: int, after: str = ""
     ) -> list[Tick | MarketCandle]:
+        if self.candle_providers is None:
+            rows = await self.source_records(
+                [symbol] if symbol else None,
+                provider,
+                None,
+                None,
+                limit,
+                after,
+                observed_only=True,
+            )
+            now = rows[0]["as_of"] if rows else utc_now()
+            return [
+                observation
+                for row in rows
+                if (observation := select_price(row["tick"], row["candle"], now, self.settings))
+                is not None
+            ]
         async with self.connection() as c:
             rows = await c.fetch(
                 """WITH current AS (
@@ -282,6 +445,152 @@ class Store:
             (MarketCandle if r["kind"] == "candle" else Tick).model_validate_json(r["payload"])
             for r in rows
         ]
+
+    async def known_symbols(self, symbols: list[str]) -> set[str]:
+        async with self.connection() as c:
+            rows = await c.fetch(
+                "SELECT canonical_symbol FROM instruments WHERE canonical_symbol=ANY($1::text[])",
+                symbols,
+            )
+        return {r["canonical_symbol"] for r in rows}
+
+    async def source_records(
+        self,
+        symbols: list[str] | None,
+        provider: str | None,
+        provider_symbol: str | None,
+        asset_class: str | None,
+        limit: int,
+        after: str = "",
+        *,
+        observed_only: bool = False,
+        connection: Any | None = None,
+    ) -> list[dict[str, Any]]:
+        """One bounded bulk lookup of mappings and dedicated latest-state tables."""
+        async with self.connection() if connection is None else nullcontext(connection) as c:
+            rows = await c.fetch(
+                """
+                SELECT statement_timestamp() AS as_of,
+                    i.payload AS instrument,p.provider,p.provider_symbol,p.realtime_status,
+                    p.data_delay_seconds,t.payload AS tick,lc.payload AS candle,
+                    EXISTS(SELECT 1 FROM candle_coverage cc WHERE cc.instrument_id=i.id
+                        AND cc.provider=p.provider AND cc.price_basis='native')
+                        OR lc.payload IS NOT NULL AS native_history
+                FROM instruments i JOIN provider_instruments p ON p.instrument_id=i.id
+                LEFT JOIN latest_prices t ON t.instrument_id=i.id AND t.provider=p.provider
+                    AND t.payload->>'provider_symbol'=p.provider_symbol
+                LEFT JOIN latest_candles lc ON lc.instrument_id=i.id AND lc.provider=p.provider
+                    AND lc.price_basis='native' AND lc.payload->>'provider_symbol'=p.provider_symbol
+                WHERE ($1::text[] IS NULL OR i.canonical_symbol=ANY($1))
+                    AND ($2::text IS NULL OR p.provider=$2)
+                    AND ($3::text IS NULL OR p.provider_symbol=$3)
+                    AND ($4::text IS NULL OR i.asset_class=$4)
+                    AND (i.canonical_symbol,p.provider) >
+                        (split_part($5,'/',1),split_part($5,'/',2))
+                    AND (NOT $7 OR t.payload IS NOT NULL OR lc.payload IS NOT NULL)
+                ORDER BY i.canonical_symbol,p.provider LIMIT $6
+                """,
+                symbols,
+                provider,
+                provider_symbol,
+                asset_class,
+                after,
+                limit,
+                observed_only,
+            )
+        return [
+            dict(
+                r,
+                instrument=Instrument.model_validate_json(r["instrument"]),
+                tick=Tick.model_validate_json(r["tick"]) if r["tick"] else None,
+                candle=MarketCandle.model_validate_json(r["candle"]) if r["candle"] else None,
+            )
+            for r in rows
+        ]
+
+    async def coverage_summary(
+        self,
+        identities: list[tuple[UUID, str]],
+        start: datetime,
+        end: datetime,
+        as_of: datetime,
+    ) -> list[dict[str, Any]]:
+        """Clip stored tri-state ranges, treating untracked minutes as UNKNOWN.
+
+        Counts are calculated before the bounded gap-detail projection. No historical
+        minutes or recovered provenance are synthesized.
+        """
+        async with self.connection() as c:
+            rows = await c.fetch(
+                """
+                WITH requested AS (
+                    SELECT * FROM unnest($1::uuid[], $2::text[]) AS r(instrument_id,provider)
+                ), clipped AS (
+                    SELECT r.*,c.coverage_start,c.coverage_end,
+                        tstzmultirange(tstzrange($3,$4,'[)')) AS window,
+                        coalesce(c.missing,'{}'::tstzmultirange) *
+                            tstzmultirange(tstzrange($3,$4,'[)')) AS missing,
+                        coalesce(c.not_expected,'{}'::tstzmultirange) *
+                            tstzmultirange(tstzrange($3,$4,'[)')) AS not_expected,
+                        (coalesce(c.unknown,'{}'::tstzmultirange) *
+                            tstzmultirange(tstzrange($3,$4,'[)'))) +
+                            (tstzmultirange(tstzrange($3,$4,'[)')) -
+                                CASE WHEN c.coverage_start IS NULL THEN '{}'::tstzmultirange
+                                ELSE tstzmultirange(tstzrange(c.coverage_start,c.coverage_end,'[)'))
+                                END) AS unknown
+                    FROM requested r LEFT JOIN candle_coverage c USING(instrument_id,provider)
+                    WHERE c.price_basis='native' OR c.price_basis IS NULL
+                )
+                SELECT x.instrument_id,x.provider,x.coverage_start,x.coverage_end,
+                    (SELECT coalesce(sum(extract(epoch FROM upper(g)-lower(g))/60),0)::bigint
+                        FROM unnest(x.missing) g) AS missing_count,
+                    (SELECT coalesce(sum(extract(epoch FROM upper(g)-lower(g))/60),0)::bigint
+                        FROM unnest(x.not_expected) g) AS not_expected_count,
+                    (SELECT coalesce(sum(extract(epoch FROM upper(g)-lower(g))/60),0)::bigint
+                        FROM unnest(x.unknown) g) AS unknown_count,
+                    (SELECT count(*) FROM unnest(x.missing)) AS missing_range_count,
+                    ARRAY(SELECT g FROM unnest(x.missing) g ORDER BY lower(g) LIMIT 100)
+                        AS missing_ranges,
+                    stats.persisted,stats.recovered,lc.bucket_start AS last_persisted,
+                    CASE WHEN (lc.payload->>'bucket_end')::timestamptz <= $5
+                        THEN lc.bucket_start END AS last_completed
+                FROM clipped x LEFT JOIN LATERAL (
+                    SELECT count(*) AS persisted,
+                        count(*) FILTER (WHERE metadata->>'backfilled'='true') AS recovered
+                    FROM market_candles m WHERE m.instrument_id=x.instrument_id
+                        AND m.provider=x.provider AND m.interval='1m' AND m.price_basis='native'
+                        AND m.bucket_start >= $3 AND m.bucket_start < $4 AND m.bucket_end <= $5
+                ) stats ON TRUE
+                LEFT JOIN latest_candles lc USING(instrument_id,provider)
+                WHERE lc.price_basis='native' OR lc.price_basis IS NULL
+                """,
+                [i for i, _ in identities],
+                [p for _, p in identities],
+                start,
+                end,
+                as_of,
+            )
+        return [dict(r) for r in rows]
+
+    async def coverage_health(self) -> Literal["complete", "gaps", "unknown"]:
+        async with self.connection() as c:
+            return cast(
+                Literal["complete", "gaps", "unknown"],
+                await c.fetchval("""
+                SELECT CASE
+                    WHEN EXISTS(SELECT 1 FROM candle_coverage WHERE NOT isempty(missing))
+                        THEN 'gaps'
+                    WHEN EXISTS(SELECT 1 FROM candle_coverage WHERE NOT isempty(unknown))
+                        OR NOT EXISTS(SELECT 1 FROM candle_coverage)
+                        OR EXISTS(SELECT 1 FROM candle_coverage
+                            WHERE coverage_start >= coverage_end)
+                        OR EXISTS(SELECT 1 FROM provider_instruments p
+                            WHERE NOT EXISTS(SELECT 1 FROM candle_coverage c
+                                WHERE c.instrument_id=p.instrument_id AND c.provider=p.provider
+                                    AND c.price_basis='native')) THEN 'unknown'
+                    ELSE 'complete' END
+            """),
+            )
 
     async def candle_progress(self, instrument_id: UUID, provider: str) -> dict[str, Any]:
         async with self.connection() as c:
@@ -539,6 +848,24 @@ class Store:
                     FROM filled f WHERE (c.instrument_id,c.provider,c.price_basis)=
                         (f.instrument_id,f.provider,f.price_basis)
                 """)
+                from marketdata.events import append_events
+
+                corrected = {
+                    (r["instrument_id"], r["provider"], r["bucket_start"]) for r in revisions
+                }
+                await append_events(
+                    c,
+                    [
+                        (
+                            "candle_corrected"
+                            if (bar.instrument_id, bar.provider, bar.bucket_start) in corrected
+                            else "candle_completed",
+                            bar,
+                        )
+                        for bar in changed_candles
+                    ],
+                    self.settings.marketdata_event_retention_count,
+                )
         self.last_candle_write = {
             "corrections": revisions,
             "changed": changed,
@@ -556,6 +883,10 @@ class Store:
         interval: str,
         limit: int,
         after_status: str | None = None,
+        *,
+        as_of: datetime | None = None,
+        provider_symbol: str | None = None,
+        cursor: tuple[datetime, str] | None = None,
     ) -> list[dict[str, Any]]:
         if interval not in INTERVALS or interval == "1s":
             raise ValueError("native candles support 1m or larger intervals")
@@ -568,8 +899,10 @@ class Store:
                     (array_agg(open ORDER BY bucket_start))[1] AS open,
                     max(high) AS high,min(low) AS low,
                     (array_agg(close ORDER BY bucket_start DESC))[1] AS close,
-                    CASE WHEN bool_and(coalesce((metadata->>'volume_additive')::boolean,false))
+                    CASE WHEN ($6::text::interval=interval '1 minute') OR
+                        (bool_and(coalesce((metadata->>'volume_additive')::boolean,false))
                         AND count(volume)=count(*) AND count(DISTINCT metadata->>'volume_type')=1
+                        )
                         THEN sum(volume) ELSE NULL END AS volume,
                     count(*) AS observations,
                     CASE WHEN count(DISTINCT provider_symbol)=1 THEN min(provider_symbol)
@@ -582,9 +915,13 @@ class Store:
                 FROM market_candles WHERE instrument_id=$1 AND provider=$2
                     AND interval='1m' AND price_basis='native'
                     AND bucket_start >= $3 AND bucket_start < $4
+                    AND ($8::timestamptz IS NULL OR bucket_end <= $8)
+                    AND ($9::text IS NULL OR provider_symbol=$9)
                 GROUP BY bucket,provider,realtime_status
                 ) SELECT * FROM rolled
                 WHERE ($7::text IS NULL OR bucket > $3 OR realtime_status > $7)
+                    AND ($8::timestamptz IS NULL OR bucket+$6::text::interval <= $8)
+                    AND ($10::timestamptz IS NULL OR (bucket,realtime_status) > ($10,$11::text))
                 ORDER BY bucket,realtime_status LIMIT $5
             """,
                 instrument_id,
@@ -594,6 +931,10 @@ class Store:
                 limit,
                 INTERVALS[interval],
                 after_status,
+                as_of,
+                provider_symbol,
+                cursor[0] if cursor else None,
+                cursor[1] if cursor else None,
             )
         return [
             dict(r, instrument_id=instrument_id, metadata=json.loads(r["metadata"])) for r in rows

@@ -1,6 +1,7 @@
 services:
   db:
     image: timescale/timescaledb:2.25.1-pg17
+    restart: unless-stopped
     environment:
       POSTGRES_USER: marketdata
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-marketdata}
@@ -29,8 +30,9 @@ services:
         required: false
     environment:
       DATABASE_URL: postgresql://marketdata:${POSTGRES_PASSWORD:-marketdata}@db:5432/marketdata
+      APPLICATION_ROLE: api
     ports:
-      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:${API_PORT:-8000}:8000"
     depends_on:
       migrate:
         condition: service_completed_successfully
@@ -40,6 +42,24 @@ services:
       timeout: 5s
       retries: 6
       start_period: 10s
+    stop_grace_period: 35s
+    restart: unless-stopped
+  collector:
+    build: .
+    command: [".venv/bin/python", "-m", "marketdata.collector"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: postgresql://marketdata:${POSTGRES_PASSWORD:-marketdata}@db:5432/marketdata
+      APPLICATION_ROLE: collector
+      COLLECTOR_METRICS_HOST: 0.0.0.0
+      COLLECTOR_METRICS_PORT: "9000"
+    ports:
+      - "127.0.0.1:${COLLECTOR_METRICS_PUBLISHED_PORT:-9000}:9000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
     stop_grace_period: 35s
     restart: unless-stopped
 volumes:

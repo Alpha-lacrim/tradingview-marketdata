@@ -1,0 +1,6625 @@
+{
+  "captured_at": "2026-10-13T07:41:10.599241+00:00",
+  "url": "https://scanner.tradingview.com/crypto/scan",
+  "request": {
+    "filter": [
+      {
+        "left": "exchange",
+        "operation": "equal",
+        "right": "BINANCE"
+      },
+      {
+        "left": "type",
+        "operation": "equal",
+        "right": "spot"
+      },
+      {
+        "left": "currency",
+        "operation": "equal",
+        "right": "USDT"
+      }
+    ],
+    "columns": [
+      "name",
+      "exchange",
+      "type",
+      "currency",
+      "base_currency",
+      "24h_vol|5",
+      "close",
+      "volume"
+    ],
+    "sort": {
+      "sortBy": "24h_vol|5",
+      "sortOrder": "desc"
+    },
+    "range": [
+      0,
+      1000
+    ]
+  },
+  "response": {
+    "totalCount": 506,
+    "data": [
+      {
+        "s": "BINANCE:USDCUSDT",
+        "d": [
+          "USDCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "USDC",
+          4138956984.333114,
+          1.00116,
+          1198190049
+        ]
+      },
+      {
+        "s": "BINANCE:BTCUSDT",
+        "d": [
+          "BTCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BTC",
+          1274548213.1135168,
+          84025.83,
+          5539.0436
+        ]
+      },
+      {
+        "s": "BINANCE:ETHUSDT",
+        "d": [
+          "ETHUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ETH",
+          827611106.7143059,
+          2537.51,
+          130412.1731
+        ]
+      },
+      {
+        "s": "BINANCE:SOLUSDT",
+        "d": [
+          "SOLUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SOL",
+          295317345.9685356,
+          108.97,
+          1200380
+        ]
+      },
+      {
+        "s": "BINANCE:NEARUSDT",
+        "d": [
+          "NEARUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NEAR",
+          262119123.62850448,
+          5.253,
+          17559558.6
+        ]
+      },
+      {
+        "s": "BINANCE:ZECUSDT",
+        "d": [
+          "ZECUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ZEC",
+          211290578.2249416,
+          1227.62,
+          72756.917
+        ]
+      },
+      {
+        "s": "BINANCE:USD1USDT",
+        "d": [
+          "USD1USDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "USD1",
+          179091302.42779234,
+          1.0003,
+          42600744
+        ]
+      },
+      {
+        "s": "BINANCE:XRPUSDT",
+        "d": [
+          "XRPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "XRP",
+          156905605.30190736,
+          1.3794,
+          43212781.30000054
+        ]
+      },
+      {
+        "s": "BINANCE:BNBUSDT",
+        "d": [
+          "BNBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BNB",
+          82797387.35821913,
+          746.82,
+          40835.29
+        ]
+      },
+      {
+        "s": "BINANCE:SUIUSDT",
+        "d": [
+          "SUIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SUI",
+          73702158.10892679,
+          1.0752,
+          30040437.80000007
+        ]
+      },
+      {
+        "s": "BINANCE:DOGEUSDT",
+        "d": [
+          "DOGEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DOGE",
+          72686445.82545891,
+          0.08522,
+          387094310
+        ]
+      },
+      {
+        "s": "BINANCE:ENAUSDT",
+        "d": [
+          "ENAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ENA",
+          61708375.93615125,
+          0.2185,
+          118524392.40000065
+        ]
+      },
+      {
+        "s": "BINANCE:STRKUSDT",
+        "d": [
+          "STRKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "STRK",
+          54775106.4905945,
+          0.08494,
+          171408616.8800004
+        ]
+      },
+      {
+        "s": "BINANCE:UNIUSDT",
+        "d": [
+          "UNIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "UNI",
+          54487451.15396072,
+          7.517,
+          3692736.93
+        ]
+      },
+      {
+        "s": "BINANCE:RLUSDUSDT",
+        "d": [
+          "RLUSDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RLUSD",
+          51903900.32970715,
+          1.0013,
+          12648654
+        ]
+      },
+      {
+        "s": "BINANCE:WLDUSDT",
+        "d": [
+          "WLDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "WLD",
+          48280568.59582576,
+          0.5225,
+          46777591.60000056
+        ]
+      },
+      {
+        "s": "BINANCE:AVAXUSDT",
+        "d": [
+          "AVAXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AVAX",
+          46081559.98718878,
+          10.507,
+          1514474.58
+        ]
+      },
+      {
+        "s": "BINANCE:FDUSDUSDT",
+        "d": [
+          "FDUSDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FDUSD",
+          44170479.58200946,
+          0.9991,
+          20741547
+        ]
+      },
+      {
+        "s": "BINANCE:CTKUSDT",
+        "d": [
+          "CTKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CTK",
+          41494102.86565607,
+          0.1281,
+          37430007.2000005
+        ]
+      },
+      {
+        "s": "BINANCE:ADAUSDT",
+        "d": [
+          "ADAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ADA",
+          39103124.43975483,
+          0.2397,
+          69159404.20000052
+        ]
+      },
+      {
+        "s": "BINANCE:PEPEUSDT",
+        "d": [
+          "PEPEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PEPE",
+          35345609.52109679,
+          4.14e-06,
+          3652278175024.9985
+        ]
+      },
+      {
+        "s": "BINANCE:TAOUSDT",
+        "d": [
+          "TAOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TAO",
+          35226050.71509354,
+          283.6,
+          46426.1262
+        ]
+      },
+      {
+        "s": "BINANCE:WUSDT",
+        "d": [
+          "WUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "W",
+          34818254.07211754,
+          0.0195,
+          296145176.6999997
+        ]
+      },
+      {
+        "s": "BINANCE:HYPEUSDT",
+        "d": [
+          "HYPEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HYPE",
+          33287198.831127483,
+          83.21,
+          157717.769
+        ]
+      },
+      {
+        "s": "BINANCE:LINKUSDT",
+        "d": [
+          "LINKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LINK",
+          32782829.557499897,
+          13.091,
+          967167.58
+        ]
+      },
+      {
+        "s": "BINANCE:PUMPUSDT",
+        "d": [
+          "PUMPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PUMP",
+          32193443.782045603,
+          0.005118,
+          2064711260
+        ]
+      },
+      {
+        "s": "BINANCE:ONDOUSDT",
+        "d": [
+          "ONDOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ONDO",
+          31934257.01062762,
+          0.4819,
+          24048914.20000001
+        ]
+      },
+      {
+        "s": "BINANCE:SNDKBUSDT",
+        "d": [
+          "SNDKBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SNDKB",
+          30608495.94208672,
+          1434.43,
+          9558.9169
+        ]
+      },
+      {
+        "s": "BINANCE:GTCUSDT",
+        "d": [
+          "GTCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GTC",
+          30075491.58618796,
+          0.2426,
+          27393602.00000003
+        ]
+      },
+      {
+        "s": "BINANCE:ZROUSDT",
+        "d": [
+          "ZROUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ZRO",
+          30059631.926180545,
+          2.159,
+          4135456.74
+        ]
+      },
+      {
+        "s": "BINANCE:UUSDT",
+        "d": [
+          "UUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "U",
+          29289693.229198433,
+          1.0004,
+          9447332
+        ]
+      },
+      {
+        "s": "BINANCE:FILUSDT",
+        "d": [
+          "FILUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FIL",
+          26582339.748729367,
+          1.1877,
+          8542296.99
+        ]
+      },
+      {
+        "s": "BINANCE:FETUSDT",
+        "d": [
+          "FETUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FET",
+          24040664.398704167,
+          0.2209,
+          36052118.70000027
+        ]
+      },
+      {
+        "s": "BINANCE:RSRUSDT",
+        "d": [
+          "RSRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RSR",
+          23208629.04265456,
+          0.002059,
+          1792887858.6000004
+        ]
+      },
+      {
+        "s": "BINANCE:LTCUSDT",
+        "d": [
+          "LTCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LTC",
+          23122131.031758856,
+          62.65,
+          102586.136
+        ]
+      },
+      {
+        "s": "BINANCE:TRXUSDT",
+        "d": [
+          "TRXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TRX",
+          22469169.44971017,
+          0.33,
+          23939309.2
+        ]
+      },
+      {
+        "s": "BINANCE:OGNUSDT",
+        "d": [
+          "OGNUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "OGN",
+          20980925.368765034,
+          0.03773,
+          160749916
+        ]
+      },
+      {
+        "s": "BINANCE:RENDERUSDT",
+        "d": [
+          "RENDERUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RENDER",
+          20727605.432511527,
+          2.153,
+          3413470.45
+        ]
+      },
+      {
+        "s": "BINANCE:QNTUSDT",
+        "d": [
+          "QNTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "QNT",
+          20635700.67840144,
+          229.56,
+          32281.13
+        ]
+      },
+      {
+        "s": "BINANCE:TIAUSDT",
+        "d": [
+          "TIAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TIA",
+          20548109.597057354,
+          0.6188,
+          18575803.9
+        ]
+      },
+      {
+        "s": "BINANCE:POLUSDT",
+        "d": [
+          "POLUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "POL",
+          20354469.196473364,
+          0.10548,
+          28634137.60000001
+        ]
+      },
+      {
+        "s": "BINANCE:AAVEUSDT",
+        "d": [
+          "AAVEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AAVE",
+          19994111.79304645,
+          161.65,
+          42906.538
+        ]
+      },
+      {
+        "s": "BINANCE:INJUSDT",
+        "d": [
+          "INJUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "INJ",
+          19929435.703673292,
+          8.022,
+          1102358.55
+        ]
+      },
+      {
+        "s": "BINANCE:SPCXBUSDT",
+        "d": [
+          "SPCXBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SPCXB",
+          19824578.860942457,
+          162.82,
+          46363.797
+        ]
+      },
+      {
+        "s": "BINANCE:APTUSDT",
+        "d": [
+          "APTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "APT",
+          19699765.149029292,
+          0.8566,
+          10540152.74
+        ]
+      },
+      {
+        "s": "BINANCE:MAGICUSDT",
+        "d": [
+          "MAGICUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MAGIC",
+          19467690.29856287,
+          0.1227,
+          60883195.20000038
+        ]
+      },
+      {
+        "s": "BINANCE:PYTHUSDT",
+        "d": [
+          "PYTHUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PYTH",
+          18584135.190992143,
+          0.08502,
+          46932641.50000052
+        ]
+      },
+      {
+        "s": "BINANCE:HBARUSDT",
+        "d": [
+          "HBARUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HBAR",
+          18415883.10226239,
+          0.0883,
+          75800638
+        ]
+      },
+      {
+        "s": "BINANCE:DOTUSDT",
+        "d": [
+          "DOTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DOT",
+          18300057.911037587,
+          1.217,
+          7698522.67
+        ]
+      },
+      {
+        "s": "BINANCE:SOXLBUSDT",
+        "d": [
+          "SOXLBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SOXLB",
+          17391476.411191296,
+          121.34,
+          83480.603
+        ]
+      },
+      {
+        "s": "BINANCE:CRCLBUSDT",
+        "d": [
+          "CRCLBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CRCLB",
+          16810690.942235164,
+          84.17,
+          61790.49
+        ]
+      },
+      {
+        "s": "BINANCE:ICPUSDT",
+        "d": [
+          "ICPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ICP",
+          16669598.157037186,
+          3.226,
+          1985193.94
+        ]
+      },
+      {
+        "s": "BINANCE:TRUMPUSDT",
+        "d": [
+          "TRUMPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TRUMP",
+          15690866.563895952,
+          1.912,
+          3131499.909
+        ]
+      },
+      {
+        "s": "BINANCE:BCHUSDT",
+        "d": [
+          "BCHUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BCH",
+          15186872.811552403,
+          275.3,
+          22240.587
+        ]
+      },
+      {
+        "s": "BINANCE:ARBUSDT",
+        "d": [
+          "ARBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ARB",
+          14659783.181965394,
+          0.1903,
+          23998508.30000001
+        ]
+      },
+      {
+        "s": "BINANCE:SUSDT",
+        "d": [
+          "SUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "S",
+          14575777.908661053,
+          0.05816,
+          46566588.80000038
+        ]
+      },
+      {
+        "s": "BINANCE:MARSCOINUSDT",
+        "d": [
+          "MARSCOINUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MARSCOIN",
+          14135566.397377495,
+          0.0844,
+          48503127.90000034
+        ]
+      },
+      {
+        "s": "BINANCE:STXUSDT",
+        "d": [
+          "STXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "STX",
+          13754420.709719602,
+          0.4306,
+          11639324.7
+        ]
+      },
+      {
+        "s": "BINANCE:XLMUSDT",
+        "d": [
+          "XLMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "XLM",
+          13115834.357622532,
+          0.1951,
+          21549955
+        ]
+      },
+      {
+        "s": "BINANCE:XAUTUSDT",
+        "d": [
+          "XAUTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "XAUT",
+          12207842.206707994,
+          4189.77,
+          959.4238
+        ]
+      },
+      {
+        "s": "BINANCE:PAXGUSDT",
+        "d": [
+          "PAXGUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PAXG",
+          12124570.014374595,
+          4193.77,
+          1131.6583
+        ]
+      },
+      {
+        "s": "BINANCE:GRAMUSDT",
+        "d": [
+          "GRAMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GRAM",
+          11783097.453340882,
+          1.386,
+          1689559.58
+        ]
+      },
+      {
+        "s": "BINANCE:PENGUUSDT",
+        "d": [
+          "PENGUUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PENGU",
+          11601191.174739018,
+          0.00797,
+          644668234
+        ]
+      },
+      {
+        "s": "BINANCE:MSTRBUSDT",
+        "d": [
+          "MSTRBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MSTRB",
+          11504465.958272468,
+          155.18,
+          29788.903
+        ]
+      },
+      {
+        "s": "BINANCE:XPLUSDT",
+        "d": [
+          "XPLUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "XPL",
+          11254120.989654144,
+          0.08355,
+          52913498.90000038
+        ]
+      },
+      {
+        "s": "BINANCE:BATUSDT",
+        "d": [
+          "BATUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BAT",
+          10634533.804791158,
+          0.1826,
+          35565383
+        ]
+      },
+      {
+        "s": "BINANCE:BOMEUSDT",
+        "d": [
+          "BOMEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BOME",
+          10463310.48968208,
+          0.0007998,
+          3129679267
+        ]
+      },
+      {
+        "s": "BINANCE:SKHYBUSDT",
+        "d": [
+          "SKHYBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SKHYB",
+          10373148.963126995,
+          153.63,
+          42290.478
+        ]
+      },
+      {
+        "s": "BINANCE:CFXUSDT",
+        "d": [
+          "CFXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CFX",
+          10296751.362059595,
+          0.05853,
+          49744638
+        ]
+      },
+      {
+        "s": "BINANCE:REDUSDT",
+        "d": [
+          "REDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RED",
+          10292519.430231204,
+          0.1585,
+          5983827
+        ]
+      },
+      {
+        "s": "BINANCE:ASTERUSDT",
+        "d": [
+          "ASTERUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ASTER",
+          10232835.68477998,
+          0.7006,
+          6093233.93
+        ]
+      },
+      {
+        "s": "BINANCE:SKLUSDT",
+        "d": [
+          "SKLUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SKL",
+          10076553.565888727,
+          0.00564,
+          721852199
+        ]
+      },
+      {
+        "s": "BINANCE:MUBUSDT",
+        "d": [
+          "MUBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MUB",
+          9682299.446561562,
+          956.32,
+          5660.122
+        ]
+      },
+      {
+        "s": "BINANCE:NVDABUSDT",
+        "d": [
+          "NVDABUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NVDAB",
+          9591630.733062495,
+          224.38,
+          22564.288
+        ]
+      },
+      {
+        "s": "BINANCE:OSMOUSDT",
+        "d": [
+          "OSMOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "OSMO",
+          9447109.255563071,
+          0.0501,
+          46929459.93000062
+        ]
+      },
+      {
+        "s": "BINANCE:PLUMEUSDT",
+        "d": [
+          "PLUMEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PLUME",
+          9264831.3620553,
+          0.02109,
+          88335114
+        ]
+      },
+      {
+        "s": "BINANCE:SHIBUSDT",
+        "d": [
+          "SHIBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SHIB",
+          9066355.645827984,
+          5.27e-06,
+          921952867748.001
+        ]
+      },
+      {
+        "s": "BINANCE:OPUSDT",
+        "d": [
+          "OPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "OP",
+          8656488.938920591,
+          0.1394,
+          22796170.35000002
+        ]
+      },
+      {
+        "s": "BINANCE:KORUBUSDT",
+        "d": [
+          "KORUBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "KORUB",
+          8486382.396383937,
+          14.14,
+          511625.52
+        ]
+      },
+      {
+        "s": "BINANCE:SEIUSDT",
+        "d": [
+          "SEIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SEI",
+          8465455.667948453,
+          0.06486,
+          56912356.20000034
+        ]
+      },
+      {
+        "s": "BINANCE:BLURUSDT",
+        "d": [
+          "BLURUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BLUR",
+          8299460.667971404,
+          0.01274,
+          281250987.30000025
+        ]
+      },
+      {
+        "s": "BINANCE:RAYUSDT",
+        "d": [
+          "RAYUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RAY",
+          8199106.596150444,
+          2.1372,
+          1233143.5
+        ]
+      },
+      {
+        "s": "BINANCE:RLCUSDT",
+        "d": [
+          "RLCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RLC",
+          8052868.2480220515,
+          0.9356,
+          2468978
+        ]
+      },
+      {
+        "s": "BINANCE:LUMIAUSDT",
+        "d": [
+          "LUMIAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LUMIA",
+          7937049.410232861,
+          0.114,
+          24594179.41000003
+        ]
+      },
+      {
+        "s": "BINANCE:EURUSDT",
+        "d": [
+          "EURUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "EUR",
+          7538867.092502999,
+          1.1206,
+          2016358.2
+        ]
+      },
+      {
+        "s": "BINANCE:MUBARAKUSDT",
+        "d": [
+          "MUBARAKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MUBARAK",
+          7361450.276552403,
+          0.07206,
+          20715790.4
+        ]
+      },
+      {
+        "s": "BINANCE:NIULAIUSDT",
+        "d": [
+          "NIULAIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NIULAI",
+          7182631.504545377,
+          0.07517,
+          47679264
+        ]
+      },
+      {
+        "s": "BINANCE:INTCBUSDT",
+        "d": [
+          "INTCBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "INTCB",
+          7130279.401026281,
+          100.18,
+          46230.077
+        ]
+      },
+      {
+        "s": "BINANCE:ETHFIUSDT",
+        "d": [
+          "ETHFIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ETHFI",
+          7122088.645774779,
+          0.7184,
+          3663908.4
+        ]
+      },
+      {
+        "s": "BINANCE:CYBERUSDT",
+        "d": [
+          "CYBERUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CYBER",
+          7109745.122909616,
+          0.365,
+          3968102.75
+        ]
+      },
+      {
+        "s": "BINANCE:ALGOUSDT",
+        "d": [
+          "ALGOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ALGO",
+          6967430.119203316,
+          0.1208,
+          16258405
+        ]
+      },
+      {
+        "s": "BINANCE:DASHUSDT",
+        "d": [
+          "DASHUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DASH",
+          6725005.506475445,
+          50.68,
+          49405.457
+        ]
+      },
+      {
+        "s": "BINANCE:ATOMUSDT",
+        "d": [
+          "ATOMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ATOM",
+          6601417.667179111,
+          1.87,
+          1267745.55
+        ]
+      },
+      {
+        "s": "BINANCE:LDOUSDT",
+        "d": [
+          "LDOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LDO",
+          6510855.516689985,
+          0.4238,
+          5033704.32
+        ]
+      },
+      {
+        "s": "BINANCE:ZKUSDT",
+        "d": [
+          "ZKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ZK",
+          6477412.81627609,
+          0.01526,
+          138110102.90000063
+        ]
+      },
+      {
+        "s": "BINANCE:AEROUSDT",
+        "d": [
+          "AEROUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AERO",
+          6370368.967169998,
+          0.902,
+          2400297.3
+        ]
+      },
+      {
+        "s": "BINANCE:BIANRENSHENGUSDT",
+        "d": [
+          "BIANRENSHENGUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BIANRENSHENG",
+          6347177.449434883,
+          0.5454,
+          3241573.9
+        ]
+      },
+      {
+        "s": "BINANCE:KAIAUSDT",
+        "d": [
+          "KAIAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "KAIA",
+          6283880.5665818965,
+          0.0471,
+          72205464.40000068
+        ]
+      },
+      {
+        "s": "BINANCE:SANDUSDT",
+        "d": [
+          "SANDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SAND",
+          5899681.1823425405,
+          0.06162,
+          24638843
+        ]
+      },
+      {
+        "s": "BINANCE:IOUSDT",
+        "d": [
+          "IOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "IO",
+          5852557.766079358,
+          0.1693,
+          7060329.5
+        ]
+      },
+      {
+        "s": "BINANCE:CKBUSDT",
+        "d": [
+          "CKBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CKB",
+          5824510.999628246,
+          0.001639,
+          1290250707
+        ]
+      },
+      {
+        "s": "BINANCE:SNXXBUSDT",
+        "d": [
+          "SNXXBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SNXXB",
+          5731344.310975025,
+          11.18,
+          178425.18
+        ]
+      },
+      {
+        "s": "BINANCE:CAKEUSDT",
+        "d": [
+          "CAKEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CAKE",
+          5576915.47084083,
+          2.33,
+          736794.55
+        ]
+      },
+      {
+        "s": "BINANCE:CHIPUSDT",
+        "d": [
+          "CHIPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CHIP",
+          5363577.363416109,
+          0.06045,
+          28516166
+        ]
+      },
+      {
+        "s": "BINANCE:CRVUSDT",
+        "d": [
+          "CRVUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CRV",
+          5337198.082037461,
+          0.3643,
+          6921921.4
+        ]
+      },
+      {
+        "s": "BINANCE:XUSDUSDT",
+        "d": [
+          "XUSDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "XUSD",
+          5232771.62612086,
+          1.0013,
+          4635532
+        ]
+      },
+      {
+        "s": "BINANCE:EIGENUSDT",
+        "d": [
+          "EIGENUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "EIGEN",
+          5138719.452769973,
+          0.2555,
+          4942169.05
+        ]
+      },
+      {
+        "s": "BINANCE:VIRTUALUSDT",
+        "d": [
+          "VIRTUALUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "VIRTUAL",
+          5129652.077005948,
+          0.7136,
+          2805830.7
+        ]
+      },
+      {
+        "s": "BINANCE:MANTAUSDT",
+        "d": [
+          "MANTAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MANTA",
+          5088753.628935198,
+          0.07094,
+          11349409.2
+        ]
+      },
+      {
+        "s": "BINANCE:ZAMAUSDT",
+        "d": [
+          "ZAMAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ZAMA",
+          4984194.946209463,
+          0.08238,
+          29709295
+        ]
+      },
+      {
+        "s": "BINANCE:WIFUSDT",
+        "d": [
+          "WIFUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "WIF",
+          4975336.776127262,
+          0.2121,
+          4484697.82
+        ]
+      },
+      {
+        "s": "BINANCE:DODOUSDT",
+        "d": [
+          "DODOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DODO",
+          4939608.687327278,
+          0.02042,
+          113984311.0000003
+        ]
+      },
+      {
+        "s": "BINANCE:WLFIUSDT",
+        "d": [
+          "WLFIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "WLFI",
+          4913914.821187098,
+          0.057,
+          37175993.30000019
+        ]
+      },
+      {
+        "s": "BINANCE:ERAUSDT",
+        "d": [
+          "ERAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ERA",
+          4903257.056806298,
+          0.0664,
+          23040592.20000001
+        ]
+      },
+      {
+        "s": "BINANCE:SXTUSDT",
+        "d": [
+          "SXTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SXT",
+          4839028.839412923,
+          0.00936,
+          40343974.60000026
+        ]
+      },
+      {
+        "s": "BINANCE:ARUSDT",
+        "d": [
+          "ARUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AR",
+          4810401.621429983,
+          3.967,
+          412207.38
+        ]
+      },
+      {
+        "s": "BINANCE:RVNUSDT",
+        "d": [
+          "RVNUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RVN",
+          4765115.675287453,
+          0.001622,
+          514640384.50000006
+        ]
+      },
+      {
+        "s": "BINANCE:JTOUSDT",
+        "d": [
+          "JTOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "JTO",
+          4714862.516988918,
+          0.5441,
+          3926724.5
+        ]
+      },
+      {
+        "s": "BINANCE:ALTUSDT",
+        "d": [
+          "ALTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ALT",
+          4682665.565724575,
+          0.00825,
+          143055393
+        ]
+      },
+      {
+        "s": "BINANCE:JUPUSDT",
+        "d": [
+          "JUPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "JUP",
+          4657233.75622947,
+          0.3377,
+          4718537.2
+        ]
+      },
+      {
+        "s": "BINANCE:SOXSBUSDT",
+        "d": [
+          "SOXSBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SOXSB",
+          4450329.856393855,
+          39.37,
+          78276.33
+        ]
+      },
+      {
+        "s": "BINANCE:NILUSDT",
+        "d": [
+          "NILUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NIL",
+          4431201.849978357,
+          0.07409,
+          17194511.3
+        ]
+      },
+      {
+        "s": "BINANCE:METUSDT",
+        "d": [
+          "METUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MET",
+          4131727.227218869,
+          0.3946,
+          2709442.1
+        ]
+      },
+      {
+        "s": "BINANCE:NMRUSDT",
+        "d": [
+          "NMRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NMR",
+          4112627.4547885885,
+          12.58,
+          217269.76
+        ]
+      },
+      {
+        "s": "BINANCE:MORPHOUSDT",
+        "d": [
+          "MORPHOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MORPHO",
+          4090353.76146862,
+          2.412,
+          456210.99
+        ]
+      },
+      {
+        "s": "BINANCE:JSTUSDT",
+        "d": [
+          "JSTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "JST",
+          4026530.7393037495,
+          0.1378,
+          6623284.8
+        ]
+      },
+      {
+        "s": "BINANCE:BEAMXUSDT",
+        "d": [
+          "BEAMXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BEAM",
+          4007750.2262685387,
+          0.00282,
+          428514159
+        ]
+      },
+      {
+        "s": "BINANCE:PROMUSDT",
+        "d": [
+          "PROMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PROM",
+          4006748.408341119,
+          5.292,
+          252881.2
+        ]
+      },
+      {
+        "s": "BINANCE:SFPUSDT",
+        "d": [
+          "SFPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SFP",
+          3980253.992682851,
+          0.2657,
+          2771487
+        ]
+      },
+      {
+        "s": "BINANCE:METISUSDT",
+        "d": [
+          "METISUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "METIS",
+          3854252.1770488857,
+          3.78,
+          256261.086
+        ]
+      },
+      {
+        "s": "BINANCE:MINAUSDT",
+        "d": [
+          "MINAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MINA",
+          3797477.657602733,
+          0.0784,
+          16897601.2
+        ]
+      },
+      {
+        "s": "BINANCE:KITEUSDT",
+        "d": [
+          "KITEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "KITE",
+          3760400.9878916824,
+          0.1282,
+          10628617.3
+        ]
+      },
+      {
+        "s": "BINANCE:XAIUSDT",
+        "d": [
+          "XAIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "XAI",
+          3591784.327475487,
+          0.00956,
+          81894534.60000056
+        ]
+      },
+      {
+        "s": "BINANCE:TQQQBUSDT",
+        "d": [
+          "TQQQBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TQQQB",
+          3540840.671563961,
+          78.02,
+          29038.72
+        ]
+      },
+      {
+        "s": "BINANCE:MOVRUSDT",
+        "d": [
+          "MOVRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MOVR",
+          3530610.7281989357,
+          1.579,
+          433433.051
+        ]
+      },
+      {
+        "s": "BINANCE:RADUSDT",
+        "d": [
+          "RADUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RAD",
+          3507649.49648216,
+          0.304,
+          1099132.6
+        ]
+      },
+      {
+        "s": "BINANCE:GPSUSDT",
+        "d": [
+          "GPSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GPS",
+          3468934.108332026,
+          0.00801,
+          364925162.5999999
+        ]
+      },
+      {
+        "s": "BINANCE:QQQBUSDT",
+        "d": [
+          "QQQBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "QQQB",
+          3468355.0050446577,
+          741.92,
+          2340.525
+        ]
+      },
+      {
+        "s": "BINANCE:NIGHTUSDT",
+        "d": [
+          "NIGHTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NIGHT",
+          3453872.3957141438,
+          0.04734,
+          26569146
+        ]
+      },
+      {
+        "s": "BINANCE:PHAUSDT",
+        "d": [
+          "PHAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PHA",
+          3435175.3994136048,
+          0.0552,
+          11388639
+        ]
+      },
+      {
+        "s": "BINANCE:ZENUSDT",
+        "d": [
+          "ZENUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ZEN",
+          3387277.314185087,
+          6.349,
+          219722.6
+        ]
+      },
+      {
+        "s": "BINANCE:AXLUSDT",
+        "d": [
+          "AXLUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AXL",
+          3334479.891105573,
+          0.058,
+          8153550.19
+        ]
+      },
+      {
+        "s": "BINANCE:TRBUSDT",
+        "d": [
+          "TRBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TRB",
+          3270967.923506215,
+          19.3,
+          23700.115
+        ]
+      },
+      {
+        "s": "BINANCE:BNCBUSDT",
+        "d": [
+          "BNCBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BNCB",
+          3177035.516038689,
+          5.23,
+          212937.1
+        ]
+      },
+      {
+        "s": "BINANCE:DYMUSDT",
+        "d": [
+          "DYMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DYM",
+          3143280.809249382,
+          0.02005,
+          27092495.20000007
+        ]
+      },
+      {
+        "s": "BINANCE:ETCUSDT",
+        "d": [
+          "ETCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ETC",
+          3037100.3454522435,
+          8.26,
+          145638.35
+        ]
+      },
+      {
+        "s": "BINANCE:MEGAUSDT",
+        "d": [
+          "MEGAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MEGA",
+          3016874.2938480037,
+          0.04509,
+          19504560.4
+        ]
+      },
+      {
+        "s": "BINANCE:PENDLEUSDT",
+        "d": [
+          "PENDLEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PENDLE",
+          2911906.289106688,
+          2.128,
+          518018.5
+        ]
+      },
+      {
+        "s": "BINANCE:DUSKUSDT",
+        "d": [
+          "DUSKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DUSK",
+          2872704.494218537,
+          0.1009,
+          23773460
+        ]
+      },
+      {
+        "s": "BINANCE:API3USDT",
+        "d": [
+          "API3USDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "API3",
+          2863074.5813520406,
+          0.3139,
+          1381204.34
+        ]
+      },
+      {
+        "s": "BINANCE:ORCAUSDT",
+        "d": [
+          "ORCAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ORCA",
+          2819648.1182109495,
+          2.167,
+          343005.69
+        ]
+      },
+      {
+        "s": "BINANCE:RUNEUSDT",
+        "d": [
+          "RUNEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RUNE",
+          2815623.9257678036,
+          0.672,
+          1337453.2
+        ]
+      },
+      {
+        "s": "BINANCE:GOOGLBUSDT",
+        "d": [
+          "GOOGLBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GOOGLB",
+          2809885.5036657196,
+          353,
+          4716.546
+        ]
+      },
+      {
+        "s": "BINANCE:VETUSDT",
+        "d": [
+          "VETUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "VET",
+          2737355.644363174,
+          0.007412,
+          219857987.00000033
+        ]
+      },
+      {
+        "s": "BINANCE:AMPUSDT",
+        "d": [
+          "AMPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AMP",
+          2649308.0959495674,
+          0.000639,
+          698599453
+        ]
+      },
+      {
+        "s": "BINANCE:SYRUPUSDT",
+        "d": [
+          "SYRUPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SYRUP",
+          2593670.297272424,
+          0.2569,
+          3730785.1
+        ]
+      },
+      {
+        "s": "BINANCE:AMDBUSDT",
+        "d": [
+          "AMDBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AMDB",
+          2574205.090728488,
+          583.6,
+          2775.192
+        ]
+      },
+      {
+        "s": "BINANCE:ACEUSDT",
+        "d": [
+          "ACEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ACE",
+          2554194.394936985,
+          0.1904,
+          5341659.2
+        ]
+      },
+      {
+        "s": "BINANCE:AXSUSDT",
+        "d": [
+          "AXSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AXS",
+          2547069.877607105,
+          1.173,
+          937906.41
+        ]
+      },
+      {
+        "s": "BINANCE:SKYUSDT",
+        "d": [
+          "SKYUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SKY",
+          2540423.234380014,
+          0.07837,
+          11386586
+        ]
+      },
+      {
+        "s": "BINANCE:PIXELUSDT",
+        "d": [
+          "PIXELUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PIXEL",
+          2531782.4360165135,
+          0.00606,
+          102784119.10000046
+        ]
+      },
+      {
+        "s": "BINANCE:WBETHUSDT",
+        "d": [
+          "WBETHUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "WBETH",
+          2526305.9438431812,
+          2810.14,
+          118.3511
+        ]
+      },
+      {
+        "s": "BINANCE:SAGAUSDT",
+        "d": [
+          "SAGAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SAGA",
+          2419718.3629058576,
+          0.02116,
+          30062121.70000015
+        ]
+      },
+      {
+        "s": "BINANCE:INITUSDT",
+        "d": [
+          "INITUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "INIT",
+          2407722.4619501284,
+          0.12326,
+          4743566.3
+        ]
+      },
+      {
+        "s": "BINANCE:FLOWUSDT",
+        "d": [
+          "FLOWUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FLOW",
+          2407167.689618715,
+          0.03471,
+          18729328.39
+        ]
+      },
+      {
+        "s": "BINANCE:LINEAUSDT",
+        "d": [
+          "LINEAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LINEA",
+          2405574.3596155266,
+          0.003027,
+          217369274
+        ]
+      },
+      {
+        "s": "BINANCE:CFGUSDT",
+        "d": [
+          "CFGUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CFG",
+          2394815.3828612934,
+          0.1362,
+          5478841.4
+        ]
+      },
+      {
+        "s": "BINANCE:CTSIUSDT",
+        "d": [
+          "CTSIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CTSI",
+          2357812.3338126084,
+          0.03394,
+          19768490
+        ]
+      },
+      {
+        "s": "BINANCE:CBRSBUSDT",
+        "d": [
+          "CBRSBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CBRSB",
+          2341904.347014246,
+          144.08,
+          4143.992
+        ]
+      },
+      {
+        "s": "BINANCE:BONKUSDT",
+        "d": [
+          "BONKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BONK",
+          2296211.844707192,
+          3.3e-06,
+          309642386084.9995
+        ]
+      },
+      {
+        "s": "BINANCE:SENTUSDT",
+        "d": [
+          "SENTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SENT",
+          2290962.8181411303,
+          0.02077,
+          30381334
+        ]
+      },
+      {
+        "s": "BINANCE:TSLABUSDT",
+        "d": [
+          "TSLABUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TSLAB",
+          2200785.0211645043,
+          375.06,
+          1603.737
+        ]
+      },
+      {
+        "s": "BINANCE:BFUSDUSDT",
+        "d": [
+          "BFUSDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BFUSD",
+          2143305.213506491,
+          0.9992,
+          1749582
+        ]
+      },
+      {
+        "s": "BINANCE:JASMYUSDT",
+        "d": [
+          "JASMYUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "JASMY",
+          2107698.4418617017,
+          0.00499,
+          128736025.70000064
+        ]
+      },
+      {
+        "s": "BINANCE:OPNUSDT",
+        "d": [
+          "OPNUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "OPN",
+          2099698.2423913567,
+          0.0653,
+          16530206.6
+        ]
+      },
+      {
+        "s": "BINANCE:WALUSDT",
+        "d": [
+          "WALUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "WAL",
+          2063529.1064164727,
+          0.03882,
+          21606939.6
+        ]
+      },
+      {
+        "s": "BINANCE:SYNUSDT",
+        "d": [
+          "SYNUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SYN",
+          2054350.5788527525,
+          0.20034,
+          4994904.6
+        ]
+      },
+      {
+        "s": "BINANCE:ONEUSDT",
+        "d": [
+          "ONEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ONE",
+          2018877.9835795255,
+          0.001842,
+          366999350.70000017
+        ]
+      },
+      {
+        "s": "BINANCE:OPGUSDT",
+        "d": [
+          "OPGUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "OPG",
+          1997912.0391891103,
+          0.141,
+          2632001.4
+        ]
+      },
+      {
+        "s": "BINANCE:LSKUSDT",
+        "d": [
+          "LSKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LSK",
+          1963047.75146054,
+          0.2145,
+          2668440.6
+        ]
+      },
+      {
+        "s": "BINANCE:ORDIUSDT",
+        "d": [
+          "ORDIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ORDI",
+          1959869.0707090795,
+          4.19,
+          212585.31
+        ]
+      },
+      {
+        "s": "BINANCE:DRAMBUSDT",
+        "d": [
+          "DRAMBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DRAMB",
+          1943357.549895515,
+          52.28,
+          25657.51
+        ]
+      },
+      {
+        "s": "BINANCE:COTIUSDT",
+        "d": [
+          "COTIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "COTI",
+          1923039.08239486,
+          0.01299,
+          58493353
+        ]
+      },
+      {
+        "s": "BINANCE:IDUSDT",
+        "d": [
+          "IDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ID",
+          1905397.4608447019,
+          0.0377,
+          9759223
+        ]
+      },
+      {
+        "s": "BINANCE:0GUSDT",
+        "d": [
+          "0GUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "0G",
+          1852777.0182848612,
+          0.2601,
+          2870734.2
+        ]
+      },
+      {
+        "s": "BINANCE:FLOKIUSDT",
+        "d": [
+          "FLOKIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FLOKI",
+          1851747.0524151556,
+          2.629e-05,
+          29214731769.000004
+        ]
+      },
+      {
+        "s": "BINANCE:GALAUSDT",
+        "d": [
+          "GALAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GALA",
+          1834589.6476053223,
+          0.002248,
+          350018814
+        ]
+      },
+      {
+        "s": "BINANCE:PARTIUSDT",
+        "d": [
+          "PARTIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PARTI",
+          1831004.5777902838,
+          0.0341,
+          19433168.8
+        ]
+      },
+      {
+        "s": "BINANCE:WBTCUSDT",
+        "d": [
+          "WBTCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "WBTC",
+          1819865.5838549554,
+          83914.66,
+          7.68037
+        ]
+      },
+      {
+        "s": "BINANCE:BERAUSDT",
+        "d": [
+          "BERAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BERA",
+          1771879.514744923,
+          0.2235,
+          2179092.774
+        ]
+      },
+      {
+        "s": "BINANCE:ENSOUSDT",
+        "d": [
+          "ENSOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ENSO",
+          1766201.9206584538,
+          0.923,
+          305488.49
+        ]
+      },
+      {
+        "s": "BINANCE:SUPERUSDT",
+        "d": [
+          "SUPERUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SUPER",
+          1743369.5612596872,
+          0.2152,
+          3889177
+        ]
+      },
+      {
+        "s": "BINANCE:BANKUSDT",
+        "d": [
+          "BANKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BANK",
+          1721534.5720616174,
+          0.0282,
+          20670284.3
+        ]
+      },
+      {
+        "s": "BINANCE:ATUSDT",
+        "d": [
+          "ATUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AT",
+          1702811.0240069428,
+          0.1361,
+          2656655.1
+        ]
+      },
+      {
+        "s": "BINANCE:GIGGLEUSDT",
+        "d": [
+          "GIGGLEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GIGGLE",
+          1678072.6776318508,
+          35.84,
+          21561.058
+        ]
+      },
+      {
+        "s": "BINANCE:SNXUSDT",
+        "d": [
+          "SNXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SNX",
+          1656659.3802515417,
+          0.2456,
+          2573176.8
+        ]
+      },
+      {
+        "s": "BINANCE:INTWBUSDT",
+        "d": [
+          "INTWBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "INTWB",
+          1651230.129062442,
+          21.47,
+          64189.97
+        ]
+      },
+      {
+        "s": "BINANCE:XTZUSDT",
+        "d": [
+          "XTZUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "XTZ",
+          1641440.8622369037,
+          0.3301,
+          1949483.2
+        ]
+      },
+      {
+        "s": "BINANCE:NEOUSDT",
+        "d": [
+          "NEOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NEO",
+          1626179.8944022406,
+          2.456,
+          79365.02
+        ]
+      },
+      {
+        "s": "BINANCE:STRAXUSDT",
+        "d": [
+          "STRAXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "STRAX",
+          1625549.3813908773,
+          0.01067,
+          18538380
+        ]
+      },
+      {
+        "s": "BINANCE:ROBOUSDT",
+        "d": [
+          "ROBOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ROBO",
+          1607648.1006381523,
+          0.00787,
+          41106281
+        ]
+      },
+      {
+        "s": "BINANCE:FORMUSDT",
+        "d": [
+          "FORMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FORM",
+          1606191.6476998322,
+          0.2792,
+          2341650.6
+        ]
+      },
+      {
+        "s": "BINANCE:THEUSDT",
+        "d": [
+          "THEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "THE",
+          1590502.422838355,
+          0.0608,
+          3076873.7
+        ]
+      },
+      {
+        "s": "BINANCE:HYPERUSDT",
+        "d": [
+          "HYPERUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HYPER",
+          1582174.4903654812,
+          0.0736,
+          5911772.4
+        ]
+      },
+      {
+        "s": "BINANCE:APEUSDT",
+        "d": [
+          "APEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "APE",
+          1578465.231288507,
+          0.1556,
+          3732357.92
+        ]
+      },
+      {
+        "s": "BINANCE:AAOIBUSDT",
+        "d": [
+          "AAOIBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AAOIB",
+          1564059.2528105446,
+          99.77,
+          6759.085
+        ]
+      },
+      {
+        "s": "BINANCE:C98USDT",
+        "d": [
+          "C98USDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "C98",
+          1563731.4935740607,
+          0.01784,
+          23885242.40000001
+        ]
+      },
+      {
+        "s": "BINANCE:HUMAUSDT",
+        "d": [
+          "HUMAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HUMA",
+          1553262.8741067783,
+          0.03534,
+          13777157
+        ]
+      },
+      {
+        "s": "BINANCE:LPTUSDT",
+        "d": [
+          "LPTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LPT",
+          1540492.2966025062,
+          1.763,
+          321193.42
+        ]
+      },
+      {
+        "s": "BINANCE:GLMRUSDT",
+        "d": [
+          "GLMRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GLMR",
+          1517647.3691210302,
+          0.00943,
+          30080824.10000004
+        ]
+      },
+      {
+        "s": "BINANCE:RONINUSDT",
+        "d": [
+          "RONINUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RON",
+          1516473.2978261553,
+          0.0701,
+          7483846.71
+        ]
+      },
+      {
+        "s": "BINANCE:EDUUSDT",
+        "d": [
+          "EDUUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "EDU",
+          1505927.1926606165,
+          0.069,
+          9398716
+        ]
+      },
+      {
+        "s": "BINANCE:COMPUSDT",
+        "d": [
+          "COMPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "COMP",
+          1495290.3897411637,
+          23.99,
+          17315.686
+        ]
+      },
+      {
+        "s": "BINANCE:CHZUSDT",
+        "d": [
+          "CHZUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CHZ",
+          1487797.2491293026,
+          0.01494,
+          34083424
+        ]
+      },
+      {
+        "s": "BINANCE:LUNCUSDT",
+        "d": [
+          "LUNCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LUNC",
+          1449501.218381862,
+          5.013e-05,
+          14347634944.57002
+        ]
+      },
+      {
+        "s": "BINANCE:SOMIUSDT",
+        "d": [
+          "SOMIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SOMI",
+          1445766.587769214,
+          0.2072,
+          3200516.3
+        ]
+      },
+      {
+        "s": "BINANCE:DEXEUSDT",
+        "d": [
+          "DEXEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DEXE",
+          1427526.9021059705,
+          1.888,
+          283520.89
+        ]
+      },
+      {
+        "s": "BINANCE:LAZIOUSDT",
+        "d": [
+          "LAZIOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LAZIO",
+          1427004.0906650554,
+          0.434,
+          887390.15
+        ]
+      },
+      {
+        "s": "BINANCE:BIOUSDT",
+        "d": [
+          "BIOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BIO",
+          1403756.6844147746,
+          0.02825,
+          16386673.4
+        ]
+      },
+      {
+        "s": "BINANCE:GRTUSDT",
+        "d": [
+          "GRTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GRT",
+          1402746.975006524,
+          0.02651,
+          29034915
+        ]
+      },
+      {
+        "s": "BINANCE:VELODROMEUSDT",
+        "d": [
+          "VELODROMEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "VELO",
+          1397537.6344066963,
+          0.03919,
+          9402080.7
+        ]
+      },
+      {
+        "s": "BINANCE:BICOUSDT",
+        "d": [
+          "BICOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BICO",
+          1395259.2146730805,
+          0.01727,
+          23130952.27000001
+        ]
+      },
+      {
+        "s": "BINANCE:TUTUSDT",
+        "d": [
+          "TUTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TUT",
+          1373135.1972639537,
+          0.02104,
+          28837899
+        ]
+      },
+      {
+        "s": "BINANCE:ROSEUSDT",
+        "d": [
+          "ROSEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ROSE",
+          1353286.872449948,
+          0.00863,
+          40676856.70000018
+        ]
+      },
+      {
+        "s": "BINANCE:OPENUSDT",
+        "d": [
+          "OPENUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "OPEN",
+          1351396.2479488284,
+          0.105,
+          5770533.1
+        ]
+      },
+      {
+        "s": "BINANCE:SCRUSDT",
+        "d": [
+          "SCRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SCR",
+          1342842.9397484867,
+          0.02347,
+          10851022.4
+        ]
+      },
+      {
+        "s": "BINANCE:2ZUSDT",
+        "d": [
+          "2ZUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "2Z",
+          1336393.3067476999,
+          0.03566,
+          15432948
+        ]
+      },
+      {
+        "s": "BINANCE:VTHOUSDT",
+        "d": [
+          "VTHOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "VTHO",
+          1316141.163223312,
+          0.000711,
+          434988113
+        ]
+      },
+      {
+        "s": "BINANCE:AVAUSDT",
+        "d": [
+          "AVAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AVA",
+          1307912.4329442703,
+          0.2361,
+          1747840.7
+        ]
+      },
+      {
+        "s": "BINANCE:TWTUSDT",
+        "d": [
+          "TWTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TWT",
+          1307172.8120378768,
+          0.5154,
+          657169
+        ]
+      },
+      {
+        "s": "BINANCE:DYDXUSDT",
+        "d": [
+          "DYDXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DYDX",
+          1303649.3099218418,
+          0.13661,
+          2692656.89
+        ]
+      },
+      {
+        "s": "BINANCE:ARKMUSDT",
+        "d": [
+          "ARKMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ARKM",
+          1228610.0434896876,
+          0.1339,
+          2105665.6
+        ]
+      },
+      {
+        "s": "BINANCE:NEIROUSDT",
+        "d": [
+          "NEIROUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NEIRO",
+          1228493.4218828348,
+          8.395e-05,
+          4942089523
+        ]
+      },
+      {
+        "s": "BINANCE:LITEBUSDT",
+        "d": [
+          "LITEBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LITEB",
+          1222321.3530230036,
+          979.71,
+          274.454
+        ]
+      },
+      {
+        "s": "BINANCE:NOMUSDT",
+        "d": [
+          "NOMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NOM",
+          1198766.8412279757,
+          0.002036,
+          189946795
+        ]
+      },
+      {
+        "s": "BINANCE:MRVLBUSDT",
+        "d": [
+          "MRVLBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MRVLB",
+          1194133.9635184591,
+          258.26,
+          1693.085
+        ]
+      },
+      {
+        "s": "BINANCE:BBUSDT",
+        "d": [
+          "BBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BB",
+          1187773.187861794,
+          0.00931,
+          37186233.20000016
+        ]
+      },
+      {
+        "s": "BINANCE:THETAUSDT",
+        "d": [
+          "THETAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "THETA",
+          1184493.2448070706,
+          0.2117,
+          2555250.3
+        ]
+      },
+      {
+        "s": "BINANCE:IOTAUSDT",
+        "d": [
+          "IOTAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "IOTA",
+          1178927.9106888804,
+          0.0508,
+          8867389
+        ]
+      },
+      {
+        "s": "BINANCE:SUNUSDT",
+        "d": [
+          "SUNUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SUN",
+          1164759.994205067,
+          0.01652,
+          20860554
+        ]
+      },
+      {
+        "s": "BINANCE:COINBUSDT",
+        "d": [
+          "COINBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "COINB",
+          1163536.6923890407,
+          182.32,
+          1285.76
+        ]
+      },
+      {
+        "s": "BINANCE:ENSUSDT",
+        "d": [
+          "ENSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ENS",
+          1153899.9255640456,
+          6.13,
+          80201.36
+        ]
+      },
+      {
+        "s": "BINANCE:ESPUSDT",
+        "d": [
+          "ESPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ESP",
+          1126806.3062839808,
+          0.10568,
+          2921116
+        ]
+      },
+      {
+        "s": "BINANCE:IRENBUSDT",
+        "d": [
+          "IRENBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "IRENB",
+          1126220.4724428116,
+          34.05,
+          13499.96
+        ]
+      },
+      {
+        "s": "BINANCE:SPKUSDT",
+        "d": [
+          "SPKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SPK",
+          1114677.6504223912,
+          0.02127,
+          22267093
+        ]
+      },
+      {
+        "s": "BINANCE:HEMIUSDT",
+        "d": [
+          "HEMIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HEMI",
+          1096112.914381661,
+          0.00577,
+          68374635.20000038
+        ]
+      },
+      {
+        "s": "BINANCE:MANAUSDT",
+        "d": [
+          "MANAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MANA",
+          1092871.7583670653,
+          0.0933,
+          4087846
+        ]
+      },
+      {
+        "s": "BINANCE:BTTCUSDT",
+        "d": [
+          "BTTCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BTT",
+          1082782.2694812864,
+          3.8e-07,
+          1994114686954
+        ]
+      },
+      {
+        "s": "BINANCE:CATIUSDT",
+        "d": [
+          "CATIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CATI",
+          1079572.9102301053,
+          0.05946,
+          1436059.3
+        ]
+      },
+      {
+        "s": "BINANCE:FFUSDT",
+        "d": [
+          "FFUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FF",
+          1067774.2798167174,
+          0.11377,
+          3759129.3
+        ]
+      },
+      {
+        "s": "BINANCE:YBUSDT",
+        "d": [
+          "YBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "YB",
+          1041501.981426324,
+          0.0804,
+          1611181.1
+        ]
+      },
+      {
+        "s": "BINANCE:LAUSDT",
+        "d": [
+          "LAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LA",
+          1039005.9207504241,
+          0.0656,
+          6570373.8
+        ]
+      },
+      {
+        "s": "BINANCE:BABYUSDT",
+        "d": [
+          "BABYUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BABY",
+          1032687.5753401413,
+          0.01222,
+          35667798
+        ]
+      },
+      {
+        "s": "BINANCE:KAITOUSDT",
+        "d": [
+          "KAITOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "KAITO",
+          1027204.7113490382,
+          0.3137,
+          1279553.9
+        ]
+      },
+      {
+        "s": "BINANCE:SAHARAUSDT",
+        "d": [
+          "SAHARAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SAHARA",
+          1004117.9880894087,
+          0.00869,
+          43611572
+        ]
+      },
+      {
+        "s": "BINANCE:EULUSDT",
+        "d": [
+          "EULUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "EUL",
+          1003306.1446315604,
+          1.345,
+          299696.96
+        ]
+      },
+      {
+        "s": "BINANCE:METABUSDT",
+        "d": [
+          "METABUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "METAB",
+          993081.23362376,
+          737.56,
+          321.803
+        ]
+      },
+      {
+        "s": "BINANCE:BMNRBUSDT",
+        "d": [
+          "BMNRBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BMNRB",
+          969209.6602090487,
+          24.09,
+          11336.6
+        ]
+      },
+      {
+        "s": "BINANCE:KAVAUSDT",
+        "d": [
+          "KAVAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "KAVA",
+          955050.4333145993,
+          0.06913,
+          4419593.5
+        ]
+      },
+      {
+        "s": "BINANCE:FRAXUSDT",
+        "d": [
+          "FRAXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FRAX",
+          952874.755092505,
+          0.3371,
+          735030.4
+        ]
+      },
+      {
+        "s": "BINANCE:IMXUSDT",
+        "d": [
+          "IMXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "IMX",
+          936521.1181514916,
+          0.1808,
+          1358818.12
+        ]
+      },
+      {
+        "s": "BINANCE:NBISBUSDT",
+        "d": [
+          "NBISBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NBISB",
+          930386.3106602748,
+          204.52,
+          936.806
+        ]
+      },
+      {
+        "s": "BINANCE:FIDAUSDT",
+        "d": [
+          "FIDAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FIDA",
+          920608.411266504,
+          0.02019,
+          15784369.4
+        ]
+      },
+      {
+        "s": "BINANCE:ALLOUSDT",
+        "d": [
+          "ALLOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ALLO",
+          919059.9162372029,
+          0.2433,
+          1126996
+        ]
+      },
+      {
+        "s": "BINANCE:AUDIOUSDT",
+        "d": [
+          "AUDIOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AUDIO",
+          909851.1860936839,
+          0.01609,
+          14238076.2
+        ]
+      },
+      {
+        "s": "BINANCE:PNUTUSDT",
+        "d": [
+          "PNUTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PNUT",
+          906821.7767627694,
+          0.0495,
+          7594071.8
+        ]
+      },
+      {
+        "s": "BINANCE:AAPLBUSDT",
+        "d": [
+          "AAPLBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AAPLB",
+          896861.9203623172,
+          342.84,
+          369.082
+        ]
+      },
+      {
+        "s": "BINANCE:ARPAUSDT",
+        "d": [
+          "ARPAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ARPA",
+          887035.5604004132,
+          0.01135,
+          11491485.5
+        ]
+      },
+      {
+        "s": "BINANCE:GMTUSDT",
+        "d": [
+          "GMTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GMT",
+          885606.7203411837,
+          0.00829,
+          32973531.60000008
+        ]
+      },
+      {
+        "s": "BINANCE:EDENUSDT",
+        "d": [
+          "EDENUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "EDEN",
+          877221.0029358205,
+          0.06306,
+          4584568.4
+        ]
+      },
+      {
+        "s": "BINANCE:ACHUSDT",
+        "d": [
+          "ACHUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ACH",
+          875834.8775742591,
+          0.00589,
+          66942316
+        ]
+      },
+      {
+        "s": "BINANCE:STOUSDT",
+        "d": [
+          "STOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "STO",
+          875688.4057042862,
+          0.0365,
+          12146763.5
+        ]
+      },
+      {
+        "s": "BINANCE:AVNTUSDT",
+        "d": [
+          "AVNTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AVNT",
+          873024.9664181488,
+          0.132,
+          2437324.5
+        ]
+      },
+      {
+        "s": "BINANCE:HOMEUSDT",
+        "d": [
+          "HOMEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HOME",
+          871712.7733923328,
+          0.00538,
+          80961995
+        ]
+      },
+      {
+        "s": "BINANCE:TSTUSDT",
+        "d": [
+          "TSTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TST",
+          863771.3613687421,
+          0.01651,
+          15335048.6
+        ]
+      },
+      {
+        "s": "BINANCE:BABABUSDT",
+        "d": [
+          "BABABUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BABAB",
+          862340.056672257,
+          109.46,
+          3911.573
+        ]
+      },
+      {
+        "s": "BINANCE:IOTXUSDT",
+        "d": [
+          "IOTXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "IOTX",
+          860153.7427565996,
+          0.003765,
+          35882752
+        ]
+      },
+      {
+        "s": "BINANCE:PEOPLEUSDT",
+        "d": [
+          "PEOPLEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PEOPLE",
+          859337.2332808492,
+          0.00791,
+          52244523.5000003
+        ]
+      },
+      {
+        "s": "BINANCE:ARKUSDT",
+        "d": [
+          "ARKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ARK",
+          855099.5070641023,
+          0.1885,
+          998382
+        ]
+      },
+      {
+        "s": "BINANCE:ZBTUSDT",
+        "d": [
+          "ZBTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ZBT",
+          842644.9625590566,
+          0.0788,
+          5397928.5
+        ]
+      },
+      {
+        "s": "BINANCE:CUSDT",
+        "d": [
+          "CUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "C",
+          839808.1216872571,
+          0.0975,
+          2266445.2
+        ]
+      },
+      {
+        "s": "BINANCE:GUSDT",
+        "d": [
+          "GUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "G",
+          839650.90717951,
+          0.00409,
+          69653490
+        ]
+      },
+      {
+        "s": "BINANCE:EWYBUSDT",
+        "d": [
+          "EWYBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "EWYB",
+          838115.1761722761,
+          164.63,
+          4344.635
+        ]
+      },
+      {
+        "s": "BINANCE:PROVEUSDT",
+        "d": [
+          "PROVEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PROVE",
+          820144.9658510066,
+          0.1943,
+          947178.8
+        ]
+      },
+      {
+        "s": "BINANCE:EGLDUSDT",
+        "d": [
+          "EGLDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "EGLD",
+          806671.7260286164,
+          3.896,
+          52344.71
+        ]
+      },
+      {
+        "s": "BINANCE:AVGOBUSDT",
+        "d": [
+          "AVGOBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AVGOB",
+          795093.7551550263,
+          350.51,
+          546.732
+        ]
+      },
+      {
+        "s": "BINANCE:CVXUSDT",
+        "d": [
+          "CVXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CVX",
+          784876.6465435806,
+          2.038,
+          168119.96
+        ]
+      },
+      {
+        "s": "BINANCE:USUALUSDT",
+        "d": [
+          "USUALUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "USUAL",
+          773580.4146593262,
+          0.01172,
+          29104231.2000001
+        ]
+      },
+      {
+        "s": "BINANCE:KMNOUSDT",
+        "d": [
+          "KMNOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "KMNO",
+          763506.4314726708,
+          0.03698,
+          8027699
+        ]
+      },
+      {
+        "s": "BINANCE:REUSDT",
+        "d": [
+          "REUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RE",
+          761981.5693686588,
+          0.4349,
+          606208.6
+        ]
+      },
+      {
+        "s": "BINANCE:MEUSDT",
+        "d": [
+          "MEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ME",
+          747379.1804637231,
+          0.0702,
+          1770128.44
+        ]
+      },
+      {
+        "s": "BINANCE:HEIUSDT",
+        "d": [
+          "HEIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HEI",
+          743876.9193598588,
+          0.1201,
+          2374722.5
+        ]
+      },
+      {
+        "s": "BINANCE:ONTUSDT",
+        "d": [
+          "ONTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ONT",
+          735441.3720091074,
+          0.05672,
+          5973887
+        ]
+      },
+      {
+        "s": "BINANCE:BROCCOLI714USDT",
+        "d": [
+          "BROCCOLI714USDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BROCCOLI",
+          733765.8159033004,
+          0.02276,
+          14258727
+        ]
+      },
+      {
+        "s": "BINANCE:SIGNUSDT",
+        "d": [
+          "SIGNUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SIGN",
+          721170.9186742109,
+          0.01293,
+          19019094
+        ]
+      },
+      {
+        "s": "BINANCE:TNSRUSDT",
+        "d": [
+          "TNSRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TNSR",
+          720189.5130905797,
+          0.0357,
+          8392939.1
+        ]
+      },
+      {
+        "s": "BINANCE:1000CHEEMSUSDT",
+        "d": [
+          "1000CHEEMSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "1000CHEEMS",
+          714896.6264295432,
+          0.000493,
+          496483646
+        ]
+      },
+      {
+        "s": "BINANCE:MANTRAUSDT",
+        "d": [
+          "MANTRAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MANTRA",
+          713348.6960109336,
+          0.00435,
+          67983009
+        ]
+      },
+      {
+        "s": "BINANCE:UMAUSDT",
+        "d": [
+          "UMAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "UMA",
+          707544.9302933323,
+          0.408,
+          544012.2
+        ]
+      },
+      {
+        "s": "BINANCE:ALICEUSDT",
+        "d": [
+          "ALICEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ALICE",
+          706682.909009036,
+          0.1661,
+          1420774.41
+        ]
+      },
+      {
+        "s": "BINANCE:GUNUSDT",
+        "d": [
+          "GUNUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GUN",
+          703265.2684923409,
+          0.00275,
+          81644491
+        ]
+      },
+      {
+        "s": "BINANCE:MBLUSDT",
+        "d": [
+          "MBLUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MBL",
+          699964.8537452649,
+          0.000835,
+          254289505
+        ]
+      },
+      {
+        "s": "BINANCE:MAVUSDT",
+        "d": [
+          "MAVUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MAV",
+          691972.5375096905,
+          0.0109,
+          20025641
+        ]
+      },
+      {
+        "s": "BINANCE:AIXBTUSDT",
+        "d": [
+          "AIXBTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AIXBT",
+          678416.8656594757,
+          0.02063,
+          13471168.8
+        ]
+      },
+      {
+        "s": "BINANCE:MIRAUSDT",
+        "d": [
+          "MIRAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MIRA",
+          673073.0547011644,
+          0.04813,
+          7316375.1
+        ]
+      },
+      {
+        "s": "BINANCE:YGGUSDT",
+        "d": [
+          "YGGUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "YGG",
+          666674.1450847137,
+          0.02771,
+          11399968.1
+        ]
+      },
+      {
+        "s": "BINANCE:1INCHUSDT",
+        "d": [
+          "1INCHUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "1INCH",
+          656391.2070030854,
+          0.0981,
+          2975043.9
+        ]
+      },
+      {
+        "s": "BINANCE:MMTUSDT",
+        "d": [
+          "MMTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MMT",
+          638356.3984617703,
+          0.1757,
+          1518507.6
+        ]
+      },
+      {
+        "s": "BINANCE:ZILUSDT",
+        "d": [
+          "ZILUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ZIL",
+          636820.6167630289,
+          0.003547,
+          66492119.5000004
+        ]
+      },
+      {
+        "s": "BINANCE:MITOUSDT",
+        "d": [
+          "MITOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MITO",
+          602265.5784350778,
+          0.01425,
+          16787902.2
+        ]
+      },
+      {
+        "s": "BINANCE:SSVUSDT",
+        "d": [
+          "SSVUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SSV",
+          599926.7060002856,
+          2.827,
+          142343.603
+        ]
+      },
+      {
+        "s": "BINANCE:ENJUSDT",
+        "d": [
+          "ENJUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ENJ",
+          598563.9682460526,
+          0.03118,
+          5579577
+        ]
+      },
+      {
+        "s": "BINANCE:CELOUSDT",
+        "d": [
+          "CELOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CELO",
+          593420.8159393382,
+          0.09333,
+          2417270.3
+        ]
+      },
+      {
+        "s": "BINANCE:NEWTUSDT",
+        "d": [
+          "NEWTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NEWT",
+          592799.8427558615,
+          0.04668,
+          7696812.4
+        ]
+      },
+      {
+        "s": "BINANCE:ACTUSDT",
+        "d": [
+          "ACTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ACT",
+          592495.6693726609,
+          0.01005,
+          16479300.2
+        ]
+      },
+      {
+        "s": "BINANCE:LUNAUSDT",
+        "d": [
+          "LUNAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LUNA",
+          592361.1647518338,
+          0.0457,
+          5927509.58
+        ]
+      },
+      {
+        "s": "BINANCE:TUSDT",
+        "d": [
+          "TUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "T",
+          589813.9423864092,
+          0.00547,
+          21548331.7
+        ]
+      },
+      {
+        "s": "BINANCE:COHRBUSDT",
+        "d": [
+          "COHRBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "COHRB",
+          570628.0205156826,
+          282.23,
+          546.499
+        ]
+      },
+      {
+        "s": "BINANCE:ASTSBUSDT",
+        "d": [
+          "ASTSBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ASTSB",
+          568992.1025879851,
+          49.53,
+          944.48
+        ]
+      },
+      {
+        "s": "BINANCE:ADXUSDT",
+        "d": [
+          "ADXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ADX",
+          568542.2922955991,
+          0.067,
+          2939258
+        ]
+      },
+      {
+        "s": "BINANCE:SUSHIUSDT",
+        "d": [
+          "SUSHIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SUSHI",
+          565816.724493851,
+          0.2426,
+          851189.8
+        ]
+      },
+      {
+        "s": "BINANCE:XECUSDT",
+        "d": [
+          "XECUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "XEC",
+          565159.8047768252,
+          7.07e-06,
+          43942102827
+        ]
+      },
+      {
+        "s": "BINANCE:BNSOLUSDT",
+        "d": [
+          "BNSOLUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BNSOL",
+          563265.3980079455,
+          123.6,
+          2085.034
+        ]
+      },
+      {
+        "s": "BINANCE:HMSTRUSDT",
+        "d": [
+          "HMSTRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HMSTR",
+          563072.3923176004,
+          0.0001622,
+          1059542381
+        ]
+      },
+      {
+        "s": "BINANCE:MEMEUSDT",
+        "d": [
+          "MEMEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MEME",
+          553857.7133409703,
+          0.000541,
+          376422642
+        ]
+      },
+      {
+        "s": "BINANCE:MOVEUSDT",
+        "d": [
+          "MOVEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MOVE",
+          551916.5477161071,
+          0.008729,
+          26477182.20000001
+        ]
+      },
+      {
+        "s": "BINANCE:ONGUSDT",
+        "d": [
+          "ONGUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ONG",
+          551045.091819237,
+          0.08697,
+          3618455
+        ]
+      },
+      {
+        "s": "BINANCE:ZKPUSDT",
+        "d": [
+          "ZKPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ZKP",
+          548814.9283598334,
+          0.0479,
+          3253900.4
+        ]
+      },
+      {
+        "s": "BINANCE:RIFUSDT",
+        "d": [
+          "RIFUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RIF",
+          545077.6773985919,
+          0.0823,
+          2187462
+        ]
+      },
+      {
+        "s": "BINANCE:AGPUBUSDT",
+        "d": [
+          "AGPUBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AGPUB",
+          540826.3321915193,
+          10.7,
+          4610.72
+        ]
+      },
+      {
+        "s": "BINANCE:AUSDT",
+        "d": [
+          "AUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "A",
+          538599.2616738263,
+          0.1031,
+          983050.4
+        ]
+      },
+      {
+        "s": "BINANCE:DIAUSDT",
+        "d": [
+          "DIAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DIA",
+          531277.7456482616,
+          0.1702,
+          843912.9
+        ]
+      },
+      {
+        "s": "BINANCE:AWEUSDT",
+        "d": [
+          "AWEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AWE",
+          528178.8992339044,
+          0.06667,
+          5444385
+        ]
+      },
+      {
+        "s": "BINANCE:KSMUSDT",
+        "d": [
+          "KSMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "KSM",
+          527874.2610896606,
+          4.81,
+          37158.199
+        ]
+      },
+      {
+        "s": "BINANCE:AIGENSYNUSDT",
+        "d": [
+          "AIGENSYNUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AI",
+          525680.2389272382,
+          0.01969,
+          7789044
+        ]
+      },
+      {
+        "s": "BINANCE:BELUSDT",
+        "d": [
+          "BELUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BEL",
+          517573.82529945404,
+          0.1204,
+          933288.2
+        ]
+      },
+      {
+        "s": "BINANCE:REZUSDT",
+        "d": [
+          "REZUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "REZ",
+          515665.1467094808,
+          0.003877,
+          63902982.40000028
+        ]
+      },
+      {
+        "s": "BINANCE:ZKCUSDT",
+        "d": [
+          "ZKCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ZKC",
+          512420.16906352935,
+          0.0387,
+          4576713.2
+        ]
+      },
+      {
+        "s": "BINANCE:NEXOUSDT",
+        "d": [
+          "NEXOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NEXO",
+          509563.3592086984,
+          0.839,
+          148045.52
+        ]
+      },
+      {
+        "s": "BINANCE:KATUSDT",
+        "d": [
+          "KATUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "KAT",
+          506398.4207812007,
+          0.00443,
+          46074280
+        ]
+      },
+      {
+        "s": "BINANCE:WINUSDT",
+        "d": [
+          "WINUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "WIN",
+          505634.228189845,
+          5.74e-05,
+          3545960000
+        ]
+      },
+      {
+        "s": "BINANCE:DOGSUSDT",
+        "d": [
+          "DOGSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DOGS",
+          503933.5982752582,
+          4.254e-05,
+          5657633004
+        ]
+      },
+      {
+        "s": "BINANCE:GENIUSUSDT",
+        "d": [
+          "GENIUSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GENIUS",
+          496920.19121541694,
+          0.3332,
+          507750.5
+        ]
+      },
+      {
+        "s": "BINANCE:CGPTUSDT",
+        "d": [
+          "CGPTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CGPT",
+          488302.6034161994,
+          0.02395,
+          6443121.5
+        ]
+      },
+      {
+        "s": "BINANCE:FLUXUSDT",
+        "d": [
+          "FLUXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FLUX",
+          484183.8913656137,
+          0.0855,
+          1547102.94
+        ]
+      },
+      {
+        "s": "BINANCE:IOSTUSDT",
+        "d": [
+          "IOSTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "IOST",
+          483928.24790970155,
+          0.00085,
+          184917413
+        ]
+      },
+      {
+        "s": "BINANCE:SECZBUSDT",
+        "d": [
+          "SECZBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SECZB",
+          480608.8140705014,
+          12.07,
+          10473.36
+        ]
+      },
+      {
+        "s": "BINANCE:QIUSDT",
+        "d": [
+          "QIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "QI",
+          479967.12138198985,
+          0.002705,
+          38335560
+        ]
+      },
+      {
+        "s": "BINANCE:RKLBBUSDT",
+        "d": [
+          "RKLBBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RKLBB",
+          477142.2639700503,
+          64.6,
+          1631.33
+        ]
+      },
+      {
+        "s": "BINANCE:MUUBUSDT",
+        "d": [
+          "MUUBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MUUB",
+          470407.3200848609,
+          28.98,
+          3936.71
+        ]
+      },
+      {
+        "s": "BINANCE:AXTIBUSDT",
+        "d": [
+          "AXTIBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AXTIB",
+          470046.17859066674,
+          62.54,
+          3305.41
+        ]
+      },
+      {
+        "s": "BINANCE:LAYERUSDT",
+        "d": [
+          "LAYERUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LAYER",
+          465903.34160280164,
+          0.072,
+          2430364.01
+        ]
+      },
+      {
+        "s": "BINANCE:YFIUSDT",
+        "d": [
+          "YFIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "YFI",
+          458268.1295642667,
+          2361,
+          79.12197
+        ]
+      },
+      {
+        "s": "BINANCE:SAPIENUSDT",
+        "d": [
+          "SAPIENUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SAPIEN",
+          454530.0056097284,
+          0.0694,
+          3483494.7
+        ]
+      },
+      {
+        "s": "BINANCE:AIUSDT",
+        "d": [
+          "AIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AI",
+          452784.3039478198,
+          0.0199,
+          7152965.1
+        ]
+      },
+      {
+        "s": "BINANCE:AEVOUSDT",
+        "d": [
+          "AEVOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AEVO",
+          445616.8812733753,
+          0.02526,
+          6153227.8
+        ]
+      },
+      {
+        "s": "BINANCE:WCTUSDT",
+        "d": [
+          "WCTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "WCT",
+          440957.80326094443,
+          0.04075,
+          3115788.2
+        ]
+      },
+      {
+        "s": "BINANCE:SOPHUSDT",
+        "d": [
+          "SOPHUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SOPH",
+          437944.12921356596,
+          0.00336,
+          65644315
+        ]
+      },
+      {
+        "s": "BINANCE:WDCBUSDT",
+        "d": [
+          "WDCBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "WDCB",
+          434421.64146004827,
+          371.51,
+          640.062
+        ]
+      },
+      {
+        "s": "BINANCE:USDEUSDT",
+        "d": [
+          "USDEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "USDE",
+          432931.90170581016,
+          1.0006,
+          57126
+        ]
+      },
+      {
+        "s": "BINANCE:OGUSDT",
+        "d": [
+          "OGUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "OG",
+          422271.4119536858,
+          2.769,
+          51910.2
+        ]
+      },
+      {
+        "s": "BINANCE:AUCTIONUSDT",
+        "d": [
+          "AUCTIONUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AUCTION",
+          421732.488921079,
+          3.64,
+          29766.33
+        ]
+      },
+      {
+        "s": "BINANCE:CHRUSDT",
+        "d": [
+          "CHRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CHR",
+          416508.24029194546,
+          0.02161,
+          7437780
+        ]
+      },
+      {
+        "s": "BINANCE:EURIUSDT",
+        "d": [
+          "EURIUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "EURI",
+          415003.65831704804,
+          1.1201,
+          42738.6
+        ]
+      },
+      {
+        "s": "BINANCE:RESOLVUSDT",
+        "d": [
+          "RESOLVUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RESOLV",
+          411401.61523797904,
+          0.01838,
+          8918023.2
+        ]
+      },
+      {
+        "s": "BINANCE:PORTOUSDT",
+        "d": [
+          "PORTOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PORTO",
+          406679.1878209737,
+          0.468,
+          239123.05
+        ]
+      },
+      {
+        "s": "BINANCE:MASKUSDT",
+        "d": [
+          "MASKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MASK",
+          406228.8583662434,
+          0.466,
+          247316.2
+        ]
+      },
+      {
+        "s": "BINANCE:SOLVUSDT",
+        "d": [
+          "SOLVUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SOLV",
+          405997.7811908494,
+          0.00394,
+          25523733
+        ]
+      },
+      {
+        "s": "BINANCE:BANANAS31USDT",
+        "d": [
+          "BANANAS31USDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BANANAS31",
+          405726.02460854506,
+          0.006774,
+          35972212
+        ]
+      },
+      {
+        "s": "BINANCE:VANAUSDT",
+        "d": [
+          "VANAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "VANA",
+          402644.312609222,
+          1.087,
+          118525.87
+        ]
+      },
+      {
+        "s": "BINANCE:ILVUSDT",
+        "d": [
+          "ILVUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ILV",
+          399453.2587607069,
+          3.73,
+          39304.235
+        ]
+      },
+      {
+        "s": "BINANCE:ANKRUSDT",
+        "d": [
+          "ANKRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ANKR",
+          394946.5778394036,
+          0.00464,
+          20789969.1
+        ]
+      },
+      {
+        "s": "BINANCE:BMTUSDT",
+        "d": [
+          "BMTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BMT",
+          393894.9837275114,
+          0.01883,
+          6620928.2
+        ]
+      },
+      {
+        "s": "BINANCE:EPICUSDT",
+        "d": [
+          "EPICUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "EPIC",
+          390005.4704152505,
+          0.4469,
+          349857.4
+        ]
+      },
+      {
+        "s": "BINANCE:TLMUSDT",
+        "d": [
+          "TLMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TLM",
+          384126.3553947184,
+          0.00137,
+          103040970
+        ]
+      },
+      {
+        "s": "BINANCE:ASTRUSDT",
+        "d": [
+          "ASTRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ASTR",
+          379385.9587866384,
+          0.006659,
+          23692575.40000003
+        ]
+      },
+      {
+        "s": "BINANCE:PSGUSDT",
+        "d": [
+          "PSGUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PSG",
+          377233.34623456193,
+          0.453,
+          289174.45
+        ]
+      },
+      {
+        "s": "BINANCE:MRNABUSDT",
+        "d": [
+          "MRNABUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MRNAB",
+          376421.1341528091,
+          214.83,
+          435.632
+        ]
+      },
+      {
+        "s": "BINANCE:HOLOUSDT",
+        "d": [
+          "HOLOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HOLO",
+          372907.98079460056,
+          0.0605,
+          2476960.9
+        ]
+      },
+      {
+        "s": "BINANCE:ATMUSDT",
+        "d": [
+          "ATMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ATM",
+          370630.21517626266,
+          1.032,
+          94757.57
+        ]
+      },
+      {
+        "s": "BINANCE:1MBABYDOGEUSDT",
+        "d": [
+          "1MBABYDOGEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "1MBABYDOGE",
+          369031.9975701025,
+          0.0003801,
+          581382681
+        ]
+      },
+      {
+        "s": "BINANCE:TURBOUSDT",
+        "d": [
+          "TURBOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TURBO",
+          368590.7379468486,
+          0.000965,
+          145255857
+        ]
+      },
+      {
+        "s": "BINANCE:TREEUSDT",
+        "d": [
+          "TREEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TREE",
+          367639.9151297671,
+          0.0427,
+          3706545.4
+        ]
+      },
+      {
+        "s": "BINANCE:CELRUSDT",
+        "d": [
+          "CELRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CELR",
+          364491.25501346367,
+          0.003027,
+          24397820.70000002
+        ]
+      },
+      {
+        "s": "BINANCE:FOGOUSDT",
+        "d": [
+          "FOGOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FOGO",
+          359361.87074026954,
+          0.00473,
+          29794710
+        ]
+      },
+      {
+        "s": "BINANCE:GMXUSDT",
+        "d": [
+          "GMXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GMX",
+          358333.19369131286,
+          8.5,
+          16525.727
+        ]
+      },
+      {
+        "s": "BINANCE:1000SATSUSDT",
+        "d": [
+          "1000SATSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "1000SATS",
+          357638.66975560994,
+          1.168e-05,
+          10743329788
+        ]
+      },
+      {
+        "s": "BINANCE:HOODBUSDT",
+        "d": [
+          "HOODBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HOODB",
+          353507.8774916095,
+          109.15,
+          879.565
+        ]
+      },
+      {
+        "s": "BINANCE:MSFTBUSDT",
+        "d": [
+          "MSFTBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MSFTB",
+          344031.815080908,
+          543.87,
+          131.361
+        ]
+      },
+      {
+        "s": "BINANCE:JUVUSDT",
+        "d": [
+          "JUVUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "JUV",
+          343644.1360291073,
+          0.327,
+          223823.18
+        ]
+      },
+      {
+        "s": "BINANCE:QTUMUSDT",
+        "d": [
+          "QTUMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "QTUM",
+          343508.5325546106,
+          0.942,
+          118284.8
+        ]
+      },
+      {
+        "s": "BINANCE:CETUSUSDT",
+        "d": [
+          "CETUSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CETUS",
+          339628.52958990255,
+          0.02511,
+          4343251.3
+        ]
+      },
+      {
+        "s": "BINANCE:SANTOSUSDT",
+        "d": [
+          "SANTOSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SANTOS",
+          335628.62049460656,
+          0.501,
+          207231.53
+        ]
+      },
+      {
+        "s": "BINANCE:TKOUSDT",
+        "d": [
+          "TKOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TKO",
+          335272.062507148,
+          0.0558,
+          1863415.5
+        ]
+      },
+      {
+        "s": "BINANCE:MTLUSDT",
+        "d": [
+          "MTLUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MTL",
+          332354.51603903587,
+          0.3,
+          856778.8
+        ]
+      },
+      {
+        "s": "BINANCE:HAEDALUSDT",
+        "d": [
+          "HAEDALUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HAEDAL",
+          331528.3869062048,
+          0.01839,
+          7551828.5
+        ]
+      },
+      {
+        "s": "BINANCE:SPYBUSDT",
+        "d": [
+          "SPYBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SPYB",
+          331258.71878287185,
+          778.39,
+          140.367
+        ]
+      },
+      {
+        "s": "BINANCE:BREVUSDT",
+        "d": [
+          "BREVUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BREV",
+          330294.28322014393,
+          0.0851,
+          1543109.4
+        ]
+      },
+      {
+        "s": "BINANCE:TOWNSUSDT",
+        "d": [
+          "TOWNSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TOWNS",
+          329120.22137582005,
+          0.001755,
+          57937202
+        ]
+      },
+      {
+        "s": "BINANCE:SPELLUSDT",
+        "d": [
+          "SPELLUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SPELL",
+          325208.50135678926,
+          9.23e-05,
+          1130971487
+        ]
+      },
+      {
+        "s": "BINANCE:BEBUSDT",
+        "d": [
+          "BEBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BEB",
+          323993.69500442507,
+          255.29,
+          208.393
+        ]
+      },
+      {
+        "s": "BINANCE:NXPCUSDT",
+        "d": [
+          "NXPCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NXPC",
+          323412.52839118463,
+          0.2095,
+          837106.4
+        ]
+      },
+      {
+        "s": "BINANCE:ZRXUSDT",
+        "d": [
+          "ZRXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ZRX",
+          322909.90379933646,
+          0.1212,
+          865604
+        ]
+      },
+      {
+        "s": "BINANCE:ALPINEUSDT",
+        "d": [
+          "ALPINEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ALPINE",
+          315840.5597597642,
+          0.358,
+          253347.74
+        ]
+      },
+      {
+        "s": "BINANCE:XVGUSDT",
+        "d": [
+          "XVGUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "XVG",
+          314196.275457187,
+          0.002763,
+          37098056
+        ]
+      },
+      {
+        "s": "BINANCE:POLYXUSDT",
+        "d": [
+          "POLYXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "POLYX",
+          311871.7510696275,
+          0.0396,
+          2061112.8
+        ]
+      },
+      {
+        "s": "BINANCE:WAXPUSDT",
+        "d": [
+          "WAXPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "WAXP",
+          310828.08086532,
+          0.00542,
+          20246219
+        ]
+      },
+      {
+        "s": "BINANCE:BANDUSDT",
+        "d": [
+          "BANDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BAND",
+          307081.6526244403,
+          0.2475,
+          327952.6
+        ]
+      },
+      {
+        "s": "BINANCE:CVCUSDT",
+        "d": [
+          "CVCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CVC",
+          304348.5753226168,
+          0.02432,
+          5267299
+        ]
+      },
+      {
+        "s": "BINANCE:PORTALUSDT",
+        "d": [
+          "PORTALUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PORTAL",
+          303002.70697181695,
+          0.01576,
+          6073546.4
+        ]
+      },
+      {
+        "s": "BINANCE:NOTUSDT",
+        "d": [
+          "NOTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NOT",
+          296304.55646838236,
+          0.000458,
+          246995798
+        ]
+      },
+      {
+        "s": "BINANCE:WOOUSDT",
+        "d": [
+          "WOOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "WOO",
+          291944.93852651,
+          0.01282,
+          12670375.7
+        ]
+      },
+      {
+        "s": "BINANCE:REQUSDT",
+        "d": [
+          "REQUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "REQ",
+          289918.6672630913,
+          0.0537,
+          338213
+        ]
+      },
+      {
+        "s": "BINANCE:KERNELUSDT",
+        "d": [
+          "KERNELUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "KERNEL",
+          287062.80760261655,
+          0.0485,
+          2896821.9
+        ]
+      },
+      {
+        "s": "BINANCE:FTTUSDT",
+        "d": [
+          "FTTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FTT",
+          281836.56223119545,
+          0.252,
+          401946.18
+        ]
+      },
+      {
+        "s": "BINANCE:GLMUSDT",
+        "d": [
+          "GLMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GLM",
+          279807.97078928107,
+          0.1302,
+          539194.3
+        ]
+      },
+      {
+        "s": "BINANCE:COOKIEUSDT",
+        "d": [
+          "COOKIEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "COOKIE",
+          279245.72972025385,
+          0.01152,
+          8072979.6
+        ]
+      },
+      {
+        "s": "BINANCE:DCRUSDT",
+        "d": [
+          "DCRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DCR",
+          278192.8642747956,
+          16.48,
+          10550.776
+        ]
+      },
+      {
+        "s": "BINANCE:STXBUSDT",
+        "d": [
+          "STXBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "STXB",
+          278157.135159605,
+          726.31,
+          256.85
+        ]
+      },
+      {
+        "s": "BINANCE:GASUSDT",
+        "d": [
+          "GASUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GAS",
+          278147.3389994741,
+          1.366,
+          81741.4
+        ]
+      },
+      {
+        "s": "BINANCE:COWUSDT",
+        "d": [
+          "COWUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "COW",
+          275758.2329949528,
+          0.1451,
+          786364.9
+        ]
+      },
+      {
+        "s": "BINANCE:CITYUSDT",
+        "d": [
+          "CITYUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CITY",
+          275415.23803248064,
+          0.348,
+          266951.06
+        ]
+      },
+      {
+        "s": "BINANCE:SCUSDT",
+        "d": [
+          "SCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SC",
+          272582.4851885576,
+          0.000923,
+          107384223
+        ]
+      },
+      {
+        "s": "BINANCE:ORCLBUSDT",
+        "d": [
+          "ORCLBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ORCLB",
+          264581.99292129785,
+          136.12,
+          871.848
+        ]
+      },
+      {
+        "s": "BINANCE:AGLDUSDT",
+        "d": [
+          "AGLDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AGLD",
+          263381.4997813509,
+          0.1908,
+          571432.3
+        ]
+      },
+      {
+        "s": "BINANCE:BARUSDT",
+        "d": [
+          "BARUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BAR",
+          256792.20972472453,
+          0.279,
+          241126.45
+        ]
+      },
+      {
+        "s": "BINANCE:KNCUSDT",
+        "d": [
+          "KNCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "KNC",
+          255783.14946689853,
+          0.1319,
+          924495.5
+        ]
+      },
+      {
+        "s": "BINANCE:ACMUSDT",
+        "d": [
+          "ACMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ACM",
+          255279.09059681642,
+          0.279,
+          288470
+        ]
+      },
+      {
+        "s": "BINANCE:LISTAUSDT",
+        "d": [
+          "LISTAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LISTA",
+          249748.48090290185,
+          0.0778,
+          1367673.1
+        ]
+      },
+      {
+        "s": "BINANCE:MVLLBUSDT",
+        "d": [
+          "MVLLBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "MVLLB",
+          248245.5349220966,
+          33.77,
+          1920.49
+        ]
+      },
+      {
+        "s": "BINANCE:TSMBUSDT",
+        "d": [
+          "TSMBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TSMB",
+          247583.09872774297,
+          440.12,
+          229.778
+        ]
+      },
+      {
+        "s": "BINANCE:JOEUSDT",
+        "d": [
+          "JOEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "JOE",
+          245704.25023889198,
+          0.0373,
+          1859032.61
+        ]
+      },
+      {
+        "s": "BINANCE:STEEMUSDT",
+        "d": [
+          "STEEMUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "STEEM",
+          245377.110707379,
+          0.05739,
+          1742217.1
+        ]
+      },
+      {
+        "s": "BINANCE:SHELLUSDT",
+        "d": [
+          "SHELLUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SHELL",
+          241557.74521214166,
+          0.02249,
+          3265063.6
+        ]
+      },
+      {
+        "s": "BINANCE:BARDUSDT",
+        "d": [
+          "BARDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BARD",
+          239567.38928846119,
+          0.119,
+          531058.8
+        ]
+      },
+      {
+        "s": "BINANCE:DELLBUSDT",
+        "d": [
+          "DELLBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DELLB",
+          237158.6440469571,
+          566.08,
+          268.669
+        ]
+      },
+      {
+        "s": "BINANCE:SLPUSDT",
+        "d": [
+          "SLPUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SLP",
+          235767.04726456825,
+          0.00062,
+          169272268
+        ]
+      },
+      {
+        "s": "BINANCE:USDSUSDT",
+        "d": [
+          "USDSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "USDS",
+          231349.85784558175,
+          1.0008,
+          146407
+        ]
+      },
+      {
+        "s": "BINANCE:GLWBUSDT",
+        "d": [
+          "GLWBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GLWB",
+          229412.51092311047,
+          144.49,
+          613.884
+        ]
+      },
+      {
+        "s": "BINANCE:ASRUSDT",
+        "d": [
+          "ASRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ASR",
+          224308.31427013446,
+          0.841,
+          119054.3
+        ]
+      },
+      {
+        "s": "BINANCE:USTCUSDT",
+        "d": [
+          "USTCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "USTC",
+          220971.1147697201,
+          0.00525,
+          21542507
+        ]
+      },
+      {
+        "s": "BINANCE:LQTYUSDT",
+        "d": [
+          "LQTYUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LQTY",
+          220649.69644202356,
+          0.223,
+          404382.9
+        ]
+      },
+      {
+        "s": "BINANCE:DOLOUSDT",
+        "d": [
+          "DOLOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DOLO",
+          220563.12520335894,
+          0.02606,
+          3713156.3
+        ]
+      },
+      {
+        "s": "BINANCE:CYPHBUSDT",
+        "d": [
+          "CYPHBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CYPHB",
+          219540.7434315305,
+          2.9,
+          22212.8
+        ]
+      },
+      {
+        "s": "BINANCE:RAREUSDT",
+        "d": [
+          "RAREUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RARE",
+          218848.41921791443,
+          0.01547,
+          3897638.8
+        ]
+      },
+      {
+        "s": "BINANCE:NFLXBUSDT",
+        "d": [
+          "NFLXBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NFLXB",
+          218294.86623768898,
+          70.96,
+          300.68
+        ]
+      },
+      {
+        "s": "BINANCE:RPLUSDT",
+        "d": [
+          "RPLUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RPL",
+          216173.85823466093,
+          1.777,
+          39659.46
+        ]
+      },
+      {
+        "s": "BINANCE:AMZNBUSDT",
+        "d": [
+          "AMZNBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AMZNB",
+          214500.7071797695,
+          258.66,
+          92.044
+        ]
+      },
+      {
+        "s": "BINANCE:NOKBUSDT",
+        "d": [
+          "NOKBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "NOKB",
+          212340.00219363568,
+          9.67,
+          9705.41
+        ]
+      },
+      {
+        "s": "BINANCE:BIGTIMEUSDT",
+        "d": [
+          "BIGTIMEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BIGTIME",
+          207727.37658779073,
+          0.00795,
+          11568130
+        ]
+      },
+      {
+        "s": "BINANCE:GNSUSDT",
+        "d": [
+          "GNSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GNS",
+          206001.65014810357,
+          0.366,
+          161797.1
+        ]
+      },
+      {
+        "s": "BINANCE:FUSDT",
+        "d": [
+          "FUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "F",
+          205654.0544274574,
+          0.003187,
+          23417952
+        ]
+      },
+      {
+        "s": "BINANCE:PUNDIXUSDT",
+        "d": [
+          "PUNDIXUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PUNDIX",
+          205511.3194165194,
+          0.1111,
+          895736.4
+        ]
+      },
+      {
+        "s": "BINANCE:PDDBUSDT",
+        "d": [
+          "PDDBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PDDB",
+          194292.37312216556,
+          80.48,
+          186.84
+        ]
+      },
+      {
+        "s": "BINANCE:SQQQBUSDT",
+        "d": [
+          "SQQQBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SQQQB",
+          192768.02698907803,
+          34.36,
+          3806.31
+        ]
+      },
+      {
+        "s": "BINANCE:BANANAUSDT",
+        "d": [
+          "BANANAUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BANANA",
+          190724.73609319062,
+          3.701,
+          23391.97
+        ]
+      },
+      {
+        "s": "BINANCE:CRDOBUSDT",
+        "d": [
+          "CRDOBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CRDOB",
+          188733.01046980717,
+          195.13,
+          64.411
+        ]
+      },
+      {
+        "s": "BINANCE:1000CATUSDT",
+        "d": [
+          "1000CATUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "1000CAT",
+          187923.7093386088,
+          0.001963,
+          37641979.50000016
+        ]
+      },
+      {
+        "s": "BINANCE:USDEBUSDT",
+        "d": [
+          "USDEBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "USDEB",
+          186448.5832033383,
+          12.2,
+          6196.44
+        ]
+      },
+      {
+        "s": "BINANCE:HOTUSDT",
+        "d": [
+          "HOTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HOT",
+          181171.01764894286,
+          0.000406,
+          218963595
+        ]
+      },
+      {
+        "s": "BINANCE:ARMBUSDT",
+        "d": [
+          "ARMBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ARMB",
+          179526.87749492275,
+          248.17,
+          235.796
+        ]
+      },
+      {
+        "s": "BINANCE:CRWVBUSDT",
+        "d": [
+          "CRWVBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CRWVB",
+          168052.05066499417,
+          78.56,
+          878.86
+        ]
+      },
+      {
+        "s": "BINANCE:TURTLEUSDT",
+        "d": [
+          "TURTLEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TURTLE",
+          165401.66900774738,
+          0.0405,
+          1933162.4
+        ]
+      },
+      {
+        "s": "BINANCE:SHAZBUSDT",
+        "d": [
+          "SHAZBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SHAZB",
+          164335.2307608678,
+          35.4,
+          1028.15
+        ]
+      },
+      {
+        "s": "BINANCE:USARBUSDT",
+        "d": [
+          "USARBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "USARB",
+          156565.31919631458,
+          11.79,
+          3300.11
+        ]
+      },
+      {
+        "s": "BINANCE:IQUSDT",
+        "d": [
+          "IQUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "IQ",
+          148975.8536007951,
+          0.000838,
+          38877528
+        ]
+      },
+      {
+        "s": "BINANCE:ALABBUSDT",
+        "d": [
+          "ALABBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ALABB",
+          144559.54476037936,
+          315.23,
+          70.455
+        ]
+      },
+      {
+        "s": "BINANCE:XVSUSDT",
+        "d": [
+          "XVSUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "XVS",
+          143556.60251353917,
+          3.132,
+          11611.56
+        ]
+      },
+      {
+        "s": "BINANCE:QUICKUSDT",
+        "d": [
+          "QUICKUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "QUICK",
+          139190.9253912211,
+          0.01015,
+          2000911
+        ]
+      },
+      {
+        "s": "BINANCE:XNOUSDT",
+        "d": [
+          "XNOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "XNO",
+          136869.0195847766,
+          0.33,
+          203358.71
+        ]
+      },
+      {
+        "s": "BINANCE:AMATBUSDT",
+        "d": [
+          "AMATBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AMATB",
+          136607.35679553013,
+          484.21,
+          66.043
+        ]
+      },
+      {
+        "s": "BINANCE:HIVEUSDT",
+        "d": [
+          "HIVEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HIVE",
+          135245.7056507134,
+          0.0532,
+          893440
+        ]
+      },
+      {
+        "s": "BINANCE:ANIMEUSDT",
+        "d": [
+          "ANIMEUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ANIME",
+          133320.3587106553,
+          0.00309,
+          21351631.5
+        ]
+      },
+      {
+        "s": "BINANCE:QCOMBUSDT",
+        "d": [
+          "QCOMBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "QCOMB",
+          130663.70691434942,
+          172.33,
+          230.841
+        ]
+      },
+      {
+        "s": "BINANCE:DGBUSDT",
+        "d": [
+          "DGBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DGB",
+          126603.68332209466,
+          0.00346,
+          13266071
+        ]
+      },
+      {
+        "s": "BINANCE:QKCUSDT",
+        "d": [
+          "QKCUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "QKC",
+          125268.72437032188,
+          0.002574,
+          10853511
+        ]
+      },
+      {
+        "s": "BINANCE:PLTRBUSDT",
+        "d": [
+          "PLTRBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PLTRB",
+          122020.73889966447,
+          208.69,
+          88.16
+        ]
+      },
+      {
+        "s": "BINANCE:AMCBUSDT",
+        "d": [
+          "AMCBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "AMCB",
+          118613.32451728021,
+          2.98,
+          19575.1
+        ]
+      },
+      {
+        "s": "BINANCE:SMHBUSDT",
+        "d": [
+          "SMHBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SMHB",
+          113019.44061398064,
+          580,
+          36.633
+        ]
+      },
+      {
+        "s": "BINANCE:FLNCBUSDT",
+        "d": [
+          "FLNCBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FLNCB",
+          109188.75145055694,
+          6.99,
+          9824.38
+        ]
+      },
+      {
+        "s": "BINANCE:GMEBUSDT",
+        "d": [
+          "GMEBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GMEB",
+          100270.18483722597,
+          27.08,
+          250.18
+        ]
+      },
+      {
+        "s": "BINANCE:CRWDBUSDT",
+        "d": [
+          "CRWDBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CRWDB",
+          99029.19817312591,
+          262.46,
+          10.234
+        ]
+      },
+      {
+        "s": "BINANCE:TFUELUSDT",
+        "d": [
+          "TFUELUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TFUEL",
+          92879.80802495171,
+          0.00944,
+          4676282
+        ]
+      },
+      {
+        "s": "BINANCE:RDDTBUSDT",
+        "d": [
+          "RDDTBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "RDDTB",
+          86681.46501573946,
+          156.71,
+          135.765
+        ]
+      },
+      {
+        "s": "BINANCE:SMCIBUSDT",
+        "d": [
+          "SMCIBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "SMCIB",
+          84932.16256154857,
+          38.99,
+          587.92
+        ]
+      },
+      {
+        "s": "BINANCE:POWRUSDT",
+        "d": [
+          "POWRUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "POWR",
+          84810.58639768409,
+          0.0586,
+          771694
+        ]
+      },
+      {
+        "s": "BINANCE:BNTUSDT",
+        "d": [
+          "BNTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "BNT",
+          82607.08817801329,
+          0.3254,
+          119689.1
+        ]
+      },
+      {
+        "s": "BINANCE:ADBEBUSDT",
+        "d": [
+          "ADBEBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ADBEB",
+          79936.81859609493,
+          236.39,
+          49.633
+        ]
+      },
+      {
+        "s": "BINANCE:ASMLBUSDT",
+        "d": [
+          "ASMLBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ASMLB",
+          79256.86276226824,
+          1708.92,
+          23.8438
+        ]
+      },
+      {
+        "s": "BINANCE:CRMBUSDT",
+        "d": [
+          "CRMBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "CRMB",
+          78615.19640612448,
+          236.45,
+          24.522
+        ]
+      },
+      {
+        "s": "BINANCE:IBMBUSDT",
+        "d": [
+          "IBMBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "IBMB",
+          74693.24118330628,
+          227.94,
+          66.699
+        ]
+      },
+      {
+        "s": "BINANCE:GNOUSDT",
+        "d": [
+          "GNOUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GNO",
+          74466.8968076059,
+          114.87,
+          290.503
+        ]
+      },
+      {
+        "s": "BINANCE:FWDIBUSDT",
+        "d": [
+          "FWDIBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "FWDIB",
+          71753.14349368984,
+          7.15,
+          4248.1
+        ]
+      },
+      {
+        "s": "BINANCE:GPROBUSDT",
+        "d": [
+          "GPROBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GPROB",
+          68812.72092844016,
+          1.16,
+          17294.8
+        ]
+      },
+      {
+        "s": "BINANCE:KGSTUSDT",
+        "d": [
+          "KGSTUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "KGST",
+          60105.33099022447,
+          0.011296,
+          1749541
+        ]
+      },
+      {
+        "s": "BINANCE:HIMSBUSDT",
+        "d": [
+          "HIMSBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HIMSB",
+          55050.33833544496,
+          30.54,
+          132.8
+        ]
+      },
+      {
+        "s": "BINANCE:PYPLBUSDT",
+        "d": [
+          "PYPLBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "PYPLB",
+          50712.686484233986,
+          56.16,
+          266.13
+        ]
+      },
+      {
+        "s": "BINANCE:WENBUSDT",
+        "d": [
+          "WENBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "WENB",
+          47374.41644710997,
+          6.28,
+          3006.2
+        ]
+      },
+      {
+        "s": "BINANCE:HPEBUSDT",
+        "d": [
+          "HPEBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "HPEB",
+          41822.40855392719,
+          68.82,
+          267.22
+        ]
+      },
+      {
+        "s": "BINANCE:QNTBUSDT",
+        "d": [
+          "QNTBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "QNTB",
+          39685.634515224,
+          39.43,
+          429.91
+        ]
+      },
+      {
+        "s": "BINANCE:TUSDUSDT",
+        "d": [
+          "TUSDUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "TUSD",
+          37132.268611728265,
+          0.9999,
+          8620
+        ]
+      },
+      {
+        "s": "BINANCE:DJTBUSDT",
+        "d": [
+          "DJTBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "DJTB",
+          32173.58363397012,
+          7.97,
+          427.3
+        ]
+      },
+      {
+        "s": "BINANCE:JPMBUSDT",
+        "d": [
+          "JPMBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "JPMB",
+          24835.827293637678,
+          336.53,
+          15.106
+        ]
+      },
+      {
+        "s": "BINANCE:GSBUSDT",
+        "d": [
+          "GSBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "GSB",
+          24716.49847376946,
+          898.1,
+          5.8995
+        ]
+      },
+      {
+        "s": "BINANCE:LLYBUSDT",
+        "d": [
+          "LLYBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "LLYB",
+          20655.054416190076,
+          1195.55,
+          3.3728
+        ]
+      },
+      {
+        "s": "BINANCE:ZMBUSDT",
+        "d": [
+          "ZMBUSDT",
+          "BINANCE",
+          "spot",
+          "USDT",
+          "ZMB",
+          20510.600204541,
+          98.08,
+          14.2
+        ]
+      }
+    ]
+  },
+  "ranking_method": "TradingView reported rolling 24h USD volume for listed BINANCE spot USDT pairs; raw USDT quote volume not exposed; provisional methodology deviation"
+}

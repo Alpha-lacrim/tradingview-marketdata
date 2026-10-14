@@ -28,6 +28,62 @@ def configure_logging(level: str) -> None:
 class Metrics:
     def __init__(self) -> None:
         self.registry = CollectorRegistry()
+        self.api_requests = Counter(
+            "marketdata_api_requests_total",
+            "API HTTP responses",
+            ["method", "status"],
+            registry=self.registry,
+        )
+        self.api_database = Gauge(
+            "marketdata_api_database_healthy",
+            "Last API database health check",
+            registry=self.registry,
+        )
+        self.api_latency = Histogram(
+            "marketdata_api_request_seconds",
+            "HTTP request duration including pool wait",
+            ["route", "status"],
+            buckets=(0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10),
+            registry=self.registry,
+        )
+        self.api_query_latency = Histogram(
+            "marketdata_api_query_seconds",
+            "Database statement execution duration",
+            registry=self.registry,
+        )
+        self.api_pool = Gauge(
+            "marketdata_api_pool_connections",
+            "Worker pool connections",
+            ["state"],
+            registry=self.registry,
+        )
+        self.api_ws_clients = Gauge(
+            "marketdata_api_ws_clients",
+            "Connected marketdata clients",
+            registry=self.registry,
+        )
+        self.api_ws_queue = Gauge(
+            "marketdata_api_ws_queue_messages",
+            "Worker queued marketdata messages",
+            ["state"],
+            registry=self.registry,
+        )
+        self.api_ws_reader = Gauge(
+            "marketdata_api_ws_reader_running",
+            "Journal reader task is alive",
+            registry=self.registry,
+        )
+        self.event_loop_lag = Histogram(
+            "marketdata_event_loop_lag_seconds",
+            "One-second monitor wake delay; sampled in the application event loop",
+            buckets=(0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 5),
+            registry=self.registry,
+        )
+        self.event_loop_lag_max = Gauge(
+            "marketdata_event_loop_lag_max_seconds",
+            "Maximum monitor wake delay since application start",
+            registry=self.registry,
+        )
         self.candles = Counter(
             "marketdata_candles_total",
             "Candle operations",

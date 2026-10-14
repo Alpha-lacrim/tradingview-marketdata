@@ -1,0 +1,289 @@
+{
+  "branch": "ordinary-scale-256",
+  "base_commit": "2c5d0e6e51f51d0ae7298501df79e38859f3a464",
+  "delivery": "LOCAL_COMMIT_ONLY",
+  "commit_identity": "git log -1 after local commit; self-referential SHA intentionally not embedded",
+  "merged": false,
+  "pushed": false,
+  "deployed_business_universe": false,
+  "migrations_added": [],
+  "production_schema": "0004",
+  "hash_method": "SHA256 of staged Git blob bytes; manifest self-hash omitted",
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "991cb7d7086687bf5ab8278f8658ca91194c6b748a0682bffa994cce908f3361"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "0751d028c41a83aa3ebf4f7c5765bda320e06fb5c5540a2e42056bd9d8175c8e"
+    },
+    {
+      "path": "CODEX.md",
+      "sha256": "baf773af499dcb9f5dd752781922efd48696436c4718b9a0bce2ac61484998ba"
+    },
+    {
+      "path": "HANDOFF.md",
+      "sha256": "a3412e1625bce485677abcfe09990772639ba61d20385dc5434b4c4d4296d320"
+    },
+    {
+      "path": "README.md",
+      "sha256": "50eb22d33db025be958333c97d20806b2ca4de57d4972219a087ba8d0d03cc87"
+    },
+    {
+      "path": "compose.tradingview-rollback-image.yaml",
+      "sha256": "197457de86c6c4e144d13340ab1e6d491867ffc6466916c8d41ae3a054338598"
+    },
+    {
+      "path": "compose.tradingview-scale.yaml",
+      "sha256": "6ad1665215cdcbb81a1a62fdbdd809e88ef5a004ef9a458d75329dbb3946b937"
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "8712f000eb76ff9bde36e6e64e2fad361955c1b256d6654a58e402c5fd45fc3e"
+    },
+    {
+      "path": "config/instruments.tradingview-100.json",
+      "sha256": "0ef7f3837a8f6a18f5ea570cc84ffc792e69100d07fdfb574593b639ec8b5600"
+    },
+    {
+      "path": "config/instruments.tradingview-128.json",
+      "sha256": "8a88f5b2998093d854e53a1bfb44d4812a10603278862f0e16cd3764655009d6"
+    },
+    {
+      "path": "config/instruments.tradingview-256.json",
+      "sha256": "93710939b8e06c4eff5b81de0a1f0ed1971172a60ef1a9345cd70e4feaa6410c"
+    },
+    {
+      "path": "config/instruments.tradingview-64.json",
+      "sha256": "715253d371d19fb24d6e680d5727a72cc15b06f2085fb8a2ffe3821809e37ade"
+    },
+    {
+      "path": "config/instruments.tradingview-business-candidates.json",
+      "sha256": "725dd471b81280ddb6306400a172f22d36e378fb92e4528d9bc96f21f4916ee7"
+    },
+    {
+      "path": "config/instruments.tradingview-business-proposal.json",
+      "sha256": "f3638641223b5fa83d0a51227015fa6404f811509b8f02dd58cb313b8ac009e8"
+    },
+    {
+      "path": "docs/business-active-qualification.csv",
+      "sha256": "129ec05fa4f02d564ed9046c21b1377ad78b8888d669259e73a162524ef0256a"
+    },
+    {
+      "path": "docs/business-active-qualification.json",
+      "sha256": "78b952daca21e9ab65682382580fbe36e79a604482579177a4b1f11c7333fcb7"
+    },
+    {
+      "path": "docs/business-change-manifest.json",
+      "sha256": null
+    },
+    {
+      "path": "docs/business-directory-snapshot.json",
+      "sha256": "83246d93c0bbc80cc2ca50d8c024693109d3346488e7048a10049852e2086639"
+    },
+    {
+      "path": "docs/business-live-evidence.json",
+      "sha256": "262089bf9640657f4927d4020b6093102e05f3228e02d0972fdbac7b3cbdce6f"
+    },
+    {
+      "path": "docs/business-missing-targets.csv",
+      "sha256": "7e2c3526da89ebf7a1b882d27ee46cb71858126f19c3426fb0310c6f462bcc18"
+    },
+    {
+      "path": "docs/business-missing-targets.json",
+      "sha256": "9942ce062267322edac58587a35868f453f5bf892482bbfb2d2d0374edf53100"
+    },
+    {
+      "path": "docs/business-ranking-snapshot.json",
+      "sha256": "cc0922b10ba2078d02fdd545b7274cdf092f9358f674938082b2cef58f2401b7"
+    },
+    {
+      "path": "docs/business-registry-inventory.json",
+      "sha256": "255f922b1027352a6ad5edcbecaa72a2b0110025a5e3e215ecdba906181d8052"
+    },
+    {
+      "path": "docs/business-source-qualification.csv",
+      "sha256": "b1e807aec2aab9e5ef94e2136b7a5cece68ab2ec06d9cd980036b440a9502aac"
+    },
+    {
+      "path": "docs/business-source-qualification.json",
+      "sha256": "08b8e0278dfd0fa0156541d11956829898852f8f13481c60e87361d5e4e13f6b"
+    },
+    {
+      "path": "docs/business-universe-proposal.json",
+      "sha256": "fc3e202a7d2f724a7b41ff6ad3d0104efe83f159441d4f13f6d92757198edb21"
+    },
+    {
+      "path": "docs/business-universe-qualification.md",
+      "sha256": "23021e6bde1e0154a1501cf8edd214a16862575e706e0b4c62cbe06ff99e43ff"
+    },
+    {
+      "path": "docs/fastapi-business-integration.md",
+      "sha256": "d105537ca4c30a913010e4d22f3ad55bb2cc3a316679a58fbd258e198c008fcb"
+    },
+    {
+      "path": "docs/ordinary-100-selection.json",
+      "sha256": "7a811e470ba61a69984b7866b760cce29fe6d6e28f13c7be4a77baf3b05dfb15"
+    },
+    {
+      "path": "docs/ordinary-collector-scaling.json",
+      "sha256": "6e53d1f4819929e8962667af6d620c05abb626050f712976462abe2660b1815b"
+    },
+    {
+      "path": "docs/ordinary-collector-scaling.md",
+      "sha256": "57470229d2677ab4a20db9af392d90536f83767c193c140591b91ccf51c12fc9"
+    },
+    {
+      "path": "docs/ordinary-source-validation.json",
+      "sha256": "50964cbdf585121497c2f5233db0e2e73a7011dc5aa4972f188c63622bebc108"
+    },
+    {
+      "path": "docs/platform-guide.md",
+      "sha256": "37445b931c1ba66bfce6f6afe4f28e37c1e25f15b5a448710866f8a81cdb995e"
+    },
+    {
+      "path": "docs/production-instrument-expansion.md",
+      "sha256": "80e235f61bd20bccfeb2a87652d267397080b998fe2b6e9bbe3ed1211ff1a72a"
+    },
+    {
+      "path": "docs/tradingview.md",
+      "sha256": "d7fbefb50fc6623a3217bab82e54ffe416b6fc84098be73c631f1fa020e48b0f"
+    },
+    {
+      "path": "scripts/Switch-OrdinaryCollector.ps1",
+      "sha256": "68678c90d123d11ddb48bf1a6e81ee143b9179d14f1256be834a38fa757617df"
+    },
+    {
+      "path": "scripts/audit_ordinary_checkpoint.py",
+      "sha256": "ca938c0054a0f3e19ad749c9b79a346ba924c1157a0fffe4c8c50225b6032d93"
+    },
+    {
+      "path": "scripts/finalize_business_qualification.py",
+      "sha256": "b4001192afc25424f98083d664251ab4846cebb47fca9ac7d693537bce080a43"
+    },
+    {
+      "path": "scripts/investigate_business_gaps.py",
+      "sha256": "2e62f44d05511e18a6297668bee0dae2191200a8725ffc316e1ce2f74ba9fdca"
+    },
+    {
+      "path": "scripts/observe_ordinary_collector.py",
+      "sha256": "e193f30906ba692646f5b8be92005274d9508e5a60ce9aef920e7ac4adb02370"
+    },
+    {
+      "path": "scripts/prepare_business_universe.py",
+      "sha256": "399ddbdabccee332928acf923e0eb9c294188b818ec62c16b8806cdd7e742866"
+    },
+    {
+      "path": "scripts/prepare_ordinary_100.py",
+      "sha256": "4439b232cce5df3766d2d668e2e99874054676b05294e3ab80653675926d870f"
+    },
+    {
+      "path": "scripts/prepare_ordinary_universe.py",
+      "sha256": "df4b4e7255ed2d95303467e7c3364566ffb9808cfbf2aff35f9e8e0e39cbfabc"
+    },
+    {
+      "path": "scripts/probe_business_quotes.py",
+      "sha256": "814ff10c81c8dbd2cbc01c31e0b78ba3b07ece7d04d13f240409952722c83d08"
+    },
+    {
+      "path": "scripts/qualify_business_sources.py",
+      "sha256": "55f244af739530d7809912ea746b62024793349014819f55ef0694773e484059"
+    },
+    {
+      "path": "scripts/qualify_ordinary_recovery.py",
+      "sha256": "b278360f19aa08394203dc286b607477b482d22ab61f9468b087a094e6a5555e"
+    },
+    {
+      "path": "scripts/report_business_qualification.py",
+      "sha256": "2b719689252117e70ecd1385c3d98a31e171ede8d140ccd43b0aa5121cfe0167"
+    },
+    {
+      "path": "scripts/summarize_ordinary_scaling.py",
+      "sha256": "873ca208d60093ffe1ccae1691366ee8d694b37db4e6e4c56f491948a7bf3a52"
+    },
+    {
+      "path": "scripts/verify_business_broker_storage.py",
+      "sha256": "877797567bad03fbc6c73e7aae3ea46b73bbdfc53f5f3cbd153f7eaa689718eb"
+    },
+    {
+      "path": "src/marketdata/candle_ingestion.py",
+      "sha256": "9145ff6099397997aec2ff7cef111db9375087a9744c096c6f3b2e902c86aef7"
+    },
+    {
+      "path": "src/marketdata/ingestion.py",
+      "sha256": "1cbe92c492fc9aae7b23c4412a619912b63fc20b9c9d9b7db523e4194cde7ce0"
+    },
+    {
+      "path": "src/marketdata/observability.py",
+      "sha256": "278bc6afdcb61348078d6516b161831d1393fd8668b0298b0c36ba78eb3cc555"
+    },
+    {
+      "path": "src/marketdata/providers/tradingview.py",
+      "sha256": "1582338bdfc9aef0cfb3f375b9b117105c9bcb25d930977838d4fabfa93ae7c7"
+    },
+    {
+      "path": "src/marketdata/providers/tradingview_candles.py",
+      "sha256": "788541da0c60dcffc6bc71bd26469443d88ece67d9bdefb1216d2e2768fcde07"
+    },
+    {
+      "path": "tests/test_business_universe.py",
+      "sha256": "d9a16100356cedfce0dcf63b5e4bceac3e726e6634910dbf6befa40a953aaae0"
+    },
+    {
+      "path": "tests/test_ingestion.py",
+      "sha256": "64521c6b8cd5fd903047541076f1ec3e7f671900cd5260a076c05760e7461265"
+    },
+    {
+      "path": "tests/test_ordinary_scaling.py",
+      "sha256": "cc98d12ac247a98ba0acf277306cef5765ed8d9940537c23cc97f3eb6c3a4fbd"
+    },
+    {
+      "path": "tests/test_recovery_fanout.py",
+      "sha256": "1c8e90577c541d8175e954d8e6ae6ffb00f4e7bac18bdf6f67a408bf0f17ffa7"
+    }
+  ],
+  "verification": {
+    "timescale_tests": {
+      "passed": 316,
+      "seconds": 46.88
+    },
+    "postgresql_mode_tests": {
+      "passed": 313,
+      "skipped": 3,
+      "seconds": 45.56,
+      "host": "Timescale server, separate no-aggregate database; no standalone plain-PG requalification"
+    },
+    "migration_heads": [
+      "0004",
+      "0004"
+    ],
+    "ruff": "passed",
+    "formatting": "100 Python files passed",
+    "strict_mypy": "29 source files passed",
+    "powershell": "syntax passed; switch not executed",
+    "secret_and_local_artifact_review": "passed",
+    "original_measurement": {
+      "expected": 5940,
+      "immediate": 5882,
+      "recovered": 0,
+      "unresolved": 58,
+      "percentage": 99.02356902356902
+    }
+  },
+  "original_deployment_edits": [
+    {
+      "path": "../../compose.yaml",
+      "scope": "narrow db restart-policy fix from earlier scaling; no production changes during finalization"
+    },
+    {
+      "path": "../../HANDOFF.md",
+      "scope": "earlier current-state pointer; unrelated user changes preserved"
+    }
+  ],
+  "separate_worktrees_untouched": [
+    "artifacts/batch3-database",
+    "sibling tradingview-fastapi-batch1"
+  ],
+  "fastapi_commit": "6901bfadd44cb83ccdca49aac559e6f97a93a91d"
+}

@@ -182,8 +182,15 @@ class IngestionService:
             provider.transition("disconnected")
 
     async def monitor(self) -> None:
+        loop = asyncio.get_running_loop()
+        maximum = 0.0
         while True:
+            target = loop.time() + 1
             await asyncio.sleep(1)
+            lag = max(0, loop.time() - target)
+            maximum = max(maximum, lag)
+            self.metrics.event_loop_lag.observe(lag)
+            self.metrics.event_loop_lag_max.set(maximum)
             await self.monitor_once()
 
     async def monitor_once(self, now: datetime | None = None) -> None:

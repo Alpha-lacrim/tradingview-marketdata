@@ -1,0 +1,171 @@
+{
+  "base": "b9c08df51655f4767dd0669838f2d221c4854933",
+  "compared_to": "preserved uncommitted tradingview-fastapi-batch3 snapshot",
+  "delta": [
+    {
+      "path": ".env.example",
+      "batch3_sha256": "e0cfbe45df6bbad6f0bf358f33df3a52d97ce5fa99453c9087562a5ed803cdf6",
+      "batch4_sha256": "0d20c998c93c5314aae5543150eb8366f09acad71cffad129990adb5a3beb9f2"
+    },
+    {
+      "path": "CODEX.md",
+      "batch3_sha256": "c82de3d3cdcdabf5f581c4fc8c099f0d9e853420abcae14d7b6ca77dc9876814",
+      "batch4_sha256": "dcdd794ae5cf6f7e89ee0194af522cf88f47ca3a6bf1736bfb194041c049b0d1"
+    },
+    {
+      "path": "HANDOFF.md",
+      "batch3_sha256": "bc13803b7ab7fc2a25b9e4cf8f6026ef1c3abdbc95e08e4f2271256f5b04f6fd",
+      "batch4_sha256": "0a4223a42497c5286cdc0fca6e3160ad7159fa852f03123f02ec5ba51eab7f24"
+    },
+    {
+      "path": "README.md",
+      "batch3_sha256": "56b5dc8e7045d0a14b1b1712f1c2ed5815d50257a4a3279093b1befc7b625092",
+      "batch4_sha256": "62e4a18ed355362832e2b1e1018b19ed20eb54b326c7969ed21585be1a7fc265"
+    },
+    {
+      "path": "compose.batch4-test.yaml",
+      "batch3_sha256": null,
+      "batch4_sha256": "cc8c66f34e7da44216499e498fe8a5b4659071ac24713b0afde2cfebc77e38d2"
+    },
+    {
+      "path": "compose.production.yaml",
+      "batch3_sha256": null,
+      "batch4_sha256": "789f76070d23b8abdf8f6a449f0abc9ed5e40921165cf61e755404df56ca7492"
+    },
+    {
+      "path": "docs/api-batch4-evidence.json",
+      "batch3_sha256": null,
+      "batch4_sha256": "00842f2152db245f6c4c2dc936bae92e2a12ecb0b2c2b8b065cadcb10cc839ab"
+    },
+    {
+      "path": "docs/api-batch4-performance.md",
+      "batch3_sha256": null,
+      "batch4_sha256": "2df4872793955e6570d6f62825efd091d1b1c5239d95a4bd22db5dfa56cf3e73"
+    },
+    {
+      "path": "docs/api-batch4-verification.md",
+      "batch3_sha256": null,
+      "batch4_sha256": "c8c56051139b5ed2c2c14f74c94855e842c637cc7031ca989cf2b4d8477e0aee"
+    },
+    {
+      "path": "docs/api.md",
+      "batch3_sha256": "d1819168647e8b3a6d1885110c76c43161325a863a8effff57bd4866e1bc67a9",
+      "batch4_sha256": "43369f8c586cc7c09f5a764cf110db883f9995be4f4eedbb5ce13c965db2fa02"
+    },
+    {
+      "path": "docs/frontend-integration.md",
+      "batch3_sha256": null,
+      "batch4_sha256": "201caa2e65457bd2b9a608ee668ab58519bb8f46d80987bca47a85a3e65163f7"
+    },
+    {
+      "path": "docs/production-deployment.md",
+      "batch3_sha256": null,
+      "batch4_sha256": "72fe8739a21afefa355f8ab15e858d7852eb89420af19db1d9a0bde3b4b4c385"
+    },
+    {
+      "path": "examples/browser-marketdata.js",
+      "batch3_sha256": "773dba9eb588ce54dc2d6462e1e9c6db1f333df60e24026beaa2839c90f3680c",
+      "batch4_sha256": "808d10ea5bc44e3014a563604a1f4bb6f421f8dd07dcc09177ff53b3c9c2861b"
+    },
+    {
+      "path": "scripts/qualify_api.py",
+      "batch3_sha256": null,
+      "batch4_sha256": "7497262296fcbeeb810fc7e317be284a8079d63a1c6a64c917b45fe5130b9c77"
+    },
+    {
+      "path": "scripts/summarize_api_qualification.py",
+      "batch3_sha256": null,
+      "batch4_sha256": "564b5b06fef8e145c574357955e426238fb53400ea76640d98793491ca6c6a5f"
+    },
+    {
+      "path": "src/marketdata/api.py",
+      "batch3_sha256": "e64e52d855430aeacaa576bf7089570c8bc0f942c70c5909a61f93bb9e8de5ef",
+      "batch4_sha256": "fbba2a28f736e56ee14ca7a49b3588baecfab8e06e846cf7319e4845aed192e4"
+    },
+    {
+      "path": "src/marketdata/api_models.py",
+      "batch3_sha256": "a11b8c3a425e651067f159e8653c70e1d4368ed66cb99ea9bf442c7fc1927a01",
+      "batch4_sha256": "8cd505ea4b9d94f344c98bfa7c20ea3889ba22795f04bac2d6f8ba43b560d3ad"
+    },
+    {
+      "path": "src/marketdata/api_v1.py",
+      "batch3_sha256": "4aaa55dda879a927d4c77a10cf8c9693a907955540235d69c0f07e0a389df459",
+      "batch4_sha256": "89adba626041e4db3ed49b2a10b7cd8bed4defac155f68aace7772b17025960e"
+    },
+    {
+      "path": "src/marketdata/config.py",
+      "batch3_sha256": "1bdb3919448723718ab80cdd7f424a6e5145daf3a1be3c104779f563fa750540",
+      "batch4_sha256": "fbd72339c5b0be6369984ffb05b1ea89c22ed0e78d12dee63d416054522d1d97"
+    },
+    {
+      "path": "src/marketdata/market_stream.py",
+      "batch3_sha256": "dcdc1002ad35c13ca3bbe4e05ebb0d5c249fe50594ded7de4939f8cea8d5f4e9",
+      "batch4_sha256": "93c84908605fb278d27cf9a7c1f51593eef37febf5c765c3f0ef8c82472532ef"
+    },
+    {
+      "path": "src/marketdata/observability.py",
+      "batch3_sha256": "610098a69060b2c9ffd64b0e711964fcdfead036e56816a297b0bc985c65b0a5",
+      "batch4_sha256": "70bfd3ff5f1c75ccfebc538309352f41d78ba73335f7d3df375f67cf0fc37345"
+    },
+    {
+      "path": "src/marketdata/persistence.py",
+      "batch3_sha256": "a19e378f511a105861f7f440ecd5365cc700a452f12120d9bef1cedbfcb3d3fc",
+      "batch4_sha256": "6d30585703e07c676b330240d17741c6a3ccc6d8edf4335eecc5672296347b68"
+    },
+    {
+      "path": "src/marketdata/production.py",
+      "batch3_sha256": null,
+      "batch4_sha256": "754979a1224b9455b85a7c6de751a3d41b359e26f9fe43490a6649eb180f2762"
+    },
+    {
+      "path": "tests/conftest.py",
+      "batch3_sha256": "73abf4f55f086e2ecafbba034083e8d760aaa0d3017a2e2a2f066eda34900dba",
+      "batch4_sha256": "2ba4b3dd405cd40a94ffda50ba93fb48f330aa2bf60123a224cc70b5222d4140"
+    },
+    {
+      "path": "tests/process_market_workers.py",
+      "batch3_sha256": "396a927068b6fe7c95e9dc27079f645b5ccf4358fa8be953486b0591823837ab",
+      "batch4_sha256": "485c247ec9cd2285de2e41997e42ffaa0cf6a511ee524dbde5f68dc2096b2493"
+    },
+    {
+      "path": "tests/test_api_production.py",
+      "batch3_sha256": null,
+      "batch4_sha256": "a8e9ab8957ff3d71c02872fb9582abcb9a0091d6e9e7111c03c0d34b62f1c606"
+    },
+    {
+      "path": "tests/test_api_v1.py",
+      "batch3_sha256": "2cd7c573f39932c3e9c911249dffa0b2cb8b72e4c19e6c9726a7808937606dc6",
+      "batch4_sha256": "a6b2f65636a5a14200c15243464b61b94a3224f860eac00bd671c12d38741fa9"
+    },
+    {
+      "path": "tests/test_api_v1_operations.py",
+      "batch3_sha256": "405ed3d33657e2c8bd14603f351a8340fbcb9dba41b1dfc22637e9d775c2ea7b",
+      "batch4_sha256": "34c228dae36e9f69222fb118e0af9c6e54ca6b19dc4014feafa74ca8c7534054"
+    },
+    {
+      "path": "tests/test_backup_restore.py",
+      "batch3_sha256": null,
+      "batch4_sha256": "6e7034172ff0919e1c5564d308e80f922bfea2693b93508ce4450910a38c148c"
+    },
+    {
+      "path": "tests/test_market_database_outage.py",
+      "batch3_sha256": "80541c1b9d6f38784fd9cf7fb558d868709c8ea386538eff8ae78b601dc3ee99",
+      "batch4_sha256": "d417b23d07c80dfab9ca31bd36047d6b59905c60a269786215056e3499eb19a3"
+    },
+    {
+      "path": "tests/test_market_workers.py",
+      "batch3_sha256": "a470bf302fbb5a7b6f0034add7991027fda280de09b0319443327b7b332f227a",
+      "batch4_sha256": "2477141ea9e678fd0908f3c0d0e7836ba425da75a53c2abdb6f146604ca184de"
+    },
+    {
+      "path": "tests/test_production_container.py",
+      "batch3_sha256": null,
+      "batch4_sha256": "06277d30639462b818a7cabba86a6eb3eb6acf2cc5cfb8645d8966019f6d53df"
+    },
+    {
+      "path": "tests/test_production_entrypoint.py",
+      "batch3_sha256": null,
+      "batch4_sha256": "12c8e80730d285543ca99f9d98c4fe41a8198040218c1ab18fe4601914bda1cd"
+    }
+  ]
+}
