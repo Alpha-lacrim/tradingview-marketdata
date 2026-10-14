@@ -2,6 +2,18 @@
 
 ## Current state — 2026-10-14
 
+Current task: consolidate all completed collector/API development on
+`integration/completed-main` in C:/Users/Pouyan/PycharmProjects/tradingview-main-consolidation.
+Exact source cb4a06332adda936421a00b1b87155e7834cd24f; target/main and merge base
+2c5d0e6e51f51d0ae7298501df79e38859f3a464. Main is an ancestor; the proposed merge tree equals
+the integration head tree. Only consolidation documentation changes over the published API
+source. Read docs/main-consolidation.md and the PR for exact merge SHA/tree and current tests/
+CI. Final merge requires explicit user approval. No deployment, production SQL, registry
+activation, volume change, branch deletion or history rewrite is authorized/performed.
+Original worktrees and paused database-efficiency work remain untouched. Completed collector,
+Batch 1/integration/Batch 2 and the Batch 3/4 snapshot are all present by ancestry/content.
+The detailed Batch 4 qualification below remains historical evidence, not a new load run.
+
 Batch 4 company API qualification is implemented, unmerged and
 undeployed in C:/Users/Pouyan/PycharmProjects/tradingview-fastapi-batch4, branch
 fastapi/batch4-qualification. Base is verified Batch 2 b9c08df51655f4767dd0669838f2d221c4854933

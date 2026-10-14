@@ -15,6 +15,12 @@ benchmark evidence and parser fixtures are included; recorded database history r
 
 ## Current capabilities and limits
 
+Completed collector and FastAPI Batches 1–4 are consolidated for review on
+`integration/completed-main`, retaining their commit history. See
+[the consolidation audit](docs/main-consolidation.md) for inclusion, schema compatibility
+and deployment boundaries. The PR targets `main`; merge awaits operator approval.
+Code publication and merge do not deploy the running legacy application.
+
 Batch 4 qualifies the company API locally with 100 simulated instruments, real TCP REST/WS
 load, actual disposable database outages, read-only roles, Linux container restart and
 backup/restore. See [employer report](docs/api-batch4-verification.md),
