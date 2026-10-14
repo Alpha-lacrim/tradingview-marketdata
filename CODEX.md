@@ -1230,7 +1230,10 @@ It refuses other DSNs, creates 100 synthetic sources, runs real TCP load and pau
 only the verified disposable database. Never run it concurrently with pytest on the same DB.
 Production uses `compose.production.yaml` and separate mounted DSNs, not dev credentials.
 Schema head remains 0006; API-only readiness does not require collector connectivity.
-Unsupported guest production ingestion stays blocked unless access rights are established.
+The operator confirmed commercial public-site access rights on 2026-10-14. This installation
+enables production access approval; explicit false still blocks ingestion. Use
+docs/commercial-tradingview-test.md for the preserved 100-source profile and read-only versioned
+REST/WS smoke. The experimental transport, data-status gates and local capacity bounds remain.
 
 Source map: `src/marketdata/domain.py` and `registry.py` own identity/normalization;
 `providers/` owns documented transports/parsers; `ingestion.py` owns task/queue lifecycle;

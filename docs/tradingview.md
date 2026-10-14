@@ -1,5 +1,15 @@
 # Experimental TradingView guest market data
 
+## Commercial access for this installation
+
+On 2026-10-14 the operator confirmed TradingView support permission and an established company
+access arrangement, explicitly approving this existing public-site connection. Production
+access approval is enabled for this installation; an explicit false still revokes ingestion.
+The transport remains experimental and the persisted provider identity remains
+`tradingview_guest`. Follow [commercial test preparation](commercial-tradingview-test.md).
+The earlier permission warnings below describe the original investigation; permission is now
+reported established for this use case, while technical/data-status limitations still apply.
+
 The integrated branch separates collection from serving; its Compose guest overrides target
 `collector`, while `app` serves database reads only. See [process separation](fastapi-process-separation.md)
 for current role commands, health snapshots and WebSocket limits. Deployment commands and

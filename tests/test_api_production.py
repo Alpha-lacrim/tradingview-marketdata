@@ -20,6 +20,7 @@ def test_production_guest_ingestion_is_blocked_before_source_io():
         api_environment="production",
         api_key="x" * 32,
         application_role="collector",
+        tradingview_production_access_approved=False,
         market_data_provider_crypto="tradingview_guest",
         enabled_asset_classes=["crypto"],
     )
@@ -32,6 +33,38 @@ def test_production_guest_ingestion_is_blocked_before_source_io():
     )
     with pytest.raises(ValidationError):
         Settings(_env_file=None, api_environment="production")
+
+
+async def test_approved_production_tradingview_builds_without_source_io():
+    from marketdata.observability import Metrics
+    from marketdata.providers.candle_pool import CandleConnectionPool
+    from marketdata.providers.factory import build_providers
+
+    settings = Settings(
+        _env_file=None,
+        api_environment="production",
+        application_role="collector",
+        registry_file=Path("config/instruments.tradingview-100.json"),
+        market_data_provider_crypto="tradingview_guest",
+        market_data_provider_forex="tradingview_guest",
+        market_data_provider_metals="tradingview_guest",
+        market_data_provider_energy="tradingview_guest",
+        market_data_provider_futures="disabled",
+        tradingview_candle_pool_enabled=True,
+        candle_pool_connections=4,
+        candle_pool_concurrency=8,
+        candle_pool_max_instruments=100,
+        candle_pool_connect_interval_seconds=2,
+        candle_fetch_grace_seconds=5,
+    )
+    assert settings.tradingview_production_access_approved
+    registry = settings.selected_registry(Registry.load(settings.registry_file))
+    providers = await build_providers(settings, registry, Metrics())
+    assert len(providers) == 1
+    pool = providers[0]
+    assert isinstance(pool, CandleConnectionPool)
+    assert [len(worker.provider.subscriptions) for worker in pool.workers] == [25] * 4
+    assert not pool.opened and not pool.tasks
 
 
 async def test_liveness_survives_database_failure_without_credentials(monkeypatch):

@@ -1,124 +1,81 @@
-﻿# HANDOFF.md
+﻿# Current state — 2026-10-14
 
-## Current state — 2026-10-14
+## Repository and authorization
 
-Consolidation PR: https://github.com/Alpha-lacrim/tradingview-marketdata/pull/2.
-The user authorized merging the completed development into main on 2026-10-14 after review.
-Current integration branch:
-`integration/completed-main` in C:/Users/Pouyan/PycharmProjects/tradingview-main-consolidation.
-Exact source cb4a06332adda936421a00b1b87155e7834cd24f; target/main and merge base
-2c5d0e6e51f51d0ae7298501df79e38859f3a464. Main is an ancestor; the proposed merge tree equals
-the integration head tree. Only consolidation documentation changes over the published API
-source. Read docs/main-consolidation.md and the PR for exact merge SHA/tree and current tests/
-CI. That approval is now granted; verify the PR's latest head/checks before merging.
-Local full checks on proposed merge 44313a3277f65ce7a485d456e8d8c0b31071611a passed:
-PostgreSQL 436 + 3 expected skips (124.08s), TimescaleDB 439 (132.25s); GitHub PR CI
-38526102223 passed on that exact merge ref. Subsequent changes record approval only;
-the final PR body/checks carry the latest merge-tree validation results.
-No deployment, production SQL, registry
-activation, volume change, branch deletion or history rewrite is authorized/performed.
-Original worktrees and paused database-efficiency work remain untouched. Completed collector,
-Batch 1/integration/Batch 2 and the Batch 3/4 snapshot are all present by ancestry/content.
-The detailed Batch 4 qualification below remains historical evidence, not a new load run.
+Consolidation PR https://github.com/Alpha-lacrim/tradingview-marketdata/pull/2 is merged.
+This workspace started clean on detached HEAD fdf7759d31d2a0a1738410ffb7825c1b951ee1c6
+(`Production access approval`), following main merge a1cf992a. Preserve that user commit.
+The operator requested this preparation committed locally on main, with no push or deployment.
+The temporary codex/commercial-tradingview-preparation branch was removed. To free main,
+the older home-rooted worktree was detached at its unchanged 324b1d83 commit; its tracked
+edits were verified unchanged. Other worktrees and paused database-efficiency work remain
+untouched. This workspace now owns the local main checkout.
 
-Batch 4 company API qualification is implemented, unmerged and
-undeployed in C:/Users/Pouyan/PycharmProjects/tradingview-fastapi-batch4, branch
-fastapi/batch4-qualification. Base is verified Batch 2 b9c08df51655f4767dd0669838f2d221c4854933
-plus the verified uncommitted Batch 3 snapshot copied from tradingview-fastapi-batch3.
-Original Batch 1/2/3/integration/ordinary-scale worktrees and the dirty deployment checkout
-remain preserved. No paused candle-database optimization was imported.
+The operator confirmed full TradingView support permission and an appropriate company
+access arrangement for this use case, then confirmed the existing public-site connection is
+approved. No dedicated endpoint/authentication was supplied. The earlier access permission
+gate is resolved for this installation. Upstream entitlements, realtime classification,
+experimental protocol and persisted tradingview_guest identity are preserved.
 
-Read docs/api-batch4-verification.md (15-point employer report),
-docs/api-batch4-performance.md / api-batch4-evidence.json (actual tables/plans/metrics/hashes),
-docs/frontend-integration.md and docs/production-deployment.md. Earlier API/process/journal
-contracts and source/business evidence remain linked from the report and docs/api.md.
+## Commercial production/test preparation
 
-## Implemented changes over Batch 3
+Read docs/commercial-tradingview-test.md. New compose.production.tradingview.yaml extends
+file-secret production deployment with the preserved accuracy-selected 100-source registry,
+native 1m candles, four connections, two requests per worker/eight global, two-second pacing
+and five-second grace. Futures remain disabled. No business-proposal promotion or expansion.
+The user's approval default remains true; explicit TRADINGVIEW_PRODUCTION_ACCESS_APPROVED=false
+is honored in Settings and Compose. Example env, provider/deployment docs and tests now agree.
 
-- Production API startup refuses administrative/schema-CREATE/database-TEMP/market-write
-  DB roles; actual SELECT-only credentials serve two-worker REST/WS without ingestion.
-- New file-secret production entrypoint and compose.production.yaml: independent migration,
-  API and opt-in collector, private DB network, no DB publication, explicit external volume,
-  non-root/read-only API, log rotation, bounded transport/admission, restart policies.
-- Production guest ingestion is blocked by default until established access rights. API
-  history has no provider path. No provider/registry/scheduling/parsing algorithm changed.
-- Public /livez distinguishes process liveness from DB /health readiness. Versioned health
-  adds actual idle/operational/degraded/unknown WS reader status. Source/collector/coverage
-  degradation never creates a blanket historical-query failure.
-- Sanitized unexpected/startup exceptions, legacy whole-route budgets, auth failure counts,
-  no-store responses, route/query/pool/WS queue/reader/event-loop metrics. Reader failures
-  close affected clients with resync; query instrumentation cleans up terminated proxies.
-- Browser example adds explicit coverage callbacks; standards-based frontend guide and
-  operations/backup/restore/rollback documentation require no frontend SQL credentials.
-- scripts/qualify_api.py performs real TCP load with a separate API process, 100 synthetic
-  sources and deterministic stored candles. Exact test DSN/project checks protect faults
-  and cleanup. summarize_api_qualification.py publishes measured reports with raw hashes.
+scripts/smoke_production_tradingview.py observes authenticated versioned REST/WS with an API
+origin, private token file and configured HTTPS WS Origin. It needs no SQL credentials and
+opens no extra provider connection. It reconciles committed native candles with exact
+Decimal/source/status REST history and checks latest/coverage/health. Missing symbol/minute
+pairs fail, including closed/sparse markets; sanitized checkpoints retain events and failure
+categories. Corrections racing REST comparison also fail visibly. New integration tests cover
+real committed TCP/WS reconciliation, wrong prices/source, simulated status and forming bars.
+The approved production factory test proves four 25-source workers without upstream I/O;
+explicit revocation remains tested.
 
-Schema remains 0006, inherited from Batch 3 (transactional commit-ordered replay journal).
-Batch 4 adds no migration. APIs never register instruments or acquire collector ownership.
-Latest quotes, candle closes, stale/unavailable observations and missing candles stay distinct;
-UTC and exact Decimal strings, independent broker histories and corrections are preserved.
-Only supported Store writes create replay events; direct SQL/old binaries do not. Retention
-is count-based; expired cursors/restored epochs require full loaded-chart REST resync.
+Schema head is 0006; no migration added. API factories never start ingestion. Replay journal,
+independent broker histories, UTC timestamps, Decimal values, unknown/non-additive source
+volume and candle-close versus live quote semantics are unchanged. Only supported Store
+writes append journal events; old binaries/direct SQL do not.
 
-## Actual final verification
+## Verification
 
-Task-owned marketdata-batch4-tests only: loopback 55891 PostgreSQL17.11, 55892
-Timescale2.25.1/PG17.7, marketdata_batch4_test, separate network/tmpfs, no production mounts.
-Final full suites: PostgreSQL 436 passed + 3 expected aggregate skips, 109.60s;
-Timescale 439 passed, 115.40s. Include actual container DB pause/unpause, backend termination,
-server/query deadlines, both restore engines, market-preserving migration round trips,
-correction/replay/retention/slow-client faults, mock collector/API restart independence,
-two real workers and Linux production container restart with mounted SELECT-only secrets.
-23 inherited Starlette/httpx/legacy WS deprecations remain; upgrades require requalification.
+Offline: 312 passed, 130 integration tests deselected. Full disposable PostgreSQL suite:
+439 passed, three expected aggregate skips, 111.17s. Includes migrations/rollback, permissions,
+outage/recovery, replay, two-worker TCP/WS, backup/restore and actual Linux production image
+startup/restart with mounted SELECT-only credentials. Full TimescaleDB: 442 passed, 122.88s.
+Ruff check/format (145 files), strict mypy source (37 files) plus source/new smoke (38 files),
+CLI help, merged Compose profile and explicit false revocation, Alembic head 0006 and whitespace
+checks passed. Existing dependency deprecation warnings remain.
+After the final checkpoint sanitization test/type fixes, the targeted production and smoke
+regressions passed (9 tests) on TimescaleDB. Only task-owned test containers/network were
+removed after validation; the pre-existing containers remain running.
 
-Ruff check/format (141 Python files), strict mypy 37 source / 38 including BFF, Node syntax,
-single head 0006, fresh upgrades, production Compose isolation assertions and whitespace pass.
-Final local Linux image: sha256:430ded32c6f8eee44c10959c1e840569f24f9c6e7a393cc9ba6bc621be9df141.
-Not pushed/deployed. Raw JUnit and benchmark checkpoints remain ignored under artifacts.
+Task-owned image marketdata-batch4:qualification built locally, not pushed/deployed:
+sha256:5c0ffa50c3f55641cc6af70eb91f579d6cc19850f5c5f46a5916276d1b70898d.
+Ignored JUnit: artifacts/commercial-postgres.xml and commercial-timescale.xml. Only
+marketdata-batch4-tests databases/network are used; no production SQL or volume changes.
 
-Per engine: 100 synthetic sources (50 crypto/40 forex/5 metals/5 energy), 143,997 stored native
-minutes, three explicit gaps. 120 requests per workload at 1/8/24 REST clients; 5/20/50 WS
-clients each subscribe 100 symbols. 2184 normal measured requests and 22,500 expected events
-per engine: zero normal failures/all delivered. At 24 clients history 1000 p95 PG 943.713 /
-TS 891.272ms; at 50 WS clients ACK-to-delivery p95 PG 1366.275 / TS 1687.670ms (1s poll).
-16 expected 503 fault responses per engine took about 5s; historical reads recovered after
-DB unpause. SQL plan used existing indexes, no spill, execution 3.204/3.515ms.
-Separate 8-client/20-WS resource reruns retain all raw samples: PG peak Docker CPU 632.51%,
-container memory 1.163GiB; TS 121.54%, 1.251GiB. Later PG coverage p95 was 898.019ms; values are
-shared-host samples, not a ceiling. No WAN/TLS, target-host or sustained-capacity claim.
+## Deployment and next actions
 
-Final metrics labels cap unknown HTTP methods as OTHER. A Windows shared-listener test
-routing assumption failed once; its XML is retained. The test now pauses new admission on
-the first worker while retaining established sockets, proving both PIDs deterministically.
-Targeted checks passed on both engines; final Timescale full rerun passed. See the report.
+Existing tradingview-app-1 was unhealthy and tradingview-db-1 healthy on inspection.
+Neither was switched, recreated or stopped. Live commercial smoke has NOT RUN. No current
+live feed correctness claim. Legacy schema0004 combined collector lacks the ownership lock:
+verify image/database/volume, back up, stop legacy ownership, migrate using the reviewed
+procedure and provision separate principals/secrets before replacement. Follow
+docs/collector-fastapi-integration.md and docs/production-deployment.md. Do not run legacy
+switch helpers or a second ordinary live scheduler here.
 
-## Preservation and remaining gates
+Next: provision target reviewed images/digests, mounted DSNs/token, HTTPS origins/proxy,
+backup/monitoring and company session adapter; perform the reviewed replacement, then run
+the documented three-minute smoke during overlapping source sessions. Follow with sustained
+target-host/source-coverage soak and company HTTPS/browser testing. Fixtures/synthetic tests
+do not establish WAN latency, sustained capacity or source completeness.
 
-Docker Desktop was initially stopped. The user explicitly authorized starting it and
-possible automatic resumption of existing containers. The existing ordinary-100 collector
-and DB resumed; no production SQL/grants/migrations/recreation/source activation or collector
-configuration change was performed. Existing 100/34/17 images/history/volume remain outside
-Batch 4 operations. Legacy combined collector lacks the new advisory lock and must exit
-before any separately approved lock-aware replacement. Never run legacy switch helpers here.
-
-Remaining: source rights/redistribution and a genuine continuous quote source; final employer
-selection; production DBA/secrets/HTTPS/firewall/real company sessions/monitoring/backup schedule;
-target-host CPU/memory and sustained/wide-history capacity. TradingView outage/wire-level
-commit-ACK loss/host failover/production DR are not tested. API readiness and ingestion/source
-reliability must remain separate. The browser/BFF adapter is provisional until supplied with
-actual company authorization. Do not deploy/promote from synthetic evidence alone.
-
-Reproduction: build marketdata-batch4:qualification, use compose.batch4-test.yaml and matching
-TEST_DATABASE_URL/BATCH4_TEST_CONTAINER/BATCH4_TEST_IMAGE. Never run pytest and the harness
-on the same database concurrently. Full commands are in the report. Only task-owned
-containers/network are removed after qualification; no production volume is removed.
-
-The user authorized committing and pushing the complete Batch 3/4 API snapshot on 2026-10-14
-to origin/fastapi/batch4-qualification (Alpha-lacrim/tradingview-marketdata). Get the exact
-published revision with git rev-parse HEAD; confirm the remote ref before further publication.
-This publication does not merge main or deploy services. Next: review the Batch 4 delta,
-establish target-host/session/source permissions and perform the operator rollout after approval.
-Task-owned test containers/network were
-removed after final verification; no task-owned native worker remains. The reviewed delta
-over Batch 3 and file hashes are in docs/api-batch4-source-manifest.json.
+Earlier measured API qualification remains in docs/api-batch4-verification.md,
+docs/api-batch4-performance.md and evidence JSON/source manifest. Consolidation details:
+docs/main-consolidation.md. Source experiments/ordinary-100 qualification and unapproved
+business proposal remain in their reports. No new load benchmark or production DR test.

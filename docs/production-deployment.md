@@ -200,6 +200,11 @@ market-history-preserving migration round trips are exercised by inherited tests
 blindly run an old Store requiring 0004 on 0006. Never downgrade live owners or change a volume.
 Use [integration rollback](collector-fastapi-integration.md) for the preserved 100/34/17 images.
 
+The operator confirmed commercial TradingView public-site access on 2026-10-14. Use the
+[commercial preparation and end-to-end test](commercial-tradingview-test.md) for the explicit
+100-source ingestion override and versioned REST/WS observer. This records permission for
+this use case; upstream source-status and access-rejection checks remain enforced.
+
 Production TLS/firewall/backup scheduling and the final company session adapter are not
 configured by this local qualification. Actual isolated Linux API startup/restart, DB outage/
 recovery, read-only roles and database backup/restore are tested; see [Batch4 report](api-batch4-verification.md).
