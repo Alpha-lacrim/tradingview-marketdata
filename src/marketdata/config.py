@@ -68,7 +68,7 @@ class Settings(BaseSettings):
     databento_api_key: SecretStr | None = None
     tradingview_ws_url: str = "wss://data.tradingview.com/socket.io/websocket"
     tradingview_storage_mode: Literal["ticks", "candles"] = "candles"
-    tradingview_production_access_approved: bool = False
+    tradingview_production_access_approved: bool = True
     candle_interval: Literal["1m"] = "1m"
     candle_fetch_grace_seconds: float = Field(default=2, ge=0, le=30)
     candle_backfill_minutes: int = Field(default=300, ge=3, le=1440)
