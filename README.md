@@ -63,8 +63,11 @@ exactly once or permanent history. Queue overflow/send timeout closes the client
 See [commands, every message schema, limits and browser recovery](docs/api.md#websocket-market-data-v1),
 [browser JavaScript](examples/browser-marketdata.js), the [provisional BFF adapter](examples/company_bff.py)
 and [Batch 3 verification](docs/api-batch3-verification.md). There are no production changes
-or new live TradingView tests. TradingView candle mode has no genuine current quote stream:
-completed candle closes retain their explicit basis.
+or new live TradingView tests. Candle-only mode exposes completed candle closes with their
+explicit basis. The opt-in collector `dual` mode adds independent genuine quote subscriptions
+and latest-state journaling, compatible with the released standalone API. See
+[dual ingestion and qualification](docs/dual-ingestion-qualification.md) for verification,
+the preserved registries, source limitations and pending live qualification.
 
 | Adapter | Coverage | Current status |
 |---|---|---|

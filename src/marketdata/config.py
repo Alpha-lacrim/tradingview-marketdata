@@ -67,7 +67,8 @@ class Settings(BaseSettings):
     oanda_account_id: SecretStr | None = None
     databento_api_key: SecretStr | None = None
     tradingview_ws_url: str = "wss://data.tradingview.com/socket.io/websocket"
-    tradingview_storage_mode: Literal["ticks", "candles"] = "candles"
+    tradingview_storage_mode: Literal["ticks", "candles", "dual"] = "candles"
+    tradingview_quote_history: bool = False
     # Operator confirmed commercial public-site access on 2026-10-14.
     # An explicit false still disables production TradingView ingestion.
     tradingview_production_access_approved: bool = True
@@ -122,7 +123,7 @@ class Settings(BaseSettings):
         if self.application_role != "api" and self.db_pool_max < 2:
             raise ValueError("collector requires at least two pool connections")
         if self.tradingview_candle_pool_enabled:
-            if self.tradingview_storage_mode != "candles":
+            if self.tradingview_storage_mode not in {"candles", "dual"}:
                 raise ValueError("TradingView candle pool requires candle storage mode")
             # Bounded operator-authorized guest scope, not upstream entitlements.
             if (

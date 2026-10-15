@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-14",
+  "branch": "codex/simultaneous-tradingview-ingestion",
+  "base_commit": "a20f9c1e",
+  "uncommitted": true,
+  "schema_head": "0006",
+  "matrix": [
+    {
+      "engine": "PostgreSQL 16.1",
+      "tests": 486,
+      "passed": 480,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 6,
+      "seconds": 130.919,
+      "junit": "artifacts/dual-pg16-final.xml",
+      "junit_sha256": "bc445c8c8c98bbdc5c923331665b62fad85e70ce5c276d46bab3c9537e4f7a80"
+    },
+    {
+      "engine": "TimescaleDB 2.25.1 / PostgreSQL 17.7",
+      "tests": 486,
+      "passed": 483,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 3,
+      "seconds": 155.941,
+      "junit": "artifacts/dual-ts-final.xml",
+      "junit_sha256": "0c346511049d69e9613bd433143dc52f3a4f92e569bdf5c1f3491f57f20648be"
+    }
+  ],
+  "quality": {
+    "ruff": "passed",
+    "format": "210 files passed",
+    "mypy": "39 source/script files passed",
+    "compose_config_only": "passed",
+    "alembic_head": "0006"
+  },
+  "released_zip_sha256": "3a3ca216098a0f2a6632a8dcdb1dfb96af116a4c079c825876f253fbd8cea67a",
+  "independent_consumer": "exact ZIP extracted in temporary directory, separate process, production authentication and SELECT-only principal; deterministic fixtures",
+  "live_this_session": "NOT RUN: legacy PermanentConnectionError and no qualifying source idle window",
+  "production_schema_readonly_observed": "0004",
+  "goals": {
+    "historical": "PARTIALLY SATISFIED",
+    "quotes": "PARTIALLY SATISFIED",
+    "company_delivery": "PARTIALLY SATISFIED"
+  },
+  "production_changed": false,
+  "test_resource_cleanup": {
+    "removed": [
+      "marketdata-dual-pg16-test",
+      "marketdata-dual-ts-test"
+    ],
+    "checks": "exact task label and tmpfs storage verified before removal",
+    "volume_operations": false
+  }
+}

@@ -195,6 +195,15 @@ class TradingViewGuestProvider(MarketDataProvider):
                 max_size=MAX_FRAME_UNITS,
             )
         except InvalidStatus as error:
+            if error.response.status_code == 429:
+                from marketdata.providers.candle_pool import retry_after_seconds
+
+                self.retry_at = max(
+                    self.retry_at,
+                    time.monotonic()
+                    + retry_after_seconds(error.response.headers.get("Retry-After", "")),
+                )
+                self.metrics.tradingview_throttle.labels("http_429").inc()
             if error.response.status_code in (400, 401, 403, 451):
                 raise PermanentProviderError("tradingview_access_rejected") from None
             raise

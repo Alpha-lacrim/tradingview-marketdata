@@ -24,6 +24,12 @@ collection grace. Futures remain disabled. These are existing local operational 
 claim about newly granted upstream limits. The unapproved business-proposal registry is not
 selected. No schema change: head remains 0006.
 
+An additional opt-in `compose.tradingview-dual.yaml` adds independent quote workers to this
+same registry. It requires a reviewed dual-capable collector image and a separate approved
+switch. It has not been applied to production. See [dual qualification](dual-ingestion-qualification.md)
+for the released v1.0 consumer checks and bounded quote observer. The existing commercial
+profile remains candle-only until that switch is approved.
+
 ## Target preparation and switch
 
 Follow [production deployment](production-deployment.md) for verified volume identity, separate

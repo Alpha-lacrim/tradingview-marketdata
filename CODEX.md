@@ -1261,6 +1261,11 @@ completed native candle validation/scheduling;
 `candle_ingestion.py` owns bounded minute collection/recovery through the optional
 `providers/candles.py` capability. The experimental guest default stores native closed 1m
 candles. Tick ingestion remains available explicitly and is unchanged for other providers.
+Opt-in collector `TRADINGVIEW_STORAGE_MODE=dual` adds independent quote workers under the
+same ownership lock and candle scheduler. Default quotes update latest state/journal without
+tick history; `TRADINGVIEW_QUOTE_HISTORY=true` opts into history. Keep candle and quote
+connections within the existing six-socket aggregate bound. Read
+docs/dual-ingestion-qualification.md for isolated database tests and the read-only observer.
 Session classification belongs in `sessions.py`; 0004 adds tri-state coverage and correction
 audit provenance. See `docs/tradingview.md` for polling health, recovery, latency and live checks.
 
@@ -1277,7 +1282,11 @@ explicitly retains collector/migration/Databento extras. The minimal `Dockerfile
 to the API runtime; its `tools` target is separate. Use `docs/standalone-api.md` and
 `compose.api.yaml` for a disposable API-only handover with sample native data and SELECT-only
 credentials; this setup has no collector and never runs migrations at API startup.
-The portable `distributions/marketdata-fastapi/` snapshot is refreshed with
+The delivered `artifacts/marketdata-fastapi-v1.0.zip` and its distribution snapshot are
+immutable during collector work. Collector-side compatible shared-module additions do not
+authorize refreshing or replacing this released package; qualify against its exact extracted
+bytes and keep collector settings separate from the released API environment.
+For an explicitly approved future distribution version, the portable snapshot is refreshed with
 `uv run --no-sync python scripts/export_fastapi_distribution.py`; use `--check` for source
 parity. It protects manual distribution edits. Keep schema/API source authoritative here
 until repository extraction is authorized; validate delivery from a fresh copy outside this

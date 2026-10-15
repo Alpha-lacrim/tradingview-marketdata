@@ -37,13 +37,33 @@ class Collector:
     status_task: asyncio.Task[None] | None = None
 
     async def publish_status(self, running: bool) -> None:
+        healths = [await p.health_check() for p in self.service.providers]
+        if self.store.settings.tradingview_storage_mode == "dual":
+            candle_healths = [
+                health
+                for provider, health in zip(self.service.providers, healths, strict=True)
+                if isinstance(provider, CandleProvider)
+            ]
+            for provider, health in zip(self.service.providers, healths, strict=True):
+                if isinstance(provider, CandleProvider):
+                    continue
+                for symbol, quote in health.symbols.items():
+                    candle = next(
+                        (h.symbols[symbol] for h in candle_healths if symbol in h.symbols), None
+                    )
+                    if candle is not None:
+                        quote.session_expectation = candle.session_expectation
+                        quote.candle_state = candle.candle_state
+            # Released v1.0 resolves the first matching provider/prefix per source.
+            # Publish continuous quote health first, with separate candle diagnostics.
+            healths = [h for h in healths if h.storage_mode != "candles"] + candle_healths
         await self.store.publish_collector_status(
             self.run_id,
             running,
             self.service.database_healthy
             and all(c.database_healthy for c in self.service.candle_services.values()),
             self.service.queue.qsize(),
-            [await p.health_check() for p in self.service.providers],
+            healths,
         )
 
     async def publish_loop(self, ownership_lost: asyncio.Event) -> None:
@@ -102,6 +122,10 @@ async def collector_lifespan(
                 service = IngestionService(settings, store, providers, fanout, metrics)
                 runtime = Collector(store, service, registry, metrics, uuid4())
                 await store.register(registry, candle_providers=store.candle_providers)
+                if settings.tradingview_storage_mode == "dual":
+                    # Combined-development legacy reads use the same persisted
+                    # freshness selection as the independent v1.0 API consumer.
+                    store.candle_providers = None
                 await runtime.publish_status(True)
                 await service.start()
                 runtime.status_task = asyncio.create_task(

@@ -1,0 +1,437 @@
+{
+  "scope": "Prior genuine 2026-10-13 bounded quote probes; not a new dual-ingestion qualification, frequency guarantee, or current availability claim.",
+  "source": "docs/business-live-evidence.json",
+  "source_sha256": "262089bf9640657f4927d4020b6093102e05f3228e02d0972fdbac7b3cbdce6f",
+  "per_instrument": [
+    {
+      "provider_symbol": "BINANCE:BTCUSDT",
+      "observation_count": 7,
+      "first_received": "2026-10-13T07:52:25.655724+00:00",
+      "last_received": "2026-10-13T07:52:33.226789+00:00",
+      "receipt_span_seconds": 7.571065,
+      "receipt_intervals_seconds": [
+        0,
+        1.598725,
+        0.943012,
+        1.996769,
+        0.464366,
+        2.568193
+      ],
+      "last_source_age_range_seconds": [
+        1.197461,
+        1.658596
+      ],
+      "source_time_unavailable_count": 4,
+      "source_metadata": {
+        "type": "spot",
+        "exchange": "Binance",
+        "currency_code": "USDT",
+        "update_mode": "streaming"
+      },
+      "rejection": null,
+      "observations": [
+        {
+          "last": "83978.65",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:52:24+00:00",
+          "received_timestamp": "2026-10-13T07:52:25.655724+00:00",
+          "last_source_age_seconds": 1.655724,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "83978.65",
+          "ask": "83978.66",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:52:25.655724+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "83978.65",
+          "ask": "83978.66",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:52:27.254449+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "83978.66",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:52:27+00:00",
+          "received_timestamp": "2026-10-13T07:52:28.197461+00:00",
+          "last_source_age_seconds": 1.197461,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "83980.0",
+          "ask": "83980.01",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:52:30.194230+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "83980.01",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:52:29+00:00",
+          "received_timestamp": "2026-10-13T07:52:30.658596+00:00",
+          "last_source_age_seconds": 1.658596,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "83980.0",
+          "ask": "83980.01",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:52:33.226789+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        }
+      ]
+    },
+    {
+      "provider_symbol": "OANDA:EURUSD",
+      "observation_count": 6,
+      "first_received": "2026-10-13T07:53:40.891644+00:00",
+      "last_received": "2026-10-13T07:53:46.947850+00:00",
+      "receipt_span_seconds": 6.056206,
+      "receipt_intervals_seconds": [
+        0.71568,
+        3.059215,
+        0.156279,
+        2.009615,
+        0.115417
+      ],
+      "last_source_age_range_seconds": [
+        0.822818,
+        2.891644
+      ],
+      "source_time_unavailable_count": 3,
+      "source_metadata": {
+        "type": "forex",
+        "exchange": "OANDA",
+        "currency_code": "USD",
+        "update_mode": "streaming"
+      },
+      "rejection": null,
+      "observations": [
+        {
+          "last": "1.11884",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:53:38+00:00",
+          "received_timestamp": "2026-10-13T07:53:40.891644+00:00",
+          "last_source_age_seconds": 2.891644,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "1.11877",
+          "ask": "1.11892",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:53:41.607324+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "1.11878",
+          "ask": "1.11894",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:53:44.666539+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "1.11888",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:53:44+00:00",
+          "received_timestamp": "2026-10-13T07:53:44.822818+00:00",
+          "last_source_age_seconds": 0.822818,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "1.11886",
+          "ask": "1.11902",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:53:46.832433+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "1.11894",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:53:45+00:00",
+          "received_timestamp": "2026-10-13T07:53:46.947850+00:00",
+          "last_source_age_seconds": 1.94785,
+          "realtime_status": "realtime"
+        }
+      ]
+    },
+    {
+      "provider_symbol": "FX:EURUSD",
+      "observation_count": 5,
+      "first_received": "2026-10-13T08:00:38.845753+00:00",
+      "last_received": "2026-10-13T08:00:47.297478+00:00",
+      "receipt_span_seconds": 8.451725,
+      "receipt_intervals_seconds": [
+        3.995881,
+        2.002769,
+        1.967428,
+        0.485647
+      ],
+      "last_source_age_range_seconds": [
+        0.297478,
+        1.845753
+      ],
+      "source_time_unavailable_count": 2,
+      "source_metadata": {
+        "type": "forex",
+        "exchange": "FXCM",
+        "currency_code": "USD",
+        "update_mode": "streaming"
+      },
+      "rejection": null,
+      "observations": [
+        {
+          "last": "1.11881",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T08:00:37+00:00",
+          "received_timestamp": "2026-10-13T08:00:38.845753+00:00",
+          "last_source_age_seconds": 1.845753,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "1.11882",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T08:00:42+00:00",
+          "received_timestamp": "2026-10-13T08:00:42.841634+00:00",
+          "last_source_age_seconds": 0.841634,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "1.11882",
+          "ask": "1.11884",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T08:00:44.844403+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "1.11884",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T08:00:46.811831+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "1.11883",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T08:00:47+00:00",
+          "received_timestamp": "2026-10-13T08:00:47.297478+00:00",
+          "last_source_age_seconds": 0.297478,
+          "realtime_status": "realtime"
+        }
+      ]
+    },
+    {
+      "provider_symbol": "OANDA:XAUUSD",
+      "observation_count": 9,
+      "first_received": "2026-10-13T07:55:27.729213+00:00",
+      "last_received": "2026-10-13T07:55:33.993823+00:00",
+      "receipt_span_seconds": 6.26461,
+      "receipt_intervals_seconds": [
+        0,
+        0.056212,
+        1.998977,
+        0.192064,
+        1.764619,
+        0.241762,
+        2.010976,
+        0
+      ],
+      "last_source_age_range_seconds": [
+        0.785425,
+        3.729213
+      ],
+      "source_time_unavailable_count": 4,
+      "source_metadata": {
+        "type": "commodity",
+        "exchange": "OANDA",
+        "currency_code": "USD",
+        "update_mode": "streaming"
+      },
+      "rejection": null,
+      "observations": [
+        {
+          "last": "4190.045",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:55:24+00:00",
+          "received_timestamp": "2026-10-13T07:55:27.729213+00:00",
+          "last_source_age_seconds": 3.729213,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "4189.78",
+          "ask": "4190.09",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:55:27.729213+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "4189.83",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:55:27+00:00",
+          "received_timestamp": "2026-10-13T07:55:27.785425+00:00",
+          "last_source_age_seconds": 0.785425,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "4189.71",
+          "ask": "4190.11",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:55:29.784402+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "4190.01",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:55:29+00:00",
+          "received_timestamp": "2026-10-13T07:55:29.976466+00:00",
+          "last_source_age_seconds": 0.976466,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "4189.81",
+          "ask": "4190.21",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:55:31.741085+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "4189.945",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:55:30+00:00",
+          "received_timestamp": "2026-10-13T07:55:31.982847+00:00",
+          "last_source_age_seconds": 1.982847,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "4189.5",
+          "ask": "4189.99",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:55:33.993823+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "4189.81",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:55:33+00:00",
+          "received_timestamp": "2026-10-13T07:55:33.993823+00:00",
+          "last_source_age_seconds": 0.993823,
+          "realtime_status": "realtime"
+        }
+      ]
+    },
+    {
+      "provider_symbol": "TVC:USOIL",
+      "observation_count": 5,
+      "first_received": "2026-10-13T07:56:26.797205+00:00",
+      "last_received": "2026-10-13T07:56:33.936966+00:00",
+      "receipt_span_seconds": 7.139761,
+      "receipt_intervals_seconds": [
+        1.64016,
+        1.160379,
+        1.082805,
+        3.256417
+      ],
+      "last_source_age_range_seconds": [
+        0.680549,
+        0.936966
+      ],
+      "source_time_unavailable_count": 2,
+      "source_metadata": {
+        "type": "commodity",
+        "exchange": "TVC",
+        "currency_code": "USD",
+        "update_mode": "streaming"
+      },
+      "rejection": null,
+      "observations": [
+        {
+          "last": "92.01",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:56:26+00:00",
+          "received_timestamp": "2026-10-13T07:56:26.797205+00:00",
+          "last_source_age_seconds": 0.797205,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": null,
+          "bid": "91.99",
+          "ask": "92.0",
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:56:28.437365+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "92.0",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": null,
+          "received_timestamp": "2026-10-13T07:56:29.597744+00:00",
+          "last_source_age_seconds": null,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "92.01",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:56:30+00:00",
+          "received_timestamp": "2026-10-13T07:56:30.680549+00:00",
+          "last_source_age_seconds": 0.680549,
+          "realtime_status": "realtime"
+        },
+        {
+          "last": "91.97",
+          "bid": null,
+          "ask": null,
+          "event_timestamp": "2026-10-13T07:56:33+00:00",
+          "received_timestamp": "2026-10-13T07:56:33.936966+00:00",
+          "last_source_age_seconds": 0.936966,
+          "realtime_status": "realtime"
+        }
+      ]
+    }
+  ]
+}

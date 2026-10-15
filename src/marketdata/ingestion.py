@@ -22,6 +22,7 @@ logger = logging.getLogger(__name__)
 
 class TickWriter(Protocol):
     async def write(self, ticks: list[Tick]) -> int: ...
+    async def write_quotes(self, ticks: list[Tick]) -> int: ...
 
 
 class IngestionService:
@@ -42,6 +43,12 @@ class IngestionService:
         self.stopping = False
         self.pending: list[Tick] = []
         self.database_healthy = True
+        self.latest_only_sources = {
+            mapping.provider
+            for provider in providers
+            if not provider.persist_tick_history
+            for _, mapping in provider.subscriptions
+        }
         self.candle_services = {
             p: CandleIngestion(settings, cast(CandleStore, store), p, fanout)
             for p in providers
@@ -176,7 +183,10 @@ class IngestionService:
             )
             attempt += 1
             await asyncio.sleep(
-                random.uniform(delay, min(self.settings.reconnect_max_seconds, delay * 1.2))
+                max(
+                    random.uniform(delay, min(self.settings.reconnect_max_seconds, delay * 1.2)),
+                    provider.retry_at - time.monotonic(),
+                )
             )
         if self.stopping:
             provider.transition("disconnected")
@@ -246,7 +256,19 @@ class IngestionService:
                 try:
                     async with asyncio.timeout(self.settings.db_timeout_seconds):
                         with self.metrics.batch_latency.time():
-                            count = await self.store.write(self.pending)
+                            history = [
+                                tick
+                                for tick in self.pending
+                                if tick.provider not in self.latest_only_sources
+                            ]
+                            quotes = [
+                                tick
+                                for tick in self.pending
+                                if tick.provider in self.latest_only_sources
+                            ]
+                            count = await self.store.write(history) if history else 0
+                            if quotes:
+                                count += await self.store.write_quotes(quotes)
                     self.metrics.persisted.inc(count)
                     self.database_healthy = True
                     for _ in self.pending:

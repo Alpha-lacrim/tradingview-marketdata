@@ -73,6 +73,11 @@ The default is `TRADINGVIEW_STORAGE_MODE=candles`. Diagnostic `ticks` mode retai
 original quote collector and `scripts/smoke_tradingview.py`; explicitly set that mode before
 running the old tick smoke. Recorded raw ticks are preserved in either mode.
 
+The collector additionally supports opt-in `TRADINGVIEW_STORAGE_MODE=dual`, maintaining
+native history and independent quote subscriptions in one owned process. Quote deltas update
+latest state and the committed journal; historical quote ticks are optional. Existing default
+activation is unchanged. See [dual ingestion and qualification](dual-ingestion-qualification.md).
+
 ## Verified initial instruments
 
 All 17 exact source symbols were checked against the public symbol pages and returned

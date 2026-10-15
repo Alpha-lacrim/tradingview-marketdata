@@ -1,0 +1,7 @@
+# Opt-in collector override, after the existing commercial profile. No registry changes.
+# Requires a reviewed dual-capable image; applying this is a separate deployment action.
+services:
+  collector:
+    environment:
+      TRADINGVIEW_STORAGE_MODE: dual
+      TRADINGVIEW_QUOTE_HISTORY: "false"

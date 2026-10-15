@@ -1,4 +1,4 @@
-# Current state — 2026-10-14
+# Current state — 2026-10-15
 
 ## Repository and authorization
 
@@ -12,13 +12,76 @@ The standalone API task preserved and completed those frontend handoff changes. 
 The temporary codex/commercial-tradingview-preparation branch was removed. To free main,
 the older home-rooted worktree was detached at its unchanged 324b1d83 commit; its tracked
 edits were verified unchanged. Other worktrees and paused database-efficiency work remain
-untouched. This workspace now owns the local main checkout.
+untouched. Dual collector work started clean at main a20f9c1e on development branch
+`codex/simultaneous-tradingview-ingestion`. At the user's request, this workspace returned to
+`main` for a local commit of the collector changes, tests and supporting documentation.
+No push or deployment was performed. Unrelated untracked TradingViewConvHistory/ remains
+preserved outside the commit.
 
 The operator confirmed full TradingView support permission and an appropriate company
 access arrangement for this use case, then confirmed the existing public-site connection is
 approved. No dedicated endpoint/authentication was supplied. The earlier access permission
 gate is resolved for this installation. Upstream entitlements, realtime classification,
 experimental protocol and persisted tradingview_guest identity are preserved.
+
+## Dual TradingView collector — current development
+
+Read docs/dual-ingestion-qualification.md, dual-registry-comparison.json and
+dual-prior-live-sample.json. Opt-in TRADINGVIEW_STORAGE_MODE=dual builds the existing native
+candle provider/pool plus independent quote workers under the same collector ownership lock
+and one candle scheduler. Default quotes commit only latest state and price_update journal
+events; TRADINGVIEW_QUOTE_HISTORY=true enables optional history. Tick-only behavior and
+default candle activation are unchanged. Six total sockets bound both responsibilities.
+Quote health uses separate operational names, original persisted provider/source identity,
+and is published first with native session/candle state for released v1.0 source-status lookup.
+Quote HTTP 429 honors Retry-After/minimum 60s. Existing precision, metadata, delay, rejection,
+watchdog, bounded queue, candle recovery and transaction cursor guarantees remain.
+
+No migration or API/event/ChartData contract change. Schema head 0006. The delivered ZIP and
+entire distributions/marketdata-fastapi tree were not edited or regenerated; ZIP hash remains
+3a3ca216098a0f2a6632a8dcdb1dfb96af116a4c079c825876f253fbd8cea67a. Shared collector-side
+module changes intentionally diverge from the frozen source manifest. Released API Settings
+does not accept dual: keep collector and API environments separate as already deployed.
+
+New tests/test_dual_ingestion.py independently extracts that exact ZIP, verifies local imports,
+starts a separate production-auth API with a SELECT-only principal, and exercises fixture
+quotes before candle completion, quote reconnect, uncertain commit/rollback/idempotency,
+actual task-owned DB pause/recovery, native REST/ChartData, source-status/delayed rejection,
+reconnect/replay, collector stop and stale receipts across API process termination/restart.
+This evidence is deterministic, not genuine current TradingView qualification.
+Commit-time verification on 2026-10-15: pytest with TEST_DATABASE_URL unset passed
+329 tests / 157 skipped; database integration was not rerun. Ruff check and format
+(212 files), strict mypy (39 source/script files) and git diff --check passed. The prior
+database-suite JUnit hashes and immutable release ZIP hash match the evidence JSON.
+Final full suites: PostgreSQL 16.1 480 passed / 6 skipped / 130.93s; TimescaleDB
+2.25.1 on PG17.7 483 passed / 3 skipped / 155.95s. Ruff/format 210 files, strict mypy
+39 source/script files, Alembic 0006 and merged opt-in Compose config passed. See
+docs/dual-ingestion-verification.json for JUnit/release hashes and scope. Initial native-fixture
+wall-clock flakiness was fixed; a parallel PG metrics-listener TCP timeout passed on the final
+full solo rerun without weakening its test. Existing dependency warnings remain.
+
+Task-owned tmpfs DBs: marketdata-dual-pg16-test/55935 (exact PostgreSQL 16.1) and
+marketdata-dual-ts-test/55936 (Timescale 2.25.1 / PostgreSQL 17.7), database marketdata_dual_test.
+DUAL_TEST_CONTAINER guards real pause/unpause by exact name, label and mapped port.
+The task-owned test databases were removed after verification, without volume operations.
+No tests were run against production. The existing app is still unhealthy/degraded with
+PermanentConnectionError and disconnected transport; read-only SQL confirmed its actual
+migration is 0004. No qualifying documented idle window, no new live source probes, no
+production restart/migration/volume changes. The exact permanent rejection cause is unresolved.
+
+The registries remain unchanged: 100 accuracy sources vs 99 proposed feeds; 57 common,
+43 accuracy-only, 42 proposal-only. Both factories construct dual paths without activation.
+The 2026-10-13 genuine quote samples demonstrate intra-minute deltas on BTC, both EURUSD
+brokers, gold and oil, but do not qualify the new dual implementation or today's availability.
+All three employer goals remain PARTIALLY SATISFIED for actual company use.
+
+Next: diagnose the legacy permanent error; arrange an approved non-competing live test window;
+qualify one frozen subset in a separate live _test DB through the exact ZIP, then soak the
+approved universe and test company TLS/network/auth/dashboard integration. The new bounded
+read-only scripts/observe_dual_ingestion.py opens no provider connections, measures delivered
+quotes/native gaps and append-time latency proxies, reconciles replay/REST and saves failures.
+compose.tradingview-dual.yaml is a prepared opt-in override, not an applied deployment.
+Only an explicit approved backup/legacy stop/0004→0006/reviewed-image switch may alter production.
 
 ## Developer handoff audit
 
@@ -60,9 +123,9 @@ API-only database streaming mode and uses optional API_KEY for REST/legacy WS au
 README and frontend guide link the new handoff. Default mock mode produces simulated quotes;
 v1 native history is empty, while DB/TCP fixtures independently exercise native candles.
 
-TradingView candles/ticks remain alternative collector modes. Simultaneous collection is a
-separate milestone, required before promising continuous TradingView quotes alongside native
-candles, not before API contract integration. The company session authorizer and final browser
+TradingView now has opt-in dual collector mode alongside the preserved candle/tick modes.
+Its deterministic compatibility is implemented; live simultaneous qualification remains
+required before promising continuous TradingView prices alongside native candles. The company session authorizer and final browser
 architecture remain external dependencies; the BFF is provisional, not a supplied login system.
 
 ## Commercial production/test preparation
@@ -180,8 +243,10 @@ procedure and provision separate principals/secrets before replacement. Follow
 docs/collector-fastapi-integration.md and docs/production-deployment.md. Do not run legacy
 switch helpers or a second ordinary live scheduler here.
 
-Next: hand developers artifacts/marketdata-fastapi-v1.0.zip and the standalone README. Keep the source
-manifest/exporter workflow until a separate repository and implementation owner are approved.
+The employer reports the v1.0 ZIP already delivered. Preserve that exact release and its
+distribution snapshot; do not export compatible collector additions into it. A future version
+needs explicit release approval. Next collector work is the live qualification described in
+docs/dual-ingestion-qualification.md, followed by an approved rollout.
 For production,
 provision target reviewed images/digests, mounted DSNs/token, HTTPS origins/proxy,
 backup/monitoring and company session adapter; perform the reviewed replacement, then run

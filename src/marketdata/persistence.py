@@ -327,6 +327,17 @@ class Store:
                         )
 
     async def write(self, ticks: list[Tick]) -> int:
+        return await self._write_observations(ticks, history=True)
+
+    async def write_quotes(self, ticks: list[Tick]) -> int:
+        """Commit latest genuine observations and journal events without tick history.
+
+        Each batch retains the newest observation per source. Stable observation UUIDs
+        make uncertain-commit retries idempotent via the latest-state ordering guard.
+        """
+        return await self._write_observations(ticks, history=False)
+
+    async def _write_observations(self, ticks: list[Tick], *, history: bool) -> int:
         if not ticks:
             return 0
         columns = ",".join(TICK_COLUMNS)
@@ -338,12 +349,19 @@ class Store:
                 records=[tick_record(t) for t in ticks],
                 columns=TICK_COLUMNS,
             )
-            # Both history and latest state commit atomically. Retry the same UUIDs after
-            # uncertain commits; only rows actually inserted can update latest state.
+            # History mode updates latest only from newly inserted stable UUIDs.
+            # Latest-only mode uses the same ordering guard below for safe retries.
+            # State and its journal events always share the owning transaction.
+            observations = (
+                f"INSERT INTO market_ticks ({columns}) SELECT {columns} FROM tick_stage "
+                "ON CONFLICT (storage_timestamp,tick_id) DO NOTHING RETURNING *"
+                if history
+                else "SELECT DISTINCT ON (storage_timestamp,tick_id) * FROM tick_stage"
+            )
+            counted = "inserted" if history else "latest"
             result = await connection.fetchrow(f"""
                 WITH inserted AS (
-                    INSERT INTO market_ticks ({columns}) SELECT {columns} FROM tick_stage
-                    ON CONFLICT (storage_timestamp,tick_id) DO NOTHING RETURNING *
+                    {observations}
                 ), latest AS (
                     INSERT INTO latest_prices
                         (instrument_id,provider,order_ns,received_timestamp,tick_id,payload)
@@ -358,7 +376,7 @@ class Store:
                     WHERE (EXCLUDED.order_ns,EXCLUDED.received_timestamp,EXCLUDED.tick_id) >
                         (latest_prices.order_ns,latest_prices.received_timestamp,latest_prices.tick_id)
                     RETURNING payload
-                ) SELECT (SELECT count(*) FROM inserted) AS count,
+                ) SELECT (SELECT count(*) FROM {counted}) AS count,
                     coalesce((SELECT jsonb_agg(payload) FROM latest),'[]') AS latest
             """)
             from marketdata.events import append_events

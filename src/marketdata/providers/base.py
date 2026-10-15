@@ -98,6 +98,8 @@ class ProviderHealth(BaseModel):
 
 
 class MarketDataProvider(ABC):
+    persist_tick_history = True
+
     def __init__(self, name: str, metrics: Metrics):
         self.name = name
         self.metrics = metrics
@@ -109,6 +111,7 @@ class MarketDataProvider(ABC):
         self.observation_timeout_seconds = 30.0
         self.symbol_stale_seconds: dict[str, float] = {}
         self.transport_timed_out = False
+        self.retry_at = 0.0
         self.parse_degraded = False
         self._last_parse_log = -float("inf")
 
