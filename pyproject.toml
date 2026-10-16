@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "marketdata-platform"
-version = "0.1.0"
+version = "1.1.0rc1"
 description = "Legitimate multi-asset streaming market data and PostgreSQL persistence"
 requires-python = ">=3.12"
 dependencies = [
@@ -13,6 +13,9 @@ dependencies = [
   "websockets>=15,<16", "prometheus-client>=0.21,<1",
   "anyio>=4,<5",
 ]
+
+[project.scripts]
+marketdata-sync = "marketdata.sync_worker:main"
 
 [project.optional-dependencies]
 collector = ["httpx>=0.28,<1"]

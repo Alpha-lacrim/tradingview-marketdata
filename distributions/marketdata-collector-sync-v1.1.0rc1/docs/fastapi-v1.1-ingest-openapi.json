@@ -1,0 +1,605 @@
+{
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "ReconcileKey": {
+        "additionalProperties": false,
+        "properties": {
+          "bucket_start": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Bucket Start"
+          },
+          "instrument_id": {
+            "format": "uuid",
+            "title": "Instrument Id",
+            "type": "string"
+          },
+          "ownership_generation": {
+            "exclusiveMinimum": 0,
+            "maximum": 9223372036854775807,
+            "title": "Ownership Generation",
+            "type": "integer"
+          },
+          "provider": {
+            "pattern": "^[a-z][a-z0-9_]{0,99}$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "source_epoch": {
+            "format": "uuid",
+            "title": "Source Epoch",
+            "type": "string"
+          },
+          "stream": {
+            "enum": [
+              "candles",
+              "quotes"
+            ],
+            "title": "Stream",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instrument_id",
+          "provider",
+          "stream",
+          "source_epoch",
+          "ownership_generation"
+        ],
+        "title": "ReconcileKey",
+        "type": "object"
+      },
+      "ReconcileRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "keys": {
+            "items": {
+              "$ref": "#/components/schemas/ReconcileKey"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "title": "Keys",
+            "type": "array"
+          },
+          "protocol_version": {
+            "maximum": 1,
+            "minimum": 1,
+            "title": "Protocol Version",
+            "type": "integer"
+          },
+          "session_generation": {
+            "exclusiveMinimum": 0,
+            "maximum": 9223372036854775807,
+            "title": "Session Generation",
+            "type": "integer"
+          },
+          "session_id": {
+            "format": "uuid",
+            "title": "Session Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "protocol_version",
+          "session_id",
+          "session_generation",
+          "keys"
+        ],
+        "title": "ReconcileRequest",
+        "type": "object"
+      },
+      "RecoveryReceipt": {
+        "properties": {
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "previous_session_generation": {
+            "title": "Previous Session Generation",
+            "type": "integer"
+          },
+          "previous_session_id": {
+            "format": "uuid",
+            "title": "Previous Session Id",
+            "type": "string"
+          },
+          "producer_id": {
+            "format": "uuid",
+            "title": "Producer Id",
+            "type": "string"
+          },
+          "protocol_version": {
+            "const": 1,
+            "title": "Protocol Version",
+            "type": "integer"
+          },
+          "recovery_id": {
+            "format": "uuid",
+            "title": "Recovery Id",
+            "type": "string"
+          },
+          "server_recovered_at": {
+            "format": "date-time",
+            "title": "Server Recovered At",
+            "type": "string"
+          },
+          "session_generation": {
+            "title": "Session Generation",
+            "type": "integer"
+          },
+          "session_id": {
+            "format": "uuid",
+            "title": "Session Id",
+            "type": "string"
+          },
+          "state": {
+            "const": "committed",
+            "title": "State",
+            "type": "string"
+          },
+          "streams": {
+            "items": {
+              "$ref": "#/components/schemas/RecoveryStream"
+            },
+            "title": "Streams",
+            "type": "array"
+          }
+        },
+        "required": [
+          "protocol_version",
+          "producer_id",
+          "recovery_id",
+          "previous_session_id",
+          "previous_session_generation",
+          "session_id",
+          "session_generation",
+          "expires_at",
+          "server_recovered_at",
+          "state",
+          "streams"
+        ],
+        "title": "RecoveryReceipt",
+        "type": "object"
+      },
+      "RecoveryRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "previous_session_generation": {
+            "exclusiveMinimum": 0,
+            "maximum": 9223372036854775807,
+            "title": "Previous Session Generation",
+            "type": "integer"
+          },
+          "previous_session_id": {
+            "format": "uuid",
+            "title": "Previous Session Id",
+            "type": "string"
+          },
+          "protocol_version": {
+            "maximum": 1,
+            "minimum": 1,
+            "title": "Protocol Version",
+            "type": "integer"
+          },
+          "recovery_id": {
+            "format": "uuid",
+            "title": "Recovery Id",
+            "type": "string"
+          },
+          "streams": {
+            "items": {
+              "$ref": "#/components/schemas/RecoveryStream"
+            },
+            "maxItems": 1000,
+            "minItems": 1,
+            "title": "Streams",
+            "type": "array"
+          }
+        },
+        "required": [
+          "protocol_version",
+          "recovery_id",
+          "previous_session_id",
+          "previous_session_generation",
+          "streams"
+        ],
+        "title": "RecoveryRequest",
+        "type": "object"
+      },
+      "RecoveryStream": {
+        "additionalProperties": false,
+        "properties": {
+          "instrument_id": {
+            "format": "uuid",
+            "title": "Instrument Id",
+            "type": "string"
+          },
+          "ownership_generation": {
+            "exclusiveMinimum": 0.0,
+            "maximum": 9.223372036854776e+18,
+            "title": "Ownership Generation",
+            "type": "integer"
+          },
+          "provider": {
+            "pattern": "^[a-z][a-z0-9_]{0,99}$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "source_epoch": {
+            "format": "uuid",
+            "title": "Source Epoch",
+            "type": "string"
+          },
+          "stream": {
+            "enum": [
+              "candles",
+              "quotes",
+              "coverage",
+              "status"
+            ],
+            "title": "Stream",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instrument_id",
+          "provider",
+          "stream",
+          "source_epoch",
+          "ownership_generation"
+        ],
+        "title": "RecoveryStream",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "ProducerBearer": {
+        "bearerFormat": "key_id.secret",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "title": "Market-data ingestion",
+    "version": "1.1.0rc1"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/ingest/v1/candles": {
+      "post": {
+        "operationId": "upload_candles_api_ingest_v1_candles_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Upload Candles Api Ingest V1 Candles Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Upload Candles"
+      }
+    },
+    "/api/ingest/v1/coverage": {
+      "post": {
+        "operationId": "upload_coverage_api_ingest_v1_coverage_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Upload Coverage Api Ingest V1 Coverage Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Upload Coverage"
+      }
+    },
+    "/api/ingest/v1/health": {
+      "get": {
+        "operationId": "health_api_ingest_v1_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Health Api Ingest V1 Health Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health"
+      }
+    },
+    "/api/ingest/v1/quotes": {
+      "post": {
+        "operationId": "upload_quotes_api_ingest_v1_quotes_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Upload Quotes Api Ingest V1 Quotes Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Upload Quotes"
+      }
+    },
+    "/api/ingest/v1/receipts/{batch_id}": {
+      "get": {
+        "operationId": "receipt_api_ingest_v1_receipts__batch_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "batch_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Batch Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Receipt Api Ingest V1 Receipts  Batch Id  Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Receipt"
+      }
+    },
+    "/api/ingest/v1/reconcile": {
+      "post": {
+        "operationId": "reconcile_state_api_ingest_v1_reconcile_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReconcileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Reconcile State Api Ingest V1 Reconcile Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "ProducerBearer": []
+          }
+        ],
+        "summary": "Reconcile State"
+      }
+    },
+    "/api/ingest/v1/session": {
+      "post": {
+        "operationId": "admit_session_api_ingest_v1_session_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Admit Session Api Ingest V1 Session Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Admit Session"
+      }
+    },
+    "/api/ingest/v1/session/recover": {
+      "post": {
+        "operationId": "recover_api_ingest_v1_session_recover_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecoveryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecoveryReceipt"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Producer not authorized"
+          },
+          "409": {
+            "description": "Session, ownership or recovery request fenced"
+          },
+          "413": {
+            "description": "Bounded recovery request exceeded"
+          },
+          "422": {
+            "description": "Invalid recovery request"
+          },
+          "429": {
+            "description": "Producer request budget exhausted"
+          },
+          "503": {
+            "description": "Retry after temporary failure"
+          }
+        },
+        "security": [
+          {
+            "ProducerBearer": []
+          }
+        ],
+        "summary": "Recover"
+      }
+    },
+    "/api/ingest/v1/session/renew": {
+      "post": {
+        "operationId": "renew_session_api_ingest_v1_session_renew_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Renew Session Api Ingest V1 Session Renew Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Renew Session"
+      }
+    },
+    "/api/ingest/v1/status": {
+      "post": {
+        "operationId": "upload_status_api_ingest_v1_status_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Upload Status Api Ingest V1 Status Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Upload Status"
+      }
+    }
+  }
+}

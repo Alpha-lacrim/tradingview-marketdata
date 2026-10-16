@@ -24,6 +24,7 @@ from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
 from pydantic import BaseModel, Field, ValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+from marketdata import __version__
 from marketdata.api_v1 import create_router
 from marketdata.candles import MarketCandle
 from marketdata.config import Settings
@@ -271,7 +272,7 @@ def _create_app(settings: Settings, *, combined: bool) -> FastAPI:
 
     app = FastAPI(
         title="Multi-asset market data",
-        version="1.0.0",
+        version=__version__,
         lifespan=lifespan,
     )
 

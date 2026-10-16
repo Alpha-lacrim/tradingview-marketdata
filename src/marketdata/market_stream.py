@@ -246,6 +246,14 @@ class MarketHub:
                         else None
                     )
                     symbol_health = health.symbols.get(price.canonical_symbol) if health else None
+                    source_fresh = bool(snapshot and snapshot["fresh"])
+                    if snapshot and "source_health" in snapshot:
+                        key = (price.canonical_symbol, row["provider"])
+                        health = snapshot["source_health"].get(key)
+                        symbol_health = (
+                            health.symbols.get(price.canonical_symbol) if health else None
+                        )
+                        source_fresh = snapshot["source_fresh"].get(key, False)
                     items.append(
                         SourceState(
                             **identity(row),
@@ -260,10 +268,10 @@ class MarketHub:
                             provider_state=health.state if health else "unknown",
                             transport=health.transport if health else "unknown",
                             session_expectation=symbol_health.session_expectation
-                            if symbol_health and snapshot and snapshot["fresh"]
+                            if symbol_health and source_fresh
                             else "UNKNOWN",
                             candle_state=symbol_health.candle_state
-                            if symbol_health and snapshot and snapshot["fresh"]
+                            if symbol_health and source_fresh
                             else None,
                         )
                     )

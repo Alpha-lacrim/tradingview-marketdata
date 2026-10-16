@@ -504,7 +504,7 @@ GRANT CONNECT ON DATABASE marketdata TO marketdata_api;
 GRANT USAGE ON SCHEMA public TO marketdata_api;
 GRANT SELECT ON public.instruments, public.provider_instruments,
   public.market_ticks, public.latest_prices, public.market_candles, public.latest_candles,
-  public.candle_coverage, public.candle_revisions, public.collector_status,
+  public.candle_coverage, public.candle_revisions, public.collector_status, public.ingest_read_status,
   public.marketdata_event_clock, public.marketdata_events,
   public.alembic_version TO marketdata_api;
 ALTER ROLE marketdata_api SET default_transaction_read_only = on;

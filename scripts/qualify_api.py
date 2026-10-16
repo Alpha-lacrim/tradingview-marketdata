@@ -288,7 +288,7 @@ async def qualify(args):
     price = Decimal("123.123456789012345678901")
     tables = (
         "instruments,provider_instruments,market_ticks,latest_prices,market_candles,"
-        "latest_candles,candle_revisions,candle_coverage,collector_status,alembic_version,"
+        "latest_candles,candle_revisions,candle_coverage,collector_status,ingest_read_status,alembic_version,"
         "marketdata_event_clock,marketdata_events"
     )
     try:

@@ -1,0 +1,84 @@
+# Disposable integration databases only; never substitutes an existing volume/project.
+x-db: &db
+  labels: {marketdata.task: v11-m4}
+  environment: &credentials
+    POSTGRES_USER: m4_test
+    POSTGRES_PASSWORD: disposable_test
+    POSTGRES_DB: marketdata_v11_m4_test
+  tmpfs: [/var/lib/postgresql/data]
+  shm_size: 256mb
+  healthcheck:
+    test: [CMD-SHELL, "pg_isready -U m4_test -d marketdata_v11_m4_test"]
+    interval: 2s
+    timeout: 2s
+    retries: 30
+services:
+  destination-pg16:
+    <<: *db
+    image: postgres:16.1@sha256:09f23e02d76670d3b346a3c00aa33a27cf57aab8341eedfcdaed41459d14f5c4
+    container_name: marketdata-v11-m4-destination-pg16-test
+    ports: ["127.0.0.1:55995:5432"]
+  source-pg16:
+    <<: *db
+    image: postgres:16.1@sha256:09f23e02d76670d3b346a3c00aa33a27cf57aab8341eedfcdaed41459d14f5c4
+    container_name: marketdata-v11-m4-source-pg16-test
+    ports: ["127.0.0.1:55997:5432"]
+  destination-timescale:
+    <<: *db
+    image: timescale/timescaledb:2.25.1-pg17@sha256:f5f9f09d57799d237f481e5b9ad517eae5088fed3dbb487e2138419e6196fc78
+    container_name: marketdata-v11-m4-destination-ts-test
+    ports: ["127.0.0.1:55996:5432"]
+  source-timescale:
+    <<: *db
+    image: timescale/timescaledb:2.25.1-pg17@sha256:f5f9f09d57799d237f481e5b9ad517eae5088fed3dbb487e2138419e6196fc78
+    container_name: marketdata-v11-m4-source-ts-test
+    ports: ["127.0.0.1:55998:5432"]
+  recovery-destination-pg16:
+    profiles: [recovery]
+    image: postgres:16.1@sha256:09f23e02d76670d3b346a3c00aa33a27cf57aab8341eedfcdaed41459d14f5c4
+    container_name: marketdata-v11-m4-recovery-destination-pg16-test
+    labels: {marketdata.task: v11-m4}
+    environment: *credentials
+    command: [postgres, -c, port=56005]
+    ports: ["127.0.0.1:56005:56005"]
+    volumes: [recovery-destination-pg16:/var/lib/postgresql/data]
+  recovery-source-pg16:
+    profiles: [recovery]
+    image: postgres:16.1@sha256:09f23e02d76670d3b346a3c00aa33a27cf57aab8341eedfcdaed41459d14f5c4
+    container_name: marketdata-v11-m4-recovery-source-pg16-test
+    labels: {marketdata.task: v11-m4}
+    environment: *credentials
+    command: [postgres, -c, port=56007]
+    ports: ["127.0.0.1:56007:56007"]
+    volumes: [recovery-source-pg16:/var/lib/postgresql/data]
+  recovery-destination-timescale:
+    profiles: [recovery]
+    image: timescale/timescaledb:2.25.1-pg17@sha256:f5f9f09d57799d237f481e5b9ad517eae5088fed3dbb487e2138419e6196fc78
+    container_name: marketdata-v11-m4-recovery-destination-ts-test
+    labels: {marketdata.task: v11-m4}
+    environment: *credentials
+    command: [postgres, -c, port=56006]
+    ports: ["127.0.0.1:56006:56006"]
+    volumes: [recovery-destination-timescale:/var/lib/postgresql/data]
+  recovery-source-timescale:
+    profiles: [recovery]
+    image: timescale/timescaledb:2.25.1-pg17@sha256:f5f9f09d57799d237f481e5b9ad517eae5088fed3dbb487e2138419e6196fc78
+    container_name: marketdata-v11-m4-recovery-source-ts-test
+    labels: {marketdata.task: v11-m4}
+    environment: *credentials
+    command: [postgres, -c, port=56008]
+    ports: ["127.0.0.1:56008:56008"]
+    volumes: [recovery-source-timescale:/var/lib/postgresql/data]
+volumes:
+  recovery-destination-pg16:
+    name: marketdata-v11-m4-recovery-destination-pg16-test-data
+    labels: {marketdata.task: v11-m4, marketdata.disposable: "true"}
+  recovery-source-pg16:
+    name: marketdata-v11-m4-recovery-source-pg16-test-data
+    labels: {marketdata.task: v11-m4, marketdata.disposable: "true"}
+  recovery-destination-timescale:
+    name: marketdata-v11-m4-recovery-destination-ts-test-data
+    labels: {marketdata.task: v11-m4, marketdata.disposable: "true"}
+  recovery-source-timescale:
+    name: marketdata-v11-m4-recovery-source-ts-test-data
+    labels: {marketdata.task: v11-m4, marketdata.disposable: "true"}

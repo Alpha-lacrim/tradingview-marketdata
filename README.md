@@ -1,8 +1,23 @@
+> FastAPI **1.1.0rc1**: [release preparation and verification](docs/fastapi-v1.1-milestone5.md),
+> [company first installation](distributions/marketdata-fastapi-v1.1.0rc1/INSTALL-COMPANY.md),
+> [Windows worker](distributions/marketdata-collector-sync-v1.1.0rc1/INSTALL-WINDOWS.md),
+> [Linux worker](distributions/marketdata-collector-sync-v1.1.0rc1/INSTALL-LINUX.md).
+> Destination head is **0010**; source is separate base **0006 + sc0002**.
+> Candidate release; genuine 99-feed and target-host production qualification remain outstanding.
+> Approved capture, ingestion, recovery and read contracts are preserved. No live rollout.
+> The frozen FastAPI v1.0 package remains unchanged at 0006.
+
 # Multi-asset market data
 
 An asynchronous Python platform for ingesting market data into PostgreSQL/TimescaleDB
 and serving latest prices, historical ticks, OHLCV candles, provider health and WebSocket
 subscriptions through FastAPI.
+
+**FastAPI v1.1 development:** [milestone 1 destination foundation](docs/fastapi-v1.1-milestone1.md)
+adds transaction-aware persistence, fenced producer ownership and durable batch receipts.
+Root destination schema head is **0010**. Milestone 3B adds an independent durable HTTPS worker;
+no deployment or live collector change has occurred. The frozen v1.0 handover below remains
+unchanged at schema **0006**.
 
 **Company API-only setup:** [standalone FastAPI guide](docs/standalone-api.md) provides a
 minimal independent image, disposable native candles/quotes, separate SELECT-only credentials,
@@ -51,7 +66,7 @@ Dedicated SELECT-only PostgreSQL grants are documented and independently tested.
 See [Batch 2 verification](docs/api-batch2-verification.md) for exact results and limits.
 This work starts from integration commit `35ab3c03662ad00e8114fb313f8d2d15459a78d9`
 and is undeployed. Batch 3 builds from verified Batch 2 `b9c08df5` in the isolated
-`fastapi/batch3-websocket` worktree; schema head is now **0006**.
+`fastapi/batch3-websocket` worktree; that qualification used schema **0006**.
 
 `/api/v1/ws/marketdata` provides authenticated, Origin-validated subscriptions, persisted
 price snapshots, genuine latest-quote updates, completed/corrected native candles, source
@@ -83,9 +98,10 @@ The opt-in multi-socket experiments reached 128/256/512 crypto spot targets, wit
 commits of 743/768, 1,419/1,536 and 2,663/3,072 respectively. All stages were incomplete;
 these results do not demonstrate complete coverage or sustained production capacity.
 An earlier unpaced run encountered HTTP 429 and stopped escalation.
-The unchanged legacy deployment runs a fixed **100-instrument universe** against the
+The preserved legacy deployment is configured for a fixed **100-instrument universe** against the
 existing database, with four paced sockets and global concurrency eight. That accuracy-selected
 profile achieved 99.9% eventual coverage in a 30-cycle window plus three settling cycles.
+Its app and database were stopped on the 2026-10-15 milestone inspection; they were left stopped.
 The current priority is a separate provisional **99-source business proposal**: 50 Binance
 markets, both brokers for 21 OANDA/FXCM forex pairs, metals and energy. It is not deployed;
 see [business qualification, source gaps and approval decisions](docs/business-universe-qualification.md).
@@ -124,7 +140,8 @@ Application files live directly at the Git repository root. Run commands below f
 ├── tests/                   # Deterministic tests, fixtures and database integration tests
 ├── scripts/                 # Smoke checks, reconciliation and opt-in benchmarks
 ├── config/                  # Non-secret instrument registries
-├── migrations/              # Alembic revisions 0001–0006
+├── migrations/              # Destination revisions 0001–0010 (frozen v1.0: 0006)
+├── source_migrations/       # Separate opt-in sc0001–sc0002 on source base 0006
 ├── docs/                    # Technical reference, operations and measured evidence
 ├── .github/workflows/       # PostgreSQL/TimescaleDB CI matrix
 ├── pyproject.toml, uv.lock  # Python package, tooling and locked dependencies
@@ -171,7 +188,7 @@ Read [process separation and safe operations](docs/fastapi-process-separation.md
 using any older deployment instructions.
 
 For native development, install Python 3.12+ and uv. Prepare a migrated disposable database
-using the test Compose file described in that guide. Startup requires schema head `0006`;
+using the test Compose file described in that guide. Root destination startup requires head `0010`;
 neither process creates tables or runs migrations. Set `DATABASE_URL` in each terminal:
 
 ```powershell

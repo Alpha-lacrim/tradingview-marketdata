@@ -1,0 +1,18 @@
+[Unit]
+Description=Independent native candle and quote collector
+After=network-online.target
+Wants=network-online.target
+[Service]
+User=marketdata-collect
+Group=marketdata-collect
+WorkingDirectory=/opt/marketdata-collector-sync
+ExecStart=/opt/marketdata-collector-sync/.venv/bin/python -m marketdata.release_runtime collector --environment-file /etc/marketdata-collect/collector.json
+Restart=on-failure
+RestartSec=15
+TimeoutStopSec=35
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+[Install]
+WantedBy=multi-user.target

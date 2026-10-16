@@ -1,0 +1,32 @@
+# Isolated milestone 3A only; no collector, persistent volume or provider connection.
+services:
+  postgres:
+    image: postgres:16.1
+    container_name: marketdata-v11-m3a-pg16-test
+    labels: {marketdata.task: v11-m3a}
+    environment:
+      POSTGRES_USER: m3a_test
+      POSTGRES_PASSWORD: disposable_test
+      POSTGRES_DB: marketdata_v11_m3a_test
+    ports: ["127.0.0.1:55975:5432"]
+    tmpfs: [/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U m3a_test -d marketdata_v11_m3a_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  timescale:
+    image: timescale/timescaledb:2.25.1-pg17
+    container_name: marketdata-v11-m3a-ts-test
+    labels: {marketdata.task: v11-m3a}
+    environment:
+      POSTGRES_USER: m3a_test
+      POSTGRES_PASSWORD: disposable_test
+      POSTGRES_DB: marketdata_v11_m3a_test
+    ports: ["127.0.0.1:55976:5432"]
+    tmpfs: [/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U m3a_test -d marketdata_v11_m3a_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 30

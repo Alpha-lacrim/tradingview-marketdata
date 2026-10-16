@@ -1,0 +1,2176 @@
+{
+  "milestone": "5",
+  "version": "1.1.0rc1",
+  "candidate": true,
+  "generated_at": "2026-10-16T20:28:52.201808+00:00",
+  "source_revision": "4cedaedb172d89ca3d2566bcea477c8296643592",
+  "uncommitted_changes_preserved": true,
+  "destination_head": "0010",
+  "source_base": "0006",
+  "source_head": "sc0002",
+  "migrations_changed": false,
+  "artifacts": [
+    {
+      "path": "artifacts/marketdata-fastapi-v1.1.0rc1.zip",
+      "sha256": "334a9969cafe726767d1dd0a4676f674412d61a7c9a0c50473bfa81e9ec61c05",
+      "bytes": 335303
+    },
+    {
+      "path": "artifacts/marketdata-collector-sync-v1.1.0rc1.zip",
+      "sha256": "60c5d3614b6760cf81800d72ba2c02c224eee8a466e41ec7ecb1ee52979726e0",
+      "bytes": 420270
+    },
+    {
+      "path": "artifacts/v11-m5-wheels/marketdata_collector_sync-1.1.0rc1-py3-none-any.whl",
+      "sha256": "3ae814c9b36249647eef04128b4ac9a17d93bd25efce84757c7df630eb6005b3",
+      "bytes": 167308
+    },
+    {
+      "path": "artifacts/v11-m5-wheels/marketdata_fastapi-1.1.0rc1-py3-none-any.whl",
+      "sha256": "a91b0276765a37ca2005c71882c50941bafed56b9dd1529becfc07237212e6bd",
+      "bytes": 90023
+    }
+  ],
+  "components": {
+    "company": {
+      "release": {
+        "candidate": true,
+        "component": "company",
+        "destination_head": "0010",
+        "hash_normalization": "LF for text",
+        "python_image": "python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
+        "qualification_inputs": {
+          "docs/fastapi-v1.1-milestone3b.md": "751caaa68e01505e77022dde8e445c547a48732fad4d866751449d0d1ba5358e",
+          "docs/fastapi-v1.1-milestone4-verification.json": "dd5b2c7f9222e36ea83307a0c7b2db93dd4c10871a78170a3f338fe2aadf92c8",
+          "docs/fastapi-v1.1-milestone4.md": "09e20290effd56b92343e76638ca4e70512225479cb13f3aa453b0c771c06bb1"
+        },
+        "source_base": null,
+        "source_digest": "923310ca1fe20d7cbf1383522c56af3affbafdc8c60d5e1b87a6d70b9d5b4c18",
+        "source_extension": null,
+        "source_has_reviewed_uncommitted_changes": true,
+        "source_revision": "4cedaedb172d89ca3d2566bcea477c8296643592",
+        "sources": {
+          "alembic.ini": "7532ac32eec15df4a5476ed7aafe3396d51d4538f89b37fe22a8c05da370935f",
+          "config/instruments.mock.json": "238fc5f3a546291907141faff9e6216ec0c875c587fe6b3bc5138c2fbc9aefc5",
+          "docs/api.md": "e5da764f825a9e3e96c15e5b5265fcda7337345c75159324a1d9b9bf9700f53e",
+          "docs/fastapi-v1.1-ingest-openapi.json": "837ecc33df7d52c565c1a94291d26a95a7094fef807c425a13fb4392179684db",
+          "docs/fastapi-v1.1-protocol-v1.md": "7a125f35d4fe43f6671f832051769fd28959f65a56668f0f191c5825692832a6",
+          "docs/fastapi-v1.1-runtime.md": "c9adb1ef2c5e6cbb9d022b35aaadd0cee936d97fa58ebb120bf9de2b535258d6",
+          "docs/fastapi-v1.1-session-recovery.md": "cecc8700f66a07a5ce6ce55e69f06ed2ce3f60b04b2b212335ba07e9c948a974",
+          "docs/fastapi-v1.1-source-capture.md": "210231f0b33122ea811738f407329fff19fc71089f0e7f6935a5c7beae9db9cc",
+          "docs/fastapi-v1.1-sync-worker.md": "1af395ebce3c99f8b8db6dcb4c928b6fdc082a806f7cea7dbf3e80c3568ed454",
+          "docs/frontend-integration.md": "2d9663a8a235ebe14a7c497fb9913395e515064e0714836754eb715ae8409d7f",
+          "docs/ws-marketdata.schema.json": "6044c1651250b8f0d9de19528bbfc8153616268db76c0ad209291bec9e6ed31b",
+          "examples/browser-marketdata.js": "9017a4960d1fffa19d404db0a4ee31239cec75cc4516662838535a15694e516e",
+          "migrations/env.py": "0ccc49167076805dd8c4aa328799a101ea338678c22e9d5a611919a9baa786cb",
+          "migrations/script.py.mako": "037c526a0a40c7460495dd3e8aafe71e4f52164e8985f8598a49733cbb6ca2c1",
+          "migrations/versions/0001_marketdata.py": "68c9a20364a9d9692195261a5f0b5e185b72e5719787ca35d656a4a02b699467",
+          "migrations/versions/0002_timescale.py": "fb631b1c4799a8f36f4b2b86cbb77a430226e33c35fa90b4a074449a81d9fb7d",
+          "migrations/versions/0003_native_candles.py": "d027a4bf729aa3f962e8f125fc4d59626378489c95ec6c6375f0de518c817773",
+          "migrations/versions/0004_candle_reliability.py": "58ba3eee75e3d38aa895d308af1fce3106340694fb7405db5b31c73e261b0dee",
+          "migrations/versions/0005_collector_status.py": "34675451fd110c01639d48e6da99039e1b2594d9a129d45a4961c79a54d203b0",
+          "migrations/versions/0006_marketdata_events.py": "6a970c3d983f45b1c20afbda95a5ee5906fb871f8b2c7ced3b1ca47a51beff1a",
+          "migrations/versions/0007_destination_ingestion.py": "c02140a4ef900d44c09c643714b70b1979ba14595d6aa65cdba8fb64ad94313e",
+          "migrations/versions/0008_ingestion_runtime.py": "f1de2165159f2c16bf914e05801f921ddf85672fa76348f39ba6e2ffe74fc896",
+          "migrations/versions/0009_session_recovery.py": "d039b91de2748ca4a06c675adaa7c01c5f1f2761e340edcf10e4acec450376ff",
+          "migrations/versions/0010_quote_snapshots.py": "a9bf743a606e2720269d135ed0f069ad6262e13c9abd4f69fb3b0774e7d8e85c",
+          "pyproject.toml": "78c82033cb4fe1d202d1e89a361108b2f47cf352945dd71c15f1cf73c4d89c4d",
+          "release/v1.1/common/.dockerignore": "a34b93ba74c7bfb2a77eeaa79589f340f06e5a3fec6c7e6a353d4df8700b26b6",
+          "release/v1.1/common/COLLECTOR-TRANSITION.md": "db92d76254b2d60e31df38e1f693eedb60c3713e51f2a73f3a0150b7881fe54f",
+          "release/v1.1/common/Dockerfile": "a5bd507a5e36c68d522e7c8f9dfc6425dc1bf4a57e7a5b2cf128580f3f132130",
+          "release/v1.1/common/OPERATIONS.md": "ed8f90b96aeeb83915945e78ea9435e01f71b4509f9f37550578625ef3dc0200",
+          "release/v1.1/common/VERIFY.md": "05bfe5fee302652d1fa3db916200f32a5180537f07d14bf6558a6c01e45e2ea3",
+          "release/v1.1/common/scripts/prepare_install.py": "889b15324c3e40e95bb82d6025936652d259941fe9f41e480b219e7701b327c0",
+          "release/v1.1/common/scripts/verify_payload.py": "3a15d8fa31984345ffcc092d800b9116d46b9c28bada0551b452d9d0b85e3c6d",
+          "release/v1.1/company/.env.example": "dc23913cbff0604acb67d76d40dee66bc00f38f57208685762572b69c5f8d0ad",
+          "release/v1.1/company/INSTALL-COMPANY.md": "bd86e43263f21b310d011cb782b6252fcd4f2e620ae2258b6339257ba8bf980e",
+          "release/v1.1/company/README.md": "649735945c2a6ba9ad3afcbf47b68811db6a62e2256b45a8e81a0210d646d2ec",
+          "release/v1.1/company/compose.timescale.yaml": "cdfdb29c8b80060f0cc327973c089290769b72fb508c33a655eef718994894b6",
+          "release/v1.1/company/compose.yaml": "26e62885e07f456d352fb78d0bde66cc23f302a75d263c4cfe9da27171c9b8f3",
+          "release/v1.1/company/gateway.nginx.conf": "70090efd3ed8bed8dcc3e6b519f31615b4b14b5e770bf485934f123a547cdd9d",
+          "release/v1.1/company/scripts/create_initial_plan.py": "48c15cba95d36b363b96ae2072d6cd713eb52a72b379cf6d757b7ee119106d0a",
+          "release/v1.1/company/scripts/smoke_read.py": "1ed0189d39bb5486cb7f8e080ef44853c42e3bb2edb4c939fdd78e398206187a",
+          "release/v1.1/company/tests/test_release.py": "ead97795e46c1cecbd916eaf783fdd8f0fddc6380699ab0ae23deb397863251a",
+          "scripts/build_v11_release.py": "11a8c5d0f5daf249132cc5d6c12871f2b7e8cabd7d7cb565a96e272c523090fb",
+          "scripts/create_ingest_credentials.py": "ee0c72b9fb5d75c688c2a5f0209f67b7e1cbf3c28288eae26b3256ed617df3e3",
+          "scripts/sql/v11_destination_roles.sql": "31a2146feb5755ebf85ae0737bde3d281e382953be6ec11bab2f0099d08159ec",
+          "src/marketdata/__init__.py": "cfb03ad2e39321d7ca4db2e49829a25ce196a0f31999e9a72b6950c4db7e247b",
+          "src/marketdata/api.py": "107acb0ed5cd8096f8dc9e1d5ad65fc4c549d768b0153b5a507fba0ae08fd92b",
+          "src/marketdata/api_models.py": "57ff80252733a46371cee12b7cef5f11f0f925ecbd484468906675ff27d4f0a4",
+          "src/marketdata/api_v1.py": "e12be327d9876c2795c5fe50d4684e2e32e0663baf7003ca1a2746b4835f8d06",
+          "src/marketdata/candles.py": "7c6410788e1d6cc849b92c1dd2a6f009fd80b81a5588b5a476d4b6be765f90bc",
+          "src/marketdata/config.py": "4cdca415e7fb1a304ad6907c087df8a86bf5accf9d598743bebb4e7fbff79537",
+          "src/marketdata/domain.py": "8cbdfd6ceb85e01f6b0a10696aa2a20680df1a2d248c2ccf97204f05c39a7e87",
+          "src/marketdata/events.py": "4489c52a257e539ab5d89c025191ec83d43e31183697bbde04943ab3d4369646",
+          "src/marketdata/fanout.py": "eda83c089537687be556ec48b88bdf230d6c4dd77e579cc41b98055271355844",
+          "src/marketdata/ingest_api.py": "876c224e3fcfcea73b64102e25c235c809bec3c7a4afae005446af3f152b4c94",
+          "src/marketdata/ingest_auth.py": "9d8e9a912d6a342d96ad0d367aaf5cc1bdad6e439cb90b435d6081381c2a2204",
+          "src/marketdata/market_stream.py": "9a05917773be19574842dd75842fad17f7359ec6a6f5c8b64e35d6e2f4ff8f3c",
+          "src/marketdata/observability.py": "4edef540bb6627fbccade78ed7a2a7bafe8ce9e909ff83652a1d50a69ef105a9",
+          "src/marketdata/persistence.py": "237c780a52cff8789684141f574915fab5f90dd79cb540d33162f3708e56da41",
+          "src/marketdata/price_selection.py": "1bdfbdd9b1dda574550abbe105a7ef7c7e6f87b0a41c35be6d52aaf8362e9955",
+          "src/marketdata/production.py": "762bada720982bb717cf350fa6c19857d7289b237b0b9a3b65e03fe312710cb3",
+          "src/marketdata/providers/__init__.py": "f0233c166ffeafca843096e0d1c9d697869c169ceb500c3c7a74634160c77c05",
+          "src/marketdata/providers/base.py": "80d5f82a77774b1d5d0f60e24697cc58a79e2b83ffb3cf655cc6ecf4908bc954",
+          "src/marketdata/quote_fields.py": "911eb8e10226ccf5e9c59e56f47173b6839529fc84e137612ed1374ea0fab110",
+          "src/marketdata/quote_snapshots.py": "136c242212d799c8c3ddb0fa9aa0b1fedbe55d0a22d1fcc6db3ec7b327fa2e97",
+          "src/marketdata/reconciliation.py": "47f43ed4a64d878a5bd8df3ebfe8e7fa29bd1e73b14f664f80dbc87bef2e5a78",
+          "src/marketdata/registry.py": "b8d0f738dea113ce4291a45b540e57b47860584147ac679b87397d29a8a9a136",
+          "src/marketdata/release_admin.py": "e2eb79dc655a498acc374ff13ba747d050c53f9effa926fa2866cf5d8a6267f0",
+          "src/marketdata/release_runtime.py": "c85a534a1282ccde276ad2aa4bdf62cbf40b69a5ec1155414161490baae10910",
+          "src/marketdata/remote_status.py": "be65b37cbbbf8e26e78315f6eecb89f794a3aecee8a34802f63074b8560f97d8",
+          "src/marketdata/replication.py": "796e881521713e7b01a315511f6ddcfafb05b3d57d9cbe1c07a3aba0c70392f6",
+          "src/marketdata/replication_models.py": "f16301723c68951b1376a34d4e48fb3476f035d4ecef90de258a3af9d8648a0e",
+          "src/marketdata/session_recovery.py": "17cbeb33147838e991f736e6c2b8a393c59807899119691ce978873f420f0812",
+          "src/marketdata/sessions.py": "84c12788ad9068350938f610ac163bd452f6e8260799ad35f10ee0d9456caecf",
+          "src/marketdata/ws_models.py": "6c4efa5ce10bd4af15c03d90916a5686c6340707d159d1c845c20cac2b022261",
+          "uv.lock": "0273578e8e733068df509bf6b7abf94bf06b1e479906b0c71140ed4789b5043d"
+        },
+        "uv_version": "0.11.27",
+        "version": "1.1.0rc1"
+      },
+      "migrations": {
+        "migrations/versions/0001_marketdata.py": {
+          "down_revision": null,
+          "revision": "0001",
+          "sha256": "68c9a20364a9d9692195261a5f0b5e185b72e5719787ca35d656a4a02b699467"
+        },
+        "migrations/versions/0002_timescale.py": {
+          "down_revision": "0001",
+          "revision": "0002",
+          "sha256": "fb631b1c4799a8f36f4b2b86cbb77a430226e33c35fa90b4a074449a81d9fb7d"
+        },
+        "migrations/versions/0003_native_candles.py": {
+          "down_revision": "0002",
+          "revision": "0003",
+          "sha256": "d027a4bf729aa3f962e8f125fc4d59626378489c95ec6c6375f0de518c817773"
+        },
+        "migrations/versions/0004_candle_reliability.py": {
+          "down_revision": "0003",
+          "revision": "0004",
+          "sha256": "58ba3eee75e3d38aa895d308af1fce3106340694fb7405db5b31c73e261b0dee"
+        },
+        "migrations/versions/0005_collector_status.py": {
+          "down_revision": "0004",
+          "revision": "0005",
+          "sha256": "34675451fd110c01639d48e6da99039e1b2594d9a129d45a4961c79a54d203b0"
+        },
+        "migrations/versions/0006_marketdata_events.py": {
+          "down_revision": "0005",
+          "revision": "0006",
+          "sha256": "6a970c3d983f45b1c20afbda95a5ee5906fb871f8b2c7ced3b1ca47a51beff1a"
+        },
+        "migrations/versions/0007_destination_ingestion.py": {
+          "down_revision": "0006",
+          "revision": "0007",
+          "sha256": "c02140a4ef900d44c09c643714b70b1979ba14595d6aa65cdba8fb64ad94313e"
+        },
+        "migrations/versions/0008_ingestion_runtime.py": {
+          "down_revision": "0007",
+          "revision": "0008",
+          "sha256": "f1de2165159f2c16bf914e05801f921ddf85672fa76348f39ba6e2ffe74fc896"
+        },
+        "migrations/versions/0009_session_recovery.py": {
+          "down_revision": "0008",
+          "revision": "0009",
+          "sha256": "d039b91de2748ca4a06c675adaa7c01c5f1f2761e340edcf10e4acec450376ff"
+        },
+        "migrations/versions/0010_quote_snapshots.py": {
+          "down_revision": "0009",
+          "revision": "0010",
+          "sha256": "a9bf743a606e2720269d135ed0f069ad6262e13c9abd4f69fb3b0774e7d8e85c"
+        }
+      },
+      "manifest_sha256": "b322d5f647c07c36cd4284ceb7bf3493ad2bf2c7c690c249741697f5d1a58f99",
+      "clean_build": {
+        "exit_code": 0,
+        "seconds": 312.9892032146454,
+        "command": [
+          "wsl.exe",
+          "-d",
+          "marketdata-v11-m5-test",
+          "-u",
+          "root",
+          "--",
+          "env",
+          "DOCKER_BUILDKIT=0",
+          "/tmp/marketdata-v11-m5/docker/docker",
+          "-H",
+          "unix:///tmp/marketdata-v11-m5/docker.sock",
+          "build",
+          "--no-cache",
+          "--network",
+          "host",
+          "--add-host",
+          "mirrors.aliyun.com:163.181.254.187",
+          "--build-arg",
+          "PACKAGE_INDEX=https://mirrors.aliyun.com/pypi/simple/",
+          "--build-arg",
+          "PYTHON_IMAGE=python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
+          "-t",
+          "marketdata-v11-m5-company:1.1.0rc1",
+          "/mnt/c/Users/Pouyan/PycharmProjects/tradingview-main-consolidation/distributions/marketdata-fastapi-v1.1.0rc1"
+        ]
+      },
+      "package_tests": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "skip_details": [],
+        "seconds": 0.728,
+        "junit": "artifacts/v11-m5-company-qualified-package.xml",
+        "sha256": "9ca823da57d711bb371383d08885ed68c86939ed7c15e468a194f0650eef59e7"
+      }
+    },
+    "collector": {
+      "release": {
+        "candidate": true,
+        "component": "collector",
+        "destination_head": null,
+        "hash_normalization": "LF for text",
+        "python_image": "python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
+        "qualification_inputs": {
+          "docs/fastapi-v1.1-milestone3b.md": "751caaa68e01505e77022dde8e445c547a48732fad4d866751449d0d1ba5358e",
+          "docs/fastapi-v1.1-milestone4-verification.json": "dd5b2c7f9222e36ea83307a0c7b2db93dd4c10871a78170a3f338fe2aadf92c8",
+          "docs/fastapi-v1.1-milestone4.md": "09e20290effd56b92343e76638ca4e70512225479cb13f3aa453b0c771c06bb1"
+        },
+        "source_base": "0006",
+        "source_digest": "4c252a820cbec53a949f4af104e7de4aabefdcfdffeadd78d0d590940988c1bb",
+        "source_extension": "sc0002",
+        "source_has_reviewed_uncommitted_changes": true,
+        "source_revision": "4cedaedb172d89ca3d2566bcea477c8296643592",
+        "sources": {
+          "alembic-source.ini": "c03c044a605bc108af53f7ca81c9955ce34c8e7523674497736976ad3d6809da",
+          "alembic.ini": "7532ac32eec15df4a5476ed7aafe3396d51d4538f89b37fe22a8c05da370935f",
+          "config/instruments.mock.json": "238fc5f3a546291907141faff9e6216ec0c875c587fe6b3bc5138c2fbc9aefc5",
+          "config/instruments.tradingview-business-proposal.json": "44abf753bf160707a08f60d18dae541f2a24bea437e566e9925b2f159e6f9e8a",
+          "docs/api.md": "e5da764f825a9e3e96c15e5b5265fcda7337345c75159324a1d9b9bf9700f53e",
+          "docs/fastapi-v1.1-ingest-openapi.json": "837ecc33df7d52c565c1a94291d26a95a7094fef807c425a13fb4392179684db",
+          "docs/fastapi-v1.1-protocol-v1.md": "7a125f35d4fe43f6671f832051769fd28959f65a56668f0f191c5825692832a6",
+          "docs/fastapi-v1.1-runtime.md": "c9adb1ef2c5e6cbb9d022b35aaadd0cee936d97fa58ebb120bf9de2b535258d6",
+          "docs/fastapi-v1.1-session-recovery.md": "cecc8700f66a07a5ce6ce55e69f06ed2ce3f60b04b2b212335ba07e9c948a974",
+          "docs/fastapi-v1.1-source-capture.md": "210231f0b33122ea811738f407329fff19fc71089f0e7f6935a5c7beae9db9cc",
+          "docs/fastapi-v1.1-sync-worker.md": "1af395ebce3c99f8b8db6dcb4c928b6fdc082a806f7cea7dbf3e80c3568ed454",
+          "docs/frontend-integration.md": "2d9663a8a235ebe14a7c497fb9913395e515064e0714836754eb715ae8409d7f",
+          "docs/ws-marketdata.schema.json": "6044c1651250b8f0d9de19528bbfc8153616268db76c0ad209291bec9e6ed31b",
+          "examples/browser-marketdata.js": "9017a4960d1fffa19d404db0a4ee31239cec75cc4516662838535a15694e516e",
+          "migrations/env.py": "0ccc49167076805dd8c4aa328799a101ea338678c22e9d5a611919a9baa786cb",
+          "migrations/script.py.mako": "037c526a0a40c7460495dd3e8aafe71e4f52164e8985f8598a49733cbb6ca2c1",
+          "migrations/versions/0001_marketdata.py": "68c9a20364a9d9692195261a5f0b5e185b72e5719787ca35d656a4a02b699467",
+          "migrations/versions/0002_timescale.py": "fb631b1c4799a8f36f4b2b86cbb77a430226e33c35fa90b4a074449a81d9fb7d",
+          "migrations/versions/0003_native_candles.py": "d027a4bf729aa3f962e8f125fc4d59626378489c95ec6c6375f0de518c817773",
+          "migrations/versions/0004_candle_reliability.py": "58ba3eee75e3d38aa895d308af1fce3106340694fb7405db5b31c73e261b0dee",
+          "migrations/versions/0005_collector_status.py": "34675451fd110c01639d48e6da99039e1b2594d9a129d45a4961c79a54d203b0",
+          "migrations/versions/0006_marketdata_events.py": "6a970c3d983f45b1c20afbda95a5ee5906fb871f8b2c7ced3b1ca47a51beff1a",
+          "pyproject.toml": "78c82033cb4fe1d202d1e89a361108b2f47cf352945dd71c15f1cf73c4d89c4d",
+          "release/v1.1/collector/INSTALL-LINUX.md": "c24900624190e32e2ebe2777243c97a821e4537ad1b64dfe732b0f5f9f9ad3da",
+          "release/v1.1/collector/INSTALL-WINDOWS.md": "134e54c17c4d8758e1a54e3c1dec71961d9a7810b73e5f3bfadebdaf8870e530",
+          "release/v1.1/collector/README.md": "c4337eb82dbc5b123a7fbfa637554b45ef33ad097623c199877aa38e191d1271",
+          "release/v1.1/collector/collector.example.json": "7e6fa3b5c4b6c0dbf9cf4b45edd62dadf9ed391253d1b73e95776d683f403099",
+          "release/v1.1/collector/marketdata-collector.service": "042cad30e6f4d87881e1be6b08392fcbe0b7020db711497b0cd323c3a1b4fa69",
+          "release/v1.1/collector/marketdata-worker.service": "99f020316a0a94d86b3949e6d86a7b94e002c6b08d88b48d7c79890a04f4c4d8",
+          "release/v1.1/collector/scripts/configure_worker.py": "44b69c7d914c691fa16f3b11b1beb60eca5685b0ace74bf87b55d59377661b1b",
+          "release/v1.1/collector/tests/test_release.py": "828aa2298462a654ac0b38e358f85b3249b7946ab925721d33bacf4325cdf0c1",
+          "release/v1.1/collector/worker.example.json": "595b6f266f499ff36d6b090228257497f26ac5131e4d8309437e2f2c23ff20a2",
+          "release/v1.1/common/.dockerignore": "a34b93ba74c7bfb2a77eeaa79589f340f06e5a3fec6c7e6a353d4df8700b26b6",
+          "release/v1.1/common/COLLECTOR-TRANSITION.md": "db92d76254b2d60e31df38e1f693eedb60c3713e51f2a73f3a0150b7881fe54f",
+          "release/v1.1/common/Dockerfile": "a5bd507a5e36c68d522e7c8f9dfc6425dc1bf4a57e7a5b2cf128580f3f132130",
+          "release/v1.1/common/OPERATIONS.md": "ed8f90b96aeeb83915945e78ea9435e01f71b4509f9f37550578625ef3dc0200",
+          "release/v1.1/common/VERIFY.md": "05bfe5fee302652d1fa3db916200f32a5180537f07d14bf6558a6c01e45e2ea3",
+          "release/v1.1/common/scripts/prepare_install.py": "889b15324c3e40e95bb82d6025936652d259941fe9f41e480b219e7701b327c0",
+          "release/v1.1/common/scripts/verify_payload.py": "3a15d8fa31984345ffcc092d800b9116d46b9c28bada0551b452d9d0b85e3c6d",
+          "scripts/build_v11_release.py": "11a8c5d0f5daf249132cc5d6c12871f2b7e8cabd7d7cb565a96e272c523090fb",
+          "scripts/create_ingest_credentials.py": "ee0c72b9fb5d75c688c2a5f0209f67b7e1cbf3c28288eae26b3256ed617df3e3",
+          "scripts/sql/v11_source_collector_role.sql": "caed1afb3e0ed4a3adfb91797702868cdd236d75187a11e610c98b50ed04b5ea",
+          "scripts/sql/v11_source_sync_role.sql": "751a263aad13f7fbb3bcdd6a6d5fada2288508e8221b1fd65ff087ffa95d14cb",
+          "source_migrations/env.py": "50f00621498d9fb7390c4c2d5b8c3414f7804a5bb332eae65a89a224c3da0a14",
+          "source_migrations/versions/sc0001_local_capture.py": "4108efe9624be05b43ed944b851c5228f38a7207abacf8737647563816eaf8e4",
+          "source_migrations/versions/sc0002_sync_worker.py": "3c45d5d18ee81cb08adc508e9eb15f09b39d384c3350012f47c19f8cb3e48fd8",
+          "src/marketdata/__init__.py": "cfb03ad2e39321d7ca4db2e49829a25ce196a0f31999e9a72b6950c4db7e247b",
+          "src/marketdata/api.py": "107acb0ed5cd8096f8dc9e1d5ad65fc4c549d768b0153b5a507fba0ae08fd92b",
+          "src/marketdata/api_models.py": "57ff80252733a46371cee12b7cef5f11f0f925ecbd484468906675ff27d4f0a4",
+          "src/marketdata/api_v1.py": "e12be327d9876c2795c5fe50d4684e2e32e0663baf7003ca1a2746b4835f8d06",
+          "src/marketdata/benchmark.py": "e1afc3c05325872d198202e6ea4018d94bb651d59dd01e0be1739fd5b0021e92",
+          "src/marketdata/candle_benchmark.py": "6522a18cf0c9d0f9f15da99c7a7046ea18b442d013a6f8c62af5c4f6191d6089",
+          "src/marketdata/candle_ingestion.py": "9145ff6099397997aec2ff7cef111db9375087a9744c096c6f3b2e902c86aef7",
+          "src/marketdata/candles.py": "7c6410788e1d6cc849b92c1dd2a6f009fd80b81a5588b5a476d4b6be765f90bc",
+          "src/marketdata/cli.py": "497b316126458781d5b0df95cc948428a0c111facda2ca16c75d2ac86784cbdd",
+          "src/marketdata/collector.py": "c0ab59cb7193861d96156e14f822dfffd0a08737dd00b67474ac87864c4aa361",
+          "src/marketdata/config.py": "4cdca415e7fb1a304ad6907c087df8a86bf5accf9d598743bebb4e7fbff79537",
+          "src/marketdata/domain.py": "8cbdfd6ceb85e01f6b0a10696aa2a20680df1a2d248c2ccf97204f05c39a7e87",
+          "src/marketdata/events.py": "4489c52a257e539ab5d89c025191ec83d43e31183697bbde04943ab3d4369646",
+          "src/marketdata/fanout.py": "eda83c089537687be556ec48b88bdf230d6c4dd77e579cc41b98055271355844",
+          "src/marketdata/ingest_api.py": "876c224e3fcfcea73b64102e25c235c809bec3c7a4afae005446af3f152b4c94",
+          "src/marketdata/ingest_auth.py": "9d8e9a912d6a342d96ad0d367aaf5cc1bdad6e439cb90b435d6081381c2a2204",
+          "src/marketdata/ingestion.py": "ae19ebdc4a75fa1e51842504ec864411af8b46f4e4dcf68d1af71c053cc790bd",
+          "src/marketdata/market_stream.py": "9a05917773be19574842dd75842fad17f7359ec6a6f5c8b64e35d6e2f4ff8f3c",
+          "src/marketdata/observability.py": "4edef540bb6627fbccade78ed7a2a7bafe8ce9e909ff83652a1d50a69ef105a9",
+          "src/marketdata/persistence.py": "237c780a52cff8789684141f574915fab5f90dd79cb540d33162f3708e56da41",
+          "src/marketdata/price_selection.py": "1bdfbdd9b1dda574550abbe105a7ef7c7e6f87b0a41c35be6d52aaf8362e9955",
+          "src/marketdata/production.py": "762bada720982bb717cf350fa6c19857d7289b237b0b9a3b65e03fe312710cb3",
+          "src/marketdata/providers/__init__.py": "f0233c166ffeafca843096e0d1c9d697869c169ceb500c3c7a74634160c77c05",
+          "src/marketdata/providers/base.py": "80d5f82a77774b1d5d0f60e24697cc58a79e2b83ffb3cf655cc6ecf4908bc954",
+          "src/marketdata/providers/binance.py": "e4cc17301a41ef1587441ee82bd2114651209193964bd50bf4eb6d1c9c0ce9b7",
+          "src/marketdata/providers/candle_pool.py": "1c7a0a1412835f8927c739419d0ed1dcf0a4a4ab689d285008653f70a58d6a2d",
+          "src/marketdata/providers/candles.py": "89950d795909de9f17ca0d1ee55917fab82d49d136a72244006d889ca09c6f4d",
+          "src/marketdata/providers/databento.py": "c14f8b0832af46c5129fe0cfa33eebab5ac56abcb590894363f3223710f0a5b2",
+          "src/marketdata/providers/definitions.py": "2240bb56684a7f56f7f617ceaff02d83253a175f24b8d67005d7ed8ae9cb6db4",
+          "src/marketdata/providers/factory.py": "108a9df9c62ce810ae61535eca09eba500bd3d10c238c0dee08f992116d5dfbc",
+          "src/marketdata/providers/mock.py": "08baf94debb9b8dc6721e3cc8f30a20e02d237511c7957f81c32f4acbb13183a",
+          "src/marketdata/providers/oanda.py": "2127b9181cde6694b0faa09f9b6c0174ede6e0efac30b7cf8d21a808cc911df7",
+          "src/marketdata/providers/synthetic_candles.py": "c45f36c17f6cde71aa3da1476aa5e12f98d51d27091c3bb048cd1df73f5526ad",
+          "src/marketdata/providers/tradingview.py": "886f99cb2025ec94dd69357461b527af2e119a8e5055fe457dbe4525c43b6572",
+          "src/marketdata/providers/tradingview_candles.py": "788541da0c60dcffc6bc71bd26469443d88ece67d9bdefb1216d2e2768fcde07",
+          "src/marketdata/providers/tradingview_pipeline.py": "70fe9f75116a99ccc9e04475e91f05f3f6352a73446b35c2b30c17e258d69122",
+          "src/marketdata/quote_fields.py": "911eb8e10226ccf5e9c59e56f47173b6839529fc84e137612ed1374ea0fab110",
+          "src/marketdata/quote_snapshots.py": "136c242212d799c8c3ddb0fa9aa0b1fedbe55d0a22d1fcc6db3ec7b327fa2e97",
+          "src/marketdata/reconciliation.py": "47f43ed4a64d878a5bd8df3ebfe8e7fa29bd1e73b14f664f80dbc87bef2e5a78",
+          "src/marketdata/registry.py": "b8d0f738dea113ce4291a45b540e57b47860584147ac679b87397d29a8a9a136",
+          "src/marketdata/release_admin.py": "e2eb79dc655a498acc374ff13ba747d050c53f9effa926fa2866cf5d8a6267f0",
+          "src/marketdata/release_runtime.py": "c85a534a1282ccde276ad2aa4bdf62cbf40b69a5ec1155414161490baae10910",
+          "src/marketdata/remote_status.py": "be65b37cbbbf8e26e78315f6eecb89f794a3aecee8a34802f63074b8560f97d8",
+          "src/marketdata/replication.py": "796e881521713e7b01a315511f6ddcfafb05b3d57d9cbe1c07a3aba0c70392f6",
+          "src/marketdata/replication_models.py": "f16301723c68951b1376a34d4e48fb3476f035d4ecef90de258a3af9d8648a0e",
+          "src/marketdata/sample_data.py": "7c2a93a7e9b639382e1e420023d4798df5a22dd12975407a9914b55d169d087b",
+          "src/marketdata/session_recovery.py": "17cbeb33147838e991f736e6c2b8a393c59807899119691ce978873f420f0812",
+          "src/marketdata/sessions.py": "84c12788ad9068350938f610ac163bd452f6e8260799ad35f10ee0d9456caecf",
+          "src/marketdata/source_capture.py": "c652580494ebc224528fb50c5b591dbabba5f732ee47ce2891cdc7d71cea7104",
+          "src/marketdata/sync_config.py": "ad96b3c7928ce753ba37b34c3070b005f10d8d4bb91926fd71cfa8e18663e147",
+          "src/marketdata/sync_http.py": "31c7d4ff29dc19303c8bbc959f2982fdad63d53db20767b08f94fc1e0fc72c20",
+          "src/marketdata/sync_state.py": "dba85ac27f3015cf6abb9d8cf53575890c8c6d7648b312919834606d8cc8da8a",
+          "src/marketdata/sync_worker.py": "5d3d75b000809d991caf0eaea9ddb9b3fbe1799b8f1247d8ab1544f1bf316e24",
+          "src/marketdata/ws_models.py": "6c4efa5ce10bd4af15c03d90916a5686c6340707d159d1c845c20cac2b022261",
+          "uv.lock": "0273578e8e733068df509bf6b7abf94bf06b1e479906b0c71140ed4789b5043d"
+        },
+        "uv_version": "0.11.27",
+        "version": "1.1.0rc1"
+      },
+      "migrations": {
+        "migrations/versions/0001_marketdata.py": {
+          "down_revision": null,
+          "revision": "0001",
+          "sha256": "68c9a20364a9d9692195261a5f0b5e185b72e5719787ca35d656a4a02b699467"
+        },
+        "migrations/versions/0002_timescale.py": {
+          "down_revision": "0001",
+          "revision": "0002",
+          "sha256": "fb631b1c4799a8f36f4b2b86cbb77a430226e33c35fa90b4a074449a81d9fb7d"
+        },
+        "migrations/versions/0003_native_candles.py": {
+          "down_revision": "0002",
+          "revision": "0003",
+          "sha256": "d027a4bf729aa3f962e8f125fc4d59626378489c95ec6c6375f0de518c817773"
+        },
+        "migrations/versions/0004_candle_reliability.py": {
+          "down_revision": "0003",
+          "revision": "0004",
+          "sha256": "58ba3eee75e3d38aa895d308af1fce3106340694fb7405db5b31c73e261b0dee"
+        },
+        "migrations/versions/0005_collector_status.py": {
+          "down_revision": "0004",
+          "revision": "0005",
+          "sha256": "34675451fd110c01639d48e6da99039e1b2594d9a129d45a4961c79a54d203b0"
+        },
+        "migrations/versions/0006_marketdata_events.py": {
+          "down_revision": "0005",
+          "revision": "0006",
+          "sha256": "6a970c3d983f45b1c20afbda95a5ee5906fb871f8b2c7ced3b1ca47a51beff1a"
+        },
+        "source_migrations/versions/sc0001_local_capture.py": {
+          "down_revision": null,
+          "revision": "sc0001",
+          "sha256": "4108efe9624be05b43ed944b851c5228f38a7207abacf8737647563816eaf8e4"
+        },
+        "source_migrations/versions/sc0002_sync_worker.py": {
+          "down_revision": "sc0001",
+          "revision": "sc0002",
+          "sha256": "3c45d5d18ee81cb08adc508e9eb15f09b39d384c3350012f47c19f8cb3e48fd8"
+        }
+      },
+      "manifest_sha256": "fa230057c78779a6e268e287234f66fb2af0c6a5954def9c68f83a42c7cbbe9c",
+      "clean_build": {
+        "exit_code": 0,
+        "seconds": 186.21793937683105,
+        "command": [
+          "wsl.exe",
+          "-d",
+          "marketdata-v11-m5-test",
+          "-u",
+          "root",
+          "--",
+          "env",
+          "DOCKER_BUILDKIT=0",
+          "/tmp/marketdata-v11-m5/docker/docker",
+          "-H",
+          "unix:///tmp/marketdata-v11-m5/docker.sock",
+          "build",
+          "--no-cache",
+          "--network",
+          "host",
+          "--add-host",
+          "mirrors.aliyun.com:163.181.58.172",
+          "--build-arg",
+          "PACKAGE_INDEX=https://mirrors.aliyun.com/pypi/simple/",
+          "--build-arg",
+          "PYTHON_IMAGE=python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
+          "-t",
+          "marketdata-v11-m5-collector:1.1.0rc1",
+          "/mnt/c/Users/Pouyan/PycharmProjects/tradingview-main-consolidation/distributions/marketdata-collector-sync-v1.1.0rc1"
+        ]
+      },
+      "package_tests": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "skip_details": [],
+        "seconds": 0.302,
+        "junit": "artifacts/v11-m5-collector-qualified-package.xml",
+        "sha256": "88612236facc5908db0fc6fa5ec4abb2c3e6d8b6c8c01460089af96722083f55"
+      }
+    }
+  },
+  "suites": {
+    "pg": {
+      "total": 660,
+      "passed": 651,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 9,
+      "skip_details": [
+        {
+          "test": ".tests.test_databento_sdk",
+          "reason": "collection skipped"
+        },
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_persistence.test_candles_trade_volume_mid_and_all_intervals[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_ties_are_deterministic_after_refresh[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_pagination_preserves_multiple_statuses_in_same_bucket[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ],
+      "seconds": 449.846,
+      "junit": "artifacts/v11-m5-pg-final-suite.xml",
+      "sha256": "02db5d8dc9401c5054e84cb72c529e477ea3d558ae5a6317f7b3e745e9c4cf23"
+    },
+    "ts": {
+      "total": 660,
+      "passed": 654,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 6,
+      "skip_details": [
+        {
+          "test": ".tests.test_databento_sdk",
+          "reason": "collection skipped"
+        },
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ],
+      "seconds": 533.867,
+      "junit": "artifacts/v11-m5-ts-final-suite.xml",
+      "sha256": "1d2b6a693ede85d2aef74ae1c5c00d1e3c5875aecfa874fa7bf4bffc0db66458"
+    }
+  },
+  "exported_installs": {
+    "pg": {
+      "collector": {
+        "state": {
+          "base": "0006",
+          "source_extension": "sc0002",
+          "component": "collector",
+          "source_epoch": "3e3a1cf0-8303-4da4-968f-e05b54cd2543"
+        },
+        "roles": [
+          {
+            "rolname": "marketdata_v11_collect",
+            "rolsuper": false,
+            "rolinherit": false,
+            "rolcreatedb": false,
+            "rolcreaterole": false,
+            "rolreplication": false,
+            "rolbypassrls": false
+          },
+          {
+            "rolname": "marketdata_v11_sync",
+            "rolsuper": false,
+            "rolinherit": false,
+            "rolcreatedb": false,
+            "rolcreaterole": false,
+            "rolreplication": false,
+            "rolbypassrls": false
+          }
+        ],
+        "server": "PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit",
+        "timescale": null,
+        "cli_exit_code": 0
+      },
+      "company": {
+        "state": {
+          "base": "0010",
+          "source_extension": null,
+          "component": "company"
+        },
+        "roles": [
+          {
+            "rolname": "marketdata_v11_read",
+            "rolsuper": false,
+            "rolinherit": false,
+            "rolcreatedb": false,
+            "rolcreaterole": false,
+            "rolreplication": false,
+            "rolbypassrls": false
+          },
+          {
+            "rolname": "marketdata_v11_ingest",
+            "rolsuper": false,
+            "rolinherit": false,
+            "rolcreatedb": false,
+            "rolcreaterole": false,
+            "rolreplication": false,
+            "rolbypassrls": false
+          }
+        ],
+        "server": "PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit",
+        "timescale": null,
+        "cli_exit_code": 0
+      }
+    },
+    "ts": {
+      "collector": {
+        "state": {
+          "base": "0006",
+          "source_extension": "sc0002",
+          "component": "collector",
+          "source_epoch": "780d6e7d-3027-4cd3-aef7-3450b0ad4378"
+        },
+        "roles": [
+          {
+            "rolname": "marketdata_v11_collect",
+            "rolsuper": false,
+            "rolinherit": false,
+            "rolcreatedb": false,
+            "rolcreaterole": false,
+            "rolreplication": false,
+            "rolbypassrls": false
+          },
+          {
+            "rolname": "marketdata_v11_sync",
+            "rolsuper": false,
+            "rolinherit": false,
+            "rolcreatedb": false,
+            "rolcreaterole": false,
+            "rolreplication": false,
+            "rolbypassrls": false
+          }
+        ],
+        "server": "PostgreSQL 17.7 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "timescale": "2.25.1",
+        "cli_exit_code": 0,
+        "retained_task_database": "m5_package_467164b3118f46d2833b94ee17df346c_test"
+      },
+      "company": {
+        "state": {
+          "base": "0010",
+          "source_extension": null,
+          "component": "company"
+        },
+        "roles": [
+          {
+            "rolname": "marketdata_v11_read",
+            "rolsuper": false,
+            "rolinherit": false,
+            "rolcreatedb": false,
+            "rolcreaterole": false,
+            "rolreplication": false,
+            "rolbypassrls": false
+          },
+          {
+            "rolname": "marketdata_v11_ingest",
+            "rolsuper": false,
+            "rolinherit": false,
+            "rolcreatedb": false,
+            "rolcreaterole": false,
+            "rolreplication": false,
+            "rolbypassrls": false
+          }
+        ],
+        "server": "PostgreSQL 17.7 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "timescale": "2.25.1",
+        "cli_exit_code": 0,
+        "retained_task_database": "m5_package_b00fc982dd194f08bc7ff0d8abe53d4c_test"
+      }
+    }
+  },
+  "pipeline": {
+    "pg": {
+      "checks": [
+        {
+          "name": "TLS rejects untrusted certificate",
+          "passed": true,
+          "at": "2026-10-16 20:18:39.986691+00:00"
+        },
+        {
+          "name": "invalid authentication rejected",
+          "passed": true,
+          "at": "2026-10-16 20:18:39.991197+00:00"
+        },
+        {
+          "name": "local candles and atomic outbox visible before worker",
+          "passed": true,
+          "at": "2026-10-16 20:18:41.045559+00:00"
+        },
+        {
+          "name": "destination full quote snapshot parity",
+          "passed": true,
+          "at": "2026-10-16 20:18:52.350481+00:00"
+        },
+        {
+          "name": "candle count and exact financial fingerprint parity",
+          "passed": true,
+          "at": "2026-10-16 20:18:52.354002+00:00",
+          "source_count": 3,
+          "destination_count": 3,
+          "checksum": "14697486538530d8327a4ad0efbec9d8458175e8c7384aa3d91dc9ffc1d83668"
+        },
+        {
+          "name": "candle revision count parity",
+          "passed": true,
+          "at": "2026-10-16 20:18:52.356813+00:00",
+          "counts": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "native candle REST exact OHLC and identity",
+          "passed": true,
+          "at": "2026-10-16 20:18:52.372744+00:00",
+          "item": {
+            "instrument_id": "dbb6516b-ac91-51a2-a8ea-9c604c10250c",
+            "canonical_symbol": "CRYPTO:BINANCE:USDCUSDT",
+            "provider": "tradingview_guest",
+            "provider_symbol": "BINANCE:USDCUSDT",
+            "venue": "BINANCE",
+            "broker": null,
+            "interval": "1m",
+            "origin": "native",
+            "base_interval": "1m",
+            "price_basis": "native",
+            "bucket_start": "2026-10-16T20:14:00Z",
+            "bucket_end": "2026-10-16T20:15:00Z",
+            "open": "100.123456789012345678",
+            "high": "102.123456789012345678",
+            "low": "98.123456789012345678",
+            "close": "101.123456789012345678",
+            "volume": "123.456789012345678",
+            "volume_type": "base",
+            "realtime_status": "simulated",
+            "source_status": "streaming",
+            "received_timestamp": "2026-10-16T20:18:35.324236Z",
+            "observations": 1,
+            "expected_observations": 1,
+            "complete": true
+          }
+        },
+        {
+          "name": "ChartData exact a-h mapping",
+          "passed": true,
+          "at": "2026-10-16 20:18:52.378732+00:00",
+          "chart": {
+            "a": [
+              1792181640
+            ],
+            "b": [
+              100.12345678901235
+            ],
+            "c": [
+              101.12345678901235
+            ],
+            "d": [
+              102.12345678901235
+            ],
+            "e": [
+              98.12345678901235
+            ],
+            "f": [
+              0
+            ],
+            "g": [
+              123.45678901234568
+            ],
+            "h": [
+              0.0
+            ]
+          }
+        },
+        {
+          "name": "ChartData eight empty arrays",
+          "passed": true,
+          "at": "2026-10-16 20:18:52.386730+00:00"
+        },
+        {
+          "name": "historical correction delivered",
+          "passed": true,
+          "at": "2026-10-16 20:18:55.612130+00:00"
+        },
+        {
+          "name": "destination full quote snapshot parity",
+          "passed": true,
+          "at": "2026-10-16 20:19:00.085460+00:00"
+        },
+        {
+          "name": "candle count and exact financial fingerprint parity",
+          "passed": true,
+          "at": "2026-10-16 20:19:00.087433+00:00",
+          "source_count": 3,
+          "destination_count": 3,
+          "checksum": "aa4cb17815476ba5cc5df87fdf633cfe095ec8ecc806b205e3dccf1c3c9a96d7"
+        },
+        {
+          "name": "candle revision count parity",
+          "passed": true,
+          "at": "2026-10-16 20:19:00.089456+00:00",
+          "counts": [
+            1,
+            1
+          ]
+        },
+        {
+          "name": "shipped HTTPS REST ChartData WSS smoke",
+          "passed": true,
+          "at": "2026-10-16 20:19:00.811560+00:00"
+        },
+        {
+          "name": "source retains newest state while worker stopped",
+          "passed": true,
+          "at": "2026-10-16 20:19:08.362927+00:00"
+        },
+        {
+          "name": "destination full quote snapshot parity",
+          "passed": true,
+          "at": "2026-10-16 20:19:14.425378+00:00"
+        },
+        {
+          "name": "candle count and exact financial fingerprint parity",
+          "passed": true,
+          "at": "2026-10-16 20:19:14.427378+00:00",
+          "source_count": 3,
+          "destination_count": 3,
+          "checksum": "aa4cb17815476ba5cc5df87fdf633cfe095ec8ecc806b205e3dccf1c3c9a96d7"
+        },
+        {
+          "name": "candle revision count parity",
+          "passed": true,
+          "at": "2026-10-16 20:19:14.429379+00:00",
+          "counts": [
+            1,
+            1
+          ]
+        },
+        {
+          "name": "independent role remains healthy: ingest",
+          "passed": true,
+          "at": "2026-10-16 20:19:20.430330+00:00"
+        },
+        {
+          "name": "independent role remains healthy: read",
+          "passed": true,
+          "at": "2026-10-16 20:19:29.526729+00:00"
+        },
+        {
+          "name": "final coverage snapshot parity",
+          "passed": true,
+          "at": "2026-10-16 20:19:53.143053+00:00",
+          "streams": 1
+        },
+        {
+          "name": "destination full quote snapshot parity",
+          "passed": true,
+          "at": "2026-10-16 20:19:53.147047+00:00"
+        },
+        {
+          "name": "candle count and exact financial fingerprint parity",
+          "passed": true,
+          "at": "2026-10-16 20:19:53.149105+00:00",
+          "source_count": 3,
+          "destination_count": 3,
+          "checksum": "aa4cb17815476ba5cc5df87fdf633cfe095ec8ecc806b205e3dccf1c3c9a96d7"
+        },
+        {
+          "name": "candle revision count parity",
+          "passed": true,
+          "at": "2026-10-16 20:19:53.151126+00:00",
+          "counts": [
+            1,
+            1
+          ]
+        },
+        {
+          "name": "committed WebSocket candle update",
+          "passed": true,
+          "at": "2026-10-16 20:19:53.166099+00:00"
+        },
+        {
+          "name": "committed WebSocket quote update",
+          "passed": true,
+          "at": "2026-10-16 20:19:53.167107+00:00"
+        },
+        {
+          "name": "committed WebSocket correction update",
+          "passed": true,
+          "at": "2026-10-16 20:19:53.168103+00:00"
+        },
+        {
+          "name": "destination full quote snapshot parity",
+          "passed": true,
+          "at": "2026-10-16 20:20:07.961434+00:00"
+        },
+        {
+          "name": "candle count and exact financial fingerprint parity",
+          "passed": true,
+          "at": "2026-10-16 20:20:07.965792+00:00",
+          "source_count": 3,
+          "destination_count": 3,
+          "checksum": "aa4cb17815476ba5cc5df87fdf633cfe095ec8ecc806b205e3dccf1c3c9a96d7"
+        },
+        {
+          "name": "candle revision count parity",
+          "passed": true,
+          "at": "2026-10-16 20:20:07.969968+00:00",
+          "counts": [
+            1,
+            1
+          ]
+        },
+        {
+          "name": "packaged roles survive actual database restart without active collector",
+          "passed": true,
+          "at": "2026-10-16 20:20:07.985985+00:00"
+        }
+      ],
+      "completed_at": "2026-10-16 20:20:07.986979+00:00",
+      "websocket_events": 13,
+      "container_security_boundaries": {
+        "ingest": {
+          "image": "sha256:1d17b1285b6541a22f8a9ae27205aaaacd10f8333338ceae2af420942b65a236",
+          "user": "appuser",
+          "readonly_root": true,
+          "capabilities_dropped": [
+            "ALL"
+          ],
+          "security_options": [
+            "no-new-privileges"
+          ],
+          "mounts": [
+            {
+              "target": "/run/secrets/ingest_credentials.json",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/database_url",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/tls_cert",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/tls_key",
+              "writable": false
+            }
+          ],
+          "command": [
+            "ingest",
+            "--bind-host",
+            "127.0.0.1",
+            "--port",
+            "9977",
+            "--tls-cert-file",
+            "/run/secrets/tls_cert",
+            "--tls-key-file",
+            "/run/secrets/tls_key"
+          ]
+        },
+        "read": {
+          "image": "sha256:1d17b1285b6541a22f8a9ae27205aaaacd10f8333338ceae2af420942b65a236",
+          "user": "appuser",
+          "readonly_root": true,
+          "capabilities_dropped": [
+            "ALL"
+          ],
+          "security_options": [
+            "no-new-privileges"
+          ],
+          "mounts": [
+            {
+              "target": "/run/secrets/database_url",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/tls_cert",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/tls_key",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/api_key",
+              "writable": false
+            }
+          ],
+          "command": [
+            "read",
+            "--bind-host",
+            "127.0.0.1",
+            "--port",
+            "9978",
+            "--tls-cert-file",
+            "/run/secrets/tls_cert",
+            "--tls-key-file",
+            "/run/secrets/tls_key"
+          ]
+        },
+        "worker": {
+          "image": "sha256:433794066158074720afeede0a833dff30ebf1df59e64bcfb0cc2bcba97c3cd5",
+          "user": "appuser",
+          "readonly_root": true,
+          "capabilities_dropped": [
+            "ALL"
+          ],
+          "security_options": [
+            "no-new-privileges"
+          ],
+          "mounts": [
+            {
+              "target": "/durable",
+              "writable": true
+            },
+            {
+              "target": "/run/secrets/worker.json",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/source_dsn",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/token",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/ca.pem",
+              "writable": false
+            }
+          ],
+          "command": [
+            "-m",
+            "marketdata.sync_worker",
+            "--config",
+            "/run/secrets/worker.json"
+          ]
+        }
+      },
+      "database_comparison": {
+        "candles": {
+          "equal": true,
+          "counts": [
+            3,
+            3
+          ],
+          "sha256": [
+            "aa4cb17815476ba5cc5df87fdf633cfe095ec8ecc806b205e3dccf1c3c9a96d7",
+            "aa4cb17815476ba5cc5df87fdf633cfe095ec8ecc806b205e3dccf1c3c9a96d7"
+          ]
+        },
+        "revision_manifests": [
+          {
+            "instrument_id": "dbb6516b-ac91-51a2-a8ea-9c604c10250c",
+            "provider": "tradingview_guest",
+            "bucket_start": "2026-10-16 20:16:00+00:00",
+            "source": {
+              "revision_sha256": "9d575ca60cd783747b5ef1d468f9dd80dbd8af70f9ba86f67cc0d724b3e76835",
+              "revision_truncated": false
+            },
+            "destination": {
+              "revision_sha256": "9d575ca60cd783747b5ef1d468f9dd80dbd8af70f9ba86f67cc0d724b3e76835",
+              "revision_truncated": false
+            },
+            "equal": true
+          }
+        ],
+        "revision_counts": [
+          1,
+          1
+        ],
+        "quotes": {
+          "count": 1,
+          "all_fields_and_ordering_equal": true
+        },
+        "coverage": {
+          "count": 1,
+          "equal_count": 1,
+          "rows": [
+            {
+              "instrument_id": "dbb6516b-ac91-51a2-a8ea-9c604c10250c",
+              "provider": "tradingview_guest",
+              "equal": true,
+              "source": {
+                "coverage_start": "2026-10-16 20:13:00+00:00",
+                "coverage_end": "2026-10-16 20:19:00+00:00",
+                "missing": [
+                  "<Range [datetime.datetime(2026, 10, 16, 20, 13, tzinfo=datetime.timezone.utc), datetime.datetime(2026, 10, 16, 20, 14, tzinfo=datetime.timezone.utc))>",
+                  "<Range [datetime.datetime(2026, 10, 16, 20, 17, tzinfo=datetime.timezone.utc), datetime.datetime(2026, 10, 16, 20, 19, tzinfo=datetime.timezone.utc))>"
+                ],
+                "unknown": [],
+                "not_expected": [],
+                "session_info": "{\"session\": \"24x7\", \"timezone\": \"Etc/UTC\"}"
+              },
+              "destination": {
+                "coverage_start": "2026-10-16 20:13:00+00:00",
+                "coverage_end": "2026-10-16 20:19:00+00:00",
+                "missing": [
+                  "<Range [datetime.datetime(2026, 10, 16, 20, 13, tzinfo=datetime.timezone.utc), datetime.datetime(2026, 10, 16, 20, 14, tzinfo=datetime.timezone.utc))>",
+                  "<Range [datetime.datetime(2026, 10, 16, 20, 17, tzinfo=datetime.timezone.utc), datetime.datetime(2026, 10, 16, 20, 19, tzinfo=datetime.timezone.utc))>"
+                ],
+                "unknown": [],
+                "not_expected": [],
+                "session_info": "{\"session\": \"24x7\", \"timezone\": \"Etc/UTC\"}"
+              }
+            }
+          ]
+        },
+        "source_clock": {
+          "singleton": true,
+          "source_epoch": "3206ff5d-ca7b-4d4c-92a4-a185c4ba97a7",
+          "head": 37,
+          "candle_ack": 37,
+          "pending_rows": 0,
+          "pending_bytes": 0,
+          "created_at": "2026-10-16 20:18:33.586084+00:00"
+        },
+        "destination_outcomes": [
+          {
+            "stream": "candles",
+            "outcome": "applied",
+            "count": 4
+          },
+          {
+            "stream": "coverage",
+            "outcome": "applied",
+            "count": 2
+          },
+          {
+            "stream": "quotes",
+            "outcome": "applied",
+            "count": 9
+          },
+          {
+            "stream": "status",
+            "outcome": "applied",
+            "count": 13
+          }
+        ],
+        "destination_batch_count": 26,
+        "source_batch_phases": [],
+        "source_archive_count": 26,
+        "archived_receipt_hash_mismatches": 0,
+        "remaining_source_candles": 0,
+        "remaining_source_quotes": 0,
+        "database_sizes": {
+          "source": 9466339,
+          "destination": 9417187
+        }
+      }
+    },
+    "ts": {
+      "checks": [
+        {
+          "name": "TLS rejects untrusted certificate",
+          "passed": true,
+          "at": "2026-10-16 20:23:32.232811+00:00"
+        },
+        {
+          "name": "invalid authentication rejected",
+          "passed": true,
+          "at": "2026-10-16 20:23:32.240810+00:00"
+        },
+        {
+          "name": "local candles and atomic outbox visible before worker",
+          "passed": true,
+          "at": "2026-10-16 20:23:33.293522+00:00"
+        },
+        {
+          "name": "destination full quote snapshot parity",
+          "passed": true,
+          "at": "2026-10-16 20:23:44.053683+00:00"
+        },
+        {
+          "name": "candle count and exact financial fingerprint parity",
+          "passed": true,
+          "at": "2026-10-16 20:23:44.058716+00:00",
+          "source_count": 3,
+          "destination_count": 3,
+          "checksum": "e338d1d44119c91cbf7fe0e4224fd3d197724c8bc53ca5a969110ca821853b40"
+        },
+        {
+          "name": "candle revision count parity",
+          "passed": true,
+          "at": "2026-10-16 20:23:44.062688+00:00",
+          "counts": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "native candle REST exact OHLC and identity",
+          "passed": true,
+          "at": "2026-10-16 20:23:44.112953+00:00",
+          "item": {
+            "instrument_id": "dbb6516b-ac91-51a2-a8ea-9c604c10250c",
+            "canonical_symbol": "CRYPTO:BINANCE:USDCUSDT",
+            "provider": "tradingview_guest",
+            "provider_symbol": "BINANCE:USDCUSDT",
+            "venue": "BINANCE",
+            "broker": null,
+            "interval": "1m",
+            "origin": "native",
+            "base_interval": "1m",
+            "price_basis": "native",
+            "bucket_start": "2026-10-16T20:19:00Z",
+            "bucket_end": "2026-10-16T20:20:00Z",
+            "open": "100.123456789012345678",
+            "high": "102.123456789012345678",
+            "low": "98.123456789012345678",
+            "close": "101.123456789012345678",
+            "volume": "123.456789012345678",
+            "volume_type": "base",
+            "realtime_status": "simulated",
+            "source_status": "streaming",
+            "received_timestamp": "2026-10-16T20:23:27.494368Z",
+            "observations": 1,
+            "expected_observations": 1,
+            "complete": true
+          }
+        },
+        {
+          "name": "ChartData exact a-h mapping",
+          "passed": true,
+          "at": "2026-10-16 20:23:44.122032+00:00",
+          "chart": {
+            "a": [
+              1792181940
+            ],
+            "b": [
+              100.12345678901235
+            ],
+            "c": [
+              101.12345678901235
+            ],
+            "d": [
+              102.12345678901235
+            ],
+            "e": [
+              98.12345678901235
+            ],
+            "f": [
+              0
+            ],
+            "g": [
+              123.45678901234568
+            ],
+            "h": [
+              0.0
+            ]
+          }
+        },
+        {
+          "name": "ChartData eight empty arrays",
+          "passed": true,
+          "at": "2026-10-16 20:23:44.130043+00:00"
+        },
+        {
+          "name": "historical correction delivered",
+          "passed": true,
+          "at": "2026-10-16 20:23:47.538871+00:00"
+        },
+        {
+          "name": "destination full quote snapshot parity",
+          "passed": true,
+          "at": "2026-10-16 20:23:51.785079+00:00"
+        },
+        {
+          "name": "candle count and exact financial fingerprint parity",
+          "passed": true,
+          "at": "2026-10-16 20:23:51.788001+00:00",
+          "source_count": 3,
+          "destination_count": 3,
+          "checksum": "6b50fac973984382cce9388e0c4f45cf09fe23102db7ee0a7525d1b354b1bd78"
+        },
+        {
+          "name": "candle revision count parity",
+          "passed": true,
+          "at": "2026-10-16 20:23:51.790349+00:00",
+          "counts": [
+            1,
+            1
+          ]
+        },
+        {
+          "name": "shipped HTTPS REST ChartData WSS smoke",
+          "passed": true,
+          "at": "2026-10-16 20:23:52.170723+00:00"
+        },
+        {
+          "name": "source retains newest state while worker stopped",
+          "passed": true,
+          "at": "2026-10-16 20:23:59.507047+00:00"
+        },
+        {
+          "name": "destination full quote snapshot parity",
+          "passed": true,
+          "at": "2026-10-16 20:24:04.996610+00:00"
+        },
+        {
+          "name": "candle count and exact financial fingerprint parity",
+          "passed": true,
+          "at": "2026-10-16 20:24:05.000675+00:00",
+          "source_count": 3,
+          "destination_count": 3,
+          "checksum": "6b50fac973984382cce9388e0c4f45cf09fe23102db7ee0a7525d1b354b1bd78"
+        },
+        {
+          "name": "candle revision count parity",
+          "passed": true,
+          "at": "2026-10-16 20:24:05.002609+00:00",
+          "counts": [
+            1,
+            1
+          ]
+        },
+        {
+          "name": "independent role remains healthy: ingest",
+          "passed": true,
+          "at": "2026-10-16 20:24:10.885902+00:00"
+        },
+        {
+          "name": "independent role remains healthy: read",
+          "passed": true,
+          "at": "2026-10-16 20:24:21.232358+00:00"
+        },
+        {
+          "name": "final coverage snapshot parity",
+          "passed": true,
+          "at": "2026-10-16 20:24:44.904236+00:00",
+          "streams": 1
+        },
+        {
+          "name": "destination full quote snapshot parity",
+          "passed": true,
+          "at": "2026-10-16 20:24:44.907264+00:00"
+        },
+        {
+          "name": "candle count and exact financial fingerprint parity",
+          "passed": true,
+          "at": "2026-10-16 20:24:44.911262+00:00",
+          "source_count": 3,
+          "destination_count": 3,
+          "checksum": "6b50fac973984382cce9388e0c4f45cf09fe23102db7ee0a7525d1b354b1bd78"
+        },
+        {
+          "name": "candle revision count parity",
+          "passed": true,
+          "at": "2026-10-16 20:24:44.913262+00:00",
+          "counts": [
+            1,
+            1
+          ]
+        },
+        {
+          "name": "committed WebSocket candle update",
+          "passed": true,
+          "at": "2026-10-16 20:24:44.928265+00:00"
+        },
+        {
+          "name": "committed WebSocket quote update",
+          "passed": true,
+          "at": "2026-10-16 20:24:44.930773+00:00"
+        },
+        {
+          "name": "committed WebSocket correction update",
+          "passed": true,
+          "at": "2026-10-16 20:24:44.931785+00:00"
+        },
+        {
+          "name": "destination full quote snapshot parity",
+          "passed": true,
+          "at": "2026-10-16 20:24:59.857586+00:00"
+        },
+        {
+          "name": "candle count and exact financial fingerprint parity",
+          "passed": true,
+          "at": "2026-10-16 20:24:59.863590+00:00",
+          "source_count": 3,
+          "destination_count": 3,
+          "checksum": "6b50fac973984382cce9388e0c4f45cf09fe23102db7ee0a7525d1b354b1bd78"
+        },
+        {
+          "name": "candle revision count parity",
+          "passed": true,
+          "at": "2026-10-16 20:24:59.867586+00:00",
+          "counts": [
+            1,
+            1
+          ]
+        },
+        {
+          "name": "packaged roles survive actual database restart without active collector",
+          "passed": true,
+          "at": "2026-10-16 20:24:59.889588+00:00"
+        }
+      ],
+      "completed_at": "2026-10-16 20:24:59.890583+00:00",
+      "websocket_events": 13,
+      "container_security_boundaries": {
+        "ingest": {
+          "image": "sha256:1d17b1285b6541a22f8a9ae27205aaaacd10f8333338ceae2af420942b65a236",
+          "user": "appuser",
+          "readonly_root": true,
+          "capabilities_dropped": [
+            "ALL"
+          ],
+          "security_options": [
+            "no-new-privileges"
+          ],
+          "mounts": [
+            {
+              "target": "/run/secrets/database_url",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/tls_cert",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/tls_key",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/ingest_credentials.json",
+              "writable": false
+            }
+          ],
+          "command": [
+            "ingest",
+            "--bind-host",
+            "127.0.0.1",
+            "--port",
+            "5451",
+            "--tls-cert-file",
+            "/run/secrets/tls_cert",
+            "--tls-key-file",
+            "/run/secrets/tls_key"
+          ]
+        },
+        "read": {
+          "image": "sha256:1d17b1285b6541a22f8a9ae27205aaaacd10f8333338ceae2af420942b65a236",
+          "user": "appuser",
+          "readonly_root": true,
+          "capabilities_dropped": [
+            "ALL"
+          ],
+          "security_options": [
+            "no-new-privileges"
+          ],
+          "mounts": [
+            {
+              "target": "/run/secrets/tls_cert",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/tls_key",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/api_key",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/database_url",
+              "writable": false
+            }
+          ],
+          "command": [
+            "read",
+            "--bind-host",
+            "127.0.0.1",
+            "--port",
+            "5452",
+            "--tls-cert-file",
+            "/run/secrets/tls_cert",
+            "--tls-key-file",
+            "/run/secrets/tls_key"
+          ]
+        },
+        "worker": {
+          "image": "sha256:433794066158074720afeede0a833dff30ebf1df59e64bcfb0cc2bcba97c3cd5",
+          "user": "appuser",
+          "readonly_root": true,
+          "capabilities_dropped": [
+            "ALL"
+          ],
+          "security_options": [
+            "no-new-privileges"
+          ],
+          "mounts": [
+            {
+              "target": "/run/secrets/ca.pem",
+              "writable": false
+            },
+            {
+              "target": "/durable",
+              "writable": true
+            },
+            {
+              "target": "/run/secrets/worker.json",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/source_dsn",
+              "writable": false
+            },
+            {
+              "target": "/run/secrets/token",
+              "writable": false
+            }
+          ],
+          "command": [
+            "-m",
+            "marketdata.sync_worker",
+            "--config",
+            "/run/secrets/worker.json"
+          ]
+        }
+      },
+      "database_comparison": {
+        "candles": {
+          "equal": true,
+          "counts": [
+            3,
+            3
+          ],
+          "sha256": [
+            "6b50fac973984382cce9388e0c4f45cf09fe23102db7ee0a7525d1b354b1bd78",
+            "6b50fac973984382cce9388e0c4f45cf09fe23102db7ee0a7525d1b354b1bd78"
+          ]
+        },
+        "revision_manifests": [
+          {
+            "instrument_id": "dbb6516b-ac91-51a2-a8ea-9c604c10250c",
+            "provider": "tradingview_guest",
+            "bucket_start": "2026-10-16 20:21:00+00:00",
+            "source": {
+              "revision_sha256": "9d575ca60cd783747b5ef1d468f9dd80dbd8af70f9ba86f67cc0d724b3e76835",
+              "revision_truncated": false
+            },
+            "destination": {
+              "revision_sha256": "9d575ca60cd783747b5ef1d468f9dd80dbd8af70f9ba86f67cc0d724b3e76835",
+              "revision_truncated": false
+            },
+            "equal": true
+          }
+        ],
+        "revision_counts": [
+          1,
+          1
+        ],
+        "quotes": {
+          "count": 1,
+          "all_fields_and_ordering_equal": true
+        },
+        "coverage": {
+          "count": 1,
+          "equal_count": 1,
+          "rows": [
+            {
+              "instrument_id": "dbb6516b-ac91-51a2-a8ea-9c604c10250c",
+              "provider": "tradingview_guest",
+              "equal": true,
+              "source": {
+                "coverage_start": "2026-10-16 20:18:00+00:00",
+                "coverage_end": "2026-10-16 20:24:00+00:00",
+                "missing": [
+                  "<Range [datetime.datetime(2026, 10, 16, 20, 18, tzinfo=datetime.timezone.utc), datetime.datetime(2026, 10, 16, 20, 19, tzinfo=datetime.timezone.utc))>",
+                  "<Range [datetime.datetime(2026, 10, 16, 20, 22, tzinfo=datetime.timezone.utc), datetime.datetime(2026, 10, 16, 20, 24, tzinfo=datetime.timezone.utc))>"
+                ],
+                "unknown": [],
+                "not_expected": [],
+                "session_info": "{\"session\": \"24x7\", \"timezone\": \"Etc/UTC\"}"
+              },
+              "destination": {
+                "coverage_start": "2026-10-16 20:18:00+00:00",
+                "coverage_end": "2026-10-16 20:24:00+00:00",
+                "missing": [
+                  "<Range [datetime.datetime(2026, 10, 16, 20, 18, tzinfo=datetime.timezone.utc), datetime.datetime(2026, 10, 16, 20, 19, tzinfo=datetime.timezone.utc))>",
+                  "<Range [datetime.datetime(2026, 10, 16, 20, 22, tzinfo=datetime.timezone.utc), datetime.datetime(2026, 10, 16, 20, 24, tzinfo=datetime.timezone.utc))>"
+                ],
+                "unknown": [],
+                "not_expected": [],
+                "session_info": "{\"session\": \"24x7\", \"timezone\": \"Etc/UTC\"}"
+              }
+            }
+          ]
+        },
+        "source_clock": {
+          "singleton": true,
+          "source_epoch": "75bc6c12-0394-47cf-a3e6-c6f49be9ea0a",
+          "head": 36,
+          "candle_ack": 36,
+          "pending_rows": 0,
+          "pending_bytes": 0,
+          "created_at": "2026-10-16 20:23:25.701982+00:00"
+        },
+        "destination_outcomes": [
+          {
+            "stream": "candles",
+            "outcome": "applied",
+            "count": 4
+          },
+          {
+            "stream": "coverage",
+            "outcome": "applied",
+            "count": 2
+          },
+          {
+            "stream": "quotes",
+            "outcome": "applied",
+            "count": 9
+          },
+          {
+            "stream": "status",
+            "outcome": "applied",
+            "count": 12
+          }
+        ],
+        "destination_batch_count": 25,
+        "source_batch_phases": [],
+        "source_archive_count": 25,
+        "archived_receipt_hash_mismatches": 0,
+        "remaining_source_candles": 0,
+        "remaining_source_quotes": 0,
+        "database_sizes": {
+          "source": 12364947,
+          "destination": 12668051
+        }
+      }
+    }
+  },
+  "modified_baseline_files": [
+    "docs/fastapi-v1.1-ingest-openapi.json",
+    "src/marketdata/ingest_api.py",
+    "src/marketdata/quote_snapshots.py",
+    "src/marketdata/source_capture.py",
+    "tests/test_destination_ingestion.py",
+    "tests/test_source_capture.py",
+    ".gitignore",
+    "CODEX.md",
+    "HANDOFF.md",
+    "README.md",
+    "pyproject.toml",
+    "src/marketdata/__init__.py",
+    "src/marketdata/api.py",
+    "src/marketdata/persistence.py",
+    "uv.lock"
+  ],
+  "frozen": {
+    "path": "artifacts/marketdata-fastapi-v1.0.zip",
+    "sha256": "3a3ca216098a0f2a6632a8dcdb1dfb96af116a4c079c825876f253fbd8cea67a",
+    "matching_payload_entries": 66
+  },
+  "tools": {
+    "company-private-setup": 0,
+    "company-admin-help": 0,
+    "company-runtime-help": 0,
+    "collector-private-setup": 0,
+    "collector-admin-help": 0,
+    "collector-runtime-help": 0,
+    "initial-plan": 0,
+    "configure-worker": 0,
+    "worker-cli-help": 0,
+    "company-compose-config": 0,
+    "company-timescale-compose-config": 0,
+    "isolated-test-compose-config": 0
+  },
+  "images": {
+    "company": {
+      "image_id": "sha256:1d17b1285b6541a22f8a9ae27205aaaacd10f8333338ceae2af420942b65a236",
+      "user": "appuser",
+      "python": "3.12.15 (main, Oct  6 2026, 02:02:31) [GCC 12.2.0]",
+      "source_digest": "923310ca1fe20d7cbf1383522c56af3affbafdc8c60d5e1b87a6d70b9d5b4c18",
+      "module_files_matched": 30,
+      "pipcheck_exit": 0
+    },
+    "collector": {
+      "image_id": "sha256:433794066158074720afeede0a833dff30ebf1df59e64bcfb0cc2bcba97c3cd5",
+      "user": "appuser",
+      "python": "3.12.15 (main, Oct  6 2026, 02:02:31) [GCC 12.2.0]",
+      "source_digest": "4c252a820cbec53a949f4af104e7de4aabefdcfdffeadd78d0d590940988c1bb",
+      "module_files_matched": 54,
+      "pipcheck_exit": 0
+    }
+  },
+  "shared_modules": {
+    "shared_module_count": 30,
+    "identical": [
+      "src/marketdata/api.py",
+      "src/marketdata/api_models.py",
+      "src/marketdata/api_v1.py",
+      "src/marketdata/candles.py",
+      "src/marketdata/config.py",
+      "src/marketdata/domain.py",
+      "src/marketdata/events.py",
+      "src/marketdata/fanout.py",
+      "src/marketdata/ingest_api.py",
+      "src/marketdata/ingest_auth.py",
+      "src/marketdata/market_stream.py",
+      "src/marketdata/observability.py",
+      "src/marketdata/persistence.py",
+      "src/marketdata/price_selection.py",
+      "src/marketdata/production.py",
+      "src/marketdata/quote_fields.py",
+      "src/marketdata/quote_snapshots.py",
+      "src/marketdata/reconciliation.py",
+      "src/marketdata/registry.py",
+      "src/marketdata/release_admin.py",
+      "src/marketdata/release_runtime.py",
+      "src/marketdata/remote_status.py",
+      "src/marketdata/replication.py",
+      "src/marketdata/replication_models.py",
+      "src/marketdata/sessions.py",
+      "src/marketdata/session_recovery.py",
+      "src/marketdata/ws_models.py",
+      "src/marketdata/__init__.py",
+      "src/marketdata/providers/base.py",
+      "src/marketdata/providers/__init__.py"
+    ],
+    "source_base": "0006",
+    "source_extension": "sc0002",
+    "destination_head": "0010"
+  },
+  "powershell_examples": {
+    "files": [
+      "C:\\Users\\Pouyan\\PycharmProjects\\tradingview-main-consolidation\\release\\v1.1\\collector\\INSTALL-WINDOWS.md",
+      "C:\\Users\\Pouyan\\PycharmProjects\\tradingview-main-consolidation\\release\\v1.1\\collector\\INSTALL-WINDOWS.md",
+      "C:\\Users\\Pouyan\\PycharmProjects\\tradingview-main-consolidation\\release\\v1.1\\collector\\INSTALL-WINDOWS.md",
+      "C:\\Users\\Pouyan\\PycharmProjects\\tradingview-main-consolidation\\release\\v1.1\\collector\\INSTALL-WINDOWS.md",
+      "C:\\Users\\Pouyan\\PycharmProjects\\tradingview-main-consolidation\\release\\v1.1\\company\\INSTALL-COMPANY.md"
+    ],
+    "blocks_passed": 5
+  },
+  "zip_reproducibility": {
+    "identical": true,
+    "hashes": {
+      "marketdata-fastapi-v1.1.0rc1": "334a9969cafe726767d1dd0a4676f674412d61a7c9a0c50473bfa81e9ec61c05",
+      "marketdata-collector-sync-v1.1.0rc1": "60c5d3614b6760cf81800d72ba2c02c224eee8a466e41ec7ecb1ee52979726e0"
+    }
+  },
+  "isolated_runtime_cleanup": {
+    "completed_at": "2026-10-16T20:27:24.3193740Z",
+    "distribution_removed": "marketdata-v11-m5-test",
+    "verified_absolute_path": "C:\\Users\\Pouyan\\PycharmProjects\\tradingview-main-consolidation\\artifacts\\v11-m5-runtime\\wsl",
+    "containers_removed": [
+      "marketdata-v11-m5-destination-pg16-test",
+      "marketdata-v11-m5-source-pg16-test",
+      "marketdata-v11-m5-destination-ts-test",
+      "marketdata-v11-m5-source-ts-test"
+    ],
+    "volumes_removed": [
+      "marketdata-v11-m5-destination-pg16-test-data",
+      "marketdata-v11-m5-source-pg16-test-data",
+      "marketdata-v11-m5-destination-ts-test-data",
+      "marketdata-v11-m5-source-ts-test-data"
+    ]
+  },
+  "post_cleanup": {
+    "task_collector_processes": 0,
+    "docker_desktop_processes": 0,
+    "task_distributions": 0,
+    "verified_at": "2026-10-16T20:28:23.3484575Z"
+  },
+  "static_checks": {
+    "ruff": {
+      "path": "artifacts/v11-m5-ruff.log",
+      "sha256": "af352a86840ad0af3d37ea0d9197f868363a6dac6b1c2ef5d2722f6b41d2d9af"
+    },
+    "format": {
+      "path": "artifacts/v11-m5-format.log",
+      "sha256": "f033dd6052d5d2a76ec9d6ec3ab0958f8d7da1d6fe6ae6fca307058dde3a763a"
+    },
+    "mypy": {
+      "path": "artifacts/v11-m5-mypy.log",
+      "sha256": "bff7940448be61b0469a0d491411e8699a4fecd95892f7b4e110adb11d1d3ac5"
+    }
+  },
+  "prior_failed_attempts": {
+    "initial_full_pg": {
+      "total": 658,
+      "passed": 646,
+      "failed": 1,
+      "errors": 2,
+      "skipped": 9,
+      "skip_details": [
+        {
+          "test": ".tests.test_databento_sdk",
+          "reason": "collection skipped"
+        },
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_persistence.test_candles_trade_volume_mid_and_all_intervals[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_ties_are_deterministic_after_refresh[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_pagination_preserves_multiple_statuses_in_same_bucket[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ],
+      "seconds": 498.507,
+      "junit": "artifacts/v11-m5-pg-full.xml",
+      "sha256": "245bbb37f647ebf6c1c0762b5e3c7a6754c27492da756e77a1c06ed1bdf0ae67"
+    },
+    "concurrent_build_regression_pg": {
+      "total": 659,
+      "passed": 648,
+      "failed": 1,
+      "errors": 1,
+      "skipped": 9,
+      "skip_details": [
+        {
+          "test": ".tests.test_databento_sdk",
+          "reason": "collection skipped"
+        },
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_persistence.test_candles_trade_volume_mid_and_all_intervals[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_ties_are_deterministic_after_refresh[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_pagination_preserves_multiple_statuses_in_same_bucket[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ],
+      "seconds": 537.089,
+      "junit": "artifacts/v11-m5-pg-release-regression.xml",
+      "sha256": "252eb5beaffac6dc76477f0ed17c81cfa5c08e7ab26d4524258ef8dad064bac4"
+    },
+    "concurrent_build_regression_ts": {
+      "total": 659,
+      "passed": 651,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 6,
+      "skip_details": [
+        {
+          "test": ".tests.test_databento_sdk",
+          "reason": "collection skipped"
+        },
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ],
+      "seconds": 556.775,
+      "junit": "artifacts/v11-m5-ts-release-regression.xml",
+      "sha256": "80f75178b2e3b92eb6337c4101ab9b13a52b1a2097965c93f466e3d7a89ce609"
+    },
+    "api_timeout_rechecks": {
+      "pg": {
+        "total": 73,
+        "passed": 73,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "skip_details": [],
+        "seconds": 29.526,
+        "junit": "artifacts/v11-m5-pg-timeout-recheck.xml",
+        "sha256": "c481635144acabf9533ae81711b58a6a01f8a8ff06a9b5dbe24dd8214d9a6d34"
+      },
+      "ts": {
+        "total": 73,
+        "passed": 73,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "skip_details": [],
+        "seconds": 29.882,
+        "junit": "artifacts/v11-m5-ts-timeout-recheck.xml",
+        "sha256": "fdc63ef8aa5999cb3a38b291c1e0d4cad0bed188b70e3dbcdcdc9b9650bd9a71"
+      }
+    },
+    "notes": [
+      "Initial full run exposed version-expectation and lock-cleanup issues; fixed and retested.",
+      "Build overlap produced API/query timeouts; API rechecks and final full suites pass.",
+      "Timescale install checks passed but DB drop raced an internal background session. Final harness retains generated DBs until labelled task-runtime cleanup.",
+      "Default PyPI DNS/download attempts failed; cold builds use verified HTTPS mirror and unchanged requirement hashes. Resolver failures before builds are retained.",
+      "First exact-image pipeline exposed an unnecessary source import on destination snapshot persistence. Conditional import and real-SQL regression fix it; failed run evidence is retained under v11-m5-pg-pipeline-import-failure.",
+      "The first TS image run's read-only test observer retained an HTTP keep-alive connection across READ restart. It now reconnects after the intentional restart; production worker transport retries are unchanged. Failed observer evidence retained."
+    ]
+  },
+  "readiness": {
+    "source_packages_built": true,
+    "fresh_mirror_images_built": true,
+    "default_pypi_fresh_build_verified": false,
+    "isolated_migrations_verified": true,
+    "isolated_integration_verified": true,
+    "genuine_independent_acquisition": "M4 scoped brief BTC only; not rerun in M5",
+    "injected_99_workload": "M4 bounded PG/TS qualification; injected rates only",
+    "full_genuine_99_qualified": false,
+    "company_network_tls_credentials_provisioned": false,
+    "company_deployed": false,
+    "legacy_collector_transition_completed": false,
+    "verdict": "Release candidate prepared and isolated installation verified; production/site and genuine full-universe acceptance remain outstanding"
+  },
+  "not_executed": [
+    "Company deployment or company production database access",
+    "Legacy collector migration/activation or real producer ownership transfer",
+    "New genuine TradingView acquisition in M5/full genuine99 qualification",
+    "Company-approved gateway/firewall/WAN/public-PKI installation",
+    "Physical Windows sleep/reboot/Task Scheduler or Linux systemd boot acceptance",
+    "Site off-host scheduled backup/RPO/RTO and long dedicated production soak"
+  ],
+  "new_task_files": [
+    "distributions/marketdata-collector-sync-v1.1.0rc1/.dockerignore",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/COLLECTOR-TRANSITION.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/Dockerfile",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/INSTALL-LINUX.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/INSTALL-WINDOWS.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/MIGRATIONS.json",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/OPERATIONS.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/README.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/RELEASE.json",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/SHA256SUMS",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/VERIFY.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/alembic-source.ini",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/alembic.ini",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/collector.example.json",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/config/instruments.mock.json",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/config/instruments.tradingview-business-proposal.json",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/docs/api.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/docs/fastapi-v1.1-ingest-openapi.json",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/docs/fastapi-v1.1-protocol-v1.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/docs/fastapi-v1.1-runtime.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/docs/fastapi-v1.1-session-recovery.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/docs/fastapi-v1.1-source-capture.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/docs/fastapi-v1.1-sync-worker.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/docs/frontend-integration.md",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/docs/openapi.json",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/docs/ws-marketdata.schema.json",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/examples/browser-marketdata.js",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/marketdata-collector.service",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/marketdata-worker.service",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/migrations/env.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/migrations/script.py.mako",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/migrations/versions/0001_marketdata.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/migrations/versions/0002_timescale.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/migrations/versions/0003_native_candles.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/migrations/versions/0004_candle_reliability.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/migrations/versions/0005_collector_status.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/migrations/versions/0006_marketdata_events.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/pyproject.toml",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/requirements-dev.lock",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/requirements.lock",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/scripts/configure_worker.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/scripts/create_ingest_credentials.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/scripts/prepare_install.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/scripts/sql/v11_source_collector_role.sql",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/scripts/sql/v11_source_sync_role.sql",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/scripts/verify_payload.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/source_migrations/env.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/source_migrations/versions/sc0001_local_capture.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/source_migrations/versions/sc0002_sync_worker.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/__init__.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/api.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/api_models.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/api_v1.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/benchmark.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/candle_benchmark.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/candle_ingestion.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/candles.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/cli.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/collector.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/config.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/domain.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/events.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/fanout.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/ingest_api.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/ingest_auth.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/ingestion.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/market_stream.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/observability.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/persistence.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/price_selection.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/production.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/__init__.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/base.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/binance.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/candle_pool.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/candles.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/databento.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/definitions.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/factory.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/mock.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/oanda.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/synthetic_candles.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/tradingview.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/tradingview_candles.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/providers/tradingview_pipeline.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/quote_fields.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/quote_snapshots.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/reconciliation.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/registry.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/release_admin.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/release_runtime.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/remote_status.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/replication.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/replication_models.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/sample_data.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/session_recovery.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/sessions.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/source_capture.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/sync_config.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/sync_http.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/sync_state.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/sync_worker.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/src/marketdata/ws_models.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/tests/test_release.py",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/uv.lock",
+    "distributions/marketdata-collector-sync-v1.1.0rc1/worker.example.json",
+    "distributions/marketdata-fastapi-v1.1.0rc1/.dockerignore",
+    "distributions/marketdata-fastapi-v1.1.0rc1/.env.example",
+    "distributions/marketdata-fastapi-v1.1.0rc1/COLLECTOR-TRANSITION.md",
+    "distributions/marketdata-fastapi-v1.1.0rc1/Dockerfile",
+    "distributions/marketdata-fastapi-v1.1.0rc1/INSTALL-COMPANY.md",
+    "distributions/marketdata-fastapi-v1.1.0rc1/MIGRATIONS.json",
+    "distributions/marketdata-fastapi-v1.1.0rc1/OPERATIONS.md",
+    "distributions/marketdata-fastapi-v1.1.0rc1/README.md",
+    "distributions/marketdata-fastapi-v1.1.0rc1/RELEASE.json",
+    "distributions/marketdata-fastapi-v1.1.0rc1/SHA256SUMS",
+    "distributions/marketdata-fastapi-v1.1.0rc1/VERIFY.md",
+    "distributions/marketdata-fastapi-v1.1.0rc1/alembic.ini",
+    "distributions/marketdata-fastapi-v1.1.0rc1/compose.timescale.yaml",
+    "distributions/marketdata-fastapi-v1.1.0rc1/compose.yaml",
+    "distributions/marketdata-fastapi-v1.1.0rc1/config/instruments.mock.json",
+    "distributions/marketdata-fastapi-v1.1.0rc1/docs/api.md",
+    "distributions/marketdata-fastapi-v1.1.0rc1/docs/fastapi-v1.1-ingest-openapi.json",
+    "distributions/marketdata-fastapi-v1.1.0rc1/docs/fastapi-v1.1-protocol-v1.md",
+    "distributions/marketdata-fastapi-v1.1.0rc1/docs/fastapi-v1.1-runtime.md",
+    "distributions/marketdata-fastapi-v1.1.0rc1/docs/fastapi-v1.1-session-recovery.md",
+    "distributions/marketdata-fastapi-v1.1.0rc1/docs/fastapi-v1.1-source-capture.md",
+    "distributions/marketdata-fastapi-v1.1.0rc1/docs/fastapi-v1.1-sync-worker.md",
+    "distributions/marketdata-fastapi-v1.1.0rc1/docs/frontend-integration.md",
+    "distributions/marketdata-fastapi-v1.1.0rc1/docs/openapi.json",
+    "distributions/marketdata-fastapi-v1.1.0rc1/docs/ws-marketdata.schema.json",
+    "distributions/marketdata-fastapi-v1.1.0rc1/examples/browser-marketdata.js",
+    "distributions/marketdata-fastapi-v1.1.0rc1/gateway.nginx.conf",
+    "distributions/marketdata-fastapi-v1.1.0rc1/migrations/env.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/migrations/script.py.mako",
+    "distributions/marketdata-fastapi-v1.1.0rc1/migrations/versions/0001_marketdata.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/migrations/versions/0002_timescale.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/migrations/versions/0003_native_candles.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/migrations/versions/0004_candle_reliability.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/migrations/versions/0005_collector_status.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/migrations/versions/0006_marketdata_events.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/migrations/versions/0007_destination_ingestion.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/migrations/versions/0008_ingestion_runtime.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/migrations/versions/0009_session_recovery.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/migrations/versions/0010_quote_snapshots.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/pyproject.toml",
+    "distributions/marketdata-fastapi-v1.1.0rc1/requirements-dev.lock",
+    "distributions/marketdata-fastapi-v1.1.0rc1/requirements.lock",
+    "distributions/marketdata-fastapi-v1.1.0rc1/scripts/create_ingest_credentials.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/scripts/create_initial_plan.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/scripts/prepare_install.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/scripts/smoke_read.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/scripts/sql/v11_destination_roles.sql",
+    "distributions/marketdata-fastapi-v1.1.0rc1/scripts/verify_payload.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/__init__.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/api.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/api_models.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/api_v1.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/candles.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/config.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/domain.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/events.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/fanout.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/ingest_api.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/ingest_auth.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/market_stream.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/observability.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/persistence.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/price_selection.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/production.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/providers/__init__.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/providers/base.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/quote_fields.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/quote_snapshots.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/reconciliation.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/registry.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/release_admin.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/release_runtime.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/remote_status.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/replication.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/replication_models.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/session_recovery.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/sessions.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/src/marketdata/ws_models.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/tests/test_release.py",
+    "distributions/marketdata-fastapi-v1.1.0rc1/uv.lock",
+    "docs/fastapi-v1.1-milestone5-verification.json",
+    "docs/fastapi-v1.1-milestone5.md",
+    "release/v1.1/collector/INSTALL-LINUX.md",
+    "release/v1.1/collector/INSTALL-WINDOWS.md",
+    "release/v1.1/collector/README.md",
+    "release/v1.1/collector/collector.example.json",
+    "release/v1.1/collector/marketdata-collector.service",
+    "release/v1.1/collector/marketdata-worker.service",
+    "release/v1.1/collector/scripts/configure_worker.py",
+    "release/v1.1/collector/tests/test_release.py",
+    "release/v1.1/collector/worker.example.json",
+    "release/v1.1/common/.dockerignore",
+    "release/v1.1/common/COLLECTOR-TRANSITION.md",
+    "release/v1.1/common/Dockerfile",
+    "release/v1.1/common/OPERATIONS.md",
+    "release/v1.1/common/VERIFY.md",
+    "release/v1.1/common/scripts/prepare_install.py",
+    "release/v1.1/common/scripts/verify_payload.py",
+    "release/v1.1/company/.env.example",
+    "release/v1.1/company/INSTALL-COMPANY.md",
+    "release/v1.1/company/README.md",
+    "release/v1.1/company/compose.timescale.yaml",
+    "release/v1.1/company/compose.yaml",
+    "release/v1.1/company/gateway.nginx.conf",
+    "release/v1.1/company/scripts/create_initial_plan.py",
+    "release/v1.1/company/scripts/smoke_read.py",
+    "release/v1.1/company/tests/test_release.py",
+    "scripts/build_v11_release.py",
+    "scripts/cleanup_v11_m5_runtime.ps1",
+    "scripts/report_v11_release.py",
+    "scripts/sql/v11_source_collector_role.sql",
+    "scripts/verify_v11_release_install.py",
+    "scripts/verify_v11_release_pipeline.py",
+    "src/marketdata/quote_fields.py",
+    "src/marketdata/release_admin.py",
+    "src/marketdata/release_runtime.py",
+    "tests/test_release_foundation.py",
+    "compose.v11-m5-test.yaml"
+  ]
+}

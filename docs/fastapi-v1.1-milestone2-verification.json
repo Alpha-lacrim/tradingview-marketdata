@@ -1,0 +1,199 @@
+{
+  "date": "2026-10-15",
+  "base_commit": "4cedaedb172d89ca3d2566bcea477c8296643592",
+  "milestone": 2,
+  "schema_head": "0008",
+  "matrix": [
+    {
+      "engine": "PostgreSQL 16.1",
+      "schema": "0008",
+      "tests": 531,
+      "passed": 523,
+      "skipped": 8,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 148.354,
+      "junit": "artifacts/v11-m2-full-pg16.xml",
+      "junit_sha256": "e26a11b5e83e8a685c835034a82cf77069702fc641676f0ee80ac9f0e53890cd",
+      "new_milestone_tests": 13,
+      "new_milestone_skipped": 0,
+      "skip_details": [
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_persistence.test_candles_trade_volume_mid_and_all_intervals[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_ties_are_deterministic_after_refresh[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_pagination_preserves_multiple_statuses_in_same_bucket[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ]
+    },
+    {
+      "engine": "TimescaleDB 2.25.1 / PostgreSQL 17.7",
+      "schema": "0008",
+      "tests": 531,
+      "passed": 526,
+      "skipped": 5,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 169.715,
+      "junit": "artifacts/v11-m2-full-timescale.xml",
+      "junit_sha256": "d3d273b7cf69c770a1c096234f9032f9361340116f5770f2124ecd93826e1a93",
+      "new_milestone_tests": 13,
+      "new_milestone_skipped": 0,
+      "skip_details": [
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "ruff_check": "passed",
+    "ruff_format": "228 files passed",
+    "mypy": "44 source/script files passed",
+    "alembic_head": "0008",
+    "compose_config": "passed",
+    "git_diff_check": "passed"
+  },
+  "source_files_sha256": {
+    "src/marketdata/config.py": "c2d75f48cab54f0dc80e4dea35ba28042f8add68b3ff9330d5185042cad22b66",
+    "src/marketdata/production.py": "f91bf0eb3c88d014f6eadde8ffeb2e920074beba74f08e8895505b95fd75fd2a",
+    "src/marketdata/persistence.py": "0511ccf9a4dc70a50a00901d7b25daeb530ae5b6f21aabcb4b6b024c738edc2a",
+    "src/marketdata/replication.py": "bdc3087b3731ed40c7228a09ae9819a5526b9554a5d420272db5c413d6886fd4",
+    "src/marketdata/replication_models.py": "f16301723c68951b1376a34d4e48fb3476f035d4ecef90de258a3af9d8648a0e",
+    "src/marketdata/ingest_api.py": "3027e315e161505a2159338827bfe717724ae8bdc9cc7890335c2c34d71713cd",
+    "src/marketdata/ingest_auth.py": "9d8e9a912d6a342d96ad0d367aaf5cc1bdad6e439cb90b435d6081381c2a2204",
+    "src/marketdata/remote_status.py": "be65b37cbbbf8e26e78315f6eecb89f794a3aecee8a34802f63074b8560f97d8",
+    "src/marketdata/market_stream.py": "bd0ee5c11ced471e8e94842cd42101d7109d175d7edf82f803c8ff691c4bf461",
+    "src/marketdata/sample_data.py": "8edcb74735448a3d91a7f49ae48bad6e3db85117c0ff7adf900129eb2f7f4f84",
+    "scripts/qualify_api.py": "d116f9d3d5b6d17bddb3e4811477879a96b2d01289a8a290f3b46584b9bb8ede",
+    "scripts/create_ingest_credentials.py": "ee0c72b9fb5d75c688c2a5f0209f67b7e1cbf3c28288eae26b3256ed617df3e3",
+    "scripts/sql/v11_destination_roles.sql": "7db8f0339642c4f39a05d03341ad0193063f2a5df65a75c1bb1c379cefd4fac3",
+    "migrations/versions/0008_ingestion_runtime.py": "f1de2165159f2c16bf914e05801f921ddf85672fa76348f39ba6e2ffe74fc896",
+    "compose.v11-m2-test.yaml": "a1728fa71fe7919cc7395dee6b3f945f0fb1ce12625122a78630ae0e70ef715b",
+    "tests/test_api_v1.py": "c4b31ae66a6dc97ce8976eba067c21e84dd201da7a61ace655c26b5818e599b0",
+    "tests/test_ingest_http.py": "a87688f378b6cd69ce522f722beff3731f96bd84cbc6fa49a194fbb460f19225",
+    "tests/test_ingest_migrations.py": "3d8b22677a92cbaa58de14d6cd3a1a50a0f98839f616be01f794d8bd8d0fbcc9",
+    "tests/test_destination_migrations.py": "c43004cd4eac9192da76787f89c448308bb502866911f5895cf17c184a241c7a"
+  },
+  "pre_existing_resources": [
+    {
+      "name": "/tradingview-app-1",
+      "image_id": "sha256:ca498afb02f6232440e3386936a4097e865cf9fefdbd0481adc0cc7ce623023f",
+      "state": "exited",
+      "started_at": "2026-10-15T08:21:21.3865808Z",
+      "finished_at": "2026-10-15T08:34:02.28412306Z"
+    },
+    {
+      "name": "/tradingview-db-1",
+      "image_id": "sha256:f5f9f09d57799d237f481e5b9ad517eae5088fed3dbb487e2138419e6196fc78",
+      "state": "exited",
+      "started_at": "2026-10-15T08:21:17.794909252Z",
+      "finished_at": "2026-10-15T08:34:01.897432594Z"
+    }
+  ],
+  "task_resources": [
+    {
+      "name": "/marketdata-v11-m2-pg16-test",
+      "image_id": "sha256:09f23e02d76670d3b346a3c00aa33a27cf57aab8341eedfcdaed41459d14f5c4",
+      "tmpfs": {
+        "/var/lib/postgresql/data": ""
+      },
+      "mounts": [],
+      "project": "marketdata-v11-m2-tests",
+      "task": "v11-m2"
+    },
+    {
+      "name": "/marketdata-v11-m2-ts-test",
+      "image_id": "sha256:f5f9f09d57799d237f481e5b9ad517eae5088fed3dbb487e2138419e6196fc78",
+      "tmpfs": {
+        "/var/lib/postgresql/data": ""
+      },
+      "mounts": [],
+      "project": "marketdata-v11-m2-tests",
+      "task": "v11-m2"
+    }
+  ],
+  "frozen": {
+    "zip_sha256": "3a3ca216098a0f2a6632a8dcdb1dfb96af116a4c079c825876f253fbd8cea67a",
+    "managed_files_verified": 53,
+    "source_modified": false,
+    "suite_rerun": false,
+    "previous_milestone_passes_per_engine": 143
+  },
+  "docker": {
+    "standard_build": "FAILED twice: package metadata download timeouts",
+    "first_cache_variant": "FAILED: invalidated pip-install cache layer and encountered DNS failure",
+    "corrected_cache_build": "PASSED: unchanged cached dependency layer; final uv sync --offline",
+    "cache_recipe": "artifacts/v11-m2-offline.Dockerfile",
+    "cache_recipe_sha256": "446e094e9aeba0af282f5a1c4f7311db76b69e54ed2671888d07d91ef224fcde",
+    "image": "sha256:967db75580497014e6699bb017c1b79e4ab793a38e96c78579b0569371968a45",
+    "linux_smoke": "PASSED: both production factory lifespans, restricted writer, SELECT-only reader, schema 0008, no collector/concrete provider/optional HTTPX imports",
+    "linux_smoke_recipe": "artifacts/v11-m2-linux-private/smoke.py",
+    "linux_smoke_recipe_sha256": "3bd4c95f0716c29c5ab9d54863a3e1dc8530d376b6c1aa0a9f61ffb2242f277c"
+  },
+  "preservation": {
+    "collector_database_sql_executed": false,
+    "provider_connections_opened": false,
+    "deployment_performed": false,
+    "push_or_commit": false,
+    "source_data_hash_taken": false
+  },
+  "cleanup": {
+    "task_labels_tmpfs_verified": true,
+    "removed": [
+      "marketdata-v11-m2-pg16-test",
+      "marketdata-v11-m2-ts-test"
+    ],
+    "volume_operations": false
+  },
+  "limitations": [
+    "No complete v1.1 ZIP/fresh installation or standard fresh Docker build verified.",
+    "No genuine provider/WAN/source-worker/backpressure recovery qualification.",
+    "OpenSSL required for TLS test; present in these runs, no new test skipped.",
+    "Two immutable schema-0006 binary tests and optional old fixtures remain skipped as listed.",
+    "Frozen suite not rerun at this milestone; its bytes/manifest remain unchanged."
+  ]
+}

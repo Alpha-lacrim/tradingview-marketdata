@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "marketdata-fastapi"
+version = "1.1.0rc1"
+requires-python = ">=3.12"
+dependencies = ["asyncpg>=0.30,<1", "fastapi>=0.115,<1", "uvicorn[standard]>=0.34,<1", "pydantic>=2.10,<3", "pydantic-settings>=2.7,<3", "websockets>=15,<16", "prometheus-client>=0.21,<1", "anyio>=4,<5", "alembic>=1.14,<2", "sqlalchemy>=2.0,<3", "psycopg[binary]>=3.2,<4", "httpx>=0.28,<1"]
+
+[project.scripts]
+"marketdata-admin" = "marketdata.release_admin:main"
+
+[dependency-groups]
+dev = ["pytest==8.4.2", "pytest-asyncio==1.4.0"]
+
+[tool.uv]
+constraint-dependencies = ["aiohappyeyeballs==2.7.1", "aiohttp==3.14.4", "aiosignal==1.4.0", "alembic==1.20.0", "annotated-doc==0.0.5", "annotated-types==0.8.0", "anyio==4.15.1", "asyncpg==0.32.0", "asyncpg-stubs==0.32.0", "attrs==26.1.0", "certifi==2026.7.22", "charset-normalizer==3.5.2", "click==8.5.0", "colorama==0.4.6", "databento==0.87.0", "databento-dbn==0.70.0", "fastapi==0.142.2", "frozenlist==1.8.0", "h11==0.16.0", "httpcore==1.0.9", "httptools==0.8.0", "httpx==0.28.1", "idna==3.20", "iniconfig==2.3.1", "librt==0.16.0", "mako==1.4.3", "markupsafe==3.0.4", "multidict==6.9.1", "mypy==1.20.2", "mypy-extensions==1.1.0", "numpy==2.5.3", "opentelemetry-api==1.45.1", "packaging==26.3", "pandas==3.0.6", "pathspec==1.1.1", "pip==26.2.1", "pip-system-certs==5.3", "pluggy==1.6.0", "prometheus-client==0.26.0", "propcache==0.5.4", "psycopg==3.3.6", "psycopg-binary==3.3.6", "pyarrow==25.0.1", "pydantic==2.13.5", "pydantic-core==2.46.5", "pydantic-settings==2.15.0", "pygments==2.21.0", "pytest==8.4.2", "pytest-asyncio==1.4.0", "python-dateutil==2.9.0.post0", "python-dotenv==1.2.4", "pyyaml==6.0.3", "requests==2.34.2", "ruff==0.16.10", "six==1.17.0", "sqlalchemy==2.1.3", "starlette==1.7.0", "typing-extensions==4.16.0", "typing-inspection==0.4.4", "tzdata==2026.5", "urllib3==2.8.0", "uvicorn==0.54.0", "uvloop==0.23.0", "watchfiles==1.3.0", "websockets==15.0.1", "yarl==1.25.1", "zstandard==0.25.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/marketdata"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]

@@ -1,0 +1,32 @@
+# Milestone 2.1 only. Disposable tmpfs storage; never use a deployed project/volume.
+services:
+  postgres:
+    image: postgres:16.1
+    container_name: marketdata-v11-m21-pg16-test
+    labels: {marketdata.task: v11-m21}
+    environment:
+      POSTGRES_USER: m21_test
+      POSTGRES_PASSWORD: disposable_test
+      POSTGRES_DB: marketdata_v11_m21_test
+    ports: ["127.0.0.1:55965:5432"]
+    tmpfs: [/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U m21_test -d marketdata_v11_m21_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  timescale:
+    image: timescale/timescaledb:2.25.1-pg17
+    container_name: marketdata-v11-m21-ts-test
+    labels: {marketdata.task: v11-m21}
+    environment:
+      POSTGRES_USER: m21_test
+      POSTGRES_PASSWORD: disposable_test
+      POSTGRES_DB: marketdata_v11_m21_test
+    ports: ["127.0.0.1:55966:5432"]
+    tmpfs: [/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U m21_test -d marketdata_v11_m21_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 30

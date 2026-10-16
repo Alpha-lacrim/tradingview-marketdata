@@ -14,7 +14,13 @@ ProviderName = Literal["mock", "binance", "oanda", "databento", "tradingview_gue
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore", hide_input_in_errors=True)
 
-    application_role: Literal["api", "collector", "combined"] = "api"
+    application_role: Literal["api", "ingest", "collector", "combined"] = "api"
+    ingest_credentials_file: Path | None = None
+    ingest_max_body_bytes: int = Field(default=2097152, ge=1024, le=2097152)
+    ingest_max_records: int = Field(default=500, ge=1, le=500)
+    ingest_requests_per_minute: int = Field(default=120, ge=1, le=10000)
+    ingest_max_inflight: int = Field(default=8, ge=1, le=64)
+    ingest_request_timeout_seconds: float = Field(default=30, ge=1, le=120)
     collector_status_interval_seconds: float = Field(default=5, gt=0, le=30)
     collector_status_ttl_seconds: float = Field(default=20, gt=0, le=120)
     collector_metrics_port: int = Field(default=9000, ge=0, le=65535)
@@ -35,6 +41,9 @@ class Settings(BaseSettings):
     db_timeout_seconds: float = Field(default=10, gt=0, le=120)
     db_pool_min: int = Field(default=2, ge=1)
     db_pool_max: int = Field(default=10, ge=1, le=100)
+    source_capture_enabled: bool = False
+    source_capture_max_rows: int = Field(default=1000000, ge=1, le=100000000)
+    source_capture_max_bytes: int = Field(default=536870912, ge=1024, le=107374182400)
     shutdown_timeout_seconds: float = Field(default=20, gt=0)
     reconnect_min_seconds: float = Field(default=1, ge=1)
     reconnect_max_seconds: float = Field(default=60, ge=1)
@@ -94,6 +103,13 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def valid(self) -> Self:
+        if self.source_capture_enabled and self.application_role != "collector":
+            raise ValueError("source capture is restricted to an explicitly configured collector")
+        if self.application_role == "ingest":
+            if self.ingest_credentials_file is None:
+                raise ValueError("ingest requires INGEST_CREDENTIALS_FILE")
+            if self.api_key is not None:
+                raise ValueError("ingest must use separate producer credentials, without API_KEY")
         if self.api_key is not None and not self.api_key.get_secret_value().strip():
             raise ValueError("API_KEY must not be empty")
         if (

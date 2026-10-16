@@ -1,0 +1,52 @@
+{
+  "migrations/versions/0001_marketdata.py": {
+    "down_revision": null,
+    "revision": "0001",
+    "sha256": "68c9a20364a9d9692195261a5f0b5e185b72e5719787ca35d656a4a02b699467"
+  },
+  "migrations/versions/0002_timescale.py": {
+    "down_revision": "0001",
+    "revision": "0002",
+    "sha256": "fb631b1c4799a8f36f4b2b86cbb77a430226e33c35fa90b4a074449a81d9fb7d"
+  },
+  "migrations/versions/0003_native_candles.py": {
+    "down_revision": "0002",
+    "revision": "0003",
+    "sha256": "d027a4bf729aa3f962e8f125fc4d59626378489c95ec6c6375f0de518c817773"
+  },
+  "migrations/versions/0004_candle_reliability.py": {
+    "down_revision": "0003",
+    "revision": "0004",
+    "sha256": "58ba3eee75e3d38aa895d308af1fce3106340694fb7405db5b31c73e261b0dee"
+  },
+  "migrations/versions/0005_collector_status.py": {
+    "down_revision": "0004",
+    "revision": "0005",
+    "sha256": "34675451fd110c01639d48e6da99039e1b2594d9a129d45a4961c79a54d203b0"
+  },
+  "migrations/versions/0006_marketdata_events.py": {
+    "down_revision": "0005",
+    "revision": "0006",
+    "sha256": "6a970c3d983f45b1c20afbda95a5ee5906fb871f8b2c7ced3b1ca47a51beff1a"
+  },
+  "migrations/versions/0007_destination_ingestion.py": {
+    "down_revision": "0006",
+    "revision": "0007",
+    "sha256": "c02140a4ef900d44c09c643714b70b1979ba14595d6aa65cdba8fb64ad94313e"
+  },
+  "migrations/versions/0008_ingestion_runtime.py": {
+    "down_revision": "0007",
+    "revision": "0008",
+    "sha256": "f1de2165159f2c16bf914e05801f921ddf85672fa76348f39ba6e2ffe74fc896"
+  },
+  "migrations/versions/0009_session_recovery.py": {
+    "down_revision": "0008",
+    "revision": "0009",
+    "sha256": "d039b91de2748ca4a06c675adaa7c01c5f1f2761e340edcf10e4acec450376ff"
+  },
+  "migrations/versions/0010_quote_snapshots.py": {
+    "down_revision": "0009",
+    "revision": "0010",
+    "sha256": "a9bf743a606e2720269d135ed0f069ad6262e13c9abd4f69fb3b0774e7d8e85c"
+  }
+}

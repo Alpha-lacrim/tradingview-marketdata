@@ -1,0 +1,22 @@
+{
+  "endpoint": "https://INGEST_HOSTNAME",
+  "source_dsn_file": "C:/Marketdata/private/sync_dsn",
+  "token_file": "C:/Marketdata/private/ingest_token",
+  "ca_file": "C:/Marketdata/private/company-ca.pem",
+  "anchor_file": "C:/Marketdata/durable/source-anchor.json",
+  "producer_id": "REPLACE_WITH_ADMIN_PROVISIONED_UUID",
+  "session_id": "REPLACE_WITH_INITIAL_ADMIN_SESSION_UUID",
+  "session_generation": 1,
+  "streams": [{
+    "instrument_id": "REPLACE_WITH_APPROVED_INSTRUMENT_UUID",
+    "provider": "tradingview_guest",
+    "stream": "candles",
+    "source_epoch": "REPLACE_WITH_VERIFIED_SOURCE_EPOCH_UUID",
+    "ownership_generation": 1
+  }],
+  "enroll": false,
+  "max_records": 100,
+  "metadata_max_records": 50,
+  "interval_seconds": 2,
+  "reconcile_seconds": 300
+}

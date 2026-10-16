@@ -1,0 +1,893 @@
+{
+  "date": "2026-10-16",
+  "timezone": "Asia/Tehran",
+  "milestone": "3B",
+  "base_commit": "4cedaedb172d89ca3d2566bcea477c8296643592",
+  "destination_head": "0010",
+  "source_base": "0006",
+  "source_head": "sc0002",
+  "suites": [
+    {
+      "engine": "PostgreSQL 16.1",
+      "tests": 636,
+      "passed": 628,
+      "skipped": 8,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 413.345,
+      "junit": "artifacts/v11-m3b-full-pg16.xml",
+      "junit_sha256": "b62ddb6d5448d3041500a4cb020c45369ae939f1ad29ed2c289d99ef00142c25",
+      "log": "artifacts\\v11-m3b-full-pg16.log",
+      "log_sha256": "5d4d77a00f5b1c22484123897d549452ee83a9f7d9042eb15a4655b65153f750",
+      "new_worker_cases": 56,
+      "new_worker_case_skips": 0,
+      "new_worker_database_cases": 50,
+      "skip_details": [
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_persistence.test_candles_trade_volume_mid_and_all_intervals[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_ties_are_deterministic_after_refresh[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_pagination_preserves_multiple_statuses_in_same_bucket[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ]
+    },
+    {
+      "engine": "TimescaleDB 2.25.1 / PostgreSQL 17.7",
+      "tests": 636,
+      "passed": 631,
+      "skipped": 5,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 498.254,
+      "junit": "artifacts/v11-m3b-full-timescale.xml",
+      "junit_sha256": "c215af5447ea7c66060ed9a87bd38e53a78033f636fe92b32b763965c5d71679",
+      "log": "artifacts\\v11-m3b-full-timescale.log",
+      "log_sha256": "79ba5e6b76d6e67e0772f418a0c0221ff62e372d5f7fe591f100fc7cb41c435e",
+      "new_worker_cases": 56,
+      "new_worker_case_skips": 0,
+      "new_worker_database_cases": 50,
+      "skip_details": [
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ]
+    }
+  ],
+  "engines": [
+    {
+      "version": "PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit",
+      "timescale": null,
+      "revision": "0010",
+      "port": 55985,
+      "image": "postgres:16.1",
+      "repo_digests": [
+        "postgres@sha256:09f23e02d76670d3b346a3c00aa33a27cf57aab8341eedfcdaed41459d14f5c4"
+      ],
+      "image_id": "sha256:b0b90c1d9579032974dc7a3914392004b29e31c071524575b45ee9985f1c43ba"
+    },
+    {
+      "version": "PostgreSQL 17.7 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+      "timescale": "2.25.1",
+      "revision": "0010",
+      "port": 55986,
+      "image": "timescale/timescaledb:2.25.1-pg17",
+      "repo_digests": [
+        "timescale/timescaledb@sha256:f5f9f09d57799d237f481e5b9ad517eae5088fed3dbb487e2138419e6196fc78"
+      ],
+      "image_id": "sha256:7dff1ae24935a6ea378193ea6fbfa35cb5d78454aeaca198d6b65b5c65951d8e"
+    }
+  ],
+  "static_checks": [
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "256 files already formatted",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "mypy",
+        "src",
+        "--no-incremental"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 51 source files",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "alembic",
+        "heads"
+      ],
+      "exit_code": 0,
+      "stdout": "0010 (head)",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "alembic",
+        "-c",
+        "alembic-source.ini",
+        "heads"
+      ],
+      "exit_code": 0,
+      "stdout": "sc0002 (head)",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "compose",
+        "-f",
+        "compose.v11-m3b-test.yaml",
+        "config",
+        "--quiet"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'HANDOFF.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tests/test_dual_ingestion.py', LF will be replaced by CRLF the next time Git touches it"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "-m",
+        "marketdata.sync_worker",
+        "--help"
+      ],
+      "exit_code": 0,
+      "stdout": "usage: sync_worker.py [-h] --config CONFIG [--once] [--repair]\n\nDurable source HTTPS synchronization\n\noptions:\n  -h, --help       show this help message and exit\n  --config CONFIG\n  --once\n  --repair         explicit bounded candle resnapshot",
+      "stderr": ""
+    }
+  ],
+  "package_smoke": {
+    "wheel": "artifacts/v11-m3b-package/marketdata_platform-0.1.0-py3-none-any.whl",
+    "sha256": "0f4a03a219939b489ed57122fbf80795a86da0f28b652fd93169289f9bf4f6e9",
+    "worker_modules_match_source": {
+      "sync_worker.py": true,
+      "sync_state.py": true,
+      "sync_http.py": true,
+      "sync_config.py": true,
+      "reconciliation.py": true,
+      "quote_snapshots.py": true
+    },
+    "fresh_environment_console_help": true,
+    "scope": "offline wheel build and import/CLI smoke only; not a full release/deployment qualification"
+  },
+  "preservation": {
+    "base_revision": "4cedaedb172d89ca3d2566bcea477c8296643592",
+    "unchanged_approved_migrations": {
+      "migrations/versions/0007_destination_ingestion.py": true,
+      "migrations/versions/0008_ingestion_runtime.py": true,
+      "migrations/versions/0009_session_recovery.py": true,
+      "source_migrations/versions/sc0001_local_capture.py": true
+    },
+    "unchanged_authentication_and_recovery": {
+      "src/marketdata/ingest_auth.py": true,
+      "src/marketdata/session_recovery.py": true,
+      "src/marketdata/replication_models.py": true,
+      "src/marketdata/events.py": true
+    },
+    "frozen_baseline_count": 66,
+    "frozen_baseline_unchanged": true,
+    "zip_sha256": "3a3ca216098a0f2a6632a8dcdb1dfb96af116a4c079c825876f253fbd8cea67a",
+    "zip_entries": 66,
+    "zip_entries_equal_frozen_tree": true,
+    "zip_crc_error": null,
+    "tested_implementation_unchanged": true,
+    "tested_implementation_files": 137,
+    "legacy_collector": "untouched; no new lifecycle, schema or data-content query/checksum",
+    "unrelated_worktrees": "not modified",
+    "live_provider_connections": 0,
+    "deployments": 0,
+    "commits_or_pushes": 0,
+    "pre_m3b_baseline_files": 331,
+    "unchanged_other_baseline_files": 313
+  },
+  "infrastructure": {
+    "task": "v11-m3b",
+    "arrangement": "Independent task-owned WSL distribution and Docker 27.5.1 daemon; Desktop not started",
+    "distro": "marketdata-v11-m3b-test",
+    "verified_install_path": "C:\\Users\\Pouyan\\PycharmProjects\\tradingview-main-consolidation\\artifacts\\v11-m3b-runtime\\wsl",
+    "docker_root": "/tmp/marketdata-v11-m3b/data",
+    "containers": [
+      "marketdata-v11-m3b-pg16-test",
+      "marketdata-v11-m3b-ts-test"
+    ],
+    "container_identity_before_cleanup": {
+      "value": [
+        {
+          "name": "/marketdata-v11-m3b-pg16-test",
+          "id": "5cbec36c4a0ad4fd59e2da0f456404ed5a4aefc30dd1c54868789b92a6890de2",
+          "image": "postgres:16.1",
+          "task_label": "v11-m3b",
+          "tmpfs": {
+            "/var/lib/postgresql/data": "rw,size=1073741824"
+          },
+          "network_mode": "host"
+        },
+        {
+          "name": "/marketdata-v11-m3b-ts-test",
+          "id": "3d55ce8fd3d4c82e486dc847a380264a04d7b6b2452bb6284fab1f7ae41c29da",
+          "image": "timescale/timescaledb:2.25.1-pg17",
+          "task_label": "v11-m3b",
+          "tmpfs": {
+            "/var/lib/postgresql/data": "rw,size=1073741824"
+          },
+          "network_mode": "host"
+        }
+      ],
+      "Count": 2
+    },
+    "storage": "Tmpfs PostgreSQL data, no bind mounts; private vfs image/daemon root",
+    "containers_removed": true,
+    "task_distro_unregistered": true,
+    "task_virtual_disk_removed": true,
+    "existing_docker_desktop_or_collector_affected": false,
+    "preserved_artifacts": "Logs/JUnit/baseline/package/metadata retained under artifacts/v11-m3b-*"
+  },
+  "changed_files": [
+    {
+      "path": ".gitignore",
+      "change": "modified",
+      "sha256": "3c9947ebd7ac4e29d0ed528362c6f2aba445c19732078b3231e7c1d66eb72d68"
+    },
+    {
+      "path": "CODEX.md",
+      "change": "modified",
+      "sha256": "6a3dffdb85c28fb4c2cd9e35beeaa8368055bf8d6f0d2f10baff6c2150f7da50"
+    },
+    {
+      "path": "HANDOFF.md",
+      "change": "modified",
+      "sha256": "a1e3445b6cc403233bad3485194cf7a551e77d30512b6b77611603539592d8ee"
+    },
+    {
+      "path": "README.md",
+      "change": "modified",
+      "sha256": "98ab8764d6b0189ebbfc379a21411bba8bdd73b067889983cd473fd11f276b64"
+    },
+    {
+      "path": "compose.v11-m3b-test.yaml",
+      "change": "added",
+      "sha256": "274103876dab2124be4167c5492df996de2b11f5ef4ba992eb14556f2be23b3d"
+    },
+    {
+      "path": "docs/fastapi-v1.1-ingest-openapi.json",
+      "change": "modified",
+      "sha256": "22019749a08cbc70eb70c18417978b6a062c9388caa641f8909ec61734215127"
+    },
+    {
+      "path": "docs/fastapi-v1.1-milestone3b-verification.json",
+      "change": "added",
+      "sha256": null,
+      "note": "this evidence file; no recursive self-hash"
+    },
+    {
+      "path": "docs/fastapi-v1.1-milestone3b.md",
+      "change": "added",
+      "sha256": "751caaa68e01505e77022dde8e445c547a48732fad4d866751449d0d1ba5358e"
+    },
+    {
+      "path": "docs/fastapi-v1.1-protocol-v1.md",
+      "change": "modified",
+      "sha256": "4c62d8ceec1546d9a5691006a21dba1cc0715816aa3455e2d4c96667010d51b1"
+    },
+    {
+      "path": "docs/fastapi-v1.1-runtime.md",
+      "change": "modified",
+      "sha256": "d25e91c5e945240946689a07e52319a66fb7fa0594948adadf9bcc213e4eccf4"
+    },
+    {
+      "path": "docs/fastapi-v1.1-sync-worker.md",
+      "change": "added",
+      "sha256": "8859ab0b2e2d7310cbfc038db9ca0d64c6ea71526f9a5834728569f9f73d47a2"
+    },
+    {
+      "path": "docs/production-deployment.md",
+      "change": "modified",
+      "sha256": "74aa412aa5094cdbe5fa317a5b5ec5f6da7c5e6f61f6f440fcfabcb75c8f26c6"
+    },
+    {
+      "path": "migrations/versions/0010_quote_snapshots.py",
+      "change": "added",
+      "sha256": "a9bf743a606e2720269d135ed0f069ad6262e13c9abd4f69fb3b0774e7d8e85c"
+    },
+    {
+      "path": "pyproject.toml",
+      "change": "modified",
+      "sha256": "52467ec57b17e4127581a18200bb1ce4f574ff44ccf4f1591871532497994282"
+    },
+    {
+      "path": "scripts/sql/v11_destination_roles.sql",
+      "change": "modified",
+      "sha256": "3978223da8b23655fc5876f5f65afb28722b477d048285d40be5b1e12e5a5d1c"
+    },
+    {
+      "path": "scripts/sql/v11_source_sync_role.sql",
+      "change": "added",
+      "sha256": "751a263aad13f7fbb3bcdd6a6d5fada2288508e8221b1fd65ff087ffa95d14cb"
+    },
+    {
+      "path": "source_migrations/versions/sc0002_sync_worker.py",
+      "change": "added",
+      "sha256": "d393878b1917b16f27c80eb263fc3567c7cfc65554250f623cfc6e9210083c67"
+    },
+    {
+      "path": "src/marketdata/ingest_api.py",
+      "change": "modified",
+      "sha256": "58912377668b3af9a1e5a29172be61755d0c8ee785e8c2986f4e33613975468d"
+    },
+    {
+      "path": "src/marketdata/persistence.py",
+      "change": "modified",
+      "sha256": "562af78e3e5eca6021a1dfd1f9455d5198d3a4536e4e8e80853d15a678f04613"
+    },
+    {
+      "path": "src/marketdata/quote_snapshots.py",
+      "change": "added",
+      "sha256": "8529fae250a13c4ec84b1bc5010d9ec04f3230950abc76ae51ee05655c7433d8"
+    },
+    {
+      "path": "src/marketdata/reconciliation.py",
+      "change": "added",
+      "sha256": "fd609aa21649c3fd8da4504acfce430e5f4a1ab0c2a0ee398b0146723f480f7d"
+    },
+    {
+      "path": "src/marketdata/replication.py",
+      "change": "modified",
+      "sha256": "ae2f7f6dd7ba72402bf6a22d29cd238f78a9d63c5e573ae4dd8850ce7556bfd8"
+    },
+    {
+      "path": "src/marketdata/source_capture.py",
+      "change": "modified",
+      "sha256": "bec23fc34f7c00a3a51c5b28cf7674cf433f8fa446993babf7672e5421f7fd5e"
+    },
+    {
+      "path": "src/marketdata/sync_config.py",
+      "change": "added",
+      "sha256": "dd463fc7b5a148b32ce1e9500192704fcc5c32a8dc05a0bf55e0cc625b98619a"
+    },
+    {
+      "path": "src/marketdata/sync_http.py",
+      "change": "added",
+      "sha256": "31c7d4ff29dc19303c8bbc959f2982fdad63d53db20767b08f94fc1e0fc72c20"
+    },
+    {
+      "path": "src/marketdata/sync_state.py",
+      "change": "added",
+      "sha256": "7a895accaa53d25f257b355bb97dcc1889c89c025ff78a87578821318ea5f914"
+    },
+    {
+      "path": "src/marketdata/sync_worker.py",
+      "change": "added",
+      "sha256": "4c3a091361845970d8f3e8eb614ec825cfa9310124c8d4ea194d1b6b7a0f5ccb"
+    },
+    {
+      "path": "tests/process_sync_destination.py",
+      "change": "added",
+      "sha256": "6b69d7db2fa8a08c045e89e8b0669ef7ad4022df4c8af8be76eabda76972fb56"
+    },
+    {
+      "path": "tests/process_sync_worker.py",
+      "change": "added",
+      "sha256": "afd1690310ff15b722eb78319ac0b1b4b5e598afae7fea06d7b3a2452733e225"
+    },
+    {
+      "path": "tests/test_destination_migrations.py",
+      "change": "modified",
+      "sha256": "9713743550fb5d393463fa1ef7ddd868ddd8f2a139f7315f90dd5d91516dd3ec"
+    },
+    {
+      "path": "tests/test_ingest_migrations.py",
+      "change": "modified",
+      "sha256": "bd5f091a312a0943281fa6613d372a554af35d52c77e03521afffb1b91a2f16a"
+    },
+    {
+      "path": "tests/test_session_recovery.py",
+      "change": "modified",
+      "sha256": "1feafdb56180aa4e3baf2c0c0adb807bb5c6c9a68189d8364b1b531cfa1f5656"
+    },
+    {
+      "path": "tests/test_source_capture.py",
+      "change": "modified",
+      "sha256": "f6f252c4f7691219640e43f53cf375d985d0c94e424a9376f99d7c99c3d6f4c4"
+    },
+    {
+      "path": "tests/test_sync_worker.py",
+      "change": "added",
+      "sha256": "d41f04c663a479da7b7d5413df19515acbb890ccb4027564708fb49f1d879fe0"
+    }
+  ],
+  "tested_implementation_hashes": {
+    "alembic-source.ini": "c03c044a605bc108af53f7ca81c9955ce34c8e7523674497736976ad3d6809da",
+    "alembic.ini": "d67dc1b14fb8fa18e121c11821974ff1cea0bed1f051dcc9e0960637e95b5918",
+    "config/benchmarks/tradingview_candidates.json": "4d8284706f3e8a5dc1d8f40c7bc43b93c0cf70280f647e14e8088ec8a1b7c0aa",
+    "config/instruments.binance.json": "d6112a9c72314d54ab272e01511c183e3e5fad70d41e4806178fc53e81bd4f79",
+    "config/instruments.mock.json": "73afaa908678884ad43999b24143afe42da50f56121e0eaef95e5b745294d0bb",
+    "config/instruments.tradingview-100.json": "0ef7f3837a8f6a18f5ea570cc84ffc792e69100d07fdfb574593b639ec8b5600",
+    "config/instruments.tradingview-128.json": "8a88f5b2998093d854e53a1bfb44d4812a10603278862f0e16cd3764655009d6",
+    "config/instruments.tradingview-256.json": "93710939b8e06c4eff5b81de0a1f0ed1971172a60ef1a9345cd70e4feaa6410c",
+    "config/instruments.tradingview-64.json": "715253d371d19fb24d6e680d5727a72cc15b06f2085fb8a2ffe3821809e37ade",
+    "config/instruments.tradingview-business-candidates.json": "725dd471b81280ddb6306400a172f22d36e378fb92e4528d9bc96f21f4916ee7",
+    "config/instruments.tradingview-business-proposal.json": "f3638641223b5fa83d0a51227015fa6404f811509b8f02dd58cb313b8ac009e8",
+    "config/instruments.tradingview-pilot.json": "8ec9082086e430eb745505152fb01f2dd4d2708460299f4e7402d4d1373c255d",
+    "config/instruments.tradingview.json": "42b23791a00f7c8c24cc01afa3d5e2745dce636fdbebb4c077fbb6483a4e8f18",
+    "migrations/env.py": "b996fc081b9c23bbb8d6f503a26da63003d66333b1d55c4eaa65088747e27ad0",
+    "migrations/script.py.mako": "1c79849f2de2c0e01b063941801de03e61bc0277d60ae227893f6324fabab469",
+    "migrations/versions/0001_marketdata.py": "b02611da3edb2b1b37c0ff73a01503cb8eac05564826efb05cda6fcdbe8486c1",
+    "migrations/versions/0002_timescale.py": "93bbafa5c23ce3e688d3bbe5e15feddd8f48458b489250b70fd1c4fbb3c19244",
+    "migrations/versions/0003_native_candles.py": "917a9566e3db21154360a997f312c8549f84930b5783875ba631db33b396b65a",
+    "migrations/versions/0004_candle_reliability.py": "55e66c13446f73031122aefc746539ef11020186880bf6f589b2e3692c5bd68a",
+    "migrations/versions/0005_collector_status.py": "423c821688e5cdfbfb130c806fe9e3531b0cb9bec266febd540e446834800f5a",
+    "migrations/versions/0006_marketdata_events.py": "512d2d550d1bbc6966727197ca3e4af1a56c6e34e0460450fbfe628d848ef2ab",
+    "migrations/versions/0007_destination_ingestion.py": "c02140a4ef900d44c09c643714b70b1979ba14595d6aa65cdba8fb64ad94313e",
+    "migrations/versions/0008_ingestion_runtime.py": "f1de2165159f2c16bf914e05801f921ddf85672fa76348f39ba6e2ffe74fc896",
+    "migrations/versions/0009_session_recovery.py": "d039b91de2748ca4a06c675adaa7c01c5f1f2761e340edcf10e4acec450376ff",
+    "migrations/versions/0010_quote_snapshots.py": "a9bf743a606e2720269d135ed0f069ad6262e13c9abd4f69fb3b0774e7d8e85c",
+    "pyproject.toml": "52467ec57b17e4127581a18200bb1ce4f574ff44ccf4f1591871532497994282",
+    "scripts/sql/v11_destination_roles.sql": "3978223da8b23655fc5876f5f65afb28722b477d048285d40be5b1e12e5a5d1c",
+    "scripts/sql/v11_source_sync_role.sql": "751a263aad13f7fbb3bcdd6a6d5fada2288508e8221b1fd65ff087ffa95d14cb",
+    "source_migrations/env.py": "50f00621498d9fb7390c4c2d5b8c3414f7804a5bb332eae65a89a224c3da0a14",
+    "source_migrations/versions/sc0001_local_capture.py": "4108efe9624be05b43ed944b851c5228f38a7207abacf8737647563816eaf8e4",
+    "source_migrations/versions/sc0002_sync_worker.py": "d393878b1917b16f27c80eb263fc3567c7cfc65554250f623cfc6e9210083c67",
+    "src/marketdata/__init__.py": "236f3cab75f1a030626cbd37f3dbb064052a55edcde16bcdc8ddd672513b1732",
+    "src/marketdata/api.py": "84dd77442c598b4735cb7c1a14c3ef9932e646f343e6f49318fe14cf094a1204",
+    "src/marketdata/api_models.py": "57ff80252733a46371cee12b7cef5f11f0f925ecbd484468906675ff27d4f0a4",
+    "src/marketdata/api_v1.py": "e12be327d9876c2795c5fe50d4684e2e32e0663baf7003ca1a2746b4835f8d06",
+    "src/marketdata/benchmark.py": "e47a28511e5c5386596cecf3c1a8931286dcf3cd1d475182e62df59f63b01cf7",
+    "src/marketdata/candle_benchmark.py": "e2ae0e3f66edd0e0a142f352272d17ef61fe543f546ef58f2aae417183a93020",
+    "src/marketdata/candle_ingestion.py": "6fef061226ab44651214c40aa07cc7a404bd8edea0403af3b8cce43f4e8d2c23",
+    "src/marketdata/candles.py": "c6b884e73031ad80eba4a0eb0421943a5859f24c7592e0b9d369bba29d539756",
+    "src/marketdata/cli.py": "8a5598b94ea3492bbbb09ef1080afd0a8d366ba116df1473221d62fcd4fcc295",
+    "src/marketdata/collector.py": "87f45bf0b71df74f59775ead8495879b57ef240a46fc60f690ceaab1c7361332",
+    "src/marketdata/config.py": "1d11530972d752b1e9a76c42ccc27e921f71794642d00e677569400acb023a03",
+    "src/marketdata/domain.py": "6fa36c11c8a38b676c06968e5e1fb716d40002f7fe420328840cbf6ee01346eb",
+    "src/marketdata/events.py": "bc3df67b531a7af5b06a2df5914f92ef5b7615d599c0305e57a4e9107288d10d",
+    "src/marketdata/fanout.py": "6da19aa6ec1e4a6ae2a0fda2eee6fa607fa0dbf9e33772bebdfd6be7e1c593eb",
+    "src/marketdata/ingest_api.py": "58912377668b3af9a1e5a29172be61755d0c8ee785e8c2986f4e33613975468d",
+    "src/marketdata/ingest_auth.py": "9d8e9a912d6a342d96ad0d367aaf5cc1bdad6e439cb90b435d6081381c2a2204",
+    "src/marketdata/ingestion.py": "5b0e1ac5e454098886488f69807dcc0589be9b34b3ce7ea262d02041a1dfea53",
+    "src/marketdata/market_stream.py": "bd0ee5c11ced471e8e94842cd42101d7109d175d7edf82f803c8ff691c4bf461",
+    "src/marketdata/observability.py": "70bfd3ff5f1c75ccfebc538309352f41d78ba73335f7d3df375f67cf0fc37345",
+    "src/marketdata/persistence.py": "562af78e3e5eca6021a1dfd1f9455d5198d3a4536e4e8e80853d15a678f04613",
+    "src/marketdata/price_selection.py": "c210d0374ad07d340cb70b3d69c5ef754ff58ae770b383a12e5bab14d275d813",
+    "src/marketdata/production.py": "f91bf0eb3c88d014f6eadde8ffeb2e920074beba74f08e8895505b95fd75fd2a",
+    "src/marketdata/providers/__init__.py": "c2ae27632e9a8902a1ead44ffc352272868f791017c8ef61a58e13a09733d498",
+    "src/marketdata/providers/base.py": "d936e3372c9ab4d34d3b433d3d2b2f71a80bbce289b7743b06f6e1650831cf53",
+    "src/marketdata/providers/binance.py": "2aecaf2723d11b119917c8f1d92e9f43b4fd98fb7adf94e4e8578f2824d2bef5",
+    "src/marketdata/providers/candle_pool.py": "ff0910bd63c94767728ebec9bf6565916951bb4ab99332b1d3f178b79ff402b7",
+    "src/marketdata/providers/candles.py": "0a498ea1fbad147060fbdbb6cc21d5e79b7593ac74e98c89f68219652436f664",
+    "src/marketdata/providers/databento.py": "07e9b9faf8eed7c76d5911a90222e92cd13792ff9bcb63bd3727916fa64610c6",
+    "src/marketdata/providers/definitions.py": "bc42e3c8931342173bcbf768753c9af8ad9db81636e8ab54762eb1c915c0e6fe",
+    "src/marketdata/providers/factory.py": "0e64acafc8660da64a744896926d41c4789fc760cbc2ace83e647d389b5146a2",
+    "src/marketdata/providers/mock.py": "e1a2336d2cf3a9d82d420294e46864f828890723b3237c23e11f2407638cf1ab",
+    "src/marketdata/providers/oanda.py": "bf7a00ae0f38cf5c0e0bd2d6e6054311b27d1f2d5e9d5bbae059fc5c5bc7a2b6",
+    "src/marketdata/providers/synthetic_candles.py": "365e8c5ed0efd70fa4feee6d5993cc8f11d5ad2ed8c86ffe01678c909fba603b",
+    "src/marketdata/providers/tradingview.py": "f4771a2fbf87095bf5d61e284564a73269534e58ec5ed4f0084794fa562835a4",
+    "src/marketdata/providers/tradingview_candles.py": "660c755648f57b7c748451acda1d72f2a5529c9edf9d77eb8fafbc94284db44c",
+    "src/marketdata/providers/tradingview_pipeline.py": "454c8deb256f73fb26a86fbb36a0761badd19639d8cab6a32c842de2419f250c",
+    "src/marketdata/quote_snapshots.py": "8529fae250a13c4ec84b1bc5010d9ec04f3230950abc76ae51ee05655c7433d8",
+    "src/marketdata/reconciliation.py": "fd609aa21649c3fd8da4504acfce430e5f4a1ab0c2a0ee398b0146723f480f7d",
+    "src/marketdata/registry.py": "8126b6e3e4551e667c3b78b2c76db9cbfe74ee1fb9c07c13d4604c5a17ed111c",
+    "src/marketdata/remote_status.py": "be65b37cbbbf8e26e78315f6eecb89f794a3aecee8a34802f63074b8560f97d8",
+    "src/marketdata/replication.py": "ae2f7f6dd7ba72402bf6a22d29cd238f78a9d63c5e573ae4dd8850ce7556bfd8",
+    "src/marketdata/replication_models.py": "f16301723c68951b1376a34d4e48fb3476f035d4ecef90de258a3af9d8648a0e",
+    "src/marketdata/sample_data.py": "8edcb74735448a3d91a7f49ae48bad6e3db85117c0ff7adf900129eb2f7f4f84",
+    "src/marketdata/session_recovery.py": "17cbeb33147838e991f736e6c2b8a393c59807899119691ce978873f420f0812",
+    "src/marketdata/sessions.py": "d44f3002c8e48383a9059c0fbd14efc0a3f47fc0696c06994c79442571c3dc7d",
+    "src/marketdata/source_capture.py": "bec23fc34f7c00a3a51c5b28cf7674cf433f8fa446993babf7672e5421f7fd5e",
+    "src/marketdata/sync_config.py": "dd463fc7b5a148b32ce1e9500192704fcc5c32a8dc05a0bf55e0cc625b98619a",
+    "src/marketdata/sync_http.py": "31c7d4ff29dc19303c8bbc959f2982fdad63d53db20767b08f94fc1e0fc72c20",
+    "src/marketdata/sync_state.py": "7a895accaa53d25f257b355bb97dcc1889c89c025ff78a87578821318ea5f914",
+    "src/marketdata/sync_worker.py": "4c3a091361845970d8f3e8eb614ec825cfa9310124c8d4ea194d1b6b7a0f5ccb",
+    "src/marketdata/ws_models.py": "8d1fbefacdd41611dcd9b843ba4f3005f51b2f125692fa69911e85ce92ea5bf7",
+    "tests/browser-marketdata.test.mjs": "84e4e6ad5badae34903323c82f42ab283d09e7d8b62354b17ee55ddd17314e37",
+    "tests/conftest.py": "7ae85152391cf7793f5b88d50b1a9fd53d32c5789258ba07c0a8a3a094d145b4",
+    "tests/fixtures/tradingview_guest_candles.json": "87c0d9f49057a8c5065de78e98688d7c2f46657facfd63e8da4832dfebc603f8",
+    "tests/fixtures/tradingview_guest_quotes.json": "2d619842ec396d939e9ded79501633419d53f47be0e8d06eb930db3b9e8e4290",
+    "tests/process_isolation_worker.py": "68dcf8da670a3c1a586e874f3857b56b9dc790aef261ef4931f06c9b798cffe5",
+    "tests/process_market_workers.py": "f16480fe2f476304ba9c1383fe3226517370f0d5db002728517a28f0fdb48090",
+    "tests/process_recovery_worker.py": "1a8ad0c0210a16fc18f8adf69678a250a1e00149e331d10f97fb932c68078263",
+    "tests/process_sync_destination.py": "6b69d7db2fa8a08c045e89e8b0669ef7ad4022df4c8af8be76eabda76972fb56",
+    "tests/process_sync_worker.py": "afd1690310ff15b722eb78319ac0b1b4b5e598afae7fea06d7b3a2452733e225",
+    "tests/test_api.py": "b3ebdfa3450840784b5c9efe3846d558b34de8ec0458dea859418212ddee3371",
+    "tests/test_api_production.py": "11cc08dbdd711d7a5d3078efb37a10579f9e7a15ff30bcd401ed60b5def7fe44",
+    "tests/test_api_v1.py": "c4b31ae66a6dc97ce8976eba067c21e84dd201da7a61ace655c26b5818e599b0",
+    "tests/test_api_v1_operations.py": "34c228dae36e9f69222fb118e0af9c6e54ca6b19dc4014feafa74ca8c7534054",
+    "tests/test_backup_restore.py": "11f3f2d51aa9c03993d34fa534bc6d287b050c267eedd41f8a7bbff2d3f97dfe",
+    "tests/test_browser_example.py": "fa4c540a90a30b7e4a8456010f032a7ccd88c7abc18891def0f3b682b2d9b551",
+    "tests/test_business_universe.py": "f8bed36fa6462e5aa15b922b0977e39be56dd56280065bf0d12658d3702b5e8a",
+    "tests/test_candle_pipeline.py": "7d7d5e08a9766c86af961a83a7a04133cb89829ad4bff1912da3e7b5ac28aeed",
+    "tests/test_candle_pool.py": "6457351703a480c11f511963201acf7da6b35259d63293ffe8adf9f54d86c0c7",
+    "tests/test_candle_pool_benchmark.py": "48be9070948d35694d8a45fc226670b55dc979ea556efb54136c9121ba0c9aea",
+    "tests/test_candle_reliability.py": "af09e225705e5a3ff1062db858b30e119e1525ff7dd126e358dd2962d3d9e758",
+    "tests/test_company_bff_example.py": "4af90e2c7a7c53d97a53ac25f5ea410be67fd71c93b2738ddcd1149de75782b1",
+    "tests/test_databento_sdk.py": "d9c76421054ac521f70c77268301247fb406dfe11785413a017f008e92bf1337",
+    "tests/test_destination_ingestion.py": "42f52aefd7d3cf937ff4d6ba1970fdd5f2308d70c35cf78eeea24a5fcd0d3453",
+    "tests/test_destination_migrations.py": "9713743550fb5d393463fa1ef7ddd868ddd8f2a139f7315f90dd5d91516dd3ec",
+    "tests/test_domain.py": "34a043a716a570676eb3dabfc2461bf6053e20aaaca2a6c849b9cbfa61cf5fd6",
+    "tests/test_dual_ingestion.py": "7f08aeaa195d4ed9736ac6c3d4a506fee0bc9f1c088c69f46fc5ca9adc011dcb",
+    "tests/test_health_api.py": "a5e3e56130add0a69fb9cd57324748f54da335ab2933a512d7331158a2921b50",
+    "tests/test_ingest_http.py": "a87688f378b6cd69ce522f722beff3731f96bd84cbc6fa49a194fbb460f19225",
+    "tests/test_ingest_migrations.py": "bd5f091a312a0943281fa6613d372a554af35d52c77e03521afffb1b91a2f16a",
+    "tests/test_ingestion.py": "52fea464e01cf93fa27265e13f5094ffdae7d1eaf470a999ead4809b16cdb8ab",
+    "tests/test_instrument_activation.py": "bfa39c97983f92b5a2af1ea2bede168d776bfb7fab41277d7a8c55c08fb452d8",
+    "tests/test_integration_compatibility.py": "c1f91c27ec6ccf89eee7acdbfcf51019c1af5843936079443deccccb65dfee30",
+    "tests/test_live_capacity_harness.py": "2206fadf2715707eca99df7ca180e52c2accca4539c897863919fafbabaab8a4",
+    "tests/test_live_pool_benchmark.py": "c54a1cbacf64357a9383249190f764a3c553dfe6601e33e7e25f215f9a059bb2",
+    "tests/test_market_database_outage.py": "61808c3f935f889fd2d415d48db56dae9695db7f53472b41d0be720821ff86ed",
+    "tests/test_market_permissions_migrations.py": "aeca78a3d887731c7f53e6a5ceb7af80c3606977991bb8e166bbe8d5446ec212",
+    "tests/test_market_reliability.py": "31eb1c55f91c7c548d3f50cea9bbba96c832e8fde1bae21fb134c5941e6dd364",
+    "tests/test_market_stream.py": "44e35f9b9c19ff691f66c5a177b75a718b557c94aa13791de9caddae2e1780d4",
+    "tests/test_market_workers.py": "0caeba88ab7eb8e359b0d520ffbaf891d3721df0286e39e857a61e7349b70d5e",
+    "tests/test_native_availability_audit.py": "6fcaf8ddfccadfefa55cb74ca0a2aee7cfd585a0bc75f7e6ff1092f15e3d0b85",
+    "tests/test_native_candles.py": "b16b0c58c8f012d2f18fbf4b2dd7be7f77682bb130098977e3120c5d15157871",
+    "tests/test_ordinary_scaling.py": "6bc51e96502c3cc2bee82237cd000083ced3cbfeef386c42041530fa67936e0e",
+    "tests/test_persistence.py": "1e92eea1749f9ace9db83519fbb5131a68a114d4042d41f9e8add2e3ed543733",
+    "tests/test_process_restart.py": "6ddc9faf4b9fe2599a640a159aa075fb80c98cf03e386169c6fef73732b8bdbe",
+    "tests/test_process_separation.py": "856506c86273c72d694a24e869fc6e6d148acfda883caece7a75b640af0af96e",
+    "tests/test_production_container.py": "cd79c716757be2e05c98bfca1a059babebd6334aee0348578aedd04eb5b1d0e4",
+    "tests/test_production_entrypoint.py": "7a4801baac89f23e8b557dc3c1f405120ee95bf4964ce7c6edbf93b3bc7e9639",
+    "tests/test_production_tradingview_smoke.py": "9cec17d8c8a90e477f72d93eff8d4c31e144ca2b6a744a61532bd3b4735b3993",
+    "tests/test_providers.py": "498a1638ccf34a27341c13fb493b2e3fa16ae98e9d5463bd6694876881930e72",
+    "tests/test_recovery_fanout.py": "06d5b9bf808f5bfa93f500ade85b91dad6c6d62f9dbdbf358d335f0fe8c59633",
+    "tests/test_session_recovery.py": "1feafdb56180aa4e3baf2c0c0adb807bb5c6c9a68189d8364b1b531cfa1f5656",
+    "tests/test_source_capture.py": "f6f252c4f7691219640e43f53cf375d985d0c94e424a9376f99d7c99c3d6f4c4",
+    "tests/test_standalone_api.py": "6383076f2a95ccfad5e62a832bbdc6585701e58328ae8f0bc784ef573076ff53",
+    "tests/test_sync_worker.py": "d41f04c663a479da7b7d5413df19515acbb890ccb4027564708fb49f1d879fe0",
+    "tests/test_tradingview.py": "d35a10ce50df620eb7980f41ce8ed0d9efd63ec9382489a6c8d092cbebf125e2"
+  },
+  "test_environment": {
+    "asyncpg": "0.32.0",
+    "fastapi": "0.142.2",
+    "pydantic": "2.13.5",
+    "pydantic-settings": "2.15.0",
+    "httpx": "0.28.1",
+    "uvicorn": "0.54.0",
+    "websockets": "15.0.1",
+    "alembic": "1.20.0",
+    "pytest": "8.4.2",
+    "ruff": "0.16.10",
+    "mypy": "1.20.2"
+  },
+  "development_runs": [
+    {
+      "engine": "development, not final acceptance",
+      "tests": 625,
+      "passed": 561,
+      "skipped": 8,
+      "failures": 5,
+      "errors": 51,
+      "seconds": 280.618,
+      "junit": "artifacts/v11-m3b-initial-full-pg16.xml",
+      "junit_sha256": "ee5626d7fd504d9482f562adf8f70c3028b0c29379a88a9a206f0bf4a68e1091",
+      "log": "artifacts\\v11-m3b-initial-full-pg16.log",
+      "log_sha256": "5cf806f31339308ded9c4ed258a46e28b20a3b476fab59c3cac773ef8981db9e",
+      "new_worker_cases": 45,
+      "new_worker_case_skips": 0,
+      "new_worker_database_cases": 44,
+      "skip_details": [
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_persistence.test_candles_trade_volume_mid_and_all_intervals[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_ties_are_deterministic_after_refresh[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_pagination_preserves_multiple_statuses_in_same_bucket[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ]
+    },
+    {
+      "engine": "development, not final acceptance",
+      "tests": 625,
+      "passed": 615,
+      "skipped": 8,
+      "failures": 2,
+      "errors": 0,
+      "seconds": 395.978,
+      "junit": "artifacts/v11-m3b-pre-final-full-pg16.xml",
+      "junit_sha256": "5d831880a193231869fb70e1744b7955e306c3cbc3bd8531f6d24152b911e549",
+      "log": "artifacts\\v11-m3b-pre-final-full-pg16.log",
+      "log_sha256": "b00cb882fe05e0ff5ec2cc21a43d34343bd8eaa122714a9adc96d3c1edf25915",
+      "new_worker_cases": 45,
+      "new_worker_case_skips": 0,
+      "new_worker_database_cases": 44,
+      "skip_details": [
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_persistence.test_candles_trade_volume_mid_and_all_intervals[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_ties_are_deterministic_after_refresh[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_pagination_preserves_multiple_statuses_in_same_bucket[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ]
+    },
+    {
+      "engine": "development, not final acceptance",
+      "tests": 634,
+      "passed": 625,
+      "skipped": 5,
+      "failures": 4,
+      "errors": 0,
+      "seconds": 451.155,
+      "junit": "artifacts/v11-m3b-pre-final-full-timescale.xml",
+      "junit_sha256": "723645766193ec08fb5a2c1d15180fe1643a9b198217035d5692627b0bc4f137",
+      "log": "artifacts\\v11-m3b-pre-final-full-timescale.log",
+      "log_sha256": "5b62e8707435e50927ce2be0f143b2d2365236a586cb9489cc678011965a19a8",
+      "new_worker_cases": 54,
+      "new_worker_case_skips": 0,
+      "new_worker_database_cases": 48,
+      "skip_details": [
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ]
+    },
+    {
+      "engine": "development, not final acceptance",
+      "tests": 38,
+      "passed": 37,
+      "skipped": 0,
+      "failures": 1,
+      "errors": 0,
+      "seconds": 155.558,
+      "junit": "artifacts/v11-m3b-target-pg16.xml",
+      "junit_sha256": "eacf0410e9169fb9ea5bae497e5ba4256a82e5ff43888217aab1d27dc8a879cd",
+      "log": null,
+      "log_sha256": null,
+      "new_worker_cases": 38,
+      "new_worker_case_skips": 0,
+      "new_worker_database_cases": 37,
+      "skip_details": []
+    },
+    {
+      "engine": "development, not final acceptance",
+      "tests": 54,
+      "passed": 52,
+      "skipped": 0,
+      "failures": 2,
+      "errors": 0,
+      "seconds": 215.965,
+      "junit": "artifacts/v11-m3b-target-pre-final-pg16.xml",
+      "junit_sha256": "1e75e3b1001b0324b07917d473c66d637a8c0f0839a37f163efd9d7f6222d06b",
+      "log": "artifacts\\v11-m3b-target-pre-final-pg16.log",
+      "log_sha256": "a75de6440a44030cd6fa3a9dd59c495fdd0ebceb73f61eb2dfb318324ff4117d",
+      "new_worker_cases": 54,
+      "new_worker_case_skips": 0,
+      "new_worker_database_cases": 48,
+      "skip_details": []
+    },
+    {
+      "engine": "development, not final acceptance",
+      "tests": 9,
+      "passed": 0,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 9,
+      "seconds": 20.843,
+      "junit": "artifacts/v11-m3b-runtime-unavailable-pg16.xml",
+      "junit_sha256": "df557d7d46d82b16bfa4d5cc0477ead7a87d337cf1a0a68a4ef4afb40d64fb8d",
+      "log": "artifacts\\v11-m3b-runtime-unavailable-pg16.log",
+      "log_sha256": "1525766ca27b70a94641240742a7d893f6b4deeb21304803f8ef6b8132367135",
+      "new_worker_cases": 9,
+      "new_worker_case_skips": 0,
+      "new_worker_database_cases": 9,
+      "skip_details": []
+    },
+    {
+      "engine": "development, not final acceptance",
+      "tests": 636,
+      "passed": 630,
+      "skipped": 5,
+      "failures": 1,
+      "errors": 0,
+      "seconds": 567.832,
+      "junit": "artifacts/v11-m3b-before-retry-harness-timescale.xml",
+      "junit_sha256": "c4c02226a0805c852614fb9dc8b99f1595fa7720133624b0a0d1a02a2205665e",
+      "log": "artifacts\\v11-m3b-before-retry-harness-timescale.log",
+      "log_sha256": "eb6462217040ebe3e27b5dd6deb61416169f1887b13d246b8db521d82ed59282",
+      "new_worker_cases": 56,
+      "new_worker_case_skips": 0,
+      "new_worker_database_cases": 50,
+      "skip_details": [
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ]
+    }
+  ],
+  "development_resolution": [
+    "Fixed new sc0002 SQL CASE syntax and updated current-head/OpenAPI assertions; old migrations unchanged.",
+    "Discarded mixed-version parent/child runs as final evidence; final suites use unchanged implementation hashes.",
+    "Bounded task-owned Windows TLS test shutdown; production implementation does not disable TLS checks.",
+    "Restart tests now discard the dead process TLS pool and monotonic lease, as a real fresh process does.",
+    "Recreated only task-owned tmpfs services after their foreground daemon was lost during turn interruption.",
+    "Added full quote payload reconciliation and multiple-stream idle metadata fairness regression tests.",
+    "An intermediate Timescale run failed a single-attempt delivery expectation; eight diagnostics passed. Strengthened recovery test injects transport failure and honors persisted retry, and task server idle TTL exceeds client pool expiry. No application behavior changed for this test adjustment."
+  ],
+  "not_run": [
+    "Live TradingView acquisition, actual legacy collector migration/enablement or company deployment.",
+    "Real WAN, Windows sleep/reboot/Task Scheduler, Linux systemd installation and full gateway CA qualification.",
+    "Sustained realistic complete-universe/backfill benchmarks and retention-limit saturation; 125-event scheduling and existing 100-stream source tests are bounded simulations.",
+    "Skipped optional old Batch3/4 infrastructure and immutable v1.0-on-0006 binary scenarios are listed by suite, not counted as passes.",
+    "Full v1.1 fresh ZIP/image release qualification; wheel check is import/CLI smoke only."
+  ],
+  "remaining_limits": [
+    "No complete individual tick-history replication or exactly-once WebSocket guarantee.",
+    "Revision manifests are capped at128/bucket and flagged incomplete above that; legacy pre-enrollment audit history is reported, not fabricated/imported.",
+    "Arbitrary partial corruption with intact newer barriers can require administrator financial repair.",
+    "Unobserved commits after arbitrary backup rollback need consistent backup/WAL recovery; identical database/anchor/token clones cannot be distinguished physically.",
+    "Replaced/quarantined batches, summaries, exports and destination ledgers need monitored audit retention; source logical budgets do not bound physical disk/WAL.",
+    "Genuine independent quote acquisition in preserved old installation and data redistribution rights remain separately unqualified."
+  ],
+  "next_milestone": "Milestone4 qualification only after review; stop after3B, no deployment/commit/push implied"
+}

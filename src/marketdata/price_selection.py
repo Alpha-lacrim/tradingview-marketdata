@@ -20,6 +20,21 @@ def observation_age(observation: Tick | MarketCandle, now: datetime) -> tuple[in
         (now - observation.received_timestamp).total_seconds(),
         0,
     )
+    if isinstance(observation, Tick):
+        # Coalesced fields retain their individual clocks. A new bid must not make
+        # an old selected last price fresh, including when its source time is absent.
+        primary = observation.metadata.get("source_capture_primary")
+        if isinstance(primary, dict):
+            for key in ("event_timestamp", "received_timestamp"):
+                value = primary.get(key)
+                if isinstance(value, str):
+                    try:
+                        timestamp = datetime.fromisoformat(value)
+                        if timestamp.tzinfo is not None:
+                            skew = skew or timestamp > now
+                            age = max(age, (now - timestamp).total_seconds())
+                    except ValueError:
+                        pass
     return int(age * 1000), skew
 
 
@@ -44,4 +59,14 @@ def select_price(
     if candle is None:
         return tick
     tick_time = tick.event_timestamp or tick.received_timestamp
+    primary = tick.metadata.get("source_capture_primary")
+    if isinstance(primary, dict) and tick.event_timestamp is None:
+        value = primary.get("received_timestamp")
+        if isinstance(value, str):
+            try:
+                timestamp = datetime.fromisoformat(value)
+                if timestamp.tzinfo is not None:
+                    tick_time = min(tick_time, timestamp)
+            except ValueError:
+                pass
     return candle if skew or candle.bucket_end >= tick_time else tick

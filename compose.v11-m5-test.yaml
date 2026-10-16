@@ -1,0 +1,67 @@
+# Disposable M5 release verification only; never use existing volumes/containers.
+services:
+  destination-pg16:
+    image: postgres:16.1@sha256:09f23e02d76670d3b346a3c00aa33a27cf57aab8341eedfcdaed41459d14f5c4
+    container_name: marketdata-v11-m5-destination-pg16-test
+    labels: {marketdata.task: v11-m5}
+    command: [postgres, -c, port=55995]
+    environment: {POSTGRES_USER: m5_test, POSTGRES_PASSWORD: disposable_test, POSTGRES_DB: marketdata_v11_m5_test}
+    ports: ["127.0.0.1:55995:55995"]
+    volumes: [destination-pg16:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD, pg_isready, -U, m5_test, -p, "55995", -d, marketdata_v11_m5_test]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  source-pg16:
+    image: postgres:16.1@sha256:09f23e02d76670d3b346a3c00aa33a27cf57aab8341eedfcdaed41459d14f5c4
+    container_name: marketdata-v11-m5-source-pg16-test
+    labels: {marketdata.task: v11-m5}
+    command: [postgres, -c, port=55997]
+    environment: {POSTGRES_USER: m5_test, POSTGRES_PASSWORD: disposable_test, POSTGRES_DB: marketdata_v11_m5_test}
+    ports: ["127.0.0.1:55997:55997"]
+    volumes: [source-pg16:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD, pg_isready, -U, m5_test, -p, "55997", -d, marketdata_v11_m5_test]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  destination-ts:
+    image: timescale/timescaledb:2.25.1-pg17@sha256:f5f9f09d57799d237f481e5b9ad517eae5088fed3dbb487e2138419e6196fc78
+    container_name: marketdata-v11-m5-destination-ts-test
+    labels: {marketdata.task: v11-m5}
+    command: [postgres, -c, port=55996]
+    environment: {POSTGRES_USER: m5_test, POSTGRES_PASSWORD: disposable_test, POSTGRES_DB: marketdata_v11_m5_test}
+    ports: ["127.0.0.1:55996:55996"]
+    volumes: [destination-ts:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD, pg_isready, -U, m5_test, -p, "55996", -d, marketdata_v11_m5_test]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  source-ts:
+    image: timescale/timescaledb:2.25.1-pg17@sha256:f5f9f09d57799d237f481e5b9ad517eae5088fed3dbb487e2138419e6196fc78
+    container_name: marketdata-v11-m5-source-ts-test
+    labels: {marketdata.task: v11-m5}
+    command: [postgres, -c, port=55998]
+    environment: {POSTGRES_USER: m5_test, POSTGRES_PASSWORD: disposable_test, POSTGRES_DB: marketdata_v11_m5_test}
+    ports: ["127.0.0.1:55998:55998"]
+    volumes: [source-ts:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD, pg_isready, -U, m5_test, -p, "55998", -d, marketdata_v11_m5_test]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+volumes:
+  destination-pg16:
+    name: marketdata-v11-m5-destination-pg16-test-data
+    labels: {marketdata.task: v11-m5, marketdata.disposable: "true"}
+  source-pg16:
+    name: marketdata-v11-m5-source-pg16-test-data
+    labels: {marketdata.task: v11-m5, marketdata.disposable: "true"}
+  destination-ts:
+    name: marketdata-v11-m5-destination-ts-test-data
+    labels: {marketdata.task: v11-m5, marketdata.disposable: "true"}
+  source-ts:
+    name: marketdata-v11-m5-source-ts-test-data
+    labels: {marketdata.task: v11-m5, marketdata.disposable: "true"}

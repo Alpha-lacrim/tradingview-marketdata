@@ -1,0 +1,2246 @@
+[
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:USDCUSDT",
+      "display_name": "USDC/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "USDC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:USDCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BTCUSDT",
+      "display_name": "BTC/USDT Binance spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "BTC"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BTCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:ETHUSDT",
+      "display_name": "ETH/USDT Binance spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "ETH"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ETHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:SOLUSDT",
+      "display_name": "SOL/USDT Binance spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "SOL"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SOLUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:NEARUSDT",
+      "display_name": "NEAR/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "NEAR",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:NEARUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ZECUSDT",
+      "display_name": "ZEC/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ZEC",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ZECUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:USD1USDT",
+      "display_name": "USD1/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "USD1",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:USD1USDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:XRPUSDT",
+      "display_name": "XRP/USDT Binance spot via TradingView guest quotes",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "quote_asset": "USDT",
+      "base_asset": "XRP"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:XRPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:BNBUSDT",
+      "display_name": "BNB/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "BNB",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:BNBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SUIUSDT",
+      "display_name": "SUI/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SUI",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SUIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:DOGEUSDT",
+      "display_name": "DOGE/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DOGE",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DOGEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ENAUSDT",
+      "display_name": "ENA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ENA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ENAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:STRKUSDT",
+      "display_name": "STRK/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "STRK",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:STRKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:UNIUSDT",
+      "display_name": "UNI/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "UNI",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:UNIUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:RLUSDUSDT",
+      "display_name": "RLUSDUSDT / BINANCE via TradingView (provisional)",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "RLUSD",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:RLUSDUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:WLDUSDT",
+      "display_name": "WLD/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "WLD",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:WLDUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:AVAXUSDT",
+      "display_name": "AVAX/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AVAX",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AVAXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:FDUSDUSDT",
+      "display_name": "FDUSD/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FDUSD",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FDUSDUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:CTKUSDT",
+      "display_name": "CTK/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "CTK",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:CTKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ADAUSDT",
+      "display_name": "ADA/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ADA",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ADAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:PEPEUSDT",
+      "display_name": "PEPE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PEPE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PEPEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:TAOUSDT",
+      "display_name": "TAO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TAO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TAOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:WUSDT",
+      "display_name": "W/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "W",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:WUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:HYPEUSDT",
+      "display_name": "HYPE/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "HYPE",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:HYPEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:LINKUSDT",
+      "display_name": "LINK/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LINK",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LINKUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:PUMPUSDT",
+      "display_name": "PUMP/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PUMP",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PUMPUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ONDOUSDT",
+      "display_name": "ONDO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ONDO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ONDOUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SNDKBUSDT",
+      "display_name": "SNDKB/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SNDKB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SNDKBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:GTCUSDT",
+      "display_name": "GTC/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "GTC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:GTCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:ZROUSDT",
+      "display_name": "ZRO/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "ZRO",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:ZROUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:UUSDT",
+      "display_name": "U/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "U",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:UUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:FILUSDT",
+      "display_name": "FIL/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FIL",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FILUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:FETUSDT",
+      "display_name": "FET/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "FET",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:FETUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:RSRUSDT",
+      "display_name": "RSR/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "RSR",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:RSRUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:LTCUSDT",
+      "display_name": "LTC/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "LTC",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:LTCUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:TRXUSDT",
+      "display_name": "TRX/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TRX",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TRXUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:OGNUSDT",
+      "display_name": "OGN/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "OGN",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:OGNUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:RENDERUSDT",
+      "display_name": "RENDER/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "RENDER",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:RENDERUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:QNTUSDT",
+      "display_name": "QNT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "QNT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:QNTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:TIAUSDT",
+      "display_name": "TIA/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "TIA",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:TIAUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:POLUSDT",
+      "display_name": "POL/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "POL",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:POLUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:AAVEUSDT",
+      "display_name": "AAVE/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "AAVE",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:AAVEUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:INJUSDT",
+      "display_name": "INJ/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "INJ",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:INJUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SPCXBUSDT",
+      "display_name": "SPCXBUSDT / BINANCE via TradingView (provisional)",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SPCXB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SPCXBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:APTUSDT",
+      "display_name": "APT/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "APT",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:APTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:MAGICUSDT",
+      "display_name": "MAGIC/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "MAGIC",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:MAGICUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:PYTHUSDT",
+      "display_name": "PYTH/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "PYTH",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:PYTHUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:HBARUSDT",
+      "display_name": "HBAR/USDT BINANCE spot via TradingView",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "HBAR",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:HBARUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:DOTUSDT",
+      "display_name": "DOT/USDT Binance spot via TradingView native candles",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "DOT",
+      "quote_asset": "USDT",
+      "metadata": {
+        "universe": "production-pilot; employer final selection pending"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:DOTUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot",
+          "native_verification": "docs/production-instrument-expansion.json"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CRYPTO:BINANCE:SOXLBUSDT",
+      "display_name": "SOXLBUSDT / BINANCE via TradingView (provisional)",
+      "asset_class": "crypto",
+      "instrument_type": "spot",
+      "exchange": "BINANCE",
+      "currency": "USDT",
+      "base_asset": "SOXLB",
+      "quote_asset": "USDT"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "BINANCE:SOXLBUSDT",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "spot"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:EURUSD",
+      "display_name": "EUR/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "EUR"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:GBPUSD",
+      "display_name": "GBP/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "GBP"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:USDJPY",
+      "display_name": "USD/JPY OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "quote_asset": "JPY",
+      "base_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:USDJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:USDCHF",
+      "display_name": "USD/CHF OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CHF",
+      "quote_asset": "CHF",
+      "base_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:USDCHF",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:AUDUSD",
+      "display_name": "AUD/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "AUD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:AUDUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:USDCAD",
+      "display_name": "USD/CAD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CAD",
+      "quote_asset": "CAD",
+      "base_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:USDCAD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:NZDUSD",
+      "display_name": "NZD/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "NZD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:NZDUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:EURGBP",
+      "display_name": "EUR/GBP OANDA OTC via TradingView guest quotes",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "GBP",
+      "quote_asset": "GBP",
+      "base_asset": "EUR"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURGBP",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:EURJPY",
+      "display_name": "EURJPY / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "base_asset": "EUR",
+      "quote_asset": "JPY"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:EURCHF",
+      "display_name": "EURCHF / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CHF",
+      "base_asset": "EUR",
+      "quote_asset": "CHF"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURCHF",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:EURAUD",
+      "display_name": "EURAUD / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "AUD",
+      "base_asset": "EUR",
+      "quote_asset": "AUD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURAUD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:EURCAD",
+      "display_name": "EURCAD / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CAD",
+      "base_asset": "EUR",
+      "quote_asset": "CAD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURCAD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:EURNZD",
+      "display_name": "EURNZD / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "NZD",
+      "base_asset": "EUR",
+      "quote_asset": "NZD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:EURNZD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:GBPJPY",
+      "display_name": "GBPJPY / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "base_asset": "GBP",
+      "quote_asset": "JPY"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:GBPCHF",
+      "display_name": "GBPCHF / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CHF",
+      "base_asset": "GBP",
+      "quote_asset": "CHF"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPCHF",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:GBPAUD",
+      "display_name": "GBPAUD / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "AUD",
+      "base_asset": "GBP",
+      "quote_asset": "AUD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPAUD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:GBPCAD",
+      "display_name": "GBPCAD / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "CAD",
+      "base_asset": "GBP",
+      "quote_asset": "CAD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPCAD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:GBPNZD",
+      "display_name": "GBPNZD / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "NZD",
+      "base_asset": "GBP",
+      "quote_asset": "NZD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:GBPNZD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:AUDJPY",
+      "display_name": "AUDJPY / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "base_asset": "AUD",
+      "quote_asset": "JPY"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:AUDJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:CADJPY",
+      "display_name": "CADJPY / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "base_asset": "CAD",
+      "quote_asset": "JPY"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:CADJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:OANDA:CHFJPY",
+      "display_name": "CHFJPY / OANDA via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "JPY",
+      "base_asset": "CHF",
+      "quote_asset": "JPY"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:CHFJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:EURUSD",
+      "display_name": "EURUSD / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "USD",
+      "base_asset": "EUR",
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:EURUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:GBPUSD",
+      "display_name": "GBPUSD / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "USD",
+      "base_asset": "GBP",
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:GBPUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:USDJPY",
+      "display_name": "USDJPY / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "JPY",
+      "base_asset": "USD",
+      "quote_asset": "JPY"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:USDJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:USDCHF",
+      "display_name": "USDCHF / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "CHF",
+      "base_asset": "USD",
+      "quote_asset": "CHF"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:USDCHF",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:AUDUSD",
+      "display_name": "AUDUSD / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "USD",
+      "base_asset": "AUD",
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:AUDUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:USDCAD",
+      "display_name": "USDCAD / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "CAD",
+      "base_asset": "USD",
+      "quote_asset": "CAD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:USDCAD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:NZDUSD",
+      "display_name": "NZDUSD / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "USD",
+      "base_asset": "NZD",
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:NZDUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:EURGBP",
+      "display_name": "EURGBP / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "GBP",
+      "base_asset": "EUR",
+      "quote_asset": "GBP"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:EURGBP",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:EURJPY",
+      "display_name": "EURJPY / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "JPY",
+      "base_asset": "EUR",
+      "quote_asset": "JPY"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:EURJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:EURCHF",
+      "display_name": "EURCHF / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "CHF",
+      "base_asset": "EUR",
+      "quote_asset": "CHF"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:EURCHF",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:EURAUD",
+      "display_name": "EURAUD / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "AUD",
+      "base_asset": "EUR",
+      "quote_asset": "AUD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:EURAUD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:EURCAD",
+      "display_name": "EURCAD / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "CAD",
+      "base_asset": "EUR",
+      "quote_asset": "CAD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:EURCAD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:EURNZD",
+      "display_name": "EURNZD / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "NZD",
+      "base_asset": "EUR",
+      "quote_asset": "NZD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:EURNZD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:GBPJPY",
+      "display_name": "GBPJPY / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "JPY",
+      "base_asset": "GBP",
+      "quote_asset": "JPY"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:GBPJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:GBPCHF",
+      "display_name": "GBPCHF / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "CHF",
+      "base_asset": "GBP",
+      "quote_asset": "CHF"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:GBPCHF",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:GBPAUD",
+      "display_name": "GBPAUD / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "AUD",
+      "base_asset": "GBP",
+      "quote_asset": "AUD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:GBPAUD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:GBPCAD",
+      "display_name": "GBPCAD / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "CAD",
+      "base_asset": "GBP",
+      "quote_asset": "CAD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:GBPCAD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:GBPNZD",
+      "display_name": "GBPNZD / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "NZD",
+      "base_asset": "GBP",
+      "quote_asset": "NZD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:GBPNZD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:AUDJPY",
+      "display_name": "AUDJPY / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "JPY",
+      "base_asset": "AUD",
+      "quote_asset": "JPY"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:AUDJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:CADJPY",
+      "display_name": "CADJPY / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "JPY",
+      "base_asset": "CAD",
+      "quote_asset": "JPY"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:CADJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "FX:FXCM:CHFJPY",
+      "display_name": "CHFJPY / FXCM via TradingView (provisional)",
+      "asset_class": "forex",
+      "instrument_type": "otc",
+      "exchange": "FX",
+      "currency": "JPY",
+      "base_asset": "CHF",
+      "quote_asset": "JPY"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "FX:CHFJPY",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "forex"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "SPOT:OANDA:XAUUSD",
+      "display_name": "XAU/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "metals",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "XAU",
+      "metadata": {
+        "product_semantics": "OANDA broker OTC metal quote; not COMEX futures"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:XAUUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "SPOT:OANDA:XAGUSD",
+      "display_name": "XAG/USD OANDA OTC via TradingView guest quotes",
+      "asset_class": "metals",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "base_asset": "XAG",
+      "metadata": {
+        "product_semantics": "OANDA broker OTC metal quote; not COMEX futures"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:XAGUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "SPOT:OANDA:XPTUSD",
+      "display_name": "XPTUSD / OANDA via TradingView (provisional)",
+      "asset_class": "metals",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "base_asset": null,
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:XPTUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "SPOT:OANDA:XPDUSD",
+      "display_name": "XPDUSD / OANDA via TradingView (provisional)",
+      "asset_class": "metals",
+      "instrument_type": "otc",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "base_asset": null,
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:XPDUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "REFERENCE:TVC:USOIL",
+      "display_name": "WTI TVC commodity reference series",
+      "asset_class": "energy",
+      "instrument_type": "reference",
+      "exchange": "TVC",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "metadata": {
+        "product_semantics": "TVC commodity reference series; physical spot/CFD methodology unverified; not an exchange future"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "TVC:USOIL",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "REFERENCE:TVC:UKOIL",
+      "display_name": "Brent TVC commodity reference series",
+      "asset_class": "energy",
+      "instrument_type": "reference",
+      "exchange": "TVC",
+      "currency": "USD",
+      "quote_asset": "USD",
+      "metadata": {
+        "product_semantics": "TVC commodity reference series; physical spot/CFD methodology unverified; not an exchange future"
+      }
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "TVC:UKOIL",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  },
+  {
+    "instrument": {
+      "canonical_symbol": "CFD:OANDA:NATGASUSD",
+      "display_name": "NATGASUSD / OANDA via TradingView (provisional)",
+      "asset_class": "energy",
+      "instrument_type": "cfd",
+      "exchange": "OANDA",
+      "currency": "USD",
+      "base_asset": null,
+      "quote_asset": "USD"
+    },
+    "mappings": [
+      {
+        "provider": "tradingview_guest",
+        "provider_symbol": "OANDA:NATGASUSD",
+        "realtime_status": "unknown",
+        "metadata": {
+          "source_type": "commodity"
+        }
+      }
+    ]
+  }
+]

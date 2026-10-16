@@ -1,0 +1,93 @@
+# First installation: explicitly create a NEW dedicated external volume and gateway network.
+services:
+  db:
+    image: postgres:16.1@sha256:09f23e02d76670d3b346a3c00aa33a27cf57aab8341eedfcdaed41459d14f5c4
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: marketdata_v11
+      POSTGRES_USER: marketdata_owner
+      POSTGRES_PASSWORD_FILE: /run/secrets/database_admin_password
+    secrets: [database_admin_password]
+    volumes: [marketdata:/var/lib/postgresql/data]
+    networks: [database]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U marketdata_owner -d marketdata_v11"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  tools:
+    image: ${MARKETDATA_IMAGE:?reviewed candidate image required}
+    profiles: [administration]
+    user: "0:0"
+    entrypoint: [python, -m, marketdata.release_admin]
+    command: [--dsn-file, /run/secrets/database_admin_dsn, --database, marketdata_v11, --check]
+    networks: [database]
+    secrets: [database_admin_dsn, role_passwords]
+    volumes:
+      - ${CONFIG_DIR:?approved private registry and plan directory}:/provision:ro
+  read:
+    image: ${MARKETDATA_IMAGE:?reviewed candidate image required}
+    command: [read]
+    restart: unless-stopped
+    environment:
+      API_WORKERS: "2"
+      FORWARDED_ALLOW_IPS: ${GATEWAY_IP:?explicit trusted gateway IP required}
+      API_CORS_ORIGINS: ${FRONTEND_ORIGINS:?explicit HTTPS origins JSON required}
+      WEBSOCKET_ALLOWED_ORIGINS: ${FRONTEND_ORIGINS}
+      DATABASE_URL_FILE: /run/secrets/read_dsn
+    secrets: [read_dsn, api_key]
+    networks: [database, gateway]
+    depends_on: {db: {condition: service_healthy}}
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    stop_grace_period: 35s
+    logging: &logs
+      driver: json-file
+      options: {max-size: "10m", max-file: "5"}
+  ingest:
+    image: ${MARKETDATA_IMAGE:?reviewed candidate image required}
+    command: [ingest]
+    restart: unless-stopped
+    environment:
+      API_WORKERS: "2"
+      DATABASE_URL_FILE: /run/secrets/ingest_dsn
+      INGEST_CREDENTIALS_FILE: /run/secrets/ingest_credentials.json
+      FORWARDED_ALLOW_IPS: ${GATEWAY_IP}
+      INGEST_MAX_BODY_BYTES: "2097152"
+      INGEST_MAX_RECORDS: "500"
+      INGEST_MAX_INFLIGHT: "8"
+      INGEST_REQUEST_TIMEOUT_SECONDS: "30"
+      INGEST_REQUESTS_PER_MINUTE: "120"
+    secrets:
+      - ingest_dsn
+      - source: ingest_credentials
+        target: ingest_credentials.json
+    networks: [database, gateway]
+    depends_on: {db: {condition: service_healthy}}
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    stop_grace_period: 35s
+    logging: *logs
+networks:
+  database: {internal: true}
+  gateway:
+    external: true
+    name: ${GATEWAY_NETWORK:?company-approved private gateway network required}
+volumes:
+  marketdata:
+    external: true
+    name: ${COMPANY_MARKETDATA_VOLUME:?explicit NEW dedicated volume required}
+secrets:
+  database_admin_password: {file: "${SECRETS_DIR:?private absolute directory}/database_admin_password"}
+  database_admin_dsn: {file: "${SECRETS_DIR}/database_admin_dsn"}
+  read_dsn: {file: "${SECRETS_DIR}/read_dsn"}
+  ingest_dsn: {file: "${SECRETS_DIR}/ingest_dsn"}
+  api_key: {file: "${SECRETS_DIR}/api_key"}
+  ingest_credentials:
+    file: ${SECRETS_DIR}/ingest_credentials.json
+    name: marketdata_ingest_credentials
+  role_passwords: {file: "${SECRETS_DIR}/role_passwords.json"}

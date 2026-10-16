@@ -1,0 +1,2544 @@
+{
+  "date": "2026-10-16",
+  "timezone": "Asia/Tehran",
+  "milestone": "4",
+  "generated_at": "2026-10-16T14:08:30.227254+00:00",
+  "base_commit": "4cedaedb172d89ca3d2566bcea477c8296643592",
+  "destination_head": "0010",
+  "source_base": "0006",
+  "source_head": "sc0002",
+  "recommendation": "Ready for Milestone 5 packaging/fresh installation verification after review; not production ready",
+  "suites": [
+    {
+      "engine": "PostgreSQL 16.1",
+      "total": 651,
+      "passed": 643,
+      "skipped": 8,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 445.461,
+      "junit": "artifacts/v11-m4-pg-full.xml",
+      "junit_sha256": "94a4f5cdf183fd8b836309f5707a68278b77e888be43a6acf2bac234e03bed9a",
+      "skip_details": [
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_persistence.test_candles_trade_volume_mid_and_all_intervals[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_ties_are_deterministic_after_refresh[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_pagination_preserves_multiple_statuses_in_same_bucket[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ],
+      "log": "artifacts/v11-m4-pg-full.log"
+    },
+    {
+      "engine": "TimescaleDB 2.25.1 / PostgreSQL 17.7",
+      "total": 651,
+      "passed": 646,
+      "skipped": 5,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 605.515,
+      "junit": "artifacts/v11-m4-ts-full.xml",
+      "junit_sha256": "64b0a328e079c8fbb1fcbf26d6605b5ef30dfffdb66252420fe556256d6362d2",
+      "skip_details": [
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ],
+      "log": "artifacts/v11-m4-ts-full.log"
+    }
+  ],
+  "pipeline_runs": [
+    {
+      "directory": "artifacts/v11-m4-pg-faults06",
+      "evidence": "isolated injected",
+      "passing_assertions": 45,
+      "failing_assertions": 0,
+      "failure_category": null,
+      "parameters": {
+        "output": "artifacts\\v11-m4-pg-faults06",
+        "feeds": 1,
+        "soak_seconds": 0,
+        "quote_hz": 1,
+        "burst_seconds": 0,
+        "burst_hz": 5,
+        "history_minutes": 3,
+        "timescale": false,
+        "faults": true,
+        "genuine": false
+      },
+      "backfill_seconds": null,
+      "load_phases": null,
+      "started_at": "2026-10-16 09:40:22.478678+00:00",
+      "completed_at": "2026-10-16 09:42:06.787444+00:00",
+      "artifacts": {
+        "collector.ndjson": "20c7f135fa10b0dd5041b0008329b53ab5681157d966bbc62bc622e9c5bf013b",
+        "database-comparison.json": "a08b146f31a3a5336267cfcb10997603a73cbead110fc32df35e79885bcbf113",
+        "ingest.ndjson": "df9adebbe676dd702f4bea0cb4fbed3f997242486ad66ca9a7e84e68a12b6d72",
+        "measurements.json": "9657b57e8cd934d5c16b212d4a302c4f1658db609cefb9a4754931509a2ee16b",
+        "per-instrument.csv": "91c994976f3f7b1e7edc662a694f853d54a2ada1792359c57431ba35df135fef",
+        "quote-parity.json": "65937fd514a957b7596d6eb6bd69d609ae71173f3118009b350887a4a0507eb1",
+        "report.json": "06f669375b0632acd553f0bf0877acee593c86d514fe2d3ff56da8340f8f3490",
+        "samples.ndjson": "f72bae741beaef4a54c3e25fba3a14bfdf6679de3093f17920783dfc3391f522",
+        "trace-candle.json": "b539aefd38ab7b911418cb6b2016d216134bd5651ea0e11f708d6c03b16d85a2",
+        "trace-quote.json": "58c6b6474c989f1a271c2d0443b151433f142686a32d9c29c9f24993c3d0ca9f",
+        "verified-quote-snapshots.json": "96ec07e3651b30fa02500838c3203d0caa8c2ade1f6f39249ae29604abb2fdf3",
+        "websocket.ndjson": "9ac436da5f0ca4b83340fbc859aada99f05d43e02bd07483b574af257f69a352",
+        "worker.ndjson": "ffbc4974f187c3d673127238067c87854683bd0ce6bae53b83770624da2e0ee1"
+      },
+      "financial_summary": {
+        "candles": {
+          "equal": true,
+          "counts": [
+            3,
+            3
+          ],
+          "sha256": [
+            "2bfe0758fc7d0424ac51e1f2394f694ef1ece303a78e417d369e4e48ea63cce4",
+            "2bfe0758fc7d0424ac51e1f2394f694ef1ece303a78e417d369e4e48ea63cce4"
+          ]
+        },
+        "quotes": {
+          "count": 1,
+          "all_fields_and_ordering_equal": true
+        },
+        "revision_counts": [
+          1,
+          1
+        ],
+        "remaining_source_candles": 0,
+        "remaining_source_quotes": 0,
+        "archived_receipt_hash_mismatches": 0,
+        "destination_batch_count": 20,
+        "database_sizes": {
+          "source": 9482723,
+          "destination": 9499107
+        },
+        "coverage": {
+          "count": 1,
+          "equal_count": 0
+        }
+      },
+      "revision_manifests_equal": true,
+      "measurements": {
+        "phases": {
+          "acceptance": {
+            "sample_count": 1,
+            "latest_price_age_ms": {
+              "count": 1,
+              "p50": 17586,
+              "p95": 17586,
+              "p99": 17586,
+              "p100": 17586
+            },
+            "quote_stale_samples": 0,
+            "all_status_streams_unexpired_samples": 1,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 0
+          },
+          "final": {
+            "sample_count": 1,
+            "latest_price_age_ms": {
+              "count": 1,
+              "p50": 8392,
+              "p95": 8392,
+              "p99": 8392,
+              "p100": 8392
+            },
+            "quote_stale_samples": 0,
+            "all_status_streams_unexpired_samples": 0,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 0
+          }
+        },
+        "clocks": "UTC wall-clock proxies; observer timestamps bound commit completion",
+        "database_sampling": {
+          "source": {
+            "first_bytes": 9105891,
+            "final_bytes": 9441763,
+            "peak_bytes": 9441763,
+            "peak_connections": 6
+          },
+          "destination": {
+            "first_bytes": 9196003,
+            "final_bytes": 9507299,
+            "peak_bytes": 9507299,
+            "peak_connections": 5
+          }
+        },
+        "resources": {
+          "collector": {
+            "peak_rss_bytes": 78610432,
+            "cpu_seconds_observed": 2.015625,
+            "elapsed_seconds": 81.134081
+          },
+          "worker": {
+            "peak_rss_bytes": 72712192,
+            "cpu_seconds_observed": null,
+            "elapsed_seconds": 81.134081
+          },
+          "ingest": {
+            "peak_rss_bytes": 83177472,
+            "cpu_seconds_observed": null,
+            "elapsed_seconds": 81.134081
+          },
+          "read": {
+            "peak_rss_bytes": 85327872,
+            "cpu_seconds_observed": 1.921875,
+            "elapsed_seconds": 81.134081
+          }
+        },
+        "http_seconds_including_client_quota_wait": {
+          "POST session": {
+            "count": 15,
+            "p50": 0.036324,
+            "p95": 0.546969,
+            "p99": 0.546969,
+            "p100": 0.6303
+          },
+          "POST reconcile": {
+            "count": 30,
+            "p50": 0.633583,
+            "p95": 0.654476,
+            "p99": 0.660996,
+            "p100": 0.663628
+          },
+          "POST quotes": {
+            "count": 10,
+            "p50": 0.67316,
+            "p95": 0.680594,
+            "p99": 0.680594,
+            "p100": 0.687794
+          },
+          "POST candles": {
+            "count": 2,
+            "p50": 0.664505,
+            "p95": 0.664505,
+            "p99": 0.664505,
+            "p100": 0.690347
+          },
+          "POST coverage": {
+            "count": 2,
+            "p50": 0.669883,
+            "p95": 0.669883,
+            "p99": 0.669883,
+            "p100": 0.67075
+          },
+          "POST status": {
+            "count": 4,
+            "p50": 0.66758,
+            "p95": 0.670535,
+            "p99": 0.670535,
+            "p100": 0.670818
+          },
+          "GET receipts": {
+            "count": 15,
+            "p50": 0.644613,
+            "p95": 0.652223,
+            "p99": 0.652223,
+            "p100": 0.654807
+          }
+        },
+        "worker_http_errors": {
+          "receipt_not_found": 20,
+          "transport_unavailable": 5,
+          "producer_session_fenced": 1
+        },
+        "destination_transaction_seconds_observed": {
+          "quotes": {
+            "count": 12,
+            "p50": 0.02082,
+            "p95": 0.024517,
+            "p99": 0.024517,
+            "p100": 0.029399
+          },
+          "candles": {
+            "count": 2,
+            "p50": 0.016008,
+            "p95": 0.016008,
+            "p99": 0.016008,
+            "p100": 0.034812
+          },
+          "coverage": {
+            "count": 2,
+            "p50": 0.011024,
+            "p95": 0.011024,
+            "p99": 0.011024,
+            "p100": 0.01603
+          },
+          "status": {
+            "count": 4,
+            "p50": 0.007009,
+            "p95": 0.008996,
+            "p99": 0.008996,
+            "p100": 0.011999
+          }
+        },
+        "staging_to_destination_commit_seconds_observed": {
+          "quotes": {
+            "count": 12,
+            "p50": 1.29103,
+            "p95": 1.314219,
+            "p99": 1.314219,
+            "p100": 3.616722
+          },
+          "candles": {
+            "count": 2,
+            "p50": 0.678477,
+            "p95": 0.678477,
+            "p99": 0.678477,
+            "p100": 1.284852
+          }
+        },
+        "local_store_transaction_seconds_observed": {
+          "local_candle_commit_observed": {
+            "count": 4,
+            "p50": 0.012002,
+            "p95": 0.158029,
+            "p99": 0.158029,
+            "p100": 0.179376
+          },
+          "local_quote_commit_observed": {
+            "count": 22,
+            "p50": 0.011023,
+            "p95": 0.017576,
+            "p99": 0.020999,
+            "p100": 0.030535
+          }
+        },
+        "journal_append_to_websocket_observer_seconds": {
+          "count": 16,
+          "p50": 0.026405,
+          "p95": 0.059162,
+          "p99": 0.059162,
+          "p100": 0.063138
+        },
+        "unmeasured": [
+          "true upstream publication time",
+          "individual server WAL flush instant",
+          "all intermediate quote histories",
+          "host-wide CPU attribution",
+          "real company WAN/gateway latency"
+        ]
+      }
+    },
+    {
+      "directory": "artifacts/v11-m4-pg-restore-final",
+      "evidence": "isolated injected",
+      "passing_assertions": 33,
+      "failing_assertions": 0,
+      "failure_category": null,
+      "parameters": {
+        "output": "artifacts\\v11-m4-pg-restore-final",
+        "feeds": 1,
+        "soak_seconds": 0,
+        "quote_hz": 1,
+        "burst_seconds": 0,
+        "burst_hz": 5,
+        "history_minutes": 3,
+        "timescale": false,
+        "faults": false,
+        "genuine": false
+      },
+      "backfill_seconds": null,
+      "load_phases": null,
+      "started_at": "2026-10-16 10:06:05.285256+00:00",
+      "completed_at": "2026-10-16 10:07:09.221267+00:00",
+      "artifacts": {
+        "collector.ndjson": "a697fefa3893f17ae87acc9ad57a1a7b71e901ea7f726ceee16c4b8f7fa31376",
+        "database-comparison.json": "5a73b015557ab1fcbe41a66c6b530c846141174cc8bf9eaa11fdd6a1805aad10",
+        "ingest.ndjson": "49cf8632e5005b9ff0d1725280f1b9537103040222fa55bcdf36c34fa7ff83f0",
+        "measurements.json": "5299c17797975625a467e73af9b39ee8e17918b51d8b8f5d1d7e8b01726a4adc",
+        "per-instrument.csv": "6c1e53e13bb9420d3eaf778ad4b69741de05d5ab05d1097fb309dab7c9d1612b",
+        "quote-parity.json": "a3dd12fd906a90c697fcbf3f11498dd82a9503db48a916ff07aae97b9d1c6377",
+        "report.json": "fb8bb8e8df468d6ec1e60c7f5633aa8cba909e9292724e2d470d89aea2121e09",
+        "samples.ndjson": "81058842ef62ec007b580a1d5da5b4759658db19fe0655389fd9f00bd09947ed",
+        "trace-candle.json": "d53792f3a3d0d2fceac09b37af784e4eeca945504d2f1075f5b4ab1c8c4d7376",
+        "trace-quote.json": "cc873bacea91f75652edd73698aaa214ebd7adcf33d0b7de68fcdecffc5c3862",
+        "verified-quote-snapshots.json": "9d4049123cd54db73c816f2e189ca97df8a34d3302f33312398808f23bda40a3",
+        "websocket.ndjson": "fac49dde8a7f10cee438d08ff7e201945e13bca48b9b92adaea360d2a983ce02",
+        "worker.ndjson": "9e2af7258f48f1c98ed4ead18ea48f06a8d531436723c294e13937c5e103fd14"
+      },
+      "financial_summary": {
+        "candles": {
+          "equal": true,
+          "counts": [
+            3,
+            3
+          ],
+          "sha256": [
+            "03f6fb8984febb8c7d36c532425ad9c64c548a276ffb76f5becc2446fcf53955",
+            "03f6fb8984febb8c7d36c532425ad9c64c548a276ffb76f5becc2446fcf53955"
+          ]
+        },
+        "quotes": {
+          "count": 1,
+          "all_fields_and_ordering_equal": true
+        },
+        "revision_counts": [
+          2,
+          2
+        ],
+        "remaining_source_candles": 0,
+        "remaining_source_quotes": 0,
+        "archived_receipt_hash_mismatches": 0,
+        "destination_batch_count": 12,
+        "database_sizes": {
+          "source": 9212387,
+          "destination": 9286115
+        },
+        "coverage": {
+          "count": 1,
+          "equal_count": 1
+        }
+      },
+      "revision_manifests_equal": true,
+      "measurements": {
+        "phases": {
+          "acceptance": {
+            "sample_count": 1,
+            "latest_price_age_ms": {
+              "count": 1,
+              "p50": 17945,
+              "p95": 17945,
+              "p99": 17945,
+              "p100": 17945
+            },
+            "quote_stale_samples": 0,
+            "all_status_streams_unexpired_samples": 1,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 0
+          }
+        },
+        "clocks": "UTC wall-clock proxies; observer timestamps bound commit completion",
+        "database_sampling": {
+          "source": {
+            "first_bytes": 9105891,
+            "final_bytes": 9105891,
+            "peak_bytes": 9105891,
+            "peak_connections": 6
+          },
+          "destination": {
+            "first_bytes": 9187811,
+            "final_bytes": 9187811,
+            "peak_bytes": 9187811,
+            "peak_connections": 5
+          }
+        },
+        "resources": {
+          "collector": {
+            "peak_rss_bytes": 78839808,
+            "cpu_seconds_observed": 0.0,
+            "elapsed_seconds": 0.0
+          },
+          "worker": {
+            "peak_rss_bytes": 72634368,
+            "cpu_seconds_observed": 0.0,
+            "elapsed_seconds": 0.0
+          },
+          "ingest": {
+            "peak_rss_bytes": 83189760,
+            "cpu_seconds_observed": 0.0,
+            "elapsed_seconds": 0.0
+          },
+          "read": {
+            "peak_rss_bytes": 85471232,
+            "cpu_seconds_observed": 0.0,
+            "elapsed_seconds": 0.0
+          }
+        },
+        "http_seconds_including_client_quota_wait": {
+          "POST session": {
+            "count": 8,
+            "p50": 0.043079,
+            "p95": 0.047492,
+            "p99": 0.047492,
+            "p100": 0.048605
+          },
+          "POST reconcile": {
+            "count": 20,
+            "p50": 0.636915,
+            "p95": 0.657689,
+            "p99": 0.657689,
+            "p100": 0.677596
+          },
+          "POST quotes": {
+            "count": 4,
+            "p50": 0.664161,
+            "p95": 0.670708,
+            "p99": 0.670708,
+            "p100": 0.672861
+          },
+          "POST candles": {
+            "count": 4,
+            "p50": 0.671984,
+            "p95": 0.676779,
+            "p99": 0.676779,
+            "p100": 0.695257
+          },
+          "POST coverage": {
+            "count": 1,
+            "p50": 0.70304,
+            "p95": 0.70304,
+            "p99": 0.70304,
+            "p100": 0.70304
+          },
+          "POST status": {
+            "count": 3,
+            "p50": 0.640246,
+            "p95": 0.640246,
+            "p99": 0.640246,
+            "p100": 0.660893
+          },
+          "GET receipts": {
+            "count": 4,
+            "p50": 0.638833,
+            "p95": 0.641331,
+            "p99": 0.641331,
+            "p100": 0.691826
+          }
+        },
+        "worker_http_errors": {
+          "receipt_not_found": 12
+        },
+        "destination_transaction_seconds_observed": {
+          "quotes": {
+            "count": 4,
+            "p50": 0.015509,
+            "p95": 0.025159,
+            "p99": 0.025159,
+            "p100": 0.031368
+          },
+          "candles": {
+            "count": 4,
+            "p50": 0.015999,
+            "p95": 0.021957,
+            "p99": 0.021957,
+            "p100": 0.042247
+          },
+          "coverage": {
+            "count": 1,
+            "p50": 0.031517,
+            "p95": 0.031517,
+            "p99": 0.031517,
+            "p100": 0.031517
+          },
+          "status": {
+            "count": 3,
+            "p50": 0.00802,
+            "p95": 0.00802,
+            "p99": 0.00802,
+            "p100": 0.008908
+          }
+        },
+        "staging_to_destination_commit_seconds_observed": {
+          "quotes": {
+            "count": 4,
+            "p50": 1.274661,
+            "p95": 1.293615,
+            "p99": 1.293615,
+            "p100": 1.305158
+          },
+          "candles": {
+            "count": 4,
+            "p50": 1.243311,
+            "p95": 1.256054,
+            "p99": 1.256054,
+            "p100": 1.296355
+          }
+        },
+        "local_store_transaction_seconds_observed": {
+          "local_candle_commit_observed": {
+            "count": 3,
+            "p50": 0.184673,
+            "p95": 0.184673,
+            "p99": 0.184673,
+            "p100": 0.19017
+          },
+          "local_quote_commit_observed": {
+            "count": 4,
+            "p50": 0.023543,
+            "p95": 0.029438,
+            "p99": 0.029438,
+            "p100": 0.033688
+          }
+        },
+        "journal_append_to_websocket_observer_seconds": {
+          "count": 8,
+          "p50": 0.037843,
+          "p95": 0.049525,
+          "p99": 0.049525,
+          "p100": 0.04994
+        },
+        "unmeasured": [
+          "true upstream publication time",
+          "individual server WAL flush instant",
+          "all intermediate quote histories",
+          "host-wide CPU attribution",
+          "real company WAN/gateway latency"
+        ]
+      }
+    },
+    {
+      "directory": "artifacts/v11-m4-ts-restore-final",
+      "evidence": "isolated injected",
+      "passing_assertions": 33,
+      "failing_assertions": 0,
+      "failure_category": null,
+      "parameters": {
+        "output": "artifacts\\v11-m4-ts-restore-final",
+        "feeds": 1,
+        "soak_seconds": 0,
+        "quote_hz": 1,
+        "burst_seconds": 0,
+        "burst_hz": 5,
+        "history_minutes": 3,
+        "timescale": true,
+        "faults": false,
+        "genuine": false
+      },
+      "backfill_seconds": null,
+      "load_phases": null,
+      "started_at": "2026-10-16 10:06:05.285256+00:00",
+      "completed_at": "2026-10-16 10:07:09.807705+00:00",
+      "artifacts": {
+        "collector.ndjson": "70bf58aa96269ff10c0f87d3e442067119d3389ac392013632ec5ed552d3602e",
+        "database-comparison.json": "c4ec19f780537281d7187ea905ac09d1deb1fa18f1197fa18481c1d7a108859f",
+        "ingest.ndjson": "42e6811c7cd9973c8bcd7d5615b4622d8253559ab5bce8cd5022a9e99bb9b2ab",
+        "measurements.json": "ee7f781077e2dff9ebcafe650e26372980b8df1671ae4213c316a05c92b29a73",
+        "per-instrument.csv": "b07cde4bd0840a49991c4c4b4f941bae9d11476a3a075ae4213715455fb3e435",
+        "quote-parity.json": "9181cfb3739353c0d1f5df30d4b6b747700c3b51454f0efe35bcee174fc365c5",
+        "report.json": "d9e0ee00e09d778d6acf5fca27812ab658dbc3b269d2ebaec219539b7774fe99",
+        "samples.ndjson": "bb4c835cb090ecf15cc644d12d0e38e05f292ee87552f321ed5a904174105452",
+        "trace-candle.json": "dff66e5f164ef03d3dd95a5b375b4b630e1a69aa2f31963e6ecdba4c36da2185",
+        "trace-quote.json": "9cc970bf4d776f1f59f9d688507bac53f6b15ef4aa62c8ce63a12af0212ac54f",
+        "verified-quote-snapshots.json": "1eb87ac717c38e6cc81b28a6713c6a2339f46aae7d3b050dbd1aeb102bf45d47",
+        "websocket.ndjson": "737b05d764c13be5496e007eec54a096e1ecb2268240378c2262385768611fbf",
+        "worker.ndjson": "59ba8936556ebb935a1810f9dbd104a8ce7b2919580935647c451371d66a937d"
+      },
+      "financial_summary": {
+        "candles": {
+          "equal": true,
+          "counts": [
+            3,
+            3
+          ],
+          "sha256": [
+            "03f6fb8984febb8c7d36c532425ad9c64c548a276ffb76f5becc2446fcf53955",
+            "03f6fb8984febb8c7d36c532425ad9c64c548a276ffb76f5becc2446fcf53955"
+          ]
+        },
+        "quotes": {
+          "count": 1,
+          "all_fields_and_ordering_equal": true
+        },
+        "revision_counts": [
+          2,
+          2
+        ],
+        "remaining_source_candles": 0,
+        "remaining_source_quotes": 0,
+        "archived_receipt_hash_mismatches": 0,
+        "destination_batch_count": 12,
+        "database_sizes": {
+          "source": 12225683,
+          "destination": 13003923
+        },
+        "coverage": {
+          "count": 1,
+          "equal_count": 1
+        }
+      },
+      "revision_manifests_equal": true,
+      "measurements": {
+        "phases": {
+          "acceptance": {
+            "sample_count": 1,
+            "latest_price_age_ms": {
+              "count": 1,
+              "p50": 17985,
+              "p95": 17985,
+              "p99": 17985,
+              "p100": 17985
+            },
+            "quote_stale_samples": 0,
+            "all_status_streams_unexpired_samples": 1,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 0
+          }
+        },
+        "clocks": "UTC wall-clock proxies; observer timestamps bound commit completion",
+        "database_sampling": {
+          "source": {
+            "first_bytes": 12119187,
+            "final_bytes": 12119187,
+            "peak_bytes": 12119187,
+            "peak_connections": 7
+          },
+          "destination": {
+            "first_bytes": 12116495,
+            "final_bytes": 12116495,
+            "peak_bytes": 12116495,
+            "peak_connections": 6
+          }
+        },
+        "resources": {
+          "collector": {
+            "peak_rss_bytes": 78733312,
+            "cpu_seconds_observed": 0.0,
+            "elapsed_seconds": 0.0
+          },
+          "worker": {
+            "peak_rss_bytes": 72679424,
+            "cpu_seconds_observed": 0.0,
+            "elapsed_seconds": 0.0
+          },
+          "ingest": {
+            "peak_rss_bytes": 83369984,
+            "cpu_seconds_observed": 0.0,
+            "elapsed_seconds": 0.0
+          },
+          "read": {
+            "peak_rss_bytes": 85917696,
+            "cpu_seconds_observed": 0.0,
+            "elapsed_seconds": 0.0
+          }
+        },
+        "http_seconds_including_client_quota_wait": {
+          "POST session": {
+            "count": 8,
+            "p50": 0.048514,
+            "p95": 0.052604,
+            "p99": 0.052604,
+            "p100": 0.05625
+          },
+          "POST reconcile": {
+            "count": 20,
+            "p50": 0.627014,
+            "p95": 0.652967,
+            "p99": 0.652967,
+            "p100": 0.671331
+          },
+          "POST quotes": {
+            "count": 4,
+            "p50": 0.671248,
+            "p95": 0.683495,
+            "p99": 0.683495,
+            "p100": 0.693896
+          },
+          "POST candles": {
+            "count": 4,
+            "p50": 0.675524,
+            "p95": 0.689434,
+            "p99": 0.689434,
+            "p100": 0.710911
+          },
+          "POST coverage": {
+            "count": 1,
+            "p50": 0.695535,
+            "p95": 0.695535,
+            "p99": 0.695535,
+            "p100": 0.695535
+          },
+          "POST status": {
+            "count": 3,
+            "p50": 0.664471,
+            "p95": 0.664471,
+            "p99": 0.664471,
+            "p100": 0.664478
+          },
+          "GET receipts": {
+            "count": 4,
+            "p50": 0.635535,
+            "p95": 0.661718,
+            "p99": 0.661718,
+            "p100": 0.676663
+          }
+        },
+        "worker_http_errors": {
+          "receipt_not_found": 12
+        },
+        "destination_transaction_seconds_observed": {
+          "quotes": {
+            "count": 4,
+            "p50": 0.018787,
+            "p95": 0.034539,
+            "p99": 0.034539,
+            "p100": 0.047204
+          },
+          "candles": {
+            "count": 4,
+            "p50": 0.021575,
+            "p95": 0.028591,
+            "p99": 0.028591,
+            "p100": 0.065167
+          },
+          "coverage": {
+            "count": 1,
+            "p50": 0.02858,
+            "p95": 0.02858,
+            "p99": 0.02858,
+            "p100": 0.02858
+          },
+          "status": {
+            "count": 3,
+            "p50": 0.010065,
+            "p95": 0.010065,
+            "p99": 0.010065,
+            "p100": 0.011
+          }
+        },
+        "staging_to_destination_commit_seconds_observed": {
+          "quotes": {
+            "count": 4,
+            "p50": 1.249929,
+            "p95": 1.287326,
+            "p99": 1.287326,
+            "p100": 1.29068
+          },
+          "candles": {
+            "count": 4,
+            "p50": 1.245276,
+            "p95": 1.266768,
+            "p99": 1.266768,
+            "p100": 1.302111
+          }
+        },
+        "local_store_transaction_seconds_observed": {
+          "local_candle_commit_observed": {
+            "count": 3,
+            "p50": 0.177892,
+            "p95": 0.177892,
+            "p99": 0.177892,
+            "p100": 0.207586
+          },
+          "local_quote_commit_observed": {
+            "count": 4,
+            "p50": 0.034095,
+            "p95": 0.03955,
+            "p99": 0.03955,
+            "p100": 0.045334
+          }
+        },
+        "journal_append_to_websocket_observer_seconds": {
+          "count": 8,
+          "p50": 0.028222,
+          "p95": 0.053093,
+          "p99": 0.053093,
+          "p100": 0.067594
+        },
+        "unmeasured": [
+          "true upstream publication time",
+          "individual server WAL flush instant",
+          "all intermediate quote histories",
+          "host-wide CPU attribution",
+          "real company WAN/gateway latency"
+        ]
+      }
+    },
+    {
+      "directory": "artifacts/v11-m4-pg-edges02",
+      "evidence": "isolated injected",
+      "passing_assertions": 30,
+      "failing_assertions": 0,
+      "failure_category": null,
+      "parameters": {
+        "output": "artifacts\\v11-m4-pg-edges02",
+        "feeds": 1,
+        "soak_seconds": 0,
+        "quote_hz": 1,
+        "burst_seconds": 0,
+        "burst_hz": 5,
+        "history_minutes": 3,
+        "status_ttl_seconds": 20,
+        "timescale": false,
+        "faults": false,
+        "genuine": false
+      },
+      "backfill_seconds": null,
+      "load_phases": null,
+      "started_at": "2026-10-16 10:22:32.967437+00:00",
+      "completed_at": "2026-10-16 10:25:15.659563+00:00",
+      "artifacts": {
+        "collector.ndjson": "4cde532b74e47d2b8eae7a712854560f983c205e65959bfa50e1eaa70378e5ea",
+        "ingest.ndjson": "296280e8348dc03780e2b4c5f85f3c75cc4d1040452b9491f129ecd6413e1516",
+        "quote-parity.json": "e6fb6da51a79ca5409eac72922a0f92307f4925682335b62b594e062318088f9",
+        "report.json": "8028b1c68b7ede6c46056637ebf62a7dfb5df01ac5b181b3b17613af3d8c64e0",
+        "samples.ndjson": "08e7f5d72610386b92bcb5af6ff345ae97884df6adf0a93cabdb8f01bdc28706",
+        "websocket.ndjson": "6293b19f533b7d6f82a900b122600ba9478367944c2687d82223de584b27e119",
+        "worker.ndjson": "e8afd52193d1da194d86bf2ef70f06b670f8beafbcc8e4673afcc8ac7170b5bb"
+      }
+    },
+    {
+      "directory": "artifacts/v11-m4-pg-backfill-frozen2",
+      "evidence": "isolated injected",
+      "passing_assertions": 20,
+      "failing_assertions": 0,
+      "failure_category": null,
+      "parameters": {
+        "output": "artifacts\\v11-m4-pg-backfill-frozen2",
+        "feeds": 99,
+        "soak_seconds": 30,
+        "quote_hz": 1,
+        "burst_seconds": 0,
+        "burst_hz": 5,
+        "history_minutes": 10,
+        "quotes_during_backfill": true,
+        "status_ttl_seconds": 60.0,
+        "timescale": false,
+        "faults": false,
+        "genuine": false
+      },
+      "backfill_seconds": 104.84399999999732,
+      "load_phases": [
+        {
+          "phase": "steady",
+          "duration_seconds": 30.01600000000326,
+          "requested_hz_per_feed": 1,
+          "generated_updates": 2970
+        }
+      ],
+      "started_at": "2026-10-16 13:56:23.212998+00:00",
+      "completed_at": "2026-10-16 13:59:29.766435+00:00",
+      "artifacts": {
+        "collector.ndjson": "59f8a820716c5d142e68f1654a473dbb4f06a4a4d06b02eb1a5e78d0495ccb13",
+        "database-comparison.json": "e1228a42731c7dd7737c5ec469586f344edd73ba02e858fbf72f264402e2ad31",
+        "ingest.ndjson": "c60061ac60d46e923d7b08bd2d244d050f2ea6a2b9f15b6304892141e1b5417e",
+        "measurements.json": "30b097920e9d6128f08bd6b0e4a4710c7ed349a85d7c7689168fe4603db7cc65",
+        "per-instrument.csv": "d0266a37b32b47b4c5472ea7872e960f1b3394c6489e8fa98266874a0b324809",
+        "quote-parity.json": "c39fd0ef2704755dc366610587df4dddf68f90d6c07781a3e6eb4b5a67efc5d0",
+        "report.json": "500bc8c7c5e42566196eb283cd6e721be116f619136cfd52b334d47b01cfd6f7",
+        "samples.ndjson": "487608be7169c653cd346f3385bf34a45089c9f8b9be51ab479d8f250f7581f8",
+        "trace-candle.json": "5c278a93c7d8cea4f628d2dc1885edcefd7e221cbe8067743b5adfab7c774e1b",
+        "trace-quote.json": "4ea00adb5aee773104049f7d9b91bab666915c4a2c53f797899c6578ae696661",
+        "verified-quote-snapshots.json": "b5d94f0e55251497f57472624f1a7433854360cd08c18986f9a49faba1e69b74",
+        "websocket.ndjson": "63d43a64a3047bb629bc84950fc7c8f19f0aae6b733394c5ce0f55565d4d1c20",
+        "worker.ndjson": "b0042235bd5f72bdc7a4f9e969bdf6dbb1b5afaf42dad56915108b2ada1e0953"
+      },
+      "financial_summary": {
+        "candles": {
+          "equal": true,
+          "counts": [
+            990,
+            990
+          ],
+          "sha256": [
+            "35a10f7ef776d06718b9d21a994ff68687e00f0db000e51f87c834fa8d4eac52",
+            "35a10f7ef776d06718b9d21a994ff68687e00f0db000e51f87c834fa8d4eac52"
+          ]
+        },
+        "quotes": {
+          "count": 99,
+          "all_fields_and_ordering_equal": true
+        },
+        "revision_counts": [
+          1,
+          1
+        ],
+        "remaining_source_candles": 0,
+        "remaining_source_quotes": 0,
+        "archived_receipt_hash_mismatches": 0,
+        "destination_batch_count": 54,
+        "database_sizes": {
+          "source": 29888995,
+          "destination": 28152291
+        },
+        "coverage": {
+          "count": 99,
+          "equal_count": 99
+        }
+      },
+      "revision_manifests_equal": true,
+      "measurements": {
+        "phases": {
+          "backfill": {
+            "sample_count": 21,
+            "latest_price_age_ms": {
+              "count": 1980,
+              "p50": 7537,
+              "p95": 12429,
+              "p99": 13380,
+              "p100": 13380
+            },
+            "quote_stale_samples": 99,
+            "all_status_streams_unexpired_samples": 16,
+            "max_pending_candles": 990,
+            "max_pending_quote_streams": 99
+          },
+          "acceptance": {
+            "sample_count": 1,
+            "latest_price_age_ms": {
+              "count": 99,
+              "p50": 30580,
+              "p95": 30580,
+              "p99": 30580,
+              "p100": 30580
+            },
+            "quote_stale_samples": 99,
+            "all_status_streams_unexpired_samples": 1,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 0
+          },
+          "steady": {
+            "sample_count": 6,
+            "latest_price_age_ms": {
+              "count": 594,
+              "p50": 8054,
+              "p95": 35620,
+              "p99": 35620,
+              "p100": 35620
+            },
+            "quote_stale_samples": 198,
+            "all_status_streams_unexpired_samples": 6,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 99
+          },
+          "final": {
+            "sample_count": 1,
+            "latest_price_age_ms": {
+              "count": 99,
+              "p50": 10593,
+              "p95": 10593,
+              "p99": 10593,
+              "p100": 10593
+            },
+            "quote_stale_samples": 0,
+            "all_status_streams_unexpired_samples": 1,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 0
+          }
+        },
+        "clocks": "UTC wall-clock proxies; observer timestamps bound commit completion",
+        "database_sampling": {
+          "source": {
+            "first_bytes": 13513187,
+            "final_bytes": 29729295,
+            "peak_bytes": 35418595,
+            "peak_connections": 7
+          },
+          "destination": {
+            "first_bytes": 9089507,
+            "final_bytes": 28017167,
+            "peak_bytes": 28017167,
+            "peak_connections": 5
+          }
+        },
+        "resources": {
+          "collector": {
+            "peak_rss_bytes": 110440448,
+            "cpu_seconds_observed": null,
+            "elapsed_seconds": 160.150161
+          },
+          "worker": {
+            "peak_rss_bytes": 82071552,
+            "cpu_seconds_observed": 43.359375,
+            "elapsed_seconds": 174.648328
+          },
+          "ingest": {
+            "peak_rss_bytes": 88576000,
+            "cpu_seconds_observed": 17.4375,
+            "elapsed_seconds": 174.648328
+          },
+          "read": {
+            "peak_rss_bytes": 91062272,
+            "cpu_seconds_observed": 4.703125,
+            "elapsed_seconds": 174.648328
+          }
+        },
+        "http_seconds_including_client_quota_wait": {
+          "POST session": {
+            "count": 2,
+            "p50": 0.02135,
+            "p95": 0.02135,
+            "p99": 0.02135,
+            "p100": 0.043534
+          },
+          "POST reconcile": {
+            "count": 30,
+            "p50": 0.169901,
+            "p95": 0.400836,
+            "p99": 0.62426,
+            "p100": 0.637696
+          },
+          "POST quotes": {
+            "count": 17,
+            "p50": 1.628159,
+            "p95": 1.734555,
+            "p99": 1.734555,
+            "p100": 1.760814
+          },
+          "POST candles": {
+            "count": 11,
+            "p50": 1.610685,
+            "p95": 1.657149,
+            "p99": 1.657149,
+            "p100": 1.734972
+          },
+          "POST coverage": {
+            "count": 8,
+            "p50": 0.880389,
+            "p95": 0.913399,
+            "p99": 0.913399,
+            "p100": 0.915667
+          },
+          "POST status": {
+            "count": 18,
+            "p50": 0.852559,
+            "p95": 0.876898,
+            "p99": 0.876898,
+            "p100": 0.891636
+          }
+        },
+        "worker_http_errors": {
+          "receipt_not_found": 54
+        },
+        "destination_transaction_seconds_observed": {
+          "quotes": {
+            "count": 17,
+            "p50": 0.968531,
+            "p95": 1.085178,
+            "p99": 1.085178,
+            "p100": 1.090291
+          },
+          "candles": {
+            "count": 11,
+            "p50": 0.946091,
+            "p95": 0.992987,
+            "p99": 0.992987,
+            "p100": 1.084387
+          },
+          "coverage": {
+            "count": 8,
+            "p50": 0.219934,
+            "p95": 0.258065,
+            "p99": 0.258065,
+            "p100": 0.26076
+          },
+          "status": {
+            "count": 18,
+            "p50": 0.189339,
+            "p95": 0.214255,
+            "p99": 0.214255,
+            "p100": 0.218157
+          }
+        },
+        "staging_to_destination_commit_seconds_observed": {
+          "quotes": {
+            "count": 17,
+            "p50": 1.669614,
+            "p95": 2.066076,
+            "p99": 2.066076,
+            "p100": 2.146518
+          },
+          "candles": {
+            "count": 11,
+            "p50": 1.627126,
+            "p95": 1.672914,
+            "p99": 1.672914,
+            "p100": 1.757841
+          }
+        },
+        "local_store_transaction_seconds_observed": {
+          "local_quote_commit_observed": {
+            "count": 193,
+            "p50": 0.214657,
+            "p95": 1.619243,
+            "p99": 2.668313,
+            "p100": 9.212838
+          },
+          "local_candle_commit_observed": {
+            "count": 5,
+            "p50": 0.622673,
+            "p95": 0.642389,
+            "p99": 0.642389,
+            "p100": 1.646437
+          }
+        },
+        "journal_append_to_websocket_observer_seconds": {
+          "count": 2674,
+          "p50": 0.50812,
+          "p95": 0.884402,
+          "p99": 0.955329,
+          "p100": 1.049967
+        },
+        "unmeasured": [
+          "true upstream publication time",
+          "individual server WAL flush instant",
+          "all intermediate quote histories",
+          "host-wide CPU attribution",
+          "real company WAN/gateway latency"
+        ]
+      }
+    },
+    {
+      "directory": "artifacts/v11-m4-pg-99-soak",
+      "evidence": "isolated injected",
+      "passing_assertions": 18,
+      "failing_assertions": 0,
+      "failure_category": null,
+      "parameters": {
+        "output": "artifacts\\v11-m4-pg-99-soak",
+        "feeds": 99,
+        "soak_seconds": 900,
+        "quote_hz": 1.0,
+        "burst_seconds": 120,
+        "burst_hz": 5.0,
+        "history_minutes": 3,
+        "timescale": false,
+        "faults": false,
+        "genuine": false
+      },
+      "backfill_seconds": null,
+      "load_phases": [
+        {
+          "phase": "steady",
+          "duration_seconds": 900.015999999996,
+          "requested_hz_per_feed": 1.0,
+          "generated_updates": 89100
+        },
+        {
+          "phase": "burst",
+          "duration_seconds": 120.04700000000594,
+          "requested_hz_per_feed": 5.0,
+          "generated_updates": 59400
+        }
+      ],
+      "started_at": "2026-10-16 09:43:44.159376+00:00",
+      "completed_at": "2026-10-16 10:01:40.434163+00:00",
+      "artifacts": {
+        "collector.ndjson": "a6dab84ebb3e005d3f4106834abfcd63c205df2f150bf715411a4f00106de834",
+        "database-comparison.json": "bdd2fbbba6d802f3f27e3c3d1652b7835c170b1072de87cda0867e413e67c3cf",
+        "ingest.ndjson": "fc3d3ad1277beaac4245f0b83ddba7cf7f3cf13c63371e845a19db78e5daeec0",
+        "measurements.json": "0a3e4efb68d7572e3cbf8505593a44a0747b337af63ddbe6d819311d3d436b3d",
+        "per-instrument.csv": "55550efc857114b1d48cbe0802c8b9dbaa09dccaff082fa68db8d959711b9081",
+        "quote-parity.json": "d3a91a04eb1de6636c1c7be6632bd6dac98841abcead1dfcb96efef9f4d74c9e",
+        "report.json": "d1eec89cdd4e2d958b528482b7af8946949e3ca93e74250d53c4ac0a2fbc8c14",
+        "samples.ndjson": "df946a5f3e4dc31d19419ca89082c855aa229abef19e748c54c556e325ddc9f6",
+        "trace-candle.json": "51a63b38f0121c67838baea5c07887bc1bdceb323a78bd887c86b45d29785e5b",
+        "trace-quote.json": "ce2b5a4895b551a01ad3f9bd515ed736ba5f9d0e3eed71be83d15241eb70a853",
+        "verified-quote-snapshots.json": "f35a6c3def74c14b8622efb69c14c0fe28e47666d90df2a6b729cd67d0e50f16",
+        "websocket.ndjson": "e8ea656f6c59e12eb8514f507b7013864ddec9ff4ed23ca8f717cdb0d0cd379b",
+        "worker.ndjson": "759da508c6160b8f3b1f9d1b78a3df99bc8dccdbe637e3c597b0f54e5e468a1c"
+      },
+      "financial_summary": {
+        "candles": {
+          "equal": true,
+          "counts": [
+            1782,
+            1782
+          ],
+          "sha256": [
+            "fa9bb308c87d167da4971c0a0b04619088c45e755c7a72da3c7f52ffee5536b1",
+            "fa9bb308c87d167da4971c0a0b04619088c45e755c7a72da3c7f52ffee5536b1"
+          ]
+        },
+        "quotes": {
+          "count": 99,
+          "all_fields_and_ordering_equal": true
+        },
+        "revision_counts": [
+          1,
+          1
+        ],
+        "remaining_source_candles": 0,
+        "remaining_source_quotes": 0,
+        "archived_receipt_hash_mismatches": 0,
+        "destination_batch_count": 327,
+        "database_sizes": {
+          "source": 111866339,
+          "destination": 104690147
+        },
+        "coverage": {
+          "count": 99,
+          "equal_count": 99
+        }
+      },
+      "revision_manifests_equal": true,
+      "measurements": {
+        "phases": {
+          "acceptance": {
+            "sample_count": 1,
+            "latest_price_age_ms": {
+              "count": 99,
+              "p50": 39643,
+              "p95": 39643,
+              "p99": 39643,
+              "p100": 39643
+            },
+            "quote_stale_samples": 99,
+            "all_status_streams_unexpired_samples": 1,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 0
+          },
+          "steady": {
+            "sample_count": 180,
+            "latest_price_age_ms": {
+              "count": 17820,
+              "p50": 6595,
+              "p95": 11648,
+              "p99": 39675,
+              "p100": 44686
+            },
+            "quote_stale_samples": 198,
+            "all_status_streams_unexpired_samples": 148,
+            "max_pending_candles": 99,
+            "max_pending_quote_streams": 99
+          },
+          "burst": {
+            "sample_count": 24,
+            "latest_price_age_ms": {
+              "count": 2376,
+              "p50": 10003,
+              "p95": 20625,
+              "p99": 21629,
+              "p100": 21629
+            },
+            "quote_stale_samples": 0,
+            "all_status_streams_unexpired_samples": 19,
+            "max_pending_candles": 99,
+            "max_pending_quote_streams": 99
+          },
+          "final": {
+            "sample_count": 1,
+            "latest_price_age_ms": {
+              "count": 99,
+              "p50": 10626,
+              "p95": 10626,
+              "p99": 10626,
+              "p100": 10626
+            },
+            "quote_stale_samples": 0,
+            "all_status_streams_unexpired_samples": 1,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 0
+          }
+        },
+        "clocks": "UTC wall-clock proxies; observer timestamps bound commit completion",
+        "database_sampling": {
+          "source": {
+            "first_bytes": 13193699,
+            "final_bytes": 114450959,
+            "peak_bytes": 114450959,
+            "peak_connections": 9
+          },
+          "destination": {
+            "first_bytes": 14348771,
+            "final_bytes": 104985059,
+            "peak_bytes": 104985059,
+            "peak_connections": 5
+          }
+        },
+        "resources": {
+          "collector": {
+            "peak_rss_bytes": 119222272,
+            "cpu_seconds_observed": 337.828125,
+            "elapsed_seconds": 1030.52937
+          },
+          "worker": {
+            "peak_rss_bytes": 84676608,
+            "cpu_seconds_observed": 297.015625,
+            "elapsed_seconds": 1030.52937
+          },
+          "ingest": {
+            "peak_rss_bytes": 90636288,
+            "cpu_seconds_observed": 99.25,
+            "elapsed_seconds": 1030.52937
+          },
+          "read": {
+            "peak_rss_bytes": 91389952,
+            "cpu_seconds_observed": 27.671875,
+            "elapsed_seconds": 1030.52937
+          }
+        },
+        "http_seconds_including_client_quota_wait": {
+          "POST session": {
+            "count": 12,
+            "p50": 0.014019,
+            "p95": 0.018993,
+            "p99": 0.018993,
+            "p100": 0.042515
+          },
+          "POST reconcile": {
+            "count": 158,
+            "p50": 0.151596,
+            "p95": 0.264096,
+            "p99": 0.470593,
+            "p100": 0.623556
+          },
+          "POST quotes": {
+            "count": 134,
+            "p50": 1.573575,
+            "p95": 1.861296,
+            "p99": 1.933616,
+            "p100": 2.024931
+          },
+          "POST candles": {
+            "count": 19,
+            "p50": 1.560687,
+            "p95": 1.870751,
+            "p99": 1.870751,
+            "p100": 1.871402
+          },
+          "POST coverage": {
+            "count": 37,
+            "p50": 0.848374,
+            "p95": 0.902556,
+            "p99": 0.919025,
+            "p100": 0.933817
+          },
+          "POST status": {
+            "count": 137,
+            "p50": 0.839105,
+            "p95": 0.882802,
+            "p99": 0.9011,
+            "p100": 0.916379
+          }
+        },
+        "worker_http_errors": {
+          "receipt_not_found": 327
+        },
+        "destination_transaction_seconds_observed": {
+          "quotes": {
+            "count": 134,
+            "p50": 0.913176,
+            "p95": 1.192837,
+            "p99": 1.287436,
+            "p100": 1.370765
+          },
+          "candles": {
+            "count": 19,
+            "p50": 0.9193,
+            "p95": 1.208654,
+            "p99": 1.208654,
+            "p100": 1.21128
+          },
+          "coverage": {
+            "count": 37,
+            "p50": 0.194572,
+            "p95": 0.240977,
+            "p99": 0.260226,
+            "p100": 0.272758
+          },
+          "status": {
+            "count": 137,
+            "p50": 0.172522,
+            "p95": 0.213515,
+            "p99": 0.230785,
+            "p100": 0.236993
+          }
+        },
+        "staging_to_destination_commit_seconds_observed": {
+          "quotes": {
+            "count": 134,
+            "p50": 1.597157,
+            "p95": 2.044976,
+            "p99": 2.142941,
+            "p100": 2.389268
+          },
+          "candles": {
+            "count": 19,
+            "p50": 1.572349,
+            "p95": 1.886923,
+            "p99": 1.886923,
+            "p100": 1.887552
+          }
+        },
+        "local_store_transaction_seconds_observed": {
+          "local_quote_commit_observed": {
+            "count": 1360,
+            "p50": 0.207136,
+            "p95": 1.332801,
+            "p99": 2.260859,
+            "p100": 5.169183
+          },
+          "local_candle_commit_observed": {
+            "count": 20,
+            "p50": 0.579428,
+            "p95": 1.723375,
+            "p99": 1.723375,
+            "p100": 2.122703
+          }
+        },
+        "journal_append_to_websocket_observer_seconds": {
+          "count": 15049,
+          "p50": 0.491995,
+          "p95": 0.873407,
+          "p99": 1.037492,
+          "p100": 1.228142
+        },
+        "unmeasured": [
+          "true upstream publication time",
+          "individual server WAL flush instant",
+          "all intermediate quote histories",
+          "host-wide CPU attribution",
+          "real company WAN/gateway latency"
+        ]
+      }
+    },
+    {
+      "directory": "artifacts/v11-m4-ts-99-soak",
+      "evidence": "isolated injected",
+      "passing_assertions": 18,
+      "failing_assertions": 0,
+      "failure_category": null,
+      "parameters": {
+        "output": "artifacts\\v11-m4-ts-99-soak",
+        "feeds": 99,
+        "soak_seconds": 900,
+        "quote_hz": 1.0,
+        "burst_seconds": 120,
+        "burst_hz": 5.0,
+        "history_minutes": 3,
+        "status_ttl_seconds": 60.0,
+        "timescale": true,
+        "faults": false,
+        "genuine": false
+      },
+      "backfill_seconds": null,
+      "load_phases": [
+        {
+          "phase": "steady",
+          "duration_seconds": 900.0,
+          "requested_hz_per_feed": 1.0,
+          "generated_updates": 89100
+        },
+        {
+          "phase": "burst",
+          "duration_seconds": 120.03100000000268,
+          "requested_hz_per_feed": 5.0,
+          "generated_updates": 59400
+        }
+      ],
+      "started_at": "2026-10-16 10:10:14.183386+00:00",
+      "completed_at": "2026-10-16 10:28:05.718705+00:00",
+      "artifacts": {
+        "collector.ndjson": "86cbd58198c2a663286f9715fe97e0271fbaa1d278f29dd4bdc71aab960f4558",
+        "database-comparison.json": "64b5493e4ba993d32233220649ea2fa27414a3980942aaa719c361746769a1b7",
+        "ingest.ndjson": "9261a4b16bb5f1ba1d82c858f718a551592f4b09be70383555438a5e95e11f12",
+        "measurements.json": "87b3a9be11bcec86c8f76ba042414e66c729cb1ecce9596588a96b11e6da2e1b",
+        "per-instrument.csv": "669ecbf2715b6be1fc181bb12e125f643e10c6d330933d813fb9b5a43961b6ae",
+        "quote-parity.json": "2189cb076349978e04500028c2ae334f3b1cbb00a525ed480ae6a51f0ac5707f",
+        "report.json": "2c520d4e2eaf5ff4f302528dcae1daef36620ecc81eedc25f9a68b9103e4409b",
+        "samples.ndjson": "347187c69f68f027806a656535cd24a97620bab6123265389aa7e4d040edee68",
+        "trace-candle.json": "3f1ebdc53dbac2079b8f244bad09ba436ff521241edea21da1fcb6689d8cdcde",
+        "trace-quote.json": "9d6644deb8c218148417ef608652b8e2fdaad07440b7968228d78ba637a19c32",
+        "verified-quote-snapshots.json": "d596543c4ca4ac3625c4be7c954ee63659ca8fdb700a31ac09fb2918f2890c51",
+        "websocket.ndjson": "d6b742bc4158301d3e99619e015727d777bb111f8b74f088b916d65783e59851",
+        "worker.ndjson": "74be15230e89dfe879598763dbae073369718aca7ada6bc509c1d66c39211234"
+      },
+      "financial_summary": {
+        "candles": {
+          "equal": true,
+          "counts": [
+            1782,
+            1782
+          ],
+          "sha256": [
+            "7cd5c6926bcceccb700d4d0ae8e04c0d93c0f867f97fe25a593e2c191b0f496f",
+            "7cd5c6926bcceccb700d4d0ae8e04c0d93c0f867f97fe25a593e2c191b0f496f"
+          ]
+        },
+        "quotes": {
+          "count": 99,
+          "all_fields_and_ordering_equal": true
+        },
+        "revision_counts": [
+          1,
+          1
+        ],
+        "remaining_source_candles": 0,
+        "remaining_source_quotes": 0,
+        "archived_receipt_hash_mismatches": 0,
+        "destination_batch_count": 282,
+        "database_sizes": {
+          "source": 108039315,
+          "destination": 99372179
+        },
+        "coverage": {
+          "count": 99,
+          "equal_count": 99
+        }
+      },
+      "revision_manifests_equal": true,
+      "measurements": {
+        "phases": {
+          "acceptance": {
+            "sample_count": 1,
+            "latest_price_age_ms": {
+              "count": 99,
+              "p50": 39824,
+              "p95": 39824,
+              "p99": 39824,
+              "p100": 39824
+            },
+            "quote_stale_samples": 99,
+            "all_status_streams_unexpired_samples": 1,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 0
+          },
+          "steady": {
+            "sample_count": 180,
+            "latest_price_age_ms": {
+              "count": 17820,
+              "p50": 7511,
+              "p95": 13211,
+              "p99": 39854,
+              "p100": 44870
+            },
+            "quote_stale_samples": 198,
+            "all_status_streams_unexpired_samples": 180,
+            "max_pending_candles": 99,
+            "max_pending_quote_streams": 99
+          },
+          "burst": {
+            "sample_count": 24,
+            "latest_price_age_ms": {
+              "count": 2376,
+              "p50": 11728,
+              "p95": 26948,
+              "p99": 26952,
+              "p100": 26952
+            },
+            "quote_stale_samples": 0,
+            "all_status_streams_unexpired_samples": 24,
+            "max_pending_candles": 99,
+            "max_pending_quote_streams": 99
+          },
+          "final": {
+            "sample_count": 1,
+            "latest_price_age_ms": {
+              "count": 99,
+              "p50": 5176,
+              "p95": 5176,
+              "p99": 5176,
+              "p100": 5176
+            },
+            "quote_stale_samples": 0,
+            "all_status_streams_unexpired_samples": 1,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 0
+          }
+        },
+        "clocks": "UTC wall-clock proxies; observer timestamps bound commit completion",
+        "database_sampling": {
+          "source": {
+            "first_bytes": 14688783,
+            "final_bytes": 107995663,
+            "peak_bytes": 107995663,
+            "peak_connections": 9
+          },
+          "destination": {
+            "first_bytes": 17154575,
+            "final_bytes": 99191955,
+            "peak_bytes": 99191955,
+            "peak_connections": 7
+          }
+        },
+        "resources": {
+          "collector": {
+            "peak_rss_bytes": 119537664,
+            "cpu_seconds_observed": 364.046875,
+            "elapsed_seconds": 1025.046483
+          },
+          "worker": {
+            "peak_rss_bytes": 84385792,
+            "cpu_seconds_observed": 266.0625,
+            "elapsed_seconds": 1025.046483
+          },
+          "ingest": {
+            "peak_rss_bytes": 90370048,
+            "cpu_seconds_observed": 90.375,
+            "elapsed_seconds": 1025.046483
+          },
+          "read": {
+            "peak_rss_bytes": 92012544,
+            "cpu_seconds_observed": 29.09375,
+            "elapsed_seconds": 1025.046483
+          }
+        },
+        "http_seconds_including_client_quota_wait": {
+          "POST session": {
+            "count": 12,
+            "p50": 0.022001,
+            "p95": 0.028078,
+            "p99": 0.028078,
+            "p100": 0.05084
+          },
+          "POST reconcile": {
+            "count": 136,
+            "p50": 0.180923,
+            "p95": 0.274503,
+            "p99": 0.42244,
+            "p100": 0.635084
+          },
+          "POST quotes": {
+            "count": 112,
+            "p50": 1.764956,
+            "p95": 1.933638,
+            "p99": 2.012993,
+            "p100": 2.267389
+          },
+          "POST candles": {
+            "count": 19,
+            "p50": 1.7882,
+            "p95": 1.919888,
+            "p99": 1.919888,
+            "p100": 1.973166
+          },
+          "POST coverage": {
+            "count": 36,
+            "p50": 0.877689,
+            "p95": 0.944202,
+            "p99": 0.958337,
+            "p100": 0.981795
+          },
+          "POST status": {
+            "count": 115,
+            "p50": 0.862651,
+            "p95": 0.908125,
+            "p99": 0.928825,
+            "p100": 0.969746
+          }
+        },
+        "worker_http_errors": {
+          "receipt_not_found": 282
+        },
+        "destination_transaction_seconds_observed": {
+          "quotes": {
+            "count": 112,
+            "p50": 1.104951,
+            "p95": 1.263849,
+            "p99": 1.347583,
+            "p100": 1.585837
+          },
+          "candles": {
+            "count": 19,
+            "p50": 1.121187,
+            "p95": 1.264604,
+            "p99": 1.264604,
+            "p100": 1.319314
+          },
+          "coverage": {
+            "count": 36,
+            "p50": 0.219483,
+            "p95": 0.291638,
+            "p99": 0.30045,
+            "p100": 0.335928
+          },
+          "status": {
+            "count": 115,
+            "p50": 0.194145,
+            "p95": 0.236743,
+            "p99": 0.24714,
+            "p100": 0.296078
+          }
+        },
+        "staging_to_destination_commit_seconds_observed": {
+          "quotes": {
+            "count": 112,
+            "p50": 1.807767,
+            "p95": 2.256853,
+            "p99": 2.344222,
+            "p100": 2.582177
+          },
+          "candles": {
+            "count": 19,
+            "p50": 1.805589,
+            "p95": 1.941968,
+            "p99": 1.941968,
+            "p100": 1.998426
+          }
+        },
+        "local_store_transaction_seconds_observed": {
+          "local_quote_commit_observed": {
+            "count": 1405,
+            "p50": 0.224969,
+            "p95": 1.293604,
+            "p99": 2.05328,
+            "p100": 6.098829
+          },
+          "local_candle_commit_observed": {
+            "count": 19,
+            "p50": 0.632099,
+            "p95": 1.987418,
+            "p99": 1.987418,
+            "p100": 2.107387
+          }
+        },
+        "journal_append_to_websocket_observer_seconds": {
+          "count": 12871,
+          "p50": 0.576095,
+          "p95": 1.007738,
+          "p99": 1.120046,
+          "p100": 1.449665
+        },
+        "unmeasured": [
+          "true upstream publication time",
+          "individual server WAL flush instant",
+          "all intermediate quote histories",
+          "host-wide CPU attribution",
+          "real company WAN/gateway latency"
+        ]
+      }
+    },
+    {
+      "directory": "artifacts/v11-m4-pg-genuine-final",
+      "evidence": "isolated genuine",
+      "passing_assertions": 14,
+      "failing_assertions": 0,
+      "failure_category": null,
+      "parameters": {
+        "output": "artifacts\\v11-m4-pg-genuine-final",
+        "feeds": 1,
+        "soak_seconds": 60,
+        "quote_hz": 1,
+        "burst_seconds": 0,
+        "burst_hz": 5,
+        "history_minutes": 3,
+        "quotes_during_backfill": false,
+        "status_ttl_seconds": 20,
+        "timescale": false,
+        "faults": false,
+        "genuine": true
+      },
+      "backfill_seconds": null,
+      "load_phases": [
+        {
+          "phase": "steady",
+          "duration_seconds": 60.0,
+          "requested_hz_per_feed": 1,
+          "generated_updates": 0
+        }
+      ],
+      "started_at": "2026-10-16 10:33:11.655221+00:00",
+      "completed_at": "2026-10-16 10:34:48.969923+00:00",
+      "artifacts": {
+        "collector.ndjson": "8b3ebe4b03adbab81f55fa8a1c22f7d9457c30bfbff158a59ebfee28e348b4e6",
+        "database-comparison.json": "f3ddc86a1d3099585aa736e5dd1031e916be15ed7af8675ddb8191a1f3c4b928",
+        "ingest.ndjson": "b8a7d4047503ac3b9e6d215f0cd8f0a0570635d5f4e921bd8a4e1dfa18da7422",
+        "measurements.json": "f27b8ce4e61b2e9295a74c52f10a27b86349fc756c3c9a9c2553cb7abb9dba55",
+        "per-instrument.csv": "f9ad931fc8269ae078ba3a123e1c904f501b5af4ee40a06cd6dd7d5dfac75933",
+        "quote-parity.json": "15c483897cc85a4eced087d634fc682e6f80465012025d0cf12b305a91ac753a",
+        "report.json": "a8eeb98a6b817ba303e2af3a9d569ea3f09828c7e50975efcdcdfad7591d6938",
+        "samples.ndjson": "b550968925c06131c5376ccaf95168db9a39f89c410cf1e193c8b39a1f435406",
+        "trace-candle.json": "5e7d9ffcca7b076b73ad7a77e86e9df1ad1a7bf0a93c55ff90c8d604c1f3f4d4",
+        "trace-quote.json": "ab85f46c6119ce62d82182a27f36fbe5258640cc3e2b724c24681b1a71cc3fd9",
+        "verified-quote-snapshots.json": "55fbbebdb7770d96241d79e7a1319546d88bf49e0258a4f2faa0d7e236c233cb",
+        "websocket.ndjson": "bb3e55c0c7fea689fdd3cfd8f6358119c497ab3b1d5ab9a9a1f88b0affab7059",
+        "worker.ndjson": "a722bde140f20f5664dcc555731b3f2c86ebc03e6d9eb2085f18474b319c3f42"
+      },
+      "financial_summary": {
+        "candles": {
+          "equal": true,
+          "counts": [
+            6,
+            6
+          ],
+          "sha256": [
+            "ff38085ac2fa1402cf802023e8bab0162bd7b3a708d774b2af746013f96f3d9d",
+            "ff38085ac2fa1402cf802023e8bab0162bd7b3a708d774b2af746013f96f3d9d"
+          ]
+        },
+        "quotes": {
+          "count": 1,
+          "all_fields_and_ordering_equal": true
+        },
+        "revision_counts": [
+          0,
+          0
+        ],
+        "remaining_source_candles": 0,
+        "remaining_source_quotes": 0,
+        "archived_receipt_hash_mismatches": 0,
+        "destination_batch_count": 43,
+        "database_sizes": {
+          "source": 9654755,
+          "destination": 9638371
+        },
+        "coverage": {
+          "count": 1,
+          "equal_count": 1
+        }
+      },
+      "revision_manifests_equal": true,
+      "measurements": {
+        "phases": {
+          "acceptance": {
+            "sample_count": 1,
+            "latest_price_age_ms": {
+              "count": 1,
+              "p50": 6228,
+              "p95": 6228,
+              "p99": 6228,
+              "p100": 6228
+            },
+            "quote_stale_samples": 0,
+            "all_status_streams_unexpired_samples": 1,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 0
+          },
+          "steady": {
+            "sample_count": 12,
+            "latest_price_age_ms": {
+              "count": 12,
+              "p50": 5479,
+              "p95": 7469,
+              "p99": 7469,
+              "p100": 8364
+            },
+            "quote_stale_samples": 0,
+            "all_status_streams_unexpired_samples": 12,
+            "max_pending_candles": 1,
+            "max_pending_quote_streams": 1
+          },
+          "final": {
+            "sample_count": 1,
+            "latest_price_age_ms": {
+              "count": 1,
+              "p50": 6961,
+              "p95": 6961,
+              "p99": 6961,
+              "p100": 6961
+            },
+            "quote_stale_samples": 0,
+            "all_status_streams_unexpired_samples": 1,
+            "max_pending_candles": 0,
+            "max_pending_quote_streams": 0
+          }
+        },
+        "clocks": "UTC wall-clock proxies; observer timestamps bound commit completion",
+        "database_sampling": {
+          "source": {
+            "first_bytes": 9261539,
+            "final_bytes": 9511439,
+            "peak_bytes": 9536015,
+            "peak_connections": 6
+          },
+          "destination": {
+            "first_bytes": 9253347,
+            "final_bytes": 9470479,
+            "peak_bytes": 9474531,
+            "peak_connections": 5
+          }
+        },
+        "resources": {
+          "collector": {
+            "peak_rss_bytes": 89710592,
+            "cpu_seconds_observed": 0.5625,
+            "elapsed_seconds": 55.250895
+          },
+          "worker": {
+            "peak_rss_bytes": 73191424,
+            "cpu_seconds_observed": 1.265625,
+            "elapsed_seconds": 63.732777
+          },
+          "ingest": {
+            "peak_rss_bytes": 83406848,
+            "cpu_seconds_observed": 0.390625,
+            "elapsed_seconds": 63.732777
+          },
+          "read": {
+            "peak_rss_bytes": 85196800,
+            "cpu_seconds_observed": 1.40625,
+            "elapsed_seconds": 63.732777
+          }
+        },
+        "http_seconds_including_client_quota_wait": {
+          "POST session": {
+            "count": 1,
+            "p50": 0.042131,
+            "p95": 0.042131,
+            "p99": 0.042131,
+            "p100": 0.042131
+          },
+          "POST reconcile": {
+            "count": 27,
+            "p50": 0.640018,
+            "p95": 0.652418,
+            "p99": 0.653537,
+            "p100": 0.655821
+          },
+          "POST quotes": {
+            "count": 23,
+            "p50": 0.672663,
+            "p95": 0.677886,
+            "p99": 0.68141,
+            "p100": 0.688138
+          },
+          "POST candles": {
+            "count": 2,
+            "p50": 0.666379,
+            "p95": 0.666379,
+            "p99": 0.666379,
+            "p100": 0.703447
+          },
+          "POST coverage": {
+            "count": 2,
+            "p50": 0.655142,
+            "p95": 0.655142,
+            "p99": 0.655142,
+            "p100": 0.670398
+          },
+          "POST status": {
+            "count": 16,
+            "p50": 0.659296,
+            "p95": 0.673724,
+            "p99": 0.673724,
+            "p100": 0.675521
+          }
+        },
+        "worker_http_errors": {
+          "receipt_not_found": 43
+        },
+        "destination_transaction_seconds_observed": {
+          "quotes": {
+            "count": 23,
+            "p50": 0.014063,
+            "p95": 0.015231,
+            "p99": 0.024126,
+            "p100": 0.024772
+          },
+          "candles": {
+            "count": 2,
+            "p50": 0.014,
+            "p95": 0.014,
+            "p99": 0.014,
+            "p100": 0.046001
+          },
+          "coverage": {
+            "count": 2,
+            "p50": 0.009551,
+            "p95": 0.009551,
+            "p99": 0.009551,
+            "p100": 0.016286
+          },
+          "status": {
+            "count": 16,
+            "p50": 0.007,
+            "p95": 0.007063,
+            "p99": 0.007063,
+            "p100": 0.007992
+          }
+        },
+        "staging_to_destination_commit_seconds_observed": {
+          "quotes": {
+            "count": 23,
+            "p50": 0.684351,
+            "p95": 0.693912,
+            "p99": 0.697694,
+            "p100": 1.298997
+          },
+          "candles": {
+            "count": 2,
+            "p50": 1.273444,
+            "p95": 1.273444,
+            "p99": 1.273444,
+            "p100": 1.306691
+          }
+        },
+        "local_store_transaction_seconds_observed": {
+          "local_quote_commit_observed": {
+            "count": 54,
+            "p50": 0.010002,
+            "p95": 0.014537,
+            "p99": 0.021765,
+            "p100": 0.167653
+          },
+          "local_candle_commit_observed": {
+            "count": 2,
+            "p50": 0.020046,
+            "p95": 0.020046,
+            "p99": 0.020046,
+            "p100": 0.020284
+          }
+        },
+        "journal_append_to_websocket_observer_seconds": {
+          "count": 29,
+          "p50": 0.044935,
+          "p95": 0.066876,
+          "p99": 0.072647,
+          "p100": 0.079101
+        },
+        "unmeasured": [
+          "true upstream publication time",
+          "individual server WAL flush instant",
+          "all intermediate quote histories",
+          "host-wide CPU attribution",
+          "real company WAN/gateway latency"
+        ]
+      }
+    }
+  ],
+  "static_checks": {
+    "ruff_check": "passed: ruff check --no-cache .",
+    "ruff_format": "passed: ruff format --no-cache --check .",
+    "mypy": "passed: 51 source files",
+    "qualification_unit": "12 passed, 0.12 seconds, no integration skips",
+    "migration_heads": "0010 and sc0002",
+    "compose_config": "passed with recovery profile; actual runtime used equivalent isolated explicit Docker commands",
+    "powershell_parser": "passed for session-only cleanup script",
+    "git_diff_check": "passed; existing CRLF warning only"
+  },
+  "tested_implementation_hashes": {
+    "alembic-source.ini": "c03c044a605bc108af53f7ca81c9955ce34c8e7523674497736976ad3d6809da",
+    "alembic.ini": "d67dc1b14fb8fa18e121c11821974ff1cea0bed1f051dcc9e0960637e95b5918",
+    "config/benchmarks/tradingview_candidates.json": "4d8284706f3e8a5dc1d8f40c7bc43b93c0cf70280f647e14e8088ec8a1b7c0aa",
+    "config/instruments.binance.json": "d6112a9c72314d54ab272e01511c183e3e5fad70d41e4806178fc53e81bd4f79",
+    "config/instruments.mock.json": "73afaa908678884ad43999b24143afe42da50f56121e0eaef95e5b745294d0bb",
+    "config/instruments.tradingview-100.json": "0ef7f3837a8f6a18f5ea570cc84ffc792e69100d07fdfb574593b639ec8b5600",
+    "config/instruments.tradingview-128.json": "8a88f5b2998093d854e53a1bfb44d4812a10603278862f0e16cd3764655009d6",
+    "config/instruments.tradingview-256.json": "93710939b8e06c4eff5b81de0a1f0ed1971172a60ef1a9345cd70e4feaa6410c",
+    "config/instruments.tradingview-64.json": "715253d371d19fb24d6e680d5727a72cc15b06f2085fb8a2ffe3821809e37ade",
+    "config/instruments.tradingview-business-candidates.json": "725dd471b81280ddb6306400a172f22d36e378fb92e4528d9bc96f21f4916ee7",
+    "config/instruments.tradingview-business-proposal.json": "f3638641223b5fa83d0a51227015fa6404f811509b8f02dd58cb313b8ac009e8",
+    "config/instruments.tradingview-pilot.json": "8ec9082086e430eb745505152fb01f2dd4d2708460299f4e7402d4d1373c255d",
+    "config/instruments.tradingview.json": "42b23791a00f7c8c24cc01afa3d5e2745dce636fdbebb4c077fbb6483a4e8f18",
+    "migrations/env.py": "b996fc081b9c23bbb8d6f503a26da63003d66333b1d55c4eaa65088747e27ad0",
+    "migrations/script.py.mako": "1c79849f2de2c0e01b063941801de03e61bc0277d60ae227893f6324fabab469",
+    "migrations/versions/0001_marketdata.py": "b02611da3edb2b1b37c0ff73a01503cb8eac05564826efb05cda6fcdbe8486c1",
+    "migrations/versions/0002_timescale.py": "93bbafa5c23ce3e688d3bbe5e15feddd8f48458b489250b70fd1c4fbb3c19244",
+    "migrations/versions/0003_native_candles.py": "917a9566e3db21154360a997f312c8549f84930b5783875ba631db33b396b65a",
+    "migrations/versions/0004_candle_reliability.py": "55e66c13446f73031122aefc746539ef11020186880bf6f589b2e3692c5bd68a",
+    "migrations/versions/0005_collector_status.py": "423c821688e5cdfbfb130c806fe9e3531b0cb9bec266febd540e446834800f5a",
+    "migrations/versions/0006_marketdata_events.py": "512d2d550d1bbc6966727197ca3e4af1a56c6e34e0460450fbfe628d848ef2ab",
+    "migrations/versions/0007_destination_ingestion.py": "c02140a4ef900d44c09c643714b70b1979ba14595d6aa65cdba8fb64ad94313e",
+    "migrations/versions/0008_ingestion_runtime.py": "f1de2165159f2c16bf914e05801f921ddf85672fa76348f39ba6e2ffe74fc896",
+    "migrations/versions/0009_session_recovery.py": "d039b91de2748ca4a06c675adaa7c01c5f1f2761e340edcf10e4acec450376ff",
+    "migrations/versions/0010_quote_snapshots.py": "a9bf743a606e2720269d135ed0f069ad6262e13c9abd4f69fb3b0774e7d8e85c",
+    "pyproject.toml": "52467ec57b17e4127581a18200bb1ce4f574ff44ccf4f1591871532497994282",
+    "scripts/qualify_v11_edges.py": "779c64abba7064ee7704e9efb8b6793f5adfa4a829fc21bb34cb2166b82d25ef",
+    "scripts/qualify_v11_pipeline.py": "8b0cfc95912aae5c0b98841515acd4ec7da03f95ab17264e5ec84387c80912ce",
+    "scripts/qualify_v11_recovery.py": "2215846fbe4695cb78db31894789d2de158bc431f8290f79fda2e7af3b691407",
+    "scripts/report_v11_qualification.py": "56b725c68c796ee3b390b451b1b933e42fbfc81c4a9e135e91033bf7a8706d1e",
+    "scripts/sql/v11_destination_roles.sql": "3978223da8b23655fc5876f5f65afb28722b477d048285d40be5b1e12e5a5d1c",
+    "scripts/sql/v11_source_sync_role.sql": "751a263aad13f7fbb3bcdd6a6d5fada2288508e8221b1fd65ff087ffa95d14cb",
+    "scripts/v11_qualification_process.py": "3e419bc71e32f540543c6bff57f793a7a91274921df38d5ea10ae678d61ec693",
+    "scripts/v11_qualification_resources.py": "569b2478c7c39f314c182e87c8c3baf4c1cdfe311de9ecfaa1fcdcf69fb3451e",
+    "scripts/v11_qualification_source.py": "adcfee258ba5ea2d691ecdba981e5ed1f5b8437cbd0e2b2bcba9922ee5aff4e2",
+    "source_migrations/env.py": "50f00621498d9fb7390c4c2d5b8c3414f7804a5bb332eae65a89a224c3da0a14",
+    "source_migrations/versions/sc0001_local_capture.py": "4108efe9624be05b43ed944b851c5228f38a7207abacf8737647563816eaf8e4",
+    "source_migrations/versions/sc0002_sync_worker.py": "d393878b1917b16f27c80eb263fc3567c7cfc65554250f623cfc6e9210083c67",
+    "src/marketdata/__init__.py": "236f3cab75f1a030626cbd37f3dbb064052a55edcde16bcdc8ddd672513b1732",
+    "src/marketdata/api.py": "84dd77442c598b4735cb7c1a14c3ef9932e646f343e6f49318fe14cf094a1204",
+    "src/marketdata/api_models.py": "57ff80252733a46371cee12b7cef5f11f0f925ecbd484468906675ff27d4f0a4",
+    "src/marketdata/api_v1.py": "e12be327d9876c2795c5fe50d4684e2e32e0663baf7003ca1a2746b4835f8d06",
+    "src/marketdata/benchmark.py": "e47a28511e5c5386596cecf3c1a8931286dcf3cd1d475182e62df59f63b01cf7",
+    "src/marketdata/candle_benchmark.py": "e2ae0e3f66edd0e0a142f352272d17ef61fe543f546ef58f2aae417183a93020",
+    "src/marketdata/candle_ingestion.py": "6fef061226ab44651214c40aa07cc7a404bd8edea0403af3b8cce43f4e8d2c23",
+    "src/marketdata/candles.py": "c6b884e73031ad80eba4a0eb0421943a5859f24c7592e0b9d369bba29d539756",
+    "src/marketdata/cli.py": "8a5598b94ea3492bbbb09ef1080afd0a8d366ba116df1473221d62fcd4fcc295",
+    "src/marketdata/collector.py": "87f45bf0b71df74f59775ead8495879b57ef240a46fc60f690ceaab1c7361332",
+    "src/marketdata/config.py": "1d11530972d752b1e9a76c42ccc27e921f71794642d00e677569400acb023a03",
+    "src/marketdata/domain.py": "6fa36c11c8a38b676c06968e5e1fb716d40002f7fe420328840cbf6ee01346eb",
+    "src/marketdata/events.py": "bc3df67b531a7af5b06a2df5914f92ef5b7615d599c0305e57a4e9107288d10d",
+    "src/marketdata/fanout.py": "6da19aa6ec1e4a6ae2a0fda2eee6fa607fa0dbf9e33772bebdfd6be7e1c593eb",
+    "src/marketdata/ingest_api.py": "58912377668b3af9a1e5a29172be61755d0c8ee785e8c2986f4e33613975468d",
+    "src/marketdata/ingest_auth.py": "9d8e9a912d6a342d96ad0d367aaf5cc1bdad6e439cb90b435d6081381c2a2204",
+    "src/marketdata/ingestion.py": "5b0e1ac5e454098886488f69807dcc0589be9b34b3ce7ea262d02041a1dfea53",
+    "src/marketdata/market_stream.py": "bd0ee5c11ced471e8e94842cd42101d7109d175d7edf82f803c8ff691c4bf461",
+    "src/marketdata/observability.py": "70bfd3ff5f1c75ccfebc538309352f41d78ba73335f7d3df375f67cf0fc37345",
+    "src/marketdata/persistence.py": "562af78e3e5eca6021a1dfd1f9455d5198d3a4536e4e8e80853d15a678f04613",
+    "src/marketdata/price_selection.py": "c210d0374ad07d340cb70b3d69c5ef754ff58ae770b383a12e5bab14d275d813",
+    "src/marketdata/production.py": "f91bf0eb3c88d014f6eadde8ffeb2e920074beba74f08e8895505b95fd75fd2a",
+    "src/marketdata/providers/__init__.py": "c2ae27632e9a8902a1ead44ffc352272868f791017c8ef61a58e13a09733d498",
+    "src/marketdata/providers/base.py": "d936e3372c9ab4d34d3b433d3d2b2f71a80bbce289b7743b06f6e1650831cf53",
+    "src/marketdata/providers/binance.py": "2aecaf2723d11b119917c8f1d92e9f43b4fd98fb7adf94e4e8578f2824d2bef5",
+    "src/marketdata/providers/candle_pool.py": "ff0910bd63c94767728ebec9bf6565916951bb4ab99332b1d3f178b79ff402b7",
+    "src/marketdata/providers/candles.py": "0a498ea1fbad147060fbdbb6cc21d5e79b7593ac74e98c89f68219652436f664",
+    "src/marketdata/providers/databento.py": "07e9b9faf8eed7c76d5911a90222e92cd13792ff9bcb63bd3727916fa64610c6",
+    "src/marketdata/providers/definitions.py": "bc42e3c8931342173bcbf768753c9af8ad9db81636e8ab54762eb1c915c0e6fe",
+    "src/marketdata/providers/factory.py": "0e64acafc8660da64a744896926d41c4789fc760cbc2ace83e647d389b5146a2",
+    "src/marketdata/providers/mock.py": "e1a2336d2cf3a9d82d420294e46864f828890723b3237c23e11f2407638cf1ab",
+    "src/marketdata/providers/oanda.py": "bf7a00ae0f38cf5c0e0bd2d6e6054311b27d1f2d5e9d5bbae059fc5c5bc7a2b6",
+    "src/marketdata/providers/synthetic_candles.py": "365e8c5ed0efd70fa4feee6d5993cc8f11d5ad2ed8c86ffe01678c909fba603b",
+    "src/marketdata/providers/tradingview.py": "f4771a2fbf87095bf5d61e284564a73269534e58ec5ed4f0084794fa562835a4",
+    "src/marketdata/providers/tradingview_candles.py": "660c755648f57b7c748451acda1d72f2a5529c9edf9d77eb8fafbc94284db44c",
+    "src/marketdata/providers/tradingview_pipeline.py": "454c8deb256f73fb26a86fbb36a0761badd19639d8cab6a32c842de2419f250c",
+    "src/marketdata/quote_snapshots.py": "8529fae250a13c4ec84b1bc5010d9ec04f3230950abc76ae51ee05655c7433d8",
+    "src/marketdata/reconciliation.py": "fd609aa21649c3fd8da4504acfce430e5f4a1ab0c2a0ee398b0146723f480f7d",
+    "src/marketdata/registry.py": "8126b6e3e4551e667c3b78b2c76db9cbfe74ee1fb9c07c13d4604c5a17ed111c",
+    "src/marketdata/remote_status.py": "be65b37cbbbf8e26e78315f6eecb89f794a3aecee8a34802f63074b8560f97d8",
+    "src/marketdata/replication.py": "ae2f7f6dd7ba72402bf6a22d29cd238f78a9d63c5e573ae4dd8850ce7556bfd8",
+    "src/marketdata/replication_models.py": "f16301723c68951b1376a34d4e48fb3476f035d4ecef90de258a3af9d8648a0e",
+    "src/marketdata/sample_data.py": "8edcb74735448a3d91a7f49ae48bad6e3db85117c0ff7adf900129eb2f7f4f84",
+    "src/marketdata/session_recovery.py": "17cbeb33147838e991f736e6c2b8a393c59807899119691ce978873f420f0812",
+    "src/marketdata/sessions.py": "d44f3002c8e48383a9059c0fbd14efc0a3f47fc0696c06994c79442571c3dc7d",
+    "src/marketdata/source_capture.py": "bec23fc34f7c00a3a51c5b28cf7674cf433f8fa446993babf7672e5421f7fd5e",
+    "src/marketdata/sync_config.py": "ad96b3c7928ce753ba37b34c3070b005f10d8d4bb91926fd71cfa8e18663e147",
+    "src/marketdata/sync_http.py": "31c7d4ff29dc19303c8bbc959f2982fdad63d53db20767b08f94fc1e0fc72c20",
+    "src/marketdata/sync_state.py": "7a895accaa53d25f257b355bb97dcc1889c89c025ff78a87578821318ea5f914",
+    "src/marketdata/sync_worker.py": "0f7a3b091b922c8bcaaf50847a4a72d429e02d79fcabcf139d4dbe0f5187fe14",
+    "src/marketdata/ws_models.py": "8d1fbefacdd41611dcd9b843ba4f3005f51b2f125692fa69911e85ce92ea5bf7",
+    "tests/browser-marketdata.test.mjs": "84e4e6ad5badae34903323c82f42ab283d09e7d8b62354b17ee55ddd17314e37",
+    "tests/conftest.py": "7ae85152391cf7793f5b88d50b1a9fd53d32c5789258ba07c0a8a3a094d145b4",
+    "tests/fixtures/tradingview_guest_candles.json": "87c0d9f49057a8c5065de78e98688d7c2f46657facfd63e8da4832dfebc603f8",
+    "tests/fixtures/tradingview_guest_quotes.json": "2d619842ec396d939e9ded79501633419d53f47be0e8d06eb930db3b9e8e4290",
+    "tests/process_isolation_worker.py": "68dcf8da670a3c1a586e874f3857b56b9dc790aef261ef4931f06c9b798cffe5",
+    "tests/process_market_workers.py": "f16480fe2f476304ba9c1383fe3226517370f0d5db002728517a28f0fdb48090",
+    "tests/process_recovery_worker.py": "1a8ad0c0210a16fc18f8adf69678a250a1e00149e331d10f97fb932c68078263",
+    "tests/process_sync_destination.py": "6b69d7db2fa8a08c045e89e8b0669ef7ad4022df4c8af8be76eabda76972fb56",
+    "tests/process_sync_worker.py": "afd1690310ff15b722eb78319ac0b1b4b5e598afae7fea06d7b3a2452733e225",
+    "tests/test_api.py": "b3ebdfa3450840784b5c9efe3846d558b34de8ec0458dea859418212ddee3371",
+    "tests/test_api_production.py": "11cc08dbdd711d7a5d3078efb37a10579f9e7a15ff30bcd401ed60b5def7fe44",
+    "tests/test_api_v1.py": "c4b31ae66a6dc97ce8976eba067c21e84dd201da7a61ace655c26b5818e599b0",
+    "tests/test_api_v1_operations.py": "34c228dae36e9f69222fb118e0af9c6e54ca6b19dc4014feafa74ca8c7534054",
+    "tests/test_backup_restore.py": "11f3f2d51aa9c03993d34fa534bc6d287b050c267eedd41f8a7bbff2d3f97dfe",
+    "tests/test_browser_example.py": "fa4c540a90a30b7e4a8456010f032a7ccd88c7abc18891def0f3b682b2d9b551",
+    "tests/test_business_universe.py": "f8bed36fa6462e5aa15b922b0977e39be56dd56280065bf0d12658d3702b5e8a",
+    "tests/test_candle_pipeline.py": "7d7d5e08a9766c86af961a83a7a04133cb89829ad4bff1912da3e7b5ac28aeed",
+    "tests/test_candle_pool.py": "6457351703a480c11f511963201acf7da6b35259d63293ffe8adf9f54d86c0c7",
+    "tests/test_candle_pool_benchmark.py": "48be9070948d35694d8a45fc226670b55dc979ea556efb54136c9121ba0c9aea",
+    "tests/test_candle_reliability.py": "af09e225705e5a3ff1062db858b30e119e1525ff7dd126e358dd2962d3d9e758",
+    "tests/test_company_bff_example.py": "4af90e2c7a7c53d97a53ac25f5ea410be67fd71c93b2738ddcd1149de75782b1",
+    "tests/test_databento_sdk.py": "d9c76421054ac521f70c77268301247fb406dfe11785413a017f008e92bf1337",
+    "tests/test_destination_ingestion.py": "42f52aefd7d3cf937ff4d6ba1970fdd5f2308d70c35cf78eeea24a5fcd0d3453",
+    "tests/test_destination_migrations.py": "3e0a67192a425d05495234d8200dfffbfb8a4a33c6c7f92a7ece4480d8a15a32",
+    "tests/test_domain.py": "34a043a716a570676eb3dabfc2461bf6053e20aaaca2a6c849b9cbfa61cf5fd6",
+    "tests/test_dual_ingestion.py": "7f08aeaa195d4ed9736ac6c3d4a506fee0bc9f1c088c69f46fc5ca9adc011dcb",
+    "tests/test_health_api.py": "a5e3e56130add0a69fb9cd57324748f54da335ab2933a512d7331158a2921b50",
+    "tests/test_ingest_http.py": "a87688f378b6cd69ce522f722beff3731f96bd84cbc6fa49a194fbb460f19225",
+    "tests/test_ingest_migrations.py": "bd5f091a312a0943281fa6613d372a554af35d52c77e03521afffb1b91a2f16a",
+    "tests/test_ingestion.py": "52fea464e01cf93fa27265e13f5094ffdae7d1eaf470a999ead4809b16cdb8ab",
+    "tests/test_instrument_activation.py": "bfa39c97983f92b5a2af1ea2bede168d776bfb7fab41277d7a8c55c08fb452d8",
+    "tests/test_integration_compatibility.py": "c1f91c27ec6ccf89eee7acdbfcf51019c1af5843936079443deccccb65dfee30",
+    "tests/test_live_capacity_harness.py": "2206fadf2715707eca99df7ca180e52c2accca4539c897863919fafbabaab8a4",
+    "tests/test_live_pool_benchmark.py": "c54a1cbacf64357a9383249190f764a3c553dfe6601e33e7e25f215f9a059bb2",
+    "tests/test_market_database_outage.py": "61808c3f935f889fd2d415d48db56dae9695db7f53472b41d0be720821ff86ed",
+    "tests/test_market_permissions_migrations.py": "aeca78a3d887731c7f53e6a5ceb7af80c3606977991bb8e166bbe8d5446ec212",
+    "tests/test_market_reliability.py": "31eb1c55f91c7c548d3f50cea9bbba96c832e8fde1bae21fb134c5941e6dd364",
+    "tests/test_market_stream.py": "44e35f9b9c19ff691f66c5a177b75a718b557c94aa13791de9caddae2e1780d4",
+    "tests/test_market_workers.py": "0caeba88ab7eb8e359b0d520ffbaf891d3721df0286e39e857a61e7349b70d5e",
+    "tests/test_native_availability_audit.py": "6fcaf8ddfccadfefa55cb74ca0a2aee7cfd585a0bc75f7e6ff1092f15e3d0b85",
+    "tests/test_native_candles.py": "b16b0c58c8f012d2f18fbf4b2dd7be7f77682bb130098977e3120c5d15157871",
+    "tests/test_ordinary_scaling.py": "6bc51e96502c3cc2bee82237cd000083ced3cbfeef386c42041530fa67936e0e",
+    "tests/test_persistence.py": "1e92eea1749f9ace9db83519fbb5131a68a114d4042d41f9e8add2e3ed543733",
+    "tests/test_process_restart.py": "6ddc9faf4b9fe2599a640a159aa075fb80c98cf03e386169c6fef73732b8bdbe",
+    "tests/test_process_separation.py": "a77ec8f5858669491ecec2cc73b292f2a4358c13c398446ab65f322f229cb78b",
+    "tests/test_production_container.py": "cd79c716757be2e05c98bfca1a059babebd6334aee0348578aedd04eb5b1d0e4",
+    "tests/test_production_entrypoint.py": "7a4801baac89f23e8b557dc3c1f405120ee95bf4964ce7c6edbf93b3bc7e9639",
+    "tests/test_production_tradingview_smoke.py": "9cec17d8c8a90e477f72d93eff8d4c31e144ca2b6a744a61532bd3b4735b3993",
+    "tests/test_providers.py": "498a1638ccf34a27341c13fb493b2e3fa16ae98e9d5463bd6694876881930e72",
+    "tests/test_recovery_fanout.py": "06d5b9bf808f5bfa93f500ade85b91dad6c6d62f9dbdbf358d335f0fe8c59633",
+    "tests/test_session_recovery.py": "1feafdb56180aa4e3baf2c0c0adb807bb5c6c9a68189d8364b1b531cfa1f5656",
+    "tests/test_source_capture.py": "f6f252c4f7691219640e43f53cf375d985d0c94e424a9376f99d7c99c3d6f4c4",
+    "tests/test_standalone_api.py": "6383076f2a95ccfad5e62a832bbdc6585701e58328ae8f0bc784ef573076ff53",
+    "tests/test_sync_worker.py": "dd7d4dfe1a9184c14a1a303d64f2f67ea51589b21f44c2e8cdad5cc436c669c1",
+    "tests/test_tradingview.py": "d35a10ce50df620eb7980f41ce8ed0d9efd63ec9382489a6c8d092cbebf125e2",
+    "tests/test_v11_qualification.py": "4d6660298a6601a715806e82a9e5f26b38d6c9cb78b0d85b09bf50305a964b8e"
+  },
+  "full_suite_scope": "Final application and existing/new pytest behavior unchanged since both full suites. Later edits only qualification harness final source-freeze/coverage drain, offline reporting and documentation; final 20-assertion backfill and 12 qualification units executed on these helpers.",
+  "preservation": {
+    "baseline_manifest_files": 347,
+    "baseline_manifest_sha256": "474c7ef037bda7aee308b482c3fe22581b01baac527c5933a7860a0f58da3eb8",
+    "baseline_files_changed": [
+      "CODEX.md",
+      "HANDOFF.md",
+      "README.md",
+      "docs/fastapi-v1.1-sync-worker.md",
+      "src/marketdata/sync_config.py",
+      "src/marketdata/sync_worker.py",
+      "tests/test_destination_migrations.py",
+      "tests/test_process_separation.py",
+      "tests/test_sync_worker.py"
+    ],
+    "previous_m3b_hashes_verified_at_audit": 137,
+    "unchanged_migrations_and_contracts": {
+      "docs/fastapi-v1.1-ingest-openapi.json": true,
+      "migrations/env.py": true,
+      "migrations/script.py.mako": true,
+      "migrations/versions/0001_marketdata.py": true,
+      "migrations/versions/0002_timescale.py": true,
+      "migrations/versions/0003_native_candles.py": true,
+      "migrations/versions/0004_candle_reliability.py": true,
+      "migrations/versions/0005_collector_status.py": true,
+      "migrations/versions/0006_marketdata_events.py": true,
+      "migrations/versions/0007_destination_ingestion.py": true,
+      "migrations/versions/0008_ingestion_runtime.py": true,
+      "migrations/versions/0009_session_recovery.py": true,
+      "migrations/versions/0010_quote_snapshots.py": true,
+      "source_migrations/env.py": true,
+      "source_migrations/versions/sc0001_local_capture.py": true,
+      "source_migrations/versions/sc0002_sync_worker.py": true,
+      "src/marketdata/api.py": true,
+      "src/marketdata/api_v1.py": true,
+      "src/marketdata/events.py": true,
+      "src/marketdata/ingest_api.py": true,
+      "src/marketdata/ingest_auth.py": true,
+      "src/marketdata/market_stream.py": true,
+      "src/marketdata/persistence.py": true,
+      "src/marketdata/replication.py": true,
+      "src/marketdata/replication_models.py": true,
+      "src/marketdata/session_recovery.py": true
+    },
+    "zip_sha256": "3a3ca216098a0f2a6632a8dcdb1dfb96af116a4c079c825876f253fbd8cea67a",
+    "zip_entries": 66,
+    "zip_entries_equal_tree": true,
+    "zip_crc_error": null,
+    "legacy_collector": "No connection, schema/data operation or container/volume lifecycle operation against the existing installation; only new task databases and scoped independent genuine BTC source used.",
+    "existing_work": "All pre-M4 files outside listed changes preserved; unrelated TradingViewConvHistory/ not edited. No commit/push/reset/deployment.",
+    "cache_cleanup_rejected": "Automatic approval review blocked optional removal of generated ignored Ruff 0.16.10 cache in frozen tree; cache retained, all archived release files unchanged."
+  },
+  "changed_files": {
+    "CODEX.md": {
+      "kind": "modified from pre-M4 baseline",
+      "sha256": "a7b08ba329950e4b4ebb4a7b8e5bf58471ad395e52aef4ddf52a0aa47c46bc16"
+    },
+    "HANDOFF.md": {
+      "kind": "modified from pre-M4 baseline",
+      "sha256": "fa01ab9f3cacac005bb17541aca59400a865695a4e6b5dc09cbe59b6650a6204"
+    },
+    "README.md": {
+      "kind": "modified from pre-M4 baseline",
+      "sha256": "a91b511b6a910d06b6557c47d867d608b6d523419e5f03b93454da6cd785be6c"
+    },
+    "docs/fastapi-v1.1-sync-worker.md": {
+      "kind": "modified from pre-M4 baseline",
+      "sha256": "1af395ebce3c99f8b8db6dcb4c928b6fdc082a806f7cea7dbf3e80c3568ed454"
+    },
+    "src/marketdata/sync_config.py": {
+      "kind": "modified from pre-M4 baseline",
+      "sha256": "ad96b3c7928ce753ba37b34c3070b005f10d8d4bb91926fd71cfa8e18663e147"
+    },
+    "src/marketdata/sync_worker.py": {
+      "kind": "modified from pre-M4 baseline",
+      "sha256": "0f7a3b091b922c8bcaaf50847a4a72d429e02d79fcabcf139d4dbe0f5187fe14"
+    },
+    "tests/test_destination_migrations.py": {
+      "kind": "modified from pre-M4 baseline",
+      "sha256": "3e0a67192a425d05495234d8200dfffbfb8a4a33c6c7f92a7ece4480d8a15a32"
+    },
+    "tests/test_process_separation.py": {
+      "kind": "modified from pre-M4 baseline",
+      "sha256": "a77ec8f5858669491ecec2cc73b292f2a4358c13c398446ab65f322f229cb78b"
+    },
+    "tests/test_sync_worker.py": {
+      "kind": "modified from pre-M4 baseline",
+      "sha256": "dd7d4dfe1a9184c14a1a303d64f2f67ea51589b21f44c2e8cdad5cc436c669c1"
+    },
+    "compose.v11-m4-test.yaml": {
+      "kind": "new",
+      "sha256": "c655721b66ba84c17adf3eb68d64f3d38e65ad5faecb2293dc640aff7f5b5f95"
+    },
+    "scripts/cleanup_v11_m4_runtime.ps1": {
+      "kind": "new",
+      "sha256": "2864de242dd4318f7084b37dbf6231cea32ce5fcd97a123012673ff3e9211db6"
+    },
+    "scripts/qualify_v11_pipeline.py": {
+      "kind": "new",
+      "sha256": "8b0cfc95912aae5c0b98841515acd4ec7da03f95ab17264e5ec84387c80912ce"
+    },
+    "scripts/qualify_v11_recovery.py": {
+      "kind": "new",
+      "sha256": "2215846fbe4695cb78db31894789d2de158bc431f8290f79fda2e7af3b691407"
+    },
+    "scripts/qualify_v11_edges.py": {
+      "kind": "new",
+      "sha256": "779c64abba7064ee7704e9efb8b6793f5adfa4a829fc21bb34cb2166b82d25ef"
+    },
+    "scripts/report_v11_qualification.py": {
+      "kind": "new",
+      "sha256": "56b725c68c796ee3b390b451b1b933e42fbfc81c4a9e135e91033bf7a8706d1e"
+    },
+    "scripts/v11_qualification_process.py": {
+      "kind": "new",
+      "sha256": "3e419bc71e32f540543c6bff57f793a7a91274921df38d5ea10ae678d61ec693"
+    },
+    "scripts/v11_qualification_source.py": {
+      "kind": "new",
+      "sha256": "adcfee258ba5ea2d691ecdba981e5ed1f5b8437cbd0e2b2bcba9922ee5aff4e2"
+    },
+    "scripts/v11_qualification_resources.py": {
+      "kind": "new",
+      "sha256": "569b2478c7c39f314c182e87c8c3baf4c1cdfe311de9ecfaa1fcdcf69fb3451e"
+    },
+    "tests/test_v11_qualification.py": {
+      "kind": "new",
+      "sha256": "4d6660298a6601a715806e82a9e5f26b38d6c9cb78b0d85b09bf50305a964b8e"
+    },
+    "docs/fastapi-v1.1-milestone4.md": {
+      "kind": "new",
+      "sha256": "09e20290effd56b92343e76638ca4e70512225479cb13f3aa453b0c771c06bb1"
+    },
+    "docs/fastapi-v1.1-qualification.md": {
+      "kind": "new",
+      "sha256": "c05e8eebc4da3701be892f8ca25d00d22e733d567e334c27330703b66a9ede5e"
+    },
+    "docs/fastapi-v1.1-milestone4-verification.json": {
+      "kind": "new",
+      "sha256": "self; intentionally not hashed"
+    }
+  },
+  "infrastructure": {
+    "environment": {
+      "python": "3.12.7",
+      "platform": "Windows-11-10.0.26300-SP0",
+      "dependencies": {
+        "fastapi": "0.142.2",
+        "uvicorn": "0.54.0",
+        "asyncpg": "0.32.0",
+        "pydantic": "2.13.5",
+        "httpx": "0.28.1",
+        "websockets": "15.0.1",
+        "alembic": "1.20.0",
+        "pytest": "8.4.2",
+        "ruff": "0.16.10",
+        "mypy": "1.20.2"
+      },
+      "databases": {
+        "source": {
+          "version": "PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit",
+          "fsync": "on",
+          "synchronous_commit": "on",
+          "full_page_writes": "on",
+          "listen_addresses": "127.0.0.1",
+          "port": "56007",
+          "max_connections": "100",
+          "connections": 12
+        },
+        "destination": {
+          "version": "PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit",
+          "fsync": "on",
+          "synchronous_commit": "on",
+          "full_page_writes": "on",
+          "listen_addresses": "127.0.0.1",
+          "port": "56005",
+          "max_connections": "100",
+          "connections": 11
+        }
+      },
+      "timescale_databases": {
+        "source": {
+          "version": "PostgreSQL 17.7 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+          "timescaledb": "2.25.1",
+          "fsync": "on",
+          "synchronous_commit": "on",
+          "full_page_writes": "on",
+          "listen_addresses": "127.0.0.1",
+          "port": "56008"
+        },
+        "destination": {
+          "version": "PostgreSQL 17.7 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+          "timescaledb": "2.25.1",
+          "fsync": "on",
+          "synchronous_commit": "on",
+          "full_page_writes": "on",
+          "listen_addresses": "127.0.0.1",
+          "port": "56006"
+        }
+      }
+    },
+    "inventory_file": "artifacts/v11-m4-runtime/infrastructure-final.json",
+    "inventory_sha256": "8a5a9c0c97fd0c44ea3676e593b0b5c0b78be2091386fccca2842ffd5386eaab",
+    "cleanup": {
+      "completed_at": "2026-10-16T14:02:15.3489487Z",
+      "distribution_removed": "marketdata-v11-m4-test",
+      "verified_absolute_path": "C:\\Users\\Pouyan\\PycharmProjects\\tradingview-main-consolidation\\artifacts\\v11-m4-runtime\\wsl",
+      "containers_removed": [
+        "marketdata-v11-m4-destination-pg16-test",
+        "marketdata-v11-m4-source-pg16-test",
+        "marketdata-v11-m4-destination-ts-test",
+        "marketdata-v11-m4-source-ts-test",
+        "marketdata-v11-m4-recovery-destination-pg16-test",
+        "marketdata-v11-m4-recovery-source-pg16-test",
+        "marketdata-v11-m4-recovery-destination-ts-test",
+        "marketdata-v11-m4-recovery-source-ts-test"
+      ],
+      "volumes_removed": [
+        "marketdata-v11-m4-recovery-destination-pg16-test-data",
+        "marketdata-v11-m4-recovery-source-pg16-test-data",
+        "marketdata-v11-m4-recovery-destination-ts-test-data",
+        "marketdata-v11-m4-recovery-source-ts-test-data"
+      ]
+    },
+    "post_cleanup": {
+      "verified_at": "2026-10-16T14:08:25.6583223Z",
+      "remaining_distributions": [
+        "docker-desktop"
+      ],
+      "task_distribution_absent": true,
+      "qualification_child_processes": 0,
+      "wsl_status": [
+        "  NAME              STATE           VERSION",
+        "* docker-desktop    Stopped         2"
+      ]
+    },
+    "image_digests": {
+      "postgres:16.1": "sha256:09f23e02d76670d3b346a3c00aa33a27cf57aab8341eedfcdaed41459d14f5c4",
+      "timescale/timescaledb:2.25.1-pg17": "sha256:f5f9f09d57799d237f481e5b9ad517eae5088fed3dbb487e2138419e6196fc78"
+    }
+  },
+  "development_failures_not_acceptance": [
+    "OpenSSL configuration missing on initial run",
+    "Initial backfill enrollment omitted activation-before-history request",
+    "Fault helper import/readiness/contender timing errors",
+    "Initial TS full suite 626 passed/8 skipped/2 failed: fresh DB cleanup and collector poll deadline; final suites pass",
+    "Initial metadata batching REPEATABLE READ serialized unnecessarily under concurrent clock commit; product narrow RC fix plus forced regression",
+    "Initial restore missing Timescale hooks; repair snapshot compared against wrong local identity; tmpfs restart loses only task data; final durable-volume runs pass",
+    "Initial backfill injector shared asyncpg observer connection and swallowed its failure; final independent injector rethrows",
+    "Premature source-commit/WebSocket assertion in initial edge run",
+    "Previous pg-backfill-final had 50/99 coverage at live source shutdown, final frozen2 independently drains all99",
+    "Disposed runtime was stopped when attempting frozen backfill; first attempt ConnectionRefused, then own daemon/persistent pair resumed and final frozen2 passed",
+    "Two final helper lint long lines fixed; no application change",
+    "Optional generated Ruff-cache cleanup rejected; left untouched"
+  ],
+  "not_run": [
+    "Full genuine99-feed source availability, native omissions, quote publication rate/soak and entitlements",
+    "Actual upstream historical correction acquisition (injected correction delivery passed)",
+    "Real company gateway/public CA/WAN/cross-host firewall/OS secret isolation",
+    "Physical Windows sleep/reboot/Task Scheduler and Linux systemd/production image qualification",
+    "Fresh complete standalone v1.1 package first installation (M5)",
+    "Dedicated long-duration soak, multi-year backfill and complete CPU/phase decomposition",
+    "Legacy exact v1.0 head0006 regression on this new head; frozen archive integrity verified"
+  ],
+  "remaining_limits": [
+    "Provisional99 registry and proposed service targets require approval",
+    "Quote history intentionally coalesced, not every individual tick replicated",
+    "StatusTTL20 lapses under99 load; reviewed60s profile tested separately, never alters quote30s freshness",
+    "Source restore/clone uncertain identity fails closed; cloned private anchor/credentials with no advanced remote state cannot establish installation identity",
+    "Invalid legacy volumes/times retained and diagnosed, never silently rewritten",
+    "Logical pending limits do not bound WAL/journal/receipt/disk growth",
+    "Brief genuine BTC and same-host simulated load do not establish production readiness or redistribution rights"
+  ]
+}

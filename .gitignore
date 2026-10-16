@@ -25,6 +25,9 @@ logs/
 *.sql.gz
 *.sql
 *.sql.*
+!scripts/sql/v11_destination_roles.sql
+!scripts/sql/v11_source_sync_role.sql
+!scripts/sql/v11_source_collector_role.sql
 dumps/
 backups/
 volumes/
@@ -39,3 +42,7 @@ BATCHES_V1.md
 config/*.local.json
 *.dbn
 *.dbn.zst
+
+# Reviewed v1.1 candidate role scripts are release source, not SQL dumps.
+!distributions/marketdata-fastapi-v1.1.0rc1/scripts/sql/*.sql
+!distributions/marketdata-collector-sync-v1.1.0rc1/scripts/sql/*.sql

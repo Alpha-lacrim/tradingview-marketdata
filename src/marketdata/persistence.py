@@ -96,7 +96,26 @@ class Store:
         )
         async with self.connection() as connection:
             version = await connection.fetchval("SELECT version_num FROM alembic_version")
-            if version != "0006":
+            if self.settings.source_capture_enabled:
+                extension = await connection.fetchval(
+                    "SELECT to_regclass('source_capture_version')"
+                )
+                if (
+                    self.read_only
+                    or version != "0006"
+                    or not extension
+                    or await connection.fetchval("SELECT version_num FROM source_capture_version")
+                    not in {"sc0001", "sc0002"}
+                ):
+                    raise RuntimeError("source capture requires base 0006 plus source sc0001")
+            elif version != "0010":
+                if version == "0006" and await connection.fetchval(
+                    "SELECT to_regclass('source_capture_version')"
+                ):
+                    raise RuntimeError(
+                        "source capture requires explicit collector opt-in; "
+                        "do not run destination upgrade head on this source"
+                    )
                 raise RuntimeError("database migrations are not at head; run alembic upgrade head")
             self.has_aggregates = bool(
                 await connection.fetchval("SELECT to_regclass('candles_1m_last')")
@@ -112,9 +131,20 @@ class Store:
                             'instruments','provider_instruments','market_ticks','latest_prices',
                             'market_candles','latest_candles','candle_coverage','candle_revisions',
                             'collector_status','marketdata_events','marketdata_event_clock',
-                            'alembic_version']) AS t(name)
+                            'alembic_version','ingest_producers','ingest_source_owners','ingest_batches',
+                            'ingest_observations','ingest_candle_heads','ingest_coverage_heads',
+                            'ingest_source_status','candle_observation_heads',
+                            'ingest_request_budgets','ingest_read_status',
+                            'ingest_session_recoveries','ingest_quote_heads',
+                            'ingest_destination_state']) AS t(name)
                             WHERE has_table_privilege(current_user,name,
                                 'INSERT,UPDATE,DELETE,TRUNCATE'))
+                        OR has_function_privilege(current_user,
+                            'ingest_renew_session(uuid,text,uuid,bigint)','EXECUTE')
+                        OR has_function_privilege(current_user,
+                            'ingest_admit_request(uuid,text,integer)','EXECUTE')
+                        OR has_function_privilege(current_user,
+                            'ingest_recover_session(uuid,text,jsonb)','EXECUTE')
                 """)
                 if unsafe:
                     raise RuntimeError(
@@ -193,6 +223,11 @@ class Store:
 
     async def collector_status(self) -> dict[str, Any] | None:
         async with self.connection() as connection:
+            remote = await connection.fetch("SELECT * FROM ingest_read_status")
+            if remote:
+                from marketdata.remote_status import project_status
+
+                return project_status([dict(row) for row in remote])
             row = await connection.fetchrow("""
                 SELECT *, expires_at > clock_timestamp() AS fresh FROM collector_status
                 WHERE singleton
@@ -340,53 +375,136 @@ class Store:
     async def _write_observations(self, ticks: list[Tick], *, history: bool) -> int:
         if not ticks:
             return 0
-        columns = ",".join(TICK_COLUMNS)
         async with self.connection() as connection, connection.transaction():
-            await connection.execute("""CREATE TEMP TABLE IF NOT EXISTS tick_stage
+            return await self.write_observations_in_transaction(connection, ticks, history=history)
+
+    @staticmethod
+    def require_transaction(connection: Any) -> None:
+        if not connection.is_in_transaction():
+            raise ValueError("caller-owned database transaction required")
+
+    @staticmethod
+    async def lock_sources(connection: Any, sources: list[tuple[UUID, str]]) -> None:
+        """All writers use the same lock order; multi-helper callers prelock their union."""
+        Store.require_transaction(connection)
+        for instrument_id, provider in sorted(set(sources), key=lambda key: (str(key[0]), key[1])):
+            await connection.execute(
+                "SELECT pg_advisory_xact_lock(hashtextextended($1,0))",
+                f"marketdata:source:{instrument_id}:{provider}",
+            )
+
+    async def write_observations_in_transaction(
+        self,
+        connection: Any,
+        ticks: list[Tick],
+        *,
+        history: bool = True,
+        update_latest: bool = True,
+        ordered_snapshots: list[Tick] | None = None,
+    ) -> int:
+        """Use the caller's connection; never commit or acquire another connection."""
+        self.require_transaction(connection)
+        if self.settings.source_capture_enabled:
+            # A caller may catch Python validation/backpressure errors inside its
+            # transaction. Keep source state/data/events indivisible in that case.
+            async with connection.transaction():
+                return await self._write_observations_in_transaction(
+                    connection,
+                    ticks,
+                    history=history,
+                    update_latest=update_latest,
+                    ordered_snapshots=ordered_snapshots,
+                )
+        return await self._write_observations_in_transaction(
+            connection,
+            ticks,
+            history=history,
+            update_latest=update_latest,
+            ordered_snapshots=ordered_snapshots,
+        )
+
+    async def _write_observations_in_transaction(
+        self,
+        connection: Any,
+        ticks: list[Tick],
+        *,
+        history: bool,
+        update_latest: bool,
+        ordered_snapshots: list[Tick] | None = None,
+    ) -> int:
+        self.require_transaction(connection)
+        if not ticks:
+            return 0
+        await self.lock_sources(connection, [(t.instrument_id, t.provider) for t in ticks])
+        captured = self.settings.source_capture_enabled and update_latest
+        if ordered_snapshots is not None and captured:
+            raise ValueError("destination snapshots cannot bypass source capture")
+        if captured or ordered_snapshots is not None:
+            snapshots = ordered_snapshots
+            if captured:
+                from marketdata.source_capture import prepare_quotes
+
+                snapshots = await prepare_quotes(connection, ticks)
+            await connection.execute("""CREATE TEMP TABLE IF NOT EXISTS source_quote_stage
                 (LIKE market_ticks INCLUDING DEFAULTS) ON COMMIT DELETE ROWS""")
+            await connection.execute("TRUNCATE pg_temp.source_quote_stage")
             await connection.copy_records_to_table(
-                "tick_stage",
-                records=[tick_record(t) for t in ticks],
+                "source_quote_stage",
+                records=[tick_record(t) for t in snapshots or []],
                 columns=TICK_COLUMNS,
             )
-            # History mode updates latest only from newly inserted stable UUIDs.
-            # Latest-only mode uses the same ordering guard below for safe retries.
-            # State and its journal events always share the owning transaction.
-            observations = (
-                f"INSERT INTO market_ticks ({columns}) SELECT {columns} FROM tick_stage "
-                "ON CONFLICT (storage_timestamp,tick_id) DO NOTHING RETURNING *"
-                if history
-                else "SELECT DISTINCT ON (storage_timestamp,tick_id) * FROM tick_stage"
-            )
-            counted = "inserted" if history else "latest"
-            result = await connection.fetchrow(f"""
-                WITH inserted AS (
-                    {observations}
-                ), latest AS (
-                    INSERT INTO latest_prices
-                        (instrument_id,provider,order_ns,received_timestamp,tick_id,payload)
-                    SELECT DISTINCT ON (instrument_id,provider)
-                        instrument_id,provider,order_ns,received_timestamp,tick_id,payload
-                    FROM inserted
-                    ORDER BY instrument_id,provider,order_ns DESC,
-                        received_timestamp DESC,tick_id DESC
-                    ON CONFLICT (instrument_id,provider) DO UPDATE SET
-                        order_ns=EXCLUDED.order_ns,received_timestamp=EXCLUDED.received_timestamp,
-                        tick_id=EXCLUDED.tick_id,payload=EXCLUDED.payload
-                    WHERE (EXCLUDED.order_ns,EXCLUDED.received_timestamp,EXCLUDED.tick_id) >
-                        (latest_prices.order_ns,latest_prices.received_timestamp,latest_prices.tick_id)
-                    RETURNING payload
-                ) SELECT (SELECT count(*) FROM {counted}) AS count,
-                    coalesce((SELECT jsonb_agg(payload) FROM latest),'[]') AS latest
-            """)
-            from marketdata.events import append_events
+        columns = ",".join(TICK_COLUMNS)
+        await connection.execute("""CREATE TEMP TABLE IF NOT EXISTS tick_stage
+            (LIKE market_ticks INCLUDING DEFAULTS) ON COMMIT DELETE ROWS""")
+        await connection.execute("TRUNCATE pg_temp.tick_stage")
+        await connection.copy_records_to_table(
+            "tick_stage",
+            records=[tick_record(t) for t in ticks],
+            columns=TICK_COLUMNS,
+        )
+        # History mode updates latest only from newly inserted stable UUIDs.
+        # Latest-only mode uses the same ordering guard below for safe retries.
+        # State and its journal events always share the owning transaction.
+        observations = (
+            f"INSERT INTO market_ticks ({columns}) SELECT {columns} FROM tick_stage "
+            "ON CONFLICT (storage_timestamp,tick_id) DO NOTHING RETURNING *"
+            if history
+            else "SELECT DISTINCT ON (storage_timestamp,tick_id) * FROM tick_stage"
+        )
+        counted = "inserted" if history else "latest"
+        latest_stage = (
+            "source_quote_stage" if captured or ordered_snapshots is not None else "inserted"
+        )
+        result = await connection.fetchrow(f"""
+            WITH inserted AS (
+                {observations}
+            ), latest AS (
+                INSERT INTO latest_prices
+                    (instrument_id,provider,order_ns,received_timestamp,tick_id,payload)
+                SELECT DISTINCT ON (instrument_id,provider)
+                    instrument_id,provider,order_ns,received_timestamp,tick_id,payload
+                FROM {latest_stage}
+                WHERE {"TRUE" if update_latest else "FALSE"}
+                ORDER BY instrument_id,provider,order_ns DESC,
+                    received_timestamp DESC,tick_id DESC
+                ON CONFLICT (instrument_id,provider) DO UPDATE SET
+                    order_ns=EXCLUDED.order_ns,received_timestamp=EXCLUDED.received_timestamp,
+                    tick_id=EXCLUDED.tick_id,payload=EXCLUDED.payload
+                WHERE {"TRUE OR" if captured or ordered_snapshots is not None else ""}
+                    (EXCLUDED.order_ns,EXCLUDED.received_timestamp,EXCLUDED.tick_id) >
+                    (latest_prices.order_ns,latest_prices.received_timestamp,latest_prices.tick_id)
+                RETURNING payload
+            ) SELECT (SELECT count(*) FROM {counted}) AS count,
+                coalesce((SELECT jsonb_agg(payload) FROM latest),'[]') AS latest
+        """)
+        from marketdata.events import append_events
 
-            await append_events(
-                connection,
-                [("price_update", Tick.model_validate(p)) for p in json.loads(result["latest"])],
-                self.settings.marketdata_event_retention_count,
-            )
-            return int(result["count"])
+        await append_events(
+            connection,
+            [("price_update", Tick.model_validate(p)) for p in json.loads(result["latest"])],
+            self.settings.marketdata_event_retention_count,
+        )
+        return int(result["count"])
 
     async def instruments(self, limit: int, after: str = "") -> list[dict[str, Any]]:
         async with self.connection() as c:
@@ -651,11 +769,50 @@ class Store:
             | tuple[UUID, str, datetime, datetime, dict[str, Any]]
         ],
     ) -> int:
-        """Atomic candles/latest/coverage. Newer receipts may correct the same minute.
+        """Commit candles, latest, coverage, revisions and events atomically as before."""
+        async with self.connection() as c, c.transaction():
+            result = await self.write_candles_in_transaction(c, candles, coverage)
+        # Compatibility for existing single-owner collector callers, only after commit.
+        self.last_candle_write = result
+        return int(result["changed"])
 
-        Coverage is a compact UTC multirange, so even long outages have bounded gap rows.
-        An uncertain-commit retry changes neither identity nor coverage.
-        """
+    async def write_candles_in_transaction(
+        self,
+        c: Any,
+        candles: list[MarketCandle],
+        coverage: list[
+            tuple[UUID, str, datetime, datetime]
+            | tuple[UUID, str, datetime, datetime, dict[str, Any]]
+        ],
+        *,
+        restore_missing: bool = False,
+    ) -> dict[str, Any]:
+        """Return request-local results; the caller owns commit/rollback and all source locks."""
+        self.require_transaction(c)
+        if self.settings.source_capture_enabled:
+            async with c.transaction():
+                return await self._write_candles_in_transaction(c, candles, coverage)
+        return await self._write_candles_in_transaction(
+            c, candles, coverage, restore_missing=restore_missing
+        )
+
+    async def _write_candles_in_transaction(
+        self,
+        c: Any,
+        candles: list[MarketCandle],
+        coverage: list[
+            tuple[UUID, str, datetime, datetime]
+            | tuple[UUID, str, datetime, datetime, dict[str, Any]]
+        ],
+        *,
+        restore_missing: bool = False,
+    ) -> dict[str, Any]:
+        self.require_transaction(c)
+        await self.lock_sources(
+            c,
+            [(bar.instrument_id, bar.provider) for bar in candles]
+            + [(plan[0], plan[1]) for plan in coverage],
+        )
         candles = list(
             {
                 (c.instrument_id, c.provider, c.interval, c.bucket_start, c.price_basis): c
@@ -666,231 +823,319 @@ class Store:
         revisions: list[dict[str, Any]] = []
         changed_keys: list[tuple[UUID, str, datetime]] = []
         changed_candles: list[MarketCandle] = []
-        async with self.connection() as c, c.transaction():
-            for plan in coverage:
-                instrument_id, provider, start, end = plan[:4]
-                previous = await c.fetchrow(
-                    """SELECT coverage_end,session_info FROM candle_coverage WHERE instrument_id=$1
-                        AND provider=$2 AND price_basis='native' FOR UPDATE""",
-                    instrument_id,
-                    provider,
+        for plan in coverage:
+            instrument_id, provider, start, end = plan[:4]
+            previous = await c.fetchrow(
+                """SELECT coverage_end,session_info FROM candle_coverage WHERE instrument_id=$1
+                    AND provider=$2 AND price_basis='native' FOR UPDATE""",
+                instrument_id,
+                provider,
+            )
+            await c.execute(
+                """
+                INSERT INTO candle_coverage
+                    (instrument_id,provider,price_basis,coverage_start,coverage_end,missing)
+                VALUES ($1,$2,'native',$3,$4,tstzmultirange(tstzrange($3,$4,'[)')))
+                ON CONFLICT (instrument_id,provider,price_basis) DO UPDATE SET
+                    missing=candle_coverage.missing +
+                        tstzmultirange(tstzrange(candle_coverage.coverage_end,
+                            greatest(candle_coverage.coverage_end,EXCLUDED.coverage_end),'[)')),
+                    coverage_end=greatest(candle_coverage.coverage_end,EXCLUDED.coverage_end)
+            """,
+                instrument_id,
+                provider,
+                start,
+                end,
+            )
+            if len(plan) == 5:
+                info = plan[4]
+                classify_start = (
+                    start
+                    if previous is None or json.loads(previous["session_info"]) != info
+                    else previous["coverage_end"]
                 )
-                await c.execute(
-                    """
-                    INSERT INTO candle_coverage
-                        (instrument_id,provider,price_basis,coverage_start,coverage_end,missing)
-                    VALUES ($1,$2,'native',$3,$4,tstzmultirange(tstzrange($3,$4,'[)')))
-                    ON CONFLICT (instrument_id,provider,price_basis) DO UPDATE SET
-                        missing=candle_coverage.missing +
-                            tstzmultirange(tstzrange(candle_coverage.coverage_end,
-                                greatest(candle_coverage.coverage_end,EXCLUDED.coverage_end),'[)')),
-                        coverage_end=greatest(candle_coverage.coverage_end,EXCLUDED.coverage_end)
-                """,
-                    instrument_id,
-                    provider,
-                    start,
-                    end,
-                )
-                if len(plan) == 5:
-                    info = plan[4]
-                    classify_start = (
-                        start
-                        if previous is None or json.loads(previous["session_info"]) != info
-                        else previous["coverage_end"]
-                    )
-                    if classify_start < end:
-                        classified = classify_ranges(info, classify_start, end)
+                if classify_start < end:
+                    classified = classify_ranges(info, classify_start, end)
 
-                        def multirange(
-                            ranges: list[tuple[datetime, datetime]],
-                        ) -> list[asyncpg.Range[datetime]]:
-                            return [
-                                asyncpg.Range(lo, hi, lower_inc=True, upper_inc=False)
-                                for lo, hi in ranges
-                            ]
+                    def multirange(
+                        ranges: list[tuple[datetime, datetime]],
+                    ) -> list[asyncpg.Range[datetime]]:
+                        return [
+                            asyncpg.Range(lo, hi, lower_inc=True, upper_inc=False)
+                            for lo, hi in ranges
+                        ]
 
-                        # Reclassification is atomic with persistence. Existing native bars
-                        # are positive evidence even when a calendar cannot classify them.
-                        await c.execute(
-                            """
-                            UPDATE candle_coverage SET
-                                not_expected=(not_expected -
-                                    tstzmultirange(tstzrange($3,$4,'[)'))) + $5::tstzmultirange,
-                                unknown=(unknown - tstzmultirange(tstzrange($3,$4,'[)'))) +
-                                    $6::tstzmultirange,
-                                session_info=$7::jsonb
-                            WHERE instrument_id=$1 AND provider=$2 AND price_basis='native'
-                        """,
-                            instrument_id,
-                            provider,
-                            classify_start,
-                            end,
-                            multirange(classified["NOT_EXPECTED"]),
-                            multirange(classified["UNKNOWN"]),
-                            json.dumps(info),
-                        )
+                    # Reclassification is atomic with persistence. Existing native bars
+                    # are positive evidence even when a calendar cannot classify them.
                     await c.execute(
                         """
-                        WITH supplied AS (SELECT
-                            coalesce(range_agg(tstzrange(bucket_start,bucket_end,'[)')),'{}'::tstzmultirange)
-                            AS ranges
-                            FROM market_candles WHERE instrument_id=$1 AND provider=$2 AND
-                                interval='1m' AND price_basis='native' AND bucket_start >= $3 AND
-                                bucket_start < $4)
-                        UPDATE candle_coverage SET missing=CASE WHEN $5 THEN
-                            tstzmultirange(tstzrange(coverage_start,coverage_end,'[)')) ELSE
-                            missing END
-                                -not_expected-unknown-supplied.ranges,
-                            not_expected=not_expected-supplied.ranges,
-                                unknown=unknown-supplied.ranges
-                        FROM supplied WHERE instrument_id=$1 AND provider=$2 AND
-                            price_basis='native'
+                        UPDATE candle_coverage SET
+                            not_expected=(not_expected -
+                                tstzmultirange(tstzrange($3,$4,'[)'))) + $5::tstzmultirange,
+                            unknown=(unknown - tstzmultirange(tstzrange($3,$4,'[)'))) +
+                                $6::tstzmultirange,
+                            session_info=$7::jsonb
+                        WHERE instrument_id=$1 AND provider=$2 AND price_basis='native'
                     """,
                         instrument_id,
                         provider,
                         classify_start,
                         end,
-                        previous is None or json.loads(previous["session_info"]) != info,
+                        multirange(classified["NOT_EXPECTED"]),
+                        multirange(classified["UNKNOWN"]),
+                        json.dumps(info),
                     )
-            if candles:
-                columns = (
-                    "instrument_id",
-                    "provider",
-                    "provider_symbol",
-                    "interval",
-                    "bucket_start",
-                    "bucket_end",
-                    "open",
-                    "high",
-                    "low",
-                    "close",
-                    "volume",
-                    "price_basis",
-                    "realtime_status",
-                    "source_status",
-                    "received_timestamp",
-                    "metadata",
-                    "payload",
+                await c.execute(
+                    """
+                    WITH supplied AS (SELECT
+                        coalesce(range_agg(tstzrange(bucket_start,bucket_end,'[)')),'{}'::tstzmultirange)
+                        AS ranges
+                        FROM market_candles WHERE instrument_id=$1 AND provider=$2 AND
+                            interval='1m' AND price_basis='native' AND bucket_start >= $3 AND
+                            bucket_start < $4)
+                    UPDATE candle_coverage SET missing=CASE WHEN $5 THEN
+                        tstzmultirange(tstzrange(coverage_start,coverage_end,'[)')) ELSE
+                        missing END
+                            -not_expected-unknown-supplied.ranges,
+                        not_expected=not_expected-supplied.ranges,
+                            unknown=unknown-supplied.ranges
+                    FROM supplied WHERE instrument_id=$1 AND provider=$2 AND
+                        price_basis='native'
+                """,
+                    instrument_id,
+                    provider,
+                    classify_start,
+                    end,
+                    previous is None or json.loads(previous["session_info"]) != info,
                 )
-                records = []
-                for candle in candles:
-                    fields = candle.model_dump()
-                    fields.update(
-                        metadata=json.dumps(candle.metadata), payload=candle.model_dump_json()
-                    )
-                    records.append(tuple(fields[name] for name in columns))
-                await c.execute("""CREATE TEMP TABLE IF NOT EXISTS candle_stage
-                    (LIKE market_candles INCLUDING DEFAULTS) ON COMMIT DELETE ROWS""")
-                await c.copy_records_to_table("candle_stage", records=records, columns=columns)
-                # Single owned writer; lock matched rows before audit + UPSERT.
-                await c.fetch("""SELECT m.bucket_start FROM market_candles m JOIN candle_stage s
-                    USING(instrument_id,provider,interval,bucket_start,price_basis) FOR UPDATE OF
-                        m""")
-                changes = await c.fetch("""
-                    INSERT INTO
-                        candle_revisions(instrument_id,provider,bucket_start,changed_fields,old_values,new_values)
-                    SELECT m.instrument_id,m.provider,m.bucket_start,
-                        ARRAY(SELECT key FROM
-                            jsonb_each(jsonb_build_object('open',s.open,'high',s.high,'low',s.low,'close',s.close,'volume',s.volume,'source_status',s.source_status,'realtime_status',s.realtime_status))
-                            e
-                            WHERE e.value IS DISTINCT FROM
-                                jsonb_build_object('open',m.open,'high',m.high,'low',m.low,'close',m.close,'volume',m.volume,'source_status',m.source_status,'realtime_status',m.realtime_status)->e.key),
-                        jsonb_build_object('open',m.open::text,'high',m.high::text,'low',m.low::text,'close',m.close::text,'volume',m.volume::text,'source_status',m.source_status,'realtime_status',m.realtime_status),
-                        jsonb_build_object('open',s.open::text,'high',s.high::text,'low',s.low::text,'close',s.close::text,'volume',s.volume::text,'source_status',s.source_status,'realtime_status',s.realtime_status)
-                    FROM market_candles m JOIN candle_stage s
-                        USING(instrument_id,provider,interval,bucket_start,price_basis)
-                    WHERE s.received_timestamp > m.received_timestamp AND
-                        (s.open,s.high,s.low,s.close,s.volume,s.source_status,s.realtime_status)
-                            IS DISTINCT FROM
-                        (m.open,m.high,m.low,m.close,m.volume,m.source_status,m.realtime_status)
-                    RETURNING instrument_id,provider,bucket_start,changed_fields,discovered_at
-                """)
-                revisions = [dict(r) for r in changes]
-                # Backfill provenance is historical fact; later corrections must
-                # not erase it when an overlap bar is no longer a recovery insert.
-                await c.execute("""
-                    UPDATE candle_stage s SET
-                        metadata=s.metadata || '{"backfilled":true}'::jsonb,
-                        payload=jsonb_set(s.payload,'{metadata,backfilled}','true'::jsonb,true)
-                    FROM market_candles m
-                    WHERE (s.instrument_id,s.provider,s.interval,s.bucket_start,s.price_basis)=
-                        (m.instrument_id,m.provider,m.interval,m.bucket_start,m.price_basis)
-                        AND coalesce((m.metadata->>'backfilled')::boolean,false)
-                """)
-                names = ",".join(columns)
-                written = await c.fetch(f"""
-                    WITH written AS (
-                    INSERT INTO market_candles ({names})
-                    SELECT DISTINCT ON (instrument_id,provider,interval,bucket_start,price_basis)
-                        {names} FROM candle_stage
-                    ORDER BY instrument_id,provider,interval,bucket_start,price_basis,
-                        received_timestamp DESC
-                    ON CONFLICT (instrument_id,provider,interval,bucket_start,price_basis)
-                    DO UPDATE SET open=EXCLUDED.open,high=EXCLUDED.high,low=EXCLUDED.low,
-                        close=EXCLUDED.close,volume=EXCLUDED.volume,
-                        realtime_status=EXCLUDED.realtime_status,source_status=EXCLUDED.source_status,
-                        received_timestamp=EXCLUDED.received_timestamp,
-                        metadata=EXCLUDED.metadata,payload=EXCLUDED.payload,updated_at=now()
-                    WHERE EXCLUDED.received_timestamp > market_candles.received_timestamp
-                        AND
-                            (EXCLUDED.open,EXCLUDED.high,EXCLUDED.low,EXCLUDED.close,EXCLUDED.volume,EXCLUDED.source_status,EXCLUDED.realtime_status)
-                            IS DISTINCT FROM
-                            (market_candles.open,market_candles.high,market_candles.low,market_candles.close,market_candles.volume,market_candles.source_status,market_candles.realtime_status)
-                    RETURNING instrument_id,provider,bucket_start,payload) SELECT * FROM written
-                """)
-                changed = len(written)
-                changed_candles = [MarketCandle.model_validate_json(r["payload"]) for r in written]
-                changed_keys = [
-                    (r["instrument_id"], r["provider"], r["bucket_start"]) for r in written
-                ]
-                await c.execute("""
-                    INSERT INTO latest_candles
-                        (instrument_id,provider,price_basis,bucket_start,received_timestamp,payload)
-                    SELECT DISTINCT ON (instrument_id,provider,price_basis)
-                        instrument_id,provider,price_basis,bucket_start,received_timestamp,payload
-                    FROM candle_stage ORDER BY instrument_id,provider,price_basis,
-                        bucket_start DESC,received_timestamp DESC
-                    ON CONFLICT (instrument_id,provider,price_basis) DO UPDATE SET
-                        bucket_start=EXCLUDED.bucket_start,
-                        received_timestamp=EXCLUDED.received_timestamp,payload=EXCLUDED.payload
-                    WHERE (EXCLUDED.bucket_start,EXCLUDED.received_timestamp) >
-                        (latest_candles.bucket_start,latest_candles.received_timestamp)
-                """)
-                await c.execute("""
-                    WITH filled AS (
-                        SELECT instrument_id,provider,price_basis,
-                            range_agg(tstzrange(bucket_start,bucket_end,'[)')) AS ranges
-                        FROM candle_stage GROUP BY instrument_id,provider,price_basis
-                    ) UPDATE candle_coverage c SET missing=c.missing-f.ranges,
-                        unknown=c.unknown-f.ranges,not_expected=c.not_expected-f.ranges
-                    FROM filled f WHERE (c.instrument_id,c.provider,c.price_basis)=
-                        (f.instrument_id,f.provider,f.price_basis)
-                """)
-                from marketdata.events import append_events
+        if candles:
+            columns = (
+                "instrument_id",
+                "provider",
+                "provider_symbol",
+                "interval",
+                "bucket_start",
+                "bucket_end",
+                "open",
+                "high",
+                "low",
+                "close",
+                "volume",
+                "price_basis",
+                "realtime_status",
+                "source_status",
+                "received_timestamp",
+                "metadata",
+                "payload",
+            )
+            records = []
+            for candle in candles:
+                fields = candle.model_dump()
+                fields.update(
+                    metadata=json.dumps(candle.metadata), payload=candle.model_dump_json()
+                )
+                records.append(tuple(fields[name] for name in columns))
+            await c.execute("""CREATE TEMP TABLE IF NOT EXISTS candle_stage
+                (LIKE market_candles INCLUDING DEFAULTS) ON COMMIT DELETE ROWS""")
+            await c.execute("TRUNCATE pg_temp.candle_stage")
+            await c.copy_records_to_table("candle_stage", records=records, columns=columns)
+            # Source advisory locks also protect previously absent business keys.
+            await c.fetch("""SELECT m.bucket_start FROM market_candles m JOIN candle_stage s
+                USING(instrument_id,provider,interval,bucket_start,price_basis) FOR UPDATE OF
+                    m""")
+            changes = await c.fetch("""
+                INSERT INTO
+                    candle_revisions(instrument_id,provider,bucket_start,changed_fields,old_values,new_values)
+                SELECT m.instrument_id,m.provider,m.bucket_start,
+                    ARRAY(SELECT key FROM
+                        jsonb_each(jsonb_build_object('open',s.open,'high',s.high,'low',s.low,'close',s.close,'volume',s.volume,'source_status',s.source_status,'realtime_status',s.realtime_status,'volume_type',s.metadata->'volume_type','volume_additive',s.metadata->'volume_additive'))
+                        e
+                        WHERE e.value IS DISTINCT FROM
+                            jsonb_build_object('open',m.open,'high',m.high,'low',m.low,'close',m.close,'volume',m.volume,'source_status',m.source_status,'realtime_status',m.realtime_status,'volume_type',m.metadata->'volume_type','volume_additive',m.metadata->'volume_additive')->e.key),
+                    jsonb_build_object('open',m.open::text,'high',m.high::text,'low',m.low::text,'close',m.close::text,'volume',m.volume::text,'source_status',m.source_status,'realtime_status',m.realtime_status,'volume_type',m.metadata->'volume_type','volume_additive',m.metadata->'volume_additive'),
+                    jsonb_build_object('open',s.open::text,'high',s.high::text,'low',s.low::text,'close',s.close::text,'volume',s.volume::text,'source_status',s.source_status,'realtime_status',s.realtime_status,'volume_type',s.metadata->'volume_type','volume_additive',s.metadata->'volume_additive')
+                FROM market_candles m JOIN candle_stage s
+                    USING(instrument_id,provider,interval,bucket_start,price_basis)
+                WHERE s.received_timestamp > m.received_timestamp
+                    AND NOT EXISTS (SELECT 1 FROM candle_observation_heads h
+                        WHERE (h.instrument_id,h.provider,h.interval,h.bucket_start,h.price_basis)=
+                            (s.instrument_id,s.provider,s.interval,s.bucket_start,s.price_basis)
+                        AND h.received_timestamp >= s.received_timestamp) AND
+                    (s.open,s.high,s.low,s.close,s.volume,s.source_status,s.realtime_status,s.metadata->'volume_type',s.metadata->'volume_additive')
+                        IS DISTINCT FROM
+                    (m.open,m.high,m.low,m.close,m.volume,m.source_status,m.realtime_status,m.metadata->'volume_type',m.metadata->'volume_additive')
+                RETURNING instrument_id,provider,bucket_start,changed_fields,discovered_at
+            """)
+            revisions = [dict(r) for r in changes]
+            # Backfill provenance is historical fact; later corrections must
+            # not erase it when an overlap bar is no longer a recovery insert.
+            await c.execute("""
+                UPDATE candle_stage s SET
+                    metadata=s.metadata || '{"backfilled":true}'::jsonb,
+                    payload=jsonb_set(s.payload,'{metadata,backfilled}','true'::jsonb,true)
+                FROM market_candles m
+                WHERE (s.instrument_id,s.provider,s.interval,s.bucket_start,s.price_basis)=
+                    (m.instrument_id,m.provider,m.interval,m.bucket_start,m.price_basis)
+                    AND coalesce((m.metadata->>'backfilled')::boolean,false)
+            """)
+            names = ",".join(columns)
+            written = await c.fetch(f"""
+                WITH written AS (
+                INSERT INTO market_candles ({names})
+                SELECT DISTINCT ON (instrument_id,provider,interval,bucket_start,price_basis)
+                    {names} FROM candle_stage s
+                WHERE NOT EXISTS (SELECT 1 FROM candle_observation_heads h
+                    WHERE (h.instrument_id,h.provider,h.interval,h.bucket_start,h.price_basis)=
+                        (s.instrument_id,s.provider,s.interval,s.bucket_start,s.price_basis)
+                    AND h.received_timestamp >= s.received_timestamp
+                    AND NOT ({restore_missing} AND NOT EXISTS (
+                        SELECT 1 FROM market_candles existing WHERE
+                        (existing.instrument_id,existing.provider,existing.interval,
+                         existing.bucket_start,existing.price_basis)=
+                        (s.instrument_id,s.provider,s.interval,s.bucket_start,s.price_basis))))
+                ORDER BY instrument_id,provider,interval,bucket_start,price_basis,
+                    received_timestamp DESC
+                ON CONFLICT (instrument_id,provider,interval,bucket_start,price_basis)
+                DO UPDATE SET open=EXCLUDED.open,high=EXCLUDED.high,low=EXCLUDED.low,
+                    close=EXCLUDED.close,volume=EXCLUDED.volume,
+                    realtime_status=EXCLUDED.realtime_status,source_status=EXCLUDED.source_status,
+                    received_timestamp=EXCLUDED.received_timestamp,
+                    metadata=EXCLUDED.metadata,payload=EXCLUDED.payload,updated_at=now()
+                WHERE EXCLUDED.received_timestamp > market_candles.received_timestamp
+                    AND
+                        (EXCLUDED.open,EXCLUDED.high,EXCLUDED.low,EXCLUDED.close,EXCLUDED.volume,EXCLUDED.source_status,EXCLUDED.realtime_status,EXCLUDED.metadata->'volume_type',EXCLUDED.metadata->'volume_additive')
+                        IS DISTINCT FROM
+                        (market_candles.open,market_candles.high,market_candles.low,market_candles.close,market_candles.volume,market_candles.source_status,market_candles.realtime_status,market_candles.metadata->'volume_type',market_candles.metadata->'volume_additive')
+                RETURNING instrument_id,provider,bucket_start,payload) SELECT * FROM written
+            """)
+            changed = len(written)
+            changed_candles = [MarketCandle.model_validate_json(r["payload"]) for r in written]
+            changed_keys = [(r["instrument_id"], r["provider"], r["bucket_start"]) for r in written]
+            await c.execute("""
+                INSERT INTO latest_candles
+                    (instrument_id,provider,price_basis,bucket_start,received_timestamp,payload)
+                SELECT DISTINCT ON (instrument_id,provider,price_basis)
+                    instrument_id,provider,price_basis,bucket_start,received_timestamp,payload
+                FROM candle_stage s
+                WHERE NOT EXISTS (SELECT 1 FROM candle_observation_heads h
+                    WHERE (h.instrument_id,h.provider,h.interval,h.bucket_start,h.price_basis)=
+                        (s.instrument_id,s.provider,s.interval,s.bucket_start,s.price_basis)
+                    AND h.received_timestamp >= s.received_timestamp)
+                ORDER BY instrument_id,provider,price_basis,
+                    bucket_start DESC,received_timestamp DESC
+                ON CONFLICT (instrument_id,provider,price_basis) DO UPDATE SET
+                    bucket_start=EXCLUDED.bucket_start,
+                    received_timestamp=EXCLUDED.received_timestamp,payload=EXCLUDED.payload
+                WHERE (EXCLUDED.bucket_start,EXCLUDED.received_timestamp) >
+                    (latest_candles.bucket_start,latest_candles.received_timestamp)
+            """)
+            await c.execute("""
+                WITH filled AS (
+                    SELECT instrument_id,provider,price_basis,
+                        range_agg(tstzrange(bucket_start,bucket_end,'[)')) AS ranges
+                    FROM candle_stage GROUP BY instrument_id,provider,price_basis
+                ) UPDATE candle_coverage c SET missing=c.missing-f.ranges,
+                    unknown=c.unknown-f.ranges,not_expected=c.not_expected-f.ranges
+                FROM filled f WHERE (c.instrument_id,c.provider,c.price_basis)=
+                    (f.instrument_id,f.provider,f.price_basis)
+            """)
+            # Identical observations advance ordering without changing historical receipts,
+            # revisions or financial events. Older corrections cannot exploit a no-op gap.
+            await c.execute("""
+                INSERT INTO candle_observation_heads
+                    (instrument_id,provider,interval,bucket_start,price_basis,received_timestamp)
+                SELECT instrument_id,provider,interval,bucket_start,price_basis,received_timestamp
+                FROM candle_stage
+                ON CONFLICT (instrument_id,provider,interval,bucket_start,price_basis)
+                DO UPDATE SET received_timestamp=greatest(
+                    candle_observation_heads.received_timestamp,EXCLUDED.received_timestamp)
+            """)
+            from marketdata.events import append_events
 
-                corrected = {
-                    (r["instrument_id"], r["provider"], r["bucket_start"]) for r in revisions
-                }
-                await append_events(
-                    c,
-                    [
-                        (
-                            "candle_corrected"
-                            if (bar.instrument_id, bar.provider, bar.bucket_start) in corrected
-                            else "candle_completed",
-                            bar,
-                        )
-                        for bar in changed_candles
-                    ],
-                    self.settings.marketdata_event_retention_count,
-                )
-        self.last_candle_write = {
+            corrected = {(r["instrument_id"], r["provider"], r["bucket_start"]) for r in revisions}
+            if self.settings.source_capture_enabled:
+                from marketdata.source_capture import append_candles
+
+                await append_candles(c, self, changed_candles, corrected=corrected)
+
+            await append_events(
+                c,
+                [
+                    (
+                        "candle_corrected"
+                        if (bar.instrument_id, bar.provider, bar.bucket_start) in corrected
+                        else "candle_completed",
+                        bar,
+                    )
+                    for bar in changed_candles
+                ],
+                self.settings.marketdata_event_retention_count,
+            )
+        return {
             "corrections": revisions,
             "changed": changed,
             "changed_keys": changed_keys,
             "changed_candles": changed_candles,
         }
-        return changed
+
+    async def apply_coverage_in_transaction(
+        self,
+        c: Any,
+        instrument_id: UUID,
+        provider: str,
+        start: datetime,
+        end: datetime,
+        unknown: list[tuple[datetime, datetime]],
+        not_expected: list[tuple[datetime, datetime]],
+        session_info: dict[str, Any],
+    ) -> None:
+        """Merge a declared source window; destination bars, not source claims, fill gaps.
+
+        The replication layer validates/orders this snapshot. Untracked bridges stay unknown.
+        Ordinary collector callers continue using write_candles' existing coverage plans.
+        """
+        self.require_transaction(c)
+        await self.lock_sources(c, [(instrument_id, provider)])
+        await c.execute(
+            """INSERT INTO candle_coverage
+                (instrument_id,provider,price_basis,coverage_start,coverage_end)
+                VALUES ($1,$2,'native',$3,$4) ON CONFLICT DO NOTHING""",
+            instrument_id,
+            provider,
+            start,
+            end,
+        )
+        await c.execute(
+            """
+            WITH input AS (
+                SELECT tstzmultirange(tstzrange($3,$4,'[)')) AS window,
+                    $5::tstzmultirange AS unknown,$6::tstzmultirange AS not_expected
+            ), supplied AS (
+                SELECT coalesce(range_agg(tstzrange(bucket_start,bucket_end,'[)')),
+                    '{}'::tstzmultirange) AS bars FROM market_candles
+                WHERE instrument_id=$1 AND provider=$2 AND interval='1m' AND price_basis='native'
+            ) UPDATE candle_coverage cc SET
+                unknown=((cc.unknown-input.window)+input.unknown+
+                    (tstzmultirange(tstzrange(least(cc.coverage_start,$3),
+                        greatest(cc.coverage_end,$4),'[)'))-
+                     tstzmultirange(tstzrange(cc.coverage_start,cc.coverage_end,'[)'))-
+                     input.window))-supplied.bars,
+                not_expected=((cc.not_expected-input.window)+input.not_expected)-supplied.bars,
+                missing=((cc.missing-input.window)+
+                    (input.window-input.unknown-input.not_expected))-supplied.bars,
+                coverage_start=least(cc.coverage_start,$3),
+                coverage_end=greatest(cc.coverage_end,$4),session_info=$7::jsonb
+            FROM input,supplied WHERE cc.instrument_id=$1 AND cc.provider=$2
+                AND cc.price_basis='native'
+            """,
+            instrument_id,
+            provider,
+            start,
+            end,
+            [asyncpg.Range(lo, hi, lower_inc=True, upper_inc=False) for lo, hi in unknown],
+            [asyncpg.Range(lo, hi, lower_inc=True, upper_inc=False) for lo, hi in not_expected],
+            json.dumps(session_info),
+        )
 
     async def native_candles(
         self,

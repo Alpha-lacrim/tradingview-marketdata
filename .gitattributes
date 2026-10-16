@@ -7,3 +7,7 @@
 /docs/business-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 /docs/business-*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 /docs/ordinary-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Preserve candidate payload checksums in fresh Windows and Linux checkouts.
+/distributions/marketdata-fastapi-v1.1.0rc1/** text=auto eol=lf
+/distributions/marketdata-collector-sync-v1.1.0rc1/** text=auto eol=lf

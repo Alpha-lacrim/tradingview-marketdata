@@ -2,6 +2,7 @@
 
 import base64
 import json
+from datetime import datetime
 from typing import Any
 from uuid import UUID
 
@@ -67,6 +68,21 @@ async def append_events(
             if isinstance(observation, MarketCandle)
             else {}
         )
+        if isinstance(observation, Tick):
+            primary = observation.metadata.get("source_capture_primary")
+            if isinstance(primary, dict):
+                safe_times = {}
+                for name in ("event_timestamp", "received_timestamp"):
+                    value = primary.get(name)
+                    if isinstance(value, str) and len(value) <= 40:
+                        try:
+                            timestamp = datetime.fromisoformat(value)
+                            if timestamp.tzinfo is not None:
+                                safe_times[name] = timestamp.isoformat()
+                        except ValueError:
+                            pass
+                if safe_times:
+                    payload["metadata"] = {"source_capture_primary": safe_times}
         records.append(
             (
                 offset,

@@ -1,0 +1,302 @@
+{
+  "milestone": "3A",
+  "status": "implemented; isolated verification passed; stop for review",
+  "verified_utc": "2026-10-15T19:51:42.406049+00:00",
+  "git_head": "4cedaedb172d89ca3d2566bcea477c8296643592",
+  "schemas": {
+    "destination": "0009",
+    "source_base": "0006",
+    "source_extension": "sc0001",
+    "source_version_table": "source_capture_version",
+    "installed_legacy_revision": "0004 by prior evidence; not queried now"
+  },
+  "environment": {
+    "python": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 13:17:27) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "engines": {
+      "postgres16": {
+        "port": 55975,
+        "postgresql": "PostgreSQL 16.1 (Debian 16.1-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit",
+        "timescale": null,
+        "destination_head": "0009",
+        "databases_after_tests": [
+          "marketdata_v11_m3a_test",
+          "postgres"
+        ]
+      },
+      "timescale": {
+        "port": 55976,
+        "postgresql": "PostgreSQL 17.7 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "timescale": "2.25.1",
+        "destination_head": "0009",
+        "databases_after_tests": [
+          "marketdata_v11_m3a_test",
+          "postgres"
+        ]
+      }
+    }
+  },
+  "task_runtime": {
+    "wsl_distribution": "marketdata-v11-m3a-test",
+    "docker_version": "27.5.1",
+    "docker_socket": "unix:///tmp/marketdata-v11-m3a/docker.sock",
+    "data_exec_root": "/tmp/marketdata-v11-m3a",
+    "containers": [
+      {
+        "name": "/marketdata-v11-m3a-pg16-test",
+        "id": "17a831c515cded6c942f6d9eceb583b72db77b43764c68706637ab8493ca6045",
+        "image": "sha256:b0b90c1d9579032974dc7a3914392004b29e31c071524575b45ee9985f1c43ba",
+        "labels": {
+          "marketdata.task": "v11-m3a"
+        },
+        "tmpfs": {
+          "/var/lib/postgresql/data": "rw,size=1073741824"
+        },
+        "mounts": [],
+        "network": "host"
+      },
+      {
+        "name": "/marketdata-v11-m3a-ts-test",
+        "id": "cce73724bc3a408dd78dc9a5924bb0f2ea78b1a4db6e32300b39b3170ab07964",
+        "image": "sha256:7dff1ae24935a6ea378193ea6fbfa35cb5d78454aeaca198d6b65b5c65951d8e",
+        "labels": {
+          "maintainer": "Timescale https://www.timescale.com",
+          "marketdata.task": "v11-m3a"
+        },
+        "tmpfs": {
+          "/var/lib/postgresql/data": "rw,size=1073741824"
+        },
+        "mounts": [],
+        "network": "host"
+      }
+    ],
+    "cleanup": "completed: exact labelled tmpfs containers stopped/removed; verified task-only dockerd shut down cleanly; task WSL distribution unregistered after checking its absolute workspace path; task ports closed",
+    "closed_ports": {
+      "55975": true,
+      "55976": true
+    }
+  },
+  "results": {
+    "pg16": {
+      "junit": "artifacts\\v11-m3a-releasecheck-pg16.xml",
+      "tests": 580,
+      "passed": 572,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 8,
+      "seconds": 182.445,
+      "skip_cases": [
+        {
+          "name": "test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "name": "test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "name": "test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "name": "test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "name": "test_candles_trade_volume_mid_and_all_intervals[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "name": "test_candle_ties_are_deterministic_after_refresh[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "name": "test_candle_pagination_preserves_multiple_statuses_in_same_bucket[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "name": "test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ],
+      "failed_cases": [],
+      "source_cases": 22
+    },
+    "timescale": {
+      "junit": "artifacts\\v11-m3a-releasecheck-timescale.xml",
+      "tests": 580,
+      "passed": 575,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 5,
+      "seconds": 202.162,
+      "skip_cases": [
+        {
+          "name": "test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "name": "test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "name": "test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "name": "test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "name": "test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ],
+      "failed_cases": [],
+      "source_cases": 22
+    }
+  },
+  "source_tests": {
+    "total_per_engine": 22,
+    "unit": 1,
+    "real_database": 21,
+    "skipped": 0
+  },
+  "initial_parallel_timescale_run": {
+    "junit": "artifacts\\v11-m3a-full-timescale.xml",
+    "tests": 575,
+    "passed": 569,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 5,
+    "seconds": 204.334,
+    "skip_cases": [
+      {
+        "name": "test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+        "reason": "requires the task-owned Batch 4 container"
+      },
+      {
+        "name": "test_old_quote_stays_stale_across_released_api_restarts",
+        "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+      },
+      {
+        "name": "test_dual_collector_to_exact_released_api_outage_recovery_replay",
+        "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+      },
+      {
+        "name": "test_actual_postgresql_outage_then_journal_and_rest_recover",
+        "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+      },
+      {
+        "name": "test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+        "reason": "requires built Batch 4 image and disposable database container"
+      }
+    ],
+    "failed_cases": [
+      {
+        "name": "test_database_error_and_query_timeout_are_503",
+        "message": "RuntimeError: API database startup unavailable"
+      }
+    ],
+    "source_cases": 17
+  },
+  "timeout_recheck": {
+    "junit": "artifacts\\v11-m3a-timescale-timeout-recheck.xml",
+    "tests": 1,
+    "passed": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 0.597,
+    "skip_cases": [],
+    "failed_cases": [],
+    "source_cases": 0
+  },
+  "savepoint_targeted_check": {
+    "junit": "artifacts\\v11-m3a-savepoint-timescale.xml",
+    "tests": 1,
+    "passed": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 3.183,
+    "skip_cases": [],
+    "failed_cases": [],
+    "source_cases": 1
+  },
+  "checks": {
+    "ruff_check": "passed",
+    "ruff_format": "242 files pass",
+    "mypy": "45 source files pass",
+    "compose_config": "passed",
+    "git_diff_check": "passed",
+    "alembic_heads": {
+      "destination": "0009",
+      "source": "sc0001"
+    },
+    "frozen_manifest": "53 managed file hashes pass",
+    "frozen_zip": "66 entries, CRC and normalized directory comparison pass; all 53 managed manifest hashes pass"
+  },
+  "preservation": {
+    "baseline": "artifacts/v11-m3a-baseline.json",
+    "only_existing_executable_files_changed": [
+      "src/marketdata/config.py",
+      "src/marketdata/events.py",
+      "src/marketdata/persistence.py",
+      "src/marketdata/price_selection.py",
+      "src/marketdata/providers/tradingview.py"
+    ],
+    "destination_migrations": {
+      "migrations/versions/0007_destination_ingestion.py": "c02140a4ef900d44c09c643714b70b1979ba14595d6aa65cdba8fb64ad94313e",
+      "migrations/versions/0008_ingestion_runtime.py": "f1de2165159f2c16bf914e05801f921ddf85672fa76348f39ba6e2ffe74fc896",
+      "migrations/versions/0009_session_recovery.py": "d039b91de2748ca4a06c675adaa7c01c5f1f2761e340edcf10e4acec450376ff"
+    },
+    "frozen_zip_sha256": "3a3ca216098a0f2a6632a8dcdb1dfb96af116a4c079c825876f253fbd8cea67a",
+    "frozen_baseline_files_unchanged": true,
+    "live_collector_sql_or_lifecycle_changes": false,
+    "live_collector_database_content_hash": "not taken; no access to source data/volumes",
+    "commit_push_deploy": false
+  },
+  "changed_files": [
+    ".env.example",
+    "alembic-source.ini",
+    "compose.v11-m3a-test.yaml",
+    "source_migrations/env.py",
+    "source_migrations/versions/sc0001_local_capture.py",
+    "src/marketdata/source_capture.py",
+    "src/marketdata/config.py",
+    "src/marketdata/events.py",
+    "src/marketdata/persistence.py",
+    "src/marketdata/price_selection.py",
+    "src/marketdata/providers/tradingview.py",
+    "tests/test_source_capture.py",
+    "docs/fastapi-v1.1-source-capture.md",
+    "docs/fastapi-v1.1-milestone3a.md",
+    "docs/fastapi-v1.1-milestone3a-verification.json",
+    "README.md",
+    "CODEX.md",
+    "HANDOFF.md"
+  ],
+  "code_sha256": {
+    "alembic-source.ini": "c03c044a605bc108af53f7ca81c9955ce34c8e7523674497736976ad3d6809da",
+    "compose.v11-m3a-test.yaml": "d307559a81474402de91d8e62ff159c273c19bde7158b6b9e19fba46279054b5",
+    "source_migrations/env.py": "50f00621498d9fb7390c4c2d5b8c3414f7804a5bb332eae65a89a224c3da0a14",
+    "source_migrations/versions/sc0001_local_capture.py": "4108efe9624be05b43ed944b851c5228f38a7207abacf8737647563816eaf8e4",
+    "src/marketdata/source_capture.py": "7b4b00afed0738d8023ed06345f60310629ffe2b5449da05a4d72eabbe5c83a6",
+    "src/marketdata/config.py": "1d11530972d752b1e9a76c42ccc27e921f71794642d00e677569400acb023a03",
+    "src/marketdata/events.py": "bc3df67b531a7af5b06a2df5914f92ef5b7615d599c0305e57a4e9107288d10d",
+    "src/marketdata/persistence.py": "05afcd01126b2891e513dd097ef432acdb4c0d191340ea1e4d50feb9babbd260",
+    "src/marketdata/price_selection.py": "c210d0374ad07d340cb70b3d69c5ef754ff58ae770b383a12e5bab14d275d813",
+    "src/marketdata/providers/tradingview.py": "f4771a2fbf87095bf5d61e284564a73269534e58ec5ed4f0084794fa562835a4",
+    "tests/test_source_capture.py": "f7ef8b8fc632cdc37117b510036279eb493f6bad7a47ea97c06da9ce7bee4578"
+  },
+  "not_run": [
+    "Live TradingView/dual quote qualification",
+    "Full HTTPS synchronization worker/end-to-end WAN delivery",
+    "Physical laptop sleep/reboot and company outage recovery via future worker",
+    "Automatic source database restore/clone reconciliation",
+    "Frozen schema0006 runtime suites in this milestone",
+    "Company deployment or v1.1 release packaging"
+  ],
+  "remaining_integration_gate": "Destination latest ordering for coalesced quote versions/primary-field switches/equal-time snapshots must be reviewed/tested in milestone3B; no timestamp or ownership bypass"
+}

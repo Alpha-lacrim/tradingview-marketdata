@@ -1,0 +1,21 @@
+[Unit]
+Description=Durable market-data HTTPS synchronization
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+[Service]
+User=marketdata-sync
+Group=marketdata-sync
+WorkingDirectory=/opt/marketdata-collector-sync
+ExecStart=/opt/marketdata-collector-sync/.venv/bin/python -m marketdata.sync_worker --config /etc/marketdata-sync/worker.json
+Restart=on-failure
+RestartSec=15
+TimeoutStopSec=35
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/marketdata-sync
+[Install]
+WantedBy=multi-user.target

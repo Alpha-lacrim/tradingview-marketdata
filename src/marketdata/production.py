@@ -16,7 +16,7 @@ class DeploymentSettings(Settings):
 
 def command(role: str) -> list[str]:
     os.environ["API_ENVIRONMENT"] = "production"
-    os.environ["APPLICATION_ROLE"] = "api" if role == "api" else "collector"
+    os.environ["APPLICATION_ROLE"] = role if role in {"api", "ingest"} else "collector"
     fields = ("DATABASE_URL", "API_KEY") if role == "api" else ("DATABASE_URL",)
     for field in fields:
         path = Path(os.environ.get(field + "_FILE", "/run/secrets/" + field.lower()))
@@ -39,7 +39,7 @@ def command(role: str) -> list[str]:
         sys.executable,
         "-m",
         "uvicorn",
-        "marketdata.api:create_app",
+        "marketdata.ingest_api:create_app" if role == "ingest" else "marketdata.api:create_app",
         "--factory",
         "--host",
         "0.0.0.0",
@@ -68,7 +68,7 @@ def command(role: str) -> list[str]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("role", choices=("api", "collector", "migrate"))
+    parser.add_argument("role", choices=("api", "ingest", "collector", "migrate"))
     args = parser.parse_args()
     try:
         arguments = command(args.role)

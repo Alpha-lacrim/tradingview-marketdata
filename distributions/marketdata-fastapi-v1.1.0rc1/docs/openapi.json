@@ -1,0 +1,4984 @@
+{
+  "components": {
+    "schemas": {
+      "AssetClass": {
+        "enum": [
+          "crypto",
+          "forex",
+          "metals",
+          "energy",
+          "futures"
+        ],
+        "title": "AssetClass",
+        "type": "string"
+      },
+      "Candle": {
+        "properties": {
+          "bucket": {
+            "format": "date-time",
+            "title": "Bucket",
+            "type": "string"
+          },
+          "bucket_end": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bucket End"
+          },
+          "bucket_start": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bucket Start"
+          },
+          "canonical_symbol": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical Symbol"
+          },
+          "close": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Close",
+            "type": "string"
+          },
+          "complete": {
+            "default": false,
+            "title": "Complete",
+            "type": "boolean"
+          },
+          "high": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "High",
+            "type": "string"
+          },
+          "instrument_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instrument Id"
+          },
+          "low": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Low",
+            "type": "string"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "title": "Metadata",
+            "type": "object"
+          },
+          "observations": {
+            "title": "Observations",
+            "type": "integer"
+          },
+          "open": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Open",
+            "type": "string"
+          },
+          "price_basis": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price Basis"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_symbol": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider Symbol"
+          },
+          "realtime_status": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "received_timestamp": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Received Timestamp"
+          },
+          "source_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Status"
+          },
+          "volume": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Volume"
+          }
+        },
+        "required": [
+          "bucket",
+          "provider",
+          "realtime_status",
+          "open",
+          "high",
+          "low",
+          "close",
+          "volume",
+          "observations"
+        ],
+        "title": "Candle",
+        "type": "object"
+      },
+      "CandleEvent": {
+        "properties": {
+          "cursor": {
+            "title": "Cursor",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CompletedCandle"
+          },
+          "event_id": {
+            "title": "Event Id",
+            "type": "string"
+          },
+          "persisted": {
+            "const": true,
+            "default": true,
+            "title": "Persisted",
+            "type": "boolean"
+          },
+          "recorded_at": {
+            "format": "date-time",
+            "title": "Recorded At",
+            "type": "string"
+          },
+          "server_timestamp": {
+            "format": "date-time",
+            "title": "Server Timestamp",
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "candle_completed",
+              "candle_corrected"
+            ],
+            "title": "Type",
+            "type": "string"
+          },
+          "version": {
+            "const": 1,
+            "default": 1,
+            "title": "Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "server_timestamp",
+          "type",
+          "cursor",
+          "event_id",
+          "recorded_at",
+          "data"
+        ],
+        "title": "CandleEvent",
+        "type": "object"
+      },
+      "CandlePage": {
+        "properties": {
+          "basis": {
+            "enum": [
+              "last",
+              "mid",
+              "native"
+            ],
+            "title": "Basis",
+            "type": "string"
+          },
+          "interval": {
+            "title": "Interval",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Candle"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_after_status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DataStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "next_start": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Start"
+          }
+        },
+        "required": [
+          "items",
+          "interval",
+          "basis"
+        ],
+        "title": "CandlePage",
+        "type": "object"
+      },
+      "ChangePage": {
+        "properties": {
+          "cursor": {
+            "title": "Cursor",
+            "type": "string"
+          },
+          "has_more": {
+            "title": "Has More",
+            "type": "boolean"
+          },
+          "items": {
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/PriceEvent"
+                },
+                {
+                  "$ref": "#/components/schemas/CandleEvent"
+                }
+              ]
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "until": {
+            "title": "Until",
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "cursor",
+          "until",
+          "has_more"
+        ],
+        "title": "ChangePage",
+        "type": "object"
+      },
+      "ChartData": {
+        "additionalProperties": false,
+        "description": "Go dashboard contract; zeros may represent unavailable metrics.",
+        "properties": {
+          "a": {
+            "description": "Persisted candle bucket start, Unix seconds",
+            "items": {
+              "type": "integer"
+            },
+            "title": "A",
+            "type": "array"
+          },
+          "b": {
+            "description": "Open as IEEE-754 float64",
+            "items": {
+              "type": "number"
+            },
+            "title": "B",
+            "type": "array"
+          },
+          "c": {
+            "description": "Close as IEEE-754 float64",
+            "items": {
+              "type": "number"
+            },
+            "title": "C",
+            "type": "array"
+          },
+          "d": {
+            "description": "High as IEEE-754 float64",
+            "items": {
+              "type": "number"
+            },
+            "title": "D",
+            "type": "array"
+          },
+          "e": {
+            "description": "Low as IEEE-754 float64",
+            "items": {
+              "type": "number"
+            },
+            "title": "E",
+            "type": "array"
+          },
+          "f": {
+            "description": "Count unavailable in schema 0006; compatibility zero",
+            "items": {
+              "type": "integer"
+            },
+            "title": "F",
+            "type": "array"
+          },
+          "g": {
+            "description": "Stored source volume, or compatibility zero",
+            "items": {
+              "type": "number"
+            },
+            "title": "G",
+            "type": "array"
+          },
+          "h": {
+            "description": "Value unavailable in schema 0006; compatibility zero",
+            "items": {
+              "type": "number"
+            },
+            "title": "H",
+            "type": "array"
+          }
+        },
+        "required": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h"
+        ],
+        "title": "ChartData",
+        "type": "object"
+      },
+      "CompletedCandle": {
+        "properties": {
+          "base_interval": {
+            "const": "1m",
+            "default": "1m",
+            "title": "Base Interval",
+            "type": "string"
+          },
+          "broker": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Configured FX broker namespace; null if absent",
+            "title": "Broker"
+          },
+          "bucket_end": {
+            "format": "date-time",
+            "title": "Bucket End",
+            "type": "string"
+          },
+          "bucket_start": {
+            "format": "date-time",
+            "title": "Bucket Start",
+            "type": "string"
+          },
+          "canonical_symbol": {
+            "title": "Canonical Symbol",
+            "type": "string"
+          },
+          "close": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Close",
+            "type": "string"
+          },
+          "complete": {
+            "description": "All base minutes exist; elapsed partial buckets stay visible",
+            "title": "Complete",
+            "type": "boolean"
+          },
+          "expected_observations": {
+            "title": "Expected Observations",
+            "type": "integer"
+          },
+          "high": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "High",
+            "type": "string"
+          },
+          "instrument_id": {
+            "format": "uuid",
+            "title": "Instrument Id",
+            "type": "string"
+          },
+          "interval": {
+            "enum": [
+              "1m",
+              "5m",
+              "15m",
+              "1h",
+              "1d"
+            ],
+            "title": "Interval",
+            "type": "string"
+          },
+          "low": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Low",
+            "type": "string"
+          },
+          "observations": {
+            "title": "Observations",
+            "type": "integer"
+          },
+          "open": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Open",
+            "type": "string"
+          },
+          "origin": {
+            "enum": [
+              "native",
+              "derived"
+            ],
+            "title": "Origin",
+            "type": "string"
+          },
+          "price_basis": {
+            "const": "native",
+            "default": "native",
+            "title": "Price Basis",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_symbol": {
+            "description": "Exact persisted source symbol; never rewritten",
+            "title": "Provider Symbol",
+            "type": "string"
+          },
+          "realtime_status": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "received_timestamp": {
+            "format": "date-time",
+            "title": "Received Timestamp",
+            "type": "string"
+          },
+          "source_status": {
+            "title": "Source Status",
+            "type": "string"
+          },
+          "venue": {
+            "title": "Venue",
+            "type": "string"
+          },
+          "volume": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Source volume only; null if units are unavailable",
+            "title": "Volume"
+          },
+          "volume_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Volume Type"
+          }
+        },
+        "required": [
+          "instrument_id",
+          "canonical_symbol",
+          "provider",
+          "provider_symbol",
+          "venue",
+          "broker",
+          "interval",
+          "origin",
+          "bucket_start",
+          "bucket_end",
+          "open",
+          "high",
+          "low",
+          "close",
+          "volume",
+          "realtime_status",
+          "source_status",
+          "received_timestamp",
+          "observations",
+          "expected_observations",
+          "complete"
+        ],
+        "title": "CompletedCandle",
+        "type": "object"
+      },
+      "CoverageItem": {
+        "properties": {
+          "broker": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Configured FX broker namespace; null if absent",
+            "title": "Broker"
+          },
+          "canonical_symbol": {
+            "title": "Canonical Symbol",
+            "type": "string"
+          },
+          "coverage_state": {
+            "enum": [
+              "complete",
+              "gaps",
+              "unknown"
+            ],
+            "title": "Coverage State",
+            "type": "string"
+          },
+          "end": {
+            "format": "date-time",
+            "title": "End",
+            "type": "string"
+          },
+          "expected_minutes": {
+            "title": "Expected Minutes",
+            "type": "integer"
+          },
+          "initially_missing_candles": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Null: the current schema has no complete initial-missing ledger",
+            "title": "Initially Missing Candles"
+          },
+          "instrument_id": {
+            "format": "uuid",
+            "title": "Instrument Id",
+            "type": "string"
+          },
+          "latest_completed_bucket": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Completed Bucket"
+          },
+          "latest_persisted_bucket": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Persisted Bucket"
+          },
+          "missing_ranges": {
+            "items": {
+              "$ref": "#/components/schemas/GapRange"
+            },
+            "title": "Missing Ranges",
+            "type": "array"
+          },
+          "missing_ranges_truncated": {
+            "title": "Missing Ranges Truncated",
+            "type": "boolean"
+          },
+          "not_expected_minutes": {
+            "title": "Not Expected Minutes",
+            "type": "integer"
+          },
+          "persisted_completed_candles": {
+            "title": "Persisted Completed Candles",
+            "type": "integer"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_symbol": {
+            "description": "Exact persisted source symbol; never rewritten",
+            "title": "Provider Symbol",
+            "type": "string"
+          },
+          "recovered_candles": {
+            "description": "Persisted minutes carrying backfilled provenance",
+            "title": "Recovered Candles",
+            "type": "integer"
+          },
+          "start": {
+            "format": "date-time",
+            "title": "Start",
+            "type": "string"
+          },
+          "tracked_end": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tracked End"
+          },
+          "tracked_start": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tracked Start"
+          },
+          "unknown_minutes": {
+            "title": "Unknown Minutes",
+            "type": "integer"
+          },
+          "unresolved_expected_gaps": {
+            "title": "Unresolved Expected Gaps",
+            "type": "integer"
+          },
+          "venue": {
+            "title": "Venue",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instrument_id",
+          "canonical_symbol",
+          "provider",
+          "provider_symbol",
+          "venue",
+          "broker",
+          "start",
+          "end",
+          "tracked_start",
+          "tracked_end",
+          "expected_minutes",
+          "persisted_completed_candles",
+          "recovered_candles",
+          "unresolved_expected_gaps",
+          "not_expected_minutes",
+          "unknown_minutes",
+          "latest_completed_bucket",
+          "latest_persisted_bucket",
+          "coverage_state",
+          "missing_ranges",
+          "missing_ranges_truncated"
+        ],
+        "title": "CoverageItem",
+        "type": "object"
+      },
+      "CoveragePage": {
+        "properties": {
+          "as_of": {
+            "format": "date-time",
+            "title": "As Of",
+            "type": "string"
+          },
+          "end": {
+            "format": "date-time",
+            "title": "End",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/CoverageItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_after": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next After"
+          },
+          "start": {
+            "format": "date-time",
+            "title": "Start",
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "start",
+          "end",
+          "as_of"
+        ],
+        "title": "CoveragePage",
+        "type": "object"
+      },
+      "DataStatus": {
+        "enum": [
+          "realtime",
+          "delayed",
+          "indicative",
+          "simulated",
+          "end_of_day",
+          "unknown"
+        ],
+        "title": "DataStatus",
+        "type": "string"
+      },
+      "ErrorBody": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ErrorBody",
+        "type": "object"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorBody"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse",
+        "type": "object"
+      },
+      "GapRange": {
+        "properties": {
+          "end": {
+            "format": "date-time",
+            "title": "End",
+            "type": "string"
+          },
+          "start": {
+            "format": "date-time",
+            "title": "Start",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "title": "GapRange",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "Health": {
+        "properties": {
+          "database": {
+            "title": "Database",
+            "type": "boolean"
+          },
+          "database_state": {
+            "enum": [
+              "healthy",
+              "degraded"
+            ],
+            "title": "Database State",
+            "type": "string"
+          },
+          "ingestion_database_state": {
+            "default": "unknown",
+            "enum": [
+              "healthy",
+              "degraded",
+              "unknown"
+            ],
+            "title": "Ingestion Database State",
+            "type": "string"
+          },
+          "ingestion_running": {
+            "title": "Ingestion Running",
+            "type": "boolean"
+          },
+          "ingestion_state": {
+            "default": "unknown",
+            "enum": [
+              "running",
+              "stopped",
+              "unknown"
+            ],
+            "title": "Ingestion State",
+            "type": "string"
+          },
+          "provider_states": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Provider States",
+            "type": "object"
+          },
+          "provider_transports": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Provider Transports",
+            "type": "object"
+          },
+          "queue_depth": {
+            "title": "Queue Depth",
+            "type": "integer"
+          },
+          "status": {
+            "enum": [
+              "ok",
+              "degraded"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "streaming_mode": {
+            "default": "unavailable",
+            "enum": [
+              "local",
+              "database",
+              "unavailable"
+            ],
+            "title": "Streaming Mode",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "database",
+          "database_state",
+          "ingestion_running",
+          "queue_depth",
+          "provider_states",
+          "provider_transports"
+        ],
+        "title": "Health",
+        "type": "object"
+      },
+      "HistoricalCandlePage": {
+        "properties": {
+          "as_of": {
+            "format": "date-time",
+            "title": "As Of",
+            "type": "string"
+          },
+          "end": {
+            "format": "date-time",
+            "title": "End",
+            "type": "string"
+          },
+          "interval": {
+            "enum": [
+              "1m",
+              "5m",
+              "15m",
+              "1h",
+              "1d"
+            ],
+            "title": "Interval",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/CompletedCandle"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "start": {
+            "format": "date-time",
+            "title": "Start",
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "interval",
+          "start",
+          "end",
+          "as_of"
+        ],
+        "title": "HistoricalCandlePage",
+        "type": "object"
+      },
+      "Instrument": {
+        "additionalProperties": false,
+        "properties": {
+          "active": {
+            "default": true,
+            "title": "Active",
+            "type": "boolean"
+          },
+          "asset_class": {
+            "$ref": "#/components/schemas/AssetClass"
+          },
+          "base_asset": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Base Asset"
+          },
+          "canonical_symbol": {
+            "pattern": "^[A-Z0-9_:.-]{3,100}$",
+            "title": "Canonical Symbol",
+            "type": "string"
+          },
+          "contract_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contract Code"
+          },
+          "contract_month": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contract Month"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "exchange": {
+            "title": "Exchange",
+            "type": "string"
+          },
+          "expiry": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expiry"
+          },
+          "instrument_type": {
+            "$ref": "#/components/schemas/InstrumentType"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "title": "Metadata",
+            "type": "object"
+          },
+          "multiplier": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Multiplier"
+          },
+          "quote_asset": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quote Asset"
+          },
+          "roll_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Roll At"
+          },
+          "root_symbol": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Root Symbol"
+          },
+          "tick_size": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tick Size"
+          }
+        },
+        "required": [
+          "canonical_symbol",
+          "display_name",
+          "asset_class",
+          "instrument_type",
+          "exchange",
+          "currency"
+        ],
+        "title": "Instrument",
+        "type": "object"
+      },
+      "InstrumentItem": {
+        "properties": {
+          "active": {
+            "title": "Active",
+            "type": "boolean"
+          },
+          "asset_class": {
+            "$ref": "#/components/schemas/AssetClass"
+          },
+          "availability": {
+            "enum": [
+              "persisted",
+              "configured_unverified"
+            ],
+            "title": "Availability",
+            "type": "string"
+          },
+          "broker": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Configured FX broker namespace; null if absent",
+            "title": "Broker"
+          },
+          "canonical_symbol": {
+            "title": "Canonical Symbol",
+            "type": "string"
+          },
+          "currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency"
+          },
+          "data_delay_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Data Delay Seconds"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "instrument_id": {
+            "format": "uuid",
+            "title": "Instrument Id",
+            "type": "string"
+          },
+          "instrument_type": {
+            "$ref": "#/components/schemas/InstrumentType"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_symbol": {
+            "description": "Exact persisted source symbol; never rewritten",
+            "title": "Provider Symbol",
+            "type": "string"
+          },
+          "realtime_status": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "supported_historical_intervals": {
+            "items": {
+              "enum": [
+                "1m",
+                "5m",
+                "15m",
+                "1h",
+                "1d"
+              ],
+              "type": "string"
+            },
+            "title": "Supported Historical Intervals",
+            "type": "array"
+          },
+          "venue": {
+            "title": "Venue",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instrument_id",
+          "canonical_symbol",
+          "provider",
+          "provider_symbol",
+          "venue",
+          "broker",
+          "display_name",
+          "asset_class",
+          "instrument_type",
+          "currency",
+          "active",
+          "realtime_status",
+          "data_delay_seconds",
+          "supported_historical_intervals",
+          "availability"
+        ],
+        "title": "InstrumentItem",
+        "type": "object"
+      },
+      "InstrumentPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/InstrumentItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_after": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next After"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "InstrumentPage",
+        "type": "object"
+      },
+      "InstrumentResponse": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "instrument": {
+            "$ref": "#/components/schemas/Instrument"
+          },
+          "mappings": {
+            "items": {
+              "$ref": "#/components/schemas/ProviderInstrument"
+            },
+            "title": "Mappings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "instrument"
+        ],
+        "title": "InstrumentResponse",
+        "type": "object"
+      },
+      "InstrumentType": {
+        "enum": [
+          "spot",
+          "otc",
+          "cfd",
+          "future",
+          "perpetual",
+          "index",
+          "reference"
+        ],
+        "title": "InstrumentType",
+        "type": "string"
+      },
+      "LatestCandleItem": {
+        "properties": {
+          "availability": {
+            "enum": [
+              "available",
+              "unavailable"
+            ],
+            "title": "Availability",
+            "type": "string"
+          },
+          "broker": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Configured FX broker namespace; null if absent",
+            "title": "Broker"
+          },
+          "candle": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CompletedCandle"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "canonical_symbol": {
+            "title": "Canonical Symbol",
+            "type": "string"
+          },
+          "instrument_id": {
+            "format": "uuid",
+            "title": "Instrument Id",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_symbol": {
+            "description": "Exact persisted source symbol; never rewritten",
+            "title": "Provider Symbol",
+            "type": "string"
+          },
+          "venue": {
+            "title": "Venue",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instrument_id",
+          "canonical_symbol",
+          "provider",
+          "provider_symbol",
+          "venue",
+          "broker",
+          "candle",
+          "availability"
+        ],
+        "title": "LatestCandleItem",
+        "type": "object"
+      },
+      "LatestCandlePage": {
+        "properties": {
+          "as_of": {
+            "format": "date-time",
+            "title": "As Of",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/LatestCandleItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_after": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next After"
+          }
+        },
+        "required": [
+          "items",
+          "as_of"
+        ],
+        "title": "LatestCandlePage",
+        "type": "object"
+      },
+      "LatestCandlePrice": {
+        "properties": {
+          "age_ms": {
+            "title": "Age Ms",
+            "type": "integer"
+          },
+          "bucket_end": {
+            "format": "date-time",
+            "title": "Bucket End",
+            "type": "string"
+          },
+          "bucket_start": {
+            "format": "date-time",
+            "title": "Bucket Start",
+            "type": "string"
+          },
+          "canonical_symbol": {
+            "title": "Canonical Symbol",
+            "type": "string"
+          },
+          "instrument_id": {
+            "format": "uuid",
+            "title": "Instrument Id",
+            "type": "string"
+          },
+          "interval": {
+            "const": "1m",
+            "default": "1m",
+            "title": "Interval",
+            "type": "string"
+          },
+          "last": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Last",
+            "type": "string"
+          },
+          "price_basis": {
+            "const": "candle_close",
+            "default": "candle_close",
+            "title": "Price Basis",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider State"
+          },
+          "provider_symbol": {
+            "title": "Provider Symbol",
+            "type": "string"
+          },
+          "realtime_status": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "received_timestamp": {
+            "format": "date-time",
+            "title": "Received Timestamp",
+            "type": "string"
+          },
+          "stale": {
+            "title": "Stale",
+            "type": "boolean"
+          },
+          "stale_after_seconds": {
+            "title": "Stale After Seconds",
+            "type": "number"
+          }
+        },
+        "required": [
+          "instrument_id",
+          "canonical_symbol",
+          "provider",
+          "provider_symbol",
+          "last",
+          "realtime_status",
+          "received_timestamp",
+          "bucket_start",
+          "bucket_end",
+          "age_ms",
+          "stale",
+          "stale_after_seconds"
+        ],
+        "title": "LatestCandlePrice",
+        "type": "object"
+      },
+      "LatestPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/LatestPrice"
+                },
+                {
+                  "$ref": "#/components/schemas/LatestCandlePrice"
+                }
+              ]
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_after": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next After"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "LatestPage",
+        "type": "object"
+      },
+      "LatestPrice": {
+        "additionalProperties": false,
+        "properties": {
+          "age_ms": {
+            "title": "Age Ms",
+            "type": "integer"
+          },
+          "ask": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ask"
+          },
+          "ask_size": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ask Size"
+          },
+          "asset_class": {
+            "$ref": "#/components/schemas/AssetClass"
+          },
+          "bid": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bid"
+          },
+          "bid_size": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bid Size"
+          },
+          "canonical_symbol": {
+            "title": "Canonical Symbol",
+            "type": "string"
+          },
+          "event_timestamp": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Timestamp"
+          },
+          "event_timestamp_ns": {
+            "anyOf": [
+              {
+                "maximum": 9.223372036854776e+18,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Timestamp Ns"
+          },
+          "exchange": {
+            "title": "Exchange",
+            "type": "string"
+          },
+          "instrument_id": {
+            "format": "uuid",
+            "title": "Instrument Id",
+            "type": "string"
+          },
+          "instrument_type": {
+            "$ref": "#/components/schemas/InstrumentType"
+          },
+          "last": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last"
+          },
+          "last_size": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Size"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "title": "Metadata",
+            "type": "object"
+          },
+          "price_type": {
+            "const": "quote",
+            "default": "quote",
+            "title": "Price Type",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider State"
+          },
+          "provider_symbol": {
+            "title": "Provider Symbol",
+            "type": "string"
+          },
+          "realtime_status": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "received_timestamp": {
+            "format": "date-time",
+            "title": "Received Timestamp",
+            "type": "string"
+          },
+          "sequence_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sequence Number"
+          },
+          "stale": {
+            "title": "Stale",
+            "type": "boolean"
+          },
+          "stale_after_seconds": {
+            "title": "Stale After Seconds",
+            "type": "number"
+          },
+          "tick_id": {
+            "format": "uuid",
+            "title": "Tick Id",
+            "type": "string"
+          },
+          "volume": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Volume"
+          }
+        },
+        "required": [
+          "instrument_id",
+          "canonical_symbol",
+          "provider_symbol",
+          "asset_class",
+          "instrument_type",
+          "provider",
+          "exchange",
+          "realtime_status",
+          "received_timestamp",
+          "age_ms",
+          "stale",
+          "stale_after_seconds"
+        ],
+        "title": "LatestPrice",
+        "type": "object"
+      },
+      "PriceEvent": {
+        "properties": {
+          "cursor": {
+            "title": "Cursor",
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PriceItem"
+          },
+          "event_id": {
+            "title": "Event Id",
+            "type": "string"
+          },
+          "persisted": {
+            "const": true,
+            "default": true,
+            "title": "Persisted",
+            "type": "boolean"
+          },
+          "recorded_at": {
+            "format": "date-time",
+            "title": "Recorded At",
+            "type": "string"
+          },
+          "server_timestamp": {
+            "format": "date-time",
+            "title": "Server Timestamp",
+            "type": "string"
+          },
+          "type": {
+            "const": "price_update",
+            "default": "price_update",
+            "title": "Type",
+            "type": "string"
+          },
+          "version": {
+            "const": 1,
+            "default": 1,
+            "title": "Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "server_timestamp",
+          "cursor",
+          "event_id",
+          "recorded_at",
+          "data"
+        ],
+        "title": "PriceEvent",
+        "type": "object"
+      },
+      "PriceItem": {
+        "properties": {
+          "age_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Ms"
+          },
+          "ask": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ask"
+          },
+          "bid": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bid"
+          },
+          "broker": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Configured FX broker namespace; null if absent",
+            "title": "Broker"
+          },
+          "bucket_end": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bucket End"
+          },
+          "bucket_start": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bucket Start"
+          },
+          "canonical_symbol": {
+            "title": "Canonical Symbol",
+            "type": "string"
+          },
+          "clock_skew": {
+            "default": false,
+            "title": "Clock Skew",
+            "type": "boolean"
+          },
+          "freshness": {
+            "enum": [
+              "fresh",
+              "stale",
+              "unavailable"
+            ],
+            "title": "Freshness",
+            "type": "string"
+          },
+          "freshness_basis": {
+            "enum": [
+              "source_and_receipt",
+              "receipt",
+              "unavailable"
+            ],
+            "title": "Freshness Basis",
+            "type": "string"
+          },
+          "instrument_id": {
+            "format": "uuid",
+            "title": "Instrument Id",
+            "type": "string"
+          },
+          "last": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last"
+          },
+          "price_basis": {
+            "enum": [
+              "last",
+              "bid_ask",
+              "bid",
+              "ask",
+              "candle_close",
+              "unavailable"
+            ],
+            "title": "Price Basis",
+            "type": "string"
+          },
+          "price_type": {
+            "enum": [
+              "quote",
+              "candle_close",
+              "unavailable"
+            ],
+            "title": "Price Type",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_symbol": {
+            "description": "Exact persisted source symbol; never rewritten",
+            "title": "Provider Symbol",
+            "type": "string"
+          },
+          "quote_freshness": {
+            "enum": [
+              "fresh",
+              "stale",
+              "unavailable"
+            ],
+            "title": "Quote Freshness",
+            "type": "string"
+          },
+          "realtime_quote_available": {
+            "title": "Realtime Quote Available",
+            "type": "boolean"
+          },
+          "realtime_status": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "received_timestamp": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Received Timestamp"
+          },
+          "source_timestamp": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Timestamp"
+          },
+          "stale_after_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stale After Seconds"
+          },
+          "venue": {
+            "title": "Venue",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instrument_id",
+          "canonical_symbol",
+          "provider",
+          "provider_symbol",
+          "venue",
+          "broker",
+          "price_type",
+          "price_basis",
+          "freshness_basis",
+          "freshness",
+          "realtime_status",
+          "quote_freshness",
+          "realtime_quote_available"
+        ],
+        "title": "PriceItem",
+        "type": "object"
+      },
+      "PricePage": {
+        "properties": {
+          "as_of": {
+            "format": "date-time",
+            "title": "As Of",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PriceItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_after": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next After"
+          }
+        },
+        "required": [
+          "items",
+          "as_of"
+        ],
+        "title": "PricePage",
+        "type": "object"
+      },
+      "ProviderHealth": {
+        "properties": {
+          "candle_retrieval": {
+            "additionalProperties": true,
+            "title": "Candle Retrieval",
+            "type": "object"
+          },
+          "configured_symbol_count": {
+            "default": 0,
+            "title": "Configured Symbol Count",
+            "type": "integer"
+          },
+          "connected_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Connected At"
+          },
+          "connection_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Connection Id"
+          },
+          "consecutive_reconnect_failures": {
+            "default": 0,
+            "title": "Consecutive Reconnect Failures",
+            "type": "integer"
+          },
+          "degradation_reasons": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Degradation Reasons",
+            "type": "array"
+          },
+          "error_count": {
+            "default": 0,
+            "title": "Error Count",
+            "type": "integer"
+          },
+          "expected_closed_minute": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Closed Minute"
+          },
+          "fresh_symbol_count": {
+            "default": 0,
+            "title": "Fresh Symbol Count",
+            "type": "integer"
+          },
+          "instrument_last_success": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "title": "Instrument Last Success",
+            "type": "object"
+          },
+          "last_candle_cycle": {
+            "additionalProperties": true,
+            "title": "Last Candle Cycle",
+            "type": "object"
+          },
+          "last_close_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Close Code"
+          },
+          "last_close_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Close Reason"
+          },
+          "last_disconnect_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Disconnect At"
+          },
+          "last_error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Error"
+          },
+          "last_message_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Message At"
+          },
+          "last_success_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Success At"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "reconnect_count": {
+            "default": 0,
+            "title": "Reconnect Count",
+            "type": "integer"
+          },
+          "requested_symbol_count": {
+            "default": 0,
+            "title": "Requested Symbol Count",
+            "type": "integer"
+          },
+          "stale_symbol_count": {
+            "default": 0,
+            "title": "Stale Symbol Count",
+            "type": "integer"
+          },
+          "stale_symbols": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Stale Symbols",
+            "type": "array"
+          },
+          "state": {
+            "default": "disconnected",
+            "enum": [
+              "disconnected",
+              "connecting",
+              "connected",
+              "subscribing",
+              "healthy",
+              "degraded",
+              "reconnecting",
+              "stale"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "storage_mode": {
+            "default": "ticks",
+            "title": "Storage Mode",
+            "type": "string"
+          },
+          "subscription_restored": {
+            "default": false,
+            "title": "Subscription Restored",
+            "type": "boolean"
+          },
+          "symbols": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/SymbolHealth"
+            },
+            "title": "Symbols",
+            "type": "object"
+          },
+          "transport": {
+            "default": "disconnected",
+            "enum": [
+              "disconnected",
+              "connecting",
+              "connected",
+              "reconnecting"
+            ],
+            "title": "Transport",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider"
+        ],
+        "title": "ProviderHealth",
+        "type": "object"
+      },
+      "ProviderInstrument": {
+        "additionalProperties": false,
+        "properties": {
+          "data_delay_seconds": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Data Delay Seconds"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "title": "Metadata",
+            "type": "object"
+          },
+          "provider": {
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_symbol": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Provider Symbol",
+            "type": "string"
+          },
+          "realtime_status": {
+            "$ref": "#/components/schemas/DataStatus",
+            "default": "unknown"
+          }
+        },
+        "required": [
+          "provider",
+          "provider_symbol"
+        ],
+        "title": "ProviderInstrument",
+        "type": "object"
+      },
+      "ServiceHealth": {
+        "properties": {
+          "api": {
+            "const": "available",
+            "default": "available",
+            "title": "Api",
+            "type": "string"
+          },
+          "as_of": {
+            "format": "date-time",
+            "title": "As Of",
+            "type": "string"
+          },
+          "collector": {
+            "enum": [
+              "running",
+              "stopped",
+              "unknown"
+            ],
+            "title": "Collector",
+            "type": "string"
+          },
+          "collector_updated_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Collector Updated At"
+          },
+          "data_freshness": {
+            "enum": [
+              "fresh",
+              "stale",
+              "unavailable",
+              "unknown"
+            ],
+            "title": "Data Freshness",
+            "type": "string"
+          },
+          "database": {
+            "enum": [
+              "available",
+              "unavailable"
+            ],
+            "title": "Database",
+            "type": "string"
+          },
+          "fresh_sources": {
+            "default": 0,
+            "title": "Fresh Sources",
+            "type": "integer"
+          },
+          "historical_coverage": {
+            "enum": [
+              "complete",
+              "gaps",
+              "unknown"
+            ],
+            "title": "Historical Coverage",
+            "type": "string"
+          },
+          "provider_states": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Provider States",
+            "type": "object"
+          },
+          "source_count": {
+            "default": 0,
+            "title": "Source Count",
+            "type": "integer"
+          },
+          "stale_sources": {
+            "default": 0,
+            "title": "Stale Sources",
+            "type": "integer"
+          },
+          "status": {
+            "enum": [
+              "ok",
+              "degraded"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "streaming_mode": {
+            "default": "database",
+            "enum": [
+              "database",
+              "unavailable"
+            ],
+            "title": "Streaming Mode",
+            "type": "string"
+          },
+          "summary_truncated": {
+            "default": false,
+            "title": "Summary Truncated",
+            "type": "boolean"
+          },
+          "unavailable_sources": {
+            "default": 0,
+            "title": "Unavailable Sources",
+            "type": "integer"
+          },
+          "websocket_delivery": {
+            "default": "unknown",
+            "enum": [
+              "idle",
+              "operational",
+              "degraded",
+              "unknown"
+            ],
+            "title": "Websocket Delivery",
+            "type": "string"
+          }
+        },
+        "required": [
+          "database",
+          "status",
+          "as_of",
+          "collector",
+          "data_freshness",
+          "historical_coverage"
+        ],
+        "title": "ServiceHealth",
+        "type": "object"
+      },
+      "SymbolHealth": {
+        "properties": {
+          "age_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Ms"
+          },
+          "backfill_horizon_minutes": {
+            "default": 300,
+            "title": "Backfill Horizon Minutes",
+            "type": "integer"
+          },
+          "candle_state": {
+            "anyOf": [
+              {
+                "enum": [
+                  "healthy",
+                  "closed",
+                  "degraded",
+                  "unknown"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Candle State"
+          },
+          "canonical_symbol": {
+            "title": "Canonical Symbol",
+            "type": "string"
+          },
+          "last_correction_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Correction At"
+          },
+          "last_fetch_completed_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Fetch Completed At"
+          },
+          "last_fetch_started_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Fetch Started At"
+          },
+          "last_observation_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Observation At"
+          },
+          "last_persisted_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Persisted At"
+          },
+          "last_persisted_minute": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Persisted Minute"
+          },
+          "last_rejection_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Rejection Reason"
+          },
+          "last_successful_fetch_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Successful Fetch At"
+          },
+          "latest_expected_completed_bucket": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Expected Completed Bucket"
+          },
+          "minutes_behind": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minutes Behind"
+          },
+          "missing_candle_count": {
+            "default": 0,
+            "title": "Missing Candle Count",
+            "type": "integer"
+          },
+          "not_expected_minutes": {
+            "default": 0,
+            "title": "Not Expected Minutes",
+            "type": "integer"
+          },
+          "observation_count": {
+            "default": 0,
+            "title": "Observation Count",
+            "type": "integer"
+          },
+          "observed_in_session": {
+            "default": false,
+            "title": "Observed In Session",
+            "type": "boolean"
+          },
+          "oldest_unresolved_expected_gap": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Oldest Unresolved Expected Gap"
+          },
+          "outside_horizon_missing_count": {
+            "default": 0,
+            "title": "Outside Horizon Missing Count",
+            "type": "integer"
+          },
+          "provider_symbol": {
+            "title": "Provider Symbol",
+            "type": "string"
+          },
+          "recoverable_missing_count": {
+            "default": 0,
+            "title": "Recoverable Missing Count",
+            "type": "integer"
+          },
+          "rejected": {
+            "default": false,
+            "title": "Rejected",
+            "type": "boolean"
+          },
+          "session_expectation": {
+            "default": "UNKNOWN",
+            "title": "Session Expectation",
+            "type": "string"
+          },
+          "source_update_mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Update Mode"
+          },
+          "stale": {
+            "default": true,
+            "title": "Stale",
+            "type": "boolean"
+          },
+          "stale_after_seconds": {
+            "default": 30,
+            "title": "Stale After Seconds",
+            "type": "number"
+          },
+          "unknown_minutes": {
+            "default": 0,
+            "title": "Unknown Minutes",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "canonical_symbol",
+          "provider_symbol"
+        ],
+        "title": "SymbolHealth",
+        "type": "object"
+      },
+      "Tick": {
+        "additionalProperties": false,
+        "properties": {
+          "ask": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ask"
+          },
+          "ask_size": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ask Size"
+          },
+          "asset_class": {
+            "$ref": "#/components/schemas/AssetClass"
+          },
+          "bid": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bid"
+          },
+          "bid_size": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bid Size"
+          },
+          "canonical_symbol": {
+            "title": "Canonical Symbol",
+            "type": "string"
+          },
+          "event_timestamp": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Timestamp"
+          },
+          "event_timestamp_ns": {
+            "anyOf": [
+              {
+                "maximum": 9.223372036854776e+18,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Timestamp Ns"
+          },
+          "exchange": {
+            "title": "Exchange",
+            "type": "string"
+          },
+          "instrument_id": {
+            "format": "uuid",
+            "title": "Instrument Id",
+            "type": "string"
+          },
+          "instrument_type": {
+            "$ref": "#/components/schemas/InstrumentType"
+          },
+          "last": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last"
+          },
+          "last_size": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Size"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "title": "Metadata",
+            "type": "object"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "provider_symbol": {
+            "title": "Provider Symbol",
+            "type": "string"
+          },
+          "realtime_status": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "received_timestamp": {
+            "format": "date-time",
+            "title": "Received Timestamp",
+            "type": "string"
+          },
+          "sequence_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sequence Number"
+          },
+          "tick_id": {
+            "format": "uuid",
+            "title": "Tick Id",
+            "type": "string"
+          },
+          "volume": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Volume"
+          }
+        },
+        "required": [
+          "instrument_id",
+          "canonical_symbol",
+          "provider_symbol",
+          "asset_class",
+          "instrument_type",
+          "provider",
+          "exchange",
+          "realtime_status",
+          "received_timestamp"
+        ],
+        "title": "Tick",
+        "type": "object"
+      },
+      "TickPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Tick"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "TickPage",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "CompanyBearer": {
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "title": "Multi-asset market data",
+    "version": "1.1.0rc1"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/v1/candles": {
+      "get": {
+        "description": "Read native 1m candles or UTC rollups, keeping incomplete elapsed rollups explicit.",
+        "operationId": "candles_api_v1_candles_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "symbol",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 3,
+              "pattern": "^[A-Z0-9_:.-]+$",
+              "title": "Symbol",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_]*$",
+              "title": "Provider",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider_symbol",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider Symbol"
+            }
+          },
+          {
+            "in": "query",
+            "name": "interval",
+            "required": false,
+            "schema": {
+              "default": "1m",
+              "enum": [
+                "1m",
+                "5m",
+                "15m",
+                "1h",
+                "1d"
+              ],
+              "title": "Interval",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 2048,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricalCandlePage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Candles",
+        "tags": [
+          "Market data v1"
+        ]
+      }
+    },
+    "/api/v1/candles/latest": {
+      "get": {
+        "description": "Latest persisted completed native 1m candle per source; no quote substitution.",
+        "operationId": "latest_candles_api_v1_candles_latest_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "symbols",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "items": {
+                    "maxLength": 100,
+                    "minLength": 3,
+                    "pattern": "^[A-Z0-9_:.-]+$",
+                    "type": "string"
+                  },
+                  "maxItems": 100,
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Symbols"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "pattern": "^[a-z][a-z0-9_]*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider_symbol",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider Symbol"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "schema": {
+              "default": "",
+              "maxLength": 220,
+              "title": "After",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LatestCandlePage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Latest Candles",
+        "tags": [
+          "Market data v1"
+        ]
+      }
+    },
+    "/api/v1/coverage": {
+      "get": {
+        "description": "Bounded completeness counts and stored gaps; untracked time stays UNKNOWN.",
+        "operationId": "coverage_api_v1_coverage_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "symbols",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "items": {
+                    "maxLength": 100,
+                    "minLength": 3,
+                    "pattern": "^[A-Z0-9_:.-]+$",
+                    "type": "string"
+                  },
+                  "maxItems": 100,
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Symbols"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "pattern": "^[a-z][a-z0-9_]*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider_symbol",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider Symbol"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "schema": {
+              "default": "",
+              "maxLength": 220,
+              "title": "After",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoveragePage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Coverage",
+        "tags": [
+          "Market data v1"
+        ]
+      }
+    },
+    "/api/v1/dashboard/candles": {
+      "get": {
+        "description": "Go ChartData using the existing native history query and pagination.\n\nCount/Value are unavailable in schema 0006. Missing metrics use approved zeros.\nUse /candles for exact decimals, status, completeness and source metadata.",
+        "operationId": "dashboard_candles_api_v1_dashboard_candles_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "symbol",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 3,
+              "pattern": "^[A-Z0-9_:.-]+$",
+              "title": "Symbol",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 1,
+              "pattern": "^[a-z][a-z0-9_]*$",
+              "title": "Provider",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider_symbol",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider Symbol"
+            }
+          },
+          {
+            "in": "query",
+            "name": "interval",
+            "required": false,
+            "schema": {
+              "default": "1m",
+              "enum": [
+                "1m",
+                "5m",
+                "15m",
+                "1h",
+                "1d"
+              ],
+              "title": "Interval",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 2048,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChartData"
+                }
+              }
+            },
+            "description": "Successful Response",
+            "headers": {
+              "X-Marketdata-Next-Cursor": {
+                "description": "Opaque history cursor; absent on the final page",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Dashboard Candles",
+        "tags": [
+          "Market data v1"
+        ]
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "description": "API/database readiness is independent of source connectivity or collector heartbeat.",
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceHealth"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ServiceHealth"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  ],
+                  "title": "Response 503 Health Api V1 Health Get"
+                }
+              }
+            },
+            "description": "Unavailable database or query deadline"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Health",
+        "tags": [
+          "Market data v1"
+        ]
+      }
+    },
+    "/api/v1/instruments": {
+      "get": {
+        "description": "List persisted configured source identities, including unverified mappings.",
+        "operationId": "instruments_api_v1_instruments_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "asset_class",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/AssetClass"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Asset Class"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "pattern": "^[a-z][a-z0-9_]*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider_symbol",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider Symbol"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "schema": {
+              "default": "",
+              "maxLength": 220,
+              "title": "After",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Instruments",
+        "tags": [
+          "Market data v1"
+        ]
+      }
+    },
+    "/api/v1/marketdata/changes": {
+      "get": {
+        "operationId": "changes_api_v1_marketdata_changes_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After"
+            }
+          },
+          {
+            "in": "query",
+            "name": "until",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Until"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 250,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Changes"
+      }
+    },
+    "/api/v1/prices/latest": {
+      "get": {
+        "description": "Prefer fresh persisted quotes; label candle-close fallback and unavailable data.",
+        "operationId": "prices_api_v1_prices_latest_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "symbols",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "items": {
+                    "maxLength": 100,
+                    "minLength": 3,
+                    "pattern": "^[A-Z0-9_:.-]+$",
+                    "type": "string"
+                  },
+                  "maxItems": 100,
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Symbols"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "pattern": "^[a-z][a-z0-9_]*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider_symbol",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 100,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider Symbol"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "schema": {
+              "default": "",
+              "maxLength": 220,
+              "title": "After",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PricePage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Prices",
+        "tags": [
+          "Market data v1"
+        ]
+      }
+    },
+    "/candles/{symbol}": {
+      "get": {
+        "operationId": "candles_candles__symbol__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "required": true,
+            "schema": {
+              "title": "Symbol",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider",
+            "required": true,
+            "schema": {
+              "title": "Provider",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "interval",
+            "required": false,
+            "schema": {
+              "default": "1m",
+              "title": "Interval",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "basis",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "last",
+                    "mid",
+                    "native"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Basis"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after_status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/DataStatus"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "After Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CandlePage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Candles"
+      }
+    },
+    "/futures/{exchange}/{root}/{alias}": {
+      "get": {
+        "operationId": "resolve_future_futures__exchange___root___alias__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "exchange",
+            "required": true,
+            "schema": {
+              "title": "Exchange",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "root",
+            "required": true,
+            "schema": {
+              "title": "Root",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "alias",
+            "required": true,
+            "schema": {
+              "enum": [
+                "front",
+                "next"
+              ],
+              "title": "Alias",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "at",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "At"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Resolve Future"
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [],
+        "summary": "Health"
+      }
+    },
+    "/instruments": {
+      "get": {
+        "operationId": "instruments_instruments_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "After",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/InstrumentResponse"
+                  },
+                  "title": "Response Instruments Instruments Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Instruments"
+      }
+    },
+    "/instruments/{symbol}": {
+      "get": {
+        "operationId": "instrument_instruments__symbol__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "required": true,
+            "schema": {
+              "title": "Symbol",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Instrument"
+      }
+    },
+    "/prices/latest": {
+      "get": {
+        "deprecated": true,
+        "operationId": "latest_prices_latest_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "provider",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "After",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LatestPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Latest"
+      }
+    },
+    "/prices/latest/{symbol}": {
+      "get": {
+        "deprecated": true,
+        "operationId": "latest_symbol_prices_latest__symbol__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "required": true,
+            "schema": {
+              "title": "Symbol",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/LatestPrice"
+                      },
+                      {
+                        "$ref": "#/components/schemas/LatestCandlePrice"
+                      }
+                    ]
+                  },
+                  "title": "Response Latest Symbol Prices Latest  Symbol  Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Latest Symbol"
+      }
+    },
+    "/providers": {
+      "get": {
+        "operationId": "provider_health_providers_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderHealth"
+                  },
+                  "title": "Response Provider Health Providers Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Provider Health"
+      }
+    },
+    "/ticks/{symbol}": {
+      "get": {
+        "operationId": "ticks_ticks__symbol__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "symbol",
+            "required": true,
+            "schema": {
+              "title": "Symbol",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "provider",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Provider"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TickPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "CompanyBearer": []
+          }
+        ],
+        "summary": "Ticks"
+      }
+    }
+  }
+}

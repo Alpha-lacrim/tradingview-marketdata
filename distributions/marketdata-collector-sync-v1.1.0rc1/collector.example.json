@@ -1,0 +1,14 @@
+{
+  "DATABASE_URL_FILE": "C:/Marketdata/private/collector_dsn",
+  "REGISTRY_FILE": "C:/Marketdata/private/approved-instruments.json",
+  "TRADINGVIEW_PRODUCTION_ACCESS_APPROVED": "false",
+  "SOURCE_CAPTURE_ENABLED": "false",
+  "TRADINGVIEW_STORAGE_MODE": "dual",
+  "MARKET_DATA_PROVIDER_CRYPTO": "disabled",
+  "MARKET_DATA_PROVIDER_FOREX": "disabled",
+  "MARKET_DATA_PROVIDER_METALS": "disabled",
+  "MARKET_DATA_PROVIDER_ENERGY": "disabled",
+  "MARKET_DATA_PROVIDER_FUTURES": "disabled",
+  "COLLECTOR_STATUS_INTERVAL_SECONDS": "5",
+  "COLLECTOR_STATUS_TTL_SECONDS": "60"
+}

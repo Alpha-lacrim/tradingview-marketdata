@@ -28,7 +28,7 @@ from marketdata.registry import Registry
 READER = "sample_api"
 RELATIONS = (
     "instruments,provider_instruments,market_ticks,latest_prices,market_candles,"
-    "latest_candles,candle_coverage,candle_revisions,collector_status,alembic_version,"
+    "latest_candles,candle_coverage,candle_revisions,collector_status,ingest_read_status,alembic_version,"
     "marketdata_event_clock,marketdata_events"
 )
 

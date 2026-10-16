@@ -1229,7 +1229,44 @@ include actual Linux container smoke. The API load command is
 It refuses other DSNs, creates 100 synthetic sources, runs real TCP load and pauses/unpauses
 only the verified disposable database. Never run it concurrently with pytest on the same DB.
 Production uses `compose.production.yaml` and separate mounted DSNs, not dev credentials.
-Schema head remains 0006; API-only readiness does not require collector connectivity.
+Root destination schema head is now 0010 (ordered quote snapshots); frozen v1.0 remains 0006.
+Read docs/fastapi-v1.1-milestone1.md before destination work. API-only readiness does not
+require collector connectivity. Milestone 1 uses compose.v11-m1-test.yaml, task-owned tmpfs
+ports 55945/55946 and database marketdata_v11_m1_test. Milestone 2 adds the ingestion runtime; use compose.v11-m2-test.yaml, project
+marketdata-v11-m2-tests, ports 55955/55956 and marketdata_v11_m2_test for its disposable tests.
+Read docs/fastapi-v1.1-protocol-v1.md and docs/fastapi-v1.1-runtime.md. These destination
+verification procedures never authorize a collector rollout.
+Milestone 3A source capture is documented in docs/fastapi-v1.1-source-capture.md. Source schema
+is base 0006 plus independent sc0001, installed explicitly with alembic-source.ini; never run
+destination upgrade head on the legacy collector. SOURCE_CAPTURE_ENABLED is opt-in and restricted
+to the independent collector role. Use compose.v11-m3a-test.yaml, project marketdata-v11-m3a-tests,
+ports 55975/55976 and task-owned databases ending _test. Do not start a provider connection.
+Lock sorted sources before the source capture clock, then the frontend event clock; several
+helpers in one transaction must prelock their complete source union. Never evict unacknowledged
+candle events. Latest quotes are coalescible full state with individual-field clocks; complete
+historical tick replication is not required or claimed. The HTTPS worker is milestone 3B, documented in docs/fastapi-v1.1-sync-worker.md.
+Its additive source state is sc0002; keep sc0001 unchanged. Worker state mutations require the
+SourceCapture consumer lock and SQL-backed owner generation. Byte-staged batches are immutable;
+receipt verification and source acknowledgment are distinct commits. Use compose.v11-m3b-test.yaml
+ports 55985/55986 with disposable _test databases. Never run a provider during these tests.
+Milestone 4 qualification is documented in docs/fastapi-v1.1-milestone4.md and
+docs/fastapi-v1.1-qualification.md. Its isolated pipeline harness uses source/destination pairs
+on ports 55995–55998, with separately labelled durable recovery pairs on 56005–56008. Use only
+the guarded task DSNs. Run pipeline tests and pytest serially per cluster because test roles
+are cluster-wide. All injected data stays simulated. The explicit --genuine --feeds 1 profile
+is a separate scoped acquisition qualification, never permission to activate all production feeds.
+Source acquisition must be stopped before final financial AND coverage comparisons. A drained
+candle/quote queue does not establish that metadata has caught up. Status batch staging locks
+sorted source business keys before the source clock and uses READ COMMITTED; avoid a stale
+repeatable-read snapshot taken before waiting for that clock. Metadata batches preserve captured
+status time/expiry and remain bounded by records/bytes. Never substitute delivery time for freshness.
+Do not restart tmpfs containers to test durable database recovery; use verified task-owned volumes.
+Compose config validation, native-process TLS tests and physical target-host qualification are
+different evidence. Do not claim production readiness from synthetic or brief genuine tests.
+Milestone 2.1 uses compose.v11-m21-test.yaml, project marketdata-v11-m21-tests, ports
+55965/55966 and database marketdata_v11_m21_test. Read docs/fastapi-v1.1-session-recovery.md.
+Preserve 0008; 0009 is additive. Full manifests and durable recovery IDs are mandatory;
+never automatically follow another session or reassign ownership after a fence error.
 The operator confirmed commercial public-site access rights on 2026-10-14. This installation
 enables production access approval; explicit false still blocks ingestion. Use
 docs/commercial-tradingview-test.md for the preserved 100-source profile and read-only versioned
@@ -1248,7 +1285,8 @@ explicit source identity, decimal serialization, production bearer/CORS configur
 company backend browser authentication and DBA-scoped SELECT-role setup. Validate API
 changes with `compose.batch2-test.yaml` under a separate project, never deployed resources.
 
-Alembic head is `0006`; 0005 adds only a collector health snapshot table. 0006 adds the
+Root Alembic head is `0010`; destination migrations never install source capture/worker state. Frozen v1.0 remains exact-`0006`. 0005 adds only a collector
+health snapshot table. 0006 adds the
 bounded committed-event journal and transactionally locked cursor clock. `events.py` owns
 append/reconciliation/snapshot fences; `market_stream.py` owns API worker readers/client
 lifecycle, and `ws_models.py` owns schemas. Every supported writer appends in its data
@@ -1402,3 +1440,33 @@ original commits/branches remain untouched. See docs/collector-fastapi-integrati
 isolated test commands, migration preservation and the conflict inventory. The legacy
 collector has no advisory lock and must stop before a lock-aware deployment; its exact-0004
 Store requires a tested status-only downgrade before legacy code rollback.
+
+
+## FastAPI v1.1 release preparation
+
+Use scripts/build_v11_release.py with the reviewed immutable Python image digest. It exports
+only allowlisted files into NEW versioned company and collector/worker candidates and guards
+existing managed hashes. Never run the frozen v1.0 exporter to produce v1.1. Verify the outer
+ZIP SHA256 and every SHA256SUMS entry before installation. Candidate version is1.1.0rc1; use
+the M5 report/sidecar for exact executed build/test results and outstanding acceptance gates.
+
+Company is a first installation: explicit destination0010, no source schema. Source is a
+separate base0006 plus sc0002 track, never destination upgrade head. release_admin requires
+a private DSN file and exact database name, guards tracks, and provisions only NEW fixed roles
+and NEW reviewed producer policy. Runtime never migrates or changes ownership. Source capture
+is disabled in templates and requires explicit opt-in plus the compatible collector binary.
+
+Use the independent worker with only restricted local DB credentials, HTTPS token/trusted CA
+and durable external anchor. Never embed it in READ or provide company DB credentials locally.
+Source collector writer and sync consumer roles are separate. Unknown identity, restore or
+revoked ownership requires review; never reset an epoch/anchor to force progress.
+
+Reference build tools: Python3.12, uv0.11.27, pinned hatchling1.27.0 and hashed runtime locks.
+A verified HTTPS mirror is an explicit company policy choice; record it and fresh --no-cache
+build results. Cache-only or failed default-index builds must not be called clean verification.
+Run package tests/pip check/payload verification, full PostgreSQL16.1/Timescale suites, exported
+fresh-install CLI and actual image/HTTPS pipeline using only disposable test clusters. Run test
+suites/install/pipeline serially per cluster because role names are cluster-wide. Avoid cold
+image builds during timing-sensitive regression runs; retain any failures and actual reruns.
+Do not label candidate packaging as full genuine99 qualification, site deployment or a live
+legacy collector transition. Follow each versioned package's install/restore/transition guides.

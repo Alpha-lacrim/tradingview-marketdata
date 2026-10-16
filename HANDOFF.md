@@ -1,4 +1,87 @@
-# Current state — 2026-10-15
+# Current state - 2026-10-17
+
+## FastAPI v1.1 - Milestone 5 complete, publication authorized
+
+Release candidate1.1.0rc1 is packaged and isolated installation verified. The operator explicitly
+authorized committing completed Milestones1-5 and pushing directly to origin/main on2026-10-17.
+This commit records that work; unrelated TradingViewConvHistory/ and ignored private artifacts
+remain excluded. The verified candidate manifests retain their tested base revision
+4cedaedb172d89ca3d2566bcea477c8296643592 plus exact source hashes; they are not regenerated merely
+to replace that provenance with a later commit ID. Root Git attributes preserve candidate LF
+bytes and payload checksums on fresh Windows/Linux checkouts. No company deployment, legacy
+collector/database/container/volume change, live TradingView connection or real producer handover
+is authorized by this publication request.
+
+Publication checks: Ruff lint/format431files, strict mypy54sourcefiles, six focused non-DB release
+tests and standalone package tests3company/2source passed. Indexed candidate payloads match all
+79company/105source SHA256SUMS entries and their original source hashes; frozen v1.0 ZIP/all66
+entries are unchanged. The initial company package check used the root editable environment
+and failed its exclusion assertion; rerunning with the clean company environment passed3/3.
+Full database suites were not rerun for this Git-only publication; the M5 results below remain
+the actual integration evidence. Remote main was an ancestor, permitting a normal fast-forward
+push without rewriting history. Private artifacts and TradingViewConvHistory/ stay untracked.
+
+Read docs/fastapi-v1.1-milestone5.md and its verification JSON for the exact files, changes,
+results, failed attempts, hashes and remaining gates. Separate outputs:
+- distributions/marketdata-fastapi-v1.1.0rc1/ and artifacts/marketdata-fastapi-v1.1.0rc1.zip.
+- distributions/marketdata-collector-sync-v1.1.0rc1/ and matching ZIP under artifacts/.
+- Optional wheels artifacts/v11-m5-wheels/; outer hashes marketdata-v1.1.0rc1-SHA256SUMS.
+Company is first install (no v1.0 prerequisite). Destination0010, source separate0006+sc0002.
+M5 changes no migration. Company excludes collector/concrete providers/source schema/worker.
+Source templates disable capture/providers; schema installation does not authorize activation.
+
+Build exporter is allowlisted/deterministic and guards managed payload hashes. Packages include
+locked runtime/dev dependencies, pinned backend/base image, separate role entrypoints, strict
+admin migration/provision tools, narrow role SQL, company/Windows/Linux guides, Task Scheduler/
+systemd/Compose examples, backup/restore/reconciliation/handover runbooks and smoke/package tests.
+Admin tooling creates NEW roles/producer policy only; never implicitly rotates or transfers.
+Worker has restricted LOCAL DSN only, verified HTTPS/token/CA and durable external anchor.
+
+Product corrections: shared quote field clocks moved into quote_fields.py so company validation
+needs no source_capture import. Store imports source prepare_quotes only in enabled capture
+branch, not destination-only ordered snapshots (real SQL import-blocking regression + actual
+image pipeline). SourceCapture cleanup bounded-closes/cancels a busy connection before terminate
+fallback, releasing its advisory lock; DB regression proves this. No financial SQL, ordering,
+event/auth/ownership protocol or existing public read contract changed. Version info1.1.0rc1
+is the only intentional frozen v1 OpenAPI contract difference. New collector writer account
+cannot mutate source epochs/outbox payloads/acks/worker state or delete history/run DDL.
+
+Final full post-fix suites: PostgreSQL16.1 **651passed/9skipped**,449.88s; Timescale2.25.1/PG17.7
+**654passed/6skipped**,533.89s; zero failures/errors. Final XML/logs v11-m5-{pg,ts}-final-suite.
+Actual image HTTPS pipelines pass31 assertions EACH (repeated parity checks, not31unique tests),
+3source=3destination candles,1revision each,1full quote and1coverage stream equal,0receipt hash
+mismatches and0financial pending after real persistent-volume DB restarts/independent role and
+worker restarts with collection stopped. Actual31checks/13WSS events and SQL comparison/trace
+evidence under artifacts/v11-m5-{pg,ts}-pipeline/. Test observations are simulated, not genuine.
+Package tests3company/2source pass, Windows fresh hashed installs, both wheels, both final cold
+images, image source/hash/pip checks (30shared modules identical), static lint/format/mypy54,
+Compose config and5PowerShell syntax blocks pass. Physical OS startup/site gateway not run.
+
+Default PyPI DNS/downloads failed. Both final images built freshly --no-cache with verifiedHTTPS
+Aliyun mirror and unchanged hashes (company312.99s/source186.22s); a mirror timeout retry is
+retained. Company approval of a reachable index is a site prerequisite. Earlier API timeouts
+under cold-build overlap, package-only missing imports, a TS test DB cleanup background-session
+race and a test observer keep-alive after READ restart are documented, not counted as passes.
+Final TS observer reconnects after intentional restart; production retries unchanged.
+
+Only task-owned four DBcontainers/fourvolumes and WSL marketdata-v11-m5-test were removed AFTER
+SQL evidence extraction and verified absolute root/labels/mount inventory. Cleanup proof is
+artifacts/v11-m5-runtime/cleanup-completed.json. Docker Desktop stayed stopped. Private artifact
+subdirectories contain fixture credentials; never publish them or package installed environments.
+Frozen v1.0 ZIP and all66 payload entries match SHA256
+3a3ca216098a0f2a6632a8dcdb1dfb96af116a4c079c825876f253fbd8cea67a.
+
+Remaining production gates: genuine sustained99/provider rights and universe approval, actual
+company DNS/gateway/WAN/TLS/firewall/secret provisioning, target Windows sleep/reboot/Task Scheduler
+and Linux systemd boot, off-host backup RPO/RTO/rehearsal and longer dedicated soak. M4 scoped
+genuine BTC6candles+independent quotes and injected99 both17min are inherited evidence, not new
+M5 genuine99 qualification. Restored/clone/anchor/security-policy uncertainty needs administrator
+review, never an epoch/cursor reset or fabricated receipt. Read each package's transition guide.
+
+Next only after separate authorization: company first-install/site rehearsal and controlled old
+0004 source transition through0005/0006/sc0001/sc0002 with compatible binary, verified backups,
+no second collector and explicit activation; later distinct-producer Windows->Linux handover.
+Do not start those operations merely because candidate packages exist or are published on main.
 
 ## Repository and authorization
 
@@ -8,7 +91,7 @@ This workspace started clean on detached HEAD fdf7759d31d2a0a1738410ffb7825c1b95
 The operator requested the earlier commercial preparation committed locally on main,
 with no push or deployment. The earlier developer audit left uncommitted edits to
 HANDOFF/README/frontend docs/browser example/smoke and new developer-handoff/browser tests.
-The standalone API task preserved and completed those frontend handoff changes. The operator authorized a local commit of the completed extraction and Go ChartData compatibility work on main on 2026-10-14. No push or deployment is authorized.
+The standalone API task preserved and completed those frontend handoff changes. The operator authorized a local commit of the completed extraction and Go ChartData compatibility work on main on 2026-10-14. That earlier authorization excluded a push; the current publication authorization above supersedes this historical limit. Deployment remains unauthorized.
 The temporary codex/commercial-tradingview-preparation branch was removed. To free main,
 the older home-rooted worktree was detached at its unchanged 324b1d83 commit; its tracked
 edits were verified unchanged. Other worktrees and paused database-efficiency work remain
@@ -24,7 +107,7 @@ approved. No dedicated endpoint/authentication was supplied. The earlier access 
 gate is resolved for this installation. Upstream entitlements, realtime classification,
 experimental protocol and persisted tradingview_guest identity are preserved.
 
-## Dual TradingView collector — current development
+## Prior dual TradingView collector qualification — schema 0006
 
 Read docs/dual-ingestion-qualification.md, dual-registry-comparison.json and
 dual-prior-live-sample.json. Opt-in TRADINGVIEW_STORAGE_MODE=dual builds the existing native
@@ -37,7 +120,8 @@ and is published first with native session/candle state for released v1.0 source
 Quote HTTP 429 honors Retry-After/minimum 60s. Existing precision, metadata, delay, rejection,
 watchdog, bounded queue, candle recovery and transaction cursor guarantees remain.
 
-No migration or API/event/ChartData contract change. Schema head 0006. The delivered ZIP and
+That dual collector change had no migration or API/event/ChartData contract change and used
+schema head 0006. Milestone 1 now advances root to 0007. The delivered ZIP and
 entire distributions/marketdata-fastapi tree were not edited or regenerated; ZIP hash remains
 3a3ca216098a0f2a6632a8dcdb1dfb96af116a4c079c825876f253fbd8cea67a. Shared collector-side
 module changes intentionally diverge from the frozen source manifest. Released API Settings
@@ -64,9 +148,9 @@ Task-owned tmpfs DBs: marketdata-dual-pg16-test/55935 (exact PostgreSQL 16.1) an
 marketdata-dual-ts-test/55936 (Timescale 2.25.1 / PostgreSQL 17.7), database marketdata_dual_test.
 DUAL_TEST_CONTAINER guards real pause/unpause by exact name, label and mapped port.
 The task-owned test databases were removed after verification, without volume operations.
-No tests were run against production. The existing app is still unhealthy/degraded with
-PermanentConnectionError and disconnected transport; read-only SQL confirmed its actual
-migration is 0004. No qualifying documented idle window, no new live source probes, no
+No tests were run against production. Before the later stopped state observed in Phase A,
+the app was unhealthy/degraded with PermanentConnectionError and disconnected transport;
+that earlier read-only SQL inspection confirmed migration 0004. No new live source probes, no
 production restart/migration/volume changes. The exact permanent rejection cause is unresolved.
 
 The registries remain unchanged: 100 accuracy sources vs 99 proposed feeds; 57 common,
@@ -147,7 +231,8 @@ real committed TCP/WS reconciliation, wrong prices/source, simulated status and 
 The approved production factory test proves four 25-source workers without upstream I/O;
 explicit revocation remains tested.
 
-Schema head is 0006; no migration added. API factories never start ingestion. Replay journal,
+Commercial preparation used schema 0006 with no added migration; root is now 0007.
+API factories never start ingestion. Replay journal,
 independent broker histories, UTC timestamps, Decimal values, unknown/non-additive source
 volume and candle-close versus live quote semantics are unchanged. Only supported Store
 writes append journal events; old binaries/direct SQL do not.
@@ -235,9 +320,9 @@ validation without volume operations. Do not infer current provider health from 
 
 ## Deployment and next actions
 
-Existing tradingview-app-1 was unhealthy and tradingview-db-1 healthy on inspection.
-Neither was switched, recreated or stopped. Live commercial smoke has NOT RUN. No current
-live feed correctness claim. Legacy schema0004 combined collector lacks the ownership lock:
+Earlier deployment inspection found tradingview-app-1 unhealthy and tradingview-db-1 healthy;
+Phase A later found both stopped, without changing either. Live commercial smoke has NOT RUN. No current
+live feed correctness claim. Legacy schema 0004 combined collector lacks the ownership lock:
 verify image/database/volume, back up, stop legacy ownership, migrate using the reviewed
 procedure and provision separate principals/secrets before replacement. Follow
 docs/collector-fastapi-integration.md and docs/production-deployment.md. Do not run legacy

@@ -129,6 +129,7 @@ def parse_quote(values: dict[str, Any], pair: Subscription, received: datetime) 
             "source_symbol": mapping.provider_symbol,
             "price_semantics": "upstream quote delta, not a verified execution",
             "timestamp_semantics": "lp_time applies to last only; bid/ask time unavailable",
+            "timestamped_fields": ["last"] if ns is not None else [],
             "volume_semantics": "upstream reported volume; window unverified",
         },
     )

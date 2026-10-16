@@ -1,0 +1,210 @@
+{
+  "date": "2026-10-15",
+  "timezone": "Asia/Tehran",
+  "base_commit": "4cedaedb172d89ca3d2566bcea477c8296643592",
+  "milestone": 1,
+  "schema_head": "0007",
+  "matrix": [
+    {
+      "engine": "PostgreSQL 16.1",
+      "scope": "root",
+      "schema": "0007",
+      "tests": 518,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 8,
+      "seconds": 150.251,
+      "junit": "artifacts/v11-m1-full-pg16.xml",
+      "junit_sha256": "094369992b1bc28667ff96c8a3efb911ddc7869eefab82ff5a1eacf0b7a4e958",
+      "passed": 510,
+      "skip_details": [
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_persistence.test_candles_trade_volume_mid_and_all_intervals[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_ties_are_deterministic_after_refresh[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_persistence.test_candle_pagination_preserves_multiple_statuses_in_same_bucket[True]",
+          "reason": "Timescale aggregates not enabled"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ],
+      "milestone1_tests": {
+        "passed": 32,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "database_cases_passed": 21,
+        "model_contract_cases_passed": 11
+      }
+    },
+    {
+      "engine": "TimescaleDB 2.25.1 / PostgreSQL 17.7",
+      "scope": "root",
+      "schema": "0007",
+      "tests": 518,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 5,
+      "seconds": 166.045,
+      "junit": "artifacts/v11-m1-full-timescale.xml",
+      "junit_sha256": "122dcb291e04813cee3ed2b9fb556f4909c1f45e705ec214e6106ea5f8fd69e7",
+      "passed": 513,
+      "skip_details": [
+        {
+          "test": "tests.test_backup_restore.test_backup_restore_preserves_history_and_invalidates_old_replay_cursor",
+          "reason": "requires the task-owned Batch 4 container"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_old_quote_stays_stale_across_released_api_restarts",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_dual_ingestion.test_dual_collector_to_exact_released_api_outage_recovery_replay",
+          "reason": "immutable v1.0 binary requires 0006; separately qualify its frozen suite"
+        },
+        {
+          "test": "tests.test_market_database_outage.test_actual_postgresql_outage_then_journal_and_rest_recover",
+          "reason": "set BATCH3_TEST_CONTAINER to a task-owned disposable Batch 3 container"
+        },
+        {
+          "test": "tests.test_production_container.test_linux_production_entrypoint_with_two_workers_and_readonly_files",
+          "reason": "requires built Batch 4 image and disposable database container"
+        }
+      ],
+      "milestone1_tests": {
+        "passed": 32,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "database_cases_passed": 21,
+        "model_contract_cases_passed": 11
+      }
+    },
+    {
+      "engine": "PostgreSQL 16.1",
+      "scope": "immutable-v1.0",
+      "schema": "0006",
+      "tests": 143,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 36.643,
+      "junit": "artifacts/v11-m1-frozen-v10-pg16.xml",
+      "junit_sha256": "03a1d4d60cf616932c2b81b9edbc40256c1075d6c438b4f5ec7e7d241e1eca00",
+      "passed": 143,
+      "skip_details": []
+    },
+    {
+      "engine": "TimescaleDB 2.25.1 / PostgreSQL 17.7",
+      "scope": "immutable-v1.0",
+      "schema": "0006",
+      "tests": 143,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 40.462,
+      "junit": "artifacts/v11-m1-frozen-v10-timescale.xml",
+      "junit_sha256": "0f270038aa4d23830053ff3b2bd24a4a61ab886e36aed7eff03ff42c3b5f73b3",
+      "passed": 143,
+      "skip_details": []
+    }
+  ],
+  "quality": {
+    "ruff": "passed",
+    "format": "219 files passed",
+    "mypy": "40 source files passed",
+    "alembic_head": "0007",
+    "compose_config": "passed",
+    "git_diff_check": "passed"
+  },
+  "source_files_sha256": {
+    ".gitignore": "c2166b62d962b5f6fd2477d1fdd30b82de93bc3b27d11612442b55ff6a36170b",
+    "compose.v11-m1-test.yaml": "20415a78cf1012ab290069825fcbec12fb66aa85b3d5794a4a50b627f8a251cc",
+    "migrations/versions/0007_destination_ingestion.py": "c02140a4ef900d44c09c643714b70b1979ba14595d6aa65cdba8fb64ad94313e",
+    "scripts/sql/v11_destination_roles.sql": "74af92d5e940c3f23bd3e15bfa4ae609ec85b1acd2671a2d9af6e926ef962972",
+    "src/marketdata/persistence.py": "ac9b024f6c6454b31d7db4c4d9553af4c83b0e29f7f95974c7225403dd7a93d6",
+    "src/marketdata/replication.py": "8147cbfe5e2d9d5680c266d4aeb0df34cd439afdde0d7fec1b9b3ee8e1d2f8bb",
+    "src/marketdata/replication_models.py": "862f044c771a5407a4253e18983894b8743290d381499a56843e6b526d5a1b02",
+    "tests/conftest.py": "7ae85152391cf7793f5b88d50b1a9fd53d32c5789258ba07c0a8a3a094d145b4",
+    "tests/test_dual_ingestion.py": "7f08aeaa195d4ed9736ac6c3d4a506fee0bc9f1c088c69f46fc5ca9adc011dcb",
+    "tests/test_destination_ingestion.py": "42f52aefd7d3cf937ff4d6ba1970fdd5f2308d70c35cf78eeea24a5fcd0d3453",
+    "tests/test_destination_migrations.py": "7289d11ddc4b43f53331bda93a6b28f383da44e6e37f538791f49ea3327093dc"
+  },
+  "frozen_zip_sha256": "3a3ca216098a0f2a6632a8dcdb1dfb96af116a4c079c825876f253fbd8cea67a",
+  "task_resources": [
+    {
+      "name": "/marketdata-v11-m1-pg16-test",
+      "image_id": "sha256:09f23e02d76670d3b346a3c00aa33a27cf57aab8341eedfcdaed41459d14f5c4",
+      "storage": "tmpfs",
+      "project": "marketdata-v11-m1-tests"
+    },
+    {
+      "name": "/marketdata-v11-m1-ts-test",
+      "image_id": "sha256:f5f9f09d57799d237f481e5b9ad517eae5088fed3dbb487e2138419e6196fc78",
+      "storage": "tmpfs",
+      "project": "marketdata-v11-m1-tests"
+    }
+  ],
+  "pre_existing_resources": [
+    {
+      "name": "/tradingview-app-1",
+      "image_id": "sha256:ca498afb02f6232440e3386936a4097e865cf9fefdbd0481adc0cc7ce623023f",
+      "state": "exited",
+      "started_at": "2026-10-15T08:21:21.3865808Z",
+      "finished_at": "2026-10-15T08:34:02.28412306Z"
+    },
+    {
+      "name": "/tradingview-db-1",
+      "image_id": "sha256:f5f9f09d57799d237f481e5b9ad517eae5088fed3dbb487e2138419e6196fc78",
+      "state": "exited",
+      "started_at": "2026-10-15T08:21:17.794909252Z",
+      "finished_at": "2026-10-15T08:34:01.897432594Z"
+    }
+  ],
+  "preservation": {
+    "collector_database_sql_executed": false,
+    "provider_connections_opened": false,
+    "deployment_performed": false,
+    "release_modified": false,
+    "push_or_commit": false,
+    "source_data_hash_taken": false,
+    "source_data_hash_note": "Legacy DB remained stopped and was neither started nor mounted; preservation checks cover lifecycle/image identity and absence of source SQL/volume actions."
+  },
+  "cleanup": {
+    "removed": [
+      "marketdata-v11-m1-pg16-test",
+      "marketdata-v11-m1-ts-test"
+    ],
+    "volume_operations": false,
+    "task_labels_and_tmpfs_verified": true
+  },
+  "limitations": [
+    "No HTTP ingestion/authentication/worker/outbox implemented.",
+    "No genuine current TradingView or company host qualification.",
+    "No throughput or WAN outage benchmark.",
+    "Frozen suite used existing interpreter with explicit local imports, not a fresh dependency installation."
+  ]
+}

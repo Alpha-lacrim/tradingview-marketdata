@@ -384,6 +384,8 @@ async def test_collector_ownership_loss_stops_owned_tasks(store):
         database_url=store.settings.database_url,
         collector_metrics_port=0,
         batch_flush_seconds=0.01,
+        # Poll well inside the test deadline; the production default is five seconds.
+        collector_status_interval_seconds=0.1,
     )
     async with collector_lifespan(settings) as runtime:
         async with store.connection() as c:

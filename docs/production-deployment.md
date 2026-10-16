@@ -1,3 +1,7 @@
+> Company v1.1 uses the separate ingestion/read architecture and destination schema 0010. See
+> [the runtime guide](fastapi-v1.1-runtime.md) and [worker operations](fastapi-v1.1-sync-worker.md). The colocated collector
+> procedures and schema-0006 rollback history below are not the company v1.1 installation.
+
 # Production deployment and recovery
 
 This Batch 4 work is **undeployed**. Use a modest Linux server with Docker Engine/Compose,
@@ -59,7 +63,7 @@ GRANT CONNECT ON DATABASE marketdata TO marketdata_api, marketdata_collector;
 GRANT USAGE ON SCHEMA public TO marketdata_api, marketdata_collector;
 GRANT SELECT ON public.instruments, public.provider_instruments, public.market_ticks,
   public.latest_prices, public.market_candles, public.latest_candles, public.candle_coverage,
-  public.candle_revisions, public.collector_status, public.marketdata_events,
+  public.candle_revisions, public.collector_status, public.ingest_read_status, public.marketdata_events,
   public.marketdata_event_clock, public.alembic_version TO marketdata_api;
 ALTER ROLE marketdata_api SET default_transaction_read_only=on;
 GRANT TEMPORARY ON DATABASE marketdata TO marketdata_collector;
@@ -88,7 +92,7 @@ docker compose --env-file /etc/marketdata/deploy.env -p marketdata -f compose.pr
 ```
 
 Run the DBA grants above before API/collector startup. Migrations are explicit, never part of
-API startup. Schema head is 0006; Batch 4 adds no migration. Plain PostgreSQL is supported:
+API startup. Root schema head is 0009; frozen v1.0/Batch 4 remains at 0006. Plain PostgreSQL is supported:
 use an explicitly selected PostgreSQL image and run Alembic without `-x timescale=true`
 instead of the supplied Timescale migration entrypoint. Do not change the database engine
 of an existing volume.

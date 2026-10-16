@@ -13,6 +13,7 @@ from contextlib import asynccontextmanager
 from datetime import timedelta
 from pathlib import Path
 
+import asyncpg
 import httpx
 import pytest
 from test_market_stream import HEADERS, ORIGIN, TOKEN, receive, subscribe, ws_url
@@ -316,6 +317,15 @@ async def eventually(predicate):
 
 @asynccontextmanager
 async def released_api(tmp_path, database_url):
+    # The immutable binary deliberately requires exactly 0006. New read-contract tests
+    # run the current reader on 0007; the frozen suite runs separately on its own 0006 DB.
+    connection = await asyncpg.connect(database_url)
+    try:
+        revision = await connection.fetchval("SELECT version_num FROM alembic_version")
+    finally:
+        await connection.close()
+    if revision != "0006":
+        pytest.skip("immutable v1.0 binary requires 0006; separately qualify its frozen suite")
     release = Path("artifacts/marketdata-fastapi-v1.0.zip")
     if not await asyncio.to_thread(release.is_file):
         pytest.skip("exact released v1.0 ZIP is required for independent consumer qualification")

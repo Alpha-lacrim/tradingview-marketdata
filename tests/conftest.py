@@ -40,6 +40,7 @@ async def store(database_url, registry):
             "TRUNCATE latest_prices, market_ticks, provider_instruments, instruments CASCADE"
         )
         await c.execute("TRUNCATE collector_status")
+        await c.execute("TRUNCATE ingest_producers CASCADE")
     await store.register(registry)
     try:
         yield store

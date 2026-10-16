@@ -607,7 +607,7 @@ async def test_select_only_role_cannot_write_even_when_session_readonly_is_disab
     role = "batch2_read_" + uuid4().hex
     tables = (
         "instruments,provider_instruments,market_ticks,latest_prices,market_candles,"
-        "latest_candles,candle_coverage,candle_revisions,collector_status,alembic_version"
+        "latest_candles,candle_coverage,candle_revisions,collector_status,ingest_read_status,alembic_version"
     )
     async with store.connection() as admin:
         await admin.execute(
